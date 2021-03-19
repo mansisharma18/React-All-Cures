@@ -15,10 +15,7 @@ import Main from './components/MainComponent';
 function App() {
   return (
     <div>
-      {/* <Home/> */}
-      {/* <Profile/> */}
       <Main/>
-      {/* <OwlDemo></OwlDemo> */}
     </div>
   );
 }

@@ -1,8 +1,5 @@
 import React, { Component } from 'react';
-// import Header from '../Header/Header';
 import Footer from '../Footer/Footer';
-// import '../../../node_modules/owl.carousel/dist/assets/owl-carousel.css';
-// import '../../../node_modules/owl.carousel/dist/assets/owl.theme.default.css';
 import Heart from"../../assets/img/heart.png";
 
 import ClientA from "../../assets/img/client-a.jpg";
@@ -26,6 +23,7 @@ class Home extends Component {
         return(
             <div>
                 {/* <Header/> */}
+                <div className="homeHeader">
             <section className="banner" >
          <div className="container">
             <div className="banner-inner clearfix">
@@ -53,7 +51,7 @@ class Home extends Component {
          <div className="container">
             <div className="row">
                <div className="serch-wrap-inner clearfix">
-                        <form style={{display: "block"}} method="POST" action="/cures/SearchActionController">
+                        <form class="mainSearch" style={{display: "block"}} method="POST" action="/cures/SearchActionController">
                      	  <div className="col-md-4 pd-0 col-sx-12 col-sm-4">
                    			<div className="form-group search">
     							<input type="text" placeholder="Doctor Name, Disease or Condition" name="doctors" id="doctors"  className="formVal form-control "/>
@@ -65,15 +63,10 @@ class Home extends Component {
     							<input type= "text" placeholder="City or Zip-code" name="city" id="city" className="formVal form-control" />
                 	    	</div>
                 		 </div>
-                		 <div className="col-md-4 pd-0 col-sx-12 col-sm-4">
          					 
-                       			  <input type="hidden" name="Latitude" id="Latitude"  className="form-control"/>
+              			  <input type="hidden" name="Latitude" id="Latitude"  className="form-control"/>
     	 
-                       	 </div>    
-                       	 <div className="col-md-4 pd-0 col-sx-12 col-sm-4">
-         					 
-                       			  <input type="hidden" name="Longitude" id="Longitude"  className="form-control"/>
-                		</div>        
+                       	 <input type="hidden" name="Longitude" id="Longitude"  className="form-control"/>
                          <div className="col-md-4 pd-0 col-sx-12 col-sm-4">
          					 <div className="form-group date">
                        			  <input type="date" name="" placeholder="Date" className="form-control"/>
@@ -87,6 +80,7 @@ class Home extends Component {
                </div>   
             </div>
       </section>
+      </div>
       <section className="tabslider clerfix">
           <div className="container">
             <div className="row">

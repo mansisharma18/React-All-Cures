@@ -7,7 +7,13 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-import './App.css';
+// import './App.css';
+import './assets/healthcare/css/main.css';
+import './assets/healthcare/css/responsive.css';
+import './assets/healthcare/css/animate.css';
+import './assets/healthcare/css/owl.carousel.css';
+import './assets/healthcare/css/owl.theme.css';
+import './assets/healthcare/icomoon/style.css';
 
 ReactDOM.render(
   <React.StrictMode>

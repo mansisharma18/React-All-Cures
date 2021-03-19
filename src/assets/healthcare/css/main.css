@@ -8,6 +8,11 @@ body { font-family: 'Roboto', sans-serif; font-weight: 400; font-size: 16px; pos
 
 a:focus, a:hover { color: none!important; text-decoration: none!important; }
 
+.mainSearch {
+    margin: 0;
+    padding: 0;
+}
+
 .mt-5 { margin-top: 5px; }
 
 .mt-10 { margin-top: 10px; }
@@ -283,10 +288,10 @@ h1, h2, h3, h4, h5, h6 { margin: 0; text-transform: capitalize; }
 
 .date { position: relative; }
 
-.serch-wrap-inner { /*display: flex;
+/*.serch-wrap-inner { display: flex;
     justify-content: space-between;
-    width: 100%;*/
-}
+    width: 100%;
+}*/
 
 .serch-wrap-inner .form-group { width: 100%; }
 
@@ -430,7 +435,7 @@ a.appBTN { background: #00415E; border-radius: 25px; color: #fff; padding: 15px 
 
 .doc-img { position: relative; }
 
-.btn-Gropu { display: block; position: absolute; bottom: -217px; right: 30px; }
+.btn-Gropu { display: none; position: absolute; bottom: -217px; right: 30px; }
 
 .innerapp img { position: absolute; top: -79px; right: 0; }
 

@@ -1,156 +1,234 @@
 @media screen and (min-width : 1400px) {
 
-.name p { width: 335px; }
+    .name p { width: 335px !important; }
+    }
+    @media screen  and (min-device-width: 1200px)  and (max-device-width: 1600px)  and (-webkit-min-device-pixel-ratio: 1) {
+    
+    .name p { width: 335px !important; }
+    }
+     @media screen and (min-width : 1200px) {
+    }
+    /* Large devices (laptops/desktops, 992px and up) */
+    @media only screen and (min-width: 992px) {
+    
+    /*    a.appBtn {
+        padding: 16px 63px;
+    }*/
+    
+    .btn-Gropu { right: 0px; }
+    
+    /* .name p {
+            width: unset;
+        }*/
+        /*.detail-r {
+            padding-left: 100px;
+            margin-bottom: 30px;
+        }*/
+    
+    .tab-nav ul li { margin-right: 10px; }
+    
+    .tab-nav ul li a { padding: 5px 15px; }
+    
+    .moreFilters { margin-left: 0; }
+    }
+    
+    /* Medium devices (landscape tablets, 768px and up) */
+    @media only screen and (min-width: 768px) {
+    
+    /*    a.appBTN {
+            padding: 10px 25px;
+        }*/
+    /*    .btn-Gropu {
+            bottom: -235px;
+        }*/
+        /*a.appBtn {
+            padding: 9px 5px;
+            margin-bottom: 20px;
+        }*/
+    
+    .socia-media-footer ul li { margin-right: 10px !important; font-size: 30px !important; }
+    
+    .serchlabel { bottom: 150px !important; }
+    
+    /*.serch-wrap-inner {
+            margin-top: -99px;
+        }*/
+    
+    .tab-nav ul li { margin-right: 2px !important; }
+    
+    .tab-nav ul li a { /*padding: 5px 12px;*/
+    font-size: 13px !important; }
+    
+    .moreFilters { padding: 6px 36px !important; margin-left: 20px !important; font-size: 13px !important; }
+    
+    /*    .name p {
+             width: unset; 
+        }*/
+        /*.detail-r {
+            padding-left: 100px;
+        }*/
+    
+    .tab-content-detail { padding: 30px 0 30px 0; }
+    }
+
+
+
+
+    /* MOBILE SCREEN  */
+
+
+     @media only screen  and (min-device-width: 220px) and (max-device-width: 700px) {
+    
+    .serchlabel { padding-left: 15px !important; }
+    
+    .header { padding: 38px 15px i !important; }
+    
+    .banner { 
+        background-position: center center !important;
+        
+        max-width: 100%;
+        min-width: 300px; 
+        
+    }
+    
+    .serchlabel h1 { font-size: 24px !important; }
+    
+    .serchlabel { bottom: 199px !important; }
+    
+    .serch-wrap-inner { margin: -179px 15px !important; }
+    
+    .search .form-control { border-radius: 100px !important; }
+    
+    .form-group.zipcode { border: 0px !important; }
+    
+    .serch-wrap-inner .form-control { border-radius: 100px !important; }
+    
+    .date .form-control { border-radius: 100px !important; }
+    
+    .tab-nav { display: inline-block !important; }
+    
+    .tab-nav ul { margin: 0 0 30px 14px !important; }
+    
+    .tab-nav ul li a { padding: 5px 16px !important; }
+    
+    .tab-nav ul li { margin-right: 9px !important; }
+    
+    .comman-heading { padding-left: 15px !important; }
+    
+    .item { margin-left: 15px !important; }
+    
+    .consultunt-inner { padding: 34px 15px !important; }
+    
+    .consultunt-inner h1, p { text-shadow: 1px 2px 1px rgba(0,0,0,0.1) !important; }
+    
+    .testomonial-info { 
+        margin-left: 0px; 
+        margin-right: 15px !important;
+    }
+
+    
+    .subscribe h1 { font-size: 22px; text-shadow: 1px 2px 1px rgba(0,0,0,0.1) !important; padding: 26px 0 2px 0 !important; }
+    
+    .btn-Gropu { display: inline-block !important; bottom: -225px !important; left: 0px !important; }
+    
+    a.appBTN { padding: 10px 14pxzz; margin-right: 9px; }
+    
+    a.appBtn { padding: 10px 35px; margin-right: 20px; }
+    
+    .socia-media-footer ul { float: none; }
+    
+    .socia-media-footer ul li { font-size: 26px; margin-top: 20px; }
+    
+    .loginSignbtn { width: 105px !important; }
+    
+    .startVideoBtn { padding: 6px 30px; display: inline-block; }
+    
+    .searchPage .tab-nav ul li a { padding: 5px 8px !important; font-size: 13px !important; }
+    
+    .moreFilters { padding: 6px 25px !important; margin: 0px 0 10px 0px !important; margin-left: 15px !important; }
+    
+    .detail-l { padding-left: 0 !important; padding-top: 20px !important; }
+    
+    .name p { width: unset !important; }
+    
+    .tab-content-img { position: unset !important; border: 1px solid #C4C4C4 !important; overflow: hidden !important; border-radius: 100% !important; width: 140px !important; margin-left: 15px !important; }
+    
+    .detail-l .btn-group a { padding: 5px 9px !important; margin-right: 10px !important; font-size: 13px !important; }
+    
+    .detail-r { min-width: 200px !important; display: flex !important; flex-wrap: nowrap !important; overflow: auto !important; padding-bottom: 20px !important; }
+    
+    .detail-r { padding-left: 0px !important; }
+    
+    .pageHeader .serch-wrap-inner { margin: -99px 15px!important; }
+    
+    .tab-content-detail { margin-left: 15px !important; }
+    
+    .comman-pg-header .serch-wrap-inner { margin: -100px 15px !important; }
+    
+    .comman-pg-header .megaSearch { padding: 0 0 80px !important; }
+    
+    .logo span { display: none !important; }
+    
+    .ads { display: none !important}
+    }
+    
+@media screen and (max-width: 768px) {
+    .btn-Gropu{
+        display: none !important;
+    }
+    .doc-img{
+        display: none;
+    }
+    .client-img{
+        display: none;
+    }
+    .client-msg{
+        padding: 36px 39px 33px 39px;
+    }
+    #testomonial .owl-next{
+        right: 0;
+    }
 }
-@media screen  and (min-device-width: 1200px)  and (max-device-width: 1600px)  and (-webkit-min-device-pixel-ratio: 1) {
-
-.name p { width: 335px; }
-}
- @media screen and (min-width : 1200px) {
-}
-/* Large devices (laptops/desktops, 992px and up) */
-@media only screen and (min-width: 992px) {
-
-/*    a.appBtn {
-    padding: 16px 63px;
-}*/
-
-.btn-Gropu { right: 0px; }
-
-/* .name p {
-        width: unset;
-    }*/
-    /*.detail-r {
-        padding-left: 100px;
-        margin-bottom: 30px;
-    }*/
-
-.tab-nav ul li { margin-right: 10px; }
-
-.tab-nav ul li a { padding: 5px 15px; }
-
-.moreFilters { margin-left: 0; }
-}
-
-/* Medium devices (landscape tablets, 768px and up) */
-@media only screen and (min-width: 768px) {
-
-/*    a.appBTN {
-        padding: 10px 25px;
-    }*/
-/*    .btn-Gropu {
-        bottom: -235px;
-    }*/
-    /*a.appBtn {
-        padding: 9px 5px;
-        margin-bottom: 20px;
-    }*/
-
-.socia-media-footer ul li { margin-right: 10px; font-size: 30px; }
-
-.serchlabel { bottom: 150px; }
-
-/*.serch-wrap-inner {
-        margin-top: -99px;
-    }*/
-
-.tab-nav ul li { margin-right: 2px; }
-
-.tab-nav ul li a { /*padding: 5px 12px;*/
-font-size: 13px; }
-
-.moreFilters { padding: 6px 36px; margin-left: 20px; font-size: 13px; }
-
-/*    .name p {
-         width: unset; 
-    }*/
-    /*.detail-r {
-        padding-left: 100px;
-    }*/
-
-.tab-content-detail { padding: 30px 0 30px 0; }
-}
- @media only screen  and (min-device-width: 320px) and (max-device-width: 480px) {
-
-.serchlabel { padding-left: 15px; }
-
-.header { padding: 38px 15px; }
-
-.banner { background-position: center center; }
-
-.serchlabel h1 { font-size: 24px; }
-
-.serchlabel { bottom: 199px; }
-
-.serch-wrap-inner { margin: -179px 15px; }
-
-.search .form-control { border-radius: 100px; }
-
-.form-group.zipcode { border: 0px; }
-
-.serch-wrap-inner .form-control { border-radius: 100px; }
-
-.date .form-control { border-radius: 100px; }
-
-.tab-nav { display: inline-block; }
-
-.tab-nav ul { margin: 0 0 30px 14px; }
-
-.tab-nav ul li a { padding: 5px 16px; }
-
-.tab-nav ul li { margin-right: 9px; }
-
-.comman-heading { padding-left: 15px; }
-
-.item { margin-left: 15px; }
-
-.consultunt-inner { padding: 34px 15px; }
-
-.consultunt-inner h1, p { text-shadow: 1px 2px 1px rgba(0,0,0,0.1); }
-
-.testomonial-info { margin-left: 50px; margin-right: 15px; }
-
-.subscribe h1 { font-size: 22px; text-shadow: 1px 2px 1px rgba(0,0,0,0.1); padding: 26px 0 2px 0; }
-
-.btn-Gropu { display: inline-block; bottom: -225px; left: 0px; }
-
-a.appBTN { padding: 10px 14px; margin-right: 9px; }
-
-a.appBtn { padding: 10px 35px; margin-right: 20px; }
-
-.socia-media-footer ul { float: none; }
-
-.socia-media-footer ul li { font-size: 26px; margin-top: 20px; }
-
-.loginSignbtn { width: 105px; }
-
-.startVideoBtn { padding: 6px 30px; display: inline-block; }
-
-.searchPage .tab-nav ul li a { padding: 5px 8px; font-size: 13px; }
-
-.moreFilters { padding: 6px 25px; margin: 0px 0 10px 0px; margin-left: 15px; }
-
-.detail-l { padding-left: 0; padding-top: 20px; }
-
-.name p { width: unset; }
-
-.tab-content-img { position: unset; border: 1px solid #C4C4C4; overflow: hidden; border-radius: 100%; width: 140px; margin-left: 15px; }
-
-.detail-l .btn-group a { padding: 5px 9px; margin-right: 10px; font-size: 13px; }
-
-.detail-r { min-width: 200px; display: flex; flex-wrap: nowrap; overflow: auto; padding-bottom: 20px; }
-
-.detail-r { padding-left: 0px; }
-
-.pageHeader .serch-wrap-inner { margin: -99px 15px!important; }
-
-.tab-content-detail { margin-left: 15px; }
-
-.comman-pg-header .serch-wrap-inner { margin: -100px 15px; }
-
-.comman-pg-header .megaSearch { padding: 0 0 80px; }
-
-.logo span { display: none; }
-
-.ads { display: none }
+@media screen and (max-width: 768px) {
+    /* html{
+        font-size: 1rem;
+    } */
+    .subscribe .form-group {
+        padding: -1rem;
+    }
+    .appStore {
+        margin: -7.8rem 1rem 0 1rem;
+    }
+    .serch-wrap-inner{
+        margin: -179px 15px !important;
+    }
+    .serch-wrap-inner .form-control {
+        border-radius: 100px !important;
+    }
+    .form-group .zipcode{
+        border: 0px !important;
+    }
+    .header .logo{
+        margin: -1.5rem 0 0 2rem;
+    }
+    .footer-bootm{
+        font-size: 1.6rem;
+    }
+    .footer-bootm .logo{
+        float: left;
+    }
+    .loginSign {
+        margin: -1.2rem 2rem 2rem 0;
+    }
+    .socia-media-footer ul{
+        display: flex;
+        justify-content: center;
+        margin-right: 2.4rem;
+    }
+    .consultunt{
+        margin: 0 1rem;
+    }
+    .partner{
+        margin: 0 1rem;
+    }
 }

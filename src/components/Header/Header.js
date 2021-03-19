@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-// import './header.css';
+import './header.css';
 // import {
 //   Navbar,
 //   NavbarBrand,
@@ -35,36 +35,34 @@ class Header extends Component {
                     </div>
                 </section>
                 <section className="megaSearch">
-                    <div className="container">
-                    <div className="row">
-                        <div className="search-wrap-inner clearfix">
-                        <form  
-                            style={{display: "block"}} 
-                        method="POST" action="/cures/SearchActionController">
-                                <div className="col-md-4 pd-0 col-sx-12 col-sm-4">
-                                    <div className="form-group search">
-                                        <input type="text" placeholder="Search by Doctor Name, Disease, Condition" name="doctors" id="doctors"  className="formVal form-control " />
-                                        <span className="icon-loupe"></span>
-                                    </div>
-                                </div>
-                                <div className="col-md-4 pd-0 col-sx-12 col-sm-4">
-                                    <div className="form-group zipcode">
-                                        <input type= "text" placeholder="City or Zip-code" name="city" id="city" className="formVal form-control" />
-                                    </div>
-                                </div>
-                                <div className="col-md-4 pd-0 col-sx-12 col-sm-4">
-                                    <div className="form-group date">
-                                        <input type="date" name="" placeholder="" className="form-control"/>
-                                        <button 
-                                        style={{border: "none", padding: "1.18rem 2.2rem"}}
-                                        type="submit" className="bg-blue-dark searchBtn" id="search">Search</button> 
-                                    </div>
-                                </div>                                                     
-                            </form>
-                        </div>
-                    </div>
-                    </div>
-                </section>
+         <div className="container">
+            <div className="row">
+               <div className="serch-wrap-inner clearfix">
+                        <form class="mainSearch" style={{display: "block"}} method="POST" action="/cures/SearchActionController">
+                     	  <div className="col-md-4 pd-0 col-sx-12 col-sm-4">
+                   			<div className="form-group search">
+    							<input type="text" placeholder="Doctor Name, Disease or Condition" name="doctors" id="doctors"  className="formVal form-control "/>
+								<span className="icon-loupe"></span>
+							</div>
+						 </div>
+   						 <div className="col-md-4 pd-0 col-sx-12 col-sm-4">
+         				 	<div className="form-group zipcode">
+    							<input type= "text" placeholder="City or Zip-code" name="city" id="city" className="formVal form-control" />
+                	    	</div>
+                		 </div>
+                         <div className="col-md-4 pd-0 col-sx-12 col-sm-4">
+         					 <div className="form-group date">
+                       			  <input type="date" name="" placeholder="Date" className="form-control"/>
+                       			  <button style={{border: "none", padding: "1.18rem 2.2rem"}} type="submit" className="btn-bg searchBtn" id="search">Search</button> 
+                           	 </div>
+                       	 </div> 
+                       	                                                 
+                        </form>
+                    
+                  </div>
+               </div>   
+            </div>
+      </section>
             </div>
         </div>
         );

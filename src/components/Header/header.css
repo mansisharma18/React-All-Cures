@@ -18,3 +18,88 @@
     border: 0px;
   }
 
+  .logo img { width: 40px; height: 40px; margin-right: 8px; }
+  
+  .logo span { color: #000; text-transform: uppercase; font-weight: 500; }
+  
+  .loginSignbtn { text-align: center; display: inline-block; border-radius: 15px; height: 30px; width: 150px; padding-top: 6px; font-size: 12px; font-weight: 400; }
+
+  
+.serchlabel h1 { font-weight: 700; color: #00415E; }
+
+.search { position: relative; }
+
+.loginSignbtn { text-align: center; display: inline-block; border-radius: 15px; height: 30px; width: 150px; padding-top: 6px; font-size: 12px; font-weight: 400; }
+
+.search span { position: absolute; top: 13px; left: 14px; color: #000; font-weight: bold; }
+
+.serch-wrap-inner .form-control { box-shadow: none; border: 0; font-size: 16px; border-radius: 0; font-weight: 400; height: 40px; }
+
+.search .form-control { padding-left: 40px; }
+.form-control::-webkit-input-placeholder { 
+ color: #949494;
+}
+ .form-control:-ms-input-placeholder {
+ color: #949494;
+}
+ .form-control::placeholder {
+ color: #949494;
+}
+
+.searchBtn { background-color: #00415E; color: #fff; padding: 9px 26px; border-radius: 100px; position: absolute; top: 0; right: 0; }
+
+.date { position: relative; }
+
+
+.serch-wrap-inner .form-group { width: 100%; }
+
+.form-group.zipcode { border-left: 1px solid #000; border-right: 1px solid #000; }
+
+.form-group.zipcode { border-left: 1px solid #D6D6D6; border-right: 1px solid #D6D6D6; }
+
+.search .form-control { padding-left: 40px; border-radius: 100px 0 0 100px; }
+
+.date .form-control { border-radius: 0 100px 100px 0; }
+
+.serchlabel { position: absolute; bottom: 119px; }
+
+.serch-wrap-inner { margin-top: -69px; }
+
+@media only screen  and (min-device-width: 220px) and (max-device-width: 700px) {
+  .serchlabel { padding-left: 15px !important; }
+    
+    .header { padding: 38px 15px i !important; }
+    
+    .banner { background-position: center center !important; }
+    
+    .serchlabel h1 { font-size: 24px !important; }
+    
+    .serchlabel { bottom: 199px !important; }
+    
+    .serch-wrap-inner { margin: -179px 15px !important; }
+    
+    .search .form-control { border-radius: 100px !important; }
+    
+    .form-group.zipcode { border: 0px !important; }
+    
+    .serch-wrap-inner .form-control { border-radius: 100px !important; }
+    
+    .date .form-control { border-radius: 100px !important; }
+    .pageHeader .serch-wrap-inner { margin: -99px 15px!important; }
+
+    .comman-pg-header .serch-wrap-inner { margin: -100px 15px !important; }
+    
+    .comman-pg-header .megaSearch { padding: 0 0 80px !important; }
+    
+    .logo span { display: none !important; }
+    
+    .serch-wrap-inner{
+      margin: -179px 15px !important;
+  }
+  .serch-wrap-inner .form-control {
+      border-radius: 100px !important;
+  }
+  .form-group .zipcode{
+      border: 0px !important;
+  }
+}
