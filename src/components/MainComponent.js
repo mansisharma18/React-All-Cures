@@ -6,7 +6,7 @@ import Footer from "./Footer/Footer";
 import Home from "./LandingPage/Home";
 import Profile from "./Profile/Profile";
 import Article from "./Article/Article";
-// import Search from ".Search/Search";
+import Search from "./Search/Search";
 // import About from "./AboutComponent";
 // import Signup from "./SignupCpnt";
 // import Services from "./Services";
@@ -26,7 +26,7 @@ class Main extends Component {
           <Route exact path="/profile" component={Profile} />
           <Route exact path="/article" component={Article} />
 
-          {/* <Route exact path="/search" component={Search} /> */}
+          <Route exact path="/search" component={Search} />
           {/* <Route exact path="/appointment" component={Appointment} />
           <Route exact path="/contact" component={Contact} />
           <Route exact path="/signup" component={Signup} />
