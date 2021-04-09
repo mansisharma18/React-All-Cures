@@ -50,6 +50,10 @@ class Header extends Component {
     							<input type= "text" placeholder="City or Zip-code" name="city" id="city" className="formVal form-control" />
                 	    	</div>
                 		 </div>
+         					 
+              			  <input type="hidden" name="Latitude" id="Latitude"  className="form-control"/>
+    	 
+                       	 <input type="hidden" name="Longitude" id="Longitude"  className="form-control"/>
                          <div className="col-md-4 pd-0 col-sx-12 col-sm-4">
          					 <div className="form-group date">
                        			  <input type="date" name="" placeholder="Date" className="form-control"/>

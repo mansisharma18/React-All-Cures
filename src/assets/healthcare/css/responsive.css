@@ -231,4 +231,10 @@
     .partner{
         margin: 0 1rem;
     }
+    .about-specialties ul+ ul{
+        margin-left: 0;
+    }
+    form{
+        background-color: none;
+    }
 }

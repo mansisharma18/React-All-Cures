@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Header from '../Header/Header';
 import Footer from '../Footer/Footer';
-
+import Rating from '../StarRating';
 import ClientA from "../../assets/img/client-a.jpg";
 import profile from "../../assets/img/profile.jpg";
 
@@ -18,7 +18,7 @@ class Profile extends Component {
                             <div className="col-md-3">
                                 <div className="profileImageBlok">
                                 <div className="profile-card-img"> <img src={profile} alt="special-1"/> </div>
-                                <div className="viewPhoto"> <a href="javascript:void(0)">View Photos</a> </div>
+                                <div className="viewPhoto"> <a href  ="javascript:void(0)">View Photos</a> </div>
                                 </div>
                             </div>
                             <div className="col-md-9">
@@ -33,21 +33,11 @@ class Profile extends Component {
                                 <div className="rating-reviews">
                                     <div className="profile-info-rating">
                                     <h2>Rating 4.2</h2>
-                                    <form id="doctor-rating">
-                                    <div id="rating" className="rate">
-                                        <input className="rating-input" type="radio" id="star5" name="rate" value="5" />
-                                        <label for="star5" title="text">5 stars</label>
-                                        <input className="rating-input" type="radio" id="star4" name="rate" value="4" />
-                                        <label for="star4" title="text">4 stars</label>
-                                        <input className="rating-input" type="radio" id="star3" name="rate" value="3" />
-                                        <label for="star3" title="text">3 stars</label>
-                                        <input className="rating-input" type="radio" id="star2" name="rate" value="2" />
-                                        <label for="star2" title="text">2 stars</label>
-                                        <input className="rating-input" type="radio" id="star1" name="rate" value="1" />
-                                        <label for="star1" title="text">1 star</label>
-                                    </div>
+                                    <form class="rating">
+                                        <Rating/>
+                                   
                                     </form>
-                                    <button id="rating-button">button</button>
+                        
                                     </div>
                                     <div className="reviews"> <a href="javascript:void(0)">123 Reviews</a> </div>
                                 </div>
@@ -71,7 +61,7 @@ class Profile extends Component {
                                 <li>Internis</li>
                                 <li>Cardiologist</li>
                                 <li>Interventional Cardiologist</li>
-                                </ul>
+                                 </ul>
                             </div>
                             <br/>
                             <div className="abt-eduction">
@@ -115,11 +105,11 @@ class Profile extends Component {
                                 <div className="profile-info-rating">
                                     <h2>Rating 4.2</h2>
                                     <ul>
-                                    <li><i className="fa fa-star" aria-hidden="true"></i></li>
-                                    <li><i className="fa fa-star" aria-hidden="true"></i></li>
-                                    <li><i className="fa fa-star" aria-hidden="true"></i></li>
-                                    <li><i className="fa fa-star" aria-hidden="true"></i></li>
-                                    <li><i className="fa fa-star-half" aria-hidden="true"></i></li>
+                                    <li><i className="fas fa-star" aria-hidden="true"></i></li>
+                                    <li><i className="fas fa-star" aria-hidden="true"></i></li>
+                                    <li><i className="fas fa-star" aria-hidden="true"></i></li>
+                                    <li><i className="fas fa-star" aria-hidden="true"></i></li>
+                                    <li><i className="fas fa-star-half" aria-hidden="true"></i></li>
                                     </ul>
                                 </div>
                                 </div>

@@ -224,7 +224,7 @@ a:focus, a:hover { color: none!important; text-decoration: none!important; }
 .p-tb-100 { padding: 100px 0; }
 
 p { padding: 0px; margin: 0px; }
-
+                                                                                
 a { text-decoration: none; }
 
 a:hover, a:active { text-decoration: none; }
@@ -284,7 +284,7 @@ h1, h2, h3, h4, h5, h6 { margin: 0; text-transform: capitalize; }
  color: #949494;
 }
 
-.searchBtn { color: #fff; padding: 9px 26px; border-radius: 100px; position: absolute; top: 0; right: 0; }
+.searchBtn { color: #fff; padding: 9px 26px; border-radius: 100px; position: absolute; top: 0; right: 0;     background: #00415E; }
 
 .date { position: relative; }
 
@@ -733,7 +733,7 @@ button:focus { outline: none; }
 
 button.ghost { background-color: transparent; border-color: #FFFFFF; }
 
-form { background-color: #FFFFFF; display: flex; align-items: center; justify-content: center; flex-direction: column; padding: 0 50px; height: 100%; text-align: center; }
+form { display: flex; align-items: center; justify-content: center; flex-direction: column; padding: 0 50px; height: 100%; text-align: center; }
 
 input { background-color: #eee; border: none; padding: 12px 15px; margin: 8px 0; width: 100%; }
 
@@ -781,3 +781,4 @@ show {  0%, 49.99% {
 .modal-content { border-radius: 17px; }
 
 .ads { background: #c4c4c4; min-height: 500px; margin-top: 90px; }
+
