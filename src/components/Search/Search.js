@@ -2,41 +2,34 @@ import React, { Component } from 'react' ;
 import Header from '../Header/Header';
 import Footer from '../Footer/Footer';
 class Search extends Component {
-
-    constructor(){
-        this.state = {
-            users:[]
+  constructor(props){
+            super(props);
+            this.state = {
+                items: [],
+                isLoaded: false,
+            }
         }
-    }
-
-    componentDidMount(){
-        SearchService.getResponse().then((response) => {
-            this.setState({ users: response.data })
-        });
-    }
-
-    render() {
-        console.log(users);
-        return(
-            <div>
-                <Header/>
-                <section class="physicians-tab">
-  <div class="container">
-    <div class="row">
-      <div class="col-md-10 pd-0">
-        <div class="tab-nav">
-          <div class="comman-heading">
-            <h2>All Physicians</h2>
-          </div>
-          {/* <!-- Nav tabs --> */}
-          <ul class="nav">
-            <li class="active"><a data-toggle="pill" href="#men">Men</a></li>
-            <li><a data-toggle="pill" href="#women">Women</a></li>
-            <li><a data-toggle="pill" href="#children">Children</a></li>
-            <li><a data-toggle="pill" href="#date">16 Sep, 2020</a></li>
-          </ul>
-          <a href="javascriptvoid(0)" class="moreFilters color-white btn-bg">More Filters</a> </div>
-        <div class="tab-content">
+    
+        componentDidMount(){
+            fetch('/SearchActionController?cmd=getResults&city=jammu&doctors=sangeeta&Latitude=32.73&Longitude=74.85')
+            .then(res => res.json())
+            .then(json => {
+                console.log(json.map.DoctorDetails.myArrayList);
+                this.setState({
+                    isLoaded: true,
+                    items: json.map.DoctorDetails.myArrayList,
+                })            
+            });
+        }
+    
+        // Load Doctors Data
+    
+        LoadData(data){
+            
+          var temp = ''
+          for(let d in data){
+            temp +=`
+            <div class="tab-content">
           <div id="men" class="tab-pane fade in active">
           <div class="tab-content-detail clearfix mr-20">
               <div class="dr-detail">
@@ -49,9 +42,9 @@ class Search extends Component {
                       <p>4.2</p>
                     </div>
                     <div class="name">
-                      <h2>Dr. Jordan Reich, MD</h2>
-                      <h3>General Physician</h3>
-                      <h4>110 West 14th Street, New York, NY, 10011 (1.9mi)</h4>
+                    <h2>${data[d].map.name}</h2>
+                    <h3>${data[d].map.primary_spl}</h3>
+                    <h4>${data[d].map.hospital_affliated} ${data[d].map.state} ${data[d].map.country_code}</h4>
                       <p>“Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc sodales dolor in ante fermentum, vitae varius turpis imperdiet.”</p>
                     </div>
                     <div class="btn-group"> <a href="profile.html" class="btn-bg profile-btn color-white">Profile</a> <a href="javascript:void(0)" class="bg-gray video-btn color-light-gray">Video Consult</a> </div>
@@ -98,10 +91,50 @@ class Search extends Component {
                 </div>
               </div>
             </div>
-                    
-                {/* </div> */}
             </div>
             </div>
+            `
+            
+}
+      // document.getElementById('test').innerHTML=temp
+      
+      return(temp)
+
+    }
+
+    render() {
+      var { isLoaded,items } = this.state;
+        if(!isLoaded) {
+            console.log(items);
+
+            return <div>Loading...</div>;
+        }
+        else if(isLoaded){
+        // console.log(users);
+        // LoadData(items);
+         console.log(items);
+        return(
+            <div>
+
+                <Header/>
+                <section class="physicians-tab">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-10 pd-0">
+        <div class="tab-nav">
+          <div class="comman-heading">
+            <h2>All Physicians</h2>
+          </div>
+          {/* <!-- Nav tabs --> */}
+          <ul class="nav">
+            <li class="active"><a data-toggle="pill" href="#men">Men</a></li>
+            <li><a data-toggle="pill" href="#women">Women</a></li>
+            <li><a data-toggle="pill" href="#children">Children</a></li>
+            <li><a data-toggle="pill" href="#date">16 Sep, 2020</a></li>
+          </ul>
+          <a href="javascriptvoid(0)" class="moreFilters color-white btn-bg">More Filters</a> </div>
+          <div dangerouslySetInnerHTML={{__html: this.LoadData(items)}}>
+           </div> 
             </div>
             </div>
             </div>
@@ -110,5 +143,6 @@ class Search extends Component {
             </div>
         );
     }
+} 
 }
-export default Search;
+export default Search; 

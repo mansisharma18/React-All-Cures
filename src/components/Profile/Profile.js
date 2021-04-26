@@ -6,7 +6,41 @@ import ClientA from "../../assets/img/client-a.jpg";
 import profile from "../../assets/img/profile.jpg";
 
 class Profile extends Component {
+    constructor(props){
+        super(props);
+        this.state = {
+            items: [],
+            isLoaded: false,
+        }
+      }
+      
+    componentDidMount(){
+        fetch('/DoctorsActionController?docid=7&cmd=getProfile')
+        // .then(res => JSON.parse(res))
+        .then(res => res.json())
+        .then(json => {
+            console.log(json);
+            this.setState({
+                isLoaded: true,
+                items: json,
+            })
+            
+        });
+    }
+
+    
+
     render() {
+        var { isLoaded,items } = this.state;
+        if(!isLoaded) {
+            console.log(items);
+
+            return <div>Loading...</div>;
+        }
+        else if(isLoaded){
+        // console.log(users);
+        
+         console.log(items);
         return(
             <div>
                 <Header/>
@@ -25,18 +59,26 @@ class Profile extends Component {
                                 <div className="profile-info">
                                 <div className="profile-infoL-card" >
                                     <div className="profile-info-name" id="DocDetails">
-                                    
+                                        {/* if ({items.docname_middle} != NULL) {
+                                            
+                                        } */}
+                                        <h1>Dr. {items.docname_first} {items.docname_middle} {items.docname_last}  </h1>
+                                        <h3>{items.primary_spl}</h3>
+                                        <h2>{items.experience}</h2>
+                                        <h4>{items.hospital_affliated} {items.statename} {items.country_code}</h4>
                                     {/* <!--  <button onclick="loadUsers()">Click</button> --> */}
                                     </div>
                                     <div className="check-icon"> <span className="icon-correct-2"><span className="path1"></span><span className="path2"></span><span className="path3"></span></span> </div>
                                 </div>
                                 <div className="rating-reviews">
                                     <div className="profile-info-rating">
-                                    <h2>Rating 4.2</h2>
-                                    <form class="rating">
+                                    <h2>
+                                    <form style={{marginTop: '6rem', paddingLeft: '2.7rem'}} class="rating">
                                         <Rating/>
                                    
                                     </form>
+                                    </h2>
+                                    
                         
                                     </div>
                                     <div className="reviews"> <a href="javascript:void(0)">123 Reviews</a> </div>
@@ -45,7 +87,7 @@ class Profile extends Component {
                             </div>
                             </div>
                             <div className="aboutDr" >
-                            <h2 id="about">About Dr. Jordan Reich</h2>
+                            <h2 id="about">About Dr. {items.docname_first} {items.docname_middle} {items.docname_last}</h2>
                             <div id="about-contain">
                                 <p className="text one"> “Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer at pulvinar ex. Sed non lorem a justo dictum lobortis a sed arcu. Sed consectetur, erat sit amet auctor finibus, felis velit scelerisque mauris, in pellentesque lorem ex eget libero. Nam faucibus in lacus vel accumsan. Suspendisse sed ipsum ornare mauris ornare maximus nec eget nisi. Fusce ut ultrices neque, sit amet vehicula ipsum. Vivamus quis vestibulum massa, nec sagittis augue. Aenean ac facilisis purus. Proin auctor viverra lacinia. Interdum et malesuada fames ac ante ipsum primis in faucibus. Sed pulvinar vitae velit eu luctus. Aliquam sapien metus, dictum eget venenatis ut, pellentesque at neque.” Show Less </p>
                             </div>
@@ -53,20 +95,20 @@ class Profile extends Component {
                             <div className="about-specialties">
                                 <h2>Specialties</h2>
                                 <ul>
-                                <li>Internist</li>
-                                <li> Cardiologist</li>
-                                <li> Interventional Cardiologist</li>
+                                <li>{items.primary_spl}</li>
+                                {/* <li> </li>
+                                <li> ajbakb</li> */}
                                 </ul>
                                 <ul>
-                                <li>Internis</li>
-                                <li>Cardiologist</li>
-                                <li>Interventional Cardiologist</li>
+                                <li>{items.other_spls}</li>
+                                {/* <li>Cardiologist</li>
+                                <li>Interventional Cardiologist</li> */}
                                  </ul>
                             </div>
                             <br/>
                             <div className="abt-eduction">
                                 <h2>Education</h2>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. </p>
+                                <p>{items.edu_training}</p>
                             </div>
                             <br/>
                             <div className="abt-photos">
@@ -332,5 +374,5 @@ class Profile extends Component {
         );
     }
 }
-
+}
 export default Profile;

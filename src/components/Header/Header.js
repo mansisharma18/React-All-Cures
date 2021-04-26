@@ -10,6 +10,7 @@ import './header.css';
 //   Button,
 // } from "reactstrap";
 // import { NavLink } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 import Heart from"../../assets/img/heart.png";
 class Header extends Component {
@@ -28,7 +29,8 @@ class Header extends Component {
                             </a> 
                         </div>
                         <div className="loginSign"> 
-                            <a href="" id="userLogin" className="btn-white loginSignbtn color-blue-dark" data-toggle="modal" data-target="#myModal">Log in / Sign up</a> 
+                            {/* <a href="" id="userLogin" className="btn-white loginSignbtn color-blue-dark" data-toggle="modal" data-target="#myModal">Log in / Sign up</a>  */}
+                            <Link to="/form">Sign In/ Sign Up</Link>
                         </div>        	
                         </div>
                     </div>

@@ -7,6 +7,7 @@ import Home from "./LandingPage/Home";
 import Profile from "./Profile/Profile";
 import Article from "./Article/Article";
 import Search from "./Search/Search";
+import Form from "./loginForm/index"
 // import About from "./AboutComponent";
 // import Signup from "./SignupCpnt";
 // import Services from "./Services";
@@ -14,7 +15,7 @@ import Search from "./Search/Search";
 // import Login from "./LoginComponent";
 // import Appointment from "./Appointment";
 // import Dashboard from "./Dashboard";
-
+import Dashboard from './Dashboard/Dashboard';
 class Main extends Component {
   render() {
     return (
@@ -25,8 +26,9 @@ class Main extends Component {
           <Route exact path="/home" component={Home} />
           <Route exact path="/profile" component={Profile} />
           <Route exact path="/article" component={Article} />
-
+          <Route exact path="/dashboard" component={Dashboard}/>
           <Route exact path="/search" component={Search} />
+          <Route exact path="/Form" component={Form} />
           {/* <Route exact path="/appointment" component={Appointment} />
           <Route exact path="/contact" component={Contact} />
           <Route exact path="/signup" component={Signup} />
