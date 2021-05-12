@@ -20,7 +20,7 @@ class Main extends Component {
   render() {
     return (
       <div>
-        <BrowserRouter>
+        <BrowserRouter basename={process.env.REACT_APP_ROUTER_BASE || ''}>
         <Switch>
           <Route exact path="/" component={Home} />
           <Route exact path="/home" component={Home} />

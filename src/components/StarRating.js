@@ -29,8 +29,8 @@ const thirdExample = {
   count: 5,
   isHalf: false,
   value: 4,
-  color: "blue",
-  activeColor: "red",
+  color: "yellow",
+  activeColor: "orange",
   onChange: newValue => {
     console.log(`Example 3: new value is ${newValue}`);
   }

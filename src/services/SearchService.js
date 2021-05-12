@@ -1,13 +1,13 @@
-import axios from 'axios';
+// import axios from 'axios';
 
-const SEARCH_API_URL = 'http://localhost:8080/cures/SearchActionController';
+// const SEARCH_API_URL = 'http://localhost:8080/cures/SearchActionController';
 
-class SearchService {
+// class SearchService {
     
-    getResponse(){
-        axios.get(Search_API_URL);
-    }
+//     getResponse(){
+//         axios.get(Search_API_URL);
+//     }
 
-}
+// }
 
-export default new SearchService();
+// export default new SearchService();
