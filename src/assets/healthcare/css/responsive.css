@@ -140,6 +140,10 @@
     border-radius: 100px !important;
   }
 
+  .city .form-control {
+    border-radius: 100px !important;
+  }
+
   .tab-nav {
     display: inline-block !important;
   }
@@ -291,6 +295,9 @@
 }
 
 @media screen and (max-width: 768px) {
+  .mainSearch {
+    flex-direction: column;
+  }
   .btn-Gropu {
     display: none !important;
   }

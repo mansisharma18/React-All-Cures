@@ -1,6 +1,10 @@
 import React, { Component } from 'react';
 import Heart from"../../assets/img/heart.png";
-
+import Facebook from '../../assets/icon/facebook.svg'
+import Instagram from '../../assets/icon/instagram.svg'
+import Linkedin from '../../assets/icon/linkedin.svg'
+import Twitter from '../../assets/icon/twitter.svg'
+// import "@fortawesome/free-brands-svg-icons";
 class Footer extends Component {
     render() {
         return(
@@ -112,24 +116,39 @@ class Footer extends Component {
                   <div class="socia-media-footer">
                      <ul>
                         <li>
-                           <a href="javascript:void(0)">
-                              <span class="icon-facebook"><span class="path1"></span><span class="path2"></span></span>
-                           </a>
-                        </li>
-                        <li>
-                           <a href="javascript:void(0)"><span class="icon-instagram"></span></a>
-                        </li>
-                        <li>
-                           <a href="javascript:void(0)">
-                              <span class="icon-linkedin"><span class="path1"></span><span class="path2"></span></span>
-                           </a>
-                        </li>
-                        <li>
-                           <a href="javascript:void(0)">
-                              <span class="icon-twitter">
+                           <a href="">
+                              <span>
+                                 <img src={Facebook} height="30px" width="30px"></img>
+                              </span> 
                               <span class="path1"></span>
                               <span class="path2"></span>
-                              </span>
+                           </a>
+                        </li>
+                        <li>
+                           <a href="">
+                              <span>
+                                 <img src={Instagram} height="30px" width="30px"></img>
+                              </span> 
+                              <span class="path1"></span>
+                              <span class="path2"></span>
+                           </a>
+                        </li>
+                        <li>
+                           <a href="">
+                              <span>
+                                 <img src={Linkedin} height="30px" width="30px"></img>
+                              </span> 
+                              <span class="path1"></span>
+                              <span class="path2"></span>
+                           </a>
+                        </li>
+                        <li>
+                        <a href="">
+                              <span>
+                                 <img src={Twitter} height="30px" width="30px"></img>
+                              </span> 
+                              <span class="path1"></span>
+                              <span class="path2"></span>
                            </a>
                         </li>
                      </ul>

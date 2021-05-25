@@ -1,6 +1,11 @@
 import React, { Component } from 'react' ;
 import Header from '../Header/Header';
 import Footer from '../Footer/Footer';
+
+import '../../assets/healthcare/css/main.css';
+import '../../assets/healthcare/css/responsive.css';
+import '../../assets/healthcare/css/animate.css';
+import '../../assets/healthcare/icomoon/style.css';
 class Search extends Component {
   constructor(props){
             super(props);
@@ -115,6 +120,7 @@ class Search extends Component {
         // LoadData(items);
          console.log(items);
         return(
+          
             <div>
 
                 <Header/>
