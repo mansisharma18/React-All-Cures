@@ -96,7 +96,6 @@ class Search extends Component {
                 </div>
               </div>
             </div>
-
             </div>
             </div>
             `
