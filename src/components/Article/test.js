@@ -1,6 +1,5 @@
-import React, { Component, useState } from 'react';
-import { Button, Accordion, Card, Container, Form, Col, ThemeProvider } from 'react-bootstrap';
-// import { MDBSelect } from "mdbreact";
+import React, { Component } from 'react';
+import { Button, Accordion, Card, Container, Form } from 'react-bootstrap';
 import EditorJS from '@editorjs/editorjs';
 import Header from '@editorjs/header';
 import List from '@editorjs/list';
@@ -11,23 +10,15 @@ import Warning from '@editorjs/warning';
 import Quote from '@editorjs/quote';
 import Delimiter from '@editorjs/delimiter';
 import ImageTool from '@editorjs/image';
-// import SimpleImage from '@editorjs/simple-image';
 import Table from "@editorjs/table";
 import Paragraph from "@editorjs/paragraph";
 import Cookies from 'js-cookie';
-// import paragraph from "@editorjs/"
-// import Embed from '@editorjs/';
+import './article.css'
 
 const editor = new EditorJS({
     holder: 'editorjs',
     autofocus: true,
     tools: {
-      // autofocus: true,
-      // header: {
-      //     class: Header,
-      //     inlineToolbar: ['marker','link'],
-          
-      // },
       paragraph: {
         class: Paragraph,
         inlineToolbar: true,
@@ -91,7 +82,7 @@ const editor = new EditorJS({
   
   });
 
-export default class Test extends React.Component {
+export default class Test extends Component {
     constructor(props) {
         super(props);
         this.handleLoginClick = this.handleLoginClick.bind(this);
@@ -358,7 +349,7 @@ export default class Test extends React.Component {
                         {/* Editor Accordion  */}
                 
                             <Card>
-                                <Card.Header style={{backgroundColor: "white", width: "109%"}}>
+                                <Card.Header style={{backgroundColor: "white"}}>
                                     <Accordion.Toggle as={Card.Header} variant="link" eventKey="3">
                                     Write Article Here 📝
                                     </Accordion.Toggle>
