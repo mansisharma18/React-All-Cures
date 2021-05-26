@@ -48,7 +48,7 @@ class Header extends Component {
                         </div>
                         <div className="loginSign"> 
                             {/* <a href="" id="userLogin" className="btn-white loginSignbtn color-blue-dark" data-toggle="modal" data-target="#myModal">Log in / Sign up</a>  */}
-                            <Link to="/form">Sign In/ Sign Up</Link>
+                            <Link to="/login" className="btn-white loginSignbtn color-blue-dark" >Sign In/ Sign Up</Link>
                         </div>        	
                         </div>
                     </div>

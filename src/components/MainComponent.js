@@ -11,6 +11,9 @@ import Modal from './Modal';
 import AuthApi from './AuthApi'
 import Disease from "./Disease/Disease";
 import Test from "./Article/test";
+import Dashboard from "./Dashboard/Dashboard.js";
+import Login from "./login/login";
+import SignIn from "./Article/SignIn"
 // import Login from './login/login'
 
 function Main() {
@@ -39,32 +42,32 @@ function Main() {
   // }
 }
 
-const Login = () => {
-  const Auth = React.useContext(AuthApi)
-  const handleOnClick = () => {
-    Auth.setAuth(true)
-    Cookies.set("user", "loginTrue")
-  }
-  return(
-    <div>
-      <h1>Please Login</h1>
-      <button onClick={handleOnClick}>Login</button>
-    </div>
-  )
-}
-const Dashboard = () => {
-  const Auth = React.useContext(AuthApi)
-  const handleOnClick = () => {
-    Auth.setAuth(false)
-    Cookies.remove("user")
-  }
-  return(
-    <div>
-      <h1>Dashboard</h1>
-      <button onClick={handleOnClick}>Logout</button>
-    </div>
-  )
-}
+// const Login = () => {
+//   const Auth = React.useContext(AuthApi)
+//   const handleOnClick = () => {
+//     Auth.setAuth(true)
+//     Cookies.set("user", "loginTrue")
+//   }
+//   return(
+//     <div>
+//       <h1>Please Login</h1>
+//       <button onClick={handleOnClick}>Login</button>
+//     </div>
+//   )
+// }
+// const Dashboard = () => {
+//   const Auth = React.useContext(AuthApi)
+//   const handleOnClick = () => {
+//     Auth.setAuth(false)
+//     Cookies.remove("user")
+//   }
+//   return(
+//     <div>
+//       <h1>Dashboard</h1>
+//       <button onClick={handleOnClick}>Logout</button>
+//     </div>
+//   )
+// }
 
 const Routes = () => {
   const Auth = React.useContext(AuthApi)
@@ -78,9 +81,11 @@ const Routes = () => {
 
           <Route exact path="/search" component={Search} />
           <Route exact path="/article" component={Test} />
+          <Route exact path="/dashboard" component={Dashboard} />
+          <Route exact path="/sign" component={SignIn} />
           {/* <Route exact path="/login" component={Login} /> */}
       <ProtectedLogin path="/login" component={Login} auth={Auth.auth}/>
-      <ProtectedRoute path="/dashboard" auth={Auth.auth} component={Dashboard}/>
+      {/* <ProtectedRoute path="/dashboard" auth={Auth.auth} component={Dashboard}/> */}
       <ProtectedRoute path="/profile" auth={Auth.auth} component={Profile}/>
     </Switch>
   )

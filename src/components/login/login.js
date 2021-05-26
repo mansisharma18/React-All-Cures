@@ -1,10 +1,11 @@
+import Cookies from "js-cookie";
 import React, { Component } from "react";
 import './style.css'
 export default class Login extends Component {
     render() {
         return (
-            <form id="Login-form">
-                <div className="card px-4 py-4 my-4">
+            <form id="Login-form" >
+                <div className="card px-4 py-4 my-4 mx-auto">
                 <h3 className="text-center">Sign in here</h3>
                 
                 <div className="form-group">
