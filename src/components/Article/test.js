@@ -15,7 +15,7 @@ export default class Test extends Component {
         // this.handleClick().bind(this)
         this.state = {
             // acPerm: Cookies.get('acPerm'),
-            acPerm: Cookies.get('user'),
+            acPerm: Cookies.get('acPerm'),
             isLoggedIn: false,
             ac: '',
             showAuthorAccordian: false,
@@ -369,14 +369,6 @@ export default class Test extends Component {
             </Card>
         );
     }
-
-//   function UserGreeting(props) {
-//     return <h1>Welcome back!</h1>;
-//   }
-  
-//   function GuestGreeting(props) {
-//     return <h1></h1>;
-//   }
   
   function Greeting(props) {
     const isLoggedIn = props.isLoggedIn;
@@ -425,7 +417,6 @@ function CreateAuthorAccordian(props) {
     if(showAuthorAccordian){
         console.log("STATE:" + JSON.stringify(props.state))
         return (
-            // <Form onSubmit={this.submitForm.bind(this)}>
                 <Card>
                     <Card.Header style={{backgroundColor: "#fff"}}>
                         <Accordion.Toggle as={Card.Header} variant="link" eventKey="4">
@@ -463,10 +454,6 @@ function CreateAuthorAccordian(props) {
                         </Card.Body>
                     </Accordion.Collapse>
                 </Card>
-                // {/* // <div className={`message ${this.state.isError && "error"}`}>
-                //     {this.state.isSubmitting ? "Submitting..." : this.state.message}
-                // </div> */}
-            // </Form>
         );
     }
     return null;
