@@ -52,7 +52,7 @@ class Search extends Component {
                     <h4>${data[d].map.hospital_affliated} ${data[d].map.state} ${data[d].map.country_code}</h4>
                       <p>“Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc sodales dolor in ante fermentum, vitae varius turpis imperdiet.”</p>
                     </div>
-                    <div class="btn-group"> <a href="profile.html" class="btn-bg profile-btn color-white">Profile</a> <a href="javascript:void(0)" class="bg-gray video-btn color-light-gray">Video Consult</a> </div>
+                    <div class="btn-group"> <a href="profile" class="btn-bg profile-btn color-white">Profile</a> <a href="javascript:void(0)" class="bg-gray video-btn color-light-gray">Video Consult</a> </div>
                   </div>
                 </div>
                 <div class="col-md-6 col-sm-12">
@@ -118,11 +118,18 @@ class Search extends Component {
         // console.log(users);
         // LoadData(items);
          console.log(items);
-        return(
+        //  items = items.map;
+         console.log(items.map);
+         {items.map((doc, i) => {
+           return(
+            <div>khbkasjb{doc.name}</div>
+           );
+         })}
+        // return(
           
-            <div>
+        //     <div>
 
-                <Header/>
+                {/* <Header/>
                 <section class="physicians-tab">
   <div class="container">
     <div class="row">
@@ -131,7 +138,7 @@ class Search extends Component {
           <div class="comman-heading">
             <h2>All Physicians</h2>
           </div>
-          {/* <!-- Nav tabs --> */}
+          <!-- Nav tabs -->
           <ul class="nav">
             <li class="active"><a data-toggle="pill" href="#men">Men</a></li>
             <li><a data-toggle="pill" href="#women">Women</a></li>
@@ -140,6 +147,7 @@ class Search extends Component {
           </ul>
           <a href="javascriptvoid(0)" class="moreFilters color-white btn-bg">More Filters</a> </div>
           <div dangerouslySetInnerHTML={{__html: this.LoadData(items)}}>
+
            </div> 
             </div>
             </div>
@@ -147,7 +155,7 @@ class Search extends Component {
             </section>
             <Footer/>
             </div>
-        );
+        ); */}
     }
 } 
 }

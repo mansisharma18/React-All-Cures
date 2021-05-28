@@ -1,86 +1,9 @@
 import React, { Component } from 'react';
 import { Button, Accordion, Card, Container, Form } from 'react-bootstrap';
-import EditorJS from '@editorjs/editorjs';
-import Header from '@editorjs/header';
-import List from '@editorjs/list';
-import Checklist from '@editorjs/checklist';
-import Embed from '@editorjs/embed';
-import Marker from '@editorjs/marker';
-import Warning from '@editorjs/warning';
-import Quote from '@editorjs/quote';
-import Delimiter from '@editorjs/delimiter';
-import ImageTool from '@editorjs/image';
-import Table from "@editorjs/table";
-import Paragraph from "@editorjs/paragraph";
+
 import Cookies from 'js-cookie';
 import './article.css'
-
-const editor = new EditorJS({
-    holder: 'editorjs',
-    autofocus: true,
-    tools: {
-      paragraph: {
-        class: Paragraph,
-        inlineToolbar: true,
-        config: {
-          placeholder: 'Write Here....'
-        },
-      },
-      table: {
-        class: Table,
-        inlineToolbar: true,
-        config: {
-          rows: 2,
-          cols: 3,
-        },
-      },
-      header: {
-        class: Header,
-        /**
-         * This property will override the common settings
-         * That means that this tool will have only Marker and Link inline tools
-         * If 'true', the common settings will be used.
-         * If 'false' or omitted, the Inline Toolbar wont be shown
-         */
-        inlineToolbar: true,
-        config: {
-          placeholder: 'Header'
-        },
-        shortcut: 'CMD+SHIFT+H'
-      },
-  
-      delimiter: Delimiter,
-      warning: Warning,
-      list: {
-        class: List,
-        inlineToolbar: [
-          'link',
-          'bold'
-        ]
-      },
-      quote: Quote,
-      checklist: {
-       class: Checklist,
-       inlineToolbar: true,
-      },
-      Marker: {
-        class: Marker,
-        shortcut: 'CMD+SHIFT+M',
-      },
-      embed: {
-        class: Embed,
-        inlineToolbar: false,
-        config: {
-         services: {
-           youtube: true,
-           coub: true
-         },
-        },
-      },
-      image: ImageTool,  
-    }
-  
-  });
+import editor from './Index'
 
 export default class Test extends Component {
     constructor(props) {
@@ -156,7 +79,9 @@ export default class Test extends Component {
     //     .then(response => response.json())
     //     .then(data => this.setState({ totalReactPackages: data.total }));
     //   };
-    // ARTICLE SUBMIT
+
+
+    // ARTICLE FORM SUBMIT
 
     submitArticleForm = async e => {
         e.preventDefault();
@@ -360,16 +285,17 @@ export default class Test extends Component {
                                     </Card.Body>
                                 </Accordion.Collapse>
                                 <Card.Footer>
-                                    <Form.Group controlId="formBasicCheckbox">
-                                        <Form.Check type="checkbox" label="Check me out" />
-                                    </Form.Group>
-                                    <Button onClick={this.saveArticle} variant="primary">Submit</Button>
+                                    {/* <Form.Group controlId="formBasicCheckbox"> */}
+                                        {/* <Form.Check type="checkbox" label="Check me out" />
+                                    </Form.Group> */}
+                                    <Button onClick={this.saveArticle} variant="primary" className="mr-3">Save</Button>
+                                    <Button onClick={this.submitArticleForm} variant="secondary">Submit</Button>
                                 </Card.Footer>
                             </Card>
                             </Form>
                         </Accordion>
                     </Card>
-                    {button}
+                    {/* {button} */}
                 <Card className="my-4 mainCard">
                     <div id="articlePreview" className="content"></div>
                 </Card>
