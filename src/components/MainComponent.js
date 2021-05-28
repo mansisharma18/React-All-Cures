@@ -83,14 +83,16 @@ const Routes = () => {
           {/* <Route exact path="/login" component={Modal} /> */}
 
           <Route exact path="/search" component={Search} />
-          {/* <Route path="/search/:city/:name" component={Search} /> */}
+          <Route exact path="/search/:city" component={Search} />
+          <Route path="/search/:city/:name" component={Search} />
           <Route exact path="/article" component={Test} />
           <Route exact path="/dashboard" component={Dashboard} />
           <Route exact path="/sign" component={SignIn} />
           {/* <Route exact path="/login" component={Login} /> */}
       <ProtectedLogin path="/login" component={Login} auth={Auth.auth}/>
       {/* <ProtectedRoute path="/dashboard" auth={Auth.auth} component={Dashboard}/> */}
-      <ProtectedRoute path="/profile" auth={Auth.auth} component={Profile}/>
+      {/* <Route path="/profile" auth={Auth.auth} component={Profile}/> */}
+      <Route path="/profile/:id" component={Profile}/>
       <Route exact path="/TestAjax" component={TestAjax} />
       {/* <Route exact path="/TestPC" component={Sibling1} /> */}
 

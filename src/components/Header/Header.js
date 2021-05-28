@@ -10,17 +10,18 @@ class Header extends Component {
     constructor(props){
         super(props);
         this.state = {
-            acPerm: Cookies.get('acPerm')
+            acPerm: Cookies.get('acPerm'),
+            searchParams: {
+                city: '',
+                name: '',
+            }
         };
-        this.onLogout = this.onLogout.bind(this);
-        // this.handleChange = this.handleChange.bind(this);
     }
-    onLogout() {
-        this.props.history.push('/profile');
-    }
-    // handleChange(event) {
-    //     this.setState({value: event.target.value});
-    // }
+    
+    handleChange = e => 
+        this.setState({
+            searchParams: { ...this.state.articleValues, [e.target.name]: e.target.value }
+        });
     render() {
         // console.log(this.state.history);
         return(
@@ -35,10 +36,6 @@ class Header extends Component {
                                 <img src={Heart}/>
                                 <span>All Cures</span>
                             </Link>
-                            {/* <a href="index.html"> 
-                                <img src={Heart}/>
-                                <span>All Cures</span>
-                            </a>  */}
                         </div>
                         <div className="loginSign"> 
                             <ToggleButton acPerm={this.state.acPerm}/> 
@@ -54,13 +51,13 @@ class Header extends Component {
                         <form class="mainSearch" >
                      	  <div className="col-md-4 pd-0 col-sx-12 col-sm-4">
                    			<div className="form-group search">
-    							<input type="text" placeholder="Doctor Name, Disease or Condition" name="doctors" id="doctors"  className="formVal form-control "/>
+    							<input type="text" placeholder="Doctor Name, Disease or Condition" name="name" id="doctors" onChange={this.handleChange} value={this.state.searchParams.name} className="formVal form-control "/>
 								<span className="icon-loupe"></span>
 							</div>
 						 </div>
    						 <div className="col-md-4 pd-0 col-sx-12 col-sm-4">
          				 	<div className="form-group city zipcode">
-    							<input type= "text" placeholder="City or Zip-code" name="city" id="city" className="formVal form-control" />
+    							<input type= "text" placeholder="City or Zip-code" name="city" id="city" onChange={this.handleChange} value={this.state.searchParams.city} className="formVal form-control" />
                 	    	</div>
                 		 </div>
          					 
@@ -70,13 +67,13 @@ class Header extends Component {
                          <div className="col-md-4 pd-0 col-sx-12 col-sm-4">
          					 <div className="form-group date">
                        			  <input type="date" name="" placeholder="Date" className="form-control"/>
-                       			  <button 
+                       			  <Link 
                                      type="
                                      submit" 
                                      className="btn-bg searchBtn" 
                                      id="search"
-                                     onClick={this.onLogout}
-                                     >Search</button> 
+                                     to={ `/search/${this.state.searchParams.city}/${this.state.searchParams.name}`}
+                                     >Search</Link> 
                            	 </div>
                        	 </div> 
                        	                                                 

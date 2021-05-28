@@ -11,14 +11,17 @@ import '../../assets/healthcare/icomoon/style.css';
 class Profile extends Component {
   constructor(props) {
     super(props);
+    const params = props.match.params
     this.state = { 
       items: [],
       isLoaded: false,
+      param: params
     };
   }
 
   componentDidMount() {
-    fetch("/DoctorsActionController?docid=7&cmd=getProfile")
+    // console.log('Paramsssss '+ JSON.stringify(this.state.param))
+    fetch(`/DoctorsActionController?docid=${this.state.param.id}&cmd=getProfile`)
       // .then(res => JSON.parse(res))
       .then((res) => res.json())
       .then((json) => {
@@ -31,6 +34,7 @@ class Profile extends Component {
   }
 
   render() {
+    console.log('Params: '+ JSON.stringify(this.state.param))
     var { isLoaded, items } = this.state;
     if (!isLoaded) {
       console.log(items);

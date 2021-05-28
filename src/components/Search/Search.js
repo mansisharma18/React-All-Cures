@@ -10,14 +10,28 @@ import '../../assets/healthcare/icomoon/style.css';
 class Search extends Component {
   constructor(props){
     super(props);
+    const params = props.match.params
     this.state = {
       items: [],
       isLoaded: false,
+      param: params
     }
   }
     
   componentDidMount(){
-    fetch('/SearchActionController?cmd=getResults&city=jammu&doctors=sangeeta&Latitude=32.73&Longitude=74.85')
+    // const city= '', name = '';
+    console.log("Params: "+ JSON.stringify(this.state.param))
+    // if(this.state.param.city){
+    //   city = this.state.param.city
+    // } else {
+    //   city = ""
+    // }
+    // if(this.state.param.name){
+    //   name = this.state.param.name
+    // } else {
+    //   name = ""
+    // }
+    fetch(`/SearchActionController?cmd=getResults&city=${this.state.param.city}&doctors=${this.state.param.name}&Latitude=&Longitude=`)
       .then(res => res.json())
       .then(json => {
         console.log(json.map.DoctorDetails.myArrayList);
@@ -60,6 +74,7 @@ class Search extends Component {
                       </div>
                         {items.map((i) => (
                           <ProfileTab
+                            docid= {i.map.doctorid}
                             name = {i.map.name}
                             pSpl = {i.map.primary_spl}
                             hospital = {i.map.hospital_affliated}
