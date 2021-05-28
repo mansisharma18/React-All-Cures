@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Footer from '../Footer/Footer';
 import { Link } from 'react-router-dom';
+import Cookies from 'js-cookie';
 import Heart from"../../assets/img/heart.png";
 import Doct from "../../assets/img/doct.png";
 
@@ -12,8 +13,15 @@ import '../../assets/healthcare/icomoon/style.css';
 import Carousel1 from './Caousel1';
 import Carousel2 from './Carousel2';
 import CarouselReview from './CarouselReview';
+// import ToggleButton from '../Header/Header'
 
 class Home extends Component {
+   constructor(props){
+      super(props);
+      this.state = {
+          acPerm: Cookies.get('acPerm')
+      };
+  }
    render() {
       return(
          <div>
@@ -29,7 +37,9 @@ class Home extends Component {
                                     <span>All Cures</span>
                                  </Link>     
                               </div>
-                              <div className="loginSign"> <a href="login1.jsp" className="li-modal btn-white loginSignbtn color-blue-dark " >Log in / Sign up</a> </div>
+                              <div className="loginSign"> 
+                                 <ToggleButton acPerm={this.state.acPerm}/> 
+                              </div>  
                            </div>   
                         </div>
                      </div>
@@ -204,6 +214,21 @@ class Home extends Component {
       
         );
     }
+}
+
+function ToggleButton(props) {
+   if(props.acPerm){
+       return(
+           <Link to="/dashboard" className="btn-white loginSignbtn color-blue-dark" >
+               Dashboard
+           </Link>
+       );
+   }
+   return(
+       <Link to="/login" className="btn-white loginSignbtn color-blue-dark" >
+           Sign In/ Sign Up
+       </Link>
+   )
 }
 
 export default Home;

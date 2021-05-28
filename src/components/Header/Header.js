@@ -1,23 +1,17 @@
 import React, { Component } from "react";
 import './header.css';
-// import {
-//   Navbar,
-//   NavbarBrand,
-//   Nav,
-//   NavbarToggler,
-//   Collapse,
-//   NavItem,
-//   Button,
-// } from "reactstrap";
-// import { NavLink } from "react-router-dom";
-// import history from 
+import Cookies from 'js-cookie';
+
 import Heart from"../../assets/img/heart.png";
-import { Link, withRouter } from "react-router-dom";
+import { Link } from "react-router-dom";
+// import { ToggleButton } from "react-bootstrap";
 class Header extends Component {
 
     constructor(props){
         super(props);
-        this.state = {};
+        this.state = {
+            acPerm: Cookies.get('acPerm')
+        };
         this.onLogout = this.onLogout.bind(this);
         // this.handleChange = this.handleChange.bind(this);
     }
@@ -47,9 +41,8 @@ class Header extends Component {
                             </a>  */}
                         </div>
                         <div className="loginSign"> 
-                            {/* <a href="" id="userLogin" className="btn-white loginSignbtn color-blue-dark" data-toggle="modal" data-target="#myModal">Log in / Sign up</a>  */}
-                            <Link to="/login" className="btn-white loginSignbtn color-blue-dark" >Sign In/ Sign Up</Link>
-                        </div>        	
+                            <ToggleButton acPerm={this.state.acPerm}/> 
+                        </div>   	
                         </div>
                     </div>
                     </div>
@@ -97,6 +90,21 @@ class Header extends Component {
         </div>
         );
     }
+}
+
+function ToggleButton(props) {
+    if(props.acPerm){
+        return(
+            <Link to="/dashboard" className="btn-white loginSignbtn color-blue-dark" >
+                Dashboard
+            </Link>
+        );
+    }
+    return(
+        <Link to="/login" className="btn-white loginSignbtn color-blue-dark" >
+            Sign In/ Sign Up
+        </Link>
+    )
 }
 
 export default Header;
