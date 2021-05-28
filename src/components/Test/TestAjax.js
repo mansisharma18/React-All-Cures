@@ -32,14 +32,19 @@ class TestAjax extends Component {
       // console.log(users);
 
       console.log(items);
+      // return <TestAjax {...this.props} {...this.state} />;
+
       return (
+        // <TestAjax quip="Don't believe everything you think.{items.draft_article}" />
         <div>
-            {<ul>
+            {this.props.name}: {items[this.props.name]}
+
+            {/* {<ul>
               <li key={items.draft_article}>Draft Article: {items.draft_article}</li>
                 <li key={items.published_article}>Published Article: {items.published_article}</li>
                 <li key={items.review_article}>Review Artile: {items.review_article}</li>
                 <li key={items.approval_article}>Approval Article: {items.approval_article}</li>
-            </ul>}
+            </ul>} */}
         </div>
       );
     }

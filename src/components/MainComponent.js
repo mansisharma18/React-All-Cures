@@ -14,13 +14,16 @@ import Test from "./Article/test";
 import Dashboard from "./Dashboard/Dashboard.js";
 import Login from "./login/login";
 import SignIn from "./Article/SignIn"
+import TestAjax from "./Test/TestAjax"
+// import Sibling1 from "./Test/TestPC"
+
 // import Login from './login/login'
 
 function Main() {
   // render() {
     const [auth, setAuth] = React.useState(false);
   const readCookie = () => {
-    const user = Cookies.get("user")
+    const user = Cookies.get("acPerm")
     if(user){
       setAuth(true);
     }
@@ -87,6 +90,10 @@ const Routes = () => {
       <ProtectedLogin path="/login" component={Login} auth={Auth.auth}/>
       {/* <ProtectedRoute path="/dashboard" auth={Auth.auth} component={Dashboard}/> */}
       <ProtectedRoute path="/profile" auth={Auth.auth} component={Profile}/>
+      <Route exact path="/TestAjax" component={TestAjax} />
+      {/* <Route exact path="/TestPC" component={Sibling1} /> */}
+
+
     </Switch>
   )
 }
