@@ -686,7 +686,7 @@ h6 {
 }
 
 .tab-nav ul {
-  margin: 23px 0 0 31px;
+  margin: 30px 0 0 31px;
 }
 
 .tab-nav ul li a {
@@ -875,6 +875,10 @@ a.appointmentBtn {
 #specialists .item:hover .sider-contain,
 #doctor .item:hover .sider-contain {
   bottom: 0px;
+}
+
+.specialists #specialists {
+  margin: 0 0 3rem 0;
 }
 
 .owl-carousel .owl-item .active:last-child {
@@ -1204,10 +1208,11 @@ a.appBtn {
 }
 
 .moreFilters {
+  height: 0.8rem;
   padding: 6px 56px;
   display: inline-table;
   border-radius: 15px;
-  margin-top: 20px;
+  margin-top: 1.8rem;
   margin-left: 50px;
 }
 

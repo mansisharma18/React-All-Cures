@@ -110,24 +110,13 @@ class Home extends Component {
                   <h2>Choose by Specialists</h2>
                </div>
             </div>
-            <div className="row" style={{width: "1140px"}}>
+            <div className="row">
                <Carousel2/>
             </div>
          </div>
       </section>
-      {/* <section className="doctor">
-         <div className="container">
-            <div className="row">
-               <div className="comman-heading">
-                  <h2>Our Top Doctors</h2>
-               </div>
-            </div>
-            
-            <div className="row" style={{width: "1140px"}}>
-               <Carousel2/>
-            </div>
-         </div>
-      </section><br/> */}
+      
+
       <section className="consultunt">
          <div className="container">
             <div className="row">
@@ -149,7 +138,7 @@ class Home extends Component {
                </div>
             </div>
             
-            <div className="row" style={{width: "1140px"}}>
+            <div className="row">
                <Carousel2/>
             </div>
          </div>

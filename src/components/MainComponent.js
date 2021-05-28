@@ -80,6 +80,7 @@ const Routes = () => {
           {/* <Route exact path="/login" component={Modal} /> */}
 
           <Route exact path="/search" component={Search} />
+          {/* <Route path="/search/:city/:name" component={Search} /> */}
           <Route exact path="/article" component={Test} />
           <Route exact path="/dashboard" component={Dashboard} />
           <Route exact path="/sign" component={SignIn} />
