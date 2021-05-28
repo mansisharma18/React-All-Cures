@@ -2,6 +2,8 @@ import React from 'react';
 import { useTheme } from '@material-ui/core/styles';
 import { LineChart, Line, XAxis, YAxis, Label, ResponsiveContainer } from 'recharts';
 import Title from './Title';
+import TestAjax from "../Test/TestAjax"
+
 
 // Generate Sales Data
 function createData(time, amount) {
@@ -20,12 +22,18 @@ const data = [
   createData('24:00', undefined),
 ];
 
-export default function Chart() {
+export default function Chart(props) {
   const theme = useTheme();
 
   return (
     <React.Fragment>
       <Title>Today</Title>
+      <TestAjax name="draft_article"/>
+      {/* <h1>Review Article</h1> */}
+      <TestAjax name="review_article"/>
+
+      {/* <p>!!{props.quip}</p> */}
+
       <ResponsiveContainer>
         <LineChart
           data={data}
