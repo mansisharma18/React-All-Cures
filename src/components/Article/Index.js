@@ -77,4 +77,14 @@ const editor = new EditorJS({
     }
   
   });
+  
+editor.isReady
+.then(() => {
+  console.log('Editor.js is ready to work!')
+  /** Do anything you need after editor initialization */
+})
+.catch((reason) => {
+  console.log(`Editor.js initialization failed because of ${reason}`)
+});
+
 export default editor;

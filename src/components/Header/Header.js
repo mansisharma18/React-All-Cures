@@ -12,7 +12,7 @@ class Header extends Component {
         this.state = {
             acPerm: Cookies.get('acPerm'),
             searchParams: {
-                city: '',
+                city: 'Jammu',
                 name: '',
             }
         };
@@ -20,7 +20,7 @@ class Header extends Component {
     
     handleChange = e => 
         this.setState({
-            searchParams: { ...this.state.articleValues, [e.target.name]: e.target.value }
+            searchParams: { ...this.state.searchParams, [e.target.name]: e.target.value }
         });
     render() {
         // console.log(this.state.history);

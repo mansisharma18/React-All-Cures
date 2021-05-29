@@ -19,9 +19,17 @@ class Home extends Component {
    constructor(props){
       super(props);
       this.state = {
-          acPerm: Cookies.get('acPerm')
+          acPerm: Cookies.get('acPerm'),
+          searchParams: {
+            city: 'Jammu',
+            name: '',
+        }
       };
   }
+  handleChange = e => 
+        this.setState({
+            searchParams: { ...this.state.searchParams, [e.target.name]: e.target.value }
+        });
    render() {
       return(
          <div>
@@ -54,16 +62,16 @@ class Home extends Component {
                   <div className="container">
                      <div className="row">
                         <div className="search-wrap-inner clearfix">
-                           <form class="mainSearch" method="POST" action="/cures/SearchActionController">
+                           <form class="mainSearch">
                               <div className="col-md-4 pd-0 col-sx-12 col-sm-4">
                                  <div className="form-group search">
-                                    <input type="text" placeholder="Doctor Name, Disease or Condition" name="doctors" id="doctors"  className="formVal form-control "/>
-                                    <span className="icon-loupe"></span>
+                                 <input type="text" placeholder="Doctor Name, Disease or Condition" name="name" id="doctors" onChange={this.handleChange} value={this.state.searchParams.name} className="formVal form-control "/>
+                                 <span className="icon-loupe"></span>
                                  </div>
                               </div>
                               <div className="col-md-4 pd-0 col-sx-12 col-sm-4">
                                  <div className="form-group city zipcode">
-                                    <input type= "text" placeholder="City or Zip-code" name="city" id="city" className="formVal form-control" />
+                                 <input type= "text" placeholder="City or Zip-code" name="city" id="city" onChange={this.handleChange} value={this.state.searchParams.city} className="formVal form-control" />
                                  </div>
                               </div>
                                  <input type="hidden" name="Latitude" id="Latitude"  className="form-control"/>
@@ -72,7 +80,13 @@ class Home extends Component {
                               <div className="col-md-4 pd-0 col-sx-12 col-sm-4">
                                  <div className="form-group date">
                                     <input type="date" name="" placeholder="Date" className="form-control"/>
-                                    <button type="submit" className="btn-bg searchBtn" id="search">Search</button> 
+                                    <Link 
+                                     type="
+                                     submit" 
+                                     className="btn-bg searchBtn" 
+                                     id="search"
+                                     to={ `/search/${this.state.searchParams.city}/${this.state.searchParams.name}`}
+                                     >Search</Link>  
                                  </div>
                               </div>              
                            </form>
