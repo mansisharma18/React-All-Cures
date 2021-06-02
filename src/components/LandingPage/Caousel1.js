@@ -8,63 +8,75 @@ import Slider3 from "../../assets/img/slider-3.png";
 import Slider4 from "../../assets/img/slider-4.png";
 import Slider5 from "../../assets/img/slider-5.png";
 import Slider6 from "../../assets/img/slider-6.png";
-export default class Carousel1 extends Component {
-    render() {
+import { Link } from 'react-router-dom'
+export default function Carousel1(props){
         return(
             <div className="tab-content category " style={{maxWidth:"1140px"}}>
-                  <OwlCarousel navText="" nav=">" className="owl-theme" items={6} loop margin={150} nav>
+                  <OwlCarousel className="owl-theme" items={6} loop margin={150} nav>
                   <div className="item bg-pink">
+                        <Link to={ `/search/${props.city}/ENT` }>
                            <div className="item-img">
                               <img src={Slider1} alt="slider-img"/>
                            </div>
                            <div className="slider-heading">
                               <p><strong>Cough</strong><br/> Cold</p>
                            </div>
+                        </Link>
                         </div>
                         <div className="item bg-org">
+                        <Link to={ `/search/${props.city}/Endocrinology` }>
                            <div className="item-img">
                               <img src={Slider2} alt="slider-img"/>
                            </div>
                            <div className="slider-heading">
                               <p><strong>Diabetes</strong><br/> Care</p>
                            </div>
+                           </Link>
                         </div>
                         <div className="item bg-l-org">
+                        <Link to={ `/search/${props.city}/Cardiology` }>
                            <div className="item-img">
                               <img src={Slider3} alt="slider-img"/>
                            </div>
                            <div className="slider-heading">
                               <p><strong>Heart</strong> <br/>Care</p>
                            </div>
+                           </Link>
                         </div>
                         <div className="item bg-voilet">
+                        <Link to={ `/search/${props.city}/Dental` }>
                            <div className="item-img">
                               <img src={Slider4} alt="slider-img"/>
                            </div>
                            <div className="slider-heading">
                               <p><strong>Dental</strong><br/> Care</p>
                            </div>
+                        </Link>
                         </div>
+                        
                         <div className="item bg-blue">
+                        <Link to={ `/search/${props.city}/Dermatology` }>
                            <div className="item-img">
                               <img src={Slider5} alt="slider-img"/>
                            </div>
                            <div className="slider-heading">
                               <p><strong>Skin</strong> <br/>Care</p>
                            </div>
+                           </Link>
                         </div>
                         <div className="item bg-green">
+                        <Link to={ `/search/${props.city}/ENT` }>
                            <div className="item-img">
                               <img src={Slider6} alt="slider-img"/>
                            </div>
                            <div className="slider-heading">
                               <p><strong>Eye</strong> <br/>Care</p>
                            </div>
+                           </Link>
                         </div> 
                         {/* <div className="navClass">></div>  */}
       </OwlCarousel>
       </div>
         )
-    }
     
 }

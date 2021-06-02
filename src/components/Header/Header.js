@@ -66,7 +66,7 @@ class Header extends Component {
                        	 <input type="hidden" name="Longitude" id="Longitude"  className="form-control"/>
                          <div className="col-md-4 pd-0 col-sx-12 col-sm-4">
          					 <div className="form-group date">
-                       			  <input type="date" name="" placeholder="Date" className="form-control"/>
+                              <input type="text" name="" placeholder="Date" className="form-control" onFocus={(e) => e.target.type = 'date'}/>
                        			  <Link 
                                      type="
                                      submit" 

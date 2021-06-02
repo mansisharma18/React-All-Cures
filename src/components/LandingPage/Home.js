@@ -13,6 +13,7 @@ import '../../assets/healthcare/icomoon/style.css';
 import Carousel1 from './Caousel1';
 import Carousel2 from './Carousel2';
 import CarouselReview from './CarouselReview';
+// import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 // import ToggleButton from '../Header/Header'
 
 class Home extends Component {
@@ -62,7 +63,7 @@ class Home extends Component {
                   <div className="container">
                      <div className="row">
                         <div className="search-wrap-inner clearfix">
-                           <form class="mainSearch">
+                           <form className="mainSearch">
                               <div className="col-md-4 pd-0 col-sx-12 col-sm-4">
                                  <div className="form-group search">
                                  <input type="text" placeholder="Doctor Name, Disease or Condition" name="name" id="doctors" onChange={this.handleChange} value={this.state.searchParams.name} className="formVal form-control "/>
@@ -79,7 +80,7 @@ class Home extends Component {
                                     <input type="hidden" name="Longitude" id="Longitude"  className="form-control"/>
                               <div className="col-md-4 pd-0 col-sx-12 col-sm-4">
                                  <div className="form-group date">
-                                    <input type="date" name="" placeholder="Date" className="form-control"/>
+                                    <input type="text" name="" placeholder="Date" className="form-control" onFocus={(e) => e.target.type = 'date'}/>
                                     <Link 
                                      type="
                                      submit" 
@@ -112,7 +113,7 @@ class Home extends Component {
                      </li>
                   </ul>
                </div>
-                  <Carousel1/>
+                  <Carousel1 city={this.state.searchParams.city}/>
                   
           </div>
         </div>
@@ -138,7 +139,7 @@ class Home extends Component {
                   <h1>Meet Our Consultants Online</h1>
                   <p>Video visits can address immediate medical issues or routine healthcare needs. Doctors are ready to treat a variety of issues or help you with prescriptions or referrals.</p>
                   <div className="startVideo">
-                     <a href="javascript:void(0)" className="btn-bg startVideoBtn allBtn">Start Video Consultation</a>
+                     <Link to="#" className="btn-bg startVideoBtn allBtn">Start Video Consultation</Link>
                   </div>
                </div>
             </div>
@@ -163,13 +164,13 @@ class Home extends Component {
                <div className="partnerBG">
                   <h2>Be our Partners and <br/> Expand your Client base</h2>
                   <div className="learnBtn">
-                     <a href="javascript:void(0)" className="btn-bg nearmoreBtn">Learn More</a>
+                     <Link href="javascript:void(0)" className="btn-bg nearmoreBtn">Learn More</Link>
                   </div>
                </div>
             </div>
          </div>
       </section>
-      <section className="testomonial">
+      <section className="testomonial" id="testimonials">
          <div className="container">
             <div className="row">
                <div className="comman-heading">
@@ -203,8 +204,12 @@ class Home extends Component {
                         <h1>Get along with us on</h1>
                         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec congue  turpis sollicitudin nulla finibus dignissim.</p>
                         <div className="form-group relative">
-                           <input type="text" name="" className="form-control"/>
-                           <a href="javascript:void(0)" className="subscribeBtn">Subscribe</a>
+                           <div className="aaa">
+                              <input type="text" name="" className="form-control"/>
+                           </div>
+                           <div>
+                              <a href="javascript:void(0)" className="subscribeBtn">Subscribe</a>
+                           </div>
                         </div>
                      </div>
                   </div>

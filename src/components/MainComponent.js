@@ -85,18 +85,12 @@ const Routes = () => {
           <Route exact path="/search" component={Search} />
           <Route exact path="/search/:city" component={Search} />
           <Route path="/search/:city/:name" component={Search} />
-          <Route exact path="/article" component={Test} />
+          <ProtectedRoute path="/article" auth={Auth.auth} component={Test} />
           <Route exact path="/dashboard" component={Dashboard} />
           <Route exact path="/sign" component={SignIn} />
-          {/* <Route exact path="/login" component={Login} /> */}
       <ProtectedLogin path="/login" component={Login} auth={Auth.auth}/>
-      {/* <ProtectedRoute path="/dashboard" auth={Auth.auth} component={Dashboard}/> */}
-      {/* <Route path="/profile" auth={Auth.auth} component={Profile}/> */}
       <Route path="/profile/:id" component={Profile}/>
       <Route exact path="/TestAjax" component={TestAjax} />
-      {/* <Route exact path="/TestPC" component={Sibling1} /> */}
-
-
     </Switch>
   )
 }
@@ -107,8 +101,7 @@ const ProtectedRoute = ({auth, component:Component, ...rest}) => {
       <Route
       {...rest}
       render = {() =>auth ? (
-        
-        <Component/>
+        <Component/>        
       ):
         (
           <Redirect to="/login"/>
@@ -126,7 +119,7 @@ const ProtectedLogin = ({auth, component:Component, ...rest}) => {
         <Component/>
       ):
         (
-          <Redirect to="/profile"/>
+          <Redirect to="/article"/>
         )
     }
       />

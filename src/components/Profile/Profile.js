@@ -8,6 +8,7 @@ import '../../assets/healthcare/css/main.css';
 import '../../assets/healthcare/css/responsive.css';
 import '../../assets/healthcare/css/animate.css';
 import '../../assets/healthcare/icomoon/style.css';
+import { Container } from "react-bootstrap";
 class Profile extends Component {
   constructor(props) {
     super(props);
@@ -39,38 +40,55 @@ class Profile extends Component {
     if (!isLoaded) {
       console.log(items);
 
-      return <div>Loading...</div>;
-    } else if (isLoaded) {
+      return(
+        <>
+          <Header/>
+            <Container className="mt-5 my-5">
+              <h3 className="text-left">Loading...</h3>
+            </Container>
+          <Footer/>
+        </>  
+      );
+
+    } else if(isLoaded && items == null){
+      return(
+        <>
+        <Header/>
+          <Container className="mt-5 my-5">
+          <h3 className="m-auto text-center"><span className="icon-loupe "></span></h3>
+          <h3 className="text-center">Doctor not found</h3>
+          </Container>
+        <Footer/>
+        </>
+      )
+    }else if (isLoaded) {
       // console.log(users);
 
       console.log(items);
       return (
         <div>
           <Header />
+          
           <section className="Profileleft">
             <div className="container">
               <div className="row">
                 <div className="col-md-8 pd-0">
-                  <div className="profile-card clearfix" style={{display: "flex"}}>
+                  <div className="profile-card clearfix">
                     <div className="col-md-3">
                       <div className="profileImageBlok">
-                        <div className="profile-card-img">
-                          {" "}
-                          <img src={profile} alt="special-1" />{" "}
+                        <div className="profile-card-img text-center">
+                          <i className="fas fa-user-md fa-6x"></i>
                         </div>
-                        <div className="viewPhoto">
+                        {/* <div className="viewPhoto">
                           {" "}
                           <a href="javascript:void(0)">View Photos</a>{" "}
-                        </div>
+                        </div> */}
                       </div>
                     </div>
                     <div className="col-md-9">
                       <div className="profile-info">
                         <div className="profile-infoL-card">
                           <div className="profile-info-name" id="DocDetails">
-                            {/* if ({items.docname_middle} != NULL) {
-                                            
-                                        } */}
                             <h1>
                               Dr. {items.docname_first} {items.docname_middle}{" "}
                               {items.docname_last}{" "}
@@ -775,7 +793,7 @@ class Profile extends Component {
           <Footer />
         </div>
       );
-    }
+    } 
   }
 }
 export default Profile;

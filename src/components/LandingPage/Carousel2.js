@@ -2,88 +2,83 @@ import React, { Component } from 'react';
 import OwlCarousel from "react-owl-carousel";
 import "owl.carousel/dist/assets/owl.carousel.css";
 import "owl.carousel/dist/assets/owl.theme.default.css";
+import { Link } from 'react-router-dom';
 
 import Special1 from "../../assets/img/special-1.jpg";
 import Special2 from "../../assets/img/special-2.jpg";
 import Special3 from "../../assets/img/special-3.jpg";
-
+import "@fortawesome/free-solid-svg-icons";
+import "@fortawesome/fontawesome-svg-core"
+// import carouselItem from './carouselItem'
+const options = {
+   navText: ["Prev", ">"],
+   dots: true
+   
+};
 export default class Carousel2 extends Component {
-    render() {
-        return(
-         // <div className="owl-carousel owl-theme" id="">
+   constructor(props){
+      super(props);
+      this.state = {
+        items: [],
+        isLoaded: false,
+        responsive:{
+         0: {
+             items: 1,
+         },
+         370: {
+             items: 2,
+         },
+     },
+      }
+    }
 
-         <OwlCarousel navText=">>" nav="true" className="owl-theme" id="specialists" items={4} loop margin={10} >
-         <div className="item">
+   componentDidMount(){
+      fetch(`/SearchActionController?cmd=getResults&city=jammu&doctors=&Latitude=&Longitude=`)
+        .then(res => res.json())
+        .then(json => {
+          console.log(json.map.DoctorDetails.myArrayList);
+          this.setState({
+            isLoaded: true,
+            items: json.map.DoctorDetails.myArrayList,
+          })            
+        });
+    }
+    
+    render() {
+      var { isLoaded,items } = this.state;
+      if(!isLoaded) {
+        console.log("Itemsssss: "+ items);
+        return <div>Loading...</div>;
+      }
+      else if(isLoaded){
+         console.log("Itemsssss: "+ items);
+        return(
+         <OwlCarousel {...options} nav="true" className="owl-theme" id="specialists" items={4} margin={10}>
+         {items.map((i) => (
+            <div className="item">
                <div className="item-img">
-                  <img src={Special2} alt="special-img"/>
+                  {/* <img src={Special2} alt="special-img"/> */}
+                  <i className="fas fa-user-md fa-10x"></i>
+
                </div>
                <div className="rating">
-                 <span className="icon-star-1"></span>
-                 <p>4.2</p>
+                  <span className="icon-star-1"></span>
+                  <p>4.2</p>
                </div>
                <div className="sider-contain">
                   <div className="slider-heading">
-                     <h2>Jordan Reich</h2>
-                     <p>General Physician</p>
-                     <h5>Dr. Jordan Reich, MBBS General Physician New York, NY</h5>
+                     <h2>Dr. {i.map.docname_first} {i.map.docname_last}</h2>
+                     <p>{i.map.primary_spl}</p>
+                     <h5 className="text-center">{i.map.hospital_affliated} {i.map.state} {i.map.country_code}</h5>
                   </div>
-                  <a href="javascript:void(0)" className="appointmentBtn allBtn">Appointment</a>
+                  <Link to="#" className="appointmentBtn allBtn">Appointment</Link>
                </div>
-             </div>
-             <div className="item">
-               <div className="item-img">
-                  <img src={Special1} alt="special-img"/>
-               </div>
-               <div className="rating">
-                 <span className="icon-star-1"></span>
-                 <p>4.2</p>
-               </div>
-               <div className="sider-contain">
-                  <div className="slider-heading">
-                     <h2>Jordan Reich</h2>
-                     <p>General Physician</p>
-                     <h5>Dr. Jordan Reich, MBBS General Physician New York, NY</h5>
-                  </div>
-                  <a href="javascript:void(0)" className="appointmentBtn">Appointment</a>
-               </div>
-             </div>
-             <div className="item">
-               <div className="item-img">
-                  <img src={Special2} alt="special-img"/>
-               </div>
-               <div className="rating">
-                 <span className="icon-star-1"></span>
-                 <p>4.2</p>
-               </div>
-               <div className="sider-contain">
-                  <div className="slider-heading">
-                     <h2>Jordan Reich</h2>
-                     <p>General Physician</p>
-                     <h5>Dr. Jordan Reich, MBBS General Physician New York, NY</h5>
-                  </div>
-                  <a href="javascript:void(0)" className="appointmentBtn">Appointment</a>
-               </div>
-             </div>
-             <div className="item">
-               <div className="item-img">
-                  <img src={Special3} alt="special-img"/>
-               </div>
-               <div className="rating">
-                 <span className="icon-star-1"></span>
-                 <p>4.2</p>
-               </div>
-               <div className="sider-contain">
-                  <div className="slider-heading">
-                     <h2>Jordan Reich</h2>
-                     <p>General Physician</p>
-                     <h5>Dr. Jordan Reich, MBBS General Physician New York, NY</h5>
-                  </div>
-                  <a href="javascript:void(0)" className="appointmentBtn">Appointment</a>
-               </div>
-             </div>
+            </div>
+         ))}
+                        
    </OwlCarousel>
-   // </div>
-        )
+        );
+      }
     }
     
 }

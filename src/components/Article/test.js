@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
-import { Button, Accordion, Card, Container, Form } from 'react-bootstrap';
+import { Button, Accordion, Card, Container, Form, Alert, variant } from 'react-bootstrap';
 
 import Cookies from 'js-cookie';
 import './article.css'
 import editor from './Index'
+import Carousel from './Carousel'
 
 export default class Test extends Component {
     constructor(props) {
@@ -19,6 +20,7 @@ export default class Test extends Component {
             isLoggedIn: false,
             ac: '',
             showAuthorAccordian: false,
+            ShowSubmitAlert: false,
             values: {
                 authorFN: "",
                 authorMN:"",
@@ -51,9 +53,131 @@ export default class Test extends Component {
             this.setState({ac: output})
             console.log("kjaxkajbxkajb",this.state.ac)
 
+
+
+            let articleHTML = '';
+
+    // RENDER DIFFERENT TYPES OF DATA
+    
+output.blocks.map(obj => {
+switch (obj.type) {
+    case 'paragraph':
+    articleHTML += `<div class="ce-block">
+     <div class="ce-block__content">
+       <div class="ce-paragraph cdx-block">
+        <p>${obj.data.text}</p>
+      </div>
+     </div>
+    </div>\n`;
+    break;
+    case 'image':
+    articleHTML += `<div class="ce-block">
+     <div class="ce-block__content">
+       <div class="cdx-block cdx-simple-image">
+      <div class="cdx-simple-image__picture">
+        <img src="${obj.data.url}" alt="${obj.data.caption}" />
+      </div>
+      <div class="text-center">
+        <i>${obj.data.caption}</i>
+      </div>
+    </div>
+  </div>
+</div>\n`;
+    break;
+    case 'header':
+    articleHTML += `<div class="ce-block">
+     <div class="ce-block__content">
+       <div class="ce-paragraph cdx-block">
+         <h3>${obj.data.text}</h3>
+       </div>
+     </div>
+    </div>\n`;
+    break;
+    case 'raw':
+    articleHTML += `<div class="ce-block">
+    <div class="ce-block__content">
+          <div class="ce-code">
+        <code>${obj.data.html}</code>
+      </div>
+    </div>
+    </div>\n`;
+    break;
+    case 'code':
+        articleHTML += `<div class="ce-block">
+      <div class="ce-block__content">
+       <div class="ce-code">
+         <code>${obj.data.code}</code>
+       </div>
+  </div>
+</div>\n`;
+break;
+case 'list':
+if (obj.data.style === 'unordered') {
+  const list = obj.data.items.map(item => {
+    return `<li class="cdx-list__item">${item}</li>`;
+  });
+  articleHTML += `<div class="ce-block">
+    <div class="ce-block__content">
+      <div class="ce-paragraph cdx-block">
+        <ul class="cdx-list--unordered">${list.join('')}</ul>
+      </div>
+      </div>
+    </div>\n`;
+} else {
+  const list = obj.data.items.map(item => {
+    return `<li class="cdx-list__item">${item}</li>`;
+  });
+  articleHTML += `<div class="ce-block">
+    <div class="ce-block__content">
+      <div class="ce-paragraph cdx-block">
+        <ol class="cdx-list--ordered">${list}</ol>
+      </div>
+      </div>
+    </div>\n`;
+}
+break;
+case 'delimeter':
+articleHTML += `<div class="ce-block ce-block--focused"><div class="ce-block__content"><div class="ce-delimiter cdx-block">***</div></div></div>\n`;
+break;
+case 'warning':
+    articleHTML+= `<div class="ce-block">
+    <div class="ce-block__content py-2 text-center" style="background-color: blanchedalmond">
+        <strong> ${obj.data.title}: </strong><span>${obj.data.message}</span>
+    </div>
+    </div>\n`;
+    break;
+case 'embed':
+    articleHTML += `<div class="ce-block ce-block--focused"><div class="ce-block__content"><div class="cdx-block embed-tool"><preloader class="embed-tool__preloader"><div class="embed-tool__url">${obj.data.source}</div></preloader>
+    <iframe style="width:100%;" allowfullscreen="" src=${obj.data.embed} class="embed-tool__content" height="320" frameborder="0"></iframe>
+    <div class="text-center">
+        <i>${obj.data.caption}</i>
+      </div>\n`;
+      break;
+case 'quote':
+    articleHTML+= `<div style="text-align: ${obj.data.alignment}" class="ce-block ce-block--focused"><div class="ce-block__content"><h3 style="font-style: italic" class="cdx-block">"${obj.data.text}"</h3></div>
+    <div class="text-center">
+        <i>- ${obj.data.caption}</i>    
+    </div>
+</div>\n`;
+    break;
+default:
+return '';
+}
+});
+
+
+// PREVIEW ARTICLE
+
+document.getElementById('articlePreview').innerHTML=articleHTML;
+
+
         }).catch((error)=>{
             console.log("Saving Failed", error)
         });
+    }
+
+    handleSubmit() {
+        this.setState({ShowSubmitAlert: true});
     }
 
     handleAuthorClick() {
@@ -71,15 +195,6 @@ export default class Test extends Component {
     handleLogoutClick() {
       this.setState({isLoggedIn: false});
     }
-
-    // login = async e => {
-    //     e.preventDefault();
-    //     console.log(this.state);
-    //     fetch('/login?email=mr.sahilgupta@gmail.com&rempwd=on&psw=Sahil123&cmd=login')
-    //     .then(response => response.json())
-    //     .then(data => this.setState({ totalReactPackages: data.total }));
-    //   };
-
 
     // ARTICLE FORM SUBMIT
 
@@ -101,15 +216,17 @@ export default class Test extends Component {
         ? this.setState({ message: data.success })
         : this.setState({ message: data.error, isError: true });
 
-        setTimeout(
-        () =>
-            this.setState({
+        this.handleSubmit();
+        setTimeout(() => this.setState({
             isError: false,
             message: "",
-            values: { email: "", password: "" }
-            }),
-        1600
-        );
+            articleValues: { 
+                title: '', 
+                language: '',
+                friendlyName: '',
+                contentType: '',
+            }
+            }), 1600);
     }
 
     handleArticleChange = e => 
@@ -156,14 +273,14 @@ export default class Test extends Component {
         const isLoggedIn = this.state.isLoggedIn;
         const showAuthorAccordian = this.state.showAuthorAccordian;
         const acPerm = this.state.acPerm;
-        
         let button;
         let showAuthorButton;
+
 
         if(showAuthorAccordian) {
             showAuthorButton = <HideAccordian onClick={this.handleAuthorClick}/>
         } else {
-            showAuthorButton = <CreateAccordian onClick={this.handleAuthorClick}/>
+            showAuthorButton = <CreateAccordian className="btn bg-dark" onClick={this.handleAuthorClick}/>
             console.log(showAuthorButton)
         }
 
@@ -176,13 +293,15 @@ export default class Test extends Component {
     
       return (
         <div>
-            <Container className="my-4">
+            <Carousel/>
+            <Container>
+                
                 {/* <Form> */}
                 {/* The user is <b></b> logged in. */}
                 {/* <button onClick={this.submitArticleForm}>test post</button>
                 <button onClick={this.submitForm}>Test Login</button> */}
                     <Card className="mainCard" >
-                        <Card.Header className="mainTitle">ARTICLE</Card.Header>
+                        <Card.Header className="mainTitle text-center h3 py-3">ARTICLE</Card.Header>
                         <Accordion>
                         <Greeting isLoggedIn={isLoggedIn} />
 
@@ -198,75 +317,63 @@ export default class Test extends Component {
                         <authorAccordian/>
                         <Form onSubmit = {this.submitArticleForm}>
                         <Card>
-                            <Card.Header style={{backgroundColor: "white"}}>
-                                <Accordion.Toggle as={Card.Header} variant="link" eventKey="2" className="bg-black">
+                            {/* <Card.Header style={{backgroundColor: "white"}}> */}
+                                <Accordion.Toggle as={Card.Header} variant="link" eventKey="2" className="bg-black h5 py-3">
                                 Article Details
                                 </Accordion.Toggle>
-                            </Card.Header>
+                            {/* </Card.Header> */}
                             <Accordion.Collapse eventKey="2">
                                 <Card.Body>
                                     <Form.Group>
+                                        <Form.Label>Article Title</Form.Label>
                                         <Form.Control type="text" name="title" value={this.state.values.title}
                                         onChange={this.handleArticleChange} placeholder="Article Title" />
                                     </Form.Group>
                                     <Form.Group>
+                                        <Form.Label>Article Display Name</Form.Label>
                                         <Form.Control type="text" name="friendlyName" value={this.state.values.friendlyName}
                                         onChange={this.handleArticleChange} placeholder="Friendly Name" />
                                     </Form.Group>
                                     <Form.Group>
+                                        <Form.Label>Content Type</Form.Label>
                                         <Form.Control type="text" name="contentType" value={this.state.values.contentType}
                                         onChange={this.handleArticleChange} placeholder="Content Type" />
                                     </Form.Group>
                                     <Form.Group>
+                                        <Form.Label>Disclaimer ID</Form.Label>
                                         <Form.Control type="text" name="disclaimerId" value={this.state.values.disclaimerId}
                                         onChange={this.handleArticleChange} placeholder="Disclaimer Id" />
                                     </Form.Group>
                                     <Form.Group>
+                                        <Form.Label>Copyright ID</Form.Label>
                                         <Form.Control type="text" name="copyId" value={this.state.values.copyId}
                                         onChange={this.handleArticleChange} placeholder="Copyright Id" />
                                     </Form.Group>
                                     <Form.Group>
+                                        <Form.Label>Article Status</Form.Label>
                                         <Form.Control type="text" name="articleStatus" value={this.state.values.articleStatus}
                                         onChange={this.handleArticleChange} placeholder="Article status" />
                                     </Form.Group>
                                     <Form.Group>
+                                        <Form.Label>Win Title</Form.Label>
                                         <Form.Control type="text" name="winTitle" value={this.state.values.winTitle}
                                         onChange={this.handleArticleChange} placeholder="Win Title" />
                                     </Form.Group>
                                     <Form.Group>
+                                        <Form.Label>Language</Form.Label>
                                         <Form.Control type="text" name="language" value={this.state.values.language}
                                         onChange={this.handleArticleChange} placeholder="Language" />
                                     </Form.Group>
-                                    <Form.Group>
+                                    {/* <Form.Group>
+                                        <Form.Label>Article Title</Form.Label>
                                         <Form.Control type="text" name="articleContent" value={this.state.values.articleContent}
                                         onChange={this.handleArticleChange} placeholder="Article Content" />
-                                    </Form.Group>
+                                    </Form.Group> */}
                                     <Form.Group>
+                                        <Form.Label>Author By ID</Form.Label>
                                         <Form.Control type="text" name="authById" value={this.state.values.authById}
                                         onChange={this.handleArticleChange} placeholder="Author By ID" />
                                     </Form.Group>
-                                    <Button type="submit" variant="dark">Save Article</Button>
-                                    {/* <Form.Group>
-                                        <Form.Control type="text" placeholder="" />
-                                    </Form.Group> */}
-                                    {/* <Form.Group>
-                                        <Form.Label>Specialization(Diseases and Conditions)</Form.Label>
-                                        <Form.Control as="select">
-                                            <option>1</option>
-                                            <option>2</option>
-                                            <option>3</option>
-                                            <option>4</option>
-                                            <option>5</option>
-                                        </Form.Control>
-                                    </Form.Group>
-                                    <Form.Group>
-                                        <Form.Label>Language</Form.Label>
-                                        <Form.Control as="select">
-                                            <option>English</option>
-                                            <option>Chinese</option>
-                                            <option>Persian</option>
-                                        </Form.Control>
-                                    </Form.Group> */}
                                 </Card.Body>
                             </Accordion.Collapse>
                         </Card>
@@ -274,11 +381,11 @@ export default class Test extends Component {
                         {/* Editor Accordion  */}
                 
                             <Card>
-                                <Card.Header style={{backgroundColor: "white"}}>
-                                    <Accordion.Toggle as={Card.Header} variant="link" eventKey="3">
+                                {/* <Card.Header style={{backgroundColor: "white"}}> */}
+                                    <Accordion.Toggle as={Card.Header} variant="link" eventKey="3" className="h5 py-3">
                                     Write Article Here 📝
                                     </Accordion.Toggle>
-                                </Card.Header>
+                                {/* </Card.Header> */}
                                 <Accordion.Collapse eventKey="3">
                                     <Card.Body>
                                     <div id="editorjs"></div>
@@ -288,18 +395,28 @@ export default class Test extends Component {
                                     {/* <Form.Group controlId="formBasicCheckbox"> */}
                                         {/* <Form.Check type="checkbox" label="Check me out" />
                                     </Form.Group> */}
-                                    <Button onClick={this.saveArticle} variant="primary" className="mr-3">Save</Button>
+
+                                    {/* <submitAlert ShowSubmitAlert={this.state.ShowSubmitAlert} /> */}
+
+                                    <Button onClick={this.saveArticle} variant="primary" className="mr-3">Save & Preview</Button>
                                     <Button onClick={this.submitArticleForm} variant="secondary">Submit</Button>
                                 </Card.Footer>
                             </Card>
                             </Form>
                         </Accordion>
+                        <Card className="pt-4 pb-4"><div id="articlePreview"></div></Card>
                     </Card>
                     {/* {button} */}
-                <Card className="my-4 mainCard">
-                    <div id="articlePreview" className="content"></div>
-                </Card>
-                {/* <div id="editorjs"></div> */}
+                
+                {/* SLIDESHOW */}
+                <ul className="slideshow">
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                </ul>
             </Container>
         </div>
         );
@@ -310,11 +427,11 @@ export default class Test extends Component {
         
         return(
             <Card>
-                <Card.Header style={{backgroundColor: "#fff"}}>
-                    <Accordion.Toggle as={Button} variant="link" eventKey="0">
+                {/* <Card.Header style={{backgroundColor: "#fff"}}> */}
+                    <Accordion.Toggle as={Button} variant="link" eventKey="0" className="h5 py-3">
                        Author Details 👩‍⚕️
                     </Accordion.Toggle>
-                </Card.Header>
+                {/* </Card.Header> */}
                 <Accordion.Collapse eventKey="0">
             
                     <Card.Body>
@@ -346,22 +463,16 @@ export default class Test extends Component {
         console.log("props showAUthoracc:"+ props.showAuthorButton)
         return(
             <Card>
-                <Card.Header style={{backgroundColor: "#fff"}}>
-                    <Accordion.Toggle as={Card.Header} variant="link" eventKey="0">
+                {/* <Card.Header style={{backgroundColor: "#fff"}}> */}
+                    <Accordion.Toggle as={Card.Header} variant="link" eventKey="0" className="h5 py-3">
                         Author Details 👩‍⚕️
                     </Accordion.Toggle>
-                </Card.Header>
+                {/* </Card.Header> */}
                     <Accordion.Collapse eventKey="0">
                         <Card.Body>
                             <Form.Group>
-                                <Form.Label>Author By ID</Form.Label>
-                                    <Form.Control as="select">
-                                        <option>Enter name</option>
-                                        <option>2</option>
-                                        <option>3</option>
-                                        <option>4</option>
-                                        <option>5</option>
-                                    </Form.Control>
+                                <Form.Label>Author Name</Form.Label>
+                                <Form.Control type="text" placeholder="Author name"></Form.Control>
                             </Form.Group>
                                 {props.showAuthorButton}                
                         </Card.Body>
@@ -418,11 +529,11 @@ function CreateAuthorAccordian(props) {
         console.log("STATE:" + JSON.stringify(props.state))
         return (
                 <Card>
-                    <Card.Header style={{backgroundColor: "#fff"}}>
-                        <Accordion.Toggle as={Card.Header} variant="link" eventKey="4">
+                    {/* <Card.Header style={{backgroundColor: "#fff"}}> */}
+                        <Accordion.Toggle as={Card.Header} variant="link" eventKey="4" className="h5 py-3">
                             Create Author 👩‍⚕️
                         </Accordion.Toggle>
-                    </Card.Header>
+                    {/* </Card.Header> */}
                     <Accordion.Collapse eventKey="4">
                     
                         <Card.Body>
@@ -457,4 +568,13 @@ function CreateAuthorAccordian(props) {
         );
     }
     return null;
+}
+
+// SHOW ALERT
+
+function submitAlert(props) {
+    const ShowSubmitAlert = props.ShowSubmitAlert;
+    if(ShowSubmitAlert) {
+        <Alert className="bg-green">Article has been saved successfully!</Alert>
+    }
 }

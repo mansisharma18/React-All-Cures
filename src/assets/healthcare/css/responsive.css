@@ -269,8 +269,9 @@
     padding-left: 0px !important;
   }
 
-  .pageHeader .serch-wrap-inner {
-    margin: -99px 15px !important;
+  .pageHeader {
+    height: 25vh;
+    /* margin: -99px 15px !important; */
   }
 
   .tab-content-detail {
@@ -282,7 +283,10 @@
   }
 
   .comman-pg-header .megaSearch {
-    padding: 0 0 80px !important;
+    /* padding: 0 0 80px !important; */
+    position: relative;
+    top: -2.8rem;
+    margin: 0 1rem;
   }
 
   .logo span {
@@ -318,6 +322,9 @@
   /* html{
         font-size: 1rem;
     } */
+  body {
+    background-color: #fff;
+  }
   .subscribe .form-group {
     padding: -1rem;
   }
@@ -354,6 +361,32 @@
     margin: 0 1rem;
   }
   .partner {
+    margin: 0 1rem;
+  }
+  .comman-pg-header {
+    height: 42vh;
+  }
+  .rating-patient {
+    margin: 1rem;
+  }
+  .Profileleft .profile-card {
+    display: block;
+  }
+  /*  .Profileleft .aboutDr {
+    margin: 1rem;
+  } */
+  .Profileleft {
+    margin: 1rem;
+  }
+  .Profileleft .bookAnAppoinment {
+    margin-left: -1rem;
+  }
+  .dr-detail {
+    display: block;
+  }
+  .homeHeader .mainSearch {
+    position: relative;
+    top: -10rem;
     margin: 0 1rem;
   }
 }

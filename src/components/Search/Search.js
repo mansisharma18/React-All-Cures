@@ -7,6 +7,7 @@ import '../../assets/healthcare/css/main.css';
 import '../../assets/healthcare/css/responsive.css';
 import '../../assets/healthcare/css/animate.css';
 import '../../assets/healthcare/icomoon/style.css';
+import { Container } from 'react-bootstrap';
 class Search extends Component {
   constructor(props){
     super(props);
@@ -19,18 +20,7 @@ class Search extends Component {
   }
     
   componentDidMount(){
-    // const city= '', name = '';
     console.log("Params: "+ JSON.stringify(this.state.param))
-    // if(this.state.param.city){
-    //   city = this.state.param.city
-    // } else {
-    //   city = ""
-    // }
-    // if(this.state.param.name){
-    //   name = this.state.param.name
-    // } else {
-    //   name = ""
-    // }
     fetch(`/SearchActionController?cmd=getResults&city=${this.state.param.city}&doctors=${this.state.param.name}&Latitude=&Longitude=`)
       .then(res => res.json())
       .then(json => {
@@ -46,7 +36,42 @@ class Search extends Component {
     var { isLoaded,items } = this.state;
       if(!isLoaded) {
         console.log(items);
-        return <div>Loading...</div>;
+        return (
+        <>
+          <Header/>
+            <Container className="mt-5 my-5 loading">
+              <h3 className="text-left">Loading...</h3>
+            </Container>
+          <Footer/>
+        </>  
+      );
+      } else if(isLoaded && items.length == 0) {
+          if(this.state.param.city){
+            return(
+              <>
+              <Header/>
+                <Container className="mt-5 my-5 loading">
+                <h3 className="pt-5 text-center"><span className="icon-loupe "></span></h3>
+                <h3 className="mt-3 text-center">We couldn't find any doctors matching '{this.state.param.city}'</h3>
+                <p className="text-center">You could try again. </p>
+                </Container>
+              <Footer/>
+              </>
+            );
+          } else if(this.state.param.name){
+            return(
+              <>
+              <Header/>
+                <Container className="mt-5 my-5">
+                <h3 className="pt-5 text-center"><span className="icon-loupe "></span></h3>
+                <h3 className="text-center">We couldn't find any doctors matching '{this.state.param.name}'</h3>
+                <p className="text-center">You could try again. </p>
+                </Container>
+              <Footer/>
+              </>
+            );
+          }
+        
       }
       else if(isLoaded){
         console.log(items);

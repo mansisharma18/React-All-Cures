@@ -9,7 +9,8 @@ const ProfileTab = ({ docid, name, pSpl, hospital, state, country}) => (
           <div className="tab-content-detail clearfix mr-20">
             <div className="dr-detail">
               <div className="tab-content-img">
-                  <img src={Special1} alt="special-1"/> 
+                  {/* <img src={Special1} alt="special-1"/>  */}
+                  <i className="fas fa-user-md fa-6x"></i>
                   </div>
               <div className="col-md-6 col-sm-12">
                 <div className="detail-l">
