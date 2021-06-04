@@ -9,7 +9,7 @@ const Side = props => {
     return (
         <>
     
-            <Nav className="col-xs-2  d-md-block sidebar"
+            <Nav style={{background: '#71ddff', color: '#000'}} className="col-xs-2  d-md-block sidebar"
             activeKey="/home"
             onSelect={selectedKey => alert(`selected ${selectedKey}`)}
             >

@@ -3,20 +3,62 @@ import Header from '../Header/Header';
 import Footer from '../Footer/Footer'
 
 import {Container, Row, Col, Card, Form, Button, Nav, Navbar, NavDropdown, FormControl,  } from "react-bootstrap";
+import CenterWell from './CenterWell';
 import HeaderAd from './headerAd';
 import Sidebar from "./leftMenu";
 import SidebarRight from "./RightMenu";
-
+// import CenterWell from './CenterWell'
 class Disease extends Component {
     constructor(props) {
         super(props);
-        this.state = {  }
-    }
+        const params = props.match.params
+        this.state = { 
+          items: [],
+          isLoaded: false,
+          param : params
+        };
+      }
+    
+      componentDidMount() {
+        // console.log('Paramsssss '+ JSON.stringify(this.state.param))
+        fetch(`/article/${this.state.param.id}`)
+          // .then(res => JSON.parse(res))
+          .then((res) => res.json())
+          .then((json) => {
+            console.log(json);
+            this.setState({
+              isLoaded: true,
+              items: json,
+            });
+          });
+      }
+    
     render() { 
+        var { isLoaded,items } = this.state;
+        if(!isLoaded) {
+        console.log(items);
+        
+        return (
+        <>
+          <Header/>
+            <Container className="mt-5 my-5 loading">
+              <h3 className="text-left">Loading...</h3>
+            </Container>
+          <Footer/>
+        </>  
+      );
+    } else if(isLoaded){
+        console.log(items);
+        var artContent = items.content;
+        var a = JSON.parse(artContent)
+        console.log("article Content:", artContent)
+        var b = a.blocks
+        console.log("aaaaaaaaaa", a.blocks)
         return (
             <div>
                     <Header/>
-                        <HeaderAd style={ {height: "10rem", display: "inline-block"}} />
+                      <div style={{height: "8rem"}}></div>
+                        {/* <HeaderAd style={ {height: "10rem", display: "inline-block"}} /> */}
                             <Navbar  bg="blue" expand="lg">
                                 <Navbar.Brand href="#home">React-Bootstrap</Navbar.Brand>
                                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
@@ -43,6 +85,27 @@ class Disease extends Component {
                                     <Sidebar />
                                 </Col>
                                 <Col  xs={8} id="page-content-wrapper">
+                                    {/* <CenterWell 
+                                        title = {items.title}
+                                        friendlyName = {items.friendly_name}
+                                        content = {JSON.parse(JSON.stringify(items.content))}
+                                    /> */}
+                                    <Container id="center-well" className="">
+                                    {b.map((i) => (
+                                        <CenterWell
+                                            type = {i.type}
+                                            text = {i.data.text}
+                                            title = {i.data.title}
+                                            message = {i.data.message}
+                                            source = {i.data.source}
+                                            embed = {i.data.embed}
+                                            caption = {i.data.caption}
+                                            alignment = {i.data.alignment}
+                                            url = {i.data.url}
+                                        />
+                                    ))}
+                                    </Container>
+                                    
                                 </Col> 
                                 <Col xs={2} id="sidebar-wrapper">      
                                     <SidebarRight />
@@ -51,6 +114,7 @@ class Disease extends Component {
                         <Footer/>
             </div>
         );
+    }
     }
 }
  

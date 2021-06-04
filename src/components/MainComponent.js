@@ -77,7 +77,7 @@ const Routes = () => {
   return (
     <Switch>
        <Route exact path="/" component={Home} />
-       <Route exact path="/disease" component={Disease}/>
+       <Route exact path="/disease/:id" component={Disease}/>
           <Route exact path="/home" component={Home} />
          {/* <ProtectedRoute path="/profile" auth={Auth.auth} component={Profile} />
           {/* <Route exact path="/login" component={Modal} /> */}
