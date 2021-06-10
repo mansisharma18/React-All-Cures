@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import Header from '../Header/Header';
 import Footer from '../Footer/Footer'
 
-import {Container, Row, Col, Card, Form, Button, Nav, Navbar, NavDropdown, FormControl,  } from "react-bootstrap";
+import {Container, Row, Col, Card, Form, Button, Nav, Navbar, NavDropdown, FormControl, Breadcrumb } from "react-bootstrap";
+import {Link } from 'react-router-dom'
 import CenterWell from './CenterWell';
 import HeaderAd from './headerAd';
 import Sidebar from "./leftMenu";
@@ -73,7 +74,16 @@ class Disease extends Component {
                                         <NavDropdown.Divider />
                                         <NavDropdown.Item href="#action/3.4">Separated link</NavDropdown.Item>
                                     </NavDropdown>
+                                    
                                     </Nav>
+                                    
+                                    {/* <Breadcrumb>
+                                      <Breadcrumb.Item href="#">Home</Breadcrumb.Item>
+                                      <Breadcrumb.Item href="https://getbootstrap.com/docs/4.0/components/breadcrumb/">
+                                        Library
+                                      </Breadcrumb.Item>
+                                      <Breadcrumb.Item active>Data</Breadcrumb.Item>
+                                    </Breadcrumb> */}
                                     <Form inline>
                                     <FormControl type="text" placeholder="Search" className="mr-sm-2" />
                                     <Button variant="outline-success">Search</Button>
@@ -85,12 +95,17 @@ class Disease extends Component {
                                     <Sidebar />
                                 </Col>
                                 <Col  xs={8} id="page-content-wrapper">
-                                    {/* <CenterWell 
-                                        title = {items.title}
-                                        friendlyName = {items.friendly_name}
-                                        content = {JSON.parse(JSON.stringify(items.content))}
-                                    /> */}
                                     <Container id="center-well" className="">
+                                    <Breadcrumb>
+                                      <Breadcrumb.Item href="/">Home</Breadcrumb.Item>
+                                      
+                                        <Breadcrumb.Item>
+                                        <Link to="/dashboard">
+                                          Dashboard
+                                          </Link>
+                                        </Breadcrumb.Item>
+                                      <Breadcrumb.Item active>Blog</Breadcrumb.Item>
+                                    </Breadcrumb>
                                     {b.map((i) => (
                                         <CenterWell
                                             type = {i.type}

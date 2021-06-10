@@ -4,12 +4,13 @@ import { Link } from 'react-router-dom';
 import Cookies from 'js-cookie';
 import Heart from"../../assets/img/heart.png";
 import Doct from "../../assets/img/doct.png";
+import axios from 'axios';
 
 import '../../assets/healthcare/css/main.css';
 import '../../assets/healthcare/css/responsive.css';
 import '../../assets/healthcare/css/animate.css';
 import '../../assets/healthcare/icomoon/style.css';
-
+import './custom.css';
 import Carousel1 from './Caousel1';
 import Carousel2 from './Carousel2';
 import CarouselReview from './CarouselReview';
@@ -20,13 +21,62 @@ class Home extends Component {
    constructor(props){
       super(props);
       this.state = {
+         users: '',
+         texts: '',
+         suggestions: [],
           acPerm: Cookies.get('acPerm'),
           searchParams: {
-            city: 'Jammu',
+            city: '',
             name: '',
         }
       };
   }
+//   useEffect(() => {
+//    const loadUsers = async () => {
+//      const response = await axios.get('/city/all');
+//      setUsers(response.data)
+//      // console.log("userssss"+ users)
+//    }
+//    loadUsers();
+
+//  }, [])
+
+
+ componentDidMount(){
+   const loadUsers = async () => {
+      const response = await axios.get('/city/all');
+      this.setState ({
+         users: response.data
+      })
+      // console.log("userssss"+ users)
+    }
+    loadUsers();
+ }
+
+
+  onSuggestHandler = (text) => {
+     this.state.searchParams.city= text;
+     this.setState({
+        suggestions: []
+     });
+ }
+ onChangeHandler = (e, text) => {
+   let matches = []
+   if (text.length > 0) {
+     matches = this.state.users.filter(user => {
+       const regex = new RegExp(`${text}`, "gi");
+       return user.Cityname.match(regex)
+     })
+   }
+   console.log('users'+this.state.users)
+   console.log('matches', matches)
+   this.setState({
+      texts: text,
+      suggestions: matches,
+      searchParams: { ...this.state.searchParams, [e.target.name]: text }
+
+   });
+ }
   handleChange = e => 
         this.setState({
             searchParams: { ...this.state.searchParams, [e.target.name]: e.target.value }
@@ -34,6 +84,21 @@ class Home extends Component {
    render() {
       return(
          <div>
+            {/* <div className="container">
+ 
+       <input type="text" className="col-md-12" style={{ marginTop: 10 }}
+        onChange={e => this.onChangeHandler(e.target.value)}
+        value={this.state.texts}
+        onBlur={() => {
+          setTimeout(() => {
+            this.setState({
+               suggestions: []
+           });
+          }, 100);
+        }}
+      />
+      
+    </div> */}
             <div className="homeHeader">
                <section className="banner" >
                   <div className="container">
@@ -72,7 +137,17 @@ class Home extends Component {
                               </div>
                               <div className="col-md-4 pd-0 col-sx-12 col-sm-4">
                                  <div className="form-group city zipcode">
-                                 <input type= "text" placeholder="City or Zip-code" name="city" id="city" onChange={this.handleChange} value={this.state.searchParams.city} className="formVal form-control" />
+                                 <input type= "text" placeholder="City or Zip-code" name="city" id="city"
+                                 autoComplete="off" 
+                                 onChange={e => this.onChangeHandler(e, e.target.value)} 
+                                 value={this.state.searchParams.city} 
+                                 className="formVal form-control"
+                                 />
+                                 {this.state.suggestions && this.state.suggestions.map((suggestion, i) =>
+                                    <div key={i} className="suggestion col-md-12 justify-content-md-center"
+                                       onClick={() => this.onSuggestHandler(suggestion.Cityname)}
+                                    >{suggestion.Cityname}</div>
+                                 )}
                                  </div>
                               </div>
                                  <input type="hidden" name="Latitude" id="Latitude"  className="form-control"/>

@@ -36,12 +36,12 @@ export default class Test extends Component {
                 title: "",
                 friendlyName: "",
                 contentType: "",
-                disclaimerId : "",
+                disclaimerId : 12,
                 authById: "",
-                copyId: "",
-                articleStatus: "",
+                copyId: 11,
+                articleStatus: 1,
                 winTitle : "",
-                language : "",
+                language : 1,
                 articleContent : "",
             },
         };
@@ -268,7 +268,16 @@ document.getElementById('articlePreview').innerHTML=articleHTML;
       values: { ...this.state.values, [e.target.name]: e.target.value }
     });
 
+    onStatusChange(e) {
+        this.setState({ articleStatus: e.target.value })
+    }
+    onLanguageChange(e) {
+        this.setState({ language: e.target.value })
+    }
+
     render() {
+        console.log("Article Status:"+ this.state.articleValues.articleStatus)
+        console.log("Article language:"+ this.state.articleValues.language)
         console.log("Account Session:"+ this.state.acPerm)
         const isLoggedIn = this.state.isLoggedIn;
         const showAuthorAccordian = this.state.showAuthorAccordian;
@@ -291,15 +300,10 @@ document.getElementById('articlePreview').innerHTML=articleHTML;
         }
 
     
-      return (
+    return (
         <div>
             <Carousel/>
-            <Container>
-                
-                {/* <Form> */}
-                {/* The user is <b></b> logged in. */}
-                {/* <button onClick={this.submitArticleForm}>test post</button>
-                <button onClick={this.submitForm}>Test Login</button> */}
+                <Container>  
                     <Card className="mainCard" >
                         <Card.Header className="mainTitle text-center h3 py-3">ARTICLE</Card.Header>
                         <Accordion>
@@ -324,55 +328,59 @@ document.getElementById('articlePreview').innerHTML=articleHTML;
                             {/* </Card.Header> */}
                             <Accordion.Collapse eventKey="2">
                                 <Card.Body>
-                                    <Form.Group>
+                                    <Form.Group className="col-md-12 float-left">
                                         <Form.Label>Article Title</Form.Label>
                                         <Form.Control type="text" name="title" value={this.state.values.title}
                                         onChange={this.handleArticleChange} placeholder="Article Title" />
                                     </Form.Group>
-                                    <Form.Group>
+                                    <Form.Group className="col-md-6 float-left">
                                         <Form.Label>Article Display Name</Form.Label>
                                         <Form.Control type="text" name="friendlyName" value={this.state.values.friendlyName}
                                         onChange={this.handleArticleChange} placeholder="Friendly Name" />
                                     </Form.Group>
-                                    <Form.Group>
+                                    <Form.Group className="col-md-6 float-left">
                                         <Form.Label>Content Type</Form.Label>
                                         <Form.Control type="text" name="contentType" value={this.state.values.contentType}
                                         onChange={this.handleArticleChange} placeholder="Content Type" />
                                     </Form.Group>
-                                    <Form.Group>
+                                    <Form.Group className="col-md-6 float-left">
                                         <Form.Label>Disclaimer ID</Form.Label>
-                                        <Form.Control type="text" name="disclaimerId" value={this.state.values.disclaimerId}
-                                        onChange={this.handleArticleChange} placeholder="Disclaimer Id" />
+                                        <Form.Control as="select" name="disclaimer" custom onChange={this.handleArticleChange}>
+                                            <option value="12">Temporary</option>
+                                        </Form.Control>
                                     </Form.Group>
-                                    <Form.Group>
+                                    <Form.Group className="col-md-6 float-left">
                                         <Form.Label>Copyright ID</Form.Label>
-                                        <Form.Control type="text" name="copyId" value={this.state.values.copyId}
-                                        onChange={this.handleArticleChange} placeholder="Copyright Id" />
+                                        <Form.Control as="select" name="copyleft" custom onChange={this.handleArticleChange}>
+                                            <option value="11">Temporary</option>
+                                        </Form.Control>
                                     </Form.Group>
-                                    <Form.Group>
+                                    <Form.Group className="col-md-6 float-left">
                                         <Form.Label>Article Status</Form.Label>
-                                        <Form.Control type="text" name="articleStatus" value={this.state.values.articleStatus}
-                                        onChange={this.handleArticleChange} placeholder="Article status" />
+                                        <Form.Control as="select" name="articleStatus" custom onChange={this.handleArticleChange}>
+                                            <option value="1">Work in Progress</option>
+                                            <option value="2">Review</option>
+                                            <option value="3">Publish</option>
+                                        </Form.Control>
                                     </Form.Group>
-                                    <Form.Group>
-                                        <Form.Label>Win Title</Form.Label>
-                                        <Form.Control type="text" name="winTitle" value={this.state.values.winTitle}
-                                        onChange={this.handleArticleChange} placeholder="Win Title" />
-                                    </Form.Group>
-                                    <Form.Group>
+                                    
+                                    <Form.Group className="col-md-6 float-left">
                                         <Form.Label>Language</Form.Label>
-                                        <Form.Control type="text" name="language" value={this.state.values.language}
-                                        onChange={this.handleArticleChange} placeholder="Language" />
+                                        <Form.Control as="select" name="language" custom onChange={this.handleArticleChange}>
+                                            <option value="1">Hindi</option>
+                                            <option value="2">English</option>
+                                            <option value="3">Chinese</option>
+                                        </Form.Control>
                                     </Form.Group>
-                                    {/* <Form.Group>
-                                        <Form.Label>Article Title</Form.Label>
-                                        <Form.Control type="text" name="articleContent" value={this.state.values.articleContent}
-                                        onChange={this.handleArticleChange} placeholder="Article Content" />
-                                    </Form.Group> */}
-                                    <Form.Group>
+                                    <Form.Group className="col-md-6 float-left">
                                         <Form.Label>Author By ID</Form.Label>
                                         <Form.Control type="text" name="authById" value={this.state.values.authById}
                                         onChange={this.handleArticleChange} placeholder="Author By ID" />
+                                    </Form.Group>
+                                    <Form.Group className="col-md-6 float-left">
+                                        <Form.Label>Win Title</Form.Label>
+                                        <Form.Control type="text" name="winTitle" value={this.state.values.winTitle}
+                                        onChange={this.handleArticleChange} placeholder="Win Title" />
                                     </Form.Group>
                                 </Card.Body>
                             </Accordion.Collapse>
@@ -409,14 +417,14 @@ document.getElementById('articlePreview').innerHTML=articleHTML;
                     {/* {button} */}
                 
                 {/* SLIDESHOW */}
-                <ul className="slideshow">
+                <div className="slideshow">
+                    {/* <li></li>
                     <li></li>
                     <li></li>
                     <li></li>
                     <li></li>
-                    <li></li>
-                    <li></li>
-                </ul>
+                    <li></li> */}
+                </div>
             </Container>
         </div>
         );
