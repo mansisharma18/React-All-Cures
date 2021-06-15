@@ -4,12 +4,15 @@ import Cookies from 'js-cookie';
 
 import Heart from"../../assets/img/heart.png";
 import { Link } from "react-router-dom";
+import { Container } from '../Modal/Container';
+
 // import { ToggleButton } from "react-bootstrap";
 class Header extends Component {
 
     constructor(props){
         super(props);
         this.state = {
+            triggerText: 'Sign In/Sign Up',
             acPerm: Cookies.get('acPerm'),
             searchParams: {
                 city: 'Jammu',
@@ -17,7 +20,13 @@ class Header extends Component {
             }
         };
     }
-    
+
+    onModalSubmit = (event) => {
+        event.preventDefault(event);
+        console.log(event.target.name.value);
+        console.log(event.target.email.value);
+    };
+
     handleChange = e => 
         this.setState({
             searchParams: { ...this.state.searchParams, [e.target.name]: e.target.value }
@@ -37,8 +46,11 @@ class Header extends Component {
                                 <span>All Cures</span>
                             </Link>
                         </div>
-                        <div className="loginSign"> 
-                            <ToggleButton acPerm={this.state.acPerm}/> 
+                        <div className="loginSign">
+                            
+                            <Container className="btn-white loginSignbtn color-blue-dark" triggerText={this.state.triggerText} onSubmit={this.onModalSubmit} />
+
+                            {/* <ToggleButton acPerm={this.state.acPerm}/>  */}
                         </div>   	
                         </div>
                     </div>

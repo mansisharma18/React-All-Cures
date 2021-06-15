@@ -3,7 +3,7 @@ import Link from '@material-ui/core/Link';
 import { makeStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import Title from './Title';
-import TestAjax from "../Test/TestAjax"
+// import TestAjax from "../Test/TestAjax"
 import { useState } from 'react'
 
 
@@ -24,8 +24,8 @@ export default function Deposits(props) {
   return (
     <React.Fragment>
       <Title>Recent Deposits</Title>
-      <TestAjax name="published_article"/>
-      <TestAjax name="approval_article"/>
+      {/* <TestAjax name="published_article"/> */}
+      {/* <TestAjax name="approval_article"/> */}
       {/* <p>!!{props.quip}</p> */}
 
       <Typography component="p" variant="h4">

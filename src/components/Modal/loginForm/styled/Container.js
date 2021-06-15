@@ -14,6 +14,40 @@ export default styled(posed.div({}))`
   grid-template-columns: 1fr 1fr;
   margin: 2em auto;
   align-items: center;
+  text-align: center;
+
+  a {
+    color: #333;
+    font-size: 14px;
+    text-decoration: none;
+    margin: 15px 0;
+  }
+
+  input {
+    background: #eee;
+    border: none;
+    padding: 12px 15px;
+    margin: 8px 0;
+    width: 100%;
+  }
+
+  button {
+    color: #fff;
+    font: inherit;
+    cursor: pointer;
+    background: #dc3545;
+    border-radius: 3em;
+    border: 2px solid;
+    padding: .5rem 2em;
+    transition: transform 80ms ease-in, -webkit-transform 80ms ease-in;
+  }
+
+  button span {
+    color: #fff;
+  }
+  button:active {
+    background: #dc3530
+  }
 
   .container__form {
     padding: 4rem;
@@ -33,5 +67,7 @@ export default styled(posed.div({}))`
   .overlay {
     grid-column: 1;
     grid-row: 1;
+    background: #dc3545;
+    text-align: center;
   }
 `

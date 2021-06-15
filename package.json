@@ -25,8 +25,10 @@
     "@testing-library/react": "^11.2.5",
     "@testing-library/user-event": "^12.8.3",
     "axios": "^0.21.1",
+    "body-scroll-lock": "^3.1.5",
     "bootstrap": "^4.6.0",
     "editorjs-html": "^3.3.1",
+    "focus-trap-react": "^8.5.1",
     "history": "^5.0.0",
     "html-react-parser": "^1.2.4",
     "jquery": "^3.6.0",
@@ -43,7 +45,7 @@
     "react-scripts": "4.0.3",
     "react-sidebar": "^3.0.2",
     "recharts": "^2.0.9",
-    "styled-components": "^5.2.3",
+    "styled-components": "^5.3.0",
     "web-vitals": "^1.1.1"
   },
   "scripts": {

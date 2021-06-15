@@ -2,7 +2,7 @@ import React from 'react';
 import { useTheme } from '@material-ui/core/styles';
 import { LineChart, Line, XAxis, YAxis, Label, ResponsiveContainer } from 'recharts';
 import Title from './Title';
-import TestAjax from "../Test/TestAjax"
+// import TestAjax from "../Test/TestAjax"
 
 
 // Generate Sales Data
@@ -28,9 +28,9 @@ export default function Chart(props) {
   return (
     <React.Fragment>
       <Title>Today</Title>
-      <TestAjax name="draft_article"/>
+      {/* <TestAjax name="draft_article"/> */}
       {/* <h1>Review Article</h1> */}
-      <TestAjax name="review_article"/>
+      {/* <TestAjax name="review_article"/> */}
 
       {/* <p>!!{props.quip}</p> */}
 

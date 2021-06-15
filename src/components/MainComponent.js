@@ -7,15 +7,17 @@ import Profile from "./Profile/Profile";
 
 import Search from "./Search/Search";
 
-import Modal from './Modal';
+// import Modal from './Modal';
 import AuthApi from './AuthApi'
 import Disease from "./Disease/Disease";
 import Test from "./Article/test";
 import Dashboard from "./Dashboard/Dashboard.js";
 import Login from "./login/login";
-import SignIn from "./Article/SignIn"
-import TestAjax from "./Test/TestAjax"
+import SignIn from "./Article/SignIn";
+import Modal from './Modal1/Modal.js';
+// import TestAjax from "./Test/TestAjax"
 // import Sibling1 from "./Test/TestPC"
+// import LoginForm from './loginForm'
 
 // import Login from './login/login'
 
@@ -81,16 +83,18 @@ const Routes = () => {
           <Route exact path="/home" component={Home} />
          {/* <ProtectedRoute path="/profile" auth={Auth.auth} component={Profile} />
           {/* <Route exact path="/login" component={Modal} /> */}
-
+          {/* <Route exact path="/loginForm" component={LoginForm}/> */}
           <Route exact path="/search" component={Search} />
+          {/* <Route exact path="/modal" component={Modal} /> */}
           <Route exact path="/search/:city" component={Search} />
           <Route path="/search/:city/:name" component={Search} />
           <ProtectedRoute path="/article" auth={Auth.auth} component={Test} />
           <Route exact path="/dashboard" component={Dashboard} />
           <Route exact path="/sign" component={SignIn} />
-      <ProtectedLogin path="/login" component={Login} auth={Auth.auth}/>
+          {/* <Route */}
+      {/* <ProtectedLogin path="/login" component={LoginForm} auth={Auth.auth}/> */}
       <Route path="/profile/:id" component={Profile}/>
-      <Route exact path="/TestAjax" component={TestAjax} />
+      {/* <Route exact path="/TestAjax" component={TestAjax} /> */}
     </Switch>
   )
 }

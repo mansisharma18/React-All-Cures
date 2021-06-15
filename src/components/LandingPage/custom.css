@@ -6,6 +6,11 @@ div .suggestion {
   padding: 0.6rem;
 }
 
+div .suggestion:hover {
+  background-color: #00415e;
+  color: #fff;
+}
+
 .form-group #city {
   margin-bottom: 0;
 }

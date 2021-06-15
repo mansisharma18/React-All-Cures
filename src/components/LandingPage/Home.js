@@ -110,6 +110,15 @@ class Home extends Component {
                                     <img src={Heart}/>
                                     <span>All Cures</span>
                                  </Link>     
+                                 <Link
+              className="frontpage-job"
+              to={{
+                pathname: "/modal",
+                state: { modal: true }
+              }}
+            >
+              Modal1
+            </Link>
                               </div>
                               <div className="loginSign"> 
                                  <ToggleButton acPerm={this.state.acPerm}/> 
