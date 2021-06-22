@@ -4,16 +4,18 @@ import Cookies from 'js-cookie';
 
 import Heart from"../../assets/img/heart.png";
 import { Link } from "react-router-dom";
-import { Container } from '../Modal/Container';
+// import { Container } from '../Modal/Container';
 
 // import { ToggleButton } from "react-bootstrap";
 class Header extends Component {
 
     constructor(props){
         super(props);
+        // const params = props.match.params
         this.state = {
-            triggerText: 'Sign In/Sign Up',
+            url: props.url,
             acPerm: Cookies.get('acPerm'),
+            // param: params,
             searchParams: {
                 city: 'Jammu',
                 name: '',
@@ -33,6 +35,11 @@ class Header extends Component {
         });
     render() {
         // console.log(this.state.history);
+    //     const params = new URLSearchParams(this.props.location);
+
+    // console.log('jddowbolbwolecnloceb', params.entries)
+        // console.log('Match params: ', this.state.param)
+        console.log('Header Urllll', this.props.url)
         return(
             <div className="profilePage">
                 <div className="comman-pg-header">
@@ -47,10 +54,12 @@ class Header extends Component {
                             </Link>
                         </div>
                         <div className="loginSign">
-                            
-                            <Container className="btn-white loginSignbtn color-blue-dark" triggerText={this.state.triggerText} onSubmit={this.onModalSubmit} />
+                        {/* <Link to="/profile">Go to Profile</Link> */}
+                {/* <Link to={{pathname: this.props.match.url, search: '?login=true'}}>Login</Link> */}
+                            {/* <Container className="btn-white loginSignbtn color-blue-dark" triggerText={this.state.triggerText} onSubmit={this.onModalSubmit} /> */}
+                            {/* <ToggleButton acPerm={this.state.acPerm} match={this.props.match.url} />  */}
 
-                            {/* <ToggleButton acPerm={this.state.acPerm}/>  */}
+                            <ToggleButton acPerm={this.state.acPerm} url={this.props.url}/> 
                         </div>   	
                         </div>
                     </div>
@@ -110,8 +119,11 @@ function ToggleButton(props) {
         );
     }
     return(
-        <Link to="/login" className="btn-white loginSignbtn color-blue-dark" >
-            Sign In/ Sign Up
+        <Link 
+         className="btn-white loginSignbtn color-blue-dark" 
+         to={{pathname: props.url, search: '?login=true', state: {open: true}}}
+        >
+            Sign Up
         </Link>
     )
 }

@@ -82,23 +82,10 @@ class Home extends Component {
             searchParams: { ...this.state.searchParams, [e.target.name]: e.target.value }
         });
    render() {
+    console.log('jddowbolbwolecnloceb', this.props.match.url)
+
       return(
          <div>
-            {/* <div className="container">
- 
-       <input type="text" className="col-md-12" style={{ marginTop: 10 }}
-        onChange={e => this.onChangeHandler(e.target.value)}
-        value={this.state.texts}
-        onBlur={() => {
-          setTimeout(() => {
-            this.setState({
-               suggestions: []
-           });
-          }, 100);
-        }}
-      />
-      
-    </div> */}
             <div className="homeHeader">
                <section className="banner" >
                   <div className="container">
@@ -110,18 +97,10 @@ class Home extends Component {
                                     <img src={Heart}/>
                                     <span>All Cures</span>
                                  </Link>     
-                                 <Link
-              className="frontpage-job"
-              to={{
-                pathname: "/modal",
-                state: { modal: true }
-              }}
-            >
-              Modal1
-            </Link>
                               </div>
                               <div className="loginSign"> 
-                                 <ToggleButton acPerm={this.state.acPerm}/> 
+                              {/* <Link to="/profile">Go to Profile</Link> */}
+                                 <ToggleButton acPerm={this.state.acPerm} match={this.props.match.url} /> 
                               </div>  
                            </div>   
                         </div>
@@ -198,7 +177,6 @@ class Home extends Component {
                   </ul>
                </div>
                   <Carousel1 city={this.state.searchParams.city}/>
-                  
           </div>
         </div>
       </section> 
@@ -317,9 +295,16 @@ function ToggleButton(props) {
        );
    }
    return(
-       <Link to="/login" className="btn-white loginSignbtn color-blue-dark" >
-           Sign In/ Sign Up
-       </Link>
+      <Link 
+         className="btn-white loginSignbtn color-blue-dark" 
+         to={{pathname: props.match, search: '?login=true', state: {open: true}}}
+      >
+         Sign Up
+      </Link>
+
+      //  <Link to="/login" className="btn-white loginSignbtn color-blue-dark" >
+      //      Sign In/ Sign Up
+      //  </Link>
    )
 }
 

@@ -33,12 +33,14 @@ class Search extends Component {
   }
 
   render() {
+    console.log("MATCH URL: ", this.props.match.url)
+
     var { isLoaded,items } = this.state;
       if(!isLoaded) {
         console.log(items);
         return (
         <>
-          <Header/>
+          <Header url={this.props.match.url}/>
             <Container className="mt-5 my-5 loading">
               <h3 className="text-left">Loading...</h3>
             </Container>
@@ -49,7 +51,7 @@ class Search extends Component {
           if(this.state.param.city){
             return(
               <>
-              <Header/>
+              <Header url={this.props.match.url}/>
                 <Container className="mt-5 my-5 loading">
                 <h3 className="pt-5 text-center"><span className="icon-loupe "></span></h3>
                 <h3 className="mt-3 text-center">We couldn't find any doctors matching '{this.state.param.city}'</h3>
@@ -77,7 +79,7 @@ class Search extends Component {
         console.log(items);
         return(
           <div>
-            <Header/>
+            <Header url={this.props.match.url}/>
               <section className="physicians-tab">
                 <div className="container">
                   <div className="row">

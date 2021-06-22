@@ -2326,3 +2326,17 @@ p.lorem-text {
   border-radius: 2px;
   margin-right: 10px;
 }
+
+#modal-close {
+  position: absolute;
+  top: 0;
+  right: 0;
+  /* padding: 0.5em; */
+  line-height: 1;
+  background: #f6f6f7;
+  border: 0;
+  padding: 1rem;
+  border-radius: 1.6rem;
+  box-shadow: 0;
+  cursor: pointer;
+}

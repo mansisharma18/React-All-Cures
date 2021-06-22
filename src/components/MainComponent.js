@@ -12,9 +12,9 @@ import AuthApi from './AuthApi'
 import Disease from "./Disease/Disease";
 import Test from "./Article/test";
 import Dashboard from "./Dashboard/Dashboard.js";
-import Login from "./login/login";
+import LoginPage from "./login";
 import SignIn from "./Article/SignIn";
-import Modal from './Modal1/Modal.js';
+// import Modal from './Modal1/Modal.js';
 // import TestAjax from "./Test/TestAjax"
 // import Sibling1 from "./Test/TestPC"
 // import LoginForm from './loginForm'
@@ -23,23 +23,28 @@ import Modal from './Modal1/Modal.js';
 
 function Main() {
   // render() {
-    const [auth, setAuth] = React.useState(false);
+  const [auth, setAuth] = React.useState(false);
   const readCookie = () => {
     const user = Cookies.get("acPerm")
     if(user){
       setAuth(true);
     }
   }
+
   React.useEffect(() => {
     readCookie();
   }, [])
+  console.log('PROPSSSSSSSSSSSSSS: ')
+  const Auth = React.useContext(AuthApi)
+
     return (
       <div>
         <AuthApi.Provider value={{auth, setAuth}}>
           <BrowserRouter basename={process.env.REACT_APP_ROUTER_BASE || ''}>
           {/* <Router> */}
-            <Routes/>
+            <Routes />
             {/* </Router> */}
+
           </BrowserRouter>
         </AuthApi.Provider>
       </div>
@@ -75,8 +80,10 @@ function Main() {
 // }
 
 const Routes = () => {
+  // console.log('MATCHHHHHHHHHHHHHHHHHHH ', {match})
   const Auth = React.useContext(AuthApi)
   return (
+    <>
     <Switch>
        <Route exact path="/" component={Home} />
        <Route exact path="/disease/:id" component={Disease}/>
@@ -90,12 +97,16 @@ const Routes = () => {
           <Route path="/search/:city/:name" component={Search} />
           <ProtectedRoute path="/article" auth={Auth.auth} component={Test} />
           <Route exact path="/dashboard" component={Dashboard} />
-          <Route exact path="/sign" component={SignIn} />
+          <ProtectedRoute exact path="/sign" component={SignIn} />
           {/* <Route */}
-      {/* <ProtectedLogin path="/login" component={LoginForm} auth={Auth.auth}/> */}
-      <Route path="/profile/:id" component={Profile}/>
+      {/* <ProtectedLogin path= '#?login=true' auth={Auth.auth}/> */}
+      {/* <ProtectedRoute path="/profile/:id" auth={Auth.auth} component={Profile} /> */}
+      <Route exact path="/profile/:id" component={Profile} />
+
       {/* <Route exact path="/TestAjax" component={TestAjax} /> */}
     </Switch>
+          <Route path="/" component={LoginPage}/>
+    </>
   )
 }
 
@@ -108,7 +119,8 @@ const ProtectedRoute = ({auth, component:Component, ...rest}) => {
         <Component/>        
       ):
         (
-          <Redirect to="/login"/>
+          // <Redirect to="/login"/>
+          <Redirect to={{pathname: '#', search: '?login=true', state: {open: true}}}/>
         )
     }
       />
