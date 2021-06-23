@@ -88,13 +88,23 @@ class Header extends Component {
                          <div className="col-md-4 pd-0 col-sx-12 col-sm-4">
          					 <div className="form-group date">
                               <input type="text" name="" placeholder="Date" className="form-control" onFocus={(e) => e.target.type = 'date'}/>
-                       			  <Link 
+                       			  {/* <Link 
                                      type="
                                      submit" 
                                      className="btn-bg searchBtn" 
                                      id="search"
                                      to={ `/search/${this.state.searchParams.city}/${this.state.searchParams.name}`}
-                                     >Search</Link> 
+                                     >Search</Link>  */}
+                                     <Link 
+                                     type="
+                                     submit" 
+                                     className="btn-bg searchBtn" 
+                                     id="search"
+                                     to={
+                                       this.state.searchParams.name
+                                       ?  `/searchName/${this.state.searchParams.name}`
+                                       : `/search/${this.state.searchParams.city}/${this.state.searchParams.name}`
+                                    }>Search</Link>
                            	 </div>
                        	 </div> 
                        	                                                 

@@ -9,12 +9,12 @@ import '../../assets/healthcare/css/responsive.css';
 import '../../assets/healthcare/css/animate.css';
 import '../../assets/healthcare/icomoon/style.css';
 import { Container } from 'react-bootstrap';
-class Search extends Component {
+class SearchName extends Component {
   constructor(props){
     super(props);
     const params = props.match.params
     this.state = {
-      url: props.url,
+        url: props.url,
       items: [],
       isLoaded: false,
       param: params,
@@ -25,36 +25,13 @@ class Search extends Component {
     // USE if statement
   componentDidMount() {
     console.log("Params: "+ JSON.stringify(this.state.param))
-    if((this.state.param.city) && (this.state.param.name)) {
-      fetch(`/SearchActionController?cmd=getResults&city=${this.state.param.city}&doctors=${this.state.param.name}&Latitude=&Longitude=`)
+      fetch(`/SearchActionController?cmd=getResults&city=&doctors=${this.state.param.name}&Latitude=32.7266&Longitude=74.8570`)
       .then(res => res.json())
       .then(json => {
         console.log(json.map.DoctorDetails.myArrayList);
         this.setState({
           isLoaded: true,
           items: json.map.DoctorDetails.myArrayList,
-        })            
-      });
-    } else if((this.state.param.name) && (!this.state.param.city)) {
-      console.log(this.state.param.name)
-      fetch(`/SearchActionController?cmd=getResults&doctors=${this.state.param.name}&Latitude=32.7266&Longitude=74.8570`)
-      .then(res => res.json())
-      .then(json => {
-        console.log(json.map.DoctorDetails.myArrayList);
-        this.setState({
-          isLoaded: true,
-          items: json.map.DoctorDetails.myArrayList,
-        })            
-      });
-    } else if((this.state.param.city) && (!this.state.param.name)) {
-      fetch(`/SearchActionController?cmd=getResults&city=${this.state.param.city}&Latitude32.7266=&Longitude=74.8570`)
-      .then(res => res.json())
-      .then(json => {
-        console.log(json.map.DoctorDetails.myArrayList);
-        this.setState({
-          isLoaded: true,
-          items: json.map.DoctorDetails.myArrayList,
-          acPerm: Cookies.get('acPerm'),
         })            
       });
     }
@@ -67,11 +44,11 @@ class Search extends Component {
     //       items: json.map.DoctorDetails.myArrayList,
     //     })            
     //   });
-  }
+//   /}
 
   render() {
     console.log("MATCH URL: ", this.props.match.url)
-    
+    console.log('sjfnjnf')
     var { isLoaded,items } = this.state;
       if(!isLoaded) {
         console.log(items);
@@ -157,6 +134,6 @@ class Search extends Component {
             </div>
         ); 
     }
-  }
+} 
 }
-export default Search; 
+export default SearchName; 

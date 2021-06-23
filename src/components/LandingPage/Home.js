@@ -24,6 +24,7 @@ class Home extends Component {
          users: '',
          texts: '',
          suggestions: [],
+         suggestionsDoc: [],
          doctor : '',
          docname : '',
           acPerm: Cookies.get('acPerm'),
@@ -92,7 +93,7 @@ class Home extends Component {
  onSuggestHandlerdoctor = (text) => {
    this.state.searchParams.name= text;
    this.setState({
-      suggestions: []
+      suggestionsDoc: []
    });
 }
 onChangeHandlerdoctor = (e, text) => {
@@ -107,7 +108,7 @@ onChangeHandlerdoctor = (e, text) => {
  console.log('matches', matches)
  this.setState({
     texts: text,
-    suggestions: matches,
+    suggestionsDoc: matches,
     searchParams: { ...this.state.searchParams, [e.target.name]: text }
 
  });
@@ -159,7 +160,7 @@ onChangeHandlerdoctor = (e, text) => {
                                  onChange={e => this.onChangeHandlerdoctor(e, e.target.value)} 
                                  value={this.state.searchParams.name} 
                                  className="formVal form-control "/>
-                                  {this.state.suggestions && this.state.suggestions.map((suggestion, i) =>
+                                  {this.state.suggestionsDoc && this.state.suggestionsDoc.map((suggestion, i) =>
                                     <div key={i} className="suggestion col-md-12 justify-content-md-center"
                                        onClick={() => this.onSuggestHandlerdoctor(suggestion)}
                                     >{suggestion}</div>
@@ -187,13 +188,37 @@ onChangeHandlerdoctor = (e, text) => {
                               <div className="col-md-4 pd-0 col-sx-12 col-sm-4">
                                  <div className="form-group date">
                                     <input type="text" name="" placeholder="Date" className="form-control" onFocus={(e) => e.target.type = 'date'}/>
+                                    {
+                                       this.state.searchParams.name
+                                       ? <Link 
+                                       type="
+                                       submit" 
+                                       className="btn-bg searchBtn" 
+                                       id="search"
+                                       to={ `/search/${this.state.searchParams.name}`}
+                                       >Search</Link>
+                                       : <Link 
+                                       type="
+                                       submit" 
+                                       className="btn-bg searchBtn" 
+                                       id="search"
+                                       to={ `/search/${this.state.searchParams.city}/${this.state.searchParams.name}`}
+                                       >Search</Link> 
+
+                                    }
                                     <Link 
                                      type="
                                      submit" 
                                      className="btn-bg searchBtn" 
                                      id="search"
-                                     to={ `/search/${this.state.searchParams.city}/${this.state.searchParams.name}`}
-                                     >Search</Link>  
+                                     to={
+                                       this.state.searchParams.name
+                                       ?  `/searchName/${this.state.searchParams.name}`
+                                       :`/search/${this.state.searchParams.city}/${this.state.searchParams.name}`
+                                    }>Search</Link>
+                                    
+                                    {/* //  { `/search/${this.state.searchParams.city}/${this.state.searchParams.name}`}
+                                    //  >Search</Link>   */}
                                  </div>
                               </div>              
                            </form>

@@ -31,6 +31,7 @@ export default class Modal extends Component{
     }
     
     render() {
+        console.log('Modal Propssssssssssssssssss: ',this.state)
         return createPortal (
             <div style={modalStyle} onClick={this.props.onClick}>
                 {this.props.children}

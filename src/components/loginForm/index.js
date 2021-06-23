@@ -8,9 +8,9 @@ import Container from "./styled/Container";
 
 import useToggle, { STATE_LOG_IN } from "./useToggle";
 
-const Form = ({ initialState = STATE_LOG_IN }) => {
+const Form = ({ initialState = STATE_LOG_IN },props) => {
   const [mode, toggleMode] = useToggle(initialState);
-
+  console.log("props opem",props.open)
   return (
     <Container pose={mode === STATE_LOG_IN ? "signup" : "login"}>
       <div className="container__form container__form--one">

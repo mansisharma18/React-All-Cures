@@ -1,8 +1,7 @@
 import { Link } from 'react-router-dom'
 import Special1 from '../../assets/img/special-1.jpg'
 
-const ProfileTab = ({ docid, name, pSpl, hospital, state, country}) => (
-  
+const ProfileTab = ({ docid, name, pSpl, hospital, state, country, acPerm, url, reload}) => (
     <div>
       <div className="tab-content">
         <div id="men" className="tab-pane fade in active">
@@ -24,9 +23,21 @@ const ProfileTab = ({ docid, name, pSpl, hospital, state, country}) => (
                     <p>“Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc sodales dolor in ante fermentum, vitae varius turpis imperdiet.”</p>
                   </div>
                   <div className="btn-group"> 
-                    <Link to={ `/profile/${docid}` } className="btn-bg profile-btn color-white">
+                    {
+                      acPerm ? 
+                        <Link to={ `/profile/${docid}` } className="btn-bg profile-btn color-white">
+                          Profile
+                        </Link>
+                      : <Link 
+                          className="btn-bg profile-btn color-white" 
+                          to={{pathname: url, search: '?login=true', state: {open: true, reload:false}}}
+                        >
+                         Profile
+                     </Link>
+                    }
+                    {/* <Link to={ `/profile/${docid}` } className="btn-bg profile-btn color-white">
                         Profile
-                    </Link> 
+                    </Link>  */}
                     <Link to="#" className="bg-gray video-btn color-light-gray">Video Consult</Link> </div>
                 </div>
               </div>

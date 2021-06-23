@@ -1,6 +1,7 @@
 import React, {useState} from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {BrowserRouter,Router, Switch, Route, Redirect } from "react-router-dom";
+import history from '../history'
 
 import SocialButton from './styled/SocialButton'
 import BrandButton from './styled/BrandButton'
@@ -14,6 +15,7 @@ const FormLogin = (props) => {
   const [isError, setError] = useState("");
   const [status, setStatus] = useState("");
   const [buttonClick, setClicked] = useState("");
+  const [reload, setReload] = useState("");
 
   const loginForm = async (e, props) => {
     e.preventDefault();
@@ -48,10 +50,24 @@ const FormLogin = (props) => {
   setTimeout( () => console.log('Error ', isError ), 1600 );
 
   function Success(){
+    setReload(true)
     return(
       <div className="alert alert-primary" role="alert">Success</div>
     )
   }
+}
+function Refresh(){
+  window.location.reload()
+}
+function Redirec(){
+  setTimeout(() => {
+    window.location.reload();
+  }, 4000);
+  return(
+    <Redirect to={{
+      pathname: '#'
+    }}/>
+  )
 }
 
   return(
@@ -60,13 +76,13 @@ const FormLogin = (props) => {
     
     <p className="text-center">or use your account</p>
     
-    { buttonClick === 1
-        ? status === 200
-          ? <div className="alert alert-primary" role="alert">Successfully Logged In!</div>
-          : <div className="alert alert-secondary" role="alert">Error Logging In!</div>
-        : console.log('button not clicked')
+    { 
+      buttonClick === 1
+        ? !status === 200
+          ? <div className="alert alert-secondary" role="alert">Error Logging In!</div> 
+          : Redirec()
+        : console.log('Button not clicked')
     }
-
     
     <form onSubmit={loginForm}>
 
