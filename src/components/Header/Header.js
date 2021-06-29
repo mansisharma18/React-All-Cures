@@ -23,7 +23,7 @@ import { Link } from "react-router-dom";
             }
         };
     } */
-    class Home extends Component {
+    class Header extends Component {
         constructor(props){
            super(props);
            this.state = {
@@ -33,6 +33,7 @@ import { Link } from "react-router-dom";
               suggestionsDoc: [],
               doctor : '',
               docname : '',
+              url: props.url,
                acPerm: Cookies.get('acPerm'),
                searchParams: {
                  city: '',
