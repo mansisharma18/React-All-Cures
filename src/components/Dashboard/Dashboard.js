@@ -21,7 +21,11 @@ import NotificationsIcon from '@material-ui/icons/Notifications';
 import { mainListItems, secondaryListItems } from './listItems';
 import Chart from './Chart';
 import Deposits from './Deposits';
+import Draft from './Draft';
+import Approval from './Approval';
+import Review from './Review';
 import Orders from './Orders';
+import TestAjax from './test/TestAjax';
 
 function Copyright() {
   return (
@@ -188,17 +192,17 @@ export default function Dashboard() {
             </Grid>
             <Grid item xs={12} md={4} lg={3}>
               <Paper className={fixedHeightPaper}>
-                <Deposits />
+                <Draft/>
               </Paper>
             </Grid>
             <Grid item xs={12} md={4} lg={3}>
               <Paper className={fixedHeightPaper}>
-                <Deposits />
+                <Approval />
               </Paper>
             </Grid>
             <Grid item xs={12} md={4} lg={3}>
               <Paper className={fixedHeightPaper}>
-                <Deposits />
+                <Review />
               </Paper>
             </Grid>
             {/* Recent Orders */}
