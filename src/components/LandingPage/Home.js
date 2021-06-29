@@ -5,7 +5,7 @@ import Cookies from 'js-cookie';
 import Heart from"../../assets/img/heart.png";
 import Doct from "../../assets/img/doct.png";
 import axios from 'axios';
-
+import { Dropdown, DropdownButton } from 'react-bootstrap';
 import '../../assets/healthcare/css/main.css';
 import '../../assets/healthcare/css/responsive.css';
 import '../../assets/healthcare/css/animate.css';
@@ -117,9 +117,23 @@ onChangeHandlerdoctor = (e, text) => {
         this.setState({
             searchParams: { ...this.state.searchParams, [e.target.name]: e.target.value }
         });
+
+   
+   logout = async e => {
+      const res = await fetch("/LogoutActionController", {
+         method: "POST"
+      });
+        const data = await res.text();
+        console.log("Logout: ", data)
+        setTimeout(() => {
+           window.location.reload()
+        }, 1000);
+   }
+
+
    render() {
     console.log('jddowbolbwolecnloceb', this.props.match.url)
-
+      
       return(
          <div>
             <div className="homeHeader">
@@ -136,7 +150,9 @@ onChangeHandlerdoctor = (e, text) => {
                               </div>
                               <div className="loginSign"> 
                               {/* <Link to="/profile">Go to Profile</Link> */}
-                                 <ToggleButton acPerm={this.state.acPerm} match={this.props.match.url} /> 
+                              
+                                 <ToggleButton acPerm={this.state.acPerm} match={this.props.match.url} logout={this.logout}/> 
+                                 {/* <button onClick={this.logout}></button> */}
                               </div>  
                            </div>   
                         </div>
@@ -357,9 +373,15 @@ onChangeHandlerdoctor = (e, text) => {
 function ToggleButton(props) {
    if(props.acPerm){
        return(
-           <Link to="/dashboard" className="btn-white loginSignbtn color-blue-dark" >
+         <DropdownButton style={{background: 'white'}} title="Welcome !">
+            <Dropdown.Item >
+            <Link to="/dashboard">
                Dashboard
            </Link>
+            </Dropdown.Item>
+            <Dropdown.Item onClick={props.logout}>Logout</Dropdown.Item>
+         </DropdownButton>
+           
        );
    }
    return(

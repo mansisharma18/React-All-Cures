@@ -14,3 +14,19 @@ div .suggestion:hover {
 .form-group #city {
   margin-bottom: 0;
 }
+
+.dropdown .btn {
+  background-color: white;
+  color: black;
+  border: 1px solid #000;
+}
+
+.dropdown .btn:hover {
+  background-color: #eee;
+  color: #000;
+}
+
+.dropdown .btn:focus {
+  background-color: #00415e;
+  color: #fff;
+}
