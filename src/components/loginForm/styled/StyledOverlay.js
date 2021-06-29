@@ -9,24 +9,26 @@ export const transition = {
 export const InnerSignup = posed.div({
   signup: {
     transition,
-    x: 0,
+    x: '68%',
     opacity: 1
   },
   login: {
     transition,
-    x: '-100%'
+    x: '-100%',
+    opacity: 0
   }
 })
 
 export const InnerLogin = posed.div({
   login: {
     transition,
-    x: 0,
+    x: '-48%',
     opacity: 1
   },
   signup: {
     transition,
-    x: '100%'
+    x: '100%',
+    opacity: 0
   }
 })
 
@@ -41,7 +43,8 @@ export default styled(
       transition
     }
   })
-)`
+)
+`
   z-index: 1;
   background: ${({ theme }) => theme.gradient};
   align-self: stretch;
@@ -58,5 +61,14 @@ export default styled(
   .inner {
     grid-row: 1;
     grid-column: 1;
+  }
+
+  .inner p {
+    width: 20rem;
+    padding-left: 0
+  }
+
+  .inner button {
+    
   }
 `
