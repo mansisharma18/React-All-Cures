@@ -14,3 +14,8 @@ div .suggestion:hover {
 .form-group #city {
   margin-bottom: 0;
 }
+
+.sug {
+  position: absolute;
+  background-color: white;
+}
