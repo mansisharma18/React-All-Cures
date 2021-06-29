@@ -50,19 +50,19 @@ const FormLogin = (props) => {
   setTimeout( () => console.log('Error ', isError ), 1600 );
 
   function Success(){
-    setReload(true)
+    // setReload(true)
     return(
       <div className="alert alert-primary" role="alert">Success</div>
     )
   }
 }
-function Refresh(){
-  window.location.reload()
-}
+
+// Redirect and Reload after logging in
+
 function Redirec(){
   setTimeout(() => {
     window.location.reload();
-  }, 4000);
+  }, 1000);
   return(
     <Redirect to={{
       pathname: '#'

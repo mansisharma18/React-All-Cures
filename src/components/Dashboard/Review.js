@@ -19,13 +19,13 @@ const useStyles = makeStyles({
 });
 
 
-export default function Deposits(props) {
+export default function Review(props) {
   const classes = useStyles();                                                                      
  
   return (
     <React.Fragment>
-      <Title>Published Articles</Title>
-      <TestAjax name="published_article"/>
+      <Title>Review Articles</Title>
+      <TestAjax name="review_article"/>
      
       <Typography color="textSecondary">
       </Typography>

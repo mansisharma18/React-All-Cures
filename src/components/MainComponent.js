@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import Cookies from 'js-cookie';
-import {BrowserRouter,Router, Switch, Route, Redirect } from "react-router-dom";
+import {BrowserRouter,Router, Switch, Route, Redirect, useLocation } from "react-router-dom";
 
 import Home from "./LandingPage/Home";
 import Profile from "./Profile/Profile";
@@ -24,7 +24,7 @@ import SignIn from "./Article/SignIn";
 // import Login from './login/login'
 // import createBrowserHistory from './history';
 
-function Main() {
+function Main(props) {
   // render() {
   const [auth, setAuth] = React.useState(false);
   const readCookie = () => {
@@ -33,7 +33,15 @@ function Main() {
       setAuth(true);
     }
   }
-
+  // const usePathname = () => {
+  //   const location = useLocation();
+  //   console.log('Locationnnnnnnnnnnnnnnnnnn'+location.pathname);
+  // }
+  // usePathname();
+  // const location = useLocation;
+  // console.log('Locationsjnsakjkjbcjasbncojancosancosncosnolcsnnnnnnnnnn',location);
+  // console.log('LOCATIOnnnnnnnnnnnnnnnnnnnnnnnkjabdjabj',props)
+  const url = props.url;
   React.useEffect(() => {
     readCookie();
   }, [])
@@ -47,7 +55,7 @@ function Main() {
         <AuthApi.Provider value={{auth, setAuth}}>
           <BrowserRouter basename={process.env.REACT_APP_ROUTER_BASE || ''}>
           {/* <Router> */}
-            <Routes />
+            <Routes url = {url}/>
             {/* </Router> */}
 
           </BrowserRouter>
@@ -57,36 +65,19 @@ function Main() {
   // }
 }
 
-// const Login = () => {
-//   const Auth = React.useContext(AuthApi)
-//   const handleOnClick = () => {
-//     Auth.setAuth(true)
-//     Cookies.set("user", "loginTrue")
-//   }
-//   return(
-//     <div>
-//       <h1>Please Login</h1>
-//       <button onClick={handleOnClick}>Login</button>
-//     </div>
-//   )
-// }
-// const Dashboard = () => {
-//   const Auth = React.useContext(AuthApi)
-//   const handleOnClick = () => {
-//     Auth.setAuth(false)
-//     Cookies.remove("user")
-//   }
-//   return(
-//     <div>
-//       <h1>Dashboard</h1>
-//       <button onClick={handleOnClick}>Logout</button>
-//     </div>
-//   )
-// }
+function useQuery() {
+  return new URLSearchParams(useLocation().search);
+}
 
-const Routes = () => {
-  // console.log('MATCHHHHHHHHHHHHHHHHHHH ', {match})
+const Routes = (props) => {
+  // console.log('MATCHHHHHHHHHHHHHHHHHHH ', {match})  
+  let query = useQuery();
+  console.log('Rouuutttessssssssssssssssssssssssss', props.url)
   const Auth = React.useContext(AuthApi)
+  
+  const location = useLocation();
+  const currentPath = location.pathname;
+  console.log('Locationnnnnnnnnnnnnnnnnnn'+location.pathname);
   return (
     <>
     <Switch>
@@ -106,7 +97,7 @@ const Routes = () => {
           <Route path="/search/:city/:name" component={Search} />
           {/* <Route path="/search/:city/:name" component={Search} /> */}
 
-          <ProtectedRoute path="/article" auth={Auth.auth} component={Test} />
+          <Route path="/article" auth={Auth.auth} component={Test} />
           <Route exact path="/dashboard" component={Dashboard} />
           <ProtectedRoute exact path="/sign" component={SignIn} />
           {/* <Route */}
@@ -117,6 +108,8 @@ const Routes = () => {
       {/* <Route exact path="/TestAjax" component={TestAjax} /> */}
     </Switch>
           <Route path="/" component={LoginPage}/>
+          <ProtectedLogin path='?login=true' auth={Auth.auth}/>
+          {/* <Child login={query.get("login")} url = {currentPath}/> */}
     </>
   )
 }
@@ -146,11 +139,26 @@ const ProtectedLogin = ({auth, component:Component, ...rest}) => {
         <Component/>
       ):
         (
-          <Redirect to="/article"/>
+          <Redirect to="#"/>
         )
     }
       />
     )
 }
+
+// function Child({ login, url }) {
+//   return (
+//     <div>
+//       {login ? (
+//           (
+//             <Redirect to={{pathname:url}}/>
+//           )
+//         // console.log(`The name in the query string is &quot;${login}`)
+//       ) : (
+//         console.log('There is no name in the query string')
+//       )}
+//     </div>
+//   );
+// }
 
 export default Main;

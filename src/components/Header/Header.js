@@ -1,13 +1,14 @@
 import React, { Component } from "react";
 import './header.css';
 import Cookies from 'js-cookie';
+import axios from 'axios';
 
 import Heart from"../../assets/img/heart.png";
 import { Link } from "react-router-dom";
 // import { Container } from '../Modal/Container';
 
 // import { ToggleButton } from "react-bootstrap";
-class Header extends Component {
+/*class Header extends Component {
 
     constructor(props){
         super(props);
@@ -21,7 +22,92 @@ class Header extends Component {
                 name: '',
             }
         };
-    }
+    } */
+    class Home extends Component {
+        constructor(props){
+           super(props);
+           this.state = {
+              users: '',
+              texts: '',
+              suggestions: [],
+              suggestionsDoc: [],
+              doctor : '',
+              docname : '',
+               acPerm: Cookies.get('acPerm'),
+               searchParams: {
+                 city: '',
+                 name: '',
+             }
+           };
+       }
+       componentDidMount(){
+        const loadUsers = async () => {
+           const response = await axios.get('/city/all');
+           this.setState ({
+              users: response.data
+           })
+           // console.log("userssss"+ users)
+         }
+         loadUsers();
+     //  }
+     //  componentDidMount(){
+        const loaddoctor = async () => {
+           const response = await axios.get('/IntegratedActionController');
+           this.setState ({
+              doctor: response.data
+           })
+           console.log("doctorsssssssssssssss", this.state.doctor)
+         }
+         loaddoctor();
+      }
+     
+       onSuggestHandler = (text) => {
+          this.state.searchParams.city= text;
+          this.setState({
+             suggestions: []
+          });
+      }
+      onChangeHandler = (e, text) => {
+        let matches = []
+        if (text.length > 0) {
+          matches = this.state.users.filter(user => {
+            const regex = new RegExp(`${text}`, "gi");
+            return user.Cityname.match(regex)
+          })
+        }
+        console.log('users'+this.state.users)
+        console.log('matches', matches)
+        this.setState({
+           texts: text,
+           suggestions: matches,
+           searchParams: { ...this.state.searchParams, [e.target.name]: text }
+     
+        });
+      }
+     
+      onSuggestHandlerdoctor = (text) => {
+        this.state.searchParams.name= text;
+        this.setState({
+           suggestionsDoc: []
+        });
+     }
+     onChangeHandlerdoctor = (e, text) => {
+      let matches = []
+      if (text.length > 0) {
+        matches = this.state.doctor.map.Doctorname.myArrayList.filter(user => {
+          const regex = new RegExp(`${text}`, "gi");
+          return user.match(regex)
+        })
+      }
+      //console.log('doctor'+this.state.doctor)
+      //console.log('matches', matches)
+      this.setState({
+         texts: text,
+         suggestionsDoc: matches,
+         searchParams: { ...this.state.searchParams, [e.target.name]: text }
+     
+      });
+     }
 
     onModalSubmit = (event) => {
         event.preventDefault(event);
@@ -72,13 +158,32 @@ class Header extends Component {
                         <form class="mainSearch" >
                      	  <div className="col-md-4 pd-0 col-sx-12 col-sm-4">
                    			<div className="form-group search">
-    							<input type="text" placeholder="Doctor Name, Disease or Condition" name="name" id="doctors" onChange={this.handleChange} value={this.state.searchParams.name} className="formVal form-control "/>
-								<span className="icon-loupe"></span>
+    							<input type="text" placeholder="Doctor Name, Disease or Condition" name="name" id="doctors" 
+                                 autoComplete="off"
+                                 onChange={e => this.onChangeHandlerdoctor(e, e.target.value)} 
+                                 value={this.state.searchParams.name} 
+                                 className="formVal form-control "/>
+                                  {this.state.suggestionsDoc.map((item,index)=>{
+         // return <p key={index}>{item}</p>
+       return  <li key={index} className="sug col-md-12 justify-content-md-center"
+                                       onClick={() => this.onSuggestHandlerdoctor(item)}
+                                    >{item}</li>
+       })}
 							</div>
 						 </div>
    						 <div className="col-md-4 pd-0 col-sx-12 col-sm-4">
          				 	<div className="form-group city zipcode">
-    							<input type= "text" placeholder="City or Zip-code" name="city" id="city" onChange={this.handleChange} value={this.state.searchParams.city} className="formVal form-control" />
+    							<input type= "text" placeholder="City or Zip-code" name="city" id="city" 
+                                autoComplete="off" 
+                                onChange={e => this.onChangeHandler(e, e.target.value)} 
+                                value={this.state.searchParams.city} 
+                                className="formVal form-control"
+                                />
+                                {this.state.suggestions && this.state.suggestions.map((suggestion, i) =>
+                                   <div key={i} className="suggestion col-md-12 justify-content-md-center"
+                                      onClick={() => this.onSuggestHandler(suggestion.Cityname)}
+                                   >{suggestion.Cityname}</div>
+                                )}
                 	    	</div>
                 		 </div>
          					 

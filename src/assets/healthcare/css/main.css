@@ -2340,3 +2340,8 @@ p.lorem-text {
   box-shadow: 0;
   cursor: pointer;
 }
+
+.wallpaper-dashboard {
+  background: url(".././img/images/wallpaperflare.com_wallpaper\(9\).jpg")
+    no-repeat center center/cover;
+}
