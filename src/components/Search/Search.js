@@ -25,6 +25,7 @@ class Search extends Component {
     // USE if statement
   componentDidMount() {
     console.log("Params: "+ JSON.stringify(this.state.param))
+    console.log('Type of: ', typeof(this.state.param.city))
     if((this.state.param.city) && (this.state.param.name)) {
       fetch(`/SearchActionController?cmd=getResults&city=${this.state.param.city}&doctors=${this.state.param.name}&Latitude=&Longitude=`)
       .then(res => res.json())
@@ -47,7 +48,7 @@ class Search extends Component {
         })            
       });
     } else if((this.state.param.city) && (!this.state.param.name)) {
-      fetch(`/SearchActionController?cmd=getResults&city=${this.state.param.city}&Latitude32.7266=&Longitude=74.8570`)
+      fetch(`/SearchActionController?cmd=getResults&city=${this.state.param.city}&Latitude=32.7266&Longitude=74.8570`)
       .then(res => res.json())
       .then(json => {
         console.log(json.map.DoctorDetails.myArrayList);
