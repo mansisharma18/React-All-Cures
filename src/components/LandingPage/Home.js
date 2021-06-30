@@ -26,10 +26,13 @@ class Home extends Component {
          suggestions: [],
          suggestionsDoc: [],
          doctor : '',
+         getPincode:null,
+         getCityName:null,
          docname : '',
           acPerm: Cookies.get('acPerm'),
           searchParams: {
             city: '',
+            Pincode: '',
             name: '',
         }
       };
@@ -66,13 +69,25 @@ class Home extends Component {
     loaddoctor();
  }
 
-  onSuggestHandler = (text) => {
-     this.state.searchParams.city= text;
+  onSuggestHandler = (text, ano) => {
+    if(Number.isInteger(this.state.getPincode)) {
+      this.state.searchParams.city = ano;
+    }else{
+      this.state.searchParams.city = text;
+    }
+    
+   //  this.state.Pincode.city = text;
      this.setState({
         suggestions: []
      });
  }
+
  onChangeHandler = (e, text) => {
+
+   const testVal = parseInt(e.target.value)
+   // console.log(Number.isInteger(testVal));
+   
+
    let matches = []
    if (text.length > 0) {
      matches = this.state.users.filter(user => {
@@ -80,8 +95,14 @@ class Home extends Component {
        return user.Cityname.match(regex)
      })
    }
-   console.log('users'+this.state.users)
-   console.log('matches', matches)
+   if (Number.isInteger(testVal)) {
+      matches = this.state.users.filter(user => {
+        const regex = new RegExp(`${testVal}`, "gi");
+        return user.Pincode.match(testVal)
+      })
+    }
+   // console.log('users'+this.state.users)
+   // console.log('matches', matches)
    this.setState({
       texts: text,
       suggestions: matches,
@@ -91,6 +112,7 @@ class Home extends Component {
  }
 
  onSuggestHandlerdoctor = (text) => {
+    
    this.state.searchParams.name= text;
    this.setState({
       suggestionsDoc: []
@@ -178,7 +200,7 @@ onChangeHandlerdoctor = (e, text) => {
                                  className="formVal form-control "/>
                                                {this.state.suggestionsDoc.map((item,index)=>{
          // return <p key={index}>{item}</p>
-       return  <div key={index} className=" col-md-12 justify-content-md-center"
+       return  <div key={index} className=" col-md-12 justify-content-md-center  suggestionSearch"
                                        onClick={() => this.onSuggestHandlerdoctor(item)}
                                     >{item}</div>
        })}
@@ -188,14 +210,30 @@ onChangeHandlerdoctor = (e, text) => {
                                  <div className="form-group city zipcode">
                                  <input type= "text" placeholder="City or Zip-code" name="city" id="city"
                                  autoComplete="off" 
-                                 onChange={e => this.onChangeHandler(e, e.target.value)} 
+                                 onChange={e => {
+                                    this.onChangeHandler(e, e.target.value)
+                                    if(e.target.value){
+                                       console.log(e.target.value);
+                                       this.setState({
+                                          getPincode: parseInt(e.target.value)
+                                       })
+                                    }else {
+                                       this.setState({
+                                          getCityName: String(e.target.value)
+                                       })
+                                    }
+                                    
+                                 }} 
                                  value={this.state.searchParams.city} 
                                  className="formVal form-control"
                                  />
                                  {this.state.suggestions && this.state.suggestions.map((suggestion, i) =>
                                     <div key={i} className="suggestion col-md-12 justify-content-md-center"
-                                       onClick={() => this.onSuggestHandler(suggestion.Cityname)}
-                                    >{suggestion.Cityname}</div>
+                                       onClick={() => this.onSuggestHandler(suggestion.Cityname,suggestion.Pincode)}
+                                    >
+                                       {Number.isInteger(this.state.getPincode) ? suggestion.Pincode :  suggestion.Cityname}
+
+                                    </div>
                                  )}
                                  </div>
                               </div>
@@ -374,7 +412,7 @@ onChangeHandlerdoctor = (e, text) => {
 function ToggleButton(props) {
    if(props.acPerm){
        return(
-         <DropdownButton style={{background: 'white'}} title="Hi there!">
+         <DropdownButton style={{background: 'white'}} title="Welcome !">
             <Dropdown.Item >
             <Link to="/dashboard">
                Dashboard

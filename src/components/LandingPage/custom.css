@@ -19,3 +19,15 @@ div .suggestion:hover {
   position: absolute;
   background-color: white;
 }
+
+.suggestionSearch {
+  background-color: white;
+  border: 1px solid rgb(136, 212, 212);
+  /* border-bottom: 1px solid aqua; */
+  padding: 0.6rem;
+}
+
+.suggestionSearch:hover {
+  background-color: #00415e;
+  color: #fff;
+}
