@@ -11,7 +11,7 @@ import Slider6 from "../../assets/img/slider-6.png";
 import { Link } from 'react-router-dom'
 export default function Carousel1(props){
         return(
-            <div className="tab-content category " style={{maxWidth:"1140px"}}>
+            <div className="tab-content category " style={{maxWidth:"1140px", zIndex: 0}}>
                   <OwlCarousel className="owl-theme" items={6} loop margin={150} nav>
                   <div className="item bg-pink">
                         <Link to={ `/search/${props.city}/ENT` }>

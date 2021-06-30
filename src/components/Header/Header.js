@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import './header.css';
 import Cookies from 'js-cookie';
 import axios from 'axios';
+import { Dropdown, DropdownButton } from 'react-bootstrap';
 
 import Heart from"../../assets/img/heart.png";
 import { Link } from "react-router-dom";
@@ -120,6 +121,17 @@ import { Link } from "react-router-dom";
         this.setState({
             searchParams: { ...this.state.searchParams, [e.target.name]: e.target.value }
         });
+    
+        logout = async e => {
+            const res = await fetch("/LogoutActionController", {
+               method: "POST"
+            });
+              const data = await res.text();
+              console.log("Logout: ", data)
+              setTimeout(() => {
+                 window.location.reload()
+              }, 1000);
+         }
     render() {
         // console.log(this.state.history);
     //     const params = new URLSearchParams(this.props.location);
@@ -146,7 +158,7 @@ import { Link } from "react-router-dom";
                             {/* <Container className="btn-white loginSignbtn color-blue-dark" triggerText={this.state.triggerText} onSubmit={this.onModalSubmit} /> */}
                             {/* <ToggleButton acPerm={this.state.acPerm} match={this.props.match.url} />  */}
 
-                            <ToggleButton acPerm={this.state.acPerm} url={this.props.url}/> 
+                            <ToggleButton acPerm={this.state.acPerm} url={this.props.url} logout={this.logout}/> 
                         </div>   	
                         </div>
                     </div>
@@ -229,9 +241,14 @@ import { Link } from "react-router-dom";
 function ToggleButton(props) {
     if(props.acPerm){
         return(
-            <Link to="/dashboard" className="btn-white loginSignbtn color-blue-dark" >
-                Dashboard
-            </Link>
+            <DropdownButton style={{background: 'white'}} title="Hi there!">
+            <Dropdown.Item >
+            <Link to="/dashboard">
+               Dashboard
+           </Link>
+            </Dropdown.Item>
+            <Dropdown.Item onClick={props.logout}>Logout</Dropdown.Item>
+         </DropdownButton>
         );
     }
     return(

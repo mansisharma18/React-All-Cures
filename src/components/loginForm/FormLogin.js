@@ -12,7 +12,7 @@ const FormLogin = (props) => {
   const [email, setEmail] = useState("");
   const [password, setPass] = useState("");
   const [message, setMessage] = useState("");
-  const [isError, setError] = useState("");
+  const [isError, setError] = useState(false);
   const [status, setStatus] = useState("");
   const [buttonClick, setClicked] = useState("");
   const [reload, setReload] = useState("");
@@ -30,33 +30,41 @@ const FormLogin = (props) => {
   });
   console.log('props '+props)
   console.log('status '+ res.status)
-
+  console.log('Statusssssssssssssssss ',status)
   // res.status === 404 
   //   ? console.log('Showw Error')
   //   : console.log('Redirect to page');
 
-  res.status === 200
-    ? <Success/>
-    : <Success/>;
+  // res.status === 200
+  //   ? <Success/>
+  //   : <Success/>;
 
     setStatus(res.status);
+    console.log('Statsus res ',res.status)
   const data = await res.text();
   console.log('dataaaaa ', res)
     !data.hasOwnProperty("error")
       ? setMessage( 'success' )
-      : setMessage( 'error' );
+      : setError( true );
 
   setTimeout( () => console.log('Message ', message ), 1600 );
   setTimeout( () => console.log('Error ', isError ), 1600 );
 
-  function Success(){
-    // setReload(true)
-    return(
-      <div className="alert alert-primary" role="alert">Success</div>
-    )
-  }
+  // function Success(){
+  //   // setReload(true)
+  //   return(
+  //     <div className="alert alert-primary" role="alert">Success</div>
+  //   )
+  // }
 }
-
+function Error(){
+  // setReload(true)
+  setTimeout(() => {
+    return(
+      <div className="alert alert-secondary" role="alert">Email or Password incorrect</div>
+    )
+  }, 1000);
+}
 // Redirect and Reload after logging in
 
 function Redirec(){
@@ -77,10 +85,10 @@ function Redirec(){
     <p className="text-center">or use your account</p>
     
     { 
-      buttonClick === 1
-        ? !status === 200
-          ? <div className="alert alert-secondary" role="alert">Error Logging In!</div> 
-          : Redirec()
+      buttonClick === 1? 
+        status === 200 ? 
+          Redirec()
+          : Error()
         : console.log('Button not clicked')
     }
     
