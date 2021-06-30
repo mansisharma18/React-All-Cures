@@ -176,11 +176,11 @@ onChangeHandlerdoctor = (e, text) => {
                                  onChange={e => this.onChangeHandlerdoctor(e, e.target.value)} 
                                  value={this.state.searchParams.name} 
                                  className="formVal form-control "/>
-                                  {this.state.suggestionsDoc.map((item,index)=>{
+                                               {this.state.suggestionsDoc.map((item,index)=>{
          // return <p key={index}>{item}</p>
-       return  <li key={index} className="sug col-md-12 justify-content-md-center"
+       return  <div key={index} className=" col-md-12 justify-content-md-center"
                                        onClick={() => this.onSuggestHandlerdoctor(item)}
-                                    >{item}</li>
+                                    >{item}</div>
        })}
                                  </div>
                               </div>
