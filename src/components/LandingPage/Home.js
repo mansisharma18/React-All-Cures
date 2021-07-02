@@ -48,7 +48,7 @@ class Home extends Component {
 //  }, [])
 
 
- componentDidMount(){
+ componentWillMount(){
    const loadUsers = async () => {
       const response = await axios.get('/city/all');
       this.setState ({
