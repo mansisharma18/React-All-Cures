@@ -5,6 +5,7 @@ import Cookies from 'js-cookie';
 import './article.css'
 import editor from './Index'
 import Carousel from './Carousel'
+import EditorJs from 'react-editor-js';
 
 export default class Test extends Component {
     constructor(props) {
@@ -396,7 +397,8 @@ document.getElementById('articlePreview').innerHTML=articleHTML;
                                 {/* </Card.Header> */}
                                 <Accordion.Collapse eventKey="3">
                                     <Card.Body>
-                                    <div id="editorjs"></div>
+                                    {/* <div id="editorjs"></div> */}
+                                    <EditorJs data="" />
                                     </Card.Body>
                                 </Accordion.Collapse>
                                 <Card.Footer>
