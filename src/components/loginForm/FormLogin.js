@@ -57,7 +57,7 @@ const FormLogin = (props) => {
   //   )
   // }
 }
-function Error(){
+function Eror(){
   // setReload(true)
   setTimeout(() => {
     return(
@@ -88,7 +88,7 @@ function Redirec(){
       buttonClick === 1? 
         status === 200 ? 
           Redirec()
-          : Error()
+          : <div className="alert alert-secondary" role="alert">Email or Password incorrect</div>
         : console.log('Button not clicked')
     }
     

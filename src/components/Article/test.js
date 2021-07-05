@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Button, Accordion, Card, Container, Form, Alert, variant } from 'react-bootstrap';
+import { Button, Accordion, Card, Container, Form, Alert } from 'react-bootstrap';
 
 import Cookies from 'js-cookie';
 import './article.css'
@@ -281,8 +281,8 @@ document.getElementById('articlePreview').innerHTML=articleHTML;
         console.log("Account Session:"+ this.state.acPerm)
         const isLoggedIn = this.state.isLoggedIn;
         const showAuthorAccordian = this.state.showAuthorAccordian;
-        const acPerm = this.state.acPerm;
-        let button;
+        // const acPerm = this.state.acPerm;
+        // let button;
         let showAuthorButton;
 
 
@@ -293,11 +293,11 @@ document.getElementById('articlePreview').innerHTML=articleHTML;
             console.log(showAuthorButton)
         }
 
-        if (isLoggedIn) {
-            button = <LogoutButton onClick={this.handleLogoutClick} />;
-        } else {
-            button = <LoginButton onClick={this.handleLoginClick} />;
-        }
+        // if (isLoggedIn) {
+        //     button = <LogoutButton onClick={this.handleLogoutClick} />;
+        // } else {
+        //     button = <LoginButton onClick={this.handleLoginClick} />;
+        // }
 
     
     return (
@@ -306,6 +306,7 @@ document.getElementById('articlePreview').innerHTML=articleHTML;
                 <Container>  
                     <Card className="mainCard" >
                         <Card.Header className="mainTitle text-center h3 py-3">ARTICLE</Card.Header>
+
                         <Accordion>
                         <Greeting isLoggedIn={isLoggedIn} />
 
@@ -318,7 +319,7 @@ document.getElementById('articlePreview').innerHTML=articleHTML;
                         </Form>
 
                          {/* Article Details  */}
-                        <authorAccordian/>
+                        {/* <AuthorAccordian/> */}
                         <Form onSubmit = {this.submitArticleForm}>
                         <Card>
                             {/* <Card.Header style={{backgroundColor: "white"}}> */}
@@ -513,21 +514,21 @@ document.getElementById('articlePreview').innerHTML=articleHTML;
       )
   }
 
-  function LoginButton(props) {
-    return (
-      <button onClick={props.onClick}>
-        Login
-      </button>
-    );
-  }
+//   function LoginButton(props) {
+//     return (
+//       <button onClick={props.onClick}>
+//         Login
+//       </button>
+//     );
+//   }
   
-  function LogoutButton(props) {
-    return (
-      <button onClick={props.onClick}>
-        Logout
-      </button>
-    );
-  }
+//   function LogoutButton(props) {
+//     return (
+//       <button onClick={props.onClick}>
+//         Logout
+//       </button>
+//     );
+//   }
 
 // AUTHOR ACCORDIAN
 

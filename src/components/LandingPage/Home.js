@@ -198,12 +198,13 @@ onChangeHandlerdoctor = (e, text) => {
                                  onChange={e => this.onChangeHandlerdoctor(e, e.target.value)} 
                                  value={this.state.searchParams.name} 
                                  className="formVal form-control "/>
-                                               {this.state.suggestionsDoc.map((item,index)=>{
-         // return <p key={index}>{item}</p>
-       return  <div key={index} className=" col-md-12 justify-content-md-center  suggestionSearch"
-                                       onClick={() => this.onSuggestHandlerdoctor(item)}
-                                    >{item}</div>
-       })}
+                                    <div className="suggest">
+                                       {this.state.suggestionsDoc.map((item,index)=>{
+                                          return  <div key={index} className="col-md-12 justify-content-md-center  suggestionSearch"
+                                          onClick={() => this.onSuggestHandlerdoctor(item)}
+                                       >{item}</div>
+                                       })}
+                                    </div>
                                  </div>
                               </div>
                               <div className="col-md-4 pd-0 col-sx-12 col-sm-4">
