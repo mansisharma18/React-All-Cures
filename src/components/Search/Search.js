@@ -24,24 +24,19 @@ class Search extends Component {
   }
     // USE if statement
   componentDidMount() {
-    console.log("Params: "+ JSON.stringify(this.state.param))
-    console.log('Type of: ', typeof(this.state.param.city))
     if((this.state.param.city) && (this.state.param.name)) {
       fetch(`/SearchActionController?cmd=getResults&city=${this.state.param.city}&doctors=${this.state.param.name}&Latitude=&Longitude=`)
       .then(res => res.json())
       .then(json => {
-        console.log(json.map.DoctorDetails.myArrayList);
         this.setState({
           isLoaded: true,
           items: json.map.DoctorDetails.myArrayList,
         })            
       });
     } else if((this.state.param.name) && (!this.state.param.city)) {
-      console.log(this.state.param.name)
       fetch(`/SearchActionController?cmd=getResults&doctors=${this.state.param.name}&Latitude=32.7266&Longitude=74.8570`)
       .then(res => res.json())
       .then(json => {
-        console.log(json.map.DoctorDetails.myArrayList);
         this.setState({
           isLoaded: true,
           items: json.map.DoctorDetails.myArrayList,
@@ -51,7 +46,6 @@ class Search extends Component {
       fetch(`/SearchActionController?cmd=getResults&city=${this.state.param.city}&Latitude=32.7266&Longitude=74.8570`)
       .then(res => res.json())
       .then(json => {
-        console.log(json.map.DoctorDetails.myArrayList);
         this.setState({
           isLoaded: true,
           items: json.map.DoctorDetails.myArrayList,
@@ -71,11 +65,9 @@ class Search extends Component {
   }
 
   render() {
-    console.log("MATCH URL: ", this.props.match.url)
     
     var { isLoaded,items } = this.state;
       if(!isLoaded) {
-        console.log(items);
         return (
         <>
           <Header url={this.props.match.url}/>
@@ -85,7 +77,7 @@ class Search extends Component {
           <Footer/>
         </>  
       );
-      } else if(isLoaded && items.length == 0) {
+      } else if(isLoaded && items.length === 0) {
           if(this.state.param.city){
             return(
               <>
@@ -114,7 +106,6 @@ class Search extends Component {
         
       }
       else if(isLoaded){
-        console.log(items);
         return(
           <div>
             <Header url={this.props.match.url}/>

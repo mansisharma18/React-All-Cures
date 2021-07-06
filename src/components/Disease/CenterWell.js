@@ -1,6 +1,5 @@
 import React from 'react';
-import {Breadcrumb} from 'react-bootstrap';
-import {Link} from 'react-router-dom'
+
 const CenterWell = ({type, text, title, message, source, embed, caption, alignment, url}) => (
     <div>
         {
@@ -29,7 +28,7 @@ const CenterWell = ({type, text, title, message, source, embed, caption, alignme
                                 <div class="ce-block__content">
                                     <div class="cdx-block embed-tool">
                                         <preloader class="embed-tool__preloader"><div class="embed-tool__url">{source}</div></preloader>
-                                        <iframe  allowfullscreen="" src={embed} class="embed-tool__content" height="320" frameborder="0"></iframe>
+                                        <iframe title="embed-title" allowfullscreen="" src={embed} class="embed-tool__content" height="320" frameborder="0"></iframe>
                                     </div>
                                     <div class="text-center">
                                         <i>{caption}</i>

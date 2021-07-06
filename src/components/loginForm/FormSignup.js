@@ -1,13 +1,11 @@
 import React, {useState} from 'react'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { makeStyles } from '@material-ui/core/styles';
 
-import SocialButton from './styled/SocialButton'
 import BrandButton from './styled/BrandButton'
 import SlidingForm from './styled/SlidingForm'
-import { Checkbox, FormGroup, FormControlLabel, RadioGroup, Radio, Select, MenuItem , FormControl, InputLabel} from '@material-ui/core'
+import { Checkbox, FormGroup, FormControlLabel, Select, MenuItem , FormControl, InputLabel} from '@material-ui/core'
 import { Redirect } from 'react-router';
-const FormSignup = (props) => {
+const FormSignup = () => {
 
   const [email, setEmail] = useState("");
   const [password, setPass] = useState("");
@@ -22,7 +20,6 @@ const FormSignup = (props) => {
   const [isError, setError] = useState(false);
   const [status, setStatus] = useState("");
   const [buttonClick, setClicked] = useState("");
-  const [reload, setReload] = useState("");
 
   const useStyles = makeStyles((theme) => ({
     formControl: {
@@ -66,13 +63,6 @@ const FormSignup = (props) => {
 
   setTimeout( () => console.log('Message ', message ), 1600 );
   setTimeout( () => console.log('Error ', isError ), 1600 );
-
-  function Success(){
-    // setReload(true)
-    return(
-      <div className="alert alert-primary" role="alert">Success</div>
-    )
-  }
 }
 function Error(){
   // setReload(true)

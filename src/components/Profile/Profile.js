@@ -3,7 +3,7 @@ import Header from "../Header/Header";
 import Footer from "../Footer/Footer";
 import Rating from "../StarRating";
 import ClientA from "../../assets/img/client-a.jpg";
-import profile from "../../assets/img/profile.jpg";
+
 import '../../assets/healthcare/css/main.css';
 import '../../assets/healthcare/css/responsive.css';
 import '../../assets/healthcare/css/animate.css';
@@ -21,12 +21,10 @@ class Profile extends Component {
   }
 
   componentDidMount() {
-    // console.log('Paramsssss '+ JSON.stringify(this.state.param))
     fetch(`/DoctorsActionController?docid=${this.state.param.id}&cmd=getProfile`)
       // .then(res => JSON.parse(res))
       .then((res) => res.json())
       .then((json) => {
-        console.log(json);
         this.setState({
           isLoaded: true,
           items: json,
@@ -35,10 +33,8 @@ class Profile extends Component {
   }
 
   render() {
-    console.log('Params: '+ JSON.stringify(this.state.param))
     var { isLoaded, items } = this.state;
     if (!isLoaded) {
-      console.log(items);
 
       return(
         <>
@@ -62,9 +58,7 @@ class Profile extends Component {
         </>
       )
     }else if (isLoaded) {
-      // console.log(users);
 
-      console.log(items);
       return (
         <div>
           <Header />
@@ -81,7 +75,7 @@ class Profile extends Component {
                         </div>
                         {/* <div className="viewPhoto">
                           {" "}
-                          <a href="javascript:void(0)">View Photos</a>{" "}
+                          <a href="//#">View Photos</a>{" "}
                         </div> */}
                       </div>
                     </div>
@@ -126,7 +120,7 @@ class Profile extends Component {
                           </div>
                           <div className="reviews">
                             {" "}
-                            <a href="javascript:void(0)">123 Reviews</a>{" "}
+                            <a href="//#">123 Reviews</a>{" "}
                           </div>
                         </div>
                       </div>
@@ -180,35 +174,35 @@ class Profile extends Component {
                       <ul>
                         <li>
                           {" "}
-                          <a href="javascript:void(0)"></a>{" "}
+                          <a href="//#"></a>{" "}
                         </li>
                         <li>
                           {" "}
-                          <a href="javascript:void(0)"></a>{" "}
+                          <a href="//#"></a>{" "}
                         </li>
                         <li>
                           {" "}
-                          <a href="javascript:void(0)"></a>{" "}
+                          <a href="//#"></a>{" "}
                         </li>
                         <li>
                           {" "}
-                          <a href="javascript:void(0)"></a>{" "}
+                          <a href="//#"></a>{" "}
                         </li>
                         <li>
                           {" "}
-                          <a href="javascript:void(0)"></a>{" "}
+                          <a href="//#"></a>{" "}
                         </li>
                         <li>
                           {" "}
-                          <a href="javascript:void(0)"></a>{" "}
+                          <a href="//#"></a>{" "}
                         </li>
                         <li>
                           {" "}
-                          <a href="javascript:void(0)"></a>{" "}
+                          <a href="//#"></a>{" "}
                         </li>
                         <li>
                           {" "}
-                          <a href="javascript:void(0)"></a>{" "}
+                          <a href="//#"></a>{" "}
                         </li>
                       </ul>
                     </div>
@@ -268,12 +262,12 @@ class Profile extends Component {
                       {/* <!-- Nav tabs --> */}
                       <ul className="nav">
                         <li className="active">
-                          <a data-toggle="pill" href="#patient">
+                          <a data-toggle="pill" href="/#patient">
                             Patient Reviews (123)
                           </a>
                         </li>
                         <li>
-                          <a data-toggle="pill" href="#recomended">
+                          <a data-toggle="pill" href="/#recomended">
                             Recommendations
                           </a>
                         </li>
@@ -525,7 +519,7 @@ class Profile extends Component {
                           <div className="rating-footer">
                             <div className="back-top">
                               {" "}
-                              <a href="#rating">
+                              <a href="/#rating">
                                 <p>
                                   <i
                                     className="fa fa-angle-up"
@@ -536,7 +530,7 @@ class Profile extends Component {
                               </a>{" "}
                             </div>
                             <a
-                              href="javascript:void(0)"
+                              href="//#"
                               className="read-more-rating"
                             >
                               Read more Reviews
@@ -554,7 +548,7 @@ class Profile extends Component {
                                   available on Zocdoc within 1 week. You can see
                                   Dr. Sanghi's earliest availability on Zocdoc
                                   and{" "}
-                                  <a href="#">Make an appointment online.</a>
+                                  <a href="/#">Make an appointment online.</a>
                                 </p>
                               </div>
                               <div className="question">
@@ -565,7 +559,7 @@ class Profile extends Component {
                                   Dr. Pramod Sanghi generally accepts new
                                   patients on Zocdoc. You can see Dr. Reich's
                                   earliest availability on Zocdoc and{" "}
-                                  <a href="#">
+                                  <a href="/#">
                                     Schedule an appointment online.
                                   </a>
                                 </p>
@@ -575,7 +569,7 @@ class Profile extends Component {
                                   Does Dr. Jordan reich accept my insurance?
                                 </h2>
                                 <p>
-                                  <a href="#">Choose your insurance plan</a> to
+                                  <a href="/#">Choose your insurance plan</a> to
                                   verify if Dr. Jordan Reich is in-network.
                                 </p>
                               </div>
@@ -586,7 +580,7 @@ class Profile extends Component {
                                 </h2>
                                 <p>
                                   Yes, you can{" "}
-                                  <a href="#">Make an appointment online.</a>{" "}
+                                  <a href="/#">Make an appointment online.</a>{" "}
                                   with Dr. Reich using Zocdoc. It’s simple,
                                   secure, and free.
                                 </p>
@@ -596,7 +590,7 @@ class Profile extends Component {
                           <div className="rating-footer">
                             <div className="back-top">
                               {" "}
-                              <a href="#faq">
+                              <a href="/#faq">
                                 <p>
                                   <i
                                     className="fa fa-angle-up"
@@ -607,7 +601,7 @@ class Profile extends Component {
                               </a>{" "}
                             </div>
                             <a
-                              href="javascript:void(0)"
+                              href="//#"
                               className="read-more-rating"
                             >
                               Read more Reviews
@@ -663,90 +657,90 @@ class Profile extends Component {
                       <ul className="mon coman-ul">
                         <p>Mon</p>
                         <li>
-                          <a href="javascript:void(0)" className="active">
+                          <a href="//#" className="active">
                             9.00 am
                           </a>
                         </li>
                         <li>
-                          <a href="javascript:void(0)">10.00 am</a>
+                          <a href="//#">10.00 am</a>
                         </li>
                         <li>
-                          <a href="javascript:void(0)">1.00 pm</a>
+                          <a href="//#">1.00 pm</a>
                         </li>
                         <li>
-                          <a href="javascript:void(0)">2.00 pm</a>
+                          <a href="//#">2.00 pm</a>
                         </li>
                       </ul>
                       <ul className="tue coman-ul">
                         <p>Tue</p>
                         <li>
-                          <a href="javascript:void(0)">9.00 am</a>
+                          <a href="//#">9.00 am</a>
                         </li>
                         <li>
-                          <a href="javascript:void(0)">10.00 am</a>
+                          <a href="//#">10.00 am</a>
                         </li>
                         <li>
-                          <a href="javascript:void(0)">1.00 pm</a>
+                          <a href="//#">1.00 pm</a>
                         </li>
                         <li>
-                          <a href="javascript:void(0)">2.00 pm</a>
+                          <a href="//#">2.00 pm</a>
                         </li>
                       </ul>
                       <ul className="wed coman-ul">
                         <p>Wed</p>
                         <li>
-                          <a href="javascript:void(0)">9.00 am</a>
+                          <a href="//#">9.00 am</a>
                         </li>
                         <li>
-                          <a href="javascript:void(0)">10.00 am</a>
+                          <a href="//#">10.00 am</a>
                         </li>
                         <li>
-                          <a href="javascript:void(0)">1.00 pm</a>
+                          <a href="//#">1.00 pm</a>
                         </li>
                         <li>
-                          <a href="javascript:void(0)">2.00 pm</a>
+                          <a href="//#">2.00 pm</a>
                         </li>
                       </ul>
                       <ul className="ted coman-ul">
                         <p>Thu</p>
                         <li>
-                          <a href="javascript:void(0)">9.00 am</a>
+                          <a href="//#">9.00 am</a>
                         </li>
                         <li>
-                          <a href="javascript:void(0)">10.00 am</a>
+                          <a href="//#">10.00 am</a>
                         </li>
                         <li>
-                          <a href="javascript:void(0)">1.00 pm</a>
+                          <a href="//#">1.00 pm</a>
                         </li>
                         <li>
-                          <a href="javascript:void(0)">2.00 pm</a>
+                          <a href="//#">2.00 pm</a>
                         </li>
                       </ul>
                       <ul className="fri coman-ul">
                         <p>Fri</p>
                         <li>
-                          <a href="javascript:void(0)">9.00 am</a>
+                          <a href="//#">9.00 am</a>
                         </li>
                         <li>
-                          <a href="javascript:void(0)">10.00 am</a>
+                          <a href="//#">10.00 am</a>
                         </li>
                         <li>
-                          <a href="javascript:void(0)">1.00 pm</a>
+                          <a href="//#">1.00 pm</a>
                         </li>
                         <li>
-                          <a href="javascript:void(0)">2.00 pm</a>
+                          <a href="//#">2.00 pm</a>
                         </li>
                       </ul>
                     </div>
                     <div className="btn-group">
                       <a
-                        href="javascript:void(0)"
+                        href="//#"
                         className="btn-bg profile-btn color-white"
                       >
                         Appointment
                       </a>
                       <a
-                        href="javascript:void(0)"
+                        href="//#"
                         className="bg-gray video-btn color-light-gray"
                       >
                         Video Consult
@@ -762,7 +756,7 @@ class Profile extends Component {
               <div className="row">
                 <div className="">
                   {" "}
-                  <a href="javascript:void(0)">
+                  <a href="//#">
                     {" "}
                     <span className="icon-chatbot">
                       <span className="path1"></span>

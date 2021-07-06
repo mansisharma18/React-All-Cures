@@ -3,10 +3,6 @@ import OwlCarousel from "react-owl-carousel";
 import "owl.carousel/dist/assets/owl.carousel.css";
 import "owl.carousel/dist/assets/owl.theme.default.css";
 import { Link } from 'react-router-dom';
-
-import Special1 from "../../assets/img/special-1.jpg";
-import Special2 from "../../assets/img/special-2.jpg";
-import Special3 from "../../assets/img/special-3.jpg";
 import "@fortawesome/free-solid-svg-icons";
 import "@fortawesome/fontawesome-svg-core"
 // import carouselItem from './carouselItem'
@@ -36,7 +32,6 @@ export default class Carousel2 extends Component {
       fetch(`/SearchActionController?cmd=getResults&city=jammu&doctors=&Latitude=&Longitude=`)
         .then(res => res.json())
         .then(json => {
-          console.log(json.map.DoctorDetails.myArrayList);
           this.setState({
             isLoaded: true,
             items: json.map.DoctorDetails.myArrayList,
@@ -47,11 +42,9 @@ export default class Carousel2 extends Component {
     render() {
       var { isLoaded,items } = this.state;
       if(!isLoaded) {
-        console.log("Itemsssss: "+ items);
         return <div>Loading...</div>;
       }
       else if(isLoaded){
-         console.log("Itemsssss: "+ items);
         return(
          <OwlCarousel {...options} nav="true" className="owl-theme" id="specialists" items={4} margin={10}>
          {items.map((i) => (

@@ -23,32 +23,32 @@ class Footer extends Component {
                      <h1>Top Specialties</h1>
                      <ul>
                         <li>
-                           <a href="javascript:void(0)"> Primary Care Doctor</a>
+                           <a href="/#"> Primary Care Doctor</a>
                         </li>
                         <li>
-                           <a href="javascript:void(0)">Dermatologist</a>
+                           <a href="/#">Dermatologist</a>
                         </li>
                         <li>
-                           <a href="javascript:void(0)">OB-GYN Dentist </a>
+                           <a href="/#">OB-GYN Dentist </a>
                         </li>
                         <li>
-                           <a href="javascript:void(0)">Psychiatrist</a>
+                           <a href="/#">Psychiatrist</a>
                         </li>
                         <li>
-                           <a href="javascript:void(0)">Ear, Nose & Throat Doctor</a>
+                           <a href="/#">Ear, Nose & Throat Doctor</a>
                         </li>
                         <li>
-                           <a href="javascript:void(0)">Podiatrist</a>
+                           <a href="/#">Podiatrist</a>
                         </li>
                         <li>
-                           <a href="javascript:void(0)">Urologist</a>
+                           <a href="/#">Urologist</a>
                         </li>
                         <li>
-                           <a href="javascript:void(0)">Gastroenterologist</a>
+                           <a href="/#">Gastroenterologist</a>
                         </li>
                         
                         <li>
-                           <a href="javascript:void(0)"> View all</a>
+                           <a href="/#"> View all</a>
                         </li>
                      </ul>
                   </div>
@@ -58,25 +58,25 @@ class Footer extends Component {
                      <h1>Discover</h1>
                      <ul>
                         <li>
-                           <a href="javascript:void(0)">The Paper Gown</a>
+                           <a href="/#">The Paper Gown</a>
                         </li>
                         <li>
-                           <a href="javascript:void(0)">Stories for and about patients</a>
+                           <a href="/#">Stories for and about patients</a>
                         </li>
                         <li>
-                           <a href="javascript:void(0)">The Script</a>
+                           <a href="/#">The Script</a>
                         </li>
                         <li>
-                           <a href="javascript:void(0)">Insights for doctors</a>
+                           <a href="/#">Insights for doctors</a>
                         </li>
                         <li>
-                           <a href="javascript:void(0)">Community Standards </a>
+                           <a href="/#">Community Standards </a>
                         </li>
                         <li>
-                           <a href="javascript:void(0)">Data and privacy </a>
+                           <a href="/#">Data and privacy </a>
                         </li>
                         <li>
-                           <a href="javascript:void(0)">Verified reviews</a>
+                           <a href="/#">Verified reviews</a>
                         </li>
                      </ul>
                   </div>
@@ -87,8 +87,8 @@ class Footer extends Component {
                      <p> List your practice on Zocdoc Become an API partner</p>
                      <div class="helth-app">
                         <h2>Get the Digi Healthcare App</h2>
-                        <a href="javascript:void(0)" class="appBtn">App Store</a>
-                        <a href="javascript:void(0)" class="appBtn">Google Play</a>
+                        <a href="/#" class="appBtn">App Store</a>
+                        <a href="/#" class="appBtn">Google Play</a>
                      </div>
                   </div>
                </div>
@@ -102,8 +102,8 @@ class Footer extends Component {
             <div class="row">
                <div class="col-md-4 col-sm-4 col-sx-12">
                   <div class="logo">
-                     <a href="javascript:void(0)">
-                        <img src={Heart} /><span>All Cures</span>
+                     <a href="/#">
+                        <img src={Heart} alt="All Cures Logo" /><span>All Cures</span>
                     </a>
                   </div>
                </div>
@@ -116,36 +116,36 @@ class Footer extends Component {
                   <div class="socia-media-footer">
                      <ul>
                         <li>
-                           <a href="">
+                           <a href="/#">
                               <span>
-                                 <img src={Facebook} height="30px" width="30px"></img>
+                                 <img src={Facebook} alt="Facebook Link" height="30px" width="30px"></img>
                               </span> 
                               <span class="path1"></span>
                               <span class="path2"></span>
                            </a>
                         </li>
                         <li>
-                           <a href="">
+                           <a href="/#">
                               <span>
-                                 <img src={Instagram} height="30px" width="30px"></img>
+                                 <img src={Instagram} alt="Instagram Link" height="30px" width="30px"></img>
                               </span> 
                               <span class="path1"></span>
                               <span class="path2"></span>
                            </a>
                         </li>
                         <li>
-                           <a href="">
+                           <a href="/#">
                               <span>
-                                 <img src={Linkedin} height="30px" width="30px"></img>
+                                 <img src={Linkedin} alt="LinkedIn Link" height="30px" width="30px"></img>
                               </span> 
                               <span class="path1"></span>
                               <span class="path2"></span>
                            </a>
                         </li>
                         <li>
-                        <a href="">
+                        <a href="/#">
                               <span>
-                                 <img src={Twitter} height="30px" width="30px"></img>
+                                 <img src={Twitter} alt="Twitter Link" height="30px" width="30px"></img>
                               </span> 
                               <span class="path1"></span>
                               <span class="path2"></span>
@@ -154,7 +154,7 @@ class Footer extends Component {
                      </ul>
                   </div>
                </div>
-               <a href="#" id="scroll"style={{display: "block"}} >
+               <a href="/#" id="scroll"style={{display: "block"}} >
                    <span></span>
                 </a>
              

@@ -48,7 +48,6 @@ import { Link } from "react-router-dom";
            this.setState ({
               users: response.data
            })
-           // console.log("userssss"+ users)
          }
          loadUsers();
      //  }
@@ -58,7 +57,6 @@ import { Link } from "react-router-dom";
            this.setState ({
               doctor: response.data
            })
-           console.log("doctorsssssssssssssss", this.state.doctor)
          }
          loaddoctor();
       }
@@ -77,8 +75,6 @@ import { Link } from "react-router-dom";
             return user.Cityname.match(regex)
           })
         }
-        console.log('users'+this.state.users)
-        console.log('matches', matches)
         this.setState({
            texts: text,
            suggestions: matches,
@@ -101,8 +97,6 @@ import { Link } from "react-router-dom";
           return user.match(regex)
         })
       }
-      //console.log('doctor'+this.state.doctor)
-      //console.log('matches', matches)
       this.setState({
          texts: text,
          suggestionsDoc: matches,
@@ -113,8 +107,6 @@ import { Link } from "react-router-dom";
 
     onModalSubmit = (event) => {
         event.preventDefault(event);
-        console.log(event.target.name.value);
-        console.log(event.target.email.value);
     };
 
     handleChange = e => 
@@ -127,18 +119,11 @@ import { Link } from "react-router-dom";
                method: "POST"
             });
               const data = await res.text();
-              console.log("Logout: ", data)
               setTimeout(() => {
                  window.location.reload()
               }, 1000);
          }
     render() {
-        // console.log(this.state.history);
-    //     const params = new URLSearchParams(this.props.location);
-
-    // console.log('jddowbolbwolecnloceb', params.entries)
-        // console.log('Match params: ', this.state.param)
-        console.log('Header Urllll', this.props.url)
         return(
             <div className="profilePage">
                 <div className="comman-pg-header">
@@ -148,7 +133,7 @@ import { Link } from "react-router-dom";
                         <div className="header" style={{width:"100%"}}>
                         <div className="logo"> 
                             <Link to='/home'>
-                                <img src={Heart}/>
+                                <img src={Heart} alt="All Cures Logo"/>
                                 <span>All Cures</span>
                             </Link>
                         </div>

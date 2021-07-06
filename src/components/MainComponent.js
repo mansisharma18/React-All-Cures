@@ -1,6 +1,6 @@
-import React, { Component } from "react";
+import React from "react";
 import Cookies from 'js-cookie';
-import {BrowserRouter,Router, Switch, Route, Redirect, useLocation } from "react-router-dom";
+import { BrowserRouter, Switch, Route, Redirect } from "react-router-dom";
 
 import Home from "./LandingPage/Home";
 import Profile from "./Profile/Profile";
@@ -11,18 +11,10 @@ import SearchName from './Search/SearchName';
 // import Modal from './Modal';
 import AuthApi from './AuthApi'
 import Disease from "./Disease/Disease";
-import Test from "./Article/test";
+import Article from "./Article/Article.js";
 import Dashboard from "./Dashboard/Dashboard.js";
 import LoginPage from "./login";
 import SignIn from "./Article/SignIn";
-// import { createBrowserHistory } from "history";
-// import Modal from './Modal1/Modal.js';
-// import TestAjax from "./Test/TestAjax"
-// import Sibling1 from "./Test/TestPC"
-// import LoginForm from './loginForm'
-
-// import Login from './login/login'
-// import createBrowserHistory from './history';
 
 function Main(props) {
   // render() {
@@ -33,22 +25,13 @@ function Main(props) {
       setAuth(true);
     }
   }
-  // const usePathname = () => {
-  //   const location = useLocation();
-  //   console.log('Locationnnnnnnnnnnnnnnnnnn'+location.pathname);
-  // }
-  // usePathname();
-  // const location = useLocation;
-  // console.log('Locationsjnsakjkjbcjasbncojancosancosncosnolcsnnnnnnnnnn',location);
-  // console.log('LOCATIOnnnnnnnnnnnnnnnnnnnnnnnkjabdjabj',props)
   const url = props.url;
   React.useEffect(() => {
     readCookie();
   }, [])
   // const history = createBrowserHistory;
 
-  console.log('PROPSSSSSSSSSSSSSS: ')
-  const Auth = React.useContext(AuthApi)
+  // const Auth = React.useContext(AuthApi)
 
     return (
       <div>
@@ -65,19 +48,12 @@ function Main(props) {
   // }
 }
 
-function useQuery() {
-  return new URLSearchParams(useLocation().search);
-}
-
 const Routes = (props) => {
-  // console.log('MATCHHHHHHHHHHHHHHHHHHH ', {match})  
-  let query = useQuery();
-  console.log('Rouuutttessssssssssssssssssssssssss', props.url)
+  // let query = useQuery();
   const Auth = React.useContext(AuthApi)
   
-  const location = useLocation();
-  const currentPath = location.pathname;
-  console.log('Locationnnnnnnnnnnnnnnnnnn'+location.pathname);
+  // const location = useLocation();
+  // const currentPath = location.pathname;
   return (
     <>
     <Switch>
@@ -97,7 +73,7 @@ const Routes = (props) => {
           <Route path="/search/:city/:name" component={Search} />
           {/* <Route path="/search/:city/:name" component={Search} /> */}
 
-          <Route path="/article" auth={Auth.auth} component={Test} />
+          <Route path="/article" auth={Auth.auth} component={Article} />
           <Route exact path="/dashboard" component={Dashboard} />
           <ProtectedRoute exact path="/sign" component={SignIn} />
           {/* <Route */}
@@ -115,7 +91,6 @@ const Routes = (props) => {
 }
 
 const ProtectedRoute = ({auth, component:Component, ...rest}) => {
-  console.log(auth)
     return(
       <Route
       {...rest}
@@ -145,20 +120,5 @@ const ProtectedLogin = ({auth, component:Component, ...rest}) => {
       />
     )
 }
-
-// function Child({ login, url }) {
-//   return (
-//     <div>
-//       {login ? (
-//           (
-//             <Redirect to={{pathname:url}}/>
-//           )
-//         // console.log(`The name in the query string is &quot;${login}`)
-//       ) : (
-//         console.log('There is no name in the query string')
-//       )}
-//     </div>
-//   );
-// }
 
 export default Main;

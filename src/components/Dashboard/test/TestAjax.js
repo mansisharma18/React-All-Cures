@@ -14,7 +14,6 @@ class TestAjax extends Component {
       // .then(res => JSON.parse(res))
       .then((res) => res.json())
       .then((json) => {
-        console.log(json);
         this.setState({
           isLoaded: true,
           items: json,
@@ -25,13 +24,9 @@ class TestAjax extends Component {
   render() {
     var { isLoaded, items } = this.state;
     if (!isLoaded) {
-      console.log(items);
 
       return <div>Loading...</div>;
     } else if (isLoaded) {
-      // console.log(users);
-
-      console.log(items);
       // return <TestAjax {...this.props} {...this.state} />;
 
       return (

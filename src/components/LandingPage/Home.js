@@ -37,16 +37,6 @@ class Home extends Component {
         }
       };
   }
-//   useEffect(() => {
-//    const loadUsers = async () => {
-//      const response = await axios.get('/city/all');
-//      setUsers(response.data)
-//      // console.log("userssss"+ users)
-//    }
-//    loadUsers();
-
-//  }, [])
-
 
  componentWillMount(){
    const loadUsers = async () => {
@@ -54,17 +44,14 @@ class Home extends Component {
       this.setState ({
          users: response.data
       })
-      // console.log("userssss"+ users)
     }
     loadUsers();
-//  }
-//  componentDidMount(){
+
    const loaddoctor = async () => {
       const response = await axios.get('/IntegratedActionController');
       this.setState ({
          doctor: response.data
       })
-      console.log("doctorsssssssssssssss", this.state.doctor)
     }
     loaddoctor();
  }
@@ -84,9 +71,7 @@ class Home extends Component {
 
  onChangeHandler = (e, text) => {
 
-   const testVal = parseInt(e.target.value)
-   // console.log(Number.isInteger(testVal));
-   
+   const testVal = parseInt(e.target.value)   
 
    let matches = []
    if (text.length > 0) {
@@ -97,12 +82,10 @@ class Home extends Component {
    }
    if (Number.isInteger(testVal)) {
       matches = this.state.users.filter(user => {
-        const regex = new RegExp(`${testVal}`, "gi");
+      //   const regex = new RegExp(`${testVal}`, "gi");
         return user.Pincode.match(testVal)
       })
     }
-   // console.log('users'+this.state.users)
-   // console.log('matches', matches)
    this.setState({
       texts: text,
       suggestions: matches,
@@ -126,8 +109,6 @@ onChangeHandlerdoctor = (e, text) => {
      return user.match(regex)
    })
  }
- //console.log('doctor'+this.state.doctor)
- //console.log('matches', matches)
  this.setState({
     texts: text,
     suggestionsDoc: matches,
@@ -146,7 +127,6 @@ onChangeHandlerdoctor = (e, text) => {
          method: "POST"
       });
         const data = await res.text();
-        console.log("Logout: ", data)
         setTimeout(() => {
            window.location.reload()
         }, 1000);
@@ -154,7 +134,6 @@ onChangeHandlerdoctor = (e, text) => {
 
 
    render() {
-    console.log('jddowbolbwolecnloceb', this.props.match.url)
       
       return(
          <div>
@@ -166,7 +145,7 @@ onChangeHandlerdoctor = (e, text) => {
                            <div className="header" style={{width:"100%"}}>
                               <div className="logo">
                                  <Link to='/home'>
-                                    <img src={Heart}/>
+                                    <img src={Heart} alt="All Cures logo"/>
                                     <span>All Cures</span>
                                  </Link>     
                               </div>
@@ -214,7 +193,6 @@ onChangeHandlerdoctor = (e, text) => {
                                  onChange={e => {
                                     this.onChangeHandler(e, e.target.value)
                                     if(e.target.value){
-                                       console.log(e.target.value);
                                        this.setState({
                                           getPincode: parseInt(e.target.value)
                                        })
@@ -350,7 +328,7 @@ onChangeHandlerdoctor = (e, text) => {
                <div className="partnerBG">
                   <h2>Be our Partners and <br/> Expand your Client base</h2>
                   <div className="learnBtn">
-                     <Link href="javascript:void(0)" className="btn-bg nearmoreBtn">Learn More</Link>
+                     <Link href="/#" className="btn-bg nearmoreBtn">Learn More</Link>
                   </div>
                </div>
             </div>
@@ -380,8 +358,8 @@ onChangeHandlerdoctor = (e, text) => {
                            <img src={Doct} alt="doct"/>
                         </div>
                         <div className="btn-Gropu">
-                           <a href="javascript:void(0)" className="appBTN">App Store</a>
-                           <a href="javascript:void(0)" className="appBTN">App Store</a>
+                           <a href="/#" className="appBTN">App Store</a>
+                           <a href="/#" className="appBTN">App Store</a>
                         </div>
                      </div>
                   </div>
@@ -394,7 +372,7 @@ onChangeHandlerdoctor = (e, text) => {
                               <input type="text" name="" className="form-control"/>
                            </div>
                            <div>
-                              <a href="javascript:void(0)" className="subscribeBtn">Subscribe</a>
+                              <a href="/#" className="subscribeBtn">Subscribe</a>
                            </div>
                         </div>
                      </div>

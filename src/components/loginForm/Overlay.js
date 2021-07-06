@@ -1,6 +1,6 @@
 import React from 'react'
 import StyledOverlay, { InnerLogin, InnerSignup } from './styled/StyledOverlay'
-import { STATE_LOG_IN } from './useToggle'
+// import { STATE_LOG_IN } from './useToggle'
 
 const WelcomeOverlay = ({ toggleMode, mode }) => (
   <InnerLogin className="inner">

@@ -2,10 +2,9 @@ import React, { Component } from 'react';
 import Header from '../Header/Header';
 import Footer from '../Footer/Footer'
 
-import {Container, Row, Col, Card, Form, Button, Nav, Navbar, NavDropdown, FormControl, Breadcrumb } from "react-bootstrap";
+import {Container, Row, Col, Form, Button, Nav, Navbar, NavDropdown, FormControl, Breadcrumb } from "react-bootstrap";
 import {Link } from 'react-router-dom'
 import CenterWell from './CenterWell';
-import HeaderAd from './headerAd';
 import Sidebar from "./leftMenu";
 import SidebarRight from "./RightMenu";
 // import CenterWell from './CenterWell'

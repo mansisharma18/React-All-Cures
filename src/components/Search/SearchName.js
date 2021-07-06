@@ -24,11 +24,9 @@ class SearchName extends Component {
   }
     // USE if statement
   componentDidMount() {
-    console.log("Params: "+ JSON.stringify(this.state.param))
       fetch(`/SearchActionController?cmd=getResults&city=&doctors=${this.state.param.name}&Latitude=32.7266&Longitude=74.8570`)
       .then(res => res.json())
       .then(json => {
-        console.log(json.map.DoctorDetails.myArrayList);
         this.setState({
           isLoaded: true,
           items: json.map.DoctorDetails.myArrayList,
@@ -47,11 +45,8 @@ class SearchName extends Component {
 //   /}
 
   render() {
-    console.log("MATCH URL: ", this.props.match.url)
-    console.log('sjfnjnf')
     var { isLoaded,items } = this.state;
       if(!isLoaded) {
-        console.log(items);
         return (
         <>
           <Header url={this.props.match.url}/>
@@ -61,7 +56,7 @@ class SearchName extends Component {
           <Footer/>
         </>  
       );
-      } else if(isLoaded && items.length == 0) {
+      } else if(isLoaded && items.length === 0) {
           if(this.state.param.city){
             return(
               <>
@@ -90,7 +85,6 @@ class SearchName extends Component {
         
       }
       else if(isLoaded){
-        console.log(items);
         return(
           <div>
             <Header url={this.props.match.url}/>
