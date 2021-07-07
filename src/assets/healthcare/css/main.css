@@ -36,6 +36,7 @@ a:hover {
   padding: 0;
   display: flex;
   flex-direction: row;
+  flex-wrap: wrap;
 }
 @media only screen and (max-width: "768px") {
   .mainSearch {
@@ -582,6 +583,8 @@ h6 {
   position: relative;
 }
 
+
+
 .serchlabel h1 {
   font-weight: 700;
   color: #00415e;
@@ -812,13 +815,55 @@ h6 {
   display: flex;
 }
 
+#root {
+  overflow-x: hidden;
+}
+
+@media only screen and (max-width: 600px) {
+
+  #specialists .item,
+#doctor .item {
+  border: 1px solid #c4c4c4;
+  box-sizing: border-box;
+  border-radius: 20px;
+  overflow: hidden;
+  width: 85% !important;
+  height: 264px;
+  position: relative;
+}
+
+  .banner {
+    background-position: 80% 100%;
+    background-repeat: no-repeat;
+  }
+  .appStoreBg {
+    margin-top: 130px !important;
+  }
+
+  .megaSearch {
+    position: relative;
+  }
+
+  .serchlabel  {
+    bottom: 250px !important;
+  }
+
+  .mainSearch {
+    position: absolute !important;
+    top: 0%;
+    z-index: 999999;
+    width: 90%;
+  }
+}
+
+
 #specialists .item,
 #doctor .item {
   border: 1px solid #c4c4c4;
   box-sizing: border-box;
   border-radius: 20px;
   overflow: hidden;
-  width: 264px;
+  width: 100%;
   height: 264px;
   position: relative;
 }
@@ -1255,6 +1300,10 @@ a.appBtn {
 
 .physicians-tab .comman-heading h2 {
   padding: 33px 0;
+}
+
+.tab-content {
+  overflow-x: hidden;
 }
 
 .tab-content-detail {
@@ -2124,6 +2173,10 @@ input {
   height: 30vh;
 }
 
+.item {
+  margin: 1em;
+}
+
 .item-img .fas {
   display: flex;
   justify-content: center;
@@ -2344,4 +2397,18 @@ p.lorem-text {
 .wallpaper-dashboard {
   background: url(".././img/images/wallpaperflare.com_wallpaper\(9\).jpg")
     no-repeat center center/cover;
+}
+
+
+.home__test {
+  background: url(../img/images/o6rbxh0.jpg);
+  background-position: center;
+  background-size: cover;
+  min-height: 100vh;
+  background-repeat: no-repeat;
+}
+
+.logo-img {
+  height: 90px;
+  object-fit: contain;
 }

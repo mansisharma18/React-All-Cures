@@ -15,6 +15,7 @@ import Test from "./Article/test";
 import Dashboard from "./Dashboard/Dashboard.js";
 import LoginPage from "./login";
 import SignIn from "./Article/SignIn";
+import TestHome from './LandingPage/TestHome';
 // import { createBrowserHistory } from "history";
 // import Modal from './Modal1/Modal.js';
 // import TestAjax from "./Test/TestAjax"
@@ -83,6 +84,9 @@ const Routes = (props) => {
     <Switch>
        <Route exact path="/" component={Home} />
        <Route exact path="/disease/:id" component={Disease}/>
+          <Route exact path="/test_home">
+            <TestHome/>
+          </Route>
           <Route exact path="/home" component={Home} />
          {/* <ProtectedRoute path="/profile" auth={Auth.auth} component={Profile} />
           {/* <Route exact path="/login" component={Modal} /> */}

@@ -155,16 +155,14 @@
     padding: 38px 15px i !important;
   }
 
-  .banner {
-    background-position: center center !important;
-  }
+
 
   .serchlabel h1 {
     font-size: 24px !important;
   }
 
   .serchlabel {
-    bottom: 199px !important;
+    bottom: 199px;
   }
 
   .serch-wrap-inner {
