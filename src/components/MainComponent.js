@@ -15,6 +15,7 @@ import Article from "./Article/Article.js";
 import Dashboard from "./Dashboard/Dashboard.js";
 import LoginPage from "./login";
 import SignIn from "./Article/SignIn";
+import Blogpage from "./BlogPage/Blogpage";
 
 function Main(props) {
   // render() {
@@ -58,15 +59,8 @@ const Routes = (props) => {
     <>
     <Switch>
        <Route exact path="/" component={Home} />
-       <Route exact path="/disease/:id" component={Disease}/>
+       <Route exact path="/blogs/:id" component={Disease}/>
           <Route exact path="/home" component={Home} />
-         {/* <ProtectedRoute path="/profile" auth={Auth.auth} component={Profile} />
-          {/* <Route exact path="/login" component={Modal} /> */}
-          {/* <Route exact path="/loginForm" component={LoginForm}/> */}
-          {/* <Route exact path="/search" component={Search} /> */}
-          {/* <Route exact path="/modal" component={Modal} /> */}
-          {/* <Route exact path="/search/:name" search = '?login=true' component={Search} />
-          */}
           <Route exact path="/search/:city" component={Search} /> 
           <Route exact path="/searchName/:name" component={SearchName} /> 
           {/* <Route exact path="/search/:name" component={Search} /> */}
@@ -76,12 +70,8 @@ const Routes = (props) => {
           <Route path="/article" auth={Auth.auth} component={Article} />
           <Route exact path="/dashboard" component={Dashboard} />
           <ProtectedRoute exact path="/sign" component={SignIn} />
-          {/* <Route */}
-      {/* <ProtectedLogin path= '#?login=true' auth={Auth.auth}/> */}
-      {/* <ProtectedRoute path="/profile/:id" auth={Auth.auth} component={Profile} /> */}
+          <Route exact path="/blogs" component={Blogpage}/>
       <Route exact path="/profile/:id" component={Profile} />
-
-      {/* <Route exact path="/TestAjax" component={TestAjax} /> */}
     </Switch>
           <Route path="/" component={LoginPage}/>
           <ProtectedLogin path='?login=true' auth={Auth.auth}/>

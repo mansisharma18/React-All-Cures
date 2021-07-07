@@ -395,7 +395,7 @@ document.getElementById('articlePreview').innerHTML=articleHTML;
                                         onChange={this.handleSave}
                                         onClick={this.focusText}
                                         instanceRef={instance => this.instanceRef = instance}
-                                    />;
+                                    />
                                     </Card.Body>
                                 </Accordion.Collapse>
                                 <Card.Footer>
