@@ -1,6 +1,6 @@
-import React, { Component } from "react";
+import React from "react";
 import Cookies from 'js-cookie';
-import {BrowserRouter,Router, Switch, Route, Redirect, useLocation } from "react-router-dom";
+import { BrowserRouter, Switch, Route, Redirect } from "react-router-dom";
 
 import Home from "./LandingPage/Home";
 import Profile from "./Profile/Profile";
@@ -11,10 +11,11 @@ import SearchName from './Search/SearchName';
 // import Modal from './Modal';
 import AuthApi from './AuthApi'
 import Disease from "./Disease/Disease";
-import Test from "./Article/test";
+import Article from "./Article/Article.js";
 import Dashboard from "./Dashboard/Dashboard.js";
 import LoginPage from "./login";
 import SignIn from "./Article/SignIn";
+<<<<<<< HEAD
 import TestHome from './LandingPage/TestHome';
 // import { createBrowserHistory } from "history";
 // import Modal from './Modal1/Modal.js';
@@ -24,6 +25,9 @@ import TestHome from './LandingPage/TestHome';
 
 // import Login from './login/login'
 // import createBrowserHistory from './history';
+=======
+import Blogpage from "./BlogPage/Blogpage";
+>>>>>>> f4724d4131d5cdbc4d1cab34088d3bc2ef8673ea
 
 function Main(props) {
   // render() {
@@ -34,22 +38,13 @@ function Main(props) {
       setAuth(true);
     }
   }
-  // const usePathname = () => {
-  //   const location = useLocation();
-  //   console.log('Locationnnnnnnnnnnnnnnnnnn'+location.pathname);
-  // }
-  // usePathname();
-  // const location = useLocation;
-  // console.log('Locationsjnsakjkjbcjasbncojancosancosncosnolcsnnnnnnnnnn',location);
-  // console.log('LOCATIOnnnnnnnnnnnnnnnnnnnnnnnkjabdjabj',props)
   const url = props.url;
   React.useEffect(() => {
     readCookie();
   }, [])
   // const history = createBrowserHistory;
 
-  console.log('PROPSSSSSSSSSSSSSS: ')
-  const Auth = React.useContext(AuthApi)
+  // const Auth = React.useContext(AuthApi)
 
     return (
       <div>
@@ -66,50 +61,36 @@ function Main(props) {
   // }
 }
 
-function useQuery() {
-  return new URLSearchParams(useLocation().search);
-}
-
 const Routes = (props) => {
-  // console.log('MATCHHHHHHHHHHHHHHHHHHH ', {match})  
-  let query = useQuery();
-  console.log('Rouuutttessssssssssssssssssssssssss', props.url)
+  // let query = useQuery();
   const Auth = React.useContext(AuthApi)
   
-  const location = useLocation();
-  const currentPath = location.pathname;
-  console.log('Locationnnnnnnnnnnnnnnnnnn'+location.pathname);
+  // const location = useLocation();
+  // const currentPath = location.pathname;
   return (
     <>
     <Switch>
        <Route exact path="/" component={Home} />
+<<<<<<< HEAD
        <Route exact path="/disease/:id" component={Disease}/>
           <Route exact path="/test_home">
             <TestHome/>
           </Route>
+=======
+       <Route exact path="/blogs/:id" component={Disease}/>
+>>>>>>> f4724d4131d5cdbc4d1cab34088d3bc2ef8673ea
           <Route exact path="/home" component={Home} />
-         {/* <ProtectedRoute path="/profile" auth={Auth.auth} component={Profile} />
-          {/* <Route exact path="/login" component={Modal} /> */}
-          {/* <Route exact path="/loginForm" component={LoginForm}/> */}
-          {/* <Route exact path="/search" component={Search} /> */}
-          {/* <Route exact path="/modal" component={Modal} /> */}
-          {/* <Route exact path="/search/:name" search = '?login=true' component={Search} />
-          */}
           <Route exact path="/search/:city" component={Search} /> 
           <Route exact path="/searchName/:name" component={SearchName} /> 
           {/* <Route exact path="/search/:name" component={Search} /> */}
           <Route path="/search/:city/:name" component={Search} />
           {/* <Route path="/search/:city/:name" component={Search} /> */}
 
-          <Route path="/article" auth={Auth.auth} component={Test} />
+          <Route path="/article" auth={Auth.auth} component={Article} />
           <Route exact path="/dashboard" component={Dashboard} />
           <ProtectedRoute exact path="/sign" component={SignIn} />
-          {/* <Route */}
-      {/* <ProtectedLogin path= '#?login=true' auth={Auth.auth}/> */}
-      {/* <ProtectedRoute path="/profile/:id" auth={Auth.auth} component={Profile} /> */}
+          <Route exact path="/blogs" component={Blogpage}/>
       <Route exact path="/profile/:id" component={Profile} />
-
-      {/* <Route exact path="/TestAjax" component={TestAjax} /> */}
     </Switch>
           <Route path="/" component={LoginPage}/>
           <ProtectedLogin path='?login=true' auth={Auth.auth}/>
@@ -119,7 +100,6 @@ const Routes = (props) => {
 }
 
 const ProtectedRoute = ({auth, component:Component, ...rest}) => {
-  console.log(auth)
     return(
       <Route
       {...rest}
@@ -149,20 +129,5 @@ const ProtectedLogin = ({auth, component:Component, ...rest}) => {
       />
     )
 }
-
-// function Child({ login, url }) {
-//   return (
-//     <div>
-//       {login ? (
-//           (
-//             <Redirect to={{pathname:url}}/>
-//           )
-//         // console.log(`The name in the query string is &quot;${login}`)
-//       ) : (
-//         console.log('There is no name in the query string')
-//       )}
-//     </div>
-//   );
-// }
 
 export default Main;

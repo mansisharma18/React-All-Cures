@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom'
-import Special1 from '../../assets/img/special-1.jpg'
+// import Special1 from '../../assets/img/special-1.jpg'
 
 const ProfileTab = ({ docid, name, pSpl, hospital, state, country, acPerm, url, reload}) => (
     <div>

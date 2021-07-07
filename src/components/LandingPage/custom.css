@@ -15,12 +15,17 @@ div .suggestion:hover {
   margin-bottom: 0;
 }
 
+.form-group #doctors {
+  margin-bottom: 0;
+}
+
 .sug {
   position: absolute;
   background-color: white;
 }
 
 .suggestionSearch {
+  /* position: absolute; */
   background-color: white;
   border: 1px solid rgb(136, 212, 212);
   /* border-bottom: 1px solid aqua; */
@@ -30,4 +35,13 @@ div .suggestion:hover {
 .suggestionSearch:hover {
   background-color: #00415e;
   color: #fff;
+}
+
+.suggest {
+  position: absolute;
+  z-index: 2;
+}
+
+.suggestionSearch:nth-child(n + 11) {
+  display: none;
 }

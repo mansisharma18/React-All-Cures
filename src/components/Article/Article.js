@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
-import { Button, Accordion, Card, Container, Form, Alert, variant } from 'react-bootstrap';
+import { Button, Accordion, Card, Container, Form, Alert } from 'react-bootstrap';
 
 import Cookies from 'js-cookie';
 import './article.css'
-import editor from './Index'
 import Carousel from './Carousel'
+import EditorJs from 'react-editor-js';
+import { EDITOR_JS_TOOLS } from './tools'
 
 export default class Test extends Component {
     constructor(props) {
@@ -12,6 +13,8 @@ export default class Test extends Component {
         this.handleLoginClick = this.handleLoginClick.bind(this);
         this.handleLogoutClick = this.handleLogoutClick.bind(this);
         this.handleAuthorClick = this.handleAuthorClick.bind(this);
+        this.instanceRef = React.createRef();
+        this.handleSave = this.handleSave.bind(this)
         // this.submitForm = this.submitForm.bind(this);
         // this.handleClick().bind(this)
         this.state = {
@@ -47,19 +50,121 @@ export default class Test extends Component {
         };
     }
 
-    saveArticle = () => {    
-        editor.save().then((output) => {
-            console.log('Article Data:', output)
-            this.setState({ac: output})
-            console.log("kjaxkajbxkajb",this.state.ac)
+    handleSubmit() {
+        this.setState({ShowSubmitAlert: true});
+    }
 
+    handleAuthorClick() {
+        this.setState({showAuthorAccordian: true});
+    }
 
+    handleAuthorHideClick() {
+        this.setState({showAuthorAccordian: false})
+    }
 
-            let articleHTML = '';
+    handleLoginClick() {
+      this.setState({isLoggedIn: true});
+    }
+  
+    handleLogoutClick() {
+      this.setState({isLoggedIn: false});
+    }
+
+    // ARTICLE FORM SUBMIT
+
+    submitArticleForm = async e => {
+        e.preventDefault();
+        this.setState({ isSubmitting: true });
+
+        const res = await fetch("/content?cmd=createArticle", {
+            method: "POST",
+            body: `title=${this.state.articleValues.title}&language=${this.state.articleValues.language}&friendlyName=${this.state.articleValues.friendlyName}&contentType=${this.state.articleValues.contentType}&disclaimerId=${this.state.articleValues.disclaimerId}&authById=${this.state.articleValues.authById}&copyId=${this.state.articleValues.copyId}&articleStatus=${this.state.articleValues.articleStatus}&winTitle=${this.state.articleValues.winTitle}&articleContent=${JSON.stringify(this.state.ac)}`,
+            headers: {
+            "Content-Type": "application/x-www-form-urlencoded"
+            }
+        });
+        this.setState({ isSubmitting: false });
+        const data = await res.text();
+        !data.hasOwnProperty("error")
+        ? this.setState({ message: data.success })
+        : this.setState({ message: data.error, isError: true });
+
+        this.handleSubmit();
+        setTimeout(() => this.setState({
+            isError: false,
+            message: "",
+            articleValues: { 
+                title: '', 
+                language: '',
+                friendlyName: '',
+                contentType: '',
+            }
+            }), 1600);
+    }
+
+    handleArticleChange = e => 
+        this.setState({
+            articleValues: { ...this.state.articleValues, [e.target.name]: e.target.value }
+        });
+
+          // componentDidMount() {
+          //   this.instanceRef.current.focus() // access editor-js
+          // }
+
+    submitForm = async e => {
+        e.preventDefault();
+        this.setState({ isSubmitting: true });
+
+        const res = await fetch("/author?cmd=createAuthor", {
+            method: "POST",
+            body: `authorFN=${this.state.values.authorFN}&authorMN=${this.state.values.authorMN}&authorLN=${this.state.values.authorLN}&authorTel=${this.state.values.authorTel}&authorStatus=${this.state.values.authorStatus}&authorAddr=${this.state.values.authorAddr}&authorEmail=${this.state.values.authorEmail}`,
+            headers: {
+            "Content-Type": "application/x-www-form-urlencoded"
+            }
+        });
+        this.setState({ isSubmitting: false });
+        const data = await res.text();
+        !data.hasOwnProperty("error")
+        ? this.setState({ message: data.success })
+        : this.setState({ message: data.error, isError: true });
+
+        setTimeout(
+        () =>
+            this.setState({
+            isError: false,
+            message: "",
+            values: { email: "", password: "" }
+            }),
+        1600
+        );
+    };
+
+    handleInputChange = e =>
+    this.setState({
+      values: { ...this.state.values, [e.target.name]: e.target.value }
+    });
+
+    onStatusChange(e) {
+        this.setState({ articleStatus: e.target.value })
+    }
+    onLanguageChange(e) {
+        this.setState({ language: e.target.value })
+    }
+
+    focusText(){
+      this.instanceRef.current.focus();
+    }
+
+    async handleSave() {
+      const savedData = await this.instanceRef.save();
+  
+      this.setState({ac: savedData})
+
+      let articleHTML = '';
 
     // RENDER DIFFERENT TYPES OF DATA
     
-output.blocks.map(obj => {
+savedData.blocks.map(obj => {
 switch (obj.type) {
     case 'paragraph':
     articleHTML += `<div class="ce-block">
@@ -136,8 +241,8 @@ if (obj.data.style === 'unordered') {
     </div>\n`;
 }
 break;
-case 'delimeter':
-articleHTML += `<div class="ce-block ce-block--focused"><div class="ce-block__content"><div class="ce-delimiter cdx-block">***</div></div></div>\n`;
+case 'delimiter':
+articleHTML += `<h1 class="text-center my-2">***</h1>\n`;
 break;
 case 'warning':
     articleHTML+= `<div class="ce-block">
@@ -164,125 +269,15 @@ default:
 return '';
 }
 });
-
-
-// PREVIEW ARTICLE
-
 document.getElementById('articlePreview').innerHTML=articleHTML;
 
-
-        }).catch((error)=>{
-            console.log("Saving Failed", error)
-        });
-    }
-
-    handleSubmit() {
-        this.setState({ShowSubmitAlert: true});
-    }
-
-    handleAuthorClick() {
-        this.setState({showAuthorAccordian: true});
-    }
-
-    handleAuthorHideClick() {
-        this.setState({showAuthorAccordian: false})
-    }
-
-    handleLoginClick() {
-      this.setState({isLoggedIn: true});
-    }
-  
-    handleLogoutClick() {
-      this.setState({isLoggedIn: false});
-    }
-
-    // ARTICLE FORM SUBMIT
-
-    submitArticleForm = async e => {
-        e.preventDefault();
-        console.log(JSON.parse(JSON.stringify(this.state.articleValues)))
-        this.setState({ isSubmitting: true });
-
-        const res = await fetch("/content?cmd=createArticle", {
-            method: "POST",
-            body: `title=${this.state.articleValues.title}&language=${this.state.articleValues.language}&friendlyName=${this.state.articleValues.friendlyName}&contentType=${this.state.articleValues.contentType}&disclaimerId=${this.state.articleValues.disclaimerId}&authById=${this.state.articleValues.authById}&copyId=${this.state.articleValues.copyId}&articleStatus=${this.state.articleValues.articleStatus}&winTitle=${this.state.articleValues.winTitle}&articleContent=${JSON.stringify(this.state.ac)}`,
-            headers: {
-            "Content-Type": "application/x-www-form-urlencoded"
-            }
-        });
-        this.setState({ isSubmitting: false });
-        const data = await res.text();
-        !data.hasOwnProperty("error")
-        ? this.setState({ message: data.success })
-        : this.setState({ message: data.error, isError: true });
-
-        this.handleSubmit();
-        setTimeout(() => this.setState({
-            isError: false,
-            message: "",
-            articleValues: { 
-                title: '', 
-                language: '',
-                friendlyName: '',
-                contentType: '',
-            }
-            }), 1600);
-    }
-
-    handleArticleChange = e => 
-        this.setState({
-            articleValues: { ...this.state.articleValues, [e.target.name]: e.target.value }
-        });
-
-    submitForm = async e => {
-        e.preventDefault();
-        console.log(JSON.parse(JSON.stringify(this.state.values)))
-        this.setState({ isSubmitting: true });
-
-        const res = await fetch("/author?cmd=createAuthor", {
-            method: "POST",
-            body: `authorFN=${this.state.values.authorFN}&authorMN=${this.state.values.authorMN}&authorLN=${this.state.values.authorLN}&authorTel=${this.state.values.authorTel}&authorStatus=${this.state.values.authorStatus}&authorAddr=${this.state.values.authorAddr}&authorEmail=${this.state.values.authorEmail}`,
-            headers: {
-            "Content-Type": "application/x-www-form-urlencoded"
-            }
-        });
-        this.setState({ isSubmitting: false });
-        const data = await res.text();
-        !data.hasOwnProperty("error")
-        ? this.setState({ message: data.success })
-        : this.setState({ message: data.error, isError: true });
-
-        setTimeout(
-        () =>
-            this.setState({
-            isError: false,
-            message: "",
-            values: { email: "", password: "" }
-            }),
-        1600
-        );
-    };
-
-    handleInputChange = e =>
-    this.setState({
-      values: { ...this.state.values, [e.target.name]: e.target.value }
-    });
-
-    onStatusChange(e) {
-        this.setState({ articleStatus: e.target.value })
-    }
-    onLanguageChange(e) {
-        this.setState({ language: e.target.value })
     }
 
     render() {
-        console.log("Article Status:"+ this.state.articleValues.articleStatus)
-        console.log("Article language:"+ this.state.articleValues.language)
-        console.log("Account Session:"+ this.state.acPerm)
         const isLoggedIn = this.state.isLoggedIn;
         const showAuthorAccordian = this.state.showAuthorAccordian;
-        const acPerm = this.state.acPerm;
-        let button;
+        // const acPerm = this.state.acPerm;
+        // let button;
         let showAuthorButton;
 
 
@@ -290,14 +285,13 @@ document.getElementById('articlePreview').innerHTML=articleHTML;
             showAuthorButton = <HideAccordian onClick={this.handleAuthorClick}/>
         } else {
             showAuthorButton = <CreateAccordian className="btn bg-dark" onClick={this.handleAuthorClick}/>
-            console.log(showAuthorButton)
         }
 
-        if (isLoggedIn) {
-            button = <LogoutButton onClick={this.handleLogoutClick} />;
-        } else {
-            button = <LoginButton onClick={this.handleLoginClick} />;
-        }
+        // if (isLoggedIn) {
+        //     button = <LogoutButton onClick={this.handleLogoutClick} />;
+        // } else {
+        //     button = <LoginButton onClick={this.handleLoginClick} />;
+        // }
 
     
     return (
@@ -306,6 +300,7 @@ document.getElementById('articlePreview').innerHTML=articleHTML;
                 <Container>  
                     <Card className="mainCard" >
                         <Card.Header className="mainTitle text-center h3 py-3">ARTICLE</Card.Header>
+
                         <Accordion>
                         <Greeting isLoggedIn={isLoggedIn} />
 
@@ -318,7 +313,7 @@ document.getElementById('articlePreview').innerHTML=articleHTML;
                         </Form>
 
                          {/* Article Details  */}
-                        <authorAccordian/>
+                        {/* <AuthorAccordian/> */}
                         <Form onSubmit = {this.submitArticleForm}>
                         <Card>
                             {/* <Card.Header style={{backgroundColor: "white"}}> */}
@@ -389,42 +384,32 @@ document.getElementById('articlePreview').innerHTML=articleHTML;
                         {/* Editor Accordion  */}
                 
                             <Card>
-                                {/* <Card.Header style={{backgroundColor: "white"}}> */}
                                     <Accordion.Toggle as={Card.Header} variant="link" eventKey="3" className="h5 py-3">
                                     Write Article Here 📝
                                     </Accordion.Toggle>
                                 {/* </Card.Header> */}
                                 <Accordion.Collapse eventKey="3">
                                     <Card.Body>
-                                    <div id="editorjs"></div>
+                                    <EditorJs data=""                                    
+                                        tools={EDITOR_JS_TOOLS}
+                                        onChange={this.handleSave}
+                                        onClick={this.focusText}
+                                        instanceRef={instance => this.instanceRef = instance}
+                                    />
                                     </Card.Body>
                                 </Accordion.Collapse>
                                 <Card.Footer>
-                                    {/* <Form.Group controlId="formBasicCheckbox"> */}
-                                        {/* <Form.Check type="checkbox" label="Check me out" />
-                                    </Form.Group> */}
-
-                                    {/* <submitAlert ShowSubmitAlert={this.state.ShowSubmitAlert} /> */}
-
-                                    <Button onClick={this.saveArticle} variant="primary" className="mr-3">Save & Preview</Button>
-                                    <Button onClick={this.submitArticleForm} variant="secondary">Submit</Button>
+                                    {/* <Button variant="primary" onClick={this.handleSave} className="mr-3">Save & Preview</Button> */}
+                                    <Button onClick={this.submitArticleForm} variant="dark">Submit</Button>
                                 </Card.Footer>
                             </Card>
                             </Form>
                         </Accordion>
                         <Card className="pt-4 pb-4"><div id="articlePreview"></div></Card>
                     </Card>
-                    {/* {button} */}
                 
                 {/* SLIDESHOW */}
-                <div className="slideshow">
-                    {/* <li></li>
-                    <li></li>
-                    <li></li>
-                    <li></li>
-                    <li></li>
-                    <li></li> */}
-                </div>
+                <div className="slideshow"></div>
             </Container>
         </div>
         );
@@ -467,8 +452,6 @@ document.getElementById('articlePreview').innerHTML=articleHTML;
         if(props.acPerm){      // Check if User in session
             return null;        
         }
-        console.log("props acperm:"+props.acPerm)
-        console.log("props showAUthoracc:"+ props.showAuthorButton)
         return(
             <Card>
                 {/* <Card.Header style={{backgroundColor: "#fff"}}> */}
@@ -513,28 +496,11 @@ document.getElementById('articlePreview').innerHTML=articleHTML;
       )
   }
 
-  function LoginButton(props) {
-    return (
-      <button onClick={props.onClick}>
-        Login
-      </button>
-    );
-  }
-  
-  function LogoutButton(props) {
-    return (
-      <button onClick={props.onClick}>
-        Logout
-      </button>
-    );
-  }
-
 // AUTHOR ACCORDIAN
 
 function CreateAuthorAccordian(props) {
     const showAuthorAccordian = props.showAuthorAccordian;
     if(showAuthorAccordian){
-        console.log("STATE:" + JSON.stringify(props.state))
         return (
                 <Card>
                     {/* <Card.Header style={{backgroundColor: "#fff"}}> */}

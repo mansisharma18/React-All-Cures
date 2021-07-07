@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 import React, { Component, useEffect } from 'react';
+=======
+import React from 'react';
+>>>>>>> f4724d4131d5cdbc4d1cab34088d3bc2ef8673ea
 import OwlCarousel from "react-owl-carousel";
 import "owl.carousel/dist/assets/owl.carousel.css";
 import "owl.carousel/dist/assets/owl.theme.default.css";

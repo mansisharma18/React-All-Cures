@@ -237,6 +237,9 @@ dragHandle {
     border-radius: 4px;
     z-index: 2;
   }
+  .sidebar-wrapper {
+    display: none;
+  }
 }
 @media (max-width: 650px) and (max-width: 650px) {
   .ce-toolbar {

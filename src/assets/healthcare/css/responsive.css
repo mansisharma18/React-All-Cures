@@ -390,4 +390,7 @@
     top: -14rem;
     margin: 0 1rem;
   }
+  #sidebar-wrapper {
+    display: none;
+  }
 }

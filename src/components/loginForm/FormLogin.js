@@ -1,9 +1,5 @@
 import React, {useState} from 'react'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import {BrowserRouter,Router, Switch, Route, Redirect } from "react-router-dom";
-import history from '../history'
-
-import SocialButton from './styled/SocialButton'
+import {Redirect } from "react-router-dom";
 import BrandButton from './styled/BrandButton'
 import SlidingForm from './styled/SlidingForm'
 
@@ -15,7 +11,6 @@ const FormLogin = (props) => {
   const [isError, setError] = useState(false);
   const [status, setStatus] = useState("");
   const [buttonClick, setClicked] = useState("");
-  const [reload, setReload] = useState("");
 
   const loginForm = async (e, props) => {
     e.preventDefault();
@@ -49,22 +44,15 @@ const FormLogin = (props) => {
 
   setTimeout( () => console.log('Message ', message ), 1600 );
   setTimeout( () => console.log('Error ', isError ), 1600 );
-
-  // function Success(){
-  //   // setReload(true)
-  //   return(
-  //     <div className="alert alert-primary" role="alert">Success</div>
-  //   )
-  // }
 }
-function Error(){
-  // setReload(true)
-  setTimeout(() => {
-    return(
-      <div className="alert alert-secondary" role="alert">Email or Password incorrect</div>
-    )
-  }, 1000);
-}
+// function Eror(){
+//   // setReload(true)
+//   setTimeout(() => {
+//     return(
+//       <div className="alert alert-secondary" role="alert">Email or Password incorrect</div>
+//     )
+//   }, 1000);
+// }
 // Redirect and Reload after logging in
 
 function Redirec(){
@@ -88,7 +76,7 @@ function Redirec(){
       buttonClick === 1? 
         status === 200 ? 
           Redirec()
-          : Error()
+          : <div className="alert alert-secondary" role="alert">Email or Password incorrect</div>
         : console.log('Button not clicked')
     }
     
@@ -115,7 +103,7 @@ function Redirec(){
 
     </form>
     <p>
-      <a href="#" className="ml-5 pl-2">Forgot your password?</a>
+      <a href="/#" className="ml-5 pl-2">Forgot your password?</a>
     </p>
     {/* <Success/> */}
   </SlidingForm>
