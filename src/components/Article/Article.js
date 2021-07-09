@@ -24,6 +24,7 @@ export default class Test extends Component {
             ac: '',
             showAuthorAccordian: false,
             ShowSubmitAlert: false,
+            ShowErrorAlert: false,
             values: {
                 authorFN: "",
                 authorMN:"",
@@ -52,6 +53,10 @@ export default class Test extends Component {
 
     handleSubmit() {
         this.setState({ShowSubmitAlert: true});
+    }
+
+    handleErrorSubmit(){
+        this.setState({ShowErrorAlert: true});
     }
 
     handleAuthorClick() {
@@ -85,11 +90,15 @@ export default class Test extends Component {
         });
         this.setState({ isSubmitting: false });
         const data = await res.text();
+        console.log('Data', data)
         !data.hasOwnProperty("error")
         ? this.setState({ message: data.success })
         : this.setState({ message: data.error, isError: true });
-
-        this.handleSubmit();
+        if(res.status === 200){
+            this.handleSubmit();
+        } else {
+            this.handleErrorSubmit();
+        }
         setTimeout(() => this.setState({
             isError: false,
             message: "",
@@ -286,13 +295,6 @@ document.getElementById('articlePreview').innerHTML=articleHTML;
         } else {
             showAuthorButton = <CreateAccordian className="btn bg-dark" onClick={this.handleAuthorClick}/>
         }
-
-        // if (isLoggedIn) {
-        //     button = <LogoutButton onClick={this.handleLogoutClick} />;
-        // } else {
-        //     button = <LoginButton onClick={this.handleLoginClick} />;
-        // }
-
     
     return (
         <div>
@@ -326,33 +328,33 @@ document.getElementById('articlePreview').innerHTML=articleHTML;
                                     <Form.Group className="col-md-12 float-left">
                                         <Form.Label>Article Title</Form.Label>
                                         <Form.Control type="text" name="title" value={this.state.values.title}
-                                        onChange={this.handleArticleChange} placeholder="Article Title" />
+                                        onChange={this.handleArticleChange} placeholder="Article Title" required aria-required="true"/>
                                     </Form.Group>
                                     <Form.Group className="col-md-6 float-left">
                                         <Form.Label>Article Display Name</Form.Label>
                                         <Form.Control type="text" name="friendlyName" value={this.state.values.friendlyName}
-                                        onChange={this.handleArticleChange} placeholder="Friendly Name" />
+                                        onChange={this.handleArticleChange} placeholder="Friendly Name" required/>
                                     </Form.Group>
                                     <Form.Group className="col-md-6 float-left">
                                         <Form.Label>Content Type</Form.Label>
                                         <Form.Control type="text" name="contentType" value={this.state.values.contentType}
-                                        onChange={this.handleArticleChange} placeholder="Content Type" />
+                                        onChange={this.handleArticleChange} placeholder="Content Type" required/>
                                     </Form.Group>
                                     <Form.Group className="col-md-6 float-left">
                                         <Form.Label>Disclaimer ID</Form.Label>
-                                        <Form.Control as="select" name="disclaimer" custom onChange={this.handleArticleChange}>
+                                        <Form.Control as="select" name="disclaimer" custom onChange={this.handleArticleChange} required>
                                             <option value="12">Temporary</option>
                                         </Form.Control>
                                     </Form.Group>
                                     <Form.Group className="col-md-6 float-left">
                                         <Form.Label>Copyright ID</Form.Label>
-                                        <Form.Control as="select" name="copyleft" custom onChange={this.handleArticleChange}>
+                                        <Form.Control as="select" name="copyleft" custom onChange={this.handleArticleChange} required>
                                             <option value="11">Temporary</option>
                                         </Form.Control>
                                     </Form.Group>
                                     <Form.Group className="col-md-6 float-left">
                                         <Form.Label>Article Status</Form.Label>
-                                        <Form.Control as="select" name="articleStatus" custom onChange={this.handleArticleChange}>
+                                        <Form.Control as="select" name="articleStatus" custom onChange={this.handleArticleChange} required>
                                             <option value="1">Work in Progress</option>
                                             <option value="2">Review</option>
                                             <option value="3">Publish</option>
@@ -361,7 +363,7 @@ document.getElementById('articlePreview').innerHTML=articleHTML;
                                     
                                     <Form.Group className="col-md-6 float-left">
                                         <Form.Label>Language</Form.Label>
-                                        <Form.Control as="select" name="language" custom onChange={this.handleArticleChange}>
+                                        <Form.Control as="select" name="language" custom onChange={this.handleArticleChange} required>
                                             <option value="1">Hindi</option>
                                             <option value="2">English</option>
                                             <option value="3">Chinese</option>
@@ -369,12 +371,12 @@ document.getElementById('articlePreview').innerHTML=articleHTML;
                                     </Form.Group>
                                     <Form.Group className="col-md-6 float-left">
                                         <Form.Label>Author By ID</Form.Label>
-                                        <Form.Control type="text" name="authById" value={this.state.values.authById}
+                                        <Form.Control required type="text" name="authById" value={this.state.values.authById}
                                         onChange={this.handleArticleChange} placeholder="Author By ID" />
                                     </Form.Group>
                                     <Form.Group className="col-md-6 float-left">
                                         <Form.Label>Win Title</Form.Label>
-                                        <Form.Control type="text" name="winTitle" value={this.state.values.winTitle}
+                                        <Form.Control required type="text" name="winTitle" value={this.state.values.winTitle}
                                         onChange={this.handleArticleChange} placeholder="Win Title" />
                                     </Form.Group>
                                 </Card.Body>
@@ -400,6 +402,18 @@ document.getElementById('articlePreview').innerHTML=articleHTML;
                                 </Accordion.Collapse>
                                 <Card.Footer>
                                     {/* <Button variant="primary" onClick={this.handleSave} className="mr-3">Save & Preview</Button> */}
+                                    {
+                                        this.state.ShowSubmitAlert
+                                            ? <SubmitAlert ShowSubmitAlert={this.state.ShowSubmitAlert}/>
+                                            : console.log('Submit ALert')
+                                    }
+
+                                    {
+                                        this.state.ShowErrorAlert
+                                            ? <SubmitError ShowErrorAlert={this.state.ShowErrorAlert}/>
+                                            : console.log('')
+                                    }
+
                                     <Button onClick={this.submitArticleForm} variant="dark">Submit</Button>
                                 </Card.Footer>
                             </Card>
@@ -546,9 +560,22 @@ function CreateAuthorAccordian(props) {
 
 // SHOW ALERT
 
-function submitAlert(props) {
-    const ShowSubmitAlert = props.ShowSubmitAlert;
-    if(ShowSubmitAlert) {
-        <Alert className="bg-green">Article has been saved successfully!</Alert>
+function SubmitAlert(props) {
+    console.log('Submit ALert', props.ShowSubmitAlert)
+    if(props.ShowSubmitAlert) {
+        return(
+            <Alert className="bg-green">Article has been saved successfully!</Alert>
+        );
+    }
+}
+
+// Show Error Alert
+
+function SubmitError(props) {
+    console.log('Submit ALert', props.ShowErrorAlert)
+    if(props.ShowErrorAlert) {
+        return(
+            <Alert className="bg-red">Some Error occured!</Alert>
+        );
     }
 }
