@@ -106,7 +106,7 @@
   }
 
   .banner {
-    background-position: center center !important;
+    
 
     max-width: 100%;
     min-width: 300px;
@@ -116,9 +116,9 @@
     font-size: 24px !important;
   }
 
-  .serchlabel {
+  /* .serchlabel {
     bottom: 199px !important;
-  }
+  } */
 
   .serch-wrap-inner {
     margin: -179px 15px !important;
@@ -384,9 +384,10 @@
   .dr-detail {
     display: block;
   }
+
   .homeHeader .mainSearch {
     position: relative;
-    top: -10rem;
+    top: -14rem;
     margin: 0 1rem;
   }
   #sidebar-wrapper {

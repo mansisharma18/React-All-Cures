@@ -6,10 +6,38 @@ import "owl.carousel/dist/assets/owl.theme.default.css";
 import ClientA from "../../assets/img/client-a.jpg";
 import ClientB from "../../assets/img/client-b.jpg";
 
+
+const options = {
+   margin: 30,
+   responsiveClass: true,
+   nav: true,
+   dots: true,
+   autoplay: false,
+   smartSpeed: 1000,
+   responsive: {
+       0: {
+           items: 1,
+       },
+       400: {
+           items: 1,
+       },
+       600: {
+           items: 1,
+       },
+       700: {
+           items: 2,
+       },
+       1000: {
+           items: 2,
+
+       }
+   },
+};
+
 export default class CarouselReview extends Component {
     render() {
         return(
-                <OwlCarousel navText=">>" nav="true" className="owl-theme" items={2} loop="true" margin={10} >
+                <OwlCarousel navText=">>" nav="true" className="owl-theme" items={2} loop="true" margin={10} {...options}>
                     <div className="item">
                      <div className="testomonial-info">
                         <div className="client-img">

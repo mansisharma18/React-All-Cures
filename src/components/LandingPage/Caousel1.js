@@ -1,4 +1,8 @@
+<<<<<<< HEAD
+import React, { Component, useEffect } from 'react';
+=======
 import React from 'react';
+>>>>>>> f4724d4131d5cdbc4d1cab34088d3bc2ef8673ea
 import OwlCarousel from "react-owl-carousel";
 import "owl.carousel/dist/assets/owl.carousel.css";
 import "owl.carousel/dist/assets/owl.theme.default.css";
@@ -8,11 +12,44 @@ import Slider3 from "../../assets/img/slider-3.png";
 import Slider4 from "../../assets/img/slider-4.png";
 import Slider5 from "../../assets/img/slider-5.png";
 import Slider6 from "../../assets/img/slider-6.png";
-import { Link } from 'react-router-dom'
+import { Link } from 'react-router-dom';
+
+
+const options = {
+   margin: 30,
+   responsiveClass: true,
+   nav: true,
+   dots: false,
+   autoplay: false,
+   smartSpeed: 1000,
+   responsive: {
+       0: {
+           items: 1,
+       },
+       400: {
+           items: 2,
+       },
+       600: {
+           items: 2,
+       },
+       700: {
+           items: 3,
+       },
+       1000: {
+           items: 5,
+
+       }
+   },
+};
+
 export default function Carousel1(props){
+
+
+
+
         return(
             <div className="tab-content category " style={{maxWidth:"1140px", zIndex: 0}}>
-                  <OwlCarousel className="owl-theme" items={6} loop margin={150} nav>
+                  <OwlCarousel className="owl-theme" items={6} loop margin={150} nav {...options}>
                   <div className="item bg-pink">
                         <Link to={ `/search/${props.city}/ENT` }>
                            <div className="item-img">

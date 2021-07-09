@@ -6,10 +6,37 @@ import { Link } from 'react-router-dom';
 import "@fortawesome/free-solid-svg-icons";
 import "@fortawesome/fontawesome-svg-core"
 // import carouselItem from './carouselItem'
-const options = {
-   navText: ["Prev", ">"],
-   dots: true
+// const options = {
+//    navText: ["Prev", ">"],
+//    dots: true
    
+// };
+
+const options = {
+   margin: 30,
+   responsiveClass: true,
+   nav: true,
+   dots: true,
+   autoplay: false,
+   smartSpeed: 1000,
+   responsive: {
+       0: {
+           items: 2,
+       },
+       400: {
+           items: 2,
+       },
+       600: {
+           items: 2,
+       },
+       700: {
+           items: 3,
+       },
+       1000: {
+           items: 4,
+
+       }
+   },
 };
 export default class Carousel2 extends Component {
    constructor(props){
