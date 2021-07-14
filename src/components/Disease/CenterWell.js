@@ -1,6 +1,6 @@
 import React from 'react';
 
-const CenterWell = ({type, text, title, message, source, embed, caption, alignment, url}) => (
+const CenterWell = ({content, type, text, title, message, source, embed, caption, alignment, url}) => (
     <div>
         {
             {
@@ -42,7 +42,7 @@ const CenterWell = ({type, text, title, message, source, embed, caption, alignme
                                 <i>- {caption}</i>    
                             </div>
                         </div>,
-                'image': <div className="ce-block">
+                'SimpleImage': <div className="ce-block">
                             <div className="ce-block__content">
                                 <div className="cdx-block cdx-simple-image">
                                     <div className="cdx-simple-image__picture">
@@ -53,6 +53,24 @@ const CenterWell = ({type, text, title, message, source, embed, caption, alignme
                                     </div>
                                 </div>
                             </div>
+                        </div>,
+                'table': <div class="container">
+                            <table class="tc-table text-center">
+                                <tbody>
+                                    <tr style={{border: '1px solid #ebebeb'}}>
+                                        <td class="tc-table__cell">
+                                            <div class="tc-table__area">
+                                                <div class="text-center" contenteditable="true">{content[0]}</div>
+                                            </div>
+                                        </td>
+                                        <td class="tc-table__cell">
+                                            <div class="tc-table__area">
+                                                <div class="text-center" contenteditable="true">{content[1]}</div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
                         </div>,
             }[type]
         }

@@ -96,6 +96,7 @@ class Disease extends Component {
               </Breadcrumb>
                 {b.map((i) => (
                   <CenterWell
+                    content = {i.data.content}
                     type = {i.type}
                     text = {i.data.text}
                     title = {i.data.title}

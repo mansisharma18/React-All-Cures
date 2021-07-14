@@ -46,12 +46,12 @@ export default class Test extends Component {
                 title: "",
                 friendlyName: "",
                 contentType: "",
-                disclaimerId : 12,
+                disclaimerId : "",
                 authById: "",
-                copyId: 11,
+                copyId: "",
                 articleStatus: 1,
                 winTitle : "",
-                language : 1,
+                language : "",
                 articleContent : "",
                 country: ''
             },
@@ -195,7 +195,7 @@ export default class Test extends Component {
 
     async handleSave() {
       const savedData = await this.instanceRef.save();
-  
+        console.log('Saved Data: ', savedData)
       this.setState({ac: savedData})
 
       let articleHTML = '';
@@ -213,7 +213,31 @@ switch (obj.type) {
      </div>
     </div>\n`;
     break;
-    case 'image':
+    case 'table':
+        obj.data.content.map((i) => (
+            articleHTML += `
+            <div class="container">
+            <table class="tc-table text-center">
+                            <tbody>
+                                <tr style="border: 1px solid #ebebeb">
+                                    <td class="tc-table__cell">
+                                        <div class="tc-table__area">
+                                            <div class="text-center" contenteditable="true">${i[0]}<br></div>
+                                        </div>
+                                    </td>
+                                    <td class="tc-table__cell">
+                                        <div class="tc-table__area">
+                                            <div class="text-center" contenteditable="true">${i[1]}</div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
+                            </div>
+                            `
+        ))
+        break;
+    case 'simpleImage':
     articleHTML += `<div class="ce-block">
      <div class="ce-block__content">
        <div class="cdx-block cdx-simple-image">
@@ -326,11 +350,9 @@ document.getElementById('articlePreview').innerHTML=articleHTML;
         
         return (
         <>
-          {/* <Header/> */}
             <Container className="mt-5 my-5 loading">
               <h3 className="text-left">Loading...</h3>
             </Container>
-          {/* <Footer/> */}
         </>  
       );
     } else if(isLoaded){
@@ -400,13 +422,13 @@ document.getElementById('articlePreview').innerHTML=articleHTML;
                                     <Form.Group className="col-md-6 float-left">
                                         <Form.Label>Disclaimer ID</Form.Label>
                                         <Form.Control as="select" name="disclaimer" custom onChange={this.handleArticleChange} required>
-                                            {/* <option value="12">Temporary</option> */}
-                                            {this.state.disclaimer.map((i) => (  
+                                            <option value="12">Temporary</option>
+                                            {/* {this.state.disclaimer.map((i) => (  
                                                 <Options
                                                     value={i[0]}
                                                     name={i[1]}
                                                 />
-                                            ))}
+                                            ))} */}
                                         </Form.Control>
                                     </Form.Group>
                                     <Form.Group className="col-md-6 float-left">
