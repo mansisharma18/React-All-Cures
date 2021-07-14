@@ -5,7 +5,8 @@ import Cookies from 'js-cookie';
 import './article.css'
 import Carousel from './Carousel'
 import EditorJs from 'react-editor-js';
-import { EDITOR_JS_TOOLS } from './tools'
+import { EDITOR_JS_TOOLS } from './tools';
+import Options from './Options';
 
 export default class Test extends Component {
     constructor(props) {
@@ -25,6 +26,11 @@ export default class Test extends Component {
             showAuthorAccordian: false,
             ShowSubmitAlert: false,
             ShowErrorAlert: false,
+            language: '',
+            author: '',
+            disclaimer: '',
+            speciality: '',
+            country: '',
             values: {
                 authorFN: "",
                 authorMN:"",
@@ -47,12 +53,14 @@ export default class Test extends Component {
                 winTitle : "",
                 language : 1,
                 articleContent : "",
+                country: ''
             },
         };
     }
 
     handleSubmit() {
         this.setState({ShowSubmitAlert: true});
+        // this.state.articleValues.title = null;
     }
 
     handleErrorSubmit(){
@@ -75,6 +83,31 @@ export default class Test extends Component {
       this.setState({isLoggedIn: false});
     }
 
+    componentDidMount(){
+        Promise.all([
+
+            fetch('/article/all/table/languages').then(res => res.json()),
+            fetch('/article/all/table/author').then(res => res.json()),
+            fetch('/article/all/table/disclaimer').then(res => res.json()),
+            fetch('/article/all/table/specialties').then(res => res.json()),
+            fetch('/article/all/table/countries').then(res => res.json()),
+
+        ]).then(([languageData, authorData, disclaimerData, specialityData, countryData]) => {
+            console.log('Language Data: ',languageData)
+            console.log('Author Data: ',authorData)
+            console.log('Disclaimer Data: ', disclaimerData)
+            console.log('Speciality Data: ', specialityData)
+            this.setState({
+                isLoaded: true,
+                language: languageData,
+                author: authorData,
+                disclaimer: disclaimerData,
+                speciality: specialityData,
+                country: countryData
+            });
+
+        })
+    }
     // ARTICLE FORM SUBMIT
 
     submitArticleForm = async e => {
@@ -115,10 +148,6 @@ export default class Test extends Component {
         this.setState({
             articleValues: { ...this.state.articleValues, [e.target.name]: e.target.value }
         });
-
-          // componentDidMount() {
-          //   this.instanceRef.current.focus() // access editor-js
-          // }
 
     submitForm = async e => {
         e.preventDefault();
@@ -285,17 +314,26 @@ document.getElementById('articlePreview').innerHTML=articleHTML;
     render() {
         const isLoggedIn = this.state.isLoggedIn;
         const showAuthorAccordian = this.state.showAuthorAccordian;
-        // const acPerm = this.state.acPerm;
-        // let button;
         let showAuthorButton;
-
-
         if(showAuthorAccordian) {
             showAuthorButton = <HideAccordian onClick={this.handleAuthorClick}/>
         } else {
             showAuthorButton = <CreateAccordian className="btn bg-dark" onClick={this.handleAuthorClick}/>
         }
-    
+        var { isLoaded,language } = this.state;
+        if(!isLoaded) {
+        console.log(language);
+        
+        return (
+        <>
+          {/* <Header/> */}
+            <Container className="mt-5 my-5 loading">
+              <h3 className="text-left">Loading...</h3>
+            </Container>
+          {/* <Footer/> */}
+        </>  
+      );
+    } else if(isLoaded){
     return (
         <div>
             <Carousel/>
@@ -318,10 +356,9 @@ document.getElementById('articlePreview').innerHTML=articleHTML;
                         {/* <AuthorAccordian/> */}
                         <Form onSubmit = {this.submitArticleForm}>
                         <Card>
-                            {/* <Card.Header style={{backgroundColor: "white"}}> */}
-                                <Accordion.Toggle as={Card.Header} variant="link" eventKey="2" className="bg-black h5 py-3">
+                            <Accordion.Toggle as={Card.Header} variant="link" eventKey="2" className="bg-black h5 py-3">
                                 Article Details
-                                </Accordion.Toggle>
+                            </Accordion.Toggle>
                             {/* </Card.Header> */}
                             <Accordion.Collapse eventKey="2">
                                 <Card.Body>
@@ -330,20 +367,46 @@ document.getElementById('articlePreview').innerHTML=articleHTML;
                                         <Form.Control type="text" name="title" value={this.state.values.title}
                                         onChange={this.handleArticleChange} placeholder="Article Title" required aria-required="true"/>
                                     </Form.Group>
-                                    <Form.Group className="col-md-6 float-left">
+                                    <Form.Group className="col-md-12 float-left">
                                         <Form.Label>Article Display Name</Form.Label>
                                         <Form.Control type="text" name="friendlyName" value={this.state.values.friendlyName}
                                         onChange={this.handleArticleChange} placeholder="Friendly Name" required/>
                                     </Form.Group>
                                     <Form.Group className="col-md-6 float-left">
                                         <Form.Label>Content Type</Form.Label>
-                                        <Form.Control type="text" name="contentType" value={this.state.values.contentType}
-                                        onChange={this.handleArticleChange} placeholder="Content Type" required/>
+                                        <Form.Control as="select" name="contentType" custom value={this.state.articleValues.contentType} 
+                                        onChange={this.handleArticleChange} placeholder="Content Type" required>
+                                            <option value="1">Disease</option>
+                                            <option value="2">Treatment</option>
+                                            <option value="3">Specialities</option>
+                                        </Form.Control>
                                     </Form.Group>
+                                    {
+                                        this.state.articleValues.contentType != 2
+                                        ?   console.log('Content Type')
+                                            : <Form.Group className="col-md-6 float-left">
+                                            <Form.Label>Country</Form.Label>
+                                            <Form.Control as="select" name="country" custom value={this.state.values.country} 
+                                            onChange={this.handleArticleChange} placeholder="Country" required>
+                                                {this.state.country.map((i) => (  
+                                                    <Options
+                                                        value={i[0]}
+                                                        name={i[1]}
+                                                    />
+                                                ))}
+                                            </Form.Control>
+                                        </Form.Group>
+                                    }
                                     <Form.Group className="col-md-6 float-left">
                                         <Form.Label>Disclaimer ID</Form.Label>
                                         <Form.Control as="select" name="disclaimer" custom onChange={this.handleArticleChange} required>
-                                            <option value="12">Temporary</option>
+                                            {/* <option value="12">Temporary</option> */}
+                                            {this.state.disclaimer.map((i) => (  
+                                                <Options
+                                                    value={i[0]}
+                                                    name={i[1]}
+                                                />
+                                            ))}
                                         </Form.Control>
                                     </Form.Group>
                                     <Form.Group className="col-md-6 float-left">
@@ -364,15 +427,36 @@ document.getElementById('articlePreview').innerHTML=articleHTML;
                                     <Form.Group className="col-md-6 float-left">
                                         <Form.Label>Language</Form.Label>
                                         <Form.Control as="select" name="language" custom onChange={this.handleArticleChange} required>
-                                            <option value="1">Hindi</option>
-                                            <option value="2">English</option>
-                                            <option value="3">Chinese</option>
+                                            {this.state.language.map((i) => (  
+                                                <Options
+                                                    value={i[0]}
+                                                    name={i[1]}
+                                                />
+                                            ))}
+                                        </Form.Control>
+                                    </Form.Group>
+                                    <Form.Group className="col-md-6 float-left">
+                                        <Form.Label>Speciality</Form.Label>
+                                        <Form.Control as="select" name="specialities" custom onChange={this.handleArticleChange} required>
+                                            {this.state.speciality.map((i) => (  
+                                                <Options
+                                                    value={i[0]}
+                                                    name={i[1]}
+                                                />
+                                            ))}
                                         </Form.Control>
                                     </Form.Group>
                                     <Form.Group className="col-md-6 float-left">
                                         <Form.Label>Author By ID</Form.Label>
-                                        <Form.Control required type="text" name="authById" value={this.state.values.authById}
-                                        onChange={this.handleArticleChange} placeholder="Author By ID" />
+                                        <Form.Control as="select" name="authById" custom value={this.state.values.authById}
+                                        onChange={this.handleArticleChange} required>
+                                            {this.state.author.map((i) => (
+                                                <Options
+                                                value={i[0]}
+                                                name={i[1]}
+                                                />
+                                            ))}
+                                        </Form.Control>
                                     </Form.Group>
                                     <Form.Group className="col-md-6 float-left">
                                         <Form.Label>Win Title</Form.Label>
@@ -414,7 +498,7 @@ document.getElementById('articlePreview').innerHTML=articleHTML;
                                             : console.log('')
                                     }
 
-                                    <Button onClick={this.submitArticleForm} variant="dark">Submit</Button>
+                                    <Button type="submit" variant="dark">Submit</Button>
                                 </Card.Footer>
                             </Card>
                             </Form>
@@ -428,7 +512,7 @@ document.getElementById('articlePreview').innerHTML=articleHTML;
         </div>
         );
         }
-    }
+    }}
     
     function Article(props) {
         
