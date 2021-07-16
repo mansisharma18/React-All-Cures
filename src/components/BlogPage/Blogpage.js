@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Header from '../Header/Header';
 import Footer from '../Footer/Footer'
-
+import EditModal from './EditModal'
 import {Container} from "react-bootstrap";
 import AllPost from './Allpost';
 

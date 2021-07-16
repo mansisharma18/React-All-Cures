@@ -16,7 +16,7 @@ import Dashboard from "./Dashboard/Dashboard.js";
 import LoginPage from "./login";
 import SignIn from "./Article/SignIn";
 import Blogpage from "./BlogPage/Blogpage";
-
+import EditPost from './BlogPage/EditModal'
 function Main(props) {
   // render() {
   const [auth, setAuth] = React.useState(false);
@@ -30,18 +30,12 @@ function Main(props) {
   React.useEffect(() => {
     readCookie();
   }, [])
-  // const history = createBrowserHistory;
-
-  // const Auth = React.useContext(AuthApi)
 
     return (
       <div>
         <AuthApi.Provider value={{auth, setAuth}}>
           <BrowserRouter basename={process.env.REACT_APP_ROUTER_BASE || ''}>
-          {/* <Router> */}
             <Routes url = {url}/>
-            {/* </Router> */}
-
           </BrowserRouter>
         </AuthApi.Provider>
       </div>
@@ -66,7 +60,7 @@ const Routes = (props) => {
           {/* <Route exact path="/search/:name" component={Search} /> */}
           <Route path="/search/:city/:name" component={Search} />
           {/* <Route path="/search/:city/:name" component={Search} /> */}
-
+          <Route path="/editPost/:id" component={EditPost}/>
           <Route path="/article" auth={Auth.auth} component={Article} />
           <Route exact path="/dashboard" component={Dashboard} />
           <ProtectedRoute exact path="/sign" component={SignIn} />
