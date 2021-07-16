@@ -142,24 +142,6 @@ onChangeHandlerdoctor = (e, text) => {
                   <div className="container">
                      <div className="banner-inner clearfix">
                         <div className="row">
-<<<<<<< HEAD
-                           <div className="col-lg-12">
-                              <div className="header" style={{width:"100%"}}>
-                                 <div className="logo">
-                                    <Link to='/home'>
-                                       <img src={Heart}/>
-                                       <span>All Cures</span>
-                                    </Link>     
-                                 </div>
-                                 <div className="loginSign"> 
-                                 {/* <Link to="/profile">Go to Profile</Link> */}
-                                 
-                                    <ToggleButton acPerm={this.state.acPerm} match={this.props.match.url} logout={this.logout}/> 
-                                    {/* <button onClick={this.logout}></button> */}
-                                 </div>  
-                              </div> 
-                           </div>  
-=======
                            <div className="header" style={{width:"100%"}}>
                               <div className="logo">
                                  <Link to='/home'>
@@ -174,7 +156,6 @@ onChangeHandlerdoctor = (e, text) => {
                                  {/* <button onClick={this.logout}></button> */}
                               </div>  
                            </div>   
->>>>>>> f4724d4131d5cdbc4d1cab34088d3bc2ef8673ea
                         </div>
                      </div>
                      <div className="row">

@@ -15,19 +15,8 @@ import Article from "./Article/Article.js";
 import Dashboard from "./Dashboard/Dashboard.js";
 import LoginPage from "./login";
 import SignIn from "./Article/SignIn";
-<<<<<<< HEAD
-import TestHome from './LandingPage/TestHome';
-// import { createBrowserHistory } from "history";
-// import Modal from './Modal1/Modal.js';
-// import TestAjax from "./Test/TestAjax"
-// import Sibling1 from "./Test/TestPC"
-// import LoginForm from './loginForm'
-
-// import Login from './login/login'
-// import createBrowserHistory from './history';
-=======
 import Blogpage from "./BlogPage/Blogpage";
->>>>>>> f4724d4131d5cdbc4d1cab34088d3bc2ef8673ea
+import EditModal from '../components/BlogPage/EditModal';
 
 function Main(props) {
   // render() {
@@ -71,14 +60,10 @@ const Routes = (props) => {
     <>
     <Switch>
        <Route exact path="/" component={Home} />
-<<<<<<< HEAD
-       <Route exact path="/disease/:id" component={Disease}/>
-          <Route exact path="/test_home">
-            <TestHome/>
-          </Route>
-=======
+       <Route exact path="/editPost/:editId">
+          <EditModal />
+       </Route>
        <Route exact path="/blogs/:id" component={Disease}/>
->>>>>>> f4724d4131d5cdbc4d1cab34088d3bc2ef8673ea
           <Route exact path="/home" component={Home} />
           <Route exact path="/search/:city" component={Search} /> 
           <Route exact path="/searchName/:name" component={SearchName} /> 

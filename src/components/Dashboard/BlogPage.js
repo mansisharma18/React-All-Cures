@@ -4,8 +4,6 @@ import Footer from '../Footer/Footer'
 
 import {Container, Row, Col, Form, Button, Nav, Navbar, NavDropdown, FormControl, Breadcrumb } from "react-bootstrap";
 import AllPost from './Allpost';
-import EditModal from './EditModal'
-
 // import {Link } from 'react-router-dom'
 // import CenterWell from './CenterWell';
 // import Sidebar from "./leftMenu";
@@ -36,7 +34,6 @@ export default class Blogpage extends Component{
             });
           });
       }
-      
     render(){
         var { isLoaded,items } = this.state;
         if(!isLoaded) {
@@ -76,7 +73,6 @@ export default class Blogpage extends Component{
                     ))}
                     </div>
                 </div>
-                <EditModal />
             <Footer/>
             </>
         );
