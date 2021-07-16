@@ -5,7 +5,8 @@ import Cookies from 'js-cookie';
 import './article.css'
 import Carousel from './Carousel'
 import EditorJs from 'react-editor-js';
-import { EDITOR_JS_TOOLS } from './tools'
+import { EDITOR_JS_TOOLS } from './tools';
+import Options from './Options';
 
 export default class Test extends Component {
     constructor(props) {
@@ -13,6 +14,7 @@ export default class Test extends Component {
         this.handleLoginClick = this.handleLoginClick.bind(this);
         this.handleLogoutClick = this.handleLogoutClick.bind(this);
         this.handleAuthorClick = this.handleAuthorClick.bind(this);
+        this.handleChange = this.handleChange.bind(this);
         this.instanceRef = React.createRef();
         this.handleSave = this.handleSave.bind(this)
         // this.submitForm = this.submitForm.bind(this);
@@ -24,6 +26,12 @@ export default class Test extends Component {
             ac: '',
             showAuthorAccordian: false,
             ShowSubmitAlert: false,
+            ShowErrorAlert: false,
+            language: '',
+            author: '',
+            disclaimer: '',
+            speciality: '',
+            country: '',
             values: {
                 authorFN: "",
                 authorMN:"",
@@ -38,20 +46,26 @@ export default class Test extends Component {
             articleValues: {
                 title: "",
                 friendlyName: "",
-                contentType: "",
-                disclaimerId : 12,
+                contentType: [],
+                disclaimerId : 1,
                 authById: "",
                 copyId: 11,
                 articleStatus: 1,
                 winTitle : "",
-                language : 1,
+                language : "",
                 articleContent : "",
+                country: ''
             },
         };
     }
 
     handleSubmit() {
         this.setState({ShowSubmitAlert: true});
+        // this.state.articleValues.title = null;
+    }
+
+    handleErrorSubmit(){
+        this.setState({ShowErrorAlert: true});
     }
 
     handleAuthorClick() {
@@ -70,6 +84,38 @@ export default class Test extends Component {
       this.setState({isLoggedIn: false});
     }
 
+    handleChange (e) {
+        this.setState({
+            articleValues: { ...this.state.articleValues, [e.target.name]:  Array.from(e.target.selectedOptions, (item) => item.value) }
+        });
+        console.log(this.state.articleValues.contentType)
+    }
+    
+    componentDidMount(){
+        Promise.all([
+
+            fetch('/article/all/table/languages').then(res => res.json()),
+            fetch('/article/all/table/author').then(res => res.json()),
+            fetch('/article/all/table/disclaimer').then(res => res.json()),
+            fetch('/article/all/table/disease_condition').then(res => res.json()),
+            fetch('/article/all/table/countries').then(res => res.json()),
+
+        ]).then(([languageData, authorData, disclaimerData, diseaseData, countryData]) => {
+            console.log('Language Data: ',languageData)
+            console.log('Author Data: ',authorData)
+            console.log('Disclaimer Data: ', disclaimerData)
+            console.log('Speciality Data: ', diseaseData)
+            this.setState({
+                isLoaded: true,
+                language: languageData,
+                author: authorData,
+                disclaimer: disclaimerData,
+                speciality: diseaseData,
+                country: countryData
+            });
+
+        })
+    }
     // ARTICLE FORM SUBMIT
 
     submitArticleForm = async e => {
@@ -78,18 +124,22 @@ export default class Test extends Component {
 
         const res = await fetch("/content?cmd=createArticle", {
             method: "POST",
-            body: `title=${this.state.articleValues.title}&language=${this.state.articleValues.language}&friendlyName=${this.state.articleValues.friendlyName}&contentType=${this.state.articleValues.contentType}&disclaimerId=${this.state.articleValues.disclaimerId}&authById=${this.state.articleValues.authById}&copyId=${this.state.articleValues.copyId}&articleStatus=${this.state.articleValues.articleStatus}&winTitle=${this.state.articleValues.winTitle}&articleContent=${JSON.stringify(this.state.ac)}`,
+            body: `title=${this.state.articleValues.title}&language=${this.state.articleValues.language}&friendlyName=${this.state.articleValues.friendlyName}&contentType=${this.state.articleValues.contentType}&disclaimerId=${this.state.articleValues.disclaimerId}&authById=${this.state.articleValues.authById}&copyId=${this.state.articleValues.copyId}&articleStatus=${this.state.articleValues.articleStatus}&winTitle=${this.state.articleValues.winTitle}&countryId=${this.state.country}&diseaseConditionId=${this.state.speciality}&articleContent=${JSON.stringify(this.state.ac)}`,
             headers: {
             "Content-Type": "application/x-www-form-urlencoded"
             }
         });
         this.setState({ isSubmitting: false });
         const data = await res.text();
+        console.log('Data', data)
         !data.hasOwnProperty("error")
         ? this.setState({ message: data.success })
         : this.setState({ message: data.error, isError: true });
-
-        this.handleSubmit();
+        if(res.status === 200){
+            this.handleSubmit();
+        } else {
+            this.handleErrorSubmit();
+        }
         setTimeout(() => this.setState({
             isError: false,
             message: "",
@@ -106,10 +156,6 @@ export default class Test extends Component {
         this.setState({
             articleValues: { ...this.state.articleValues, [e.target.name]: e.target.value }
         });
-
-          // componentDidMount() {
-          //   this.instanceRef.current.focus() // access editor-js
-          // }
 
     submitForm = async e => {
         e.preventDefault();
@@ -157,7 +203,7 @@ export default class Test extends Component {
 
     async handleSave() {
       const savedData = await this.instanceRef.save();
-  
+        console.log('Saved Data: ', savedData)
       this.setState({ac: savedData})
 
       let articleHTML = '';
@@ -175,7 +221,31 @@ switch (obj.type) {
      </div>
     </div>\n`;
     break;
-    case 'image':
+    case 'table':
+        obj.data.content.map((i) => (
+            articleHTML += `
+            <div class="container">
+            <table class="tc-table text-center">
+                            <tbody>
+                                <tr style="border: 1px solid #ebebeb">
+                                    <td class="tc-table__cell">
+                                        <div class="tc-table__area">
+                                            <div class="text-center" contenteditable="true">${i[0]}<br></div>
+                                        </div>
+                                    </td>
+                                    <td class="tc-table__cell">
+                                        <div class="tc-table__area">
+                                            <div class="text-center" contenteditable="true">${i[1]}</div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
+                            </div>
+                            `
+        ))
+        break;
+    case 'simpleImage':
     articleHTML += `<div class="ce-block">
      <div class="ce-block__content">
        <div class="cdx-block cdx-simple-image">
@@ -276,24 +346,24 @@ document.getElementById('articlePreview').innerHTML=articleHTML;
     render() {
         const isLoggedIn = this.state.isLoggedIn;
         const showAuthorAccordian = this.state.showAuthorAccordian;
-        // const acPerm = this.state.acPerm;
-        // let button;
         let showAuthorButton;
-
-
         if(showAuthorAccordian) {
             showAuthorButton = <HideAccordian onClick={this.handleAuthorClick}/>
         } else {
             showAuthorButton = <CreateAccordian className="btn bg-dark" onClick={this.handleAuthorClick}/>
         }
-
-        // if (isLoggedIn) {
-        //     button = <LogoutButton onClick={this.handleLogoutClick} />;
-        // } else {
-        //     button = <LoginButton onClick={this.handleLoginClick} />;
-        // }
-
-    
+        var { isLoaded,language } = this.state;
+        if(!isLoaded) {
+        console.log(language);
+        
+        return (
+        <>
+            <Container className="mt-5 my-5 loading">
+              <h3 className="text-left">Loading...</h3>
+            </Container>
+        </>  
+      );
+    } else if(isLoaded){
     return (
         <div>
             <Carousel/>
@@ -316,43 +386,68 @@ document.getElementById('articlePreview').innerHTML=articleHTML;
                         {/* <AuthorAccordian/> */}
                         <Form onSubmit = {this.submitArticleForm}>
                         <Card>
-                            {/* <Card.Header style={{backgroundColor: "white"}}> */}
-                                <Accordion.Toggle as={Card.Header} variant="link" eventKey="2" className="bg-black h5 py-3">
+                            <Accordion.Toggle as={Card.Header} variant="link" eventKey="2" className="bg-black h5 py-3">
                                 Article Details
-                                </Accordion.Toggle>
+                            </Accordion.Toggle>
                             {/* </Card.Header> */}
                             <Accordion.Collapse eventKey="2">
                                 <Card.Body>
                                     <Form.Group className="col-md-12 float-left">
                                         <Form.Label>Article Title</Form.Label>
                                         <Form.Control type="text" name="title" value={this.state.values.title}
-                                        onChange={this.handleArticleChange} placeholder="Article Title" />
+                                        onChange={this.handleArticleChange} placeholder="Article Title" required aria-required="true"/>
                                     </Form.Group>
-                                    <Form.Group className="col-md-6 float-left">
+                                    <Form.Group className="col-md-12 float-left">
                                         <Form.Label>Article Display Name</Form.Label>
                                         <Form.Control type="text" name="friendlyName" value={this.state.values.friendlyName}
-                                        onChange={this.handleArticleChange} placeholder="Friendly Name" />
+                                        onChange={this.handleArticleChange} placeholder="Friendly Name" required/>
                                     </Form.Group>
                                     <Form.Group className="col-md-6 float-left">
                                         <Form.Label>Content Type</Form.Label>
-                                        <Form.Control type="text" name="contentType" value={this.state.values.contentType}
-                                        onChange={this.handleArticleChange} placeholder="Content Type" />
+                                        <Form.Control as="select"
+                                            name="contentType" 
+                                            multiple 
+                                            placeholder="Content Type"
+                                            onChange={this.handleChange}
+                                            value={this.state.articleValues.contentType}
+                                            required
+                                        >
+                                            <option value="1">Disease</option>
+                                            <option value="2">Treatment</option>
+                                            <option value="3">Specialities</option>
+                                        </Form.Control>
                                     </Form.Group>
+                                    {
+                                        this.state.articleValues.contentType.indexOf('2') === -1
+                                        ?   console.log('Treatment not selected')
+                                            : <Form.Group className="col-md-6 float-left">
+                                            <Form.Label>Country</Form.Label>
+                                                <Form.Control as="select" name="country" custom value={this.state.values.country} 
+                                                onChange={this.handleArticleChange} placeholder="Country" required>
+                                                    {this.state.country.map((i) => (  
+                                                        <Options
+                                                            value={i[0]}
+                                                            name={i[1]}
+                                                        />
+                                                    ))}
+                                            </Form.Control>
+                                        </Form.Group>
+                                    }
                                     <Form.Group className="col-md-6 float-left">
                                         <Form.Label>Disclaimer ID</Form.Label>
-                                        <Form.Control as="select" name="disclaimer" custom onChange={this.handleArticleChange}>
+                                        <Form.Control as="select" name="disclaimer" custom onChange={this.handleArticleChange} required>
                                             <option value="12">Temporary</option>
                                         </Form.Control>
                                     </Form.Group>
                                     <Form.Group className="col-md-6 float-left">
                                         <Form.Label>Copyright ID</Form.Label>
-                                        <Form.Control as="select" name="copyleft" custom onChange={this.handleArticleChange}>
+                                        <Form.Control as="select" name="copyId" custom onChange={this.handleArticleChange} required>
                                             <option value="11">Temporary</option>
                                         </Form.Control>
                                     </Form.Group>
                                     <Form.Group className="col-md-6 float-left">
                                         <Form.Label>Article Status</Form.Label>
-                                        <Form.Control as="select" name="articleStatus" custom onChange={this.handleArticleChange}>
+                                        <Form.Control as="select" name="articleStatus" custom onChange={this.handleArticleChange} required>
                                             <option value="1">Work in Progress</option>
                                             <option value="2">Review</option>
                                             <option value="3">Publish</option>
@@ -361,20 +456,41 @@ document.getElementById('articlePreview').innerHTML=articleHTML;
                                     
                                     <Form.Group className="col-md-6 float-left">
                                         <Form.Label>Language</Form.Label>
-                                        <Form.Control as="select" name="language" custom onChange={this.handleArticleChange}>
-                                            <option value="1">Hindi</option>
-                                            <option value="2">English</option>
-                                            <option value="3">Chinese</option>
+                                        <Form.Control as="select" name="language" custom onChange={this.handleArticleChange} required>
+                                            {this.state.language.map((i) => (  
+                                                <Options
+                                                    value={i[0]}
+                                                    name={i[1]}
+                                                />
+                                            ))}
+                                        </Form.Control>
+                                    </Form.Group>
+                                    <Form.Group className="col-md-6 float-left">
+                                        <Form.Label>Disease and Conditions</Form.Label>
+                                        <Form.Control as="select" name="specialities" custom onChange={this.handleArticleChange} required>
+                                            {this.state.speciality.map((i) => (  
+                                                <Options
+                                                    value={i[0]}
+                                                    name={i[1]}
+                                                />
+                                            ))}
                                         </Form.Control>
                                     </Form.Group>
                                     <Form.Group className="col-md-6 float-left">
                                         <Form.Label>Author By ID</Form.Label>
-                                        <Form.Control type="text" name="authById" value={this.state.values.authById}
-                                        onChange={this.handleArticleChange} placeholder="Author By ID" />
+                                        <Form.Control as="select" name="authById" custom value={this.state.values.authById}
+                                        onChange={this.handleArticleChange} required>
+                                            {this.state.author.map((i) => (
+                                                <Options
+                                                value={i[0]}
+                                                name={i[1]}
+                                                />
+                                            ))}
+                                        </Form.Control>
                                     </Form.Group>
                                     <Form.Group className="col-md-6 float-left">
                                         <Form.Label>Win Title</Form.Label>
-                                        <Form.Control type="text" name="winTitle" value={this.state.values.winTitle}
+                                        <Form.Control required type="text" name="winTitle" value={this.state.values.winTitle}
                                         onChange={this.handleArticleChange} placeholder="Win Title" />
                                     </Form.Group>
                                 </Card.Body>
@@ -400,7 +516,19 @@ document.getElementById('articlePreview').innerHTML=articleHTML;
                                 </Accordion.Collapse>
                                 <Card.Footer>
                                     {/* <Button variant="primary" onClick={this.handleSave} className="mr-3">Save & Preview</Button> */}
-                                    <Button onClick={this.submitArticleForm} variant="dark">Submit</Button>
+                                    {
+                                        this.state.ShowSubmitAlert
+                                            ? <SubmitAlert ShowSubmitAlert={this.state.ShowSubmitAlert}/>
+                                            : console.log('Submit ALert')
+                                    }
+
+                                    {
+                                        this.state.ShowErrorAlert
+                                            ? <SubmitError ShowErrorAlert={this.state.ShowErrorAlert}/>
+                                            : console.log('')
+                                    }
+
+                                    <Button type="submit" variant="dark">Submit</Button>
                                 </Card.Footer>
                             </Card>
                             </Form>
@@ -414,7 +542,7 @@ document.getElementById('articlePreview').innerHTML=articleHTML;
         </div>
         );
         }
-    }
+    }}
     
     function Article(props) {
         
@@ -546,9 +674,22 @@ function CreateAuthorAccordian(props) {
 
 // SHOW ALERT
 
-function submitAlert(props) {
-    const ShowSubmitAlert = props.ShowSubmitAlert;
-    if(ShowSubmitAlert) {
-        <Alert className="bg-green">Article has been saved successfully!</Alert>
+function SubmitAlert(props) {
+    console.log('Submit ALert', props.ShowSubmitAlert)
+    if(props.ShowSubmitAlert) {
+        return(
+            <Alert className="bg-green">Article has been saved successfully!</Alert>
+        );
+    }
+}
+
+// Show Error Alert
+
+function SubmitError(props) {
+    console.log('Submit ALert', props.ShowErrorAlert)
+    if(props.ShowErrorAlert) {
+        return(
+            <Alert className="bg-red">Some Error occured!</Alert>
+        );
     }
 }

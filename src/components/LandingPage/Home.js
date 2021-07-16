@@ -224,15 +224,13 @@ onChangeHandlerdoctor = (e, text) => {
                                     <input type="text" name="" placeholder="Date" className="form-control" onFocus={(e) => e.target.type = 'date'}/>
                                     {
                                        this.state.searchParams.name
-                                       ? <Link 
-                                       type="
+                                       ? <Link type="
                                        submit" 
                                        className="btn-bg searchBtn" 
                                        id="search"
                                        to={ `/search/${this.state.searchParams.name}`}
                                        >Search</Link>
-                                       : <Link 
-                                       type="
+                                       : <Link type="
                                        submit" 
                                        className="btn-bg searchBtn" 
                                        id="search"

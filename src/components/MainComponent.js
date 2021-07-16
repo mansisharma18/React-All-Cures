@@ -16,7 +16,6 @@ import Dashboard from "./Dashboard/Dashboard.js";
 import LoginPage from "./login";
 import SignIn from "./Article/SignIn";
 import Blogpage from "./BlogPage/Blogpage";
-import EditModal from '../components/BlogPage/EditModal';
 
 function Main(props) {
   // render() {
@@ -60,9 +59,6 @@ const Routes = (props) => {
     <>
     <Switch>
        <Route exact path="/" component={Home} />
-       <Route exact path="/editPost/:editId">
-          <EditModal />
-       </Route>
        <Route exact path="/blogs/:id" component={Disease}/>
           <Route exact path="/home" component={Home} />
           <Route exact path="/search/:city" component={Search} /> 
