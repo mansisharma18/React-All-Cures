@@ -14,6 +14,7 @@ export default class Test extends Component {
         this.handleLoginClick = this.handleLoginClick.bind(this);
         this.handleLogoutClick = this.handleLogoutClick.bind(this);
         this.handleAuthorClick = this.handleAuthorClick.bind(this);
+        this.handleChange = this.handleChange.bind(this);
         this.instanceRef = React.createRef();
         this.handleSave = this.handleSave.bind(this)
         // this.submitForm = this.submitForm.bind(this);
@@ -45,10 +46,10 @@ export default class Test extends Component {
             articleValues: {
                 title: "",
                 friendlyName: "",
-                contentType: "",
-                disclaimerId : "",
+                contentType: [],
+                disclaimerId : 1,
                 authById: "",
-                copyId: "",
+                copyId: 11,
                 articleStatus: 1,
                 winTitle : "",
                 language : "",
@@ -83,26 +84,33 @@ export default class Test extends Component {
       this.setState({isLoggedIn: false});
     }
 
+    handleChange (e) {
+        this.setState({
+            articleValues: { ...this.state.articleValues, [e.target.name]:  Array.from(e.target.selectedOptions, (item) => item.value) }
+        });
+        console.log(this.state.articleValues.contentType)
+    }
+    
     componentDidMount(){
         Promise.all([
 
             fetch('/article/all/table/languages').then(res => res.json()),
             fetch('/article/all/table/author').then(res => res.json()),
             fetch('/article/all/table/disclaimer').then(res => res.json()),
-            fetch('/article/all/table/specialties').then(res => res.json()),
+            fetch('/article/all/table/disease_condition').then(res => res.json()),
             fetch('/article/all/table/countries').then(res => res.json()),
 
-        ]).then(([languageData, authorData, disclaimerData, specialityData, countryData]) => {
+        ]).then(([languageData, authorData, disclaimerData, diseaseData, countryData]) => {
             console.log('Language Data: ',languageData)
             console.log('Author Data: ',authorData)
             console.log('Disclaimer Data: ', disclaimerData)
-            console.log('Speciality Data: ', specialityData)
+            console.log('Speciality Data: ', diseaseData)
             this.setState({
                 isLoaded: true,
                 language: languageData,
                 author: authorData,
                 disclaimer: disclaimerData,
-                speciality: specialityData,
+                speciality: diseaseData,
                 country: countryData
             });
 
@@ -116,7 +124,7 @@ export default class Test extends Component {
 
         const res = await fetch("/content?cmd=createArticle", {
             method: "POST",
-            body: `title=${this.state.articleValues.title}&language=${this.state.articleValues.language}&friendlyName=${this.state.articleValues.friendlyName}&contentType=${this.state.articleValues.contentType}&disclaimerId=${this.state.articleValues.disclaimerId}&authById=${this.state.articleValues.authById}&copyId=${this.state.articleValues.copyId}&articleStatus=${this.state.articleValues.articleStatus}&winTitle=${this.state.articleValues.winTitle}&articleContent=${JSON.stringify(this.state.ac)}`,
+            body: `title=${this.state.articleValues.title}&language=${this.state.articleValues.language}&friendlyName=${this.state.articleValues.friendlyName}&contentType=${this.state.articleValues.contentType}&disclaimerId=${this.state.articleValues.disclaimerId}&authById=${this.state.articleValues.authById}&copyId=${this.state.articleValues.copyId}&articleStatus=${this.state.articleValues.articleStatus}&winTitle=${this.state.articleValues.winTitle}&countryId=${this.state.country}&diseaseConditionId=${this.state.speciality}&articleContent=${JSON.stringify(this.state.ac)}`,
             headers: {
             "Content-Type": "application/x-www-form-urlencoded"
             }
@@ -396,26 +404,32 @@ document.getElementById('articlePreview').innerHTML=articleHTML;
                                     </Form.Group>
                                     <Form.Group className="col-md-6 float-left">
                                         <Form.Label>Content Type</Form.Label>
-                                        <Form.Control as="select" name="contentType" custom value={this.state.articleValues.contentType} 
-                                        onChange={this.handleArticleChange} placeholder="Content Type" required>
+                                        <Form.Control as="select"
+                                            name="contentType" 
+                                            multiple 
+                                            placeholder="Content Type"
+                                            onChange={this.handleChange}
+                                            value={this.state.articleValues.contentType}
+                                            required
+                                        >
                                             <option value="1">Disease</option>
                                             <option value="2">Treatment</option>
                                             <option value="3">Specialities</option>
                                         </Form.Control>
                                     </Form.Group>
                                     {
-                                        this.state.articleValues.contentType != 2
-                                        ?   console.log('Content Type')
+                                        this.state.articleValues.contentType.indexOf('2') === -1
+                                        ?   console.log('Treatment not selected')
                                             : <Form.Group className="col-md-6 float-left">
                                             <Form.Label>Country</Form.Label>
-                                            <Form.Control as="select" name="country" custom value={this.state.values.country} 
-                                            onChange={this.handleArticleChange} placeholder="Country" required>
-                                                {this.state.country.map((i) => (  
-                                                    <Options
-                                                        value={i[0]}
-                                                        name={i[1]}
-                                                    />
-                                                ))}
+                                                <Form.Control as="select" name="country" custom value={this.state.values.country} 
+                                                onChange={this.handleArticleChange} placeholder="Country" required>
+                                                    {this.state.country.map((i) => (  
+                                                        <Options
+                                                            value={i[0]}
+                                                            name={i[1]}
+                                                        />
+                                                    ))}
                                             </Form.Control>
                                         </Form.Group>
                                     }
@@ -423,17 +437,11 @@ document.getElementById('articlePreview').innerHTML=articleHTML;
                                         <Form.Label>Disclaimer ID</Form.Label>
                                         <Form.Control as="select" name="disclaimer" custom onChange={this.handleArticleChange} required>
                                             <option value="12">Temporary</option>
-                                            {/* {this.state.disclaimer.map((i) => (  
-                                                <Options
-                                                    value={i[0]}
-                                                    name={i[1]}
-                                                />
-                                            ))} */}
                                         </Form.Control>
                                     </Form.Group>
                                     <Form.Group className="col-md-6 float-left">
                                         <Form.Label>Copyright ID</Form.Label>
-                                        <Form.Control as="select" name="copyleft" custom onChange={this.handleArticleChange} required>
+                                        <Form.Control as="select" name="copyId" custom onChange={this.handleArticleChange} required>
                                             <option value="11">Temporary</option>
                                         </Form.Control>
                                     </Form.Group>
@@ -458,7 +466,7 @@ document.getElementById('articlePreview').innerHTML=articleHTML;
                                         </Form.Control>
                                     </Form.Group>
                                     <Form.Group className="col-md-6 float-left">
-                                        <Form.Label>Speciality</Form.Label>
+                                        <Form.Label>Disease and Conditions</Form.Label>
                                         <Form.Control as="select" name="specialities" custom onChange={this.handleArticleChange} required>
                                             {this.state.speciality.map((i) => (  
                                                 <Options
