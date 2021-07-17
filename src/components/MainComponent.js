@@ -16,7 +16,9 @@ import Dashboard from "./Dashboard/Dashboard.js";
 import LoginPage from "./login";
 import SignIn from "./Article/SignIn";
 import Blogpage from "./BlogPage/Blogpage";
-import EditPost from './BlogPage/EditModal'
+import EditPost from './BlogPage/EditModal';
+// import Blogs from './Disease/Disease'
+
 function Main(props) {
   // render() {
   const [auth, setAuth] = React.useState(false);
@@ -65,7 +67,9 @@ const Routes = (props) => {
           <Route exact path="/dashboard" component={Dashboard} />
           <ProtectedRoute exact path="/sign" component={SignIn} />
           <Route exact path="/blogs" component={Blogpage}/>
+          {/* <Route exact path="/blogs/:id" component={Blogs}/> */}
       <Route exact path="/profile/:id" component={Profile} />
+
     </Switch>
           <Route path="/" component={LoginPage}/>
           <ProtectedLogin path='?login=true' auth={Auth.auth}/>

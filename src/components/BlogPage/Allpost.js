@@ -29,7 +29,7 @@ const AllPost = ({id, title, f_title, w_title}) => {
                     
                         <div className="d-flex justify-content-between align-items-center">
                         <div>
-                        <Link to={ `/editPost/${id}` }  className="d-flex justify-content-between align-items-center">
+                        <Link to={ `/blogs/${id}` }  className="d-flex justify-content-between align-items-center">
                             <h5 className="card-title m-0 p-0">{title}</h5>
                         </Link>
                         </div>

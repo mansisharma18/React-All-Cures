@@ -9,16 +9,16 @@ import { EDITOR_JS_TOOLS } from './tools'
 const EditModal = () => {
 
     const editId = useParams()
-    const [title,setTitle] = useState('')
-    const [articleDisplay,setArticleDisplay] = useState('')
-    const [content,setContent] = useState('')
-    const [disclaimer,setDisclaimer] = useState('')
-    const [copyright,setCopyright] = useState('')
-    const [language,setLanguage] = useState('')
-    const [author,setAuthor] = useState('')
-    const [win,setWin] = useState('')
-    const [articleStatus,setArticleStatus] = useState('')
-    const [postsList,setPostsList] = useState([])
+    const [title, setTitle] = useState('')
+    const [articleDisplay, setArticleDisplay] = useState('')
+    const [content, setContent] = useState('')
+    const [disclaimer, setDisclaimer] = useState('')
+    const [copyright, setCopyright] = useState('')
+    const [language, setLanguage] = useState('')
+    const [author, setAuthor] = useState('')
+    const [win, setWin] = useState('')
+    const [articleStatus, setArticleStatus] = useState('')
+    const [postsList, setPostsList] = useState([])
 
     console.log(editId.id)
     const getPosts = () =>{
@@ -60,25 +60,6 @@ const EditModal = () => {
             "pubstatus_id": articleStatus,
             "language_id": language,
             "content": "12121"
-
-            
-                // "title": "2",
-                // "friendly_name": "1",
-                // "subheading": "1",
-                // "content_type": 1,
-                // "keywords": "1",
-                // "window_title": "1",
-                // "content_location": "1",
-                // "authored_by": 1,
-                // "published_by": 1,
-                // "edited_by": 1,
-                // "copyright_id": 11,
-                // "disclaimer_id": 12,
-                // "pubstatus_id": 1,
-                // "language_id": 1,
-                // "content": "12121"
-              
-
         }
 
         axios.post(`/article/${editId}`, data)
