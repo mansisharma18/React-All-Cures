@@ -27,11 +27,6 @@ export default class Test extends Component {
             showAuthorAccordian: false,
             ShowSubmitAlert: false,
             ShowErrorAlert: false,
-            language: '',
-            author: '',
-            disclaimer: '',
-            speciality: '',
-            country: '',
             values: {
                 authorFN: "",
                 authorMN:"",
@@ -48,13 +43,14 @@ export default class Test extends Component {
                 friendlyName: "",
                 contentType: [],
                 disclaimerId : 1,
-                authById: "",
+                authById: 9,
                 copyId: 11,
                 articleStatus: 1,
                 winTitle : "",
-                language : "",
+                language : 1,
                 articleContent : "",
-                country: ''
+                countryId: 9,
+                diseaseConditionId: 1
             },
         };
     }
@@ -124,7 +120,7 @@ export default class Test extends Component {
 
         const res = await fetch("/content?cmd=createArticle", {
             method: "POST",
-            body: `title=${this.state.articleValues.title}&language=${this.state.articleValues.language}&friendlyName=${this.state.articleValues.friendlyName}&contentType=${this.state.articleValues.contentType}&disclaimerId=${this.state.articleValues.disclaimerId}&authById=${this.state.articleValues.authById}&copyId=${this.state.articleValues.copyId}&articleStatus=${this.state.articleValues.articleStatus}&winTitle=${this.state.articleValues.winTitle}&countryId=${this.state.country}&diseaseConditionId=${this.state.speciality}&articleContent=${JSON.stringify(this.state.ac)}`,
+            body: `title=${this.state.articleValues.title}&language=${this.state.articleValues.language}&friendlyName=${this.state.articleValues.friendlyName}&contentType=${this.state.articleValues.contentType}&disclaimerId=${this.state.articleValues.disclaimerId}&authById=${this.state.articleValues.authById}&copyId=${this.state.articleValues.copyId}&articleStatus=${this.state.articleValues.articleStatus}&winTitle=${this.state.articleValues.winTitle}&countryId=${this.state.articleValues.countryId}&diseaseConditionId=${this.state.articleValues.diseaseConditionId}&articleContent=${JSON.stringify(this.state.ac)}`,
             headers: {
             "Content-Type": "application/x-www-form-urlencoded"
             }
@@ -152,10 +148,12 @@ export default class Test extends Component {
             }), 1600);
     }
 
-    handleArticleChange = e => 
+    handleArticleChange = e => {
         this.setState({
             articleValues: { ...this.state.articleValues, [e.target.name]: e.target.value }
         });
+        console.log(e.target.name + e.target.value)
+    }
 
     submitForm = async e => {
         e.preventDefault();
@@ -422,7 +420,7 @@ document.getElementById('articlePreview').innerHTML=articleHTML;
                                         ?   console.log('Treatment not selected')
                                             : <Form.Group className="col-md-6 float-left">
                                             <Form.Label>Country</Form.Label>
-                                                <Form.Control as="select" name="country" custom value={this.state.values.country} 
+                                                <Form.Control as="select" name="countryId" custom
                                                 onChange={this.handleArticleChange} placeholder="Country" required>
                                                     {this.state.country.map((i) => (  
                                                         <Options
@@ -467,7 +465,7 @@ document.getElementById('articlePreview').innerHTML=articleHTML;
                                     </Form.Group>
                                     <Form.Group className="col-md-6 float-left">
                                         <Form.Label>Disease and Conditions</Form.Label>
-                                        <Form.Control as="select" name="specialities" custom onChange={this.handleArticleChange} required>
+                                        <Form.Control as="select" name="diseaseConditionId" custom onChange={this.handleArticleChange} required>
                                             {this.state.speciality.map((i) => (  
                                                 <Options
                                                     value={i[0]}
