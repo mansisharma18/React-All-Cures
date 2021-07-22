@@ -18,9 +18,13 @@ const EditModal = () => {
     const [author, setAuthor] = useState('')
     const [win, setWin] = useState('')
     const [articleStatus, setArticleStatus] = useState('')
-    const [postsList, setPostsList] = useState([])
+    const [showCountry, setShowCountry] = useState(false)
+    const [lanList,setLanList] = useState([])
+    const [authList,setAuthList] = useState([])
+    const [countriesList,setCountriesList] = useState([])
+    const [succMsg,setSuccMsg] = useState('')
+    const [disclaimerId,setDisclaimerId] = useState([]) 
 
-    console.log(editId.id)
     const getPosts = () =>{
 
         axios.get(`/article/${editId.id}`)
@@ -39,16 +43,20 @@ const EditModal = () => {
         .catch(err => console.log(err))
     }
 
+    new EditorJs({        
+        placeholder: 'Let`s write an awesome story!'
+      });
+
 
     
     const singlePostEdit = (e) => {
         e.preventDefault()
-        alert(editId)
-        const data = {
-            "title": title,
-            "friendly_name": JSON.stringify(articleDisplay),
+        console.log(editId);
+        axios.post(`/article/${editId.id}`, {
+            "title":title,
+            "friendly_name": articleDisplay,
             "subheading": "1",
-            "content_type": content,
+            // "content_type": content,
             "keywords": "1",
             "window_title": win,
             "content_location": "1",
@@ -59,58 +67,142 @@ const EditModal = () => {
             "disclaimer_id": disclaimer,
             "pubstatus_id": articleStatus,
             "language_id": language,
-            "content": "12121"
-        }
-
-        axios.post(`/article/${editId}`, data)
+            "content": "12121",
+        })
         .then(res => {
             console.log(res);
-            
+            setSuccMsg('Updated Successfully')
         })
-        .then(err => {
+        .catch(err => {
             console.log(err);
+            setSuccMsg('error in updating')
         })
 
 
     }
 
+    const getLanguages = () => {
+        axios.get('/article/all/table/languages')
+        .then(res => {
+            setLanList(res.data)
+        })
+        .catch(err => console.log(err))
+    }
 
+    const getAuthor = () => {
+        axios.get('/article/all/table/author')
+        .then(res => {
+            setAuthList(res.data)
+        })
+        .catch(err => console.log(err))
+    }
+
+
+    const getCountries = () => {
+        axios.get('/article/all/table/countries')
+        .then(res => {
+            console.log(res.data);
+            setCountriesList(res.data)
+        })
+        .catch(err => console.log(err))
+    }
+
+    
+
+    const getDisclaimer = () => {
+        axios.get('/article/all/table/disclaimer')
+        .then(res => {
+            console.log(res.data);
+            setDisclaimerId(res.data)
+        })
+        .catch(err => console.log(err))
+    }
     useEffect(() => {
         getPosts()
+        getLanguages()
+        getAuthor()
+        getCountries()
+        getDisclaimer()
     }, [])
     
     return (
         <>
-        <Header/>
-            <form action="" onSubmit={(e) => singlePostEdit(e)} className="container">
-                {/* {postsList.map((post,index) => {
-                    return (
-                        <div>
-                            <p>{post.article_id}</p>
-                        </div>
-                    )
-                })} */}
-                <div className="form-group">
+
+            <div className="transparent_bg">
+            <div className="container">
+                <div className="card">
+                <h2 className="mainTitle text-center h3 py-3 card-header">Article</h2>
+                    <div className="card-body">
+                    <form action="" onSubmit={(e) => singlePostEdit(e)}>
+                    <div id="accordion">
+                        <div class="card">
+                            <div class="card-header" id="headingOne"  data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                            <h5 class="mb-0">
+                                Article Details
+                            </h5>
+                            </div>
+
+                            <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
+                            <div class="card-body">
+                <div className="row">
+                    <div className="col-lg-6 form-group">
                     <label htmlFor="">Article Title</label>
                     <input type="text" value={title}   onChange={(e) => setTitle(e.target.value)} placeholder="Enter title" className="form-control" />
                 </div>
-                <div className="form-group">
+                <div className="col-lg-6 form-group">
                     <label htmlFor="">Article Display Name</label>
                     <input type="text" value={articleDisplay}  onChange={(e) => setArticleDisplay(e.target.value)} placeholder="Enter title" className="form-control" />
                 </div>
-                <div className="form-group">
+                
+                <div className="col-lg-6 form-group">
                     <label htmlFor="">Content Type</label>
-                    <input type="text" value="" onChange={(e) => setContent(e.target.value)} placeholder="Enter title" className="form-control" />
+                    <select multiple name="contentType" placeholder="Content Type" onChange={(e) => {
+                        setContent(e.target.value)
+                        if(e.target.value == 2) {
+                            setShowCountry(true)
+                        }else {
+                            setShowCountry(false)
+                        }
+                    }} required="" class="form-control">
+                        <option value="1">Disease</option>
+                        <option value="2">Treatment</option>
+                        <option value="3">Specialities</option>
+                    </select>
+                    {/* <input type="text" value={content}  placeholder="Enter title" className="form-control" /> */}
                 </div>
-                <div className="form-group">
+                {showCountry ? 
+                <div className="form-group col-lg-6">
+                    <label htmlFor="">Country</label>
+                    <select name="country" placeholder="Country" required="" class="custom-select">
+                        
+                        {countriesList.map((lan) => {
+                            return (
+                                <option value={lan[0]}>{lan[1]}</option>
+                            )
+                        })}
+                        
+                    </select>
+                </div>
+                 : null }
+                <div className="col-lg-6 form-group">
                     <label htmlFor="">Disclaimer ID</label>
-                    <input type="text" value={disclaimer}  onChange={(e) => setDisclaimer(e.target.value)} placeholder="Enter title" className="form-control" />
+                    <select name=""   onChange={(e) => setDisclaimer(e.target.value)} className="form-control" id="">
+                        {disclaimerId.map((lan) => {
+                            return (
+                                <option value={lan[0]}>{lan[0]}</option>
+                            )
+                        })}
+                    </select>
+                    
                 </div>
-                <div className="form-group">
+                <div className="col-lg-6 form-group">
                     <label htmlFor="">Copyright ID</label>
-                    <input type="text" value={copyright}  onChange={(e) => setCopyright(e.target.value)} placeholder="Enter title" className="form-control" />
+                    <select name=""   onChange={(e) => setCopyright(e.target.value)} className="form-control" id="">
+                        <option value="11">Temporary</option>
+                    </select>
+                    
                 </div>
-                <div className="form-group">
+                <div className="col-lg-6 form-group">
                     <label htmlFor="">Article Status</label>
                     <select name="" value={language}  onChange={(e) => setArticleStatus(e.target.value)} className="form-control" id="">
                         <option value="1">Work in Progress</option>
@@ -118,33 +210,68 @@ const EditModal = () => {
                         <option value="3">Publish</option>
                     </select>
                 </div>
-                <div className="form-group">
+                <div className="col-lg-6 form-group">
                     <label htmlFor="">Language</label>
                     <select name=""   onChange={(e) => setLanguage(e.target.value)} className="form-control" id="">
-                        <option value="1">Hindi</option>
-                        <option value="2">English</option>
-                        <option value="3">Chinese</option>
+                        {lanList.map((lan) => {
+                            return (
+                                <option value={lan[0]}>{lan[1]}</option>
+                            )
+                        })}
                     </select>
                 </div>
-                <div className="form-group">
+                <div className="col-lg-6 form-group">
                     <label htmlFor="">Author By ID</label>
-                    <input type="text" value={author}  onChange={(e) => setAuthor(e.target.value)} placeholder="Enter title" className="form-control" />
+                     <select name=""   onChange={(e) =>  setAuthor(e.target.value)} className="form-control" id="">
+
+                    {authList.map((lan) => {
+                            return (
+                                <option value={lan[0]}>{lan[1]}</option>
+                            )
+                        })}
+                        </select>
+                    
+    
                 </div>
-                <div className="form-group">
+                <div className="col-lg-6 form-group">
                     <label htmlFor="">Win Title</label>
                     <input type="text" value={win}  onChange={(e) => setWin(e.target.value)} placeholder="Enter title" className="form-control" />
                 </div>
-                <EditorJs tools={EDITOR_JS_TOOLS} data={content}
-                                        
-                                        // onChange={this.handleSave}
-                                        // onClick={this.focusText}
-                                        // instanceRef={instance => this.instanceRef = instance}
-                                    />
-                <div className="form-group">
-                    <button type="submit" className="btn-btn-success">Submit</button>
                 </div>
-            </form>
-            <Footer/>
+              
+
+                
+                
+                            </div>
+                            </div>
+                        </div>
+                        <div class="card">
+                            <div class="card-header" id="headingTwo" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                            <h5 class="mb-0">
+                                
+                                Write Article Here
+                            </h5>
+                            </div>
+                            <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
+                            <div class="card-body">
+                            <EditorJs  tools={EDITOR_JS_TOOLS} data={content} />
+                            </div>
+                            </div>
+                        </div>
+                    </div>
+                    {succMsg ? <h4 className="mt-3">{succMsg}</h4> : null}
+                    <div className="form-group">
+                        <button type="submit" className="btn mt-3 btn-dark">Submit</button>
+                    </div>
+                    </form>
+                        
+                    {/* <button className="btn btn-default" onClick={() => setShowPostEdit(!showPostEdit)}>Show Edit</button> */}
+            
+                    </div>
+                </div>
+            </div>
+            </div>
+
         </>
     )
 }

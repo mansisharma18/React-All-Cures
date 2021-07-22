@@ -59,7 +59,6 @@ export default class Blogpage extends Component{
                     ))}
                     </div>
                 </div>
-                <EditModal />
             <Footer/>
             </>
         );

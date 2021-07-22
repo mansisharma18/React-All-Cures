@@ -2412,3 +2412,17 @@ p.lorem-text {
   height: 90px;
   object-fit: contain;
 }
+
+/*Edit Post*/
+.transparent_bg {
+  display: flex;
+  min-height: 100vh;
+  align-items: center;
+  justify-content: center;
+  background: url("../img/images/wallpaperflare.com_wallpaper\(9\).jpg")
+    center center/cover no-repeat;
+}
+
+.transparent_bg .card, .form-control {
+  background: rgba(255, 255, 255, 0.3) !important
+}
