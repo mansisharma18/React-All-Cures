@@ -1,4 +1,4 @@
-import React, {useEffect,useState} from 'react';
+import React, {useEffect,useState, useRef} from 'react';
 import {useParams} from 'react-router-dom';
 import axios from 'axios';
 import Header from '../Header/Header';
@@ -11,7 +11,7 @@ const EditModal = () => {
     const editId = useParams()
     const [title, setTitle] = useState('')
     const [articleDisplay, setArticleDisplay] = useState('')
-    const [content, setContent] = useState('')
+    const [content, setContent] = useState()
     const [disclaimer, setDisclaimer] = useState('')
     const [copyright, setCopyright] = useState('')
     const [language, setLanguage] = useState('')
@@ -124,7 +124,22 @@ const EditModal = () => {
         getCountries()
         getDisclaimer()
     }, [])
-    
+
+    const instanceRef = useRef(null)
+    var articleContent;
+    useEffect(() => {
+        articleContent = content
+    console.log(articleContent)
+    })
+  async function handleSave() {
+    const savedData = await instanceRef.current.save()
+    console.log(savedData)
+   }
+    // var articleContent = JSON.parse(content)
+    console.log("COntent : ", content)
+    // setTimeout(() => {
+    //     articleContent = content
+    // }, 4000);
     return (
         <>
 
@@ -254,7 +269,12 @@ const EditModal = () => {
                             </div>
                             <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
                             <div class="card-body">
-                            <EditorJs  tools={EDITOR_JS_TOOLS} data={content} />
+                                    <EditorJs
+                                        enableReInitialize = {true}
+                                        instanceRef={(instance) => (instanceRef.current = instance)}
+                                        tools = {EDITOR_JS_TOOLS} 
+                                        data = {articleContent}
+                                    />
                             </div>
                             </div>
                         </div>
