@@ -10,6 +10,7 @@ const EditModal = () => {
     const [title, setTitle] = useState('')
     const [articleDisplay, setArticleDisplay] = useState('')
     const [content, setContent] = useState()
+    const [contentType,setContentType] = useState([])
     const [disclaimer, setDisclaimer] = useState('')
     const [copyright, setCopyright] = useState('')
     const [language, setLanguage] = useState('')
@@ -22,14 +23,14 @@ const EditModal = () => {
     const [countriesList,setCountriesList] = useState([])
     const [succMsg,setSuccMsg] = useState('')
     const [disclaimerId,setDisclaimerId] = useState([]) 
+    const [getContentList,setGetContentList] = useState([]) 
 
     const getPosts = () =>{
 
         axios.get(`/article/${editId.id}`)
         .then(res => {
-            console.log(res);
             setTitle(res.data.title);
-            setContent(JSON.parse(res.data.content));
+            setContent(res.data.content_type);
             setDisclaimer(res.data.disclaimer_id)
             setCopyright(res.data.copyright_id)
             setLanguage(res.data.language)
@@ -55,7 +56,7 @@ const EditModal = () => {
             "title":title,
             "friendly_name": articleDisplay,
             "subheading": "1",
-            // "content_type": content,
+            "content_type": contentType,
             "keywords": "1",
             "window_title": win,
             "content_location": "1",
@@ -69,7 +70,6 @@ const EditModal = () => {
             "content": "12121",
         })
         .then(res => {
-            console.log(res);
             setSuccMsg('Updated Successfully')
         })
         .catch(err => {
@@ -99,7 +99,6 @@ const EditModal = () => {
     const getCountries = () => {
         axios.get('/article/all/table/countries')
         .then(res => {
-            console.log(res.data);
             setCountriesList(res.data)
         })
         .catch(err => console.log(err))
@@ -108,7 +107,6 @@ const EditModal = () => {
     const getDisclaimer = () => {
         axios.get('/article/all/table/disclaimer')
         .then(res => {
-            console.log(res.data);
             setDisclaimerId(res.data)
         })
         .catch(err => console.log(err))
@@ -134,6 +132,13 @@ const EditModal = () => {
         //     console.log('Parsed: ', parsed)
         //     instanceRef.render(parsed)
         // }, 5000)
+
+        if(content != undefined ) {
+            console.log(content.split(','));
+            const getContent = content.split(',')
+            getContentList.push(getContent)
+            console.log(getContentList[0][0]);
+        }
     })
 
     const instanceRef = useRef(null)
@@ -142,7 +147,6 @@ const EditModal = () => {
     //     console.log(savedData)
     // }
 
-   console.log("COntent : ", content)
     // const aaa = () => {
     return (
         <>
@@ -175,16 +179,17 @@ const EditModal = () => {
                 <div className="col-lg-6 form-group">
                     <label htmlFor="">Content Type</label>
                     <select multiple name="contentType" placeholder="Content Type" onChange={(e) => {
-                        setContent(e.target.value)
+                        setContentType([...contentType, e.target.value])
+                        alert(JSON.stringify(contentType))
                         if(e.target.value == 2) {
                             setShowCountry(true)
                         }else {
                             setShowCountry(false)
                         }
                     }} required="" class="form-control">
-                        <option value="1">Disease</option>
-                        <option value="2">Treatment</option>
-                        <option value="3">Specialities</option>
+                        <option selected={getContentList != ''  && getContentList[0][0] == 1 ?  true : false} value="1">Disease</option>
+                        <option selected={getContentList != ''  && getContentList[0][1] == 2 ?  true : false} value="2">Treatment</option>
+                        <option selected={getContentList != ''  && getContentList[0][2] == 3 ?  true : false} value="3">Specialities</option>
                     </select>
                     {/* <input type="text" value={content}  placeholder="Enter title" className="form-control" /> */}
                 </div>

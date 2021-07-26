@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import axios from 'axios';
 import EditModal from './EditModal'
 
-const AllPost = ({id, title, f_title, w_title}) => {
+const AllPost = ({id, title, f_title, w_title,allPostsContent}) => {
 
     
     const singlePostDelete = (postId) => {
@@ -12,7 +12,7 @@ const AllPost = ({id, title, f_title, w_title}) => {
         axios.delete(`/article/${postId}`)
         .then(res => {
             console.log(res);
-            window.location.href = "/blogs"
+            allPostsContent()
         })
         .then(err => {
             console.log(err);

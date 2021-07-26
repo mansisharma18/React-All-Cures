@@ -14,7 +14,8 @@ export default class Blogpage extends Component{
         };
       }
     
-      componentDidMount() {
+
+      allPosts() {
         fetch(`/article/all`)
           .then((res) => res.json())
           .then((json) => {
@@ -24,6 +25,10 @@ export default class Blogpage extends Component{
               items: json,
             });
           });
+      }
+ 
+      componentDidMount() {
+        this.allPosts()
       }
       
     render(){
@@ -55,6 +60,7 @@ export default class Blogpage extends Component{
                             title = {i[1]}
                             f_title = {i[2]}
                             w_title = {i[6]}
+                            allPostsContent={() => this.allPosts()}
                         />
                     ))}
                     </div>
