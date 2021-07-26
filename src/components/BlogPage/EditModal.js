@@ -27,7 +27,7 @@ const EditModal = () => {
 
         axios.get(`/article/${editId.id}`)
         .then(res => {
-            console.log(res);
+            console.log("get post",res);
             setTitle(res.data.title);
             setContent(JSON.parse(res.data.content));
             setDisclaimer(res.data.disclaimer_id)
@@ -38,9 +38,6 @@ const EditModal = () => {
             setArticleDisplay(res.data.friendly_name)
             setAuthor(res.data.authored_by)
         })
-        .then(
-            // aaa()
-        )
         .catch(err => console.log(err))
     }
 
@@ -58,7 +55,7 @@ const EditModal = () => {
             // "content_type": content,
             "keywords": "1",
             "window_title": win,
-            "content_location": "1",
+            // "content_location": "1",
             "authored_by": author,
             "published_by": 1,
             "edited_by": 1,
@@ -115,26 +112,12 @@ const EditModal = () => {
     }
 
     useEffect(() => {
+        console.log("Useeffect")
         getPosts()
         // getLanguages()
         // getAuthor()
         // getCountries()
-        // getDisclaimer()
-        // setTimeout(() => {
-        //     console.log("now rendering data in editor")
-    
-        //     const { value } = content
-            
-        //     let parsed
-        //     try {
-        //         parsed = JSON.parse(value)
-        //     } catch {
-        //         parsed = null
-        //     }
-        //     console.log('Parsed: ', parsed)
-        //     instanceRef.render(parsed)
-        // }, 5000)
-    })
+    }, [win])
 
     const instanceRef = useRef(null)
     // async function handleSave() {
@@ -256,10 +239,6 @@ const EditModal = () => {
                     <input type="text" value={win}  onChange={(e) => setWin(e.target.value)} placeholder="Enter title" className="form-control" />
                 </div>
                 </div>
-              
-
-                
-                
                             </div>
                             </div>
                         </div>
