@@ -1,8 +1,6 @@
 import React, {useEffect,useState, useRef} from 'react';
 import {useParams} from 'react-router-dom';
 import axios from 'axios';
-import Header from '../Header/Header';
-import Footer from '../Footer/Footer';
 
 import EditorJs from 'react-editor-js';
 import { EDITOR_JS_TOOLS } from './tools'
@@ -30,8 +28,8 @@ const EditModal = () => {
         axios.get(`/article/${editId.id}`)
         .then(res => {
             console.log(res);
-            setTitle(res.data.title)
-            setContent(res.data.content)
+            setTitle(res.data.title);
+            setContent(JSON.parse(res.data.content));
             setDisclaimer(res.data.disclaimer_id)
             setCopyright(res.data.copyright_id)
             setLanguage(res.data.language)
@@ -40,14 +38,15 @@ const EditModal = () => {
             setArticleDisplay(res.data.friendly_name)
             setAuthor(res.data.authored_by)
         })
+        .then(
+            // aaa()
+        )
         .catch(err => console.log(err))
     }
 
-    new EditorJs({        
-        placeholder: 'Let`s write an awesome story!'
-      });
-
-
+    // new EditorJs({        
+    //     placeholder: 'Let`s write an awesome story!'
+    //   });
     
     const singlePostEdit = (e) => {
         e.preventDefault()
@@ -97,7 +96,6 @@ const EditModal = () => {
         .catch(err => console.log(err))
     }
 
-
     const getCountries = () => {
         axios.get('/article/all/table/countries')
         .then(res => {
@@ -107,8 +105,6 @@ const EditModal = () => {
         .catch(err => console.log(err))
     }
 
-    
-
     const getDisclaimer = () => {
         axios.get('/article/all/table/disclaimer')
         .then(res => {
@@ -117,32 +113,39 @@ const EditModal = () => {
         })
         .catch(err => console.log(err))
     }
+
     useEffect(() => {
         getPosts()
-        getLanguages()
-        getAuthor()
-        getCountries()
-        getDisclaimer()
-    }, [])
+        // getLanguages()
+        // getAuthor()
+        // getCountries()
+        // getDisclaimer()
+        // setTimeout(() => {
+        //     console.log("now rendering data in editor")
+    
+        //     const { value } = content
+            
+        //     let parsed
+        //     try {
+        //         parsed = JSON.parse(value)
+        //     } catch {
+        //         parsed = null
+        //     }
+        //     console.log('Parsed: ', parsed)
+        //     instanceRef.render(parsed)
+        // }, 5000)
+    })
 
     const instanceRef = useRef(null)
-    var articleContent;
-    useEffect(() => {
-        articleContent = content
-    console.log(articleContent)
-    })
-  async function handleSave() {
-    const savedData = await instanceRef.current.save()
-    console.log(savedData)
-   }
-    // var articleContent = JSON.parse(content)
-    console.log("COntent : ", content)
-    // setTimeout(() => {
-    //     articleContent = content
-    // }, 4000);
+    // async function handleSave() {
+    //     const savedData = await instanceRef.current.save()
+    //     console.log(savedData)
+    // }
+
+   console.log("COntent : ", content)
+    // const aaa = () => {
     return (
         <>
-
             <div className="transparent_bg">
             <div className="container">
                 <div className="card">
@@ -270,10 +273,10 @@ const EditModal = () => {
                             <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
                             <div class="card-body">
                                     <EditorJs
+                                        data = {content}
                                         enableReInitialize = {true}
                                         instanceRef={(instance) => (instanceRef.current = instance)}
                                         tools = {EDITOR_JS_TOOLS} 
-                                        data = {articleContent}
                                     />
                             </div>
                             </div>
@@ -284,16 +287,13 @@ const EditModal = () => {
                         <button type="submit" className="btn mt-3 btn-dark">Submit</button>
                     </div>
                     </form>
-                        
-                    {/* <button className="btn btn-default" onClick={() => setShowPostEdit(!showPostEdit)}>Show Edit</button> */}
-            
                     </div>
                 </div>
             </div>
             </div>
 
         </>
-    )
+    )         
 }
 
 export default EditModal;
