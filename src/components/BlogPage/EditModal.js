@@ -14,10 +14,15 @@ const EditModal = () => {
     const [copyright, setCopyright] = useState('')
     const [language, setLanguage] = useState('')
     const [author, setAuthor] = useState('')
+    const [country, setCountry] = useState('')
     const [win, setWin] = useState('')
     const [articleStatus, setArticleStatus] = useState('')
+    const [disease, setDisease] = useState('')
+    const [articleContent, setArticleContent] = useState('')
+    const [diseaseList, setDiseaseList] = useState([])
     const [showCountry, setShowCountry] = useState(false)
     const [lanList,setLanList] = useState([])
+    const [contentType, setContentType] = useState([])
     const [authList,setAuthList] = useState([])
     const [countriesList,setCountriesList] = useState([])
     const [succMsg,setSuccMsg] = useState('')
@@ -32,12 +37,18 @@ const EditModal = () => {
             setContent(JSON.parse(res.data.content));
             setDisclaimer(res.data.disclaimer_id)
             setCopyright(res.data.copyright_id)
-            setLanguage(res.data.language)
+            setLanguage(res.data.language_id)
             setWin(res.data.window_title)
-            setArticleStatus(res.data.articleStatus)
+            setArticleStatus(res.data.pubstatus_id)
             setArticleDisplay(res.data.friendly_name)
             setAuthor(res.data.authored_by)
+            setContentType(res.data.content_type)
+            setCountry(res.data.country_id)
+            setDisease(res.data.disease_condition_id)
         })
+        .then(
+
+        )
         .catch(err => console.log(err))
     }
 
@@ -63,7 +74,7 @@ const EditModal = () => {
             "disclaimer_id": disclaimer,
             "pubstatus_id": articleStatus,
             "language_id": language,
-            "content": "12121",
+            "articleContent": articleContent,
         })
         .then(res => {
             console.log(res);
@@ -110,21 +121,41 @@ const EditModal = () => {
         })
         .catch(err => console.log(err))
     }
+    const getDisease = () => {
+        axios.get('/article/all/table/disease_condition')
+        .then(res => {
+            console.log(res.data);
+            setDiseaseList(res.data)
+        })
+        .catch(err => console.log(err))
+    }
 
     useEffect(() => {
         console.log("Useeffect")
         getPosts()
-        // getLanguages()
-        // getAuthor()
-        // getCountries()
+        getLanguages()
+        getAuthor()
+        getCountries()
+        getDisclaimer()
+        getDisease()
     }, [win])
 
     const instanceRef = useRef(null)
-    // async function handleSave() {
-    //     const savedData = await instanceRef.current.save()
-    //     console.log(savedData)
-    // }
 
+    async function handleSave() {
+        const savedData = await instanceRef.current.save()
+        setArticleContent(savedData);
+        console.log(articleContent)
+    }
+    
+    const handleSelect = function(countries) {
+        const flavors = [];
+        for (let i=0; i<countries.length; i++) {
+            flavors.push(countries[i].value);
+        }
+        setContentType(flavors);
+        console.log(contentType)
+    }
    console.log("COntent : ", content)
     // const aaa = () => {
     return (
@@ -134,7 +165,10 @@ const EditModal = () => {
                 <div className="card">
                 <h2 className="mainTitle text-center h3 py-3 card-header">Article</h2>
                     <div className="card-body">
-                    <form action="" onSubmit={(e) => singlePostEdit(e)}>
+                    <form action="" onSubmit={(e) => {
+                        singlePostEdit(e)
+                        // handleSave()
+                    }}>
                     <div id="accordion">
                         <div class="card">
                             <div class="card-header" id="headingOne"  data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
@@ -157,37 +191,37 @@ const EditModal = () => {
                 
                 <div className="col-lg-6 form-group">
                     <label htmlFor="">Content Type</label>
-                    <select multiple name="contentType" placeholder="Content Type" onChange={(e) => {
-                        setContent(e.target.value)
-                        if(e.target.value == 2) {
-                            setShowCountry(true)
-                        }else {
+                    <select multiple name="contentType" placeholder="Content Type" 
+                    value={contentType} 
+                    onChange={(e)=> {
+                        handleSelect(e.target.selectedOptions)
+                        if(contentType.indexOf('2') === -1){
                             setShowCountry(false)
+                        } else {
+                            setShowCountry(true)
                         }
-                    }} required="" class="form-control">
+                        //  console.log('Treatment not selected')
+                    }}
+                    required class="form-control">
+
+                    {/* // onChange={(e) => { */}
+                    {/* //     setContent(e.target.value)
+                    //     if(e.target.value == 2) {
+                    //         setShowCountry(true)
+                    //     }else {
+                    //         setShowCountry(false)
+                    //     }
+                    // }} */}
+                     
                         <option value="1">Disease</option>
                         <option value="2">Treatment</option>
                         <option value="3">Specialities</option>
                     </select>
-                    {/* <input type="text" value={content}  placeholder="Enter title" className="form-control" /> */}
                 </div>
-                {showCountry ? 
-                <div className="form-group col-lg-6">
-                    <label htmlFor="">Country</label>
-                    <select name="country" placeholder="Country" required="" class="custom-select">
-                        
-                        {countriesList.map((lan) => {
-                            return (
-                                <option value={lan[0]}>{lan[1]}</option>
-                            )
-                        })}
-                        
-                    </select>
-                </div>
-                 : null }
+                
                 <div className="col-lg-6 form-group">
                     <label htmlFor="">Disclaimer ID</label>
-                    <select name=""   onChange={(e) => setDisclaimer(e.target.value)} className="form-control" id="">
+                    <select name="" value={disclaimer}  onChange={(e) => setDisclaimer(e.target.value)} className="form-control" id="">
                         {disclaimerId.map((lan) => {
                             return (
                                 <option value={lan[0]}>{lan[0]}</option>
@@ -198,14 +232,14 @@ const EditModal = () => {
                 </div>
                 <div className="col-lg-6 form-group">
                     <label htmlFor="">Copyright ID</label>
-                    <select name=""   onChange={(e) => setCopyright(e.target.value)} className="form-control" id="">
+                    <select name="" value={copyright}  onChange={(e) => setCopyright(e.target.value)} className="form-control" id="">
                         <option value="11">Temporary</option>
                     </select>
                     
                 </div>
                 <div className="col-lg-6 form-group">
                     <label htmlFor="">Article Status</label>
-                    <select name="" value={language}  onChange={(e) => setArticleStatus(e.target.value)} className="form-control" id="">
+                    <select name="" value={articleStatus}  onChange={(e) => setArticleStatus(e.target.value)} className="form-control" id="">
                         <option value="1">Work in Progress</option>
                         <option value="2">Review</option>
                         <option value="3">Publish</option>
@@ -213,7 +247,7 @@ const EditModal = () => {
                 </div>
                 <div className="col-lg-6 form-group">
                     <label htmlFor="">Language</label>
-                    <select name=""   onChange={(e) => setLanguage(e.target.value)} className="form-control" id="">
+                    <select value={language} name="" onChange={(e) => setLanguage(e.target.value)} className="form-control" id="">
                         {lanList.map((lan) => {
                             return (
                                 <option value={lan[0]}>{lan[1]}</option>
@@ -222,8 +256,18 @@ const EditModal = () => {
                     </select>
                 </div>
                 <div className="col-lg-6 form-group">
+                    <label htmlFor="">Disease and Conditions</label>
+                    <select value={disease} name="" onChange={(e) => setDisease(e.target.value)} className="form-control" id="">
+                        {diseaseList.map((lan) => {
+                            return (
+                                <option value={lan[0]}>{lan[1]}</option>
+                            )
+                        })}
+                    </select>
+                </div>
+                <div className="col-lg-6 form-group">
                     <label htmlFor="">Author By ID</label>
-                     <select name=""   onChange={(e) =>  setAuthor(e.target.value)} className="form-control" id="">
+                     <select name="" value={author} onChange={(e) =>  setAuthor(e.target.value)} className="form-control" id="">
 
                     {authList.map((lan) => {
                             return (
@@ -238,6 +282,20 @@ const EditModal = () => {
                     <label htmlFor="">Win Title</label>
                     <input type="text" value={win}  onChange={(e) => setWin(e.target.value)} placeholder="Enter title" className="form-control" />
                 </div>
+                {contentType.indexOf('2') === -1 
+                    ? null 
+                    : <div className="form-group col-lg-6">
+                 <label htmlFor="">Country</label>
+                 <select name="country" value={country} onChange={(e) => setCountry(e.target.value)} placeholder="Country" required="" class="form-control">
+                     
+                     {countriesList.map((lan) => {
+                         return (
+                             <option value={lan[0]}>{lan[1]}</option>
+                         )
+                     })}
+                     
+                 </select>
+             </div> }
                 </div>
                             </div>
                             </div>
@@ -256,6 +314,7 @@ const EditModal = () => {
                                         enableReInitialize = {true}
                                         instanceRef={(instance) => (instanceRef.current = instance)}
                                         tools = {EDITOR_JS_TOOLS} 
+                                        // onChange={handleSave}
                                     />
                             </div>
                             </div>
@@ -264,6 +323,7 @@ const EditModal = () => {
                     {succMsg ? <h4 className="mt-3">{succMsg}</h4> : null}
                     <div className="form-group">
                         <button type="submit" className="btn mt-3 btn-dark">Submit</button>
+                        <button type="button" onClick={handleSave} className="btn mt-3 btn-dark ml-5">Save</button>
                     </div>
                     </form>
                     </div>

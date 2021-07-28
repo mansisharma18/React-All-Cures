@@ -422,6 +422,7 @@ document.getElementById('articlePreview').innerHTML=articleHTML;
                                             <Form.Label>Country</Form.Label>
                                                 <Form.Control as="select" name="countryId" custom
                                                 onChange={this.handleArticleChange} placeholder="Country" required>
+                                                    <option>Open this menu</option>
                                                     {this.state.country.map((i) => (  
                                                         <Options
                                                             value={i[0]}
@@ -434,18 +435,21 @@ document.getElementById('articlePreview').innerHTML=articleHTML;
                                     <Form.Group className="col-md-6 float-left">
                                         <Form.Label>Disclaimer ID</Form.Label>
                                         <Form.Control as="select" name="disclaimer" custom onChange={this.handleArticleChange} required>
+                                        <option>Open this select menu</option>
                                             <option value="12">Temporary</option>
                                         </Form.Control>
                                     </Form.Group>
                                     <Form.Group className="col-md-6 float-left">
                                         <Form.Label>Copyright ID</Form.Label>
                                         <Form.Control as="select" name="copyId" custom onChange={this.handleArticleChange} required>
+                                        <option>Open this select menu</option>
                                             <option value="11">Temporary</option>
                                         </Form.Control>
                                     </Form.Group>
                                     <Form.Group className="col-md-6 float-left">
                                         <Form.Label>Article Status</Form.Label>
                                         <Form.Control as="select" name="articleStatus" custom onChange={this.handleArticleChange} required>
+                                        <option>Open this select menu</option>
                                             <option value="1">Work in Progress</option>
                                             <option value="2">Review</option>
                                             <option value="3">Publish</option>
@@ -455,6 +459,7 @@ document.getElementById('articlePreview').innerHTML=articleHTML;
                                     <Form.Group className="col-md-6 float-left">
                                         <Form.Label>Language</Form.Label>
                                         <Form.Control as="select" name="language" custom onChange={this.handleArticleChange} required>
+                                        <option>Open this select menu</option>
                                             {this.state.language.map((i) => (  
                                                 <Options
                                                     value={i[0]}
@@ -466,6 +471,7 @@ document.getElementById('articlePreview').innerHTML=articleHTML;
                                     <Form.Group className="col-md-6 float-left">
                                         <Form.Label>Disease and Conditions</Form.Label>
                                         <Form.Control as="select" name="diseaseConditionId" custom onChange={this.handleArticleChange} required>
+                                        <option>Open this select menu</option>
                                             {this.state.speciality.map((i) => (  
                                                 <Options
                                                     value={i[0]}
@@ -478,6 +484,7 @@ document.getElementById('articlePreview').innerHTML=articleHTML;
                                         <Form.Label>Author By ID</Form.Label>
                                         <Form.Control as="select" name="authById" custom value={this.state.values.authById}
                                         onChange={this.handleArticleChange} required>
+                                            <option>Open this select menu</option>
                                             {this.state.author.map((i) => (
                                                 <Options
                                                 value={i[0]}
