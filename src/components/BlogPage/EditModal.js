@@ -29,6 +29,7 @@ const EditModal = () => {
 
         axios.get(`/article/${editId.id}`)
         .then(res => {
+            console.log("get post",res);
             setTitle(res.data.title);
             setContent(res.data.content_type);
             setDisclaimer(res.data.disclaimer_id)
@@ -39,9 +40,6 @@ const EditModal = () => {
             setArticleDisplay(res.data.friendly_name)
             setAuthor(res.data.authored_by)
         })
-        .then(
-            // aaa()
-        )
         .catch(err => console.log(err))
     }
 
@@ -59,7 +57,7 @@ const EditModal = () => {
             "content_type": contentType,
             "keywords": "1",
             "window_title": win,
-            "content_location": "1",
+            // "content_location": "1",
             "authored_by": author,
             "published_by": 1,
             "edited_by": 1,
@@ -113,6 +111,7 @@ const EditModal = () => {
     }
 
     useEffect(() => {
+        console.log("Useeffect")
         getPosts()
         // getLanguages()
         // getAuthor()
@@ -139,7 +138,8 @@ const EditModal = () => {
             getContentList.push(getContent)
             console.log(getContentList[0][0]);
         }
-    })
+    
+    }, [win])
 
     const instanceRef = useRef(null)
     // async function handleSave() {
@@ -261,10 +261,6 @@ const EditModal = () => {
                     <input type="text" value={win}  onChange={(e) => setWin(e.target.value)} placeholder="Enter title" className="form-control" />
                 </div>
                 </div>
-              
-
-                
-                
                             </div>
                             </div>
                         </div>
