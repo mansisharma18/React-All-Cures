@@ -10,6 +10,7 @@ const EditModal = () => {
     const [title, setTitle] = useState('')
     const [articleDisplay, setArticleDisplay] = useState('')
     const [content, setContent] = useState()
+    const [contentType,setContentType] = useState([])
     const [disclaimer, setDisclaimer] = useState('')
     const [copyright, setCopyright] = useState('')
     const [language, setLanguage] = useState('')
@@ -22,11 +23,12 @@ const EditModal = () => {
     const [diseaseList, setDiseaseList] = useState([])
     const [showCountry, setShowCountry] = useState(false)
     const [lanList,setLanList] = useState([])
-    const [contentType, setContentType] = useState([])
+    // const [contentType, setContentType] = useState([])
     const [authList,setAuthList] = useState([])
     const [countriesList,setCountriesList] = useState([])
     const [succMsg,setSuccMsg] = useState('')
     const [disclaimerId,setDisclaimerId] = useState([]) 
+    const [getContentList,setGetContentList] = useState([]) 
 
     const getPosts = () =>{
 
@@ -34,7 +36,7 @@ const EditModal = () => {
         .then(res => {
             console.log("get post",res);
             setTitle(res.data.title);
-            setContent(JSON.parse(res.data.content));
+            setContent(res.data.content_type);
             setDisclaimer(res.data.disclaimer_id)
             setCopyright(res.data.copyright_id)
             setLanguage(res.data.language_id)
@@ -63,7 +65,7 @@ const EditModal = () => {
             "title":title,
             "friendly_name": articleDisplay,
             "subheading": "1",
-            // "content_type": content,
+            "content_type": contentType,
             "keywords": "1",
             "window_title": win,
             // "content_location": "1",
@@ -77,7 +79,6 @@ const EditModal = () => {
             "articleContent": articleContent,
         })
         .then(res => {
-            console.log(res);
             setSuccMsg('Updated Successfully')
         })
         .catch(err => {
@@ -107,7 +108,6 @@ const EditModal = () => {
     const getCountries = () => {
         axios.get('/article/all/table/countries')
         .then(res => {
-            console.log(res.data);
             setCountriesList(res.data)
         })
         .catch(err => console.log(err))
@@ -116,7 +116,6 @@ const EditModal = () => {
     const getDisclaimer = () => {
         axios.get('/article/all/table/disclaimer')
         .then(res => {
-            console.log(res.data);
             setDisclaimerId(res.data)
         })
         .catch(err => console.log(err))
