@@ -475,7 +475,7 @@ document.getElementById('articlePreview').innerHTML=articleHTML;
                                             {this.state.speciality.map((i) => (  
                                                 <Options
                                                     value={i[0]}
-                                                    name={i[1]}
+                                                    name={i[3]}
                                                 />
                                             ))}
                                         </Form.Control>

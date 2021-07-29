@@ -55,11 +55,10 @@ const Routes = (props) => {
     <>
     <Switch>
        <Route exact path="/" component={Home} />
-       <Route exact path="/blogs/:id" component={Disease}/>
+       <Route exact path="/blog/:id" component={Disease}/>
           <Route exact path="/home" component={Home} />
           <Route exact path="/search/:city" component={Search} /> 
           <Route exact path="/searchName/:name" component={SearchName} /> 
-          {/* <Route exact path="/search/:name" component={Search} /> */}
           <Route path="/search/:city/:name" component={Search} />
           {/* <Route path="/search/:city/:name" component={Search} /> */}
           <Route path="/editPost/:id" component={EditPost}/>
@@ -67,6 +66,7 @@ const Routes = (props) => {
           <Route exact path="/dashboard" component={Dashboard} />
           <ProtectedRoute exact path="/sign" component={SignIn} />
           <Route exact path="/blogs" component={Blogpage}/>
+          <Route path="/blogs/:type" component={Blogpage}/>
           {/* <Route exact path="/blogs/:id" component={Blogs}/> */}
       <Route exact path="/profile/:id" component={Profile} />
 

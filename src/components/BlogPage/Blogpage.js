@@ -1,21 +1,24 @@
 import React, { Component } from 'react';
 import Header from '../Header/Header';
 import Footer from '../Footer/Footer'
-import EditModal from './EditModal'
+// import EditModal from './EditModal'
 import {Container} from "react-bootstrap";
 import AllPost from './Allpost';
 
 export default class Blogpage extends Component{
     constructor(props) {
         super(props);
+        const params = props.match.params
         this.state = { 
+          // url: props.url,
+          param: params,
           items: [],
           isLoaded: false,
         };
       }
     
 
-      allPosts() {
+      allPosts() {                        // For all available blogs "/bligs"
         fetch(`/article/all`)
           .then((res) => res.json())
           .then((json) => {
@@ -26,16 +29,35 @@ export default class Blogpage extends Component{
             });
           });
       }
- 
+      
+      diseasePosts(){                     // For specific blogs like "/blogs/diabetes"
+        fetch(`/isearch/${this.state.param.type}`)
+          .then((res) => res.json())
+          .then((json) => {
+            console.log(json);
+            this.setState({
+              isLoaded: true,
+              items: json,
+            });
+          });
+      }
+      
       componentDidMount() {
-        this.allPosts()
+        if(this.state.param.type){
+          console.log('Disease Post executed')
+          this.diseasePosts()
+        } else {
+          console.log('All Post executed')
+          this.allPosts()
+        }
       }
       
     render(){
         var { isLoaded,items } = this.state;
+        console.log(this.state.param)
+        console.log(this.state.url)
         if(!isLoaded) {
         console.log(items);
-        
         return (
         <>
           <Header/>
@@ -51,11 +73,10 @@ export default class Blogpage extends Component{
             <Header/>
             
                 <div className="container my-4">
-                    <h1 className="h1 text-center">Recent Posts</h1>
+                    <h1 className="h2 text-center">All Blogs</h1>
                     <div className="row" id="posts-container">
                     {items.map((i) => (
                         <AllPost
-                            key={i[0]}
                             id = {i[0]}
                             title = {i[1]}
                             f_title = {i[2]}

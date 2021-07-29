@@ -1,7 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
-import EditModal from './EditModal'
 
 const AllPost = ({id, title, f_title, w_title,allPostsContent}) => {
 
@@ -30,11 +29,11 @@ const AllPost = ({id, title, f_title, w_title,allPostsContent}) => {
                     
                         <div className="d-flex justify-content-between align-items-center">
                         <div>
-                        <Link to={ `/blogs/${id}` }  className="d-flex justify-content-between align-items-center">
+                        <Link to={ `/blog/${id}` }  className="d-flex justify-content-between align-items-center">
                             <h5 className="card-title m-0 p-0">{title}</h5>
                         </Link>
                         </div>
-                        <div>
+                        <div className="delete-edit-buttons">
                             <button className="btn btn-danger btn-sm mr-2"
                             onClick={() => {
                                 const confirmBox = window.confirm(

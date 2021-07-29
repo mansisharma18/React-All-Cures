@@ -47,7 +47,7 @@ export default function Carousel1(props){
             <div className="tab-content category " style={{maxWidth:"1140px", zIndex: 0}}>
                   <OwlCarousel className="owl-theme" items={6} loop margin={150} nav {...options}>
                   <div className="item bg-pink">
-                        <Link to={ `/search/${props.city}/ENT` }>
+                        <Link to={ `/blogs/ENT` }>
                            <div className="item-img">
                               <img src={Slider1} alt="slider-img"/>
                            </div>
@@ -57,7 +57,7 @@ export default function Carousel1(props){
                         </Link>
                         </div>
                         <div className="item bg-org">
-                        <Link to={ `/search/${props.city}/Endocrinology` }>
+                        <Link to={ `/blogs/Endocrinology` }>
                            <div className="item-img">
                               <img src={Slider2} alt="slider-img"/>
                            </div>
@@ -67,7 +67,7 @@ export default function Carousel1(props){
                            </Link>
                         </div>
                         <div className="item bg-l-org">
-                        <Link to={ `/search/${props.city}/Cardiology` }>
+                        <Link to={ `/blogs/Cardiology` }>
                            <div className="item-img">
                               <img src={Slider3} alt="slider-img"/>
                            </div>
@@ -77,7 +77,7 @@ export default function Carousel1(props){
                            </Link>
                         </div>
                         <div className="item bg-voilet">
-                        <Link to={ `/search/${props.city}/Dental` }>
+                        <Link to={ `/blogs/Dental` }>
                            <div className="item-img">
                               <img src={Slider4} alt="slider-img"/>
                            </div>
@@ -88,7 +88,7 @@ export default function Carousel1(props){
                         </div>
                         
                         <div className="item bg-blue">
-                        <Link to={ `/search/${props.city}/Dermatology` }>
+                        <Link to={ `/blogs/Dermatology` }>
                            <div className="item-img">
                               <img src={Slider5} alt="slider-img"/>
                            </div>
@@ -98,7 +98,7 @@ export default function Carousel1(props){
                            </Link>
                         </div>
                         <div className="item bg-green">
-                        <Link to={ `/search/${props.city}/ENT` }>
+                        <Link to={ `/blogs/ENT` }>
                            <div className="item-img">
                               <img src={Slider6} alt="slider-img"/>
                            </div>

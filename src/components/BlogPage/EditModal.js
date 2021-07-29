@@ -36,7 +36,7 @@ const EditModal = () => {
         .then(res => {
             console.log("get post",res);
             setTitle(res.data.title);
-            setContent(res.data.content_type);
+            setContent(JSON.parse(res.data.content));
             setDisclaimer(res.data.disclaimer_id)
             setCopyright(res.data.copyright_id)
             setLanguage(res.data.language_id)
@@ -48,10 +48,7 @@ const EditModal = () => {
             setCountry(res.data.country_id)
             setDisease(res.data.disease_condition_id)
         })
-        .then(
-
-        )
-        .catch(err => console.log(err))
+        .catch(err => console.log("errrrrrrorrrrrrrrrrrrrrrrrr",err))
     }
 
     // new EditorJs({        
@@ -141,11 +138,11 @@ const EditModal = () => {
 
     const instanceRef = useRef(null)
 
-    async function handleSave() {
-        const savedData = await instanceRef.current.save()
-        setArticleContent(savedData);
-        console.log(articleContent)
-    }
+    // async function handleSave() {
+    //     const savedData = await instanceRef.current.save()
+    //     // setArticleContent(savedData);
+    //     // console.log(articleContent)
+    // }
     
     const handleSelect = function(countries) {
         const flavors = [];
@@ -259,7 +256,7 @@ const EditModal = () => {
                     <select value={disease} name="" onChange={(e) => setDisease(e.target.value)} className="form-control" id="">
                         {diseaseList.map((lan) => {
                             return (
-                                <option value={lan[0]}>{lan[1]}</option>
+                                <option value={lan[0]}>{lan[3]}</option>
                             )
                         })}
                     </select>
@@ -322,7 +319,7 @@ const EditModal = () => {
                     {succMsg ? <h4 className="mt-3">{succMsg}</h4> : null}
                     <div className="form-group">
                         <button type="submit" className="btn mt-3 btn-dark">Submit</button>
-                        <button type="button" onClick={handleSave} className="btn mt-3 btn-dark ml-5">Save</button>
+                        {/* <button type="button" onClick={handleSave} className="btn mt-3 btn-dark ml-5">Save</button> */}
                     </div>
                     </form>
                     </div>

@@ -66,19 +66,20 @@ dragHandle {
 }
 #sidebar-wrapper {
   min-height: 60vh !important;
-  width: 100vw;
+  /* width: 100vw; */
   /* margin-left: -1rem; */
-  padding-left: 2rem;
-  -webkit-transition: margin 0.25s ease-out;
+  /* padding-left: 2rem; */
+  /* -webkit-transition: margin 0.25s ease-out;
   -moz-transition: margin 0.25s ease-out;
   -o-transition: margin 0.25s ease-out;
-  transition: margin 0.25s ease-out;
+  transition: margin 0.25s ease-out; */
   background-color: #71ddff;
+  padding-left: 8px;
 }
-#sidebar-wrapper .sidebar-heading {
+/* #sidebar-wrapper .sidebar-heading {
   padding: 0.875rem 1.25rem;
   font-size: 1.2rem;
-}
+} */
 
 #page-content-wrapper {
   min-width: 0;
@@ -1588,4 +1589,13 @@ dragHandle {
 
 .nav-link {
   color: #000;
+}
+
+.set-width .col-lg-4 {
+  min-width: 100%;
+  padding-left: 8px;
+}
+
+.set-width .delete-edit-buttons {
+  display: none;
 }

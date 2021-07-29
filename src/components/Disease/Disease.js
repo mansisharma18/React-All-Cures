@@ -106,12 +106,13 @@ class Disease extends Component {
                     caption = {i.data.caption}
                     alignment = {i.data.alignment}
                     url = {i.data.url}
+                    item = {i.data.items}
                   />
                 ))}
             </Container>
           </Col> 
-          <Col xs={2} id="sidebar-wrapper">      
-            <SidebarRight />
+          <Col id="sidebar-wrapper">      
+            <SidebarRight title={items.title}/>
           </Col>
         </Row>
       <Footer/>
