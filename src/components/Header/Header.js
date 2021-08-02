@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import './header.css';
 import Cookies from 'js-cookie';
 import axios from 'axios';
-import { Dropdown, DropdownButton } from 'react-bootstrap';
+import { Dropdown, DropdownButton, Card, Nav, Button, Form, FormControl } from 'react-bootstrap';
 
 import Heart from"../../assets/img/heart.png";
 import { Link } from "react-router-dom";
@@ -137,6 +137,54 @@ import { Link } from "react-router-dom";
                                 <span>All Cures</span>
                             </Link>
                         </div>
+                        <Nav className="me-auto">
+                            <Dropdown>
+                            <Dropdown.Toggle>
+                                <Nav.Link className="nav-dropdown-link nav-link active" href="#home">Home</Nav.Link>
+                            </Dropdown.Toggle>
+                            {/* <div className="col-lg-6"> */}
+                            <Dropdown.Menu className="disease-drop" style={{width: "30vw"}}>
+                                <div className="h5 font-weight-bold pl-4 text-underline">Common Conditions</div>
+                                <Link to="/blogs/arthritis" class="text-dark pl-4" disabled>Arthritis</Link>
+                                <Dropdown.Item disabled>Alergies</Dropdown.Item>
+                                <Dropdown.Item disabled>Cancer</Dropdown.Item>
+                                <Dropdown.Item disabled>Cardiology</Dropdown.Item>
+                                <Dropdown.Item disabled>Coronavirus(Covid-19)</Dropdown.Item>
+                            </Dropdown.Menu>
+                            {/* </div> */}
+                            </Dropdown>
+                            <div >
+  {/* <button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    Action                      */}
+               <Nav.Link className="nav-dropdown-link" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" href="#home">Home</Nav.Link>
+
+  {/* </button> */}
+  <div class="dropdown-menu">
+    <a class="dropdown-item" href="#">Action</a>
+    <a class="dropdown-item" href="#">Another action</a>
+    <a class="dropdown-item" href="#">Something else here</a>
+    <div class="dropdown-divider"></div>
+    <a class="dropdown-item" href="#">Separated link</a>
+  </div>
+</div>
+<div>
+      <Nav.Link className="nav-dropdown-link" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" href="#features">Features</Nav.Link></div>
+      <div>
+      <Nav.Link className="nav-dropdown-link" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" href="#pricing">Pricing</Nav.Link>
+      </div>
+      
+    </Nav>
+    <Form inline>
+              <FormControl type="text" variant="outline-success" onChange={this.handleChange} placeholder="Search" className="mr-sm-2" required aria-required="true"/>
+              <Link
+                className="btn btn-outline-success" 
+                id="search"
+                to={`/blogs/${this.state.disease}`}>
+                  Search
+              </Link>
+              {/* <Link className variant="outline-success">Search</Link className> */}
+            </Form>
+        
                         <div className="loginSign">
                         {/* <Link to="/profile">Go to Profile</Link> */}
                 {/* <Link to={{pathname: this.props.match.url, search: '?login=true'}}>Login</Link> */}

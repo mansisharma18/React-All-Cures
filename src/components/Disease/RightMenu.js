@@ -8,7 +8,7 @@ const Side = (props) => {
     const [isloaded, setisLoaded] = useState(true)
     const [items, setItems] = useState([])
     function diseasePosts(){                     // For specific blogs like "/blogs/diabetes"
-        fetch(`/isearch/arthritis`)     // NOT WORKING ERROR 500
+        fetch(`/isearch/${props.title}`)
           .then((res) => res.json())
           .then((json) => {                      
             console.log(json);

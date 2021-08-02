@@ -31,19 +31,21 @@ const Side = props => {
             onSelect={selectedKey => alert(`selected ${selectedKey}`)}
             >
                 <div className="sidebar-sticky"></div>
-            <Nav.Item className="set-width">
-                <div className="h4 pl-3 pb-3"><u>{props.title}</u></div>
+            <Nav.Item className="set-width pl-3">
+                <div className="h3 pl-3 pb-3"><u>{props.title}</u></div>
+                <ul>
             {   items?
                     items.map((i) => (
                         
                             // i.parent_dc_id === 0?
                             //     <div className="h5 pl-3">{i.dc_name}</div>
                             // : <div className="h6 pl-3">├──{i.dc_name}</div>
-                        <li className="h6 pl-3"> {i.dc_name}</li>
+                        <li><a className="h5 pl-3 text-dark disease-left"> {i.dc_name}</a></li>
                         
                     ))
                     : null
                 }
+                </ul>
             </Nav.Item>
             </Nav>
           

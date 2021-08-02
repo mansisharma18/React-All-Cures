@@ -155,8 +155,6 @@
     padding: 38px 15px i !important;
   }
 
-
-
   .serchlabel h1 {
     font-size: 24px !important;
   }
@@ -209,4 +207,24 @@
   .form-group .zipcode {
     border: 0px !important;
   }
+}
+
+.nav-dropdown-link {
+  border-left: 2px solid aqua;
+  background-color: none;
+  /* border-right: 1px solid aqua; */
+}
+
+.nav-dropdown-link:last-child {
+  border-right: 2px solid aqua;
+}
+
+.me-auto .btn-primary {
+  background-color: initial;
+  border-color: #3ad0ff;
+}
+
+.me-auto .btn-primary.dropdown-toggle {
+  background-color: initial;
+  border-color: #3ad0ff;
 }

@@ -23,7 +23,7 @@ const AllPost = ({id, title, f_title, w_title,allPostsContent}) => {
 
     return (
         <>
-        <div className="col-lg-4 cold-xs-8">
+        <div className="col-lg-12">
             <div className="card m-2" style={{background: 'ghostwhite'}}>
                 <div className="card-body">
                     
