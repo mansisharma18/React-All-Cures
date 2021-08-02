@@ -11,17 +11,18 @@ import SidebarRight from "./RightMenu";
 class Disease extends Component {
   constructor(props) {
     super(props);
-    const params = props.match.params
+    // const params = props.match.params
     this.state = { 
       items: [],
       isLoaded: false,
-      param : params
+      param : this.props.match.params,
+      disease: ''
     };
   }
     
   componentDidMount() {
     // console.log('Paramsssss '+ JSON.stringify(this.state.param))
-    fetch(`/article/${this.state.param.id}`)
+    fetch(`/article/${this.props.match.params.id}`)
     // .then(res => JSON.parse(res))
       .then((res) => res.json())
       .then((json) => {
@@ -32,7 +33,13 @@ class Disease extends Component {
         });
       });
   }
-    
+  
+  handleChange = e => {
+    this.setState({
+        disease: e.target.value 
+    });
+  }
+
   render() { 
     var { isLoaded,items } = this.state;
     if(!isLoaded) {
@@ -47,12 +54,13 @@ class Disease extends Component {
       </>  
     );
   } else if(isLoaded){
-    console.log(items);
+    // console.log(items);
+    // console.log('IIIIIIIIIIIIIIDDDDDDDDDDDDDDDD: ', this.state.param.id)
     var artContent = items.content;
     var a = JSON.parse(artContent)
-    console.log("article Content:", artContent)
+    // console.log("article Content:", artContent)
     var b = a.blocks
-    console.log("aaaaaaaaaa", a.blocks)
+    // console.log("aaaaaaaaaa", a.blocks)
     return (
     <div>
       <Header/>
@@ -74,14 +82,20 @@ class Disease extends Component {
               </NavDropdown>
             </Nav>
             <Form inline>
-              <FormControl type="text" placeholder="Search" className="mr-sm-2" />
-              <Button variant="outline-success">Search</Button>
+              <FormControl type="text" variant="outline-success" onChange={this.handleChange} placeholder="Search" className="mr-sm-2" required aria-required="true"/>
+              <Link
+                className="btn btn-outline-success" 
+                id="search"
+                to={`/blogs/${this.state.disease}`}>
+                  Search
+              </Link>
+              {/* <Link className variant="outline-success">Search</Link className> */}
             </Form>
           </Navbar.Collapse>
         </Navbar>
         <Row>
           <Col md={2} id="sidebar-wrapper">      
-            <Sidebar />
+            <Sidebar diseaseId={items.disease_condition_id} title={items.title} />
           </Col>
           <Col  md={8} id="page-content-wrapper" className="col-xs-12">
             <Container id="center-well" className="">

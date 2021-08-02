@@ -18,8 +18,8 @@ export default class Blogpage extends Component{
       }
     
 
-      allPosts() {                        // For all available blogs "/bligs"
-        fetch(`/article/all`)
+      allPosts() {                        // For all available blogs "/blogs"
+        fetch(`/article/allkv`)
           .then((res) => res.json())
           .then((json) => {
             console.log(json);
@@ -73,14 +73,18 @@ export default class Blogpage extends Component{
             <Header/>
             
                 <div className="container my-4">
-                    <h1 className="h2 text-center">All Blogs</h1>
+                  {
+                    this.state.param.type?
+                    <h1 className="h2 text-center">Blogs related to "{this.state.param.type}"</h1>
+                    :<h1 className="h2 text-center">All Blogs</h1>
+                  }
                     <div className="row" id="posts-container">
                     {items.map((i) => (
                         <AllPost
-                            id = {i[0]}
-                            title = {i[1]}
-                            f_title = {i[2]}
-                            w_title = {i[6]}
+                            id = {i.article_id}
+                            title = {i.title}
+                            f_title = {i.friendly_name}
+                            w_title = {i.window_title}
                             allPostsContent={() => this.allPosts()}
                         />
                     ))}

@@ -1,10 +1,27 @@
-import React from "react";
+import React, {useState, useEffect} from "react";
 import {Nav} from "react-bootstrap";
 import { withRouter } from "react-router";
+import AllPost from "../BlogPage/Allpost";
 import './style.css'
 
 const Side = props => {
-   
+    // const [isloaded, setisLoaded] = useState(true)
+    const [items, setItems] = useState([])
+    console.log('Propsssssssssssssssssss: ', props.diseaseId)
+    function  allPosts() {                        // For all available blogs "/blogs"
+        fetch(`/isearch/hierarchy/${props.diseaseId}`)
+          .then((res) => res.json())
+          .then((json) => {
+            console.log(json);
+            setItems(json)
+          });
+      }
+      useEffect(() => {
+        allPosts()
+        if(items){
+            console.log(items)
+        }
+    }, [])
 
     return (
         <>
@@ -14,19 +31,19 @@ const Side = props => {
             onSelect={selectedKey => alert(`selected ${selectedKey}`)}
             >
                 <div className="sidebar-sticky"></div>
-            <Nav.Item>
-                <Nav.Link href="/home">Active</Nav.Link>
-            </Nav.Item>
-            <Nav.Item>
-                <Nav.Link eventKey="link-1">Link</Nav.Link>
-            </Nav.Item>
-            <Nav.Item>
-                <Nav.Link eventKey="link-2">Link</Nav.Link>
-            </Nav.Item>
-            <Nav.Item>
-                <Nav.Link eventKey="disabled" disabled>
-                Disabled
-                </Nav.Link>
+            <Nav.Item className="set-width">
+                <div className="h4 pl-3 pb-3"><u>{props.title}</u></div>
+            {   items?
+                    items.map((i) => (
+                        
+                            // i.parent_dc_id === 0?
+                            //     <div className="h5 pl-3">{i.dc_name}</div>
+                            // : <div className="h6 pl-3">├──{i.dc_name}</div>
+                        <li className="h6 pl-3"> {i.dc_name}</li>
+                        
+                    ))
+                    : null
+                }
             </Nav.Item>
             </Nav>
           

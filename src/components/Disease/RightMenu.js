@@ -8,10 +8,10 @@ const Side = (props) => {
     const [isloaded, setisLoaded] = useState(true)
     const [items, setItems] = useState([])
     function diseasePosts(){                     // For specific blogs like "/blogs/diabetes"
-        fetch(`/isearch/art`)
+        fetch(`/isearch/arthritis`)     // NOT WORKING ERROR 500
           .then((res) => res.json())
-          .then((json) => {
-            // console.log(json);
+          .then((json) => {                      
+            console.log(json);
             
               setisLoaded(true)
               setItems(json)
@@ -36,13 +36,14 @@ const Side = (props) => {
                 <div className="sidebar-sticky"></div>
                 
             <Nav.Item className="set-width">
+                <div className="h4 pl-3 pb-3"><u>Related to {props.title}</u></div>
             {   items?
                     items.map((i) => (
                         <AllPost
-                            id = {i[0]}
-                            title = {i[1]}
-                            f_title = {i[2]}
-                            w_title = {i[6]}
+                            id = {i.article_id}
+                            title = {i.title}
+                            f_title = {i.friendly_name}
+                            w_title = {i.window_title}
                             allPostsContent={() => this.allPosts()}
                         />
                         

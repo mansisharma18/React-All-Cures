@@ -1,7 +1,6 @@
 import React from 'react';
 
 const CenterWell = ({content, type, text, title, message, source, embed, caption, alignment, url, item}) =>{
-    console.log(item)
     var list;
     return(
         <div>
