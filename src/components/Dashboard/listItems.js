@@ -44,10 +44,18 @@ export const mainListItems = (
         Delete Article
       </Link>
     </ListItem>
+    <ListItem button>
+      <ListItemIcon>
+        <BarChartIcon />
+      </ListItemIcon>
+      {/* <ListItemText primary="Reports" /> */}
+      <Link to="/dashboard/blogs">
+        Blogs
+      </Link>
+    </ListItem>
   
   </div>
 );
-
 export const secondaryListItems = (
   <div>
     <ListSubheader inset></ListSubheader>

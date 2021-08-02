@@ -5,7 +5,7 @@ import Footer from '../Footer/Footer'
 import {Container} from "react-bootstrap";
 import AllPost from './Allpost.js';
 
-export default class Blogpage extends Component{
+export default class BlogAllPost extends Component{
 
     constructor(props) {
         super(props);
@@ -20,8 +20,8 @@ export default class Blogpage extends Component{
       }
     
 
-      allPosts() {                        // For all available blogs "/blogs"
-        fetch(`/article/allkv`)
+      allPosts() {                        // For all available blogs "/bligs"
+        fetch(`/article/all`)
           .then((res) => res.json())
           .then((json) => {
             console.log(json);
@@ -76,18 +76,14 @@ export default class Blogpage extends Component{
             <Header/>
             
                 <div className="container my-4">
-                  {
-                    this.state.param.type?
-                    <h1 className="h2 text-center">Blogs related to "{this.state.param.type}"</h1>
-                    :<h1 className="h2 text-center">All Blogs</h1>
-                  }
+                    <h1 className="h2 text-center">All Blogs</h1>
                     <div className="row" id="posts-container">
                     {items.map((i) => (
                         <AllPost
-                            id = {i.article_id}
-                            title = {i.title}
-                            f_title = {i.friendly_name}
-                            w_title = {i.window_title}
+                            id = {i[0]}
+                            title = {i[1]}
+                            f_title = {i[2]}
+                            w_title = {i[6]}
                             allPostsContent={() => this.allPosts()}
                         />
                     ))}
