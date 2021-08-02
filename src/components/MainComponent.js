@@ -17,6 +17,7 @@ import LoginPage from "./login";
 import SignIn from "./Article/SignIn";
 import Blogpage from "./BlogPage/Blogpage";
 import EditPost from './BlogPage/EditModal';
+import BlogAllPost from './Dashboard/BlogAllPost'
 // import Blogs from './Disease/Disease'
 
 function Main(props) {
@@ -69,6 +70,7 @@ const Routes = (props) => {
           <Route path="/blogs/:type" component={Blogpage}/>
           {/* <Route exact path="/blogs/:id" component={Blogs}/> */}
       <Route exact path="/profile/:id" component={Profile} />
+      <Route exact path="/dashboard/blogs" component={BlogAllPost} />
 
     </Switch>
           <Route path="/" component={LoginPage}/>

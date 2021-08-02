@@ -5,7 +5,7 @@ import Footer from '../Footer/Footer'
 import {Container} from "react-bootstrap";
 import AllPost from './Allpost.js';
 
-export default class Blogpage extends Component{
+export default class BlogAllPost extends Component{
 
     constructor(props) {
         super(props);
