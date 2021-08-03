@@ -215,9 +215,9 @@
   /* border-right: 1px solid aqua; */
 }
 
-.nav-dropdown-link:last-child {
-  /* border-right: 2px solid aqua; */
-}
+/* .nav-dropdown-link:last-child {
+  border-right: 2px solid aqua;
+} */
 
 .me-auto .btn-primary {
   background-color: initial;
