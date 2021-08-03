@@ -1624,7 +1624,7 @@ h4 {
 }
 
 .paitent-profile img {
-  position: absolute;
+ /* position: absolute;*/
   width: 120px;
   height: 120px;
   border-radius: 100px;

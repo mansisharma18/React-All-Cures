@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import Header from "../Header/Header";
 import Footer from "../Footer/Footer";
-import Rating from "../StarRating";
+import Rating from "../StarRating";  
 import ClientA from "../../assets/img/client-a.jpg";
 
 import '../../assets/healthcare/css/main.css';
@@ -516,10 +516,12 @@ class Profile extends Component {
                               </div>
                             </div>
                           </div>
+
+                          
                           <div className="rating-footer">
                             <div className="back-top">
                               {" "}
-                              <a href="/#rating">
+                              <a href="#">
                                 <p>
                                   <i
                                     className="fa fa-angle-up"
@@ -590,7 +592,7 @@ class Profile extends Component {
                           <div className="rating-footer">
                             <div className="back-top">
                               {" "}
-                              <a href="/#faq">
+                              <a href=" #">
                                 <p>
                                   <i
                                     className="fa fa-angle-up"
