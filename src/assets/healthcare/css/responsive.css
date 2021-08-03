@@ -259,7 +259,7 @@
 
   .detail-r {
     min-width: 200px !important;
-    display: flex !important;
+   /* display: flex !important;*/
     flex-wrap: nowrap !important;
     overflow: auto !important;
     padding-bottom: 20px !important;

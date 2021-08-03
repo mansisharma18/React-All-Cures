@@ -25,94 +25,110 @@ import { Link } from "react-router-dom";
         };
     } */
     class Header extends Component {
+       
         constructor(props){
-           super(props);
-           this.state = {
-              users: '',
-              texts: '',
-              suggestions: [],
-              suggestionsDoc: [],
-              doctor : '',
-              docname : '',
-              url: props.url,
-               acPerm: Cookies.get('acPerm'),
-               searchParams: {
-                 city: '',
-                 name: '',
-             }
-           };
-       }
-       componentWillMount(){
-        const loadUsers = async () => {
-           const response = await axios.get('/city/all');
-           this.setState ({
-              users: response.data
-           })
-         }
-         loadUsers();
-     //  }
-     //  componentDidMount(){
-        const loaddoctor = async () => {
-           const response = await axios.get('/IntegratedActionController');
-           this.setState ({
-              doctor: response.data
-           })
-         }
-         loaddoctor();
-      }
-     
-       onSuggestHandler = (text) => {
-          this.state.searchParams.city= text;
-          this.setState({
-             suggestions: []
-          });
-      }
-      onChangeHandler = (e, text) => {
-        let matches = []
-        if (text.length > 0) {
-          matches = this.state.users.filter(user => {
-            const regex = new RegExp(`${text}`, "gi");
-            return user.Cityname.match(regex)
-          })
+            super(props);
+            this.state = {
+               users: '',
+               texts: '',
+               suggestions: [],
+               suggestionsDoc: [],
+               doctor : '',
+               getPincode:null,
+               getCityName:null,
+               docname : '',
+                acPerm: Cookies.get('acPerm'),
+                searchParams: {
+                  city: '',
+                  Pincode: '',
+                  name: '',
+              }
+            };
         }
-        this.setState({
-           texts: text,
-           suggestions: matches,
-           searchParams: { ...this.state.searchParams, [e.target.name]: text }
-     
-        });
-      }
-     
-      onSuggestHandlerdoctor = (text) => {
-        this.state.searchParams.name= text;
-        this.setState({
-           suggestionsDoc: []
-        });
-     }
-     onChangeHandlerdoctor = (e, text) => {
-      let matches = []
-      if (text.length > 0) {
-        matches = this.state.doctor.map.Doctorname.myArrayList.filter(user => {
-          const regex = new RegExp(`${text}`, "gi");
-          return user.match(regex)
-        })
-      }
-      this.setState({
-         texts: text,
-         suggestionsDoc: matches,
-         searchParams: { ...this.state.searchParams, [e.target.name]: text }
-     
-      });
-     }
 
-    onModalSubmit = (event) => {
-        event.preventDefault(event);
-    };
 
-    handleChange = e => 
-        this.setState({
-            searchParams: { ...this.state.searchParams, [e.target.name]: e.target.value }
-        });
+        componentWillMount(){
+            const loadUsers = async () => {
+               const response = await axios.get('/city/all');
+               this.setState ({
+                  users: response.data
+               })
+             }
+             loadUsers();
+         
+            const loaddoctor = async () => {
+               const response = await axios.get('/IntegratedActionController');
+               this.setState ({
+                  doctor: response.data
+               })
+             }
+             loaddoctor();
+          }
+         
+           onSuggestHandler = (text, ano) => {
+             if(Number.isInteger(this.state.getPincode)) {
+               this.state.searchParams.city = ano;
+             }else{
+               this.state.searchParams.city = text;
+             }
+             
+            //  this.state.Pincode.city = text;
+              this.setState({
+                 suggestions: []
+              });
+          }
+         
+          onChangeHandler = (e, text) => {
+         
+            const testVal = parseInt(e.target.value)   
+         
+            let matches = []
+            if (text.length > 0) {
+              matches = this.state.users.filter(user => {
+                const regex = new RegExp(`${text}`, "gi");
+                return user.Cityname.match(regex)
+              })
+            }
+            if (Number.isInteger(testVal)) {
+               matches = this.state.users.filter(user => {
+               //   const regex = new RegExp(`${testVal}`, "gi");
+                 return user.Pincode.match(testVal)
+               })
+             }
+            this.setState({
+               texts: text,
+               suggestions: matches,
+               searchParams: { ...this.state.searchParams, [e.target.name]: text }
+         
+            });
+          }
+         
+          onSuggestHandlerdoctor = (text) => {
+             
+            this.state.searchParams.name= text;
+            this.setState({
+               suggestionsDoc: []
+            });
+         }
+         onChangeHandlerdoctor = (e, text) => {
+          let matches = []
+          if (text.length > 0) {
+            matches = this.state.doctor.map.Doctorname.myArrayList.filter(user => {
+              const regex = new RegExp(`${text}`, "gi");
+              return user.match(regex)
+            })
+          }
+          this.setState({
+             texts: text,
+             suggestionsDoc: matches,
+             searchParams: { ...this.state.searchParams, [e.target.name]: text }
+         
+          });
+         }
+           handleChange = e => 
+                 this.setState({
+                     searchParams: { ...this.state.searchParams, [e.target.name]: e.target.value }
+                 });
     
         logout = async e => {
             const res = await fetch("/LogoutActionController", {
@@ -220,32 +236,48 @@ import { Link } from "react-router-dom";
                         <form class="mainSearch" >
                      	  <div className="col-md-4 pd-0 col-sx-12 col-sm-4">
                    			<div className="form-group search">
-    							<input type="text" placeholder="Doctor Name, Disease or Condition" name="name" id="doctors" 
+                               <input type="text" placeholder="Doctor Name, Disease or Condition" name="name" id="doctors" 
                                  autoComplete="off"
                                  onChange={e => this.onChangeHandlerdoctor(e, e.target.value)} 
                                  value={this.state.searchParams.name} 
                                  className="formVal form-control "/>
-                                  {this.state.suggestionsDoc.map((item,index)=>{
-         // return <p key={index}>{item}</p>
-       return  <li key={index} className="sug col-md-12 justify-content-md-center"
-                                       onClick={() => this.onSuggestHandlerdoctor(item)}
-                                    >{item}</li>
-       })}
-							</div>
-						 </div>
-   						 <div className="col-md-4 pd-0 col-sx-12 col-sm-4">
-         				 	<div className="form-group city zipcode">
-    							<input type= "text" placeholder="City or Zip-code" name="city" id="city" 
-                                autoComplete="off" 
-                                onChange={e => this.onChangeHandler(e, e.target.value)} 
-                                value={this.state.searchParams.city} 
-                                className="formVal form-control"
-                                />
-                                {this.state.suggestions && this.state.suggestions.map((suggestion, i) =>
-                                   <div key={i} className="suggestion col-md-12 justify-content-md-center"
-                                      onClick={() => this.onSuggestHandler(suggestion.Cityname)}
-                                   >{suggestion.Cityname}</div>
-                                )}
+                                    <div className="suggest">
+                                       {this.state.suggestionsDoc.map((item,index)=>{
+                                          return  <div key={index} className="col-md-12 justify-content-md-center  suggestionSearch"
+                                          onClick={() => this.onSuggestHandlerdoctor(item)}
+                                       >{item}</div>
+                                       })}
+                                    </div>
+                                 </div>
+                              </div>
+                              <div className="col-md-4 pd-0 col-sx-12 col-sm-4">
+                                 <div className="form-group city zipcode">
+                                 <input type= "text" placeholder="City or Zip-code" name="city" id="city"
+                                 autoComplete="off" 
+                                 onChange={e => {
+                                    this.onChangeHandler(e, e.target.value)
+                                    if(e.target.value){
+                                       this.setState({
+                                          getPincode: parseInt(e.target.value)
+                                       })
+                                    }else {
+                                       this.setState({
+                                          getCityName: String(e.target.value)
+                                       })
+                                    }
+                                    
+                                 }} 
+                                 value={this.state.searchParams.city} 
+                                 className="formVal form-control"
+                                 />
+                                 {this.state.suggestions && this.state.suggestions.map((suggestion, i) =>
+                                    <div key={i} className="suggestion col-md-12 justify-content-md-center"
+                                       onClick={() => this.onSuggestHandler(suggestion.Cityname,suggestion.Pincode)}
+                                    >
+                                       {Number.isInteger(this.state.getPincode) ? suggestion.Pincode :  suggestion.Cityname}
+
+                                    </div>
+                                 )}
                 	    	</div>
                 		 </div>
          					 
