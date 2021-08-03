@@ -216,7 +216,7 @@
 }
 
 .nav-dropdown-link:last-child {
-  border-right: 2px solid aqua;
+  /* border-right: 2px solid aqua; */
 }
 
 .me-auto .btn-primary {
@@ -228,3 +228,20 @@
   background-color: initial;
   border-color: #3ad0ff;
 }
+
+.border-btm{
+  display: block;
+  border-bottom: 1px solid black;
+  width: 10rem;
+  margin-left: 1rem;
+  /* background-color: #000;
+  height: 1px;
+  width:max-content */
+}
+
+.z-menu{
+  z-index: 1;
+  }
+  .z-drop{
+    z-index: 999;
+  }

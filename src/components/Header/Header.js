@@ -124,6 +124,11 @@ import { Link } from "react-router-dom";
               }, 1000);
          }
     render() {
+      const userStyle ={
+        display: 'grid',
+        gridTemplateColumns: 'repeat(2,1fr)',
+        gridGap:'1rem' 
+    }
         return(
             <div className="profilePage">
                 <div className="comman-pg-header">
@@ -137,40 +142,51 @@ import { Link } from "react-router-dom";
                                 <span>All Cures</span>
                             </Link>
                         </div>
+                        
                         <Nav className="me-auto">
                             <Dropdown>
-                            <Dropdown.Toggle>
-                                <Nav.Link className="nav-dropdown-link nav-link active" href="#home">Home</Nav.Link>
+                            <Dropdown.Toggle className="nav-dropdown-link">
+                            <span className="text-dark fs-6">Health</span>
+
                             </Dropdown.Toggle>
-                            {/* <div className="col-lg-6"> */}
-                            <Dropdown.Menu className="disease-drop" style={{width: "30vw"}}>
-                                <div className="h5 font-weight-bold pl-4 text-underline">Common Conditions</div>
-                                <Link to="/blogs/arthritis" class="text-dark pl-4" disabled>Arthritis</Link>
-                                <Dropdown.Item disabled>Alergies</Dropdown.Item>
-                                <Dropdown.Item disabled>Cancer</Dropdown.Item>
-                                <Dropdown.Item disabled>Cardiology</Dropdown.Item>
-                                <Dropdown.Item disabled>Coronavirus(Covid-19)</Dropdown.Item>
+                            <Dropdown.Menu className="disease-drop" style={userStyle}>
+                              <div>
+                              <Dropdown.Header className="col-8 col-md-6 h5 font-weight-bold border-dark">
+                                Common Conditions</Dropdown.Header>
+                                <span className="border-btm"></span>
+                                <Link to="/blogs/arthritis" class="text-dark pl-4">Arthritis</Link>
+                                <Dropdown.Item >Alergies</Dropdown.Item>
+                                <Dropdown.Item >Cancer</Dropdown.Item>
+                                <Dropdown.Item >Cardiology</Dropdown.Item>
+                                <Dropdown.Item >Coronavirus(Covid-19)</Dropdown.Item>
+                                <Dropdown.Item >Coronavirus(Covid-19)</Dropdown.Item>
+                                 <Dropdown.Item >Coronavirus(Covid-19)</Dropdown.Item>
+                                <Dropdown.Item >Coronavirus(Covid-19)</Dropdown.Item>
+                                </div>
+                                <div>
+                                <Dropdown.Header className="col-4 col-md-6 h5 font-weight-bold ">
+                                Resources</Dropdown.Header>
+                                <span className="border-btm"></span>
+                                <Dropdown.Item >Alergies</Dropdown.Item>
+                                <Dropdown.Item >Cancer</Dropdown.Item>
+                                <Dropdown.Item >Cardiology</Dropdown.Item>
+                                <Dropdown.Item >Coronavirus(Covid-19)</Dropdown.Item>
+                                </div>
                             </Dropdown.Menu>
                             {/* </div> */}
                             </Dropdown>
                             <div >
   {/* <button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
     Action                      */}
-               <Nav.Link className="nav-dropdown-link" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" href="#home">Home</Nav.Link>
+              
 
   {/* </button> */}
-  <div class="dropdown-menu">
-    <a class="dropdown-item" href="#">Action</a>
-    <a class="dropdown-item" href="#">Another action</a>
-    <a class="dropdown-item" href="#">Something else here</a>
-    <div class="dropdown-divider"></div>
-    <a class="dropdown-item" href="#">Separated link</a>
-  </div>
+  
 </div>
 <div>
-      <Nav.Link className="nav-dropdown-link" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" href="#features">Features</Nav.Link></div>
+      <Nav.Link className="nav-dropdown-link" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" href="#features">Supplements</Nav.Link></div>
       <div>
-      <Nav.Link className="nav-dropdown-link" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" href="#pricing">Pricing</Nav.Link>
+      <Nav.Link className="nav-dropdown-link" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" href="#pricing">News</Nav.Link>
       </div>
       
     </Nav>
