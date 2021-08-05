@@ -164,7 +164,7 @@ import Autocomplete from '../Autocomplete'
         return(
             <div className="profilePage">
                 <div className="comman-pg-header">
-                <section className="pageHeader">
+                <section className="pageHeader zIndex-2">
                     <div className="container">
                     <div className="row">
                         <div className="header" style={{width:"100%"}}>
@@ -250,7 +250,7 @@ import Autocomplete from '../Autocomplete'
                     </div>
                     </div>
                 </section>
-                <section className="megaSearch">
+                <section className="megaSearch zIndex-1">
          <div className="container">
             <div className="row">
                <div className="search-wrap-inner clearfix">

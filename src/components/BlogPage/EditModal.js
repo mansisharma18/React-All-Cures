@@ -1,6 +1,8 @@
 import React, {useEffect,useState, useRef} from 'react';
 import {useParams} from 'react-router-dom';
 import axios from 'axios';
+import Header from '../Header/Header';
+import Footer from '../Footer/Footer';
 
 import EditorJs from 'react-editor-js';
 import { EDITOR_JS_TOOLS } from './tools'
@@ -326,7 +328,6 @@ const EditModal = () => {
                 </div>
             </div>
             </div>
-
         </>
     )         
 }
