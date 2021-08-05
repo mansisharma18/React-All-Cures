@@ -5,6 +5,8 @@ import axios from 'axios';
 import { Dropdown, DropdownButton, Card, Nav, Button, Form, FormControl } from 'react-bootstrap';
 import Heart from"../../assets/img/heart.png";
 import { Link } from "react-router-dom";
+import Autocomplete from '../Autocomplete'
+
 // import { Container } from '../Modal/Container';
 
 // import { ToggleButton } from "react-bootstrap";
@@ -33,6 +35,7 @@ import { Link } from "react-router-dom";
                suggestions: [],
                suggestionsDoc: [],
                doctor : '',
+               spec1: [],
                getPincode:null,
                getCityName:null,
                docname : '',
@@ -47,6 +50,20 @@ import { Link } from "react-router-dom";
 
 
         componentWillMount(){
+         Promise.all([
+            fetch('/article/all/table/disease_condition').then(res => res.json()),
+          ]).then(([diseaseData]) => {
+            console.log('Speciality Data: ', diseaseData)
+            this.setState({
+                isLoaded: true,
+                speciality: diseaseData,
+            });
+
+          }).then(() => {
+            this.state.speciality.map((i) => {
+              this.state.spec1.push(i[3])
+            })
+          })
             const loadUsers = async () => {
                const response = await axios.get('/city/all');
                this.setState ({
@@ -205,16 +222,21 @@ import { Link } from "react-router-dom";
       </div>
       
     </Nav>
-    <Form inline>
-              <FormControl type="text" variant="outline-success" onChange={this.handleChange} placeholder="Search" className="mr-sm-2" required aria-required="true"/>
-              <Link
+    {/* <Form inline>
+              <FormControl type="text" variant="outline-success" onChange={this.handleChange} placeholder="Search" className="mr-sm-2" required aria-required="true"/> */}
+              {
+                  this.state.spec1?
+                    <Autocomplete value={this.state.temp} suggestions={this.state.spec1}/>
+                  : null
+                }
+              {/* <Link
                 className="btn btn-outline-success" 
                 id="search"
                 to={`/blogs/${this.state.disease}`}>
                   Search
-              </Link>
+              </Link> */}
               {/* <Link className variant="outline-success">Search</Link className> */}
-            </Form>
+            {/* </Form> */}
         
                         <div className="loginSign">
                         {/* <Link to="/profile">Go to Profile</Link> */}
