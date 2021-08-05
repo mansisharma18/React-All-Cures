@@ -111,6 +111,7 @@ class Autocomplete extends Component {
               <input
                 type="text"
                 className="form-control w-75"
+                placeholder="Search for articles"
                 variant = "success"
                 onChange={onChange}
                 onKeyDown={onKeyDown}
@@ -121,7 +122,7 @@ class Autocomplete extends Component {
               {suggestionsListComponent}
             </div>
             <Link
-              className="btn btn-outline-success " 
+              className="btn" 
               id="search"
               style={{height: 'max-content'}}
               to={`/blogs/${this.state.userInput}`}>

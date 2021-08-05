@@ -18,35 +18,46 @@ const Side = (props) => {
             
           });
       }
+      function allPosts() {                        // For all available blogs "/blogs"
+        fetch(`/article/allkv`)
+          .then((res) => res.json())
+          .then((json) => {
+            console.log(json);
+            setisLoaded(true)
+            setItems(json.reverse())
+          });
+      }
       useEffect(() => {
-          
-        diseasePosts()
+          allPosts()
+        // diseasePosts()
         if(items){
-            console.log(items)
+            console.log('reverse: ',items.reverse())
         }
     }, [])
     // diseasePosts()
     return (
         <>
     
-            <Nav style={{background: '#71ddff', color: '#000'}} className="col-xs-2  d-md-block sidebar"
+            <Nav className="col-xs-2  d-md-block sidebar"
             activeKey="/home"
             onSelect={selectedKey => alert(`selected ${selectedKey}`)}
             >
                 <div className="sidebar-sticky"></div>
                 
             <Nav.Item className="set-width">
-                <div className="h4 pl-3 pb-3"><u>Related to {props.title}</u></div>
+                <div className="h3 pl-4 pb-3 font-weight-bold"><u>Recent Articles</u></div>
             {   items?
                     items.map((i) => (
+                        i.pubstatus_id === 3?                   // Selects articles with publish status = 3 (Published)
+                        // console.log('iiiiiiiiiiiiii: ', i)
                         <AllPost
                             id = {i.article_id}
                             title = {i.title}
                             f_title = {i.friendly_name}
                             w_title = {i.window_title}
-                            allPostsContent={() => this.allPosts()}
+                            // allPostsContent={() => this.allPosts()}
                         />
-                        
+                        : null
                     ))
                     : null
                 }

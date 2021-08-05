@@ -54,19 +54,18 @@ class Disease extends Component {
       </>  
     );
   } else if(isLoaded){
-    // console.log(items);
-    // console.log('IIIIIIIIIIIIIIDDDDDDDDDDDDDDDD: ', this.state.param.id)
     var artContent = items.content;
-    var a = JSON.parse(artContent)
-    // console.log("article Content:", artContent)
+    console.log(artContent)
+    var a = JSON.parse(decodeURI(artContent))
+    console.log(a)
     var b = a.blocks
     // console.log("aaaaaaaaaa", a.blocks)
     return (
     <div>
       <Header/>
-        <div style={{height: "8rem"}}></div>
+        <div style={{height: "8rem", borderBottom: "1px solid #4b798d", borderTop: "1px solid #4b798d"}}></div>
         {/* <HeaderAd style={ {height: "10rem", display: "inline-block"}} /> */}
-        <Navbar  bg="blue" expand="lg">
+        {/* <Navbar  bg="blue" expand="lg">
           <Navbar.Brand href="#home">React-Bootstrap</Navbar.Brand>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
@@ -89,24 +88,28 @@ class Disease extends Component {
                 to={`/blogs/${this.state.disease}`}>
                   Search
               </Link>
-              {/* <Link className variant="outline-success">Search</Link className> */}
             </Form>
           </Navbar.Collapse>
-        </Navbar>
+        </Navbar> */}
         <Row>
           <Col md={2} id="sidebar-wrapper">      
             <Sidebar diseaseId={items.disease_condition_id} title={items.title} />
           </Col>
-          <Col  md={8} id="page-content-wrapper" className="col-xs-12">
-            <Container id="center-well" className="">
+          <Col  md={7} id="page-content-wrapper" className="col-xs-12">
+            <div id="center-well" className="">
               <Breadcrumb>
                 <Breadcrumb.Item href="/">Home</Breadcrumb.Item>                                     
                 <Breadcrumb.Item>
-                  <Link to="/dashboard">
-                    Dashboard
+                  <Link to="/blogs">
+                    Blogs
                   </Link>
                 </Breadcrumb.Item>
-                <Breadcrumb.Item active>Blog</Breadcrumb.Item>
+                <Breadcrumb.Item>
+                  <Link to={`/blogs/${items.disease_condition_id}`}>
+                    {items.disease_condition_id}
+                  </Link>
+                </Breadcrumb.Item>
+                <Breadcrumb.Item active>{items.title}</Breadcrumb.Item>
               </Breadcrumb>
                 {b.map((i) => (
                   <CenterWell
@@ -123,7 +126,7 @@ class Disease extends Component {
                     item = {i.data.items}
                   />
                 ))}
-            </Container>
+            </div>
           </Col> 
           <Col id="sidebar-wrapper">      
             <SidebarRight title={items.title}/>

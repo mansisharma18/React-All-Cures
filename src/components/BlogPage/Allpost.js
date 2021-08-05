@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 
-const AllPost = ({id, title, f_title, w_title,allPostsContent}) => {
+const AllPost = ({id, title, f_title, w_title}) => {
 
     return (
         <>
