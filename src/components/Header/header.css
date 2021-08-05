@@ -274,8 +274,8 @@
 
 .suggestion-active,
 .suggestions li:hover {
-  background-color: #008f68;
-  color: #111;
+  background-color: #00415e;
+  color: #fff;
   cursor: pointer;
   font-weight: 700;
 }
