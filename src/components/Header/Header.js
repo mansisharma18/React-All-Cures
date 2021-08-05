@@ -3,7 +3,6 @@ import './header.css';
 import Cookies from 'js-cookie';
 import axios from 'axios';
 import { Dropdown, DropdownButton, Card, Nav, Button, Form, FormControl } from 'react-bootstrap';
-
 import Heart from"../../assets/img/heart.png";
 import { Link } from "react-router-dom";
 import Autocomplete from '../Autocomplete'
