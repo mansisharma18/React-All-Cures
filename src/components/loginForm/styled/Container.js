@@ -35,7 +35,7 @@ export default styled(posed.div({}))`
     color: #fff;
     font: inherit;
     cursor: pointer;
-    background: #dc3545;
+    background: #00415e;
     border-radius: 3em;
     border: 2px solid;
     padding: .5rem 2em;
@@ -46,7 +46,7 @@ export default styled(posed.div({}))`
     color: #fff;
   }
   button:active {
-    background: #dc3530
+    background: #004180
   }
 
   .container__form {
@@ -67,7 +67,8 @@ export default styled(posed.div({}))`
   .overlay {
     grid-column: 1;
     grid-row: 1;
-    background: #dc3545;
+    background: #b9daf1;
     text-align: center;
+    color: #000
   }
 `

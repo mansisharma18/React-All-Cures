@@ -46,7 +46,7 @@ export default styled(
 )
 `
   z-index: 1;
-  background: ${({ theme }) => theme.gradient};
+  background: z;
   align-self: stretch;
   color: white;
   display: grid;

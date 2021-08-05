@@ -47,15 +47,13 @@ const Side = (props) => {
             <Nav.Item className="set-width">
                 <div className="h3 pl-4 pb-3 font-weight-bold"><u>Recent Articles</u></div>
             {   items?
-                    items.map((i) => (
-                        i.pubstatus_id === 3?                   // Selects articles with publish status = 3 (Published)
-                        // console.log('iiiiiiiiiiiiii: ', i)
+                    items.map((i, index) => index<10 && (
+                        i.pubstatus_id === 3?                // Selects articles with publish status = 3 (Published)
                         <AllPost
                             id = {i.article_id}
                             title = {i.title}
                             f_title = {i.friendly_name}
                             w_title = {i.window_title}
-                            // allPostsContent={() => this.allPosts()}
                         />
                         : null
                     ))
