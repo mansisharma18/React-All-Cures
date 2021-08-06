@@ -2,30 +2,12 @@ import React, { Component } from "react";
 import './header.css';
 import Cookies from 'js-cookie';
 import axios from 'axios';
-import { Dropdown, DropdownButton, Card, Nav, Button, Form, FormControl } from 'react-bootstrap';
+import { Dropdown, DropdownButton, Nav } from 'react-bootstrap';
 import Heart from"../../assets/img/heart.png";
 import { Link } from "react-router-dom";
 import Autocomplete from '../Autocomplete'
 
-// import { Container } from '../Modal/Container';
-
-// import { ToggleButton } from "react-bootstrap";
-/*class Header extends Component {
-
-    constructor(props){
-        super(props);
-        // const params = props.match.params
-        this.state = {
-            url: props.url,
-            acPerm: Cookies.get('acPerm'),
-            // param: params,
-            searchParams: {
-                city: 'Jammu',
-                name: '',
-            }
-        };
-    } */
-    class Header extends Component {
+   class Header extends Component {
        
         constructor(props){
             super(props);
@@ -141,19 +123,19 @@ import Autocomplete from '../Autocomplete'
          
           });
          }
-           handleChange = e => 
-                 this.setState({
-                     searchParams: { ...this.state.searchParams, [e.target.name]: e.target.value }
-                 });
+         
+         handleChange = e => 
+            this.setState({
+               searchParams: { ...this.state.searchParams, [e.target.name]: e.target.value }
+            });
     
-        logout = async e => {
+         logout = async e => {
             const res = await fetch("/LogoutActionController", {
                method: "POST"
             });
-              const data = await res.text();
-              setTimeout(() => {
-                 window.location.reload()
-              }, 1000);
+            setTimeout(() => {
+               window.location.reload()
+            }, 1000);
          }
     render() {
       const userStyle ={

@@ -19,7 +19,7 @@ const AllPost = ({id, title, f_title, w_title}) => {
                             </div>
                         
                         <div className="card-info">
-                            <h6 className="card-subtitle mb-2 text-muted"></h6>
+                            {/* <h6 className="card-subtitle mb-2 text-muted"></h6> */}
                             <h4>{w_title}</h4>
                         </div>
                     </div>

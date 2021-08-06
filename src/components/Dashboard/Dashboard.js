@@ -21,7 +21,6 @@ import Deposits from './Deposits';
 import Draft from './Draft';
 import Approval from './Approval';
 import Review from './Review';
-import BlogPage from "./BlogPage";
 
 
 function Copyright() {
