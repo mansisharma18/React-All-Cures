@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom';
 
 const AllPost = ({id, title, f_title, w_title}) => {
     
-        console.log(id)
         return (
             <>
             <div className="col-lg-12">

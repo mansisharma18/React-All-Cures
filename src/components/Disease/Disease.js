@@ -93,7 +93,7 @@ class Disease extends Component {
         </Navbar> */}
         <Row>
           <Col md={2} id="sidebar-wrapper">      
-            <Sidebar diseaseId={items.disease_condition_id} title={items.title} />
+            <Sidebar diseaseId={items.disease_condition_id} name={items.dc_name} />
           </Col>
           <Col  md={7} id="page-content-wrapper" className="col-xs-12">
             <div id="center-well" className="">
@@ -105,8 +105,8 @@ class Disease extends Component {
                   </Link>
                 </Breadcrumb.Item>
                 <Breadcrumb.Item>
-                  <Link to={`/blogs/${items.disease_condition_id}`}>
-                    {items.disease_condition_id}
+                  <Link to={`/blogs/${items.dc_name}`}>
+                    {items.dc_name}
                   </Link>
                 </Breadcrumb.Item>
                 <Breadcrumb.Item active>{items.title}</Breadcrumb.Item>

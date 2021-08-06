@@ -35,7 +35,7 @@ const Side = props => {
             <Nav.Item className="set-width pl-3">
                 <div className="h3 pl-2 pb-1 pt-5 font-weight-bold"><u>Menu</u></div>
                 <div className="guide mt-4">
-                    <div className="h4 pl-2 font-weight-bold">{props.title} Guide</div>
+                    <div className="h4 pl-2 font-weight-bold">{props.name} Guide</div>
                     {/* <div className="card"> */}
                     <div className=" menu-item">
                         <Link className="text-dark h6">Overview & Facts</Link>
@@ -50,9 +50,8 @@ const Side = props => {
                         <Link className="text-dark h6">Living with</Link>
                     </div>
                 </div>
-                <div className="related mt-5">
-                    <div className="h4 pl-2 font-weight-bold">Related to {props.title}</div>
-                    {/* <div className="card"> */}
+                {/* <div className="related mt-5">
+                    <div className="h4 pl-2 font-weight-bold">Related to {props.name}</div>
                     <div className=" menu-item">
                         <Link className="text-dark h6">Overview & Facts</Link>
                     </div>
@@ -65,21 +64,22 @@ const Side = props => {
                     <div className=" menu-item">
                         <Link className="text-dark h6">Living with</Link>
                     </div>
-                </div>
+                </div> */}
                 {/* </div> */}
-                <ul>
-            {   items?
-                    items.map((i) => (
-                        
-                            // i.parent_dc_id === 0?
-                            //     <div className="h5 pl-3">{i.dc_name}</div>
-                            // : <div className="h6 pl-3">├──{i.dc_name}</div>
-                        <li><a className="h5 pl-3 text-dark disease-left"> {i.dc_name}</a></li>
-                        
-                    ))
+                {/* <ul> */}
+                <div className="related mt-5">
+                <div className="h4 pl-2 font-weight-bold">Related to {props.name}</div>
+                {   
+                    items?
+                        items.map((i) => (
+                            <div className=" menu-item">
+                                <Link className="text-dark h6">{i.dc_name}</Link>
+                            </div>
+                        ))
                     : null
                 }
-                </ul>
+                </div>
+                {/* </ul> */}
             </Nav.Item>
             </Nav>
           
