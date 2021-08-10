@@ -298,7 +298,6 @@
   float: left;
 }
 
-<<<<<<< HEAD
 .dropdown{
   float: right;
   list-style: none;
@@ -319,14 +318,13 @@ border: white;
 .fa-user
 {
   color:#0c1b22;
-=======
-.zIndex-1 {
-  z-index: 1;
-  position: relative;
 }
+.zIndex-1 {
+    z-index: 1;
+    position: relative;
+  }
 
 .zIndex-2 {
   z-index: 2;
   position: relative;
->>>>>>> 0878c3a44dcd5454a943b291b2a07f383acd8e93
 }

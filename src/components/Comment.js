@@ -1,5 +1,5 @@
 import React from 'react';
-import CommentBox from 'react-commentbox';
+// import CommentBox from 'react-commentbox';
 import axios from 'axios';
  
 const Comment = ({refreshComments}) => {
