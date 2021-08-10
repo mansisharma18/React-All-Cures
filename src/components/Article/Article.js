@@ -7,6 +7,8 @@ import Carousel from './Carousel'
 import EditorJs from 'react-editor-js';
 import { EDITOR_JS_TOOLS } from './tools';
 import Options from './Options';
+import Header from '../Header/Header';
+import Footer from '../Footer/Footer';
 
 export default class Test extends Component {
     constructor(props) {
@@ -365,6 +367,7 @@ document.getElementById('articlePreview').innerHTML=articleHTML;
     } else if(isLoaded){
     return (
         <div>
+            <Header/>
             <Carousel/>
                 <Container>  
                     <Card className="mainCard" >
@@ -545,6 +548,7 @@ document.getElementById('articlePreview').innerHTML=articleHTML;
                 {/* SLIDESHOW */}
                 <div className="slideshow"></div>
             </Container>
+            <Footer/>
         </div>
         );
         }

@@ -40,6 +40,7 @@
     "react": "^17.0.1",
     "react-bootstrap": "^1.5.2",
     "react-bootstrap-typeahead": "^5.1.4",
+    "react-commentbox": "^3.0.1",
     "react-dom": "^17.0.1",
     "react-editor-js": "^1.9.0",
     "react-owl-carousel": "^2.3.3",
@@ -58,7 +59,7 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
-  "proxy": "http://192.168.29.170:8080/cures/",
+  "proxy": "http://localhost:8080/cures/",
   "eslintConfig": {
     "extends": [
       "react-app",

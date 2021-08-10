@@ -326,7 +326,6 @@ const EditModal = () => {
                 </div>
             </div>
             </div>
-
         </>
     )         
 }

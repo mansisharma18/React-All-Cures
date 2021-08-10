@@ -1,4 +1,3 @@
-import { fas } from "@fortawesome/free-solid-svg-icons";
 import React, { Component, Fragment } from "react";
 import {Link} from 'react-router-dom'
 class Autocomplete extends Component {

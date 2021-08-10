@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import Header from '../Header/Header';
 import Footer from '../Footer/Footer'
 
-import {Container, Row, Col, Form, Button, Nav, Navbar, NavDropdown, FormControl, Breadcrumb } from "react-bootstrap";
+import {Container, Row, Col, Breadcrumb } from "react-bootstrap";
 import {Link } from 'react-router-dom'
 import CenterWell from './CenterWell';
 import Sidebar from "./leftMenu";
@@ -93,9 +93,9 @@ class Disease extends Component {
         </Navbar> */}
         <Row>
           <Col md={2} id="sidebar-wrapper">      
-            <Sidebar diseaseId={items.disease_condition_id} title={items.title} />
+            <Sidebar diseaseId={items.disease_condition_id} name={items.dc_name} />
           </Col>
-          <Col  md={7} id="page-content-wrapper" className="col-xs-12">
+          <Col  md={7} id="page-content-wrapper" className="col-xs-12 pb-5">
             <div id="center-well" className="">
               <Breadcrumb>
                 <Breadcrumb.Item href="/">Home</Breadcrumb.Item>                                     
@@ -105,8 +105,8 @@ class Disease extends Component {
                   </Link>
                 </Breadcrumb.Item>
                 <Breadcrumb.Item>
-                  <Link to={`/blogs/${items.disease_condition_id}`}>
-                    {items.disease_condition_id}
+                  <Link to={`/blogs/${items.dc_name}`}>
+                    {items.dc_name}
                   </Link>
                 </Breadcrumb.Item>
                 <Breadcrumb.Item active>{items.title}</Breadcrumb.Item>

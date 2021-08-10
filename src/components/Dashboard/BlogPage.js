@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import Header from '../Header/Header';
 import Footer from '../Footer/Footer'
 
-import {Container, Row, Col, Form, Button, Nav, Navbar, NavDropdown, FormControl, Breadcrumb } from "react-bootstrap";
+import { Container } from "react-bootstrap";
 import AllPost from './Allpost';
 // import {Link } from 'react-router-dom'
 // import CenterWell from './CenterWell';
