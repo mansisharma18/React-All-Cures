@@ -62,9 +62,9 @@ const CenterWell = ({content, type, text, title, message, source, embed, caption
                                         {/* <ul class="cdx-list--unordered"> */}
                                             {   
                                                 item ?
-                                                    list = item.map(i => {
-                                                    return <li class="cdx-list__item">{i}</li>
-                                                    })
+                                                    list = item.map((i) =>( 
+                                                        <li class="cdx-list__item">{i}</li>
+                                                    ))
                                                 : null
                                             }
                                         {/* </ul> */}

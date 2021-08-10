@@ -54,17 +54,18 @@ dragHandle {
   bottom: 0;
 } */
 .sidebar {
-  position: relative;
+  position: absolute;
   top: 0;
   bottom: 0;
   left: 0;
   min-height: 60vh !important;
   z-index: 1;
   padding: 48px 0 0;
-  background-color: #49c2e7;
+  background-color: #b9daf1;
   /* box-shadow: inset -1px 0 0 rgba(0, 0, 0, 0.1); */
 }
 #sidebar-wrapper {
+  border-right: 1rem solid #b9daf1;
   min-height: 60vh !important;
   /* width: 100vw; */
   /* margin-left: -1rem; */
@@ -73,7 +74,7 @@ dragHandle {
   -moz-transition: margin 0.25s ease-out;
   -o-transition: margin 0.25s ease-out;
   transition: margin 0.25s ease-out; */
-  background-color: #71ddff;
+  background-color: #b9daf1;
   padding-left: 8px;
 }
 /* #sidebar-wrapper .sidebar-heading {
@@ -90,6 +91,7 @@ dragHandle {
 
 #center-well {
   text-align: left;
+  border-top: 1px sold blue;
 }
 #center-well #para p {
   font-size: 1.2rem;
@@ -975,7 +977,7 @@ dragHandle {
 }
 .ce-block__content {
   position: relative;
-  max-width: 650px;
+  width: 90%;
   margin: 0 auto;
   -webkit-transition: background-color 0.15s ease;
   transition: background-color 0.15s ease;
@@ -1591,16 +1593,18 @@ dragHandle {
   color: #000;
 }
 
-.set-width .col-lg-4 {
-  min-width: 100%;
-  padding-left: 8px;
-}
-
-.set-width .delete-edit-buttons {
-  display: none;
-}
-
 .disease-left {
   cursor: pointer;
   line-height: 2rem;
+}
+
+.menu-item {
+  padding: 0.5rem 0.5rem 0;
+  margin: 0.5rem 0;
+  color: rgba(5, 6, 12, 0.49);
+  /* font-size: 1rem; */
+}
+
+.menu-item:hover {
+  text-decoration: underline;
 }

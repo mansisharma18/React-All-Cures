@@ -2,29 +2,12 @@ import React, { Component } from "react";
 import './header.css';
 import Cookies from 'js-cookie';
 import axios from 'axios';
-import { Dropdown, DropdownButton, Card, Nav, Button, Form, FormControl } from 'react-bootstrap';
-
+import { Dropdown, DropdownButton, Nav } from 'react-bootstrap';
 import Heart from"../../assets/img/heart.png";
 import { Link } from "react-router-dom";
-// import { Container } from '../Modal/Container';
+import Autocomplete from '../Autocomplete'
 
-// import { ToggleButton } from "react-bootstrap";
-/*class Header extends Component {
-
-    constructor(props){
-        super(props);
-        // const params = props.match.params
-        this.state = {
-            url: props.url,
-            acPerm: Cookies.get('acPerm'),
-            // param: params,
-            searchParams: {
-                city: 'Jammu',
-                name: '',
-            }
-        };
-    } */
-    class Header extends Component {
+   class Header extends Component {
        
         constructor(props){
             super(props);
@@ -34,6 +17,7 @@ import { Link } from "react-router-dom";
                suggestions: [],
                suggestionsDoc: [],
                doctor : '',
+               spec1: [],
                getPincode:null,
                getCityName:null,
                docname : '',
@@ -48,6 +32,20 @@ import { Link } from "react-router-dom";
 
 
         componentWillMount(){
+         Promise.all([
+            fetch('/article/all/table/disease_condition').then(res => res.json()),
+          ]).then(([diseaseData]) => {
+            console.log('Speciality Data: ', diseaseData)
+            this.setState({
+                isLoaded: true,
+                speciality: diseaseData,
+            });
+
+          }).then(() => {
+            this.state.speciality.map((i) => {
+              this.state.spec1.push(i[3])
+            })
+          })
             const loadUsers = async () => {
                const response = await axios.get('/city/all');
                this.setState ({
@@ -125,25 +123,30 @@ import { Link } from "react-router-dom";
          
           });
          }
-           handleChange = e => 
-                 this.setState({
-                     searchParams: { ...this.state.searchParams, [e.target.name]: e.target.value }
-                 });
+         
+         handleChange = e => 
+            this.setState({
+               searchParams: { ...this.state.searchParams, [e.target.name]: e.target.value }
+            });
     
-        logout = async e => {
+         logout = async e => {
             const res = await fetch("/LogoutActionController", {
                method: "POST"
             });
-              const data = await res.text();
-              setTimeout(() => {
-                 window.location.reload()
-              }, 1000);
+            setTimeout(() => {
+               window.location.reload()
+            }, 1000);
          }
     render() {
+      const userStyle ={
+        display: 'grid',
+        gridTemplateColumns: 'repeat(2,1fr)',
+        gridGap:'1rem' 
+    }
         return(
             <div className="profilePage">
                 <div className="comman-pg-header">
-                <section className="pageHeader">
+                <section className="pageHeader zIndex-2">
                     <div className="container">
                     <div className="row">
                         <div className="header" style={{width:"100%"}}>
@@ -153,53 +156,69 @@ import { Link } from "react-router-dom";
                                 <span>All Cures</span>
                             </Link>
                         </div>
+                        
                         <Nav className="me-auto">
                             <Dropdown>
-                            <Dropdown.Toggle>
-                                <Nav.Link className="nav-dropdown-link nav-link active" href="#home">Home</Nav.Link>
+                            <Dropdown.Toggle className="nav-dropdown-link">
+                            <span className="text-dark fs-6">Health</span>
+
                             </Dropdown.Toggle>
-                            {/* <div className="col-lg-6"> */}
-                            <Dropdown.Menu className="disease-drop" style={{width: "30vw"}}>
-                                <div className="h5 font-weight-bold pl-4 text-underline">Common Conditions</div>
-                                <Link to="/blogs/arthritis" class="text-dark pl-4" disabled>Arthritis</Link>
-                                <Dropdown.Item disabled>Alergies</Dropdown.Item>
-                                <Dropdown.Item disabled>Cancer</Dropdown.Item>
-                                <Dropdown.Item disabled>Cardiology</Dropdown.Item>
-                                <Dropdown.Item disabled>Coronavirus(Covid-19)</Dropdown.Item>
+                            <Dropdown.Menu className="disease-drop" style={userStyle}>
+                              <div>
+                              <Dropdown.Header className="col-8 col-md-6 h5 font-weight-bold border-dark">
+                                Common Conditions</Dropdown.Header>
+                                <span className="border-btm"></span>
+                                <Link to="/blogs/arthritis" class="text-dark pl-4">Arthritis</Link>
+                                <Dropdown.Item >Alergies</Dropdown.Item>
+                                <Dropdown.Item >Cancer</Dropdown.Item>
+                                <Dropdown.Item >Cardiology</Dropdown.Item>
+                                <Dropdown.Item >Coronavirus(Covid-19)</Dropdown.Item>
+                                <Dropdown.Item >Coronavirus(Covid-19)</Dropdown.Item>
+                                 <Dropdown.Item >Coronavirus(Covid-19)</Dropdown.Item>
+                                <Dropdown.Item >Coronavirus(Covid-19)</Dropdown.Item>
+                                </div>
+                                <div>
+                                <Dropdown.Header className="col-4 col-md-6 h5 font-weight-bold ">
+                                Resources</Dropdown.Header>
+                                <span className="border-btm"></span>
+                                <Dropdown.Item >Alergies</Dropdown.Item>
+                                <Dropdown.Item >Cancer</Dropdown.Item>
+                                <Dropdown.Item >Cardiology</Dropdown.Item>
+                                <Dropdown.Item >Coronavirus(Covid-19)</Dropdown.Item>
+                                </div>
                             </Dropdown.Menu>
                             {/* </div> */}
                             </Dropdown>
                             <div >
   {/* <button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
     Action                      */}
-               <Nav.Link className="nav-dropdown-link" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" href="#home">Home</Nav.Link>
+              
 
   {/* </button> */}
-  <div class="dropdown-menu">
-    <a class="dropdown-item" href="#">Action</a>
-    <a class="dropdown-item" href="#">Another action</a>
-    <a class="dropdown-item" href="#">Something else here</a>
-    <div class="dropdown-divider"></div>
-    <a class="dropdown-item" href="#">Separated link</a>
-  </div>
+  
 </div>
 <div>
-      <Nav.Link className="nav-dropdown-link" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" href="#features">Features</Nav.Link></div>
+      <Nav.Link className="nav-dropdown-link" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" href="#features">Supplements</Nav.Link></div>
       <div>
-      <Nav.Link className="nav-dropdown-link" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" href="#pricing">Pricing</Nav.Link>
+      <Nav.Link className="nav-dropdown-link" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" href="#pricing">News</Nav.Link>
       </div>
       
     </Nav>
-    <Form inline>
-              <FormControl type="text" variant="outline-success" onChange={this.handleChange} placeholder="Search" className="mr-sm-2" required aria-required="true"/>
-              <Link
+    {/* <Form inline>
+              <FormControl type="text" variant="outline-success" onChange={this.handleChange} placeholder="Search" className="mr-sm-2" required aria-required="true"/> */}
+              {
+                  this.state.spec1?
+                    <Autocomplete value={this.state.temp} suggestions={this.state.spec1}/>
+                  : null
+                }
+              {/* <Link
                 className="btn btn-outline-success" 
                 id="search"
                 to={`/blogs/${this.state.disease}`}>
                   Search
-              </Link>
+              </Link> */}
               {/* <Link className variant="outline-success">Search</Link className> */}
-            </Form>
+            {/* </Form> */}
         
                         <div className="loginSign">
                         {/* <Link to="/profile">Go to Profile</Link> */}
@@ -213,7 +232,7 @@ import { Link } from "react-router-dom";
                     </div>
                     </div>
                 </section>
-                <section className="megaSearch">
+                <section className="megaSearch zIndex-1">
          <div className="container">
             <div className="row">
                <div className="search-wrap-inner clearfix">

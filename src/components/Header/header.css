@@ -18,8 +18,7 @@
 }
 
 .comman-pg-header {
-  background: #3ad0ff;
-  opacity: 0.7;
+  background: #b9daf1;
 }
 
 .modal-header {
@@ -215,9 +214,9 @@
   /* border-right: 1px solid aqua; */
 }
 
-.nav-dropdown-link:last-child {
+/* .nav-dropdown-link:last-child {
   border-right: 2px solid aqua;
-}
+} */
 
 .me-auto .btn-primary {
   background-color: initial;
@@ -226,5 +225,83 @@
 
 .me-auto .btn-primary.dropdown-toggle {
   background-color: initial;
-  border-color: #3ad0ff;
+  border-color: transparent;
+}
+
+.border-btm {
+  display: block;
+  border-bottom: 1px solid black;
+  width: 10rem;
+  margin-left: 1rem;
+  /* background-color: #000;
+  height: 1px;
+  width:max-content */
+}
+
+.z-menu {
+  z-index: 1;
+}
+
+.z-drop {
+  z-index: 999;
+}
+
+.no-suggestions {
+  background-color: aliceblue;
+  color: #999;
+  padding: 0.5rem;
+  position: absolute;
+  bottom: -2rem;
+}
+
+.suggestions {
+  position: relative;
+  z-index: 1;
+  background-color: aliceblue;
+  border: 1px solid #999;
+  border-top-width: 0;
+  list-style: none;
+  margin-top: 0;
+  max-height: 40rem;
+  overflow-y: auto;
+  padding-left: 0;
+  width: calc(300px + 1rem);
+}
+
+.suggestions li {
+  padding: 0.5rem;
+}
+
+.suggestion-active,
+.suggestions li:hover {
+  background-color: #00415e;
+  color: #fff;
+  cursor: pointer;
+  font-weight: 700;
+}
+
+.suggestions li:not(:last-of-type) {
+  border-bottom: 1px solid #999;
+}
+
+.autocomplete #search {
+  position: absolute;
+  z-index: 1;
+  right: 6.4rem;
+  top: 0.5rem;
+  border-radius: 2rem;
+}
+
+.autocomplete input {
+  float: left;
+}
+
+.zIndex-1 {
+  z-index: 1;
+  position: relative;
+}
+
+.zIndex-2 {
+  z-index: 2;
+  position: relative;
 }

@@ -7,6 +7,8 @@ import Carousel from './Carousel'
 import EditorJs from 'react-editor-js';
 import { EDITOR_JS_TOOLS } from './tools';
 import Options from './Options';
+import Header from '../Header/Header';
+import Footer from '../Footer/Footer';
 
 export default class Test extends Component {
     constructor(props) {
@@ -117,10 +119,11 @@ export default class Test extends Component {
     submitArticleForm = async e => {
         e.preventDefault();
         this.setState({ isSubmitting: true });
-
+        console.log("########################ANIL###############")
+        console.log(JSON.stringify(this.state.ac))
         const res = await fetch("/content?cmd=createArticle", {
             method: "POST",
-            body: `title=${this.state.articleValues.title}&language=${this.state.articleValues.language}&friendlyName=${this.state.articleValues.friendlyName}&contentType=${this.state.articleValues.contentType}&disclaimerId=${this.state.articleValues.disclaimerId}&authById=${this.state.articleValues.authById}&copyId=${this.state.articleValues.copyId}&articleStatus=${this.state.articleValues.articleStatus}&winTitle=${this.state.articleValues.winTitle}&countryId=${this.state.articleValues.countryId}&diseaseConditionId=${this.state.articleValues.diseaseConditionId}&articleContent=${JSON.stringify(this.state.ac)}`,
+            body: `title=${this.state.articleValues.title}&language=${this.state.articleValues.language}&friendlyName=${this.state.articleValues.friendlyName}&contentType=${this.state.articleValues.contentType}&disclaimerId=${this.state.articleValues.disclaimerId}&authById=${this.state.articleValues.authById}&copyId=${this.state.articleValues.copyId}&articleStatus=${this.state.articleValues.articleStatus}&winTitle=${this.state.articleValues.winTitle}&countryId=${this.state.articleValues.countryId}&diseaseConditionId=${this.state.articleValues.diseaseConditionId}&articleContent=${encodeURIComponent(JSON.stringify(this.state.ac))}`,
             headers: {
             "Content-Type": "application/x-www-form-urlencoded"
             }
@@ -364,6 +367,7 @@ document.getElementById('articlePreview').innerHTML=articleHTML;
     } else if(isLoaded){
     return (
         <div>
+            <Header/>
             <Carousel/>
                 <Container>  
                     <Card className="mainCard" >
@@ -544,6 +548,7 @@ document.getElementById('articlePreview').innerHTML=articleHTML;
                 {/* SLIDESHOW */}
                 <div className="slideshow"></div>
             </Container>
+            <Footer/>
         </div>
         );
         }

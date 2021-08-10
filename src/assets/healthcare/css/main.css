@@ -583,8 +583,6 @@ h6 {
   position: relative;
 }
 
-
-
 .serchlabel h1 {
   font-weight: 700;
   color: #00415e;
@@ -820,17 +818,16 @@ h6 {
 }
 
 @media only screen and (max-width: 600px) {
-
   #specialists .item,
-#doctor .item {
-  border: 1px solid #c4c4c4;
-  box-sizing: border-box;
-  border-radius: 20px;
-  overflow: hidden;
-  width: 85% !important;
-  height: 264px;
-  position: relative;
-}
+  #doctor .item {
+    border: 1px solid #c4c4c4;
+    box-sizing: border-box;
+    border-radius: 20px;
+    overflow: hidden;
+    width: 85% !important;
+    height: 264px;
+    position: relative;
+  }
 
   .banner {
     background-position: 80% 100%;
@@ -844,7 +841,7 @@ h6 {
     position: relative;
   }
 
-  .serchlabel  {
+  .serchlabel {
     bottom: 250px !important;
   }
 
@@ -855,7 +852,6 @@ h6 {
     width: 90%;
   }
 }
-
 
 #specialists .item,
 #doctor .item {
@@ -1285,8 +1281,7 @@ a.appBtn {
 }
 
 .comman-pg-header {
-  background: #3ad0ff;
-  opacity: 0.7;
+  background: #cde4f8;
 }
 
 .moreFilters {
@@ -1624,7 +1619,7 @@ h4 {
 }
 
 .paitent-profile img {
- /* position: absolute;*/
+  /* position: absolute;*/
   width: 120px;
   height: 120px;
   border-radius: 100px;
@@ -2399,7 +2394,6 @@ p.lorem-text {
     no-repeat center center/cover;
 }
 
-
 .home__test {
   background: url(../img/images/o6rbxh0.jpg);
   background-position: center;
@@ -2419,10 +2413,6 @@ p.lorem-text {
   min-height: 100vh;
   align-items: center;
   justify-content: center;
-  background: url("../img/images/wallpaperflare.com_wallpaper\(9\).jpg")
-    center center/cover no-repeat;
-}
-
-.transparent_bg .card, .form-control {
-  background: rgba(255, 255, 255, 0.3) !important
+  background: url("../img/images/wallpaperflare.com_wallpaper\(9\).jpg") center
+    center/cover no-repeat;
 }

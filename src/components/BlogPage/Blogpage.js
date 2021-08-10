@@ -83,6 +83,7 @@ export default class Blogpage extends Component{
                   }
                     <div className="row" id="posts-container">
                     {items.map((i) => (
+                      i.pubstatus_id === 3 ?            // Selects articles with publish status = 3 (Published)
                         <AllPost
                             id = {i.article_id}
                             title = {i.title}
@@ -90,6 +91,7 @@ export default class Blogpage extends Component{
                             w_title = {i.window_title}
                             allPostsContent={() => this.allPosts()}
                         />
+                        : null
                     ))}
                     </div>
                 </div>
