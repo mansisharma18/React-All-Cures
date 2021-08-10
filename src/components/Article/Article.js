@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Button, Accordion, Card, Container, Form, Alert } from 'react-bootstrap';
+import { Checkbox, FormGroup, FormControlLabel, Select, MenuItem , FormControl, InputLabel} from '@material-ui/core'
 
 import Cookies from 'js-cookie';
 import './article.css'
@@ -536,8 +537,19 @@ document.getElementById('articlePreview').innerHTML=articleHTML;
                                             ? <SubmitError ShowErrorAlert={this.state.ShowErrorAlert}/>
                                             : console.log('')
                                     }
-
-                                    <Button type="submit" variant="dark">Submit</Button>
+                                    <FormControlLabel
+                                        control={<Checkbox name="Terms" value="on" required/>}
+                                        label="Accept Terms & Conditions"
+                                        required
+                                    />
+                                    <FormControlLabel
+                                        control={<Checkbox name="Policy" value="on" required/>}
+                                        label="Privacy Policy"
+                                        required
+                                    />
+                                    <div>
+                                        <Button type="submit" variant="dark">Submit</Button>
+                                    </div>
                                 </Card.Footer>
                             </Card>
                             </Form>
