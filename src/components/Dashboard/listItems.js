@@ -53,6 +53,15 @@ export const mainListItems = (
         Blogs
       </Link>
     </ListItem>
+    <ListItem button>
+      <ListItemIcon>
+        <PeopleIcon />
+      </ListItemIcon>
+      {/* <ListItemText primary="Customers"  /> */}
+    <Link to="/article">
+               comments
+           </Link>
+    </ListItem>
   
   </div>
 );

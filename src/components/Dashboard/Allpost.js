@@ -11,7 +11,6 @@ const AllPost = ({id, title, f_title, w_title,allPostsContent}) => {
         console.log('delete',postId);
         axios.delete(`/article/${postId}`)
         .then(res => {
-            console.log(res);
             allPostsContent()
         })
         .then(err => {

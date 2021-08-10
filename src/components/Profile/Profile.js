@@ -9,27 +9,52 @@ import '../../assets/healthcare/css/responsive.css';
 import '../../assets/healthcare/css/animate.css';
 import '../../assets/healthcare/icomoon/style.css';
 import { Container } from "react-bootstrap";
+import Comment from "../Comment";
+import axios from 'axios';
 class Profile extends Component {
   constructor(props) {
     super(props);
     const params = props.match.params
     this.state = { 
       items: [],
+      commentItems: [],
       isLoaded: false,
       param: params
     };
   }
 
-  componentDidMount() {
+  getComments() {
+    console.log('fired');
+    axios.get('/rating/target/1/targettype/1')
+    .then(res => {
+      console.log(res)
+      this.setState({
+        commentItems:res.data
+      })
+    })
+    .catch(err => console.log(err))
+    console.log('closed');
+  }
+
+  fetchDoctorData() {
     fetch(`/DoctorsActionController?docid=${this.state.param.id}&cmd=getProfile`)
       // .then(res => JSON.parse(res))
       .then((res) => res.json())
       .then((json) => {
+        console.log(json);
         this.setState({
           isLoaded: true,
           items: json,
         });
       });
+  }
+
+  componentDidMount() {
+    
+    this.fetchDoctorData()
+    this.getComments()
+
+      
   }
 
   render() {
@@ -126,12 +151,16 @@ class Profile extends Component {
                       </div>
                     </div>
                   </div>
+                  <div className="comment-box">
+                    <Comment refreshComments={this.getComments} />
+                  </div>
                   <div className="aboutDr">
                     <h2 id="about">
                       About Dr. {items.docname_first} {items.docname_middle}{" "}
                       {items.docname_last}
                     </h2>
                     <div id="about-contain">
+                      
                       <p className="text one">
                         {" "}
                         “Lorem ipsum dolor sit amet, consectetur adipiscing
@@ -276,23 +305,18 @@ class Profile extends Component {
                     <div className="tab-content">
                       <div id="patient" className="tab-pane active">
                         <div className="rating-outer" id="rating">
-                          <div className="rating-patient">
+                        {this.state.commentItems.map((item,i) => {
+                            return (
+                              <>
+                                <div className="rating-patient">
                             <div className="rating-patient-grid clearfix">
                               <div className="paitent-profile">
                                 {" "}
                                 <img src={ClientA} alt="ClientA" />{" "}
                               </div>
                               <div className="patient-msg">
-                                <p>
-                                  “Lorem ipsum dolor sit amet, consectetur
-                                  adipiscing elit. Donec congue turpis
-                                  sollicitudin nulla finibus dignissim.
-                                  Curabitur eu urna sed risus tempor venenatis.
-                                  Morbi quis libero at odio elementum
-                                  scelerisque at nec libero. Integer quis magna
-                                  nunc. Sed malesuada efficitur tellus, a
-                                  posuere risus finibus vitae.”
-                                </p>
+                              
+                                <p>{item.comments}</p>
                               </div>
                               <div className="patient-name-add">
                                 <div>
@@ -336,6 +360,10 @@ class Profile extends Component {
                               </div>
                             </div>
                           </div>
+                              </>
+                            )
+                          })}
+                          
                           <div className="rating-patient">
                             <div className="rating-patient-grid clearfix">
                               <div className="paitent-profile">
@@ -623,8 +651,10 @@ class Profile extends Component {
                   </div>
                 </div>
                 <div className="col-md-4 pdr-0">
+                  
                   <div className="bookAnAppoinment">
                     <h1>Book an appointment</h1>
+                    
                     <div className="form-group">
                       <label>Reason to Visit</label>
                       <select className="form-control">

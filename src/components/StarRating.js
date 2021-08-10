@@ -39,7 +39,8 @@ import ReactStars from "react-rating-stars-component";
 export default function Rating() {
 
 
-  const [ratingValue, setRatingValue] = React.useState(null)
+  const [ratingValue, setRatingValue] = React.useState([])
+  const [showValue, setShowValue] = React.useState([])
   const postRating = (rating) => {
 
     axios.post(`/DoctorRatingActionController?ratingVal=${rating}&comments='another rating'&ratedbyid=1&ratedbytype=1&targetid=1&targetTypeid=1&cmd=rateAsset`)
@@ -51,7 +52,7 @@ export default function Rating() {
 
     axios.get(`/rating/target/1/targettype/1`)
     .then(res => {
-      console.log(res)
+      console.log(res.data[0].ratingVal)
       setRatingValue(res.data)
     })
     .catch(err => console.log(err))
@@ -59,6 +60,7 @@ export default function Rating() {
 
   React.useEffect(() => {
     getRating()
+  
   },[])
 
   
@@ -66,7 +68,7 @@ const thirdExample = {
   size: 40,
   count: 5,
   isHalf: false,
-  value: ratingValue,
+  value: 3,
   color: "yellow",
   activeColor: "orange",
   // filledIcon:"orange",
@@ -77,7 +79,6 @@ const thirdExample = {
   }
 };
 
-  
 
 
   return (
