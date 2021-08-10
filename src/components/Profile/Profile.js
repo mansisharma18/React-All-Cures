@@ -8,16 +8,24 @@ import '../../assets/healthcare/css/main.css';
 import '../../assets/healthcare/css/responsive.css';
 import '../../assets/healthcare/css/animate.css';
 import '../../assets/healthcare/icomoon/style.css';
+import Pexel1 from './pexel1.jpg'
+import Pexel2 from './pexel2.jpg'
+import Pexel3 from './pexel3.jpg'
+import Pexel4 from './pexel4.jpg'
 import { Container } from "react-bootstrap";
+import {Link} from 'react-router-dom'
 class Profile extends Component {
   constructor(props) {
     super(props);
     const params = props.match.params
+    this.editToggle = this.editToggle.bind(this)
     this.state = { 
       items: [],
       isLoaded: false,
-      param: params
+      param: params,
+      edit: false
     };
+    // this.editToggle = this.editToggle.bind()
   }
 
   componentDidMount() {
@@ -30,8 +38,21 @@ class Profile extends Component {
           items: json,
         });
       });
+
   }
 
+  editToggle = () => {
+    if(this.state.edit === false){
+      this.state.edit = true
+      console.log(this.state.edit)
+    } else{
+      this.state.edit = false
+      console.log(this.state.edit)
+
+    }
+  }
+
+  
   render() {
     var { isLoaded, items } = this.state;
     if (!isLoaded) {
@@ -58,7 +79,7 @@ class Profile extends Component {
         </>
       )
     }else if (isLoaded) {
-
+      // console.log(new URLSearchParams(this.props.location.search).get("edit"))
       return (
         <div>
           <Header />
@@ -83,13 +104,13 @@ class Profile extends Component {
                       <div className="profile-info">
                         <div className="profile-infoL-card">
                           <div className="profile-info-name" id="DocDetails">
-                            <h1>
+                            <h1 contentEditable="true">
                               Dr. {items.docname_first} {items.docname_middle}{" "}
                               {items.docname_last}{" "}
                             </h1>
-                            <h3>{items.primary_spl}</h3>
-                            <h2>{items.experience}</h2>
-                            <h4>
+                            <h3 contentEditable="true">{items.primary_spl}</h3>
+                            <h2 contentEditable="true">{items.experience}</h2>
+                            <h4 contentEditable="true">
                               {items.hospital_affliated} {items.statename}{" "}
                               {items.country_code}
                             </h4>
@@ -118,21 +139,36 @@ class Profile extends Component {
                               </form>
                             </h2>
                           </div>
-                          <div className="reviews">
-                            {" "}
-                            <a href="//#">123 Reviews</a>{" "}
+                          <div className="reviews" >
+                            {
+                              this.state.edit?
+                                <button onClick={this.editToggle.bind(this)} className="btn btn-dark text-white text-decoration-none">Edit Profile</button>
+                                : <button onClick={this.editToggle.bind(this)} className="btn btn-dark text-white        text-decoration-none">Save Changes</button>
+                            }
+                            
                           </div>
                         </div>
                       </div>
                     </div>
                   </div>
                   <div className="aboutDr">
-                    <h2 id="about">
+                    {
+                      this.state.edit?
+                      <h2 id="about">
                       About Dr. {items.docname_first} {items.docname_middle}{" "}
                       {items.docname_last}
                     </h2>
+                    : <h2 id="about" contentEditable="true">
+                    About Dr. {items.docname_first} {items.docname_middle}{" "}
+                    {items.docname_last}
+                  </h2>
+                    }
+                    {/* <h2 id="about">
+                      About Dr. {items.docname_first} {items.docname_middle}{" "}
+                      {items.docname_last}
+                    </h2> */}
                     <div id="about-contain">
-                      <p className="text one">
+                      <p className="text one" contentEditable={this.state.edit}>
                         {" "}
                         “Lorem ipsum dolor sit amet, consectetur adipiscing
                         elit. Integer at pulvinar ex. Sed non lorem a justo
@@ -163,13 +199,61 @@ class Profile extends Component {
                                 <li>Interventional Cardiologist</li> */}
                       </ul>
                     </div>
+                    <br/>
+                    <div className="abt-eduction ">
+                      <h2>Education</h2>
+                      <ul>
+                        <li>{items.education}</li>
+                      </ul>
+                    </div>
                     <br />
-                    <div className="abt-eduction">
+                    <div className="abt-articles d-grid">
+                        <div className="h5">Articles Published</div>
+                    <div class="row">
+                      <div class="col-sm m-1 card ">
+                        <div className="img-wrapper">
+                          <picture className="ds-image">
+                            <img src={Pexel1}/>
+                          </picture>
+                        </div>
+                        One of three columns
+                      </div>
+                      <div class="col-sm m-1 card ">
+                        <div className="img-wrapper">
+                          <picture className="ds-image">
+                            <img src={Pexel3} height="14rem"/>
+                          </picture>
+                        </div>
+                        One of three columns
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-sm m-1 card ">
+                        <div className="img-wrapper">
+                          <picture className="ds-image">
+                            <img src={Pexel3}/>
+                          </picture>
+                        </div>
+                        One of three columns
+                      </div>
+                      <div class="col-sm m-1 card ">
+                        <div className="img-wrapper">
+                          <picture className="ds-image">
+                            <img src={Pexel4}/>
+                          </picture>
+                        </div>
+                        One of three columns
+                      </div>
+                    </div>
+                   
+                    </div>
+                    {/* <div className="abt-eduction">
                       <h2>Education</h2>
                       <p>{items.edu_training}</p>
                     </div>
-                    <br />
-                    <div className="abt-photos">
+                    <br /> */}
+
+                    {/* <div className="abt-photos">
                       <h2>Photos</h2>
                       <ul>
                         <li>
@@ -230,7 +314,7 @@ class Profile extends Component {
                           </div>
                         </div>
                       </div>
-                    </div>
+                    </div> */}
                   </div>
                   <div className="profile-rating">
                     <div className="tab-nav">
@@ -789,7 +873,20 @@ class Profile extends Component {
           <Footer />
         </div>
       );
+      
     } 
+    
+  }  
+}
+function ButtonToggle(props){
+  if(props.edit === false){
+    return(
+      <button onClick={props.editToggle.bind(this)} className="btn btn-dark text-white text-decoration-none">Edit Profile</button>
+    );
+  } else if(props.edit === true){
+    return(
+      <button onClick={props.editToggle.bind(this)} className="btn btn-dark text-white text-decoration-none">Save Changes</button>
+    )
   }
 }
 export default Profile;

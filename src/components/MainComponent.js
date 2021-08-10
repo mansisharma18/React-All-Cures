@@ -18,6 +18,7 @@ import SignIn from "./Article/SignIn";
 import Blogpage from "./BlogPage/Blogpage";
 import EditPost from './BlogPage/EditModal';
 import BlogAllPost from './Dashboard/BlogAllPost'
+import LoginInfo from './loginForm/LoginInfo'
 // import Blogs from './Disease/Disease'
 
 function Main(props) {
@@ -67,9 +68,11 @@ const Routes = (props) => {
           <Route exact path="/dashboard" component={Dashboard} />
           <ProtectedRoute exact path="/sign" component={SignIn} />
           <Route exact path="/blogs" component={Blogpage}/>
+          <Route exact path="/login/doctor" component={LoginInfo}/>
           <Route path="/blogs/:type" component={Blogpage}/>
           {/* <Route exact path="/blogs/:id" component={Blogs}/> */}
       <Route exact path="/profile/:id" component={Profile} />
+      <Route exact path="/profile/:id/edit" component={LoginInfo} />
       <Route exact path="/dashboard/blogs" component={BlogAllPost} />
 
     </Switch>
