@@ -134,7 +134,7 @@ onChangeHandlerdoctor = (e, text) => {
 
 
    render() {
-      
+      console.log(this.state.suggestions)
       return(
          <div>
             <div className="homeHeader">
@@ -206,7 +206,7 @@ onChangeHandlerdoctor = (e, text) => {
                                  value={this.state.searchParams.city} 
                                  className="formVal form-control"
                                  />
-                                 {this.state.suggestions && this.state.suggestions.map((suggestion, i) =>
+                                 { this.state.suggestions.map((suggestion, i) =>
                                     <div key={i} className="suggestion col-md-12 justify-content-md-center"
                                        onClick={() => this.onSuggestHandler(suggestion.Cityname,suggestion.Pincode)}
                                     >

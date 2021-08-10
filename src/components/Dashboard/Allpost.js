@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
+import Rating from '../StarRating';
 
 const AllPost = ({id, title, f_title, w_title,allPostsContent}) => {
 
@@ -10,7 +11,6 @@ const AllPost = ({id, title, f_title, w_title,allPostsContent}) => {
         console.log('delete',postId);
         axios.delete(`/article/${postId}`)
         .then(res => {
-            console.log(res);
             allPostsContent()
         })
         .then(err => {
@@ -51,6 +51,7 @@ const AllPost = ({id, title, f_title, w_title,allPostsContent}) => {
                         <div>{f_title}</div>
                         <div>{w_title}</div>
                     </div>
+                    <Rating />
                 </div>
             </div>
         </div>

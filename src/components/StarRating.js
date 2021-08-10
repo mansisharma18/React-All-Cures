@@ -1,3 +1,4 @@
+import axios from "axios";
 import React from "react";
 // import "./styles.css";
 import ReactStars from "react-rating-stars-component";
@@ -24,17 +25,6 @@ import ReactStars from "react-rating-stars-component";
 //   }
 // };
 
-const thirdExample = {
-  size: 40,
-  count: 5,
-  isHalf: false,
-  value: 4,
-  color: "yellow",
-  activeColor: "orange",
-  onChange: newValue => {
-    console.log(`Example 3: new value is ${newValue}`);
-  }
-};
 
 // const fourthExample = {
 //   size: 60,
@@ -47,6 +37,50 @@ const thirdExample = {
 // };
 
 export default function Rating() {
+
+
+  const [ratingValue, setRatingValue] = React.useState([])
+  const [showValue, setShowValue] = React.useState([])
+  const postRating = (rating) => {
+
+    axios.post(`/DoctorRatingActionController?ratingVal=${rating}&comments='another rating'&ratedbyid=1&ratedbytype=1&targetid=1&targetTypeid=1&cmd=rateAsset`)
+    .then(res => console.log(res))
+    .catch(err => console.log(err))
+  }
+
+  const getRating = () => {
+
+    axios.get(`/rating/target/1/targettype/1`)
+    .then(res => {
+      console.log(res.data[0].ratingVal)
+      setRatingValue(res.data)
+    })
+    .catch(err => console.log(err))
+  }
+
+  React.useEffect(() => {
+    getRating()
+  
+  },[])
+
+  
+const thirdExample = {
+  size: 40,
+  count: 5,
+  isHalf: false,
+  value: 3,
+  color: "yellow",
+  activeColor: "orange",
+  // filledIcon:"orange",
+  onChange: newValue => {
+    setRatingValue(newValue)
+    postRating(newValue)
+    console.log(`Example 3: new value is ${newValue}`);
+  }
+};
+
+
+
   return (
     <div className="App">
       

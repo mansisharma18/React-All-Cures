@@ -1461,7 +1461,7 @@ h4 {
 .profile-info-rating h2 {
   font-weight: 500;
   font-size: 18px;
-  line-height: 21px;
+  line-height: 40px;
   text-transform: capitalize;
   color: #ed8a19;
 }
@@ -2209,7 +2209,7 @@ body {
 }
 
 .App {
-  width: 90%;
+  width: 100%;
   max-width: 700px;
   margin: 2em auto;
 }
