@@ -52,13 +52,25 @@ class CommentsRev extends Component {
 
     
   }
+  
 
 render(){
+   function select(e) {
+    
+    var checkboxes = document.getElementsByClassName('check');
+    console.log(checkboxes)
+    for (var checkbox of checkboxes) {
+        checkbox.checked = e.target.checked;
+    }
+    
+  }
   return (
     <>
               <div className="tab-content">
+              <div><input type="checkbox" onClick={select} id="select-all" />
+              <label for="checkbox">Select All</label></div>
               <div className="my-3 container" style={{zIndex: '999999'} }>
-                                    <select name="" className="form-select"
+                                    <select name="" style={{float:'right'}}className="form-select"
                                       onChange={(e)=> {
                                         this.setState({
                                           getComments: e.target.value
@@ -97,7 +109,7 @@ render(){
                               </div>
                               {/* checkbox */}
                               <div>
-                                <input type = "checkbox"></input>
+                                <input type = "checkbox" className="check"></input>
                                 <button onClick={() => {this.postApproved()}}>Submit</button>
                               </div>
                              
