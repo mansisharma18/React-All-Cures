@@ -21,6 +21,7 @@ import BlogAllPost from './Dashboard/BlogAllPost'
 import LoginInfo from './loginForm/LoginInfo'
 import Comment from './Comment'
 import CommentsRev from './Dashboard/CommentsRev.js'
+import ReviewComments from './Dashboard/ReviewComments.js'
 
 
 // import Blogs from './Disease/Disease'
@@ -80,11 +81,12 @@ const Routes = (props) => {
       <Route exact path="/dashboard/blogs" component={BlogAllPost} />
       <Route exact path="/comment" component={Comment} />
       <Route exact path="/dashboard/commentsrev" component={CommentsRev} />
+      <Route exact path="/dashboard/reviewcomments" component={ReviewComments} />
     
      
       
       
-
+      
     </Switch>
           <Route path="/" component={LoginPage}/>
           <ProtectedLogin path='?login=true' auth={Auth.auth}/>
