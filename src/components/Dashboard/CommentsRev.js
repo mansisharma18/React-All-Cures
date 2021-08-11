@@ -1,16 +1,19 @@
 import React, { Component } from "react";
 
 import axios from 'axios';
+import List from '@material-ui/core/List';
+import { mainListItems, secondaryListItems } from './listItems';
+
 
 class CommentsRev extends Component {
   constructor(props) {
     super(props);
-    const params = props.match.params
+    // const params = props.match.params
     this.state = { 
       items: [],
       commentItems: [],
       isLoaded: false,
-      param: params,
+      // param: params,
       getComments: 'all',
     };
   }
@@ -43,7 +46,7 @@ class CommentsRev extends Component {
     
   }
 
-
+  
 
   componentDidMount() {
     
@@ -66,6 +69,7 @@ render(){
   }
   return (
     <>
+    
               <div className="tab-content">
               <div><input type="checkbox" onClick={select} id="select-all" />
               <label for="checkbox">Select All</label></div>
@@ -90,8 +94,9 @@ render(){
                                     </select>
                                     
                                 </div>
-              /* SLIDESHOW */
- {/* <div className="slideshow"></div> */}
+             
+
+ 
     
                       <div id="patient" className="tab-pane active">
                         
@@ -110,8 +115,9 @@ render(){
                               {/* checkbox */}
                               <div>
                                 <input type = "checkbox" className="check"></input>
-                                <button onClick={() => {this.postApproved()}}>Submit</button>
+                                {/* <button onClick={() => {this.postApproved()}}>Submit</button> */}
                               </div>
+                             
                              
 
                               <div className="patient-msg">
@@ -119,13 +125,13 @@ render(){
                                 <p>{item.comments}</p>
                               </div>
                             
-                              <div className="patient-name-add">
+                              {/* <div className="patient-name-add">
                                 <div>
                                   <h3>Mahyar Eidgah</h3>
                                   <span>New York, NY</span>{" "}
                                 </div>
                                
-                              </div>
+                              </div> */}
                             </div>
                           </div>
                               </>
@@ -133,9 +139,12 @@ render(){
                           })}
                           
                          
-
+                          <div>
+                                
+                                <button onClick={() => {this.postApproved()}}>Submit</button>
+                              </div>
                           
-                          <div className="rating-footer">
+                          {/* <div className="rating-footer">
                             <div className="back-top">
                               {" "}
                               <a href="#">
@@ -154,8 +163,8 @@ render(){
                             >
                               Read more Reviews
                             </a>{" "}
-                          </div>
-                          <div className="faqs" id="faq">
+                          </div> */}
+                          {/* <div className="faqs" id="faq">
                             <div className="faqs-wrap">
                               <div className="question">
                                 <h2>
@@ -205,8 +214,8 @@ render(){
                                 </p>
                               </div>
                             </div>
-                          </div>
-                          <div className="rating-footer">
+                          </div> */}
+                          {/* <div className="rating-footer">
                             <div className="back-top">
                               {" "}
                               <a href=" #">
@@ -225,7 +234,7 @@ render(){
                             >
                               Read more Reviews
                             </a>{" "}
-                          </div>
+                          </div> */}
                         </div>
                       </div>
                       <div id="recomended" className="tab-pane fade">
@@ -242,47 +251,5 @@ render(){
   )
 }
 
-
-
-
-
- 
-// const Comment = ({refreshComments}) => {
-
-//   const [cmtText,setCmtText] = React.useState('')
-
-
-//   const postComment = (e) => {
-//       e.preventDefault()
-
-//       if(cmtText != '') {
-//           axios.post(`/DoctorRatingActionController?ratingVal=3&comments='${cmtText}'&ratedbyid=1&ratedbytype=1&targetid=1&targetTypeid=1&cmd=rateAsset`)
-//           .then(res => console.log(res))
-//           .catch(err => console.log(err))
-//            refreshComments()
-//       }else {
-//           alert('Enter comment')
-//       }
-      
-//   }
-
-//   return (
-//       <>
-//           <div>
-//               <form action="" onSubmit={(e) => postComment(e)} className="form-group">
-//                   <label htmlFor="">Comment</label>
-//                   <textarea name="" 
-//                   onChange={(e) => {
-//                       setCmtText(e.target.value)
-//                   }}
-//                   className="form-control" id="" cols="30" rows="10"></textarea>
-//                   <div className="my-4">
-//                       <button type="submit" className="btn btn-primary">Submit</button>
-//                   </div>
-//               </form>
-//           </div>
-//       </>
-//   )
-// }
 }
 export default CommentsRev; 
