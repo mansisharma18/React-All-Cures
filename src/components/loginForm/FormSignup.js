@@ -167,7 +167,7 @@ function Redirec(){
             required
           >
           <MenuItem value="doctor">Doctor</MenuItem>
-          <MenuItem value="patient">Patient/User</MenuItem>
+          <MenuItem value="other">Other</MenuItem>
         </Select>
         </FormControl>
 

@@ -325,14 +325,29 @@ import Autocomplete from '../Autocomplete'
 function ToggleButton(props) {
     if(props.acPerm){
         return(
-            <DropdownButton style={{background: 'white'}} title="Hi there!">
+           <div>
+          <li className="dropdown">
+  <a className="dropdown-toggle" data-toggle="dropdown" href="#">
+      <i className="fa fa-user fa-2x"></i> 
+  </a>
+  <ul className="dropdown-menu dropdown-user">
+      <li><a href="/dashboard" className="dropdown-item">Dashboard</a>
+      </li>
+      <li className="divider"></li>
+      <li><a onClick={props.logout} className="dropdown-item"> Logout</a>
+      </li>
+  </ul>
+</li>  
+              {/* <DropdownButton i className="fas fa-2x fa-user">
+               
             <Dropdown.Item >
             <Link to="/dashboard">
                Dashboard
            </Link>
             </Dropdown.Item>
             <Dropdown.Item onClick={props.logout}>Logout</Dropdown.Item>
-         </DropdownButton>
+         </DropdownButton> */}
+         </div>
         );
     }
     return(

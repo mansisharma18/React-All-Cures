@@ -106,7 +106,7 @@ class Autocomplete extends Component {
       return (
         <Fragment>
           <div  className=" autocomplete col-lg-4">
-            <div>
+           
               <input
                 type="text"
                 className="form-control w-75"
@@ -116,7 +116,7 @@ class Autocomplete extends Component {
                 onKeyDown={onKeyDown}
                 value={userInput}
               />
-            </div>
+           
             <div>
               {suggestionsListComponent}
             </div>

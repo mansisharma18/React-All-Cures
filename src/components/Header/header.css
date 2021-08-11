@@ -283,7 +283,9 @@
 .suggestions li:not(:last-of-type) {
   border-bottom: 1px solid #999;
 }
-
+.autocomplete{
+  position: relative;
+}
 .autocomplete #search {
   position: absolute;
   z-index: 1;
@@ -296,10 +298,31 @@
   float: left;
 }
 
-.zIndex-1 {
-  z-index: 1;
-  position: relative;
+.dropdown{
+  float: right;
+  list-style: none;
 }
+
+
+.dropdown-toggle{
+  color: #0c1b22;
+border: white;
+}
+.dropdown-toggle:hover{
+  color:#0c1b22;
+}
+.dropdown-toggle:focus{
+  color: white;
+}
+
+.fa-user
+{
+  color:#0c1b22;
+}
+.zIndex-1 {
+    z-index: 1;
+    position: relative;
+  }
 
 .zIndex-2 {
   z-index: 2;

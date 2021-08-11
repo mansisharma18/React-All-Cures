@@ -18,6 +18,7 @@ import SignIn from "./Article/SignIn";
 import Blogpage from "./BlogPage/Blogpage";
 import EditPost from './BlogPage/EditModal';
 import BlogAllPost from './Dashboard/BlogAllPost'
+import LoginInfo from './loginForm/LoginInfo'
 import Comment from './Comment'
 import CommentsRev from './Dashboard/CommentsRev.js'
 
@@ -71,15 +72,19 @@ const Routes = (props) => {
           <Route exact path="/dashboard" component={Dashboard} />
           <ProtectedRoute exact path="/sign" component={SignIn} />
           <Route exact path="/blogs" component={Blogpage}/>
+          <Route exact path="/login/doctor" component={LoginInfo}/>
           <Route path="/blogs/:type" component={Blogpage}/>
           {/* <Route exact path="/blogs/:id" component={Blogs}/> */}
       <Route exact path="/profile/:id" component={Profile} />
+      <Route exact path="/profile/:id/edit" component={LoginInfo} />
       <Route exact path="/dashboard/blogs" component={BlogAllPost} />
       <Route exact path="/comment" component={Comment} />
       <Route exact path="/dashboard/commentsrev" component={CommentsRev} />
     
      
       
+      
+
     </Switch>
           <Route path="/" component={LoginPage}/>
           <ProtectedLogin path='?login=true' auth={Auth.auth}/>
