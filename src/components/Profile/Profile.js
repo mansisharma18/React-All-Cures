@@ -3,6 +3,7 @@ import Header from "../Header/Header";
 import Footer from "../Footer/Footer";
 import Rating from "../StarRating";  
 import ClientA from "../../assets/img/client-a.jpg";
+import Cookies from 'js-cookie';
 
 import '../../assets/healthcare/css/main.css';
 import '../../assets/healthcare/css/responsive.css';
@@ -12,10 +13,12 @@ import Pexel1 from './pexel1.jpg'
 import Pexel2 from './pexel2.jpg'
 import Pexel3 from './pexel3.jpg'
 import Pexel4 from './pexel4.jpg'
-import { Container } from "react-bootstrap";
+import { Container, Button } from "react-bootstrap";
 import {Link} from 'react-router-dom'
 import Comment from "../Comment";
 import axios from 'axios';
+import EditProfile from "./EditProfile";
+
 class Profile extends Component {
   constructor(props) {
     super(props);
@@ -26,7 +29,10 @@ class Profile extends Component {
       commentItems: [],
       isLoaded: false,
       param: params,
-      edit: false
+      edit: false,
+      modalShow: false,
+      show: false,
+      acPerm: Cookies.get('acPerm').split('|')
     };
     // this.editToggle = this.editToggle.bind()
   }
@@ -70,15 +76,29 @@ class Profile extends Component {
   }
 
   componentDidMount() {
-    
     this.fetchDoctorData()
     this.getComments()
-
-      
   }
 
+  setModalShow =(action) => {
+    this.setState({
+      modalShow: action
+    })
+  }
+  handleClose = () => {
+    this.setState({
+      show: false
+    })
+  }
+
+  handleShow = () => {
+    this.setState({
+      show: true
+    })
+  }
+  
   render() {
-    var { isLoaded, items } = this.state;
+    var { isLoaded, items, acPerm } = this.state;
     if (!isLoaded) {
 
       return(
@@ -118,26 +138,22 @@ class Profile extends Component {
                         <div className="profile-card-img text-center">
                           <i className="fas fa-user-md fa-6x"></i>
                         </div>
-                        {/* <div className="viewPhoto">
-                          {" "}
-                          <a href="//#">View Photos</a>{" "}
-                        </div> */}
                       </div>
                     </div>
                     <div className="col-md-9">
                       <div className="profile-info">
                         <div className="profile-infoL-card">
                           <div className="profile-info-name" id="DocDetails">
-                            <h1 contentEditable="true">
-                              Dr. {items.docname_first} {items.docname_middle}{" "}
+                          <div className="h4 font-weight-bold">
+                              {items.prefix}. {items.docname_first} {items.docname_middle}{" "}
                               {items.docname_last}{" "}
-                            </h1>
-                            <h3 contentEditable="true">{items.primary_spl}</h3>
-                            <h2 contentEditable="true">{items.experience}</h2>
-                            <h4 contentEditable="true">
+                            </div>
+                            <div className="h5 ">{items.primary_spl}</div>
+                            <div className="h5 ">{items.experience}</div>
+                            <div className="h5 ">
                               {items.hospital_affliated} {items.statename}{" "}
                               {items.country_code}
-                            </h4>
+                            </div>
                             {/* <!--  <button onclick="loadUsers()">Click</button> --> */}
                           </div>
                           <div className="check-icon">
@@ -164,59 +180,71 @@ class Profile extends Component {
                             </h2>
                           </div>
                           <div className="reviews" >
-                            {
+                            {/* {
                               this.state.edit?
                                 <button onClick={this.editToggle.bind(this)} className="btn btn-dark text-white text-decoration-none">Edit Profile</button>
                                 : <button onClick={this.editToggle.bind(this)} className="btn btn-dark text-white        text-decoration-none">Save Changes</button>
+                            } */}
+                            {
+                              acPerm[1] == 9 || acPerm[0] == items.docid?
+                              <Button variant="dark" onClick={() => this.setModalShow(true)}>
+                                Edit Profile
+                              </Button>
+                              : null
                             }
                             
+
+      <EditProfile
+        show={this.state.modalShow}
+        onHide={() => this.setModalShow(false)}
+        items={items}
+      />
+      {/* <Button variant="primary" onClick={this.handleShow}>
+        Launch demo modal
+      </Button> */}
+
+      {/* <Modal show={this.state.show} onHide={this.handleClose}>
+        <Modal.Header closeButton>
+          <Modal.Title>Modal heading</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>Woohoo, you're reading this text in a modal!</Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={this.handleClose}>
+            Close
+          </Button>
+          <Button variant="primary" onClick={this.handleClose}>
+            Save Changes
+          </Button>
+        </Modal.Footer>
+      </Modal> */}
                           </div>
                         </div>
                       </div>
                     </div>
                   </div>
-                  <div className="comment-box">
-                    <Comment refreshComments={this.getComments} />
-                  </div>
+                  
                   <div className="aboutDr">
-                    {
-                      this.state.edit?
-                      <h2 id="about">
-                      About Dr. {items.docname_first} {items.docname_middle}{" "}
+                      <div className="h4 font-weight-bold">
+                      About {items.prefix}. {items.docname_first} {items.docname_middle}{" "}
                       {items.docname_last}
-                    </h2>
-                    : <h2 id="about" contentEditable="true">
-                    About Dr. {items.docname_first} {items.docname_middle}{" "}
-                    {items.docname_last}
-                  </h2>
-                    }
+                    </div>
                     {/* <h2 id="about">
                       About Dr. {items.docname_first} {items.docname_middle}{" "}
                       {items.docname_last}
                     </h2> */}
                     <div id="about-contain">
-                      <p className="text one" contentEditable={this.state.edit}>
+                      <p className="text one">
                         {" "}
-                        “Lorem ipsum dolor sit amet, consectetur adipiscing
-                        elit. Integer at pulvinar ex. Sed non lorem a justo
-                        dictum lobortis a sed arcu. Sed consectetur, erat sit
-                        amet auctor finibus, felis velit scelerisque mauris, in
-                        pellentesque lorem ex eget libero. Nam faucibus in lacus
-                        vel accumsan. Suspendisse sed ipsum ornare mauris ornare
-                        maximus nec eget nisi. Fusce ut ultrices neque, sit amet
-                        vehicula ipsum. Vivamus quis vestibulum massa, nec
-                        sagittis augue. Aenean ac facilisis purus. Proin auctor
-                        viverra lacinia. Interdum et malesuada fames ac ante
-                        ipsum primis in faucibus. Sed pulvinar vitae velit eu
-                        luctus. Aliquam sapien metus, dictum eget venenatis ut,
-                        pellentesque at neque.” Show Less{" "}
+                        {items.about}{" "}
                       </p>
                     </div>
                     <br />
                     <div className="about-specialties">
-                      <h2>Specialties</h2>
+                      <div className="h4 font-weight-bold">Specialties</div>
                       <ul>
                         <li>{items.primary_spl}</li>
+                        <li>{items.sub_spls}</li>
+                        {/* <li>{items.other_spls}</li> */}
                         {/* <li> </li>
                                 <li> ajbakb</li> */}
                       </ul>
@@ -228,14 +256,14 @@ class Profile extends Component {
                     </div>
                     <br/>
                     <div className="abt-eduction ">
-                      <h2>Education</h2>
+                    <div className="h4 font-weight-bold">Education</div>
                       <ul>
-                        <li>{items.education}</li>
+                        <li>{items.edu_training}</li>
                       </ul>
                     </div>
                     <br />
                     <div className="abt-articles d-grid">
-                        <div className="h5">Articles Published</div>
+                        <div className="h4 font-weight-bold">Articles Published</div>
                     <div class="row">
                       <div class="col-sm m-1 card ">
                         <div className="img-wrapper">
@@ -274,6 +302,7 @@ class Profile extends Component {
                     </div>
                    
                     </div>
+                    
                     {/* <div className="abt-eduction">
                       <h2>Education</h2>
                       <p>{items.edu_training}</p>
@@ -342,6 +371,9 @@ class Profile extends Component {
                         </div>
                       </div>
                     </div> */}
+                  </div>
+                  <div className="comment-box">
+                    <Comment refreshComments={this.getComments} />
                   </div>
                   <div className="profile-rating">
                     <div className="tab-nav">
@@ -917,4 +949,5 @@ function ButtonToggle(props){
     )
   }
 }
+
 export default Profile;
