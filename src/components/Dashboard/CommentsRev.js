@@ -3,7 +3,7 @@ import React, { Component } from "react";
 import axios from 'axios';
 import List from '@material-ui/core/List';
 import { mainListItems, secondaryListItems } from './listItems';
-
+// import '../../assets/healthcare/css/comment.css';
 
 class CommentsRev extends Component {
   constructor(props) {
@@ -61,7 +61,7 @@ render(){
    function select(e) {
     
     var checkboxes = document.getElementsByClassName('check');
-    console.log(checkboxes)
+   
     for (var checkbox of checkboxes) {
         checkbox.checked = e.target.checked;
     }
@@ -74,7 +74,7 @@ render(){
               <div><input type="checkbox" onClick={select} id="select-all" />
               <label for="checkbox">Select All</label></div>
               <div className="my-3 container" style={{zIndex: '999999'} }>
-                                    <select name="" style={{float:'right'}}className="form-select"
+                                    <select name="" className="form-select float-right "
                                       onChange={(e)=> {
                                         this.setState({
                                           getComments: e.target.value
@@ -82,7 +82,7 @@ render(){
                                         if(e.target.value == '0') {
                                           this.getComments('/0')
                                         }else if(e.target.value == '1') {
-                                          this.getComments('/1')
+                                          this.getComments('/1') 
                                         }else {
                                           this.getComments('/')
                                         }

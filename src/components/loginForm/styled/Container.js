@@ -9,7 +9,7 @@ export default styled(posed.div({}))`
   overflow: hidden;
   width: 768px;
   max-width: 100%;
-  min-height: 480px;
+  height: 650px;
   display: grid;
   grid-template-columns: 1fr 1fr;
   margin: 2em auto;
@@ -71,4 +71,41 @@ export default styled(posed.div({}))`
     text-align: center;
     color: #000
   }
+
+  input[type="text"] {
+    height: 40px;
+}
+input[type="email"] {
+  height: 40px;
+}
+
+input[type="password"] {
+  height: 40px;
+}
+
+.MuiFormControlLabel-root {
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  margin-left: -11px;
+  margin-right: 16px;
+  vertical-align: middle;
+  -webkit-tap-highlight-color: transparent;
+  /* margin-bottom: 0px; */
+  position: relative;
+  bottom: 12px;
+}
+[type=button]:not(:disabled), [type=reset]:not(:disabled), [type=submit]:not(:disabled), button:not(:disabled) {
+  cursor: pointer;
+  position: relative;
+  bottom: 20px;
+  margin-top: 22px;
+}
+
+.container__form {
+  padding: 4rem;
+  margin-top: 30px;
+  overflow: hidden;
+}
+
 `
