@@ -58,7 +58,7 @@ export const mainListItems = (
         <PeopleIcon />
       </ListItemIcon>
       {/* <ListItemText primary="Customers"  /> */}
-    <Link to="/article">
+    <Link to="/dashboard/commentsrev">
                comments
            </Link>
     </ListItem>
