@@ -154,7 +154,7 @@ class Profile extends Component {
                             <h2>
                               <form
                                 style={{
-                                  marginTop: "6rem",
+                                  marginTop: "5.5rem",
                                   paddingLeft: "2.7rem",
                                 }}
                                 class="rating"

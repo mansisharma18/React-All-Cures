@@ -44,6 +44,7 @@ a:hover {
   }
 }
 
+
 /* @media only screen and (max-width: 600px) {
   body {
     background-color: lightblue;
@@ -818,6 +819,8 @@ h6 {
 }
 
 @media only screen and (max-width: 600px) {
+
+  
   #specialists .item,
   #doctor .item {
     border: 1px solid #c4c4c4;
@@ -2435,3 +2438,85 @@ p.lorem-text {
   padding: 0;
 }
 
+.rating{
+  margin-top: "5.5rem";
+  padding-left: "2.7rem",
+}
+@media only screen and (max-width: 320px) {
+  .profileImageBlok {
+    text-align: center;
+    position: relative;
+    bottom: 20px;
+  }
+  h4{
+    position: relative;
+    bottom: 40px;
+  }
+  .App{
+  position: relative;
+  bottom: 50px;
+  }
+
+}
+@media only screen and (max-width: 364px) {
+.profileImageBlok {
+  text-align: center;
+  position: relative;
+  bottom: 20px;
+}
+h4{
+  position: relative;
+  bottom: 40px;
+}
+.App{
+position: relative;
+bottom: 42px;
+}
+}
+@media only screen and (min-width: 365px) and (max-width:768px)
+{
+  .profileImageBlok {
+    text-align: center;
+    position: relative;
+    bottom: 20px;
+  }
+  h4{
+    position: relative;
+    bottom: 40px;
+  }
+  .App{
+    position: relative;
+    bottom: 50px;
+    }
+    div#DocDetails {
+      margin-left: -20px;
+  }
+}
+
+@media only screen and (min-width: 992px){
+  .profile-card-img {
+    position: relative;
+    bottom: 5px;
+    left: -15px;
+  }
+}
+
+
+@media only screen and (max-width: 315px){
+  .profile-card-img {
+    position: relative;
+    bottom: 5px;
+    left: -15px;
+  }
+  h4{
+    position: relative;
+    bottom: 50px;
+    margin-bottom: 20px;
+  }
+  .App{
+    position: relative;
+    bottom: 10px;
+    left: 0px;
+    }
+
+}
