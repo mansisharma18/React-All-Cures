@@ -19,7 +19,8 @@ export default class Test extends Component {
         this.handleAuthorClick = this.handleAuthorClick.bind(this);
         this.handleChange = this.handleChange.bind(this);
         this.instanceRef = React.createRef();
-        this.handleSave = this.handleSave.bind(this)
+        this.handleSave = this.handleSave.bind(this);
+        // this.renderStatus = this.renderStatus.bind(this)
         // this.submitForm = this.submitForm.bind(this);
         // this.handleClick().bind(this)
         this.state = {
@@ -53,7 +54,8 @@ export default class Test extends Component {
                 language : 1,
                 articleContent : "",
                 countryId: 9,
-                diseaseConditionId: 1
+                diseaseConditionId: 1,
+                comments: ""
             },
         };
     }
@@ -124,7 +126,7 @@ export default class Test extends Component {
         console.log(JSON.stringify(this.state.ac))
         const res = await fetch("/content?cmd=createArticle", {
             method: "POST",
-            body: `title=${this.state.articleValues.title}&language=${this.state.articleValues.language}&friendlyName=${this.state.articleValues.friendlyName}&contentType=${this.state.articleValues.contentType}&disclaimerId=${this.state.articleValues.disclaimerId}&authById=${this.state.articleValues.authById}&copyId=${this.state.articleValues.copyId}&articleStatus=${this.state.articleValues.articleStatus}&winTitle=${this.state.articleValues.winTitle}&countryId=${this.state.articleValues.countryId}&diseaseConditionId=${this.state.articleValues.diseaseConditionId}&articleContent=${encodeURIComponent(JSON.stringify(this.state.ac))}`,
+            body: `title=${this.state.articleValues.title}&language=${this.state.articleValues.language}&friendlyName=${this.state.articleValues.friendlyName}&contentType=${this.state.articleValues.contentType}&disclaimerId=${this.state.articleValues.disclaimerId}&authById=${this.state.articleValues.authById}&copyId=${this.state.articleValues.copyId}&articleStatus=${this.state.articleValues.articleStatus}&winTitle=${this.state.articleValues.winTitle}&countryId=${this.state.articleValues.countryId}&diseaseConditionId=${this.state.articleValues.diseaseConditionId}&articleContent=${encodeURIComponent(JSON.stringify(this.state.ac))}&comments=${this.state.articleValues.comments}`,
             headers: {
             "Content-Type": "application/x-www-form-urlencoded"
             }
@@ -345,7 +347,43 @@ document.getElementById('articlePreview').innerHTML=articleHTML;
 
     }
 
+
+    renderStatus = () => {
+        const {acPerm} =this.state;
+        var permission = acPerm.split('|')
+        permission = parseInt(permission[1])
+        console.log('Permission: ',typeof(permission))
+        if(permission <= 4){
+            return(
+                <Form.Group className="col-md-6 float-left">
+                    <Form.Label>Article Status</Form.Label>
+                    <Form.Control as="select" name="articleStatus" custom onChange={this.handleArticleChange} required>
+                        <option>Open this select menu</option>
+                        <option value="1">Work in Progress</option>
+                        <option value="2">Review</option>
+                        {/* <option value="3" disabled>Publish</option> */}
+                    </Form.Control>                       
+                </Form.Group>
+            )
+        } else if(permission === 7 || permission === 9){
+            return(
+                <Form.Group className="col-md-6 float-left">
+                    <Form.Label>Article Status</Form.Label>
+                    <Form.Control as="select" name="articleStatus" custom onChange={this.handleArticleChange} required>
+                        <option>Open this select menu</option>
+                        <option value="1">Work in Progress</option>
+                        <option value="2">Review</option>
+                        <option value="3">Publish</option>
+                    </Form.Control>                       
+                </Form.Group>
+            )
+        }
+        else {
+            return null
+        }
+    }
     render() {
+        
         const isLoggedIn = this.state.isLoggedIn;
         const showAuthorAccordian = this.state.showAuthorAccordian;
         let showAuthorButton;
@@ -368,7 +406,7 @@ document.getElementById('articlePreview').innerHTML=articleHTML;
     } else if(isLoaded){
     return (
         <div>
-            <Header/>
+            {/* <Header/> */}
             <Carousel/>
                 <Container>  
                     <Card className="mainCard" >
@@ -451,15 +489,11 @@ document.getElementById('articlePreview').innerHTML=articleHTML;
                                             <option value="11">Temporary</option>
                                         </Form.Control>
                                     </Form.Group>
-                                    <Form.Group className="col-md-6 float-left">
-                                        <Form.Label>Article Status</Form.Label>
-                                        <Form.Control as="select" name="articleStatus" custom onChange={this.handleArticleChange} required>
-                                        <option>Open this select menu</option>
-                                            <option value="1">Work in Progress</option>
-                                            <option value="2">Review</option>
-                                            <option value="3">Publish</option>
-                                        </Form.Control>
-                                    </Form.Group>
+
+                                    {this.renderStatus()}
+                                   
+                                        
+                                        
                                     
                                     <Form.Group className="col-md-6 float-left">
                                         <Form.Label>Language</Form.Label>
@@ -503,6 +537,17 @@ document.getElementById('articlePreview').innerHTML=articleHTML;
                                         <Form.Control required type="text" name="winTitle" value={this.state.values.winTitle}
                                         onChange={this.handleArticleChange} placeholder="Win Title" />
                                     </Form.Group>
+                                    <Form.Group className="col-md-6 float-left">
+                                        <Form.Label>Comment</Form.Label>
+                                    <Form.Control
+                                        // defaultValue={about}
+                                        onChange={this.handleArticleChange}
+                                        name="comments"
+                                        as="textarea"
+                                        placeholder="Leave a comment here"
+                                        style={{ height: '100px' }}
+                                    />
+                              </Form.Group>
                                 </Card.Body>
                             </Accordion.Collapse>
                         </Card>

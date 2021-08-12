@@ -1,8 +1,8 @@
 import React from 'react';
 
-const Options = ({value, nam}) => (
+const Options = ({value, name}) => (
     <>
-        <option value={value}>{nam}</option>
+        <option value={value}>{name}</option>
 
     </>
 )
