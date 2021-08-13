@@ -216,9 +216,7 @@ input[type="password"] {
   margin-top: 20px;
   overflow: hidden;
 }
-h1.textcenter{
-  font-size: 2px
-}
+
 
 
 }

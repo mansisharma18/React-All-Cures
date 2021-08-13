@@ -153,11 +153,8 @@ class Profile extends Component {
                           <div className="profile-info-rating">
                             <h2>
                               <form
-                                style={{
-                                  marginTop: "5.5rem",
-                                  paddingLeft: "2.7rem",
-                                }}
-                                class="rating"
+                              
+                                className="rating"
                               >
                                 <Rating />
                               </form>
