@@ -1639,8 +1639,21 @@ h4 {
   padding: 36px 32px 37px 84px;
   margin-top: 20px;
   margin-left: 55px;
+  width: 900px;
+  background-color: white;
+}
+.select-all
+{
+  position: relative;
+  left:750px;
+  top:20px;
 }
 
+select.form-select{
+position:relative;
+bottom: 25px;
+float: right;
+}
 .patient-name-add {
   display: flex;
   justify-content: space-between;
@@ -2014,7 +2027,11 @@ input {
   border: none;
   padding: 12px 15px;
   margin: 8px 0;
-  width: 100%;
+  
+}
+
+.check {
+  float: right;
 }
 
 .outer {
@@ -2351,17 +2368,16 @@ p.lorem-text {
   border-radius: 10px;
 }
 
-.modal {
-  width: 100%;
-  height: fit-content;
-  max-width: 300px;
-  background-color: #a4d1c8;
-  position: relative;
-  border: 5px;
+/* .modal { */
+/* width: 100%; */
+/* height: fit-content; */
+/* max-width: 300px; */
+/* position: relative; */
+/* border: 5px;
   box-shadow: 2px 4px 20px 0px rgba(0, 0, 0, 0.75);
   border-radius: 10px;
-  padding: 20px;
-}
+  padding: 20px; */
+/* } */
 
 .modal p {
   font-size: 12px;
@@ -2519,4 +2535,7 @@ bottom: 42px;
     left: 0px;
     }
 
+}
+.modal-header .close {
+  padding: 1rem 3rem;
 }

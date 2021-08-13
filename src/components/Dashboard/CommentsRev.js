@@ -1,6 +1,9 @@
 import React, { Component } from "react";
 
 import axios from 'axios';
+import Results from './Results'
+
+
 import List from '@material-ui/core/List';
 import { mainListItems, secondaryListItems } from './listItems';
 // import '../../assets/healthcare/css/comment.css';
@@ -13,30 +16,47 @@ class CommentsRev extends Component {
       items: [],
       commentItems: [],
       isLoaded: false,
+      selectedCheckboxes: [],
+      unselectedCheckboxes: []
       // param: params,
-      getComments: 'all',
+      // getComments: 'all',
     };
   }
   getComments(val) {
-
     
     axios.get(`/rating/comments${val}`)
       .then(res => {
-        console.log(res)
-        this.setState({
-          commentItems:res.data
+        console.log(res.data)
+        var s = [];
+        res.data.map(i => {
+          s.push(i.rate_id);
         })
+        console.log(s)
+        this.setState({
+          commentItems:res.data,
+          unselectedCheckboxes: s
+        })
+        console.log('kjdghkhgkhgsd',this.state.unselectedCheckboxes)
       })
+      // .then(res => {
+      //   res.data.map((i) => {
+      //     console.log(i.rate_id)
+      //   })
+      //   // console.log(check)
+      // })
       .catch(err => console.log(err))
-
     
   }
 
 
-  poastApproved(val) {
-
+  postApproved(selected, rejected) {
+    console.log(selected.join())
+    console.log(rejected.join())
     
-    axios.post(`rating/reviewedby/1/reviewed/1${val}`)
+    axios.post(`/rating/reviewedby/1/reviewed/1`, {
+      "rateids": selected.join(),
+      "rateids_rejected": rejected.join()
+    })
       .then(res => {
         console.log(res)
        
@@ -56,8 +76,37 @@ class CommentsRev extends Component {
     
   }
   
+  onChange = id => {
+    const index = this.state.unselectedCheckboxes.indexOf(id);
+    if (index > -1) {
+      this.state.unselectedCheckboxes.splice(index, 1);
+    }
+    console.log('after delete: ',this.state.unselectedCheckboxes)
+    console.log('##########################',id)
+    const selectedCheckboxes = this.state.selectedCheckboxes;
+    console.log(selectedCheckboxes)
+    // Find index
+    const findIdx = selectedCheckboxes.indexOf(id);
 
+    // Index > -1 means that the item exists and that the checkbox is checked
+    // and in that case we want to remove it from the array and uncheck it
+    if (findIdx > -1) {
+      selectedCheckboxes.splice(findIdx, 1);
+    } else {
+      selectedCheckboxes.push(id);
+    }
+
+    this.setState({
+      selectedCheckboxes: selectedCheckboxes
+    });
+    
+    // this.setState({
+    //   UnselectedCheckboxes: UnselectedCheckboxes
+    // });
+  };
 render(){
+  const { selectedCheckboxes, unselectedCheckboxes } = this.state;
+  
    function select(e) {
     
     var checkboxes = document.getElementsByClassName('check');
@@ -67,18 +116,23 @@ render(){
     }
     
   }
+
+  
   return (
     <>
     
               <div className="tab-content">
-              <div><input type="checkbox" onClick={select} id="select-all" />
-              <label for="checkbox">Select All</label></div>
+              <div><input type="checkbox" onClick={select} className="select-all" />
+              <label for="checkbox" className="select-all">Select All</label></div>
               <div className="my-3 container" style={{zIndex: '999999'} }>
-                                    <select name="" className="form-select float-right "
+                <Results/>
+                
+                                    <select name=""className="form-select"
                                       onChange={(e)=> {
-                                        this.setState({
-                                          getComments: e.target.value
-                                        })
+                                        
+                                        // this.setState({
+                                        //   getComments: e.target.value
+                                        // })
                                         if(e.target.value == '0') {
                                           this.getComments('/0')
                                         }else if(e.target.value == '1') {
@@ -91,6 +145,7 @@ render(){
                                       <option value="all"  onClick={() => this.getComments('/')}>All</option>
                                       <option value="1" onClick={() => this.getComments('/1')} >Approved</option>
                                       <option value="0"  onClick={() => this.getComments('/0')}>UN Approved</option>
+                                      
                                     </select>
                                     
                                 </div>
@@ -110,131 +165,48 @@ render(){
                               <div className="paitent-profile">
                              
                                 {" "}
-                                {/* <img src={ClientA} alt="ClientA" />{" "} */}
                               </div>
-                              {/* checkbox */}
-                              <div>
-                                <input type = "checkbox" className="check"></input>
-                                {/* <button onClick={() => {this.postApproved()}}>Submit</button> */}
+                              {
+                                item.reviewed === 1 ?
+                                  <div>
+                                  <input type = "checkbox"
+                                  onChange={() => this.onChange(item.rate_id)}
+                                  selected={selectedCheckboxes.includes(item.rate_id)}
+                                  className="check"
+                                  // checked
+                                  not checked 
+                                />
+                                
+
                               </div>
+                              : <input type = "checkbox"
+                              onChange={() => this.onChange(item.rate_id)}
+                              selected={selectedCheckboxes.includes(item.rate_id)}
+                              className="check"
+                              
+                            />
+                        }
+                              
+                              
                              
                              
 
                               <div className="patient-msg">
                               
-                                <p>{item.comments}</p>
+                                <p>{item.rate_id}</p>
                               </div>
-                            
-                              {/* <div className="patient-name-add">
-                                <div>
-                                  <h3>Mahyar Eidgah</h3>
-                                  <span>New York, NY</span>{" "}
-                                </div>
-                               
-                              </div> */}
                             </div>
                           </div>
                               </>
                             )
                           })}
-                          
+                          <p>Selected checkboxes: {JSON.stringify(selectedCheckboxes)}</p>
                          
                           <div>
                                 
-                                <button onClick={() => {this.postApproved()}}>Submit</button>
+                                <button onClick={() => {this.postApproved(selectedCheckboxes, unselectedCheckboxes)}}>Submit</button>
                               </div>
-                          
-                          {/* <div className="rating-footer">
-                            <div className="back-top">
-                              {" "}
-                              <a href="#">
-                                <p>
-                                  <i
-                                    className="fa fa-angle-up"
-                                    aria-hidden="true"
-                                  ></i>{" "}
-                                  Back to Top
-                                </p>
-                              </a>{" "}
-                            </div>
-                            <a
-                              href="//#"
-                              className="read-more-rating"
-                            >
-                              Read more Reviews
-                            </a>{" "}
-                          </div> */}
-                          {/* <div className="faqs" id="faq">
-                            <div className="faqs-wrap">
-                              <div className="question">
-                                <h2>
-                                  How soon can I make an appointment with Dr.
-                                  Jordan Reich?
-                                </h2>
-                                <p>
-                                  Generally, Dr. Jordan Reich has appointments
-                                  available on Zocdoc within 1 week. You can see
-                                  Dr. Sanghi's earliest availability on Zocdoc
-                                  and{" "}
-                                  <a href="/#">Make an appointment online.</a>
-                                </p>
-                              </div>
-                              <div className="question">
-                                <h2>
-                                  Is Dr. Jordan Reich accepting new patients?
-                                </h2>
-                                <p>
-                                  Dr. Pramod Sanghi generally accepts new
-                                  patients on Zocdoc. You can see Dr. Reich's
-                                  earliest availability on Zocdoc and{" "}
-                                  <a href="/#">
-                                    Schedule an appointment online.
-                                  </a>
-                                </p>
-                              </div>
-                              <div className="question">
-                                <h2>
-                                  Does Dr. Jordan reich accept my insurance?
-                                </h2>
-                                <p>
-                                  <a href="/#">Choose your insurance plan</a> to
-                                  verify if Dr. Jordan Reich is in-network.
-                                </p>
-                              </div>
-                              <div className="question">
-                                <h2>
-                                  Can I make an appointment with Dr. Jordan
-                                  Reich online?
-                                </h2>
-                                <p>
-                                  Yes, you can{" "}
-                                  <a href="/#">Make an appointment online.</a>{" "}
-                                  with Dr. Reich using Zocdoc. It’s simple,
-                                  secure, and free.
-                                </p>
-                              </div>
-                            </div>
-                          </div> */}
-                          {/* <div className="rating-footer">
-                            <div className="back-top">
-                              {" "}
-                              <a href=" #">
-                                <p>
-                                  <i
-                                    className="fa fa-angle-up"
-                                    aria-hidden="true"
-                                  ></i>{" "}
-                                  Back to Top
-                                </p>
-                              </a>{" "}
-                            </div>
-                            <a
-                              href="//#"
-                              className="read-more-rating"
-                            >
-                              Read more Reviews
-                            </a>{" "}
-                          </div> */}
+                         
                         </div>
                       </div>
                       <div id="recomended" className="tab-pane fade">
