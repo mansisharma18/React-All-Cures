@@ -156,24 +156,21 @@ class Profile extends Component {
                             </div>
                             {/* <!--  <button onclick="loadUsers()">Click</button> --> */}
                           </div>
-                          <div className="check-icon">
+                          {/* <div className="check-icon">
                             {" "}
                             <span className="icon-correct-2">
                               <span className="path1"></span>
                               <span className="path2"></span>
                               <span className="path3"></span>
                             </span>{" "}
-                          </div>
+                          </div> */}
                         </div>
                         <div className="rating-reviews">
                           <div className="profile-info-rating">
                             <h2>
                               <form
-                                style={{
-                                  marginTop: "6rem",
-                                  paddingLeft: "2.7rem",
-                                }}
-                                class="rating"
+                              
+                                className="rating"
                               >
                                 <Rating />
                               </form>
@@ -243,7 +240,7 @@ class Profile extends Component {
                       <div className="h4 font-weight-bold">Specialties</div>
                       <ul>
                         <li>{items.primary_spl}</li>
-                        <li>{items.sub_spls}</li>
+                        {/* <li>{items.sub_spls}</li> */}
                         {/* <li>{items.other_spls}</li> */}
                         {/* <li> </li>
                                 <li> ajbakb</li> */}
@@ -264,7 +261,7 @@ class Profile extends Component {
                     <br />
                     <div className="abt-articles d-grid">
                         <div className="h4 font-weight-bold">Articles Published</div>
-                    <div class="row">
+                    {/* <div class="row">
                       <div class="col-sm m-1 card ">
                         <div className="img-wrapper">
                           <picture className="ds-image">
@@ -299,7 +296,7 @@ class Profile extends Component {
                         </div>
                         One of three columns
                       </div>
-                    </div>
+                    </div> */}
                    
                     </div>
                     
