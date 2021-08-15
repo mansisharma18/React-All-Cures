@@ -4,9 +4,6 @@ import axios from 'axios';
 import Results from './Results'
 
 
-import List from '@material-ui/core/List';
-import { mainListItems, secondaryListItems } from './listItems';
-// import '../../assets/healthcare/css/comment.css';
 
 class CommentsRev extends Component {
   constructor(props) {
@@ -17,7 +14,9 @@ class CommentsRev extends Component {
       commentItems: [],
       isLoaded: false,
       selectedCheckboxes: [],
-      unselectedCheckboxes: []
+      unselectedCheckboxes: [],
+       isChecked: true,
+
       // param: params,
       // getComments: 'all',
     };
@@ -77,6 +76,7 @@ class CommentsRev extends Component {
   }
   
   onChange = id => {
+    // event.target.checked
     const index = this.state.unselectedCheckboxes.indexOf(id);
     if (index > -1) {
       this.state.unselectedCheckboxes.splice(index, 1);
@@ -99,18 +99,24 @@ class CommentsRev extends Component {
     this.setState({
       selectedCheckboxes: selectedCheckboxes
     });
+
     
     // this.setState({
     //   UnselectedCheckboxes: UnselectedCheckboxes
     // });
   };
+  toggleChange = () => {
+    this.setState({
+      isChecked: !this.state.isChecked,
+    });
+  }
 render(){
   const { selectedCheckboxes, unselectedCheckboxes } = this.state;
   
    function select(e) {
     
     var checkboxes = document.getElementsByClassName('check');
-   
+    console.log(checkboxes)
     for (var checkbox of checkboxes) {
         checkbox.checked = e.target.checked;
     }
@@ -136,7 +142,7 @@ render(){
                                         if(e.target.value == '0') {
                                           this.getComments('/0')
                                         }else if(e.target.value == '1') {
-                                          this.getComments('/1') 
+                                          this.getComments('/1')
                                         }else {
                                           this.getComments('/')
                                         }
@@ -173,16 +179,22 @@ render(){
                                   onChange={() => this.onChange(item.rate_id)}
                                   selected={selectedCheckboxes.includes(item.rate_id)}
                                   className="check"
-                                  // checked
-                                  not checked 
+                                  defaultChecked={item.reviewed}
+                                //  onChange={this.toggleChange}
+                                  
                                 />
+                                
                                 
 
                               </div>
+                              
+
+                              
                               : <input type = "checkbox"
                               onChange={() => this.onChange(item.rate_id)}
                               selected={selectedCheckboxes.includes(item.rate_id)}
                               className="check"
+                              
                               
                             />
                         }
