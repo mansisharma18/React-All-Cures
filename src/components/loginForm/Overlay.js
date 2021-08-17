@@ -15,8 +15,8 @@ const WelcomeOverlay = ({ toggleMode, mode }) => (
 const NewOverlay = ({ toggleMode, mode }) => (
   <InnerSignup className="inner">
     <h1>Hello, Friend!</h1>
-    <p>Enter your details below to start your journey with us</p>
-    <button onClick={toggleMode}>
+    <p>Enter your details below <span><br></br></span>to start your journey with us</p>
+    <button id='b1' onClick={toggleMode}>
       <span>Sign in</span>
     </button>
   </InnerSignup>

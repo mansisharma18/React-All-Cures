@@ -101,8 +101,8 @@ function Redirec(){
   return(
     
     <SlidingForm signup className="text-center">
-      <h1 className="text-center">Create Account</h1>
-       <p className="text-center">or register with your email</p>
+      <h1 id='he2' className="text-center">Create Account</h1>
+       <p id='p2'className="text-center">or register with your email</p>
        <form onSubmit={SignUpForm}>
         { 
           buttonClick === 1? 
@@ -183,7 +183,7 @@ function Redirec(){
               required
             />
           </FormGroup>
-          <BrandButton type="submit">Sign up</BrandButton>
+          <BrandButton id='b2' type="submit">Sign up</BrandButton>
 
       </form>
 
