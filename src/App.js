@@ -1,7 +1,17 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import Main from './components/MainComponent';
+import ReactGa from 'react-ga';
 
 function App() {
+  var location = useState(window.location.pathname)
+  useEffect(() => {
+    ReactGa.initialize('G-E0TVGLDV3W')
+
+    // console.log('Reacttttttttttttttttttttttt Analyticsssssssssssssssssssssssssss')
+    // console.log(window.location.pathname + window.location.search)
+    
+    ReactGa.pageview(window.location.pathname + window.location.search)
+  }, [])
   return (
     <div>
       <Main/>
