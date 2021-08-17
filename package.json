@@ -43,6 +43,7 @@
     "react-commentbox": "^3.0.1",
     "react-dom": "^17.0.1",
     "react-editor-js": "^1.9.0",
+    "react-ga": "^3.3.0",
     "react-owl-carousel": "^2.3.3",
     "react-pose": "^4.0.10",
     "react-rating-stars-component": "^2.2.0",
