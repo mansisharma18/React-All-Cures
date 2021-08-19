@@ -368,6 +368,7 @@
   }
   .rating-patient {
     margin: 1rem;
+    width: 280px;
   }
   .Profileleft .profile-card {
     display: block;

@@ -5,7 +5,7 @@ import ReactGa from 'react-ga';
 function App() {
   var location = useState(window.location.pathname)
   useEffect(() => {
-    ReactGa.initialize('G-E0TVGLDV3W')
+    ReactGa.initialize('G-TJ5NKXF48X')
 
     // console.log('Reacttttttttttttttttttttttt Analyticsssssssssssssssssssssssssss')
     // console.log(window.location.pathname + window.location.search)
