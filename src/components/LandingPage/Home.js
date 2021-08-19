@@ -417,7 +417,7 @@ function ToggleButton(props) {
          className="btn-white loginSignbtn color-blue-dark" 
          to={{pathname: props.match, search: '?login=true', state: {open: true}}}
       >
-         Sign Up
+         Sign in/Sign up
       </Link>
 
       //  <Link to="/login" className="btn-white loginSignbtn color-blue-dark" >

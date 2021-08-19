@@ -2,6 +2,7 @@ import React, {useState} from 'react'
 import {Redirect } from "react-router-dom";
 import BrandButton from './styled/BrandButton'
 import SlidingForm from './styled/SlidingForm'
+import { Checkbox, FormGroup, FormControlLabel} from '@material-ui/core'
 
 const FormLogin = (props) => {
   
@@ -18,7 +19,7 @@ const FormLogin = (props) => {
     setClicked(1);
     const res = await fetch("/login?cmd=login", {
       method: "POST",
-      body: `email=${email}&psw=${password}&rempwd=on`,
+      body: `email=${email}&psw=${password}&rempwd="on"`,
       headers: {
       "Content-Type": "application/x-www-form-urlencoded"
       }
@@ -68,7 +69,7 @@ function Redirec(){
 
   return(
   <SlidingForm className="text-center">
-    <h1 id='he4'className="text-center">Sign in</h1>
+    <h1 id='he4' className="text-center">Sign in</h1>
     
     <p className="text-center">or use your account</p>
     
@@ -99,10 +100,17 @@ function Redirec(){
           e => setPass(e.target.value)
         } 
       />
-      <BrandButton id='b4'className="ml-5 " type="submit">Sign in</BrandButton>
+      <FormGroup>
+        <FormControlLabel
+          control={<Checkbox name="Terms" value="on" required/>}
+          label="Remember Me"
+          required
+        />
+      </FormGroup>
+      <BrandButton className="ml-5 " type="submit">Sign in</BrandButton>
 
     </form>
-    <p id='p4'>
+    <p >
       <a href="/#" className="ml-5 pl-2">Forgot your password?</a>
     </p>
     {/* <Success/> */}

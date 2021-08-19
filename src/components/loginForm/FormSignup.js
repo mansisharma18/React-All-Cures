@@ -15,12 +15,14 @@ const FormSignup = () => {
   const [userType, setUserType] = useState("");
   const [terms, setTerms] = useState("");
   const [policy, setPolicy] = useState("");
+  const [rempwd, setRempwd] = useState("");
 
   const [message, setMessage] = useState("");
   const [isError, setError] = useState(false);
   const [status, setStatus] = useState("");
   const [buttonClick, setClicked] = useState("");
 
+  const [promo, setPromo] =useState(1)
   const useStyles = makeStyles((theme) => ({
     formControl: {
       margin: theme.spacing(1),
@@ -37,11 +39,12 @@ const FormSignup = () => {
     setClicked(1);
     const res = await fetch("/RegistrationActionController?", {
       method: "POST",
-      body: `firstname=${firstName}&lastname=${lastName}&email=${email}&psw=${password}&psw-repeat=${repPass}&rempwd=off&doc_patient=${userType}&acceptTnC=${terms};&acceptPolicy=${policy}`,
+      body: `firstname=${firstName}&lastname=${lastName}&email=${email}&psw=${password}&psw-repeat=${repPass}&rempwd=${rempwd}&doc_patient=${userType}&acceptTnc=${terms}`,
       headers: {
       "Content-Type": "application/x-www-form-urlencoded"
       }
   });
+
   console.log('props '+props)
   console.log('status '+ res.status)
   console.log('Statusssssssssssssssss ',status)
@@ -72,17 +75,28 @@ function Error(){
     )
   }, 1000);
 }
+
 // Redirect and Reload after logging in
 
 function Redirec(){
-  setTimeout(() => {
-    window.location.reload();
-  }, 1000);
-  return(
-    <Redirect to={{
-      pathname: '#'
-    }}/>
-  )
+  if(promo){
+    return(
+      <Redirect to={{
+        pathname: '/article',
+        state: { promo_code: '123' }
+      }}
+      />
+    )
+  } else {
+    setTimeout(() => {
+      window.location.reload();
+    }, 1000);
+    return(
+      <Redirect to={{
+        pathname: '#'
+      }}/>
+    ) 
+  }
 }
   const handleChange = (event) => {
     setUserType(event.target.value);
@@ -92,6 +106,9 @@ function Redirec(){
     setTerms(event.target.value)
   };
 
+  const handleRemember = (event) => {
+    setRempwd(event.target.value)
+  }
   const handlePolicyCheckbox = (event) => {
     setPolicy(event.target.value)
   }
@@ -154,7 +171,18 @@ function Redirec(){
           onChange={
             e => setrepPass(e.target.value)
           }
+          autoComplete="off"
           required
+        />
+        <input 
+          placeholder="Promo Code" 
+          type="text" 
+          name="promo_code"
+          value="Promo Code: 80H23"
+          // onChange={
+          //   e => setpromo(e.target.value)
+          // }
+          disabled
         />
 
         <FormControl className={classes.formControl}>
@@ -178,8 +206,8 @@ function Redirec(){
               required
             />
             <FormControlLabel
-              control={<Checkbox name="Policy" onChange={handlePolicyCheckbox} value="on" required/>}
-              label="Accept Policy"
+              control={<Checkbox name="remember_me" onChange={handleRemember} value="on" required/>}
+              label="Remember Me"
               required
             />
           </FormGroup>

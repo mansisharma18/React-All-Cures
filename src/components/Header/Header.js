@@ -33,7 +33,8 @@ import Autocomplete from '../Autocomplete'
 
         componentWillMount(){
          Promise.all([
-            fetch('/article/all/table/disease_condition').then(res => res.json()),
+            fetch('/article/all/table/disease_condition')
+            .then(res => res.json()),
           ]).then(([diseaseData]) => {
             console.log('Speciality Data: ', diseaseData)
             this.setState({
@@ -45,6 +46,9 @@ import Autocomplete from '../Autocomplete'
             this.state.speciality.map((i) => {
               this.state.spec1.push(i[3])
             })
+          })
+          .catch(res => {
+             console.error(res)
           })
             const loadUsers = async () => {
                const response = await axios.get('/city/all');
@@ -355,7 +359,7 @@ function ToggleButton(props) {
          className="btn-white loginSignbtn color-blue-dark" 
          to={{pathname: props.url, search: '?login=true', state: {open: true}}}
         >
-            Sign Up
+            Sign In/Sign Up
         </Link>
     )
 }

@@ -565,16 +565,16 @@ h6 {
   font-weight: 500;
 }
 
-.loginSignbtn {
+/* .loginSignbtn {
   text-align: center;
   display: inline-block;
   border-radius: 15px;
   height: 30px;
   width: 150px;
   padding-top: 6px;
-  font-size: 12px;
+  font-size: 16px;
   font-weight: 400;
-}
+} */
 
 .banner {
   background: url(../img/images/o6rbxh0.jpg);
@@ -2449,11 +2449,7 @@ p.lorem-text {
   padding: 0;
 }
 
-<<<<<<< HEAD
-.profile-info-rating{
-=======
 .profile-info .rating {
->>>>>>> 13080fdbaba9e167042f6317a18ff91ae2ab76ab
   margin-top: 5.5rem;
   padding-left: 2.7rem;
 }

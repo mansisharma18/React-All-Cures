@@ -121,10 +121,10 @@ input[type="password"] {
 
 
   max-width: 100%;
-  height: 460px;
+  height: fit-content;
   display: grid;
   grid-template-columns: 1fr 1fr;
-  margin: 5.6em auto;
+  margin: 2rem auto;
   align-items: center;
   text-align: center;
 
@@ -253,10 +253,10 @@ margin-left: 110px;
 @media only screen and (min-width: 365px) and (max-width:767px)
 {
   max-width: 100%;
-  height: 460px;
+  height: fit-content;
   display: grid;
   grid-template-columns: 1fr 1fr;
-  margin: 9.6rem auto;
+  margin: 3.5rem auto;
   align-items: center;
   text-align: center;
   h1{
@@ -364,169 +364,16 @@ margin-left: 90px;
 }
 }
 
-
 @media only screen and (min-width: 768px){
-  max-width: 100%;
-
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  margin: 9.6rem auto;
-  align-items: center;
-  text-align: center;
-  h1{
-    font-size: 60px;
-    margin-left:-42px;
-    margin-top: 20px;
-
-  }
-
-  p{
-    font-size: 23px;
-    margin-left: -38px;
-    margin-top: 7px;
-  }
+ 
   #b1{
     margin-left: 25px; 
     font-size: 1.5rem;
    }
-   .container__form{
-    padding: 105px 20px 15px 20px;
-    
-    }
-
-.container__form--two {
-  padding: 105px 20px 15px 20px;
-  
-  }
-  #p2{
-    margin-left:0px;
-    margin-top:0;
-  }
-   #he2
-   {
-     margin-left: 1px;
-     margin-top: -70px;
-     font-size: 45px;
-   }
    
-.MuiFormControl-root {
-  margin-top: -15px;
-  margin-bottom: 20px;
-}
-
-#b2{
- margin-top: 0px;
- font-size: 1.2rem;
-}
-
-.MuiTypography-body1{
-  font-size: 1.2rem;
-}
-.MuiInputLabel-shrink {
-  transform: translate(0, 1.5px) scale(0.75);
-  transform-origin: top left;
-  display: none;
-}
-#he3{
-  font-size:35px;
-  margin-left:-100px;
-}
-#p3{
-  position:relative;
-  left:-60px;
-}
 #b3{
-margin-left: -100px;
+// margin-left: -50px;
 }
 
-#b4
-{
- position:relative;
- left:-50px;
- width:max-content;
 }
-
-#he4
-{
-  font-size: 35px;
-  margin-top:-60px;
-}
-#p4{
-  width: max-content;
-  margin-left: -50px;
-  margin-top: -20px;
-}
-}
-
-
-
-@media only screen and (min-width: 992px){
-  max-width: 100%;
-height: 700px;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  margin: .6rem auto;
-  align-items: center;
-  text-align: center;
-  h1{
-    font-size: 50px;
-    margin-left:-42px;
-    margin-top: 20px;
-
-  }
-
-  p{
-    font-size: 20px;
-    margin-left: -38px;
-    margin-top: 7px;
-  }
-  #b1{
-    margin-left: 25px; 
-    font-size: 1.5rem;
-   }
-
-
-.container__form--two {
-  padding: 105px 20px 15px 20px;
-  
-  }
-  #p2{
-    margin-left:0px;
-    margin-top:0;
-  }
-   #he2
-   {
-     margin-left: 1px;
-     margin-top: -80px;
-     font-size: 45px;
-   }
-   
-.MuiFormControl-root {
-  margin-top: -15px;
-  margin-bottom: 20px;
-}
-
-#b2{
- margin-top: 0px;
- font-size: 1rem;
-}
-
-.MuiTypography-body1{
-  font-size: 1.2rem;
-}
-.MuiInputLabel-shrink {
-  transform: translate(0, 1.5px) scale(0.75);
-  transform-origin: top left;
-  display: none;
-}
-
-#he3
-{
-  margin-left:-80px;
-}
-}
-
-
-
-
 `

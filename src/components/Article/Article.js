@@ -115,6 +115,8 @@ export default class Test extends Component {
                 country: countryData
             });
 
+        }).catch(res => {
+            console.error(res)
         })
     }
     // ARTICLE FORM SUBMIT
@@ -350,8 +352,13 @@ document.getElementById('articlePreview').innerHTML=articleHTML;
 
     renderStatus = () => {
         const {acPerm} =this.state;
-        var permission = acPerm.split('|')
-        permission = parseInt(permission[1])
+        var permission;
+        if(acPerm){
+            permission = acPerm.split('|')
+            permission = parseInt(permission[1])
+        }
+        
+        
         console.log('Permission: ',typeof(permission))
         if(permission <= 4){
             return(
