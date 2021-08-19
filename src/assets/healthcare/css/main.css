@@ -44,7 +44,6 @@ a:hover {
   }
 }
 
-
 /* @media only screen and (max-width: 600px) {
   body {
     background-color: lightblue;
@@ -819,8 +818,6 @@ h6 {
 }
 
 @media only screen and (max-width: 600px) {
-
-  
   #specialists .item,
   #doctor .item {
     border: 1px solid #c4c4c4;
@@ -1642,17 +1639,16 @@ h4 {
   width: 900px;
   background-color: white;
 }
-.select-all
-{
+.select-all {
   position: relative;
-  left:750px;
-  top:20px;
+  left: 750px;
+  top: 20px;
 }
 
-select.form-select{
-position:relative;
-bottom: 25px;
-float: right;
+select.form-select {
+  position: relative;
+  bottom: 25px;
+  float: right;
 }
 .patient-name-add {
   display: flex;
@@ -2027,7 +2023,6 @@ input {
   border: none;
   padding: 12px 15px;
   margin: 8px 0;
-  
 }
 
 .check {
@@ -2454,7 +2449,7 @@ p.lorem-text {
   padding: 0;
 }
 
-.rating{
+.profile-info .rating {
   margin-top: 5.5rem;
   padding-left: 2.7rem;
 }
@@ -2464,52 +2459,50 @@ p.lorem-text {
     position: relative;
     bottom: 20px;
   }
-  h4{
+  h4 {
     position: relative;
     bottom: 40px;
   }
-  .App{
-  position: relative;
- bottom: 50px;
+  .App {
+    position: relative;
+    bottom: 50px;
   }
-
 }
 @media only screen and (max-width: 364px) {
-.profileImageBlok {
-  text-align: center;
-  position: relative;
-  bottom: 20px;
-}
-h4{
-  position: relative;
-  bottom: 40px;
-}
-.App{
-position: relative;
-bottom: 40px;
-}
-}
-@media only screen and (min-width: 365px) and (max-width:768px)
-{
   .profileImageBlok {
     text-align: center;
     position: relative;
     bottom: 20px;
   }
-  h4{
+  h4 {
     position: relative;
     bottom: 40px;
   }
-  .App{
+  .App {
+    position: relative;
+    bottom: 40px;
+  }
+}
+@media only screen and (min-width: 365px) and (max-width: 768px) {
+  .profileImageBlok {
+    text-align: center;
+    position: relative;
+    bottom: 20px;
+  }
+  h4 {
+    position: relative;
+    bottom: 40px;
+  }
+  .App {
     position: relative;
     bottom: 50px;
-    }
-    div#DocDetails {
-      margin-left: -20px;
+  }
+  div#DocDetails {
+    margin-left: -20px;
   }
 }
 
-@media only screen and (min-width: 992px){
+@media only screen and (min-width: 992px) {
   .profile-card-img {
     position: relative;
     bottom: 5px;
@@ -2517,24 +2510,22 @@ bottom: 40px;
   }
 }
 
-
-@media only screen and (max-width: 315px){
+@media only screen and (max-width: 315px) {
   .profile-card-img {
     position: relative;
     bottom: 5px;
     left: -15px;
   }
-  h4{
+  h4 {
     position: relative;
     bottom: 50px;
     margin-bottom: 20px;
   }
-  .App{
+  .App {
     position: relative;
     bottom: 10px;
     left: 0px;
-    }
-
+  }
 }
 .modal-header .close {
   padding: 1rem 3rem;
