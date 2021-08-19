@@ -68,7 +68,7 @@ function Redirec(){
 
   return(
   <SlidingForm className="text-center">
-    <h1 className="text-center">Sign in</h1>
+    <h1 id='he4'className="text-center">Sign in</h1>
     
     <p className="text-center">or use your account</p>
     
@@ -99,10 +99,10 @@ function Redirec(){
           e => setPass(e.target.value)
         } 
       />
-      <BrandButton className="ml-5 " type="submit">Sign in</BrandButton>
+      <BrandButton id='b4'className="ml-5 " type="submit">Sign in</BrandButton>
 
     </form>
-    <p>
+    <p id='p4'>
       <a href="/#" className="ml-5 pl-2">Forgot your password?</a>
     </p>
     {/* <Success/> */}

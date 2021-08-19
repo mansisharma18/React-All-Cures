@@ -51,7 +51,7 @@ const AllPost = ({id, title, f_title, w_title,allPostsContent}) => {
                         <div>{f_title}</div>
                         <div>{w_title}</div>
                     </div>
-                    <Rating />
+                    {/* <Rating /> */}
                 </div>
             </div>
         </div>

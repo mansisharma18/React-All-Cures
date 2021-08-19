@@ -4,9 +4,9 @@ import StyledOverlay, { InnerLogin, InnerSignup } from './styled/StyledOverlay'
 
 const WelcomeOverlay = ({ toggleMode, mode }) => (
   <InnerLogin className="inner">
-    <h1>Welcome Back!</h1>
-    <p>To keep connected with us please login with your personal info</p>
-    <button onClick={toggleMode}>
+    <h1 id='he3'>Welcome Back!</h1>
+    <p id='p3'>To keep connected <span><br></br></span> with us please login with <span><br></br></span>your personal info</p>
+    <button id='b3' onClick={toggleMode}>
       <span>Sign up</span>
     </button>
   </InnerLogin>

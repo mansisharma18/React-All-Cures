@@ -173,6 +173,10 @@ input[type="password"] {
   padding: 105px 20px 15px 20px;
   
   }
+  .container__form{
+    padding: 105px 20px 15px 20px;
+    
+    }
   #p2{
     margin-left:0px;
     margin-top:0;
@@ -208,7 +212,41 @@ input[type="password"] {
 .MuiTypography-body1{
   font-size: .7rem;
 }
+.MuiInputLabel-shrink {
+  transform: translate(0, 1.5px) scale(0.75);
+  transform-origin: top left;
+  display: none;
+}
 
+#he3{
+  font-size:25px;
+  margin-left:100px;
+}
+#p3{
+  position:relative;
+  left:140px;
+}
+#b3{
+margin-left: 110px;
+}
+
+#b4
+{
+ position:relative;
+ left:-50px;
+ width:max-content;
+}
+
+#he4
+{
+  font-size: 30px;
+  margin-top:-60px;
+}
+#p4{
+  width: max-content;
+  margin-left: -50px;
+  margin-top: -20px;
+}
 }
 
 
@@ -251,6 +289,10 @@ input[type="password"] {
   padding: 105px 20px 15px 20px;
   
   }
+  .container__form{
+    padding: 105px 20px 15px 20px;
+    
+    }
   #p2{
     margin-left:0px;
     margin-top:0;
@@ -286,6 +328,40 @@ input[type="password"] {
 .MuiTypography-body1{
   font-size: .7rem;
 }
+.MuiInputLabel-shrink {
+  transform: translate(0, 1.5px) scale(0.75);
+  transform-origin: top left;
+  display: none;
+}
+#he3{
+  font-size:25px;
+  margin-left:90px;
+}
+#p3{
+  position:relative;
+  left:130px;
+}
+#b3{
+margin-left: 90px;
+}
+
+#b4
+{
+ position:relative;
+ left:-50px;
+ width:max-content;
+}
+
+#he4
+{
+  font-size: 30px;
+  margin-top:-60px;
+}
+#p4{
+  width: max-content;
+  margin-left: -50px;
+  margin-top: -20px;
+}
 }
 
 
@@ -313,7 +389,10 @@ input[type="password"] {
     margin-left: 25px; 
     font-size: 1.5rem;
    }
-
+   .container__form{
+    padding: 105px 20px 15px 20px;
+    
+    }
 
 .container__form--two {
   padding: 105px 20px 15px 20px;
@@ -343,27 +422,61 @@ input[type="password"] {
 .MuiTypography-body1{
   font-size: 1.2rem;
 }
+.MuiInputLabel-shrink {
+  transform: translate(0, 1.5px) scale(0.75);
+  transform-origin: top left;
+  display: none;
+}
+#he3{
+  font-size:35px;
+  margin-left:-100px;
+}
+#p3{
+  position:relative;
+  left:-60px;
+}
+#b3{
+margin-left: -100px;
+}
+
+#b4
+{
+ position:relative;
+ left:-50px;
+ width:max-content;
+}
+
+#he4
+{
+  font-size: 35px;
+  margin-top:-60px;
+}
+#p4{
+  width: max-content;
+  margin-left: -50px;
+  margin-top: -20px;
+}
 }
 
 
 
 @media only screen and (min-width: 992px){
   max-width: 100%;
-
+height: 700px;
   display: grid;
   grid-template-columns: 1fr 1fr;
-  margin: 9.6rem auto;
+  margin: .6rem auto;
   align-items: center;
   text-align: center;
   h1{
-    font-size: 60px;
+    font-size: 50px;
     margin-left:-42px;
     margin-top: 20px;
 
   }
 
   p{
-    font-size: 23px;
+    font-size: 20px;
     margin-left: -38px;
     margin-top: 7px;
   }
@@ -384,7 +497,7 @@ input[type="password"] {
    #he2
    {
      margin-left: 1px;
-     margin-top: -70px;
+     margin-top: -80px;
      font-size: 45px;
    }
    
@@ -395,12 +508,25 @@ input[type="password"] {
 
 #b2{
  margin-top: 0px;
- font-size: 1.2rem;
+ font-size: 1rem;
 }
 
 .MuiTypography-body1{
   font-size: 1.2rem;
 }
+.MuiInputLabel-shrink {
+  transform: translate(0, 1.5px) scale(0.75);
+  transform-origin: top left;
+  display: none;
 }
+
+#he3
+{
+  margin-left:-80px;
+}
+}
+
+
+
 
 `
