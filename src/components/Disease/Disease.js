@@ -33,6 +33,19 @@ class Disease extends Component {
         });
       });
   }
+  // componentDidUpdate(props) {
+  //   // console.log('Paramsssss '+ JSON.stringify(this.state.param))
+  //   fetch(`/article/${this.props.match.params.id}`)
+  //   // .then(res => JSON.parse(res))
+  //     .then((res) => res.json())
+  //     .then((json) => {
+  //       console.log(json);
+  //       this.setState({
+  //         isLoaded: true,
+  //         items: json,
+  //       });
+  //     });
+  // }
   
   handleChange = e => {
     this.setState({

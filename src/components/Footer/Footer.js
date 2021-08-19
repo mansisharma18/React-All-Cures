@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom'
 import Heart from"../../assets/img/heart.png";
 import Facebook from '../../assets/icon/facebook.svg'
 import Instagram from '../../assets/icon/instagram.svg'
@@ -125,7 +126,7 @@ class Footer extends Component {
                            </a>
                         </li>
                         <li>
-                           <a href="/#">
+                           <a href="https://www.instagram.com" target="_blank">
                               <span>
                                  <img src={Instagram} alt="Instagram Link" height="30px" width="30px"></img>
                               </span> 

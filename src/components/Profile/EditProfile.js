@@ -9,7 +9,18 @@ import FormControlLabel from '@material-ui/core/FormControlLabel';
 import FormControl from '@material-ui/core/FormControl';
 import FormLabel from '@material-ui/core/FormLabel';
 
+import Input from '@material-ui/core/Input';
+import MenuItem from '@material-ui/core/MenuItem';
+import Select from '@material-ui/core/Select';
+
 const EditProfile = (props) => {
+  const [personName, setPersonName] = React.useState([]);
+
+  const handleChange = (event) => {
+    setPersonName(event.target.value);
+    console.log(personName)
+  };
+
     const item = props.items
     const [firstName, setFirst] = useState(item.docname_first)
     const [lastName, setLast] = useState(item.docname_last)
@@ -77,8 +88,10 @@ const EditProfile = (props) => {
     useEffect(() => {
         fetchTables()
     }, [])
+    if(item.insurance_accept == 0){
 
-    console.log(props.items.primary_spl)
+    console.log(acceptInsurance, 'Insurance')
+  }
     
     return (
       <Modal
@@ -109,7 +122,7 @@ const EditProfile = (props) => {
           <Form.Group className="col-md-12 float-left" >
           <FormControl component="fieldset">
       <FormLabel component="legend" className="text-dark">Gender</FormLabel>
-      <RadioGroup value={gender} onChange={(e) => {setGender(e.target.value); console.log(e.target.value)}}
+      <RadioGroup value={gender.toString()} onChange={(e) => {setGender(e.target.value); console.log(e.target.value)}}
       style={{display: 'flex', flexDirection:'row'}}>
         <FormControlLabel value="1" control={<Radio />} label="Female" />
         <FormControlLabel value="2" control={<Radio />} label="Male" />
@@ -119,56 +132,80 @@ const EditProfile = (props) => {
     </FormControl>
     </Form.Group>
           <Form.Group className="col-md-6 float-left">
-                                        <Form.Label>Primary Speciality</Form.Label>
-                                        <Form.Control onChange={(e)=> {setPrimary(e.target.value)}} value={primarySpl} as="select" name="diseaseConditionId" custom required>
-                                        <option>Select primary speciality</option>
-                                            {diseaseList.map((i) => (  
-                                                <option value={i[0]}>{i[1]}</option>
-                                            ))}
-                                        </Form.Control>
-                                    </Form.Group>
+          <Form.Label>Primary Speciality</Form.Label>
+            <Form.Control onChange={(e)=> {setPrimary(e.target.value)}} value={primarySpl} as="select" name="diseaseConditionId" custom required>
+              <option>Select primary speciality</option>
+                {diseaseList.map((i) => (  
+                  <option value={i[0]}>{i[1]}</option>
+                ))}
+            </Form.Control>
+          </Form.Group>
           <Form.Group className="col-md-6 float-left">
-                                        <Form.Label>Secondary Speciality</Form.Label>
-                                        <Form.Control onChange={(e) => setSecondary(e.target.value)} value={secondarySpl} as="select" name="diseaseConditionId" custom>
-                                        <option>Select secondary speciality</option>
-                                            {diseaseList.map((i) => (  
-                                                <option value={i[0]}>{i[1]}</option>
-                                            ))}
-                                        </Form.Control>
-                                    </Form.Group>
+            <Form.Label>Secondary Speciality</Form.Label>
+            <Form.Control onChange={(e) => setSecondary(e.target.value)} value={secondarySpl} as="select" name="diseaseConditionId" custom>
+              <option>Select secondary speciality</option>
+                {diseaseList.map((i) => (  
+                  <option value={i[0]}>{i[1]}</option>
+                ))}
+            </Form.Control>
+          </Form.Group>
+      
+      <FormControl className="col-md-12 px-3">
+        <Form.Label>Additional Specialities</Form.Label>
+        <Select
+          labelId="demo-mutiple-chip-label"
+          id="demo-mutiple-chip"
+          multiple
+          value={personName}
+          onChange={handleChange}
+          input={<Input id="select-multiple-chip" />}
+          // MenuProps={MenuProps}
+          className=""
+        >
+          {diseaseList.map((i) => (
+            <MenuItem key={i[1]} value={i[0]} >
+              {i[1]}
+            </MenuItem>
+          ))}
+        </Select>
+      </FormControl>
+          
           <Form.Group className="col-md-12 float-left" >
             <Form.Label>Additional Specialities</Form.Label>
             <Form.Control value={otherSpl} onChange={(e) => setOther(e.target.value)} style={{border: "1px solid #ced4da"}} type="text" name=""
             placeholder="Enter additional specialities" />
           </Form.Group>
+          
           <Form.Group className="col-md-12 float-left" >
             <Form.Label>Education</Form.Label>
             <Form.Control value={education} onChange={(e) => setEducation(e.target.value)} style={{border: "1px solid #ced4da"}} type="text" name=""
             placeholder="Enter education"/>
           </Form.Group>
+          
           <Form.Group className="col-md-12 float-left" >
             <Form.Label>Mobile Number</Form.Label>
             <Form.Control value={num} onChange={(e) => setNum(e.target.value)} style={{border: "1px solid #ced4da"}} type="text" name=""
             placeholder="Enter contact number" />
           </Form.Group>
+          
           <Form.Group className="col-md-12 float-left">
-                                        <Form.Label>Hospital Affliated</Form.Label>
-                                        <Form.Control onChange={e => setHospital(e.target.value)} as="select" name="hospital_affliated" custom value={hospital} >
-                                        <option>Select hospital</option>
-                                            {hospitalList.map((i) => (  
-                                                <option value={i[0]}>{i[1]}</option>
-                                            ))}
-                                        </Form.Control>
-                                    </Form.Group>
+            <Form.Label>Hospital Affliated</Form.Label>
+            <Form.Control onChange={e => setHospital(e.target.value)} as="select" name="hospital_affliated" custom value={hospital} >
+              <option>Select hospital</option>
+                {hospitalList.map((i) => (  
+                  <option value={i[0]}>{i[1]}</option>
+                ))}
+            </Form.Control>
+          </Form.Group>
           
           <Form.Group className="col-md-12 float-left" >
           <FormControl component="fieldset">
       <FormLabel component="legend" className="text-dark">Do you accept insurance</FormLabel>
-      <RadioGroup defaultValue={acceptInsurance}
+      <RadioGroup value={parseInt(acceptInsurance)}
       onChange={(e) => {setInsurance(e.target.value)}} 
       style={{display: 'flex', flexDirection:'row'}} >
-        <FormControlLabel value="1" control={<Radio />} label="Yes" />
-        <FormControlLabel value="0" control={<Radio />} label="No" />
+        <FormControlLabel value={1} control={<Radio />} label="Yes" />
+        <FormControlLabel value={0} control={<Radio />} label="No" />
       </RadioGroup>
       
     </FormControl>

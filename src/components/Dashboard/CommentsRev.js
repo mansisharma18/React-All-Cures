@@ -15,17 +15,30 @@ class CommentsRev extends Component {
       isLoaded: false,
       selectedCheckboxes: [],
       unselectedCheckboxes: [],
-       isChecked: true,
-
+      isChecked: true,
+      currentlySelected: ''
+     
       // param: params,
       // getComments: 'all',
     };
   }
+
+  
   getComments(val) {
     
     axios.get(`/rating/comments${val}`)
       .then(res => {
         console.log(res.data)
+        
+        // rate_id: 8
+        // reviewed: 1
+        const approvedIds = res.data.filter(item => {
+          if(item.reviewed) return true
+          return false
+        }).map(item => item.rate_id)
+
+        this.setState({ approvedIds })
+
         var s = [];
         res.data.map(i => {
           s.push(i.rate_id);
@@ -35,6 +48,7 @@ class CommentsRev extends Component {
           commentItems:res.data,
           unselectedCheckboxes: s
         })
+        
         console.log('kjdghkhgkhgsd',this.state.unselectedCheckboxes)
       })
       // .then(res => {
@@ -49,10 +63,14 @@ class CommentsRev extends Component {
 
 
   postApproved(selected, rejected) {
+    // console.log('post approved fired!');
     console.log(selected.join())
     console.log(rejected.join())
+
+    const isCurrentItemApproved = !this.state.approvedIds.includes(this.state.currentlySelected) ? 1 : 0
+    console.log(isCurrentItemApproved, this.state.currentlySelected,this.state.approvedIds)
     
-    axios.post(`/rating/reviewedby/1/reviewed/1`, {
+    axios.post(`/rating/reviewedby/1/reviewed/${isCurrentItemApproved}`, {
       "rateids": selected.join(),
       "rateids_rejected": rejected.join()
     })
@@ -77,6 +95,8 @@ class CommentsRev extends Component {
   
   onChange = id => {
     // event.target.checked
+    this.setState({ currentlySelected: id })
+
     const index = this.state.unselectedCheckboxes.indexOf(id);
     if (index > -1) {
       this.state.unselectedCheckboxes.splice(index, 1);
@@ -86,7 +106,9 @@ class CommentsRev extends Component {
     const selectedCheckboxes = this.state.selectedCheckboxes;
     console.log(selectedCheckboxes)
     // Find index
+    const unselectedCheckboxes = this.state.unselectedCheckboxes
     const findIdx = selectedCheckboxes.indexOf(id);
+    const unselectIdx = unselectedCheckboxes.indexOf(id);
 
     // Index > -1 means that the item exists and that the checkbox is checked
     // and in that case we want to remove it from the array and uncheck it
@@ -96,6 +118,9 @@ class CommentsRev extends Component {
       selectedCheckboxes.push(id);
     }
 
+    if(unselectIdx > -1){
+      return null
+    }
     this.setState({
       selectedCheckboxes: selectedCheckboxes
     });
@@ -176,7 +201,15 @@ render(){
                                 item.reviewed === 1 ?
                                   <div>
                                   <input type = "checkbox"
-                                  onChange={() => this.onChange(item.rate_id)}
+                                  onChange={() => {
+                                    this.onChange(item.rate_id)
+                                    
+                                    this.setState({
+                                      customSelector: [...new Set(this.state.customSelector), item.rate_id ],
+                                      checked: !this.state.isChecked
+                                    })
+                                    console.log('custom select ' + this.state.customSelector);
+                                  }}
                                   selected={selectedCheckboxes.includes(item.rate_id)}
                                   className="check"
                                   defaultChecked={item.reviewed}
@@ -213,6 +246,7 @@ render(){
                             )
                           })}
                           <p>Selected checkboxes: {JSON.stringify(selectedCheckboxes)}</p>
+                          <p>unselected checkboxes: {JSON.stringify(unselectedCheckboxes)}</p>
                          
                           <div>
                                 
