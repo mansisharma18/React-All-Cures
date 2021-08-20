@@ -48,7 +48,7 @@ class Home extends Component {
     loadUsers();
 
    const loaddoctor = async () => {
-      const response = await axios.get('/IntegratedActionController');
+      const response = await axios.get('/IntegratedActionController')
       this.setState ({
          doctor: response.data
       })

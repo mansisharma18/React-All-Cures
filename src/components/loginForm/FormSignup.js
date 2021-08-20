@@ -83,7 +83,7 @@ function Redirec(){
     return(
       <Redirect to={{
         pathname: '/article',
-        state: { promo_code: '123' }
+        state: { promoCode: '1' }
       }}
       />
     )
