@@ -60,7 +60,7 @@ function LoginInfo(props) {
                 "email": 'anil3.kumar@test.com',
                 })
             .then(res => {
-               setAlert(true)
+                console.log('Updated Successfully', res.data)
                 routeChange(res.data)
             })
             .catch(err => {
@@ -179,8 +179,6 @@ function LoginInfo(props) {
                             //   :null
                               : null
                             }
-
-                            
                             <div className="col-md-12 text-center">
                             <button onClick={submitForm} className="btn btn-dark col-md-12">Submit</button>
                             </div>

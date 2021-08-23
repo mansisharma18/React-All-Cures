@@ -1,16 +1,23 @@
 import React, { Component, useState, useEffect } from 'react';
+
 import Cookies from 'js-cookie';
 import { usePasswordValidation } from "../hooks/usePasswordValidation";
-import { Form, Dropdown, DropdownButton } from 'react-bootstrap';
+import { Alert,Form, Dropdown, DropdownButton } from 'react-bootstrap';
 import Footer from '../Footer/Footer';
 import Heart from"../../assets/img/heart.png";
 import { useHistory, Link} from 'react-router-dom'
 import axios from 'axios';
+import history from '../history'
 import { Redirect } from "react-router-dom";
+import { Mail } from '@material-ui/icons';
 
 
 function LoginInfo(props) {  
-
+const[email,setEmail] = useState(
+    {
+        Mail: "",
+    }
+);
     const [password, setPassword] = useState({
           firstPassword: "",
           secondPassword: "",
@@ -21,7 +28,9 @@ function LoginInfo(props) {
     const [uprn, setUprn] = useState('')
     const [selectedState, setSelectedState] = useState('')
     const [regNum, setRegNumber] = useState('')
-    const [submitAlert, setAlert] = useState(False)
+    const [submitAlert, setAlert] = useState(false)
+    const [notAlert, noAlert] = useState(false)
+    const [errAlert, erAlert] = useState(false)
     const [
         validLength,
         hasNumber,
@@ -30,10 +39,14 @@ function LoginInfo(props) {
         match,
         specialChar,
     ] = usePasswordValidation({
+        Mail: email.Mail,
     firstPassword: password.firstPassword,
     secondPassword: password.secondPassword,
     });
     
+    const setMail = (event)=>{
+        setEmail({ ...email,Mail: event.target.value})
+    }
     const setFirst = (event) => {
       setPassword({ ...password, firstPassword: event.target.value });
     };
@@ -41,28 +54,35 @@ function LoginInfo(props) {
       setPassword({ ...password, secondPassword: event.target.value });
     };
 
-    const history = useHistory();
-
-    const routeChange = (docid) =>{ 
-        let path = `/profile/${docid}`; 
-        history.push(path);
-    }
+    
 
     const submitForm = async (e) => {
         e.preventDefault()
         setSubmitAlert(true)
-        if(validLength && upperCase && lowerCase && match && uprn && regNum && password.firstPassword && selectedState){
-            axios.post(`/doctors/verification`, {
-                "uprn": uprn,
-                "registration_number": regNum,
-                "password": password.firstPassword,
-                "stateid": selectedState,
-                "email": 'anil3.kumar@test.com',
+        if(validLength && upperCase && lowerCase && match && password.firstPassword){
+            axios.put(`/users/updatepassword`, {
+                "updated_password": password.firstPassword,
+                "email": email.Mail,
                 })
             .then(res => {
-                setAlert(true);
-                routeChange(res.data)
-            })
+                if(res.data =="1"){
+                    console.log('red.data=1')
+                history.back()
+            }else if(res.data == "Sorry, the email address you entered does not exist in our database."){
+                noAlert(true)
+                setTimeout(()=>{
+                    noAlert(false)
+                },4000)
+            }
+            else if(res.data == "0"){
+                erAlert(true)
+                setTimeout(()=>{
+                    noAlert(false)
+                },4000)
+            }
+          
+        }
+            )
             .catch(err => {
                 console.log(err);
                 console.log('error in Resetting')
@@ -128,7 +148,7 @@ function LoginInfo(props) {
                        <div className="d-flex flex-column  align-items-md-center">
                        <Form.Group className="col-md-6  " style={{zIndex: 1}}>
                                 <Form.Label>Email</Form.Label>
-                                <Form.Control onChange={setFirst} type="Email" name="" placeholder="Enter Email" required/>
+                                <Form.Control onChange={setMail} type="Email" name="" placeholder="Enter Email" required/>
                             </Form.Group>
                             <Form.Group className="col-md-6  " style={{zIndex: 1}}>
                                 <Form.Label>Password</Form.Label>
@@ -166,9 +186,20 @@ function LoginInfo(props) {
                             }
 
 {
-                             submitAlert?
-                             <Alert variant="success" className=" ">Password Reset Successfully</Alert>:null
-
+                   submitAlert?
+                   <Alert variant="success" className="h6 mx-3">Password reset successfully!!</Alert>
+                   : null
+                             }
+                             
+                             {
+                   notAlert?
+                   <Alert variant="danger" className="h6 mx-3">Email not found</Alert>
+                   : null
+                             }
+{
+                  errAlert?
+                   <Alert variant="danger" className="h6 mx-3">Error in Resetting</Alert>
+                   : null
                              }
                             <div className="d-flex flex-column align-items-sm-center">
                             <button onClick={submitForm} className="btn btn-dark col-md-4">Submit</button>
