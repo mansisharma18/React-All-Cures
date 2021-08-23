@@ -277,7 +277,7 @@ input[type="password"] {
 }
 
   p{
-    font-size: medium;
+    font-size: 14px;
     margin-left: -42px;
     margin-top: 7px;
   }
@@ -524,6 +524,8 @@ height: 700px;
 {
   margin-left:-80px;
 }
+
+
 }
 
 

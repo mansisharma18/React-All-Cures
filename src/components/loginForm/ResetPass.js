@@ -21,7 +21,7 @@ function LoginInfo(props) {
     const [uprn, setUprn] = useState('')
     const [selectedState, setSelectedState] = useState('')
     const [regNum, setRegNumber] = useState('')
-
+    const [submitAlert, setAlert] = useState(False)
     const [
         validLength,
         hasNumber,
@@ -60,12 +60,12 @@ function LoginInfo(props) {
                 "email": 'anil3.kumar@test.com',
                 })
             .then(res => {
-               setAlert(true)
+                setAlert(true);
                 routeChange(res.data)
             })
             .catch(err => {
                 console.log(err);
-                console.log('error in updating')
+                console.log('error in Resetting')
             })
     
         }
@@ -114,7 +114,7 @@ function LoginInfo(props) {
                 </div>
                  </div>
                         <div className="container">
-                <div className="h2 text-center my-3">Let us know you better!</div>
+                <div className="h2 text-center my-3">Reset Your Password</div>
         <div className="card mb-5">
                     <div className="card-body">
                         <form>
@@ -123,37 +123,22 @@ function LoginInfo(props) {
                         
     
       </div>
-                            <Form.Group className="col-md-12 float-left" style={{zIndex: 1}}>
-                                 <Form.Label>UPNR</Form.Label>
-                                 <Form.Control value={uprn} onChange={(e) => setUprn(e.target.value)} type="text" name=""
-                                     placeholder="Enter your UPNR here" required/>
-                            </Form.Group>
+                           
                             
-                            <Form.Group className="col-md-6 float-left" style={{zIndex: 1}}>
-                                        <Form.Label>Select State</Form.Label>
-                                        <Form.Control value={selectedState} onChange={(e)=>setSelectedState(e.target.value)} as="select" name="authById" custom
-                                        required>
-                                            <option>Open this select menu</option>
-                                            {states.map((i) => (
-                                                <option value={i[0]}>
-                                                    {i[1]}
-                                                </option>                                                
-                                            ))}
-                                        </Form.Control>
-                                    </Form.Group>
-                                    <Form.Group className="col-md-6 float-left" style={{zIndex: 1}}>
-                                 <Form.Label>Registration Number</Form.Label>
-                                 <Form.Control value={regNum} onChange={(e)=>setRegNumber(e.target.value)} type="text" name=""
-                                     placeholder="Enter your Registration/MIN ID here" required/>
+                       <div className="d-flex flex-column  align-items-md-center">
+                       <Form.Group className="col-md-6  " style={{zIndex: 1}}>
+                                <Form.Label>Email</Form.Label>
+                                <Form.Control onChange={setFirst} type="Email" name="" placeholder="Enter Email" required/>
                             </Form.Group>
-                            <Form.Group className="col-md-6 float-left" style={{zIndex: 1}}>
+                            <Form.Group className="col-md-6  " style={{zIndex: 1}}>
                                 <Form.Label>Password</Form.Label>
                                 <Form.Control onChange={setFirst} type="password" name="" placeholder="Enter Password" required/>
                             </Form.Group>
-                            <Form.Group className="col-md-6 float-left" style={{zIndex: 1}}>
+                            <Form.Group className="col-md-6 " style={{zIndex: 1}}>
                                 <Form.Label>Confirm Password</Form.Label>
                                 <Form.Control  type="password" name="" onChange={setSecond} placeholder="Confirm password" required/>
                             </Form.Group>
+                            </div>
                             {
                                 alert?
                                 <div>
@@ -180,9 +165,13 @@ function LoginInfo(props) {
                               : null
                             }
 
-                            
-                            <div className="col-md-12 text-center">
-                            <button onClick={submitForm} className="btn btn-dark col-md-12">Submit</button>
+{
+                             submitAlert?
+                             <Alert variant="success" className=" ">Password Reset Successfully</Alert>:null
+
+                             }
+                            <div className="d-flex flex-column align-items-sm-center">
+                            <button onClick={submitForm} className="btn btn-dark col-md-4">Submit</button>
                             </div>
                         </form>
                     </div>

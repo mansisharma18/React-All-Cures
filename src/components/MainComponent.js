@@ -23,7 +23,7 @@ import Comment from './Comment'
 import CommentsRev from './Dashboard/CommentsRev.js'
 import ReviewComments from './Dashboard/ReviewComments.js'
 import Results from './Dashboard/Results.js'
-
+import ResetPass from './loginForm/ResetPass.js'
 
 // import Blogs from './Disease/Disease'
 
@@ -84,7 +84,7 @@ const Routes = (props) => {
       <Route exact path="/dashboard/commentsrev" component={CommentsRev} />
       <Route exact path="/dashboard/reviewcomments" component={ReviewComments} />
       <Route exact path="/dashboard/results" component={Results} />
-    
+      <Route exact path="/loginForm/ResetPass" component={ResetPass} />
      
       
       

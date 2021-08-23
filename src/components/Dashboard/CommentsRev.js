@@ -245,8 +245,8 @@ render(){
                               </>
                             )
                           })}
-                          <p>Selected checkboxes: {JSON.stringify(selectedCheckboxes)}</p>
-                          <p>unselected checkboxes: {JSON.stringify(unselectedCheckboxes)}</p>
+                          {/* <p>Selected checkboxes: {JSON.stringify(selectedCheckboxes)}</p>
+                          <p>unselected checkboxes: {JSON.stringify(unselectedCheckboxes)}</p> */}
                          
                           <div>
                                 
