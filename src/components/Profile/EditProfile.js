@@ -20,7 +20,6 @@ const EditProfile = (props) => {
     setPersonName(event.target.value);
     console.log(personName)
   };
-
     const item = props.items
     const [firstName, setFirst] = useState(item.docname_first)
     const [lastName, setLast] = useState(item.docname_last)

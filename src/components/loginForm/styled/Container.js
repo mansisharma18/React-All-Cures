@@ -9,7 +9,7 @@ export default styled(posed.div({}))`
   overflow: hidden;
   width: 768px;
   max-width: 100%;
-  height: 650px;
+  height: fit-content;
   display: grid;
   grid-template-columns: 1fr 1fr;
   margin: 2em auto;

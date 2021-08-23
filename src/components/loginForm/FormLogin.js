@@ -104,7 +104,6 @@ function Redirec(){
         <FormControlLabel
           control={<Checkbox name="Terms" value="on" required/>}
           label="Remember Me"
-          required
         />
       </FormGroup>
       <BrandButton className="ml-5 " type="submit">Sign in</BrandButton>

@@ -5,11 +5,18 @@ import BrandButton from './styled/BrandButton'
 import SlidingForm from './styled/SlidingForm'
 import { Checkbox, FormGroup, FormControlLabel, Select, MenuItem , FormControl, InputLabel} from '@material-ui/core'
 import { Redirect } from 'react-router';
+import { Alert } from 'react-bootstrap';
+import { usePasswordValidation } from '../hooks/usePasswordValidation';
+
 const FormSignup = () => {
 
   const [email, setEmail] = useState("");
-  const [password, setPass] = useState("");
-  const [repPass, setrepPass] = useState("");
+  // const [password, setPass] = useState("");
+  const [password, setPassword] = useState({
+    firstPassword: "",
+    secondPassword: "",
+   });
+  // const [repPass, setrepPass] = useState("");
   const [firstName, setFname] = useState("");
   const [lastName, setLname]= useState("");
   const [userType, setUserType] = useState("");
@@ -23,6 +30,27 @@ const FormSignup = () => {
   const [buttonClick, setClicked] = useState("");
 
   const [promo, setPromo] =useState(1)
+  const [validEmail, setValidEmail] = useState()
+
+  const [
+    validLength,
+    hasNumber,
+    upperCase,
+    lowerCase,
+    match,
+    specialChar,
+] = usePasswordValidation({
+firstPassword: password.firstPassword,
+secondPassword: password.secondPassword,
+});
+
+const setFirst = (event) => {
+  setPassword({ ...password, firstPassword: event.target.value });
+};
+const setSecond = (event) => {
+  setPassword({ ...password, secondPassword: event.target.value });
+};
+
   const useStyles = makeStyles((theme) => ({
     formControl: {
       margin: theme.spacing(1),
@@ -35,16 +63,17 @@ const FormSignup = () => {
 
   const SignUpForm = async (e, props) => {
     e.preventDefault();
-    
     setClicked(1);
-    const res = await fetch("/RegistrationActionController?", {
+    var res;
+    if(validEmail && upperCase && lowerCase && match){
+      
+     res = await fetch("/RegistrationActionController?", {
       method: "POST",
-      body: `firstname=${firstName}&lastname=${lastName}&email=${email}&psw=${password}&psw-repeat=${repPass}&rempwd=${rempwd}&doc_patient=${userType}&acceptTnc=${terms}`,
+      body: `firstname=${firstName}&lastname=${lastName}&email=${email}&psw=${password.firstPassword}&psw-repeat=${password.secondPassword}&rempwd=${rempwd}&doc_patient=${userType}&acceptTnc=${terms}`,
       headers: {
       "Content-Type": "application/x-www-form-urlencoded"
       }
   });
-
   console.log('props '+props)
   console.log('status '+ res.status)
   console.log('Statusssssssssssssssss ',status)
@@ -66,6 +95,11 @@ const FormSignup = () => {
 
   setTimeout( () => console.log('Message ', message ), 1600 );
   setTimeout( () => console.log('Error ', isError ), 1600 );
+    } else {
+      console.log('not posssiiibbbllleee')
+    }
+    
+  
 }
 function Error(){
   // setReload(true)
@@ -102,6 +136,20 @@ function Redirec(){
     setUserType(event.target.value);
   };
 
+  const handleEmail = (e) => {
+    var re= /^[a-zA-Z0-9]+@[a-zA-Z0-9]+\.[A-Za-z]+$/;
+    if(!re.test(e.target.value)){
+      setValidEmail(false)
+      console.log('Enter valid email')
+      // return(
+      //   <Alert variant="danger">Please enter valid email</Alert>
+      // )
+    } else {
+      setEmail(e.target.value)
+      setValidEmail(true)
+      console.log('validEmail')
+    }
+  }
   const handleTermsCheckbox = (event) => {
     setTerms(event.target.value)
   };
@@ -151,39 +199,66 @@ function Redirec(){
           type="email" 
           name="email"
           onChange={
-            e => setEmail(e.target.value)
+            e => handleEmail(e)
           }
           required
         />
+        {
+          !validEmail && buttonClick === 1?
+          <Alert variant="danger">Enter Valid Email</Alert>
+            : null
+        }
         <input 
           placeholder="Password" 
           type="password" 
           name="password"
           onChange={
-            e => setPass(e.target.value)
+            e => setFirst(e)
           }
           required
         />
+        {
+          !validLength && buttonClick ===1?
+          <Alert variant="danger">Password should contain at least 8 characters</Alert>
+          : null
+        }
+        {
+          !upperCase && buttonClick ===1?
+          <Alert variant="danger">Password should contain at least 1 uppercase character</Alert>
+          : null
+        }
+        {
+          !lowerCase && buttonClick ===1?
+          <Alert variant="danger">Password should contain at least 1 lowercase character</Alert>
+          : null
+        }
         <input 
           placeholder="Repeat Password" 
           type="password" 
           name="repPass"
           onChange={
-            e => setrepPass(e.target.value)
+            e => setSecond(e)
           }
           autoComplete="off"
           required
         />
-        <input 
+        {
+          !match && buttonClick === 1?
+          <Alert variant="danger">Passwords don't match</Alert>
+          : null
+        }
+        {
+          promo?
+          <input 
           placeholder="Promo Code" 
           type="text" 
           name="promo_code"
-          value="Promo Code: 80H23"
-          // onChange={
-          //   e => setpromo(e.target.value)
-          // }
+          value= {promo}
           disabled
-        />
+          />
+          : null
+        }
+        
 
         <FormControl className={classes.formControl}>
         <InputLabel id="demo-simple-select-label">User Type</InputLabel>
@@ -206,7 +281,7 @@ function Redirec(){
               required
             />
             <FormControlLabel
-              control={<Checkbox name="remember_me" onChange={handleRemember} value="on" required/>}
+              control={<Checkbox name="remember_me" onChange={handleRemember} value="on"/>}
               label="Remember Me"
               required
             />

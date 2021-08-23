@@ -22,7 +22,17 @@ function Promo(props) {
             "promo_active": active,
             "promo_updated_by": updatedBy.split('|')[0],
         })
-        .then(res => setAlert(true))
+        .then(res => {
+            setAlert(true)
+            setCode('')
+            setStart('')
+            setEnd('')
+            setMax('')
+            setActive('')
+            setTimeout(() => {
+                setAlert(false)
+            }, 4000);
+        })
         .catch(res => console.log(res))
     }
     return(

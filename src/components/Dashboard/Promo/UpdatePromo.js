@@ -3,6 +3,7 @@ import { Alert, Form } from 'react-bootstrap';
 import Cookies from 'js-cookie';
 import axios from 'axios';
 import {useLocation} from "react-router-dom";
+import history from '../../history';
 
 export default function UpdatePromo(props){
     const [code, setCode] = useState('')
@@ -48,7 +49,9 @@ export default function UpdatePromo(props){
             "promo_active": active.toString(),
             "promo_updated_by": updatedBy.split('|')[0],
         })
-        .then(res => setAlert(true))
+        .then(res => {
+            history.back()
+        })
         .catch(res => console.log(res))
     }
 
