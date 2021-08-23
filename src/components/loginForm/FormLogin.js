@@ -109,8 +109,8 @@ function Redirec(){
       <BrandButton className="ml-5 " type="submit">Sign in</BrandButton>
 
     </form>
-    <p >
-      <a href="/#" className="ml-5 pl-2">Forgot your password?</a>
+    <p id='p4'>
+      <a href="/loginForm/ResetPass" className="ml-5 pl-2">Forgot your password?</a>
     </p>
     {/* <Success/> */}
   </SlidingForm>

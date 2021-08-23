@@ -1,7 +1,7 @@
 import React from "react";
 
 const checkboxes = [
-  { id: 1, text: "Checkbox 1" },
+  // { id: 1, text: "Checkbox 1" },
   // { id: 2, text: "Checkbox 1" },
   // { id: 3, text: "Checkbox 1" }
 ];
@@ -43,7 +43,7 @@ class SearchResults extends React.Component {
             />
           </label>
         ))}
-        <p>Selected checkboxes: {JSON.stringify(selectedCheckboxes)}</p>
+        {/* <p>Selected checkboxes: {JSON.stringify(selectedCheckboxes)}</p> */}
       </div>
     );
   }

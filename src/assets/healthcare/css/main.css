@@ -634,6 +634,9 @@ h6 {
   background: #00415e;
   font-weight: normal;
 }
+#b5{
+  margin-top: 15px;
+}
 
 .date {
   position: relative;
@@ -1642,7 +1645,8 @@ h4 {
 .select-all {
   position: relative;
   left: 750px;
-  top: 20px;
+  top: 30px;
+  font-weight: bold;
 }
 
 select.form-select {
@@ -2481,6 +2485,13 @@ p.lorem-text {
   .App {
     position: relative;
     bottom: 40px;
+
+  }
+  .select-all {
+    position: relative;
+    left: 100px;
+    top: 30px;
+    font-weight: bold;
   }
 }
 @media only screen and (min-width: 365px) and (max-width: 768px) {
@@ -2499,6 +2510,13 @@ p.lorem-text {
   }
   div#DocDetails {
     margin-left: -20px;
+    
+  }
+  .select-all {
+    position: relative;
+    left: 120px;
+    top: 30px;
+    font-weight: bold;
   }
 }
 
@@ -2530,3 +2548,12 @@ p.lorem-text {
 .modal-header .close {
   padding: 1rem 3rem;
 }
+
+@media only screen and (min-width: 992px) and (max-width:1024px){
+  .select-all {
+    position: relative;
+    left: 730px;
+    top: 30px;
+    font-weight: bold;
+  }
+  }
