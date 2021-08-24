@@ -17,6 +17,8 @@ import CarouselReview from './CarouselReview';
 // import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 // import ToggleButton from '../Header/Header'
 
+
+
 class Home extends Component {
    constructor(props){
       super(props);
@@ -288,13 +290,15 @@ onChangeHandlerdoctor = (e, text) => {
                </div>
             </div>
             <div className="row">
+            <div class='nav-btn prev-slide'></div><div class='nav-btn next-slide'></div>
                <Carousel2/>
             </div>
+           
          </div>
       </section>
       
 
-      <section className="consultunt">
+      {/* <section className="consultunt">
          <div className="container">
             <div className="row">
                <div className="consultunt-inner">
@@ -306,7 +310,7 @@ onChangeHandlerdoctor = (e, text) => {
                </div>
             </div>
          </div>
-      </section>
+      </section> */}
       <section className="doctor">
          <div className="container">
             <div className="row">
@@ -320,7 +324,7 @@ onChangeHandlerdoctor = (e, text) => {
             </div>
          </div>
       </section><br/><br/>
-      <section className="partner">
+      {/* <section className="partner">
          <div className="container">
             <div className="row">
                <div className="partnerBG">
@@ -331,8 +335,8 @@ onChangeHandlerdoctor = (e, text) => {
                </div>
             </div>
          </div>
-      </section>
-      <section className="testomonial" id="testimonials">
+      </section> */}
+      {/* <section className="testomonial" id="testimonials">
          <div className="container">
             <div className="row">
                <div className="comman-heading">
@@ -342,11 +346,11 @@ onChangeHandlerdoctor = (e, text) => {
             <div className="row">
                <CarouselReview/>
                    
-            </div>
-         {/* </div> */}
+            </div> 
+       
          </div>
-      </section>
-      <section className="appStore" >
+      </section> */}
+      {/* <section className="appStore" >
          <div className="container">
             <div className="row">
                <div className="appStoreBg clearfix" style={{display:"flex",width: "100%",flexWrap: 'wrap'}}>
@@ -378,7 +382,7 @@ onChangeHandlerdoctor = (e, text) => {
                </div>
             </div>
          </div>
-      </section>
+      </section> */}
       <Footer/>
       </div>
       

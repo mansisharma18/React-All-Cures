@@ -23,6 +23,8 @@ import Comment from './Comment'
 import CommentsRev from './Dashboard/CommentsRev.js'
 import ReviewComments from './Dashboard/ReviewComments.js'
 import Results from './Dashboard/Results.js'
+import PromoPaid from './Dashboard/PromoPaid.js'
+import PromoAdmin from './Dashboard/PromoAdmin.js'
 
 
 // import Blogs from './Disease/Disease'
@@ -84,6 +86,9 @@ const Routes = (props) => {
       <Route exact path="/dashboard/commentsrev" component={CommentsRev} />
       <Route exact path="/dashboard/reviewcomments" component={ReviewComments} />
       <Route exact path="/dashboard/results" component={Results} />
+      <Route exact path="/dashboard/promopaid" component={PromoPaid} />
+      <Route exact path="/dashboard/promoadmin" component={PromoAdmin} />
+
     
      
       

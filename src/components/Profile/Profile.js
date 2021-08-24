@@ -475,7 +475,7 @@ class Profile extends Component {
                             )
                           })}
                           
-                          <div className="rating-patient">
+                          {/* <div className="rating-patient">
                             <div className="rating-patient-grid clearfix">
                               <div className="paitent-profile">
                                 {" "}
@@ -534,8 +534,8 @@ class Profile extends Component {
                                 </ul>
                               </div>
                             </div>
-                          </div>
-                          <div className="rating-patient">
+                          </div> */}
+                          {/* <div className="rating-patient">
                             <div className="rating-patient-grid clearfix">
                               <div className="paitent-profile">
                                 {" "}
@@ -594,8 +594,8 @@ class Profile extends Component {
                                 </ul>
                               </div>
                             </div>
-                          </div>
-                          <div className="rating-patient">
+                          </div> */}
+                          {/* <div className="rating-patient">
                             <div className="rating-patient-grid clearfix">
                               <div className="paitent-profile">
                                 {" "}
@@ -654,7 +654,7 @@ class Profile extends Component {
                                 </ul>
                               </div>
                             </div>
-                          </div>
+                          </div> */}
 
                           
                           <div className="rating-footer">
@@ -677,7 +677,7 @@ class Profile extends Component {
                               Read more Reviews
                             </a>{" "}
                           </div>
-                          <div className="faqs" id="faq">
+                          {/* <div className="faqs" id="faq">
                             <div className="faqs-wrap">
                               <div className="question">
                                 <h2>
@@ -727,11 +727,11 @@ class Profile extends Component {
                                 </p>
                               </div>
                             </div>
-                          </div>
+                          </div> */}
                           <div className="rating-footer">
                             <div className="back-top">
                               {" "}
-                              <a href=" #">
+                              {/* <a href=" #">
                                 <p>
                                   <i
                                     className="fa fa-angle-up"
@@ -739,24 +739,24 @@ class Profile extends Component {
                                   ></i>{" "}
                                   Back to Top
                                 </p>
-                              </a>{" "}
+                              </a>{" "} */}
                             </div>
-                            <a
+                            {/* <a
                               href="//#"
                               className="read-more-rating"
                             >
                               Read more Reviews
-                            </a>{" "}
+                            </a>{" "} */}
                           </div>
                         </div>
                       </div>
                       <div id="recomended" className="tab-pane fade">
-                        <h3>Menu 1</h3>
-                        <p>
+                        {/* <h3>Menu 1</h3> */}
+                        {/* <p>
                           Ut enim ad minim veniam, quis nostrud exercitation
                           ullamco laboris nisi ut aliquip ex ea commodo
                           consequat.
-                        </p>
+                        </p> */}
                       </div>
                     </div>
                   </div>

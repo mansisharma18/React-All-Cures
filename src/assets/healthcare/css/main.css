@@ -771,7 +771,7 @@ h6 {
   padding: 2px !important;
 }
 
-.owl-prev {
+#specialists .owl-prev {
   position: absolute;
   top: 108px;
   left: -21px;
