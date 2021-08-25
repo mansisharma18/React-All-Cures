@@ -9,6 +9,7 @@ import '../../assets/healthcare/css/responsive.css';
 import '../../assets/healthcare/css/animate.css';
 import '../../assets/healthcare/icomoon/style.css';
 import { Container } from 'react-bootstrap';
+
 class Search extends Component {
   constructor(props){
     super(props);
@@ -25,6 +26,7 @@ class Search extends Component {
     // USE if statement
   componentDidMount() {
     if((this.state.param.city) && (this.state.param.name)) {
+      document.title = `All Cures | ${this.state.param.city} | ${this.state.param.name}`
       fetch(`/SearchActionController?cmd=getResults&city=${this.state.param.city}&doctors=${this.state.param.name}&Latitude=&Longitude=`)
       .then(res => res.json())
       .then(json => {
@@ -34,6 +36,7 @@ class Search extends Component {
         })            
       });
     } else if((this.state.param.name) && (!this.state.param.city)) {
+      document.title = `All Cures | ${this.state.param.name}`
       fetch(`/SearchActionController?cmd=getResults&doctors=${this.state.param.name}&Latitude=32.7266&Longitude=74.8570`)
       .then(res => res.json())
       .then(json => {
@@ -43,6 +46,7 @@ class Search extends Component {
         })            
       });
     } else if((this.state.param.city) && (!this.state.param.name)) {
+      document.title = `All Cures | ${this.state.param.city}`
       fetch(`/SearchActionController?cmd=getResults&city=${this.state.param.city}&Latitude=32.7266&Longitude=74.8570`)
       .then(res => res.json())
       .then(json => {

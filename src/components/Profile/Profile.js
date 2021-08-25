@@ -76,6 +76,7 @@ class Profile extends Component {
   }
 
   componentDidMount() {
+    document.title = "All Cures | Profile"
     this.fetchDoctorData()
     this.getComments()
   }

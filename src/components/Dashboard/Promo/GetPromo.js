@@ -12,6 +12,7 @@ function GetPromo(){
         .catch(res => console.log(res))
     }
     useEffect(() => {
+        document.title = "All Cures | Dashboard | Promotions"
         fetchPromo();
     }, [])
 

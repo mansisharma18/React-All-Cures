@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import clsx from 'clsx';
 import { makeStyles } from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -131,6 +131,8 @@ export default function Dashboard(props) {
   const handleDrawerClose = () => {
     setOpen(false);
   };
+
+  useEffect(() => document.title = 'All Cures | Dashboard')
   const fixedHeightPaper = clsx(classes.paper, classes.fixedHeight);
 
   return (
