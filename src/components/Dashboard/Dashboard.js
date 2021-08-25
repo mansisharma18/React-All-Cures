@@ -24,6 +24,8 @@ import Review from './Review';
 import Promo from './Promo/CreatePromo'
 import GetPromo from './Promo/GetPromo';
 import UpdatePromo from './Promo/UpdatePromo';
+import Heart from"../../assets/img/heart.png";
+
 
 function Copyright() {
   return (
@@ -147,7 +149,7 @@ export default function Dashboard(props) {
             <MenuIcon />
           </IconButton>
           <Typography component="h1" variant="h6" color="inherit" noWrap className={classes.title}>
-            Dashboard
+          Dashboard
           </Typography>
           <IconButton color="inherit">
           </IconButton>

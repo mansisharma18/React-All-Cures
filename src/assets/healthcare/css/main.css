@@ -16,6 +16,8 @@
   font-family: "PT Sans", sans-serif;
 }
 
+
+
 body {
   font-weight: 400;
   font-size: 16px;
@@ -514,6 +516,14 @@ h6 {
   position: relative;
 }
 
+
+
+
+
+
+
+
+
 .img-shadow {
   -webkit-box-shadow: 0px 11px 94.94px 6.06px rgba(188, 188, 188, 0.22);
   box-shadow: 0px 11px 94.94px 6.06px rgba(188, 188, 188, 0.22);
@@ -774,10 +784,17 @@ h6 {
   padding: 2px !important;
 }
 
+<<<<<<< HEAD
 #specialists .owl-prev {
   position: absolute;
   top: 108px;
   left: -21px;
+=======
+.owl-prev {
+  position: relative;
+left: 540px;
+top: 30px;
+>>>>>>> cb2bdca45de7fb6ffee4f2b45371721113570039
 }
 
 #specialists .owl-next {
@@ -1050,7 +1067,7 @@ a.appointmentBtn {
 }
 
 .owl-prev {
-  display: none !important;
+  display: block !important;
 }
 
 .client-msg h2 {
@@ -2557,3 +2574,6 @@ p.lorem-text {
     font-weight: bold;
   }
   }
+
+
+  

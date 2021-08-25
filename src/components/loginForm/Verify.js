@@ -8,13 +8,16 @@ import Heart from"../../assets/img/heart.png";
 import { useHistory, Link} from 'react-router-dom'
 import axios from 'axios';
 import history from '../history'
-import { useParams } from "react-router-dom";
-
-
+import { Redirect } from "react-router-dom";
+import { Mail } from '@material-ui/icons';
 
 
 function LoginInfo(props) {  
-const[email,setEmail] = useState('');
+const[email,setEmail] = useState(
+    {
+        Mail: "",
+    }
+);
     const [password, setPassword] = useState({
           firstPassword: "",
           secondPassword: "",
@@ -22,8 +25,9 @@ const[email,setEmail] = useState('');
     const [alert, setSubmitAlert] = useState(false)
     const [acPerm, setacPerm] = useState(Cookies.get('acPerm'))
     const [states, setStates] = useState([])
- 
+  
     const [selectedState, setSelectedState] = useState('')
+  
     const [submitAlert, setAlert] = useState(false)
     const [notAlert, noAlert] = useState(false)
     const [errAlert, erAlert] = useState(false)
@@ -36,8 +40,7 @@ const[email,setEmail] = useState('');
         specialChar,
     ] = usePasswordValidation({
         Mail: email.Mail,
-    firstPassword: password.firstPassword,
-    secondPassword: password.secondPassword,
+  
     });
     
     const setMail = (event)=>{
@@ -54,28 +57,28 @@ const[email,setEmail] = useState('');
 
     const submitForm = async (e) => {
         e.preventDefault()
-        setSubmitAlert(true)    
-        if(validLength && upperCase && lowerCase && match && password.firstPassword){
-            axios.put(`/users/updatepassword`, {
-                "updated_password": password.firstPassword,
-                "email": email.Mail,
-                })
+        
+        setSubmitAlert(true)
+        if(email.Mail){
+            axios.post(`/users/checkemail`,
+            {
+                "email": email.Mail
+            })
             .then(res => {
-                if(res.data =="1"){
-                    history.push("/home");
-          
-            }else if(res.data == "Sorry, the email address you entered does not exist in our database."){
+                if(res.data == 1){
+                    setAlert(true)
+                    setTimeout(()=>{
+                        setAlert(false)
+                        
+                    },4000)
+                
+            }else {
                 noAlert(true)
                 setTimeout(()=>{
                     noAlert(false)
                 },4000)
             }
-            else if(res.data == "0"){
-                erAlert(true)
-                setTimeout(()=>{
-                    noAlert(false)
-                },4000)
-            }
+           
           
         }
             )
@@ -88,18 +91,12 @@ const[email,setEmail] = useState('');
     }
     
     useEffect(() => {
-        const params = new URLSearchParams(window.location.search);
-        const getEmail= params.get('em');
-        setEmail(getEmail)
-         console.log(getEmail);
-         axios.post(`/users/getemdecrypt`,
-         {
-             "email":getEmail
-         })
-         .then(res =>{
-             console.log(res.data);
-         })
-         
+        Promise.all([
+            fetch('/article/all/table/states').then(res => res.json()),
+        ]).then(([statesData]) => {
+            console.log('States Data: ',statesData)
+                setStates(statesData);
+            });
         }, [])
 
     const logout = async e => {
@@ -136,7 +133,7 @@ const[email,setEmail] = useState('');
                 </div>
                  </div>
                         <div className="container">
-                <div className="h2 text-center my-3">Reset Your Password</div>
+                <div className="h2 text-center my-3">Verify Your Email</div>
         <div className="card mb-5">
                     <div className="card-body">
                         <form>
@@ -150,52 +147,21 @@ const[email,setEmail] = useState('');
                        <div className="d-flex flex-column  align-items-md-center">
                        <Form.Group className="col-md-6  " style={{zIndex: 1}}>
                                 <Form.Label>Email</Form.Label>
-                                <Form.Control disabled onChange={setMail} value={email} type="Email" name="" placeholder="Enter Email" required/>
+                                <Form.Control onChange={setMail} type="Email" name="" placeholder="Enter Email" required/>
                             </Form.Group>
-                            <Form.Group className="col-md-6  " style={{zIndex: 1}}>
-                                <Form.Label>Password</Form.Label>
-                                <Form.Control onChange={setFirst} type="password" name="" placeholder="Enter Password" required/>
-                            </Form.Group>
-                            <Form.Group className="col-md-6 " style={{zIndex: 1}}>
-                                <Form.Label>Confirm Password</Form.Label>
-                                <Form.Control  type="password" name="" onChange={setSecond} placeholder="Confirm password" required/>
-                            </Form.Group>
+                           
                             </div>
-                            {
-                                alert?
-                                <div>
-                                <ul>
-                                  <li className="m-3">
-                                    {validLength ? <span className="px-3 py-1 alert-success">Contains minimum amount of characters</span> : <span className="px-3 py-1 alert-danger">Minimum 8 characters required</span>}
-                                  </li>
-                                  {/* <li className="m-3">
-                                    {hasNumber ? null : <span className="px-3 py-1 alert-danger">Should contain at least one numeric character</span>}
-                                  </li> */}
-                                  <li className="m-3">
-                                    {upperCase ? <span className="px-3 py-1 alert-success">Contains uppercase character</span> : <span className="px-3 py-1 alert-danger">Should contain at least one uppercase character</span>}
-                                  </li>
-                                  <li className="m-3">
-                                    {lowerCase ? <span className="px-3 py-1 alert-success">Contains Lowercase</span> : <span className="px-3 py-1 alert-danger">Should contain at least one lowercase character</span>}
-                                  </li>
-                                  <li className="m-3">{match ? <span className="px-3 py-1 alert-success">Passwords match</span> : <span className="px-3 py-1 alert-danger">Passwords do not match</span>}</li>
-                                  {/* <li className="m-3">
-                                    {specialChar ? null : <span className="px-3 py-1 alert-danger">Should contain at least one special character</span>}
-                                  </li> */}
-                              </ul>
-                              </div>
-                            //   :null
-                              : null
-                            }
+                          
 
 {
                    submitAlert?
-                   <Alert variant="success" className="h6 mx-3">Password reset successfully!!</Alert>
+                   <Alert variant="success" className="h6 mx-3">Check Your Email!</Alert>
                    : null
                              }
                              
                              {
                    notAlert?
-                   <Alert variant="danger" className="h6 mx-3">Email not found</Alert>
+                   <Alert variant="danger" className="h6 mx-3">Email not found!</Alert>
                    : null
                              }
 {
@@ -204,7 +170,7 @@ const[email,setEmail] = useState('');
                    : null
                              }
                             <div className="d-flex flex-column align-items-sm-center">
-                            <button onClick={submitForm} className="btn btn-dark col-md-4">Submit</button>
+                            <button onClick={submitForm} className="btn btn-dark col-md-4">Verify</button>
                             </div>
                         </form>
                     </div>

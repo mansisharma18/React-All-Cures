@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Button, Accordion, Card, Container, Form, Alert } from 'react-bootstrap';
-import { Checkbox, FormGroup, FormControlLabel, Select, MenuItem , FormControl, InputLabel} from '@material-ui/core'
+import { Checkbox, FormControlLabel } from '@material-ui/core'
 
 import Cookies from 'js-cookie';
 import './article.css'
@@ -8,7 +8,7 @@ import Carousel from './Carousel'
 import EditorJs from 'react-editor-js';
 import { EDITOR_JS_TOOLS } from './tools';
 import Options from './Options';
-import Header from '../Header/Header';
+// import Header from '../Header/Header';
 import Footer from '../Footer/Footer';
 
 export default class Test extends Component {
