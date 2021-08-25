@@ -16,8 +16,6 @@
   font-family: "PT Sans", sans-serif;
 }
 
-
-
 body {
   font-weight: 400;
   font-size: 16px;
@@ -516,14 +514,6 @@ h6 {
   position: relative;
 }
 
-
-
-
-
-
-
-
-
 .img-shadow {
   -webkit-box-shadow: 0px 11px 94.94px 6.06px rgba(188, 188, 188, 0.22);
   box-shadow: 0px 11px 94.94px 6.06px rgba(188, 188, 188, 0.22);
@@ -644,7 +634,7 @@ h6 {
   background: #00415e;
   font-weight: normal;
 }
-#b5{
+#b5 {
   margin-top: 15px;
 }
 
@@ -784,17 +774,10 @@ h6 {
   padding: 2px !important;
 }
 
-<<<<<<< HEAD
-#specialists .owl-prev {
-  position: absolute;
-  top: 108px;
-  left: -21px;
-=======
 .owl-prev {
   position: relative;
-left: 540px;
-top: 30px;
->>>>>>> cb2bdca45de7fb6ffee4f2b45371721113570039
+  left: 540px;
+  top: 30px;
 }
 
 #specialists .owl-next {
@@ -804,10 +787,44 @@ top: 30px;
   font-weight: bold;
   border-radius: 3rem;
   position: absolute;
-  top: 108px;
+  top: 135px;
   right: 0px;
 }
 
+#choose-category .owl-next {
+  padding: 2px 10px !important;
+  background-color: rgb(69, 86, 160);
+  color: #fff;
+  font-weight: bold;
+  border-radius: 3rem;
+  position: absolute;
+  top: 130px;
+  right: 0px;
+}
+
+#choose-category .owl-next span {
+  color: white;
+  font-weight: bold;
+}
+#choose-category .owl-prev {
+  padding: 2px 10px !important;
+  position: absolute;
+  left: 0;
+  top: 127px;
+  border-radius: 3rem;
+  background-color: rgb(69, 86, 160);
+}
+
+#choose-category .owl-prev span {
+  color: white;
+  font-weight: bold;
+}
+#specialists .owl-prev {
+  left: 0;
+  top: -157px;
+  padding: 2px 10px !important;
+  background: white;
+}
 #testimonials .owl-nav .owl-next {
   padding: 2px 10px !important;
   background-color: #fff;
@@ -2502,7 +2519,6 @@ p.lorem-text {
   .App {
     position: relative;
     bottom: 40px;
-
   }
   .select-all {
     position: relative;
@@ -2527,7 +2543,6 @@ p.lorem-text {
   }
   div#DocDetails {
     margin-left: -20px;
-    
   }
   .select-all {
     position: relative;
@@ -2566,14 +2581,17 @@ p.lorem-text {
   padding: 1rem 3rem;
 }
 
-@media only screen and (min-width: 992px) and (max-width:1024px){
+@media only screen and (min-width: 992px) and (max-width: 1024px) {
   .select-all {
     position: relative;
     left: 730px;
     top: 30px;
     font-weight: bold;
   }
-  }
+}
 
-
-  
+.submit-popup {
+  position: absolute;
+  left: -25rem;
+  bottom: 1rem;
+}

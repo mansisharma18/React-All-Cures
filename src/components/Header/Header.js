@@ -327,41 +327,42 @@ import Autocomplete from '../Autocomplete'
 }
 
 function ToggleButton(props) {
-    if(props.acPerm){
-        return(
-           <div>
-          <li className="dropdown">
-  <a className="dropdown-toggle" data-toggle="dropdown" href="#">
-      <i className="fa fa-user fa-2x"></i> 
-  </a>
-  <ul className="dropdown-menu dropdown-user">
-      <li><a href="/dashboard" className="dropdown-item">Dashboard</a>
-      </li>
-      <li className="divider"></li>
-      <li><a onClick={props.logout} className="dropdown-item"> Logout</a>
-      </li>
-  </ul>
-</li>  
-              {/* <DropdownButton i className="fas fa-2x fa-user">
-               
-            <Dropdown.Item >
-            <Link to="/dashboard">
-               Dashboard
-           </Link>
-            </Dropdown.Item>
-            <Dropdown.Item onClick={props.logout}>Logout</Dropdown.Item>
-         </DropdownButton> */}
-         </div>
-        );
-    }
-    return(
-        <Link 
+   if(props.acPerm){
+       return(
+         <li className="dropdown">
+         <button className="btn header-drop" data-toggle="dropdown" >
+             <i className="fa fa-user fa-2x"></i> 
+         </button>
+         <ul className="dropdown-menu dropdown-user">
+            {
+               props.acPerm?
+                  <>
+                     <li>
+                        <Link className="dropdown-item" to={`/profile/${props.acPerm.split('|')[0]}`}>
+                           Profile
+                        </Link>
+                     </li>
+                     <li><Link to="/dashboard" className="dropdown-item">Dashboard</Link>
+                     </li>
+                  </>
+               : null
+            }
+             
+             <li className="divider"></li>
+             <li><button onClick={props.logout} className="dropdown-item"> Logout</button>
+             </li>
+         </ul>
+       </li>             
+       );
+   }
+   return(
+      <Link 
          className="btn-white loginSignbtn color-blue-dark" 
-         to={{pathname: props.url, search: '?login=true', state: {open: true}}}
-        >
-            Sign In/Sign Up
-        </Link>
-    )
+         to={{pathname: props.match, search: '?login=true', state: {open: true}}}
+      >
+         Sign in/Sign up
+      </Link>
+   )
 }
 
 export default Header;

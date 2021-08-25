@@ -316,3 +316,13 @@
   z-index: 2;
   position: relative;
 } */
+
+.header-drop {
+  background-color: #00415e;
+  padding: 0.6rem 0.8rem;
+  color: white;
+}
+
+.header-drop i {
+  color: #fff;
+}

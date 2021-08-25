@@ -5,26 +5,13 @@ import "owl.carousel/dist/assets/owl.theme.default.css";
 import { Link } from 'react-router-dom';
 import "@fortawesome/free-solid-svg-icons";
 import "@fortawesome/fontawesome-svg-core"
-// import carouselItem from './carouselItem'
-// const options = {
-//    navText: ["Prev", ">"],
-//    dots: true
-   
-// };
 
 const options = {
    margin: 30,
    responsiveClass: true,
    nav: true,
-   navClass: ['owl-prev', 'owl-next'],
-   navText:["<div class='nav-btn prev-slide'><</div>","<div class='nav-btn next-slide'>></div>"],
-   navElement: "div",
-   navContainerClass:'owl-nav',
-   navContainer:false,
-   navSpeed:false,
-   loop: true,
+   loop: false,
    dots: true,
-   autoplay: true,
    smartSpeed: 1000,
    responsive: {
        0: {
@@ -80,7 +67,7 @@ export default class Carousel2 extends Component {
       }
       else if(isLoaded){
         return(
-         <OwlCarousel {...options} nav="true" navClass="['owl-prev', 'owl-next']" id="specialists" items={4} margin={10}>
+         <OwlCarousel {...options} nav="true" id="specialists" items={4} margin={10}>
          {items.map((i) => (
            
             <div className="item">
@@ -101,7 +88,7 @@ export default class Carousel2 extends Component {
                   </div>
                   <Link to="#" className="appointmentBtn allBtn">Appointment</Link>
                </div>
-               <button type="button" role="presentation" class="owl-prev"><span aria-label="Previous">‹</span></button>
+               {/* <button type="button" role="presentation" class="owl-prev"><span aria-label="Previous">‹</span></button> */}
             </div>
          ))}
                         

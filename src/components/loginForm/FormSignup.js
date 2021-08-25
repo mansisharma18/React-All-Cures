@@ -1,12 +1,19 @@
-import React, {useState} from 'react'
+import React, {useEffect, useState} from 'react'
 import { makeStyles } from '@material-ui/core/styles';
 
 import BrandButton from './styled/BrandButton'
 import SlidingForm from './styled/SlidingForm'
-import { Checkbox, FormGroup, FormControlLabel, Select, MenuItem , FormControl, InputLabel} from '@material-ui/core'
+import { Checkbox, FormGroup, FormControlLabel, Select, MenuItem , FormControl, InputLabel} from '@material-ui/core';
+import { Form } from "react-bootstrap";
+import { useHistory } from 'react-router-dom'
+
+import Radio from '@material-ui/core/Radio';
+import RadioGroup from '@material-ui/core/RadioGroup';
+import FormLabel from '@material-ui/core/FormLabel';
 import { Redirect } from 'react-router';
 import { Alert } from 'react-bootstrap';
 import { usePasswordValidation } from '../hooks/usePasswordValidation';
+import axios from 'axios';
 
 const FormSignup = () => {
 
@@ -27,9 +34,12 @@ const FormSignup = () => {
   const [message, setMessage] = useState("");
   const [isError, setError] = useState(false);
   const [status, setStatus] = useState("");
+  const [country, setCountry] = useState('')
+  const [countriesList,setCountriesList] = useState([])
+
   const [buttonClick, setClicked] = useState("");
   const [region, setRname]= useState("");
-  const [gender, setGname]= useState("");
+  const [gender, setGender]= useState("");
   const [number, setMname]= useState("");
   // const [form, setForm]= useState("");
 
@@ -73,7 +83,7 @@ const setSecond = (event) => {
       
      res = await fetch("/RegistrationActionController?", {
       method: "POST",
-      body: `firstname=${firstName}&lastname=${lastName}&email=${email}&psw=${password.firstPassword}&psw-repeat=${password.secondPassword}&rempwd=${rempwd}&doc_patient=${userType}&acceptTnc=${terms}&number=${number}&gender=${gender}&region=${region}`,
+      body: `firstname=${firstName}&lastname=${lastName}&email=${email}&psw=${password.firstPassword}&psw-repeat=${password.secondPassword}&rempwd=${rempwd}&doc_patient=${userType}&acceptTnc=${terms}&number=${number}&gender=${gender}&region=${country}`,
       headers: {
       "Content-Type": "application/x-www-form-urlencoded"
       }
@@ -143,6 +153,18 @@ function Redirec(){
       console.log('validEmail')
     }
   }
+
+  const getCountries = () => {
+    axios.get('/article/all/table/countries')
+    .then(res => {
+        setCountriesList(res.data)
+    })
+    .catch(err => console.log(err))
+}
+
+useEffect(() => {
+  getCountries()
+}, [])
   const handleTermsCheckbox = (event) => {
     setTerms(event.target.value)
   };
@@ -216,17 +238,6 @@ function Redirec(){
           required
         /> */}
  
-        
-        
-        <input 
-          placeholder="Mobile Number" 
-          type="number" 
-          name="number"
-          onChange={
-            e => setMname(e.target.value)
-          }
-          required
-        />
         {
           buttonClick === 1?
           <div className="rounded alert-danger">
@@ -272,8 +283,17 @@ function Redirec(){
           required
         />
         
+        <input 
+          placeholder="Mobile Number" 
+          type="number" 
+          name="text"
+          onChange={
+            e => setMname(e.target.value)
+          }
+          required
+        />
         
-        {
+        {/* {
           promo?
           <input 
           placeholder="Promo Code" 
@@ -283,31 +303,44 @@ function Redirec(){
           disabled
           />
           : null
-        }
-               <label>
-<input list="browsers" name="myBrowser"placeholder="Gender"/></label>
-<datalist id="browsers">
-  <option value="Male"/>
-  <option value="Female"/>
-  <option value="Others"/>
-  onChange={
-            e => setGname(e.target.value)
-          }
-          required
-  
-</datalist>
-
-<label>
-<input list="country" name="country"placeholder="Region"/></label>
-<datalist id="country">
-  <option value="India"/>
-  
-  onChange={
-            e => setRname(e.target.value)
-          }
-          required
-  
-</datalist>
+        } */}
+        <Form.Group className="col-md-12 float-left" >
+          <FormControl component="fieldset">
+      <FormLabel component="legend" className="text-dark">Gender</FormLabel>
+      <RadioGroup value={gender.toString()} onChange={(e) => {setGender(e.target.value); console.log(e.target.value)}}
+      >
+        <FormControlLabel className="col-md-1" value="1" control={<Radio />} label="Female" />
+        <FormControlLabel className="col-md-1" value="2" control={<Radio />} label="Male" />
+        <FormControlLabel className="col-md-1" value="3" control={<Radio />} label="Other" />
+      </RadioGroup>
+      
+    </FormControl>
+    </Form.Group>
+{/* 
+    <label htmlFor="">Country</label>
+                 <select name="country" value={country} onChange={(e) => setCountry(e.target.value)} placeholder="Country" required="" class="form-control">
+                     
+                     {countriesList.map((lan) => {
+                       console.log('Country: ', country)
+                         return (
+                             <option value={lan[0]}>{lan[1]}</option>
+                         )
+                     })}
+                     
+                 </select> */}
+                 <Form.Group className="col-md-12 float-left">
+                    <Form.Label>Country</Form.Label>
+                    <Form.Control as="select" value={country} name="countryId" custom
+                    onChange={(e)=> setCountry(e.target.value)} placeholder="Country" required>
+                    <option>Open this menu</option>
+                                                    {countriesList.map((i) => (  
+                                                        <option
+                                                            value={i[0]}>
+                                                            {i[1]}
+                                                            </option>
+                                                    ))}
+                                            </Form.Control>
+                                        </Form.Group>
         
 
         <FormControl className={classes.formControl}>
