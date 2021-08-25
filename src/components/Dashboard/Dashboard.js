@@ -21,8 +21,9 @@ import Deposits from './Deposits';
 import Draft from './Draft';
 import Approval from './Approval';
 import Review from './Review';
-
-
+import Promo from './Promo/CreatePromo'
+import GetPromo from './Promo/GetPromo';
+import UpdatePromo from './Promo/UpdatePromo';
 
 function Copyright() {
   return (
@@ -118,7 +119,8 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function Dashboard() {
+export default function Dashboard(props) {
+  console.log(props.location)
   const classes = useStyles();
   const [open, setOpen] = React.useState(true);
   const handleDrawerOpen = () => {
@@ -170,48 +172,95 @@ export default function Dashboard() {
       </Drawer>
       <main className={classes.content}>
         <div className={classes.appBarSpacer} />
-        <Container maxWidth="lg" className={classes.container}>
-          <Grid container spacing={3}>
-            {/* Chart */}
-            {/* <Grid item xs={12} md={8} lg={9}>
-              <Paper className={fixedHeightPaper}>
-                <Chart />
-              </Paper>
-            </Grid> */}
-            {/* Recent Deposits */}
-            <Grid item xs={12} md={4} lg={3}>
-              <Paper className={fixedHeightPaper}>
-                <Deposits />
-              </Paper>
-            </Grid>
-            <Grid item xs={12} md={4} lg={3}>
-              <Paper className={fixedHeightPaper}>
-                <Draft/>
-              </Paper>
-            </Grid>
-            <Grid item xs={12} md={4} lg={3}>
-              <Paper className={fixedHeightPaper}>
-                <Approval />
-              </Paper>
-            </Grid>
-            <Grid item xs={12} md={4} lg={3}>
-              <Paper className={fixedHeightPaper}>
-                <Review />
-              </Paper>
-            </Grid>
-            {/* Recent Orders */}
-            {/* <Grid item xs={12}>
-              <Paper className={classes.paper}>
-                <Orders />
-              </Paper>
-            </Grid> */}
-          </Grid>
-          <Box pt={4}>
-            <Copyright />
-          </Box>
-        </Container>
+          {/* <Stats container={classes.container} fixedHeightPaper={fixedHeightPaper}  /> */}
+          {/* {
+            props.location.pathname == '/dashboard'?
+              <Stats container={classes.container} fixedHeightPaper={fixedHeightPaper} />
+              : <Promo/>
+          } */}
+          <RenderComponent 
+            search={props.location.search} 
+            container={classes.container} 
+            fixedHeightPaper={fixedHeightPaper} 
+          />
+          {/* <Promo/> */}
       </main>
     </div>
     </div>
   );
+}
+
+function RenderComponent(props){
+  if(props.search == '?create_promo'){
+    return(<Promo/>);
+  } else if(props.search == '?stats'){
+    return(<Container maxWidth="lg" className={props.container}>
+    <Grid container spacing={3}>
+     
+      <Grid item xs={12} md={4} lg={3}>
+        <Paper className={props.fixedHeightPaper}>
+          <Deposits />
+        </Paper>
+      </Grid>
+      <Grid item xs={12} md={4} lg={3}>
+        <Paper className={props.fixedHeightPaper}>
+          <Draft/>
+        </Paper>
+      </Grid>
+      <Grid item xs={12} md={4} lg={3}>
+        <Paper className={props.fixedHeightPaper}>
+          <Approval />
+        </Paper>
+      </Grid>
+      <Grid item xs={12} md={4} lg={3}>
+        <Paper className={props.fixedHeightPaper}>
+          <Review />
+        </Paper>
+      </Grid>
+    </Grid>
+    <Box pt={4}>
+      <Copyright />
+    </Box>
+  </Container>
+  );
+  } else if(props.search == '?promotions'){
+    return(
+      <GetPromo/>
+    )
+  } else if(props.search.split('=')[0] == '?edit'){
+    return(
+      <UpdatePromo search={props.search}/>
+    )
+  } else {
+    return(
+      <Container maxWidth="lg" className={props.container}>
+    <Grid container spacing={3}>
+     
+      <Grid item xs={12} md={4} lg={3}>
+        <Paper className={props.fixedHeightPaper}>
+          <Deposits />
+        </Paper>
+      </Grid>
+      <Grid item xs={12} md={4} lg={3}>
+        <Paper className={props.fixedHeightPaper}>
+          <Draft/>
+        </Paper>
+      </Grid>
+      <Grid item xs={12} md={4} lg={3}>
+        <Paper className={props.fixedHeightPaper}>
+          <Approval />
+        </Paper>
+      </Grid>
+      <Grid item xs={12} md={4} lg={3}>
+        <Paper className={props.fixedHeightPaper}>
+          <Review />
+        </Paper>
+      </Grid>
+    </Grid>
+    <Box pt={4}>
+      <Copyright />
+    </Box>
+  </Container>
+    )
+  }
 }

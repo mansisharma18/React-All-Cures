@@ -21,6 +21,7 @@ const Form = ({ initialState = STATE_LOG_IN },props) => {
         <FormSignup mode={mode} />
       </div>
       <Overlay toggleMode={toggleMode} mode={mode} />
+      
     </Container>
   );
 };

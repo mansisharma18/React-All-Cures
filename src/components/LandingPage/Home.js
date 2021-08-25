@@ -50,7 +50,7 @@ class Home extends Component {
     loadUsers();
 
    const loaddoctor = async () => {
-      const response = await axios.get('/IntegratedActionController');
+      const response = await axios.get('/IntegratedActionController')
       this.setState ({
          doctor: response.data
       })
@@ -421,7 +421,7 @@ function ToggleButton(props) {
          className="btn-white loginSignbtn color-blue-dark" 
          to={{pathname: props.match, search: '?login=true', state: {open: true}}}
       >
-         Sign Up
+         Sign in/Sign up
       </Link>
 
       //  <Link to="/login" className="btn-white loginSignbtn color-blue-dark" >

@@ -47,7 +47,7 @@ export default function Carousel1(props){
             <div className="tab-content category " style={{maxWidth:"1140px", zIndex: 0}}>
                   <OwlCarousel className="owl-theme" items={6} loop margin={150} nav {...options}>
                   <div className="item bg-pink">
-                        <Link to={ `/blogs/ENT` }>
+                        <Link to={ `/blogs/anemia` }>
                            <div className="item-img">
                               <img src={Slider1} alt="slider-img"/>
                            </div>
@@ -57,7 +57,7 @@ export default function Carousel1(props){
                         </Link>
                         </div>
                         <div className="item bg-org">
-                        <Link to={ `/blogs/Endocrinology` }>
+                        <Link to={ `/blogs/Diabetes` }>
                            <div className="item-img">
                               <img src={Slider2} alt="slider-img"/>
                            </div>

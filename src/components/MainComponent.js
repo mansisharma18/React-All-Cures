@@ -25,6 +25,8 @@ import ReviewComments from './Dashboard/ReviewComments.js'
 import Results from './Dashboard/Results.js'
 import PromoPaid from './Dashboard/PromoPaid.js'
 import PromoAdmin from './Dashboard/PromoAdmin.js'
+import ResetPass from './loginForm/ResetPass.js'
+import Promo from "./Dashboard/Promo/CreatePromo";
 
 
 // import Blogs from './Disease/Disease'
@@ -90,6 +92,8 @@ const Routes = (props) => {
       <Route exact path="/dashboard/promoadmin" component={PromoAdmin} />
 
     
+      <Route exact path="/loginForm/ResetPass" component={ResetPass} />
+      <Route exact path='/admin/promo' component={Promo}/>
      
       
       

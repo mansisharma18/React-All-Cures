@@ -45,7 +45,8 @@
   height: 30px;
   width: 150px;
   padding-top: 6px;
-  font-size: 12px;
+  padding-bottom: 1.8rem;
+  font-size: 15px;
   font-weight: 400;
 }
 
@@ -56,17 +57,6 @@
 
 .search {
   position: relative;
-}
-
-.loginSignbtn {
-  text-align: center;
-  display: inline-block;
-  border-radius: 15px;
-  height: 30px;
-  width: 150px;
-  padding-top: 6px;
-  font-size: 12px;
-  font-weight: 400;
 }
 
 .search span {
@@ -283,7 +273,7 @@
 .suggestions li:not(:last-of-type) {
   border-bottom: 1px solid #999;
 }
-.autocomplete{
+.autocomplete {
   position: relative;
 }
 .autocomplete #search {
@@ -298,26 +288,24 @@
   float: left;
 }
 
-.dropdown{
+.dropdown {
   float: right;
   list-style: none;
 }
 
-
-.dropdown-toggle{
+.dropdown-toggle {
   color: #0c1b22;
-border: white;
+  border: white;
 }
-.dropdown-toggle:hover{
-  color:#0c1b22;
+.dropdown-toggle:hover {
+  color: #0c1b22;
 }
-.dropdown-toggle:focus{
+.dropdown-toggle:focus {
   color: white;
 }
 
-.fa-user
-{
-  color:#0c1b22;
+.fa-user {
+  color: #0c1b22;
 }
 /* .zIndex-1 {
     z-index: 1;
