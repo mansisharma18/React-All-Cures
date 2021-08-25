@@ -784,10 +784,17 @@ h6 {
   padding: 2px !important;
 }
 
+<<<<<<< HEAD
+#specialists .owl-prev {
+  position: absolute;
+  top: 108px;
+  left: -21px;
+=======
 .owl-prev {
   position: relative;
 left: 540px;
 top: 30px;
+>>>>>>> cb2bdca45de7fb6ffee4f2b45371721113570039
 }
 
 #specialists .owl-next {

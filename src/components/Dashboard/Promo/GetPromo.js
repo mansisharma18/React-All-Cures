@@ -73,7 +73,7 @@ function GetPromo(){
             </div>
             </div>
         </>
-        // <div>khbkdasdljab</div>
+       
     )
 }
 

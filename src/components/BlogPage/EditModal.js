@@ -138,11 +138,6 @@ const EditModal = () => {
 
     const instanceRef = useRef(null)
 
-    // async function handleSave() {
-    //     const savedData = await instanceRef.current.save()
-    //     // setArticleContent(savedData);
-    //     // console.log(articleContent)
-    // }
     
     const handleSelect = function(countries) {
         const flavors = [];
@@ -153,7 +148,7 @@ const EditModal = () => {
         console.log(contentType)
     }
    console.log("COntent : ", content)
-    // const aaa = () => {
+   
     return (
         <>
             <div className="transparent_bg">
@@ -196,18 +191,11 @@ const EditModal = () => {
                         } else {
                             setShowCountry(true)
                         }
-                        //  console.log('Treatment not selected')
+                        
                     }}
                     required class="form-control">
 
-                    {/* // onChange={(e) => { */}
-                    {/* //     setContent(e.target.value)
-                    //     if(e.target.value == 2) {
-                    //         setShowCountry(true)
-                    //     }else {
-                    //         setShowCountry(false)
-                    //     }
-                    // }} */}
+                   
                      
                         <option value="1">Disease</option>
                         <option value="2">Treatment</option>
@@ -310,7 +298,7 @@ const EditModal = () => {
                                         enableReInitialize = {true}
                                         instanceRef={(instance) => (instanceRef.current = instance)}
                                         tools = {EDITOR_JS_TOOLS} 
-                                        // onChange={handleSave}
+                                       
                                     />
                             </div>
                             </div>
@@ -319,7 +307,6 @@ const EditModal = () => {
                     {succMsg ? <h4 className="mt-3">{succMsg}</h4> : null}
                     <div className="form-group">
                         <button type="submit" className="btn mt-3 btn-dark">Submit</button>
-                        {/* <button type="button" onClick={handleSave} className="btn mt-3 btn-dark ml-5">Save</button> */}
                     </div>
                     </form>
                     </div>

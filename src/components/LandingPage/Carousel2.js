@@ -16,8 +16,15 @@ const options = {
    margin: 30,
    responsiveClass: true,
    nav: true,
+   navClass: ['owl-prev', 'owl-next'],
+   navText:["<div class='nav-btn prev-slide'><</div>","<div class='nav-btn next-slide'>></div>"],
+   navElement: "div",
+   navContainerClass:'owl-nav',
+   navContainer:false,
+   navSpeed:false,
+   loop: true,
    dots: true,
-   autoplay: false,
+   autoplay: true,
    smartSpeed: 1000,
    responsive: {
        0: {
@@ -73,8 +80,9 @@ export default class Carousel2 extends Component {
       }
       else if(isLoaded){
         return(
-         <OwlCarousel {...options} nav="true" className="owl-theme" id="specialists" items={4} margin={10}>
+         <OwlCarousel {...options} nav="true" navClass="['owl-prev', 'owl-next']" id="specialists" items={4} margin={10}>
          {items.map((i) => (
+           
             <div className="item">
                <div className="item-img">
                   {/* <img src={Special2} alt="special-img"/> */}
@@ -93,6 +101,7 @@ export default class Carousel2 extends Component {
                   </div>
                   <Link to="#" className="appointmentBtn allBtn">Appointment</Link>
                </div>
+               <button type="button" role="presentation" class="owl-prev"><span aria-label="Previous">‹</span></button>
             </div>
          ))}
                         

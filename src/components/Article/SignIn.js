@@ -30,33 +30,6 @@ export default class SignIn extends Component {
         return (
           <div>
               <button onClick={this.submitForm}>Login</button>
-            {/* <form onSubmit={this.submitForm}>
-              <div className="input-group">
-                <label htmlFor="email">E-mail Address</label>
-                <input
-                  type="email"
-                  name="email"
-                  id="email"
-                  value={this.state.values.email}
-                  onChange={this.handleInputChange}
-                  title="Email"
-                  required
-                />
-              </div>
-              <div className="input-group">
-                <label htmlFor="password">Password</label>
-                <input
-                  type="password"
-                  name="psw"
-                  id="password"
-                  value={this.state.values.psw}
-                  onChange={this.handleInputChange}
-                  title="password"
-                  required
-                />
-              </div>
-              <button type="submit">Sign In</button>
-            </form> */}
             <div className={`message ${this.state.isError && "error"}`}>
               {this.state.isSubmitting ? "Submitting..." : this.state.message}
             </div>

@@ -20,11 +20,7 @@ export default class Test extends Component {
         this.handleChange = this.handleChange.bind(this);
         this.instanceRef = React.createRef();
         this.handleSave = this.handleSave.bind(this);
-        // this.renderStatus = this.renderStatus.bind(this)
-        // this.submitForm = this.submitForm.bind(this);
-        // this.handleClick().bind(this)
         this.state = {
-            // acPerm: Cookies.get('acPerm'),
             acPerm: Cookies.get('acPerm'),
             isLoggedIn: false,
             ac: '',
@@ -62,7 +58,6 @@ export default class Test extends Component {
 
     handleSubmit() {
         this.setState({ShowSubmitAlert: true});
-        // this.state.articleValues.title = null;
     }
 
     handleErrorSubmit(){
@@ -120,7 +115,6 @@ export default class Test extends Component {
             console.error(res)
         })
     }
-    // ARTICLE FORM SUBMIT
 
     submitArticleForm = async e => {
         e.preventDefault();
@@ -215,7 +209,6 @@ export default class Test extends Component {
 
       let articleHTML = '';
 
-    // RENDER DIFFERENT TYPES OF DATA
     
 savedData.blocks.map(obj => {
 switch (obj.type) {
@@ -369,7 +362,6 @@ document.getElementById('articlePreview').innerHTML=articleHTML;
                         <option>Open this select menu</option>
                         <option value="1">Work in Progress</option>
                         <option value="2">Review</option>
-                        {/* <option value="3" disabled>Publish</option> */}
                     </Form.Control>                       
                 </Form.Group>
             )
@@ -413,7 +405,6 @@ document.getElementById('articlePreview').innerHTML=articleHTML;
       );
     } else if(isLoaded){
         
-        // console.log('Promo COde article page: ', this.props.location.state.promoCode)
     return (
         <div>
             {/* <Header/> */}
@@ -501,9 +492,7 @@ document.getElementById('articlePreview').innerHTML=articleHTML;
                                     </Form.Group>
 
                                     {this.renderStatus()}
-                                   
-                                        
-                                        
+                                          
                                     
                                     <Form.Group className="col-md-6 float-left">
                                         <Form.Label>Language</Form.Label>

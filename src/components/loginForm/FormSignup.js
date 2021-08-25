@@ -28,6 +28,10 @@ const FormSignup = () => {
   const [isError, setError] = useState(false);
   const [status, setStatus] = useState("");
   const [buttonClick, setClicked] = useState("");
+  const [region, setRname]= useState("");
+  const [gender, setGname]= useState("");
+  const [number, setMname]= useState("");
+  // const [form, setForm]= useState("");
 
   const [promo, setPromo] =useState(1)
   const [validEmail, setValidEmail] = useState()
@@ -69,7 +73,7 @@ const setSecond = (event) => {
       
      res = await fetch("/RegistrationActionController?", {
       method: "POST",
-      body: `firstname=${firstName}&lastname=${lastName}&email=${email}&psw=${password.firstPassword}&psw-repeat=${password.secondPassword}&rempwd=${rempwd}&doc_patient=${userType}&acceptTnc=${terms}`,
+      body: `firstname=${firstName}&lastname=${lastName}&email=${email}&psw=${password.firstPassword}&psw-repeat=${password.secondPassword}&rempwd=${rempwd}&doc_patient=${userType}&acceptTnc=${terms}&number=${number}&gender=${gender}&region=${region}`,
       headers: {
       "Content-Type": "application/x-www-form-urlencoded"
       }
@@ -151,7 +155,7 @@ function Redirec(){
   }
   const classes = useStyles();
 
-  console.log(firstName, lastName, password, email, terms, policy, userType)
+  console.log(firstName, lastName, password, email, terms, policy, userType, number)
   return(
     
     <SlidingForm signup className="text-center">
@@ -199,6 +203,27 @@ function Redirec(){
           name="password"
           onChange={
             e => setFirst(e)
+          }
+          required
+        />
+        {/* <input 
+          placeholder="Region" 
+          type="dropdown" 
+          name="region"
+          onChange={
+            e => setRname(e.target.value)
+          }
+          required
+        /> */}
+ 
+        
+        
+        <input 
+          placeholder="Mobile Number" 
+          type="number" 
+          name="number"
+          onChange={
+            e => setMname(e.target.value)
           }
           required
         />
@@ -259,6 +284,30 @@ function Redirec(){
           />
           : null
         }
+               <label>
+<input list="browsers" name="myBrowser"placeholder="Gender"/></label>
+<datalist id="browsers">
+  <option value="Male"/>
+  <option value="Female"/>
+  <option value="Others"/>
+  onChange={
+            e => setGname(e.target.value)
+          }
+          required
+  
+</datalist>
+
+<label>
+<input list="country" name="country"placeholder="Region"/></label>
+<datalist id="country">
+  <option value="India"/>
+  
+  onChange={
+            e => setRname(e.target.value)
+          }
+          required
+  
+</datalist>
         
 
         <FormControl className={classes.formControl}>
