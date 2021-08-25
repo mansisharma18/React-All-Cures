@@ -195,6 +195,7 @@ class Profile extends Component {
         show={this.state.modalShow}
         onHide={() => this.setModalShow(false)}
         items={items}
+        fetchDoctor = {this.fetchDoctorData}
       />
       {/* <Button variant="primary" onClick={this.handleShow}>
         Launch demo modal

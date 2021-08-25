@@ -27,7 +27,7 @@ function GetPromo(){
 
     return(
         <>
-            <div className="container">
+            <div className="container mb-4">
                 <div className="row">
             {
                 promoData?
@@ -36,10 +36,10 @@ function GetPromo(){
                         <div className="card col-md-5 mt-5 mx-3 border p-3 h6">
                             <div className="card-title h4"><span className="font-weight-bold">Promo Code: </span>{i.promo_code}</div>
                             {/* <div className="card-body"> */}
-                                <div><span className="font-weight-bold">Start Date:</span> {i.promo_start_datetime}</div>
-                                <div><span className="font-weight-bold">End Date:</span> {i.promo_end_datetime}</div>
-                                <div><span className="font-weight-bold">Maximum Limit:</span> {i.promo_max_limit}</div>
-                                <div><span className="font-weight-bold">Last Update:</span> {i.promo_updated_date}</div>
+                                <div className="pb-2"><span className="font-weight-bold">Start Date:</span> {i.promo_start_datetime.split('T')[0]}</div>
+                                <div className="pb-2"><span className="font-weight-bold">End Date:</span> {i.promo_end_datetime.split('T')[0]}</div>
+                                <div className="pb-2"><span className="font-weight-bold">Maximum Limit:</span> {i.promo_max_limit}</div>
+                                <div className="pb-2"><span className="font-weight-bold">Last Update:</span> {i.promo_updated_date}</div>
                                 <div><span className="font-weight-bold">Status:</span> 
                                 {
                                     i.promo_active === 1?
