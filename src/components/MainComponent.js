@@ -11,7 +11,9 @@ import SearchName from './Search/SearchName';
 // import Modal from './Modal';
 import AuthApi from './AuthApi'
 import Disease from "./Disease/Disease";
-import Article from "./Article/Article.js";
+import Article 
+
+from "./Article/Article.js";
 import Dashboard from "./Dashboard/Dashboard.js";
 import LoginPage from "./login";
 import SignIn from "./Article/SignIn";
@@ -19,6 +21,7 @@ import Blogpage from "./BlogPage/Blogpage";
 import EditPost from './BlogPage/EditModal';
 import BlogAllPost from './Dashboard/BlogAllPost'
 import LoginInfo from './loginForm/LoginInfo'
+import FormSignup from "./loginForm/FormSignup";
 import Comment from './Comment'
 import CommentsRev from './Dashboard/CommentsRev.js'
 import ReviewComments from './Dashboard/ReviewComments.js'
@@ -91,11 +94,12 @@ const Routes = (props) => {
       <Route exact path="/dashboard/results" component={Results} />
       <Route exact path="/dashboard/promopaid" component={PromoPaid} />
       <Route exact path="/dashboard/promoadmin" component={PromoAdmin} />
+      <Route exact path="/dashboard/promoadmin" component={PromoAdmin} />
 
     
       <Route exact path="/loginForm/ResetPass" component={ResetPass} />
       <Route exact path="/loginForm/verify" component={Verify} />
-      <Route exact path='/admin/promo' component={Promo}/>
+      <Route exact path='/loginForm/FormSignup' component={FormSignup}/>
      
       
       

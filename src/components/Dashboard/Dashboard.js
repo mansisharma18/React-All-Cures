@@ -174,12 +174,6 @@ export default function Dashboard(props) {
       </Drawer>
       <main className={classes.content}>
         <div className={classes.appBarSpacer} />
-          {/* <Stats container={classes.container} fixedHeightPaper={fixedHeightPaper}  /> */}
-          {/* {
-            props.location.pathname == '/dashboard'?
-              <Stats container={classes.container} fixedHeightPaper={fixedHeightPaper} />
-              : <Promo/>
-          } */}
           <RenderComponent 
             search={props.location.search} 
             container={classes.container} 

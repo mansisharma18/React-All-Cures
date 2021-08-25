@@ -43,7 +43,6 @@ class SearchResults extends React.Component {
             />
           </label>
         ))}
-        {/* <p>Selected checkboxes: {JSON.stringify(selectedCheckboxes)}</p> */}
       </div>
     );
   }

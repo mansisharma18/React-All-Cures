@@ -155,7 +155,7 @@ function Redirec(){
   }
   const classes = useStyles();
 
-  console.log(firstName, lastName, password, email, terms, policy, userType, number)
+  console.log(firstName, lastName, password, email, terms, policy, userType, number, gender, region)
   return(
     
     <SlidingForm signup className="text-center">
@@ -206,15 +206,7 @@ function Redirec(){
           }
           required
         />
-        {/* <input 
-          placeholder="Region" 
-          type="dropdown" 
-          name="region"
-          onChange={
-            e => setRname(e.target.value)
-          }
-          required
-        /> */}
+        
  
         
         
@@ -285,7 +277,7 @@ function Redirec(){
           : null
         }
                <label>
-<input list="browsers" name="myBrowser"placeholder="Gender"/></label>
+<input list="browsers" name="gender"placeholder="Gender"/></label>
 <datalist id="browsers">
   <option value="Male"/>
   <option value="Female"/>
@@ -298,7 +290,7 @@ function Redirec(){
 </datalist>
 
 <label>
-<input list="country" name="country"placeholder="Region"/></label>
+<input list="country" name="region"placeholder="Region"/></label>
 <datalist id="country">
   <option value="India"/>
   

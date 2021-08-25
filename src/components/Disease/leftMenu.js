@@ -50,23 +50,6 @@ const Side = props => {
                         <Link className="text-dark h6">Living with</Link>
                     </div>
                 </div>
-                {/* <div className="related mt-5">
-                    <div className="h4 pl-2 font-weight-bold">Related to {props.name}</div>
-                    <div className=" menu-item">
-                        <Link className="text-dark h6">Overview & Facts</Link>
-                    </div>
-                    <div className=" menu-item">
-                        <Link className="text-dark h6">Symptoms & Diagnosis</Link>
-                    </div>
-                    <div className=" menu-item">
-                        <Link className="text-dark h6">Treatment & Care</Link>
-                    </div>
-                    <div className=" menu-item">
-                        <Link className="text-dark h6">Living with</Link>
-                    </div>
-                </div> */}
-                {/* </div> */}
-                {/* <ul> */}
                 <div className="related mt-5">
                 <div className="h4 pl-2 font-weight-bold">Related to {props.name}</div>
                 {   
