@@ -110,7 +110,7 @@ function Redirec(){
 
     </form>
     <p id='p4'>
-      <a href="/loginForm/ResetPass" className="ml-5 pl-2">Forgot your password?</a>
+      <a href="/loginForm/verify" className="ml-5 pl-2">Forgot your password?</a>
     </p>
     {/* <Success/> */}
   </SlidingForm>
