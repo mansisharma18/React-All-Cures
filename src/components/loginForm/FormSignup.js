@@ -73,28 +73,17 @@ const setSecond = (event) => {
       headers: {
       "Content-Type": "application/x-www-form-urlencoded"
       }
-  });
-  console.log('props '+props)
-  console.log('status '+ res.status)
-  console.log('Statusssssssssssssssss ',status)
-  res.status === 404 
-    ? console.log('Showw Error')
-    : console.log('Redirect to page');
+  }).then(response => console.log(response))
+  .catch(res => console.log(res.data))
 
-  // res.status === 200
-  //   ? <Success/>
-  //   : <Success/>;
+    // setStatus(res.status);
+    // console.log('Statsus res ',res.status)
+  // const data = await res.text();
+  // console.log('dataaaaa ', res)
+    // !data.hasOwnProperty("error")
+    //   ? setMessage( 'success' )
+    //   : setError( true );
 
-    setStatus(res.status);
-    console.log('Statsus res ',res.status)
-  const data = await res.text();
-  console.log('dataaaaa ', res)
-    !data.hasOwnProperty("error")
-      ? setMessage( 'success' )
-      : setError( true );
-
-  setTimeout( () => console.log('Message ', message ), 1600 );
-  setTimeout( () => console.log('Error ', isError ), 1600 );
     } else {
       console.log('not posssiiibbbllleee')
     }
@@ -142,7 +131,7 @@ function Redirec(){
       setValidEmail(false)
       console.log('Enter valid email')
       // return(
-      //   <Alert variant="danger">Please enter valid email</Alert>
+      //   <Alert className="alert alert-danger">Please enter valid email</Alert>
       // )
     } else {
       setEmail(e.target.value)
@@ -203,11 +192,7 @@ function Redirec(){
           }
           required
         />
-        {
-          !validEmail && buttonClick === 1?
-          <Alert variant="danger">Enter Valid Email</Alert>
-            : null
-        }
+        
         <input 
           placeholder="Password" 
           type="password" 
@@ -218,20 +203,39 @@ function Redirec(){
           required
         />
         {
-          !validLength && buttonClick ===1?
-          <Alert variant="danger">Password should contain at least 8 characters</Alert>
-          : null
+          buttonClick === 1?
+          <div className="rounded alert-danger">
+            <div className="alert-msg">
+            {
+          !validEmail ?
+          <div>◼ Enter Valid Email! </div>
+            : null
         }
         {
-          !upperCase && buttonClick ===1?
-          <Alert variant="danger">Password should contain at least 1 uppercase character</Alert>
-          : null
+          !validLength?
+            <div>◼ Password should contain at least 8 characters! </div>          
+            : null
         }
         {
-          !lowerCase && buttonClick ===1?
-          <Alert variant="danger">Password should contain at least 1 lowercase character</Alert>
+          !upperCase?
+            <div>◼ Password should contain at least 1 uppercase character! </div>          
+            : null
+        }
+        {
+          !lowerCase?
+            <div>◼ Password should contain at least 1 lowercase character! </div>          
+            : null
+        }
+        {
+          !match?
+          <div>◼ Passwords don't match! </div>
           : null
         }
+        </div>
+        </div>
+        : null
+        }
+        
         <input 
           placeholder="Repeat Password" 
           type="password" 
@@ -242,11 +246,8 @@ function Redirec(){
           autoComplete="off"
           required
         />
-        {
-          !match && buttonClick === 1?
-          <Alert variant="danger">Passwords don't match</Alert>
-          : null
-        }
+        
+        
         {
           promo?
           <input 

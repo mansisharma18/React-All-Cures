@@ -102,7 +102,7 @@ function Redirec(){
       />
       <FormGroup>
         <FormControlLabel
-          control={<Checkbox name="Terms" value="on" required/>}
+          control={<Checkbox name="Terms" value="on"/>}
           label="Remember Me"
         />
       </FormGroup>

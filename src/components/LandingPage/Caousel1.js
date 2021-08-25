@@ -10,19 +10,18 @@ import Slider5 from "../../assets/img/slider-5.png";
 import Slider6 from "../../assets/img/slider-6.png";
 import { Link } from 'react-router-dom';
 
-
 const options = {
-   margin: 30,
+   margin: 20,
    responsiveClass: true,
    nav: true,
-   dots: false,
+   dots: true,
    autoplay: false,
    smartSpeed: 1000,
    responsive: {
        0: {
            items: 1,
        },
-       400: {
+       200: {
            items: 2,
        },
        600: {
@@ -33,19 +32,15 @@ const options = {
        },
        1000: {
            items: 5,
-
        }
    },
 };
 
 export default function Carousel1(props){
 
-
-
-
         return(
             <div className="tab-content category " style={{maxWidth:"1140px", zIndex: 0}}>
-                  <OwlCarousel className="owl-theme" items={6} loop margin={150} nav {...options}>
+                  <OwlCarousel className="owl-theme owl-loading" items={6} loop margin={150}  {...options}>
                   <div className="item bg-pink">
                         <Link to={ `/blogs/anemia` }>
                            <div className="item-img">
