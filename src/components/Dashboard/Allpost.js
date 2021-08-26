@@ -47,7 +47,6 @@ const AllPost = ({id, title, f_title, w_title,allPostsContent}) => {
                         </div>
                     
                     <div className="card-info">
-                        {/* <h6 className="card-subtitle mb-2 text-muted"></h6> */}
                         <div>{f_title}</div>
                         <div>{w_title}</div>
                     </div>

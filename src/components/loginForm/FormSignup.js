@@ -1,12 +1,19 @@
-import React, {useState} from 'react'
+import React, {useEffect, useState} from 'react'
 import { makeStyles } from '@material-ui/core/styles';
 
 import BrandButton from './styled/BrandButton'
 import SlidingForm from './styled/SlidingForm'
-import { Checkbox, FormGroup, FormControlLabel, Select, MenuItem , FormControl, InputLabel} from '@material-ui/core'
+import { Checkbox, FormGroup, FormControlLabel, Select, MenuItem , FormControl, InputLabel} from '@material-ui/core';
+import { Form } from "react-bootstrap";
+import { useHistory } from 'react-router-dom'
+
+import Radio from '@material-ui/core/Radio';
+import RadioGroup from '@material-ui/core/RadioGroup';
+import FormLabel from '@material-ui/core/FormLabel';
 import { Redirect } from 'react-router';
 import { Alert } from 'react-bootstrap';
 import { usePasswordValidation } from '../hooks/usePasswordValidation';
+import axios from 'axios';
 
 const FormSignup = () => {
 
@@ -27,7 +34,14 @@ const FormSignup = () => {
   const [message, setMessage] = useState("");
   const [isError, setError] = useState(false);
   const [status, setStatus] = useState("");
+  const [country, setCountry] = useState('')
+  const [countriesList,setCountriesList] = useState([])
+
   const [buttonClick, setClicked] = useState("");
+  const [region, setRname]= useState("");
+  const [gender, setGender]= useState("");
+  const [number, setMname]= useState("");
+  // const [form, setForm]= useState("");
 
   const [promo, setPromo] =useState(1)
   const [validEmail, setValidEmail] = useState()
@@ -69,32 +83,21 @@ const setSecond = (event) => {
       
      res = await fetch("/RegistrationActionController?", {
       method: "POST",
-      body: `firstname=${firstName}&lastname=${lastName}&email=${email}&psw=${password.firstPassword}&psw-repeat=${password.secondPassword}&rempwd=${rempwd}&doc_patient=${userType}&acceptTnc=${terms}`,
+      body: `firstname=${firstName}&lastname=${lastName}&email=${email}&psw=${password.firstPassword}&psw-repeat=${password.secondPassword}&rempwd=${rempwd}&doc_patient=${userType}&acceptTnc=${terms}&number=${number}&gender=${gender}&region=${country}`,
       headers: {
       "Content-Type": "application/x-www-form-urlencoded"
       }
-  });
-  console.log('props '+props)
-  console.log('status '+ res.status)
-  console.log('Statusssssssssssssssss ',status)
-  res.status === 404 
-    ? console.log('Showw Error')
-    : console.log('Redirect to page');
+  }).then(response => console.log(response))
+  .catch(res => console.log(res.data))
 
-  // res.status === 200
-  //   ? <Success/>
-  //   : <Success/>;
+    // setStatus(res.status);
+    // console.log('Statsus res ',res.status)
+  // const data = await res.text();
+  // console.log('dataaaaa ', res)
+    // !data.hasOwnProperty("error")
+    //   ? setMessage( 'success' )
+    //   : setError( true );
 
-    setStatus(res.status);
-    console.log('Statsus res ',res.status)
-  const data = await res.text();
-  console.log('dataaaaa ', res)
-    !data.hasOwnProperty("error")
-      ? setMessage( 'success' )
-      : setError( true );
-
-  setTimeout( () => console.log('Message ', message ), 1600 );
-  setTimeout( () => console.log('Error ', isError ), 1600 );
     } else {
       console.log('not posssiiibbbllleee')
     }
@@ -142,7 +145,7 @@ function Redirec(){
       setValidEmail(false)
       console.log('Enter valid email')
       // return(
-      //   <Alert variant="danger">Please enter valid email</Alert>
+      //   <Alert className="alert alert-danger">Please enter valid email</Alert>
       // )
     } else {
       setEmail(e.target.value)
@@ -150,6 +153,18 @@ function Redirec(){
       console.log('validEmail')
     }
   }
+
+  const getCountries = () => {
+    axios.get('/article/all/table/countries')
+    .then(res => {
+        setCountriesList(res.data)
+    })
+    .catch(err => console.log(err))
+}
+
+useEffect(() => {
+  getCountries()
+}, [])
   const handleTermsCheckbox = (event) => {
     setTerms(event.target.value)
   };
@@ -162,7 +177,7 @@ function Redirec(){
   }
   const classes = useStyles();
 
-  console.log(firstName, lastName, password, email, terms, policy, userType)
+  console.log(firstName, lastName, password, email, terms, policy, userType, number)
   return(
     
     <SlidingForm signup className="text-center">
@@ -203,11 +218,7 @@ function Redirec(){
           }
           required
         />
-        {
-          !validEmail && buttonClick === 1?
-          <Alert variant="danger">Enter Valid Email</Alert>
-            : null
-        }
+        
         <input 
           placeholder="Password" 
           type="password" 
@@ -217,21 +228,50 @@ function Redirec(){
           }
           required
         />
+        {/* <input 
+          placeholder="Region" 
+          type="dropdown" 
+          name="region"
+          onChange={
+            e => setRname(e.target.value)
+          }
+          required
+        /> */}
+ 
         {
-          !validLength && buttonClick ===1?
-          <Alert variant="danger">Password should contain at least 8 characters</Alert>
-          : null
+          buttonClick === 1?
+          <div className="rounded alert-danger">
+            <div className="alert-msg">
+            {
+          !validEmail ?
+          <div>◼ Enter Valid Email! </div>
+            : null
         }
         {
-          !upperCase && buttonClick ===1?
-          <Alert variant="danger">Password should contain at least 1 uppercase character</Alert>
-          : null
+          !validLength?
+            <div>◼ Password should contain at least 8 characters! </div>          
+            : null
         }
         {
-          !lowerCase && buttonClick ===1?
-          <Alert variant="danger">Password should contain at least 1 lowercase character</Alert>
+          !upperCase?
+            <div>◼ Password should contain at least 1 uppercase character! </div>          
+            : null
+        }
+        {
+          !lowerCase?
+            <div>◼ Password should contain at least 1 lowercase character! </div>          
+            : null
+        }
+        {
+          !match?
+          <div>◼ Passwords don't match! </div>
           : null
         }
+        </div>
+        </div>
+        : null
+        }
+        
         <input 
           placeholder="Repeat Password" 
           type="password" 
@@ -242,12 +282,18 @@ function Redirec(){
           autoComplete="off"
           required
         />
-        {
-          !match && buttonClick === 1?
-          <Alert variant="danger">Passwords don't match</Alert>
-          : null
-        }
-        {
+        
+        <input 
+          placeholder="Mobile Number" 
+          type="number" 
+          name="text"
+          onChange={
+            e => setMname(e.target.value)
+          }
+          required
+        />
+        
+        {/* {
           promo?
           <input 
           placeholder="Promo Code" 
@@ -257,7 +303,44 @@ function Redirec(){
           disabled
           />
           : null
-        }
+        } */}
+        <Form.Group className="col-md-12 float-left" >
+          <FormControl component="fieldset">
+      <FormLabel component="legend" className="text-dark">Gender</FormLabel>
+      <RadioGroup value={gender.toString()} onChange={(e) => {setGender(e.target.value); console.log(e.target.value)}}
+      >
+        <FormControlLabel className="col-md-1" value="1" control={<Radio />} label="Female" />
+        <FormControlLabel className="col-md-1" value="2" control={<Radio />} label="Male" />
+        <FormControlLabel className="col-md-1" value="3" control={<Radio />} label="Other" />
+      </RadioGroup>
+      
+    </FormControl>
+    </Form.Group>
+{/* 
+    <label htmlFor="">Country</label>
+                 <select name="country" value={country} onChange={(e) => setCountry(e.target.value)} placeholder="Country" required="" class="form-control">
+                     
+                     {countriesList.map((lan) => {
+                       console.log('Country: ', country)
+                         return (
+                             <option value={lan[0]}>{lan[1]}</option>
+                         )
+                     })}
+                     
+                 </select> */}
+                 <Form.Group className="col-md-12 float-left">
+                    <Form.Label>Country</Form.Label>
+                    <Form.Control as="select" value={country} name="countryId" custom
+                    onChange={(e)=> setCountry(e.target.value)} placeholder="Country" required>
+                    <option>Open this menu</option>
+                                                    {countriesList.map((i) => (  
+                                                        <option
+                                                            value={i[0]}>
+                                                            {i[1]}
+                                                            </option>
+                                                    ))}
+                                            </Form.Control>
+                                        </Form.Group>
         
 
         <FormControl className={classes.formControl}>

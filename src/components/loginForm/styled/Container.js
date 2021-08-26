@@ -383,7 +383,8 @@ margin-left: 90px;
 }
 }
 
-
-
+.alert-msg{
+  margin:0.35rem;
+}
 
 `

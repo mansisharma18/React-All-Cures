@@ -21,6 +21,7 @@ class Disease extends Component {
   }
     
   componentDidMount() {
+    
     // console.log('Paramsssss '+ JSON.stringify(this.state.param))
     fetch(`/article/${this.props.match.params.id}`)
     // .then(res => JSON.parse(res))
@@ -31,6 +32,7 @@ class Disease extends Component {
           isLoaded: true,
           items: json,
         });
+        document.title = `All Cures | ${json.data.title}`
       });
   }
   // componentDidUpdate(props) {

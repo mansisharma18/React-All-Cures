@@ -12,6 +12,7 @@ import FormLabel from '@material-ui/core/FormLabel';
 import Input from '@material-ui/core/Input';
 import MenuItem from '@material-ui/core/MenuItem';
 import Select from '@material-ui/core/Select';
+import { Alert } from 'bootstrap';
 
 const EditProfile = (props) => {
   const [personName, setPersonName] = React.useState([]);
@@ -34,13 +35,7 @@ const EditProfile = (props) => {
     const [about, setAbout] = useState(item.about)
     const [diseaseList, setDiseaseList] = useState([])
     const [hospitalList, setHospitalList] = useState([])
-
-    const history = useHistory();
-
-    const routeChange = (docid) =>{ 
-        let path = `/profile/${docid}`; 
-        history.replace(path);
-    }
+    const [submitAlert, setSubmitAlert] = useState(false)
 
     const formSubmit = (e) => {
         e.preventDefault()
@@ -61,10 +56,11 @@ const EditProfile = (props) => {
         })
         .then(res => {
             console.log(res)
+            setSubmitAlert(true)
             setTimeout(() => {
-              window.location.reload()
-            }, 1000);
-            // window.location.reload()
+              setSubmitAlert(false)
+            }, 5000);            
+            props.fetchDoctor(props.id)
         })
         .catch(res => {
             console.error(res)
@@ -93,6 +89,7 @@ const EditProfile = (props) => {
   }
     
     return (
+      <>
       <Modal
         {...props}
         size="lg"
@@ -223,12 +220,21 @@ const EditProfile = (props) => {
             We never share your details without your consent.
           </p>
         </Modal.Body>
+        {
+        submitAlert === true?
+          <div className="h5 submit-popup alert alert-success pb-2">Profile Updated Successfully!
+          <button onClick={()=> setSubmitAlert(false)} className="btn pr-0"><i className="fa-2x fas fa-times-circle"></i></button></div>
+          : null
+      }
         <Modal.Footer>
           <Button onClick={props.onHide}>Close</Button>
           <Button variant="dark" type="submit">Submit</Button>
         </Modal.Footer>
         </form>
+        
       </Modal>
+      
+      </>
     );
   }
 

@@ -3,9 +3,7 @@ import Footer from '../Footer/Footer';
 import { Link } from 'react-router-dom';
 import Cookies from 'js-cookie';
 import Heart from"../../assets/img/heart.png";
-import Doct from "../../assets/img/doct.png";
 import axios from 'axios';
-import { Dropdown, DropdownButton } from 'react-bootstrap';
 import '../../assets/healthcare/css/main.css';
 import '../../assets/healthcare/css/responsive.css';
 import '../../assets/healthcare/css/animate.css';
@@ -16,6 +14,8 @@ import Carousel2 from './Carousel2';
 import CarouselReview from './CarouselReview';
 // import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 // import ToggleButton from '../Header/Header'
+
+
 
 class Home extends Component {
    constructor(props){
@@ -288,13 +288,15 @@ onChangeHandlerdoctor = (e, text) => {
                </div>
             </div>
             <div className="row">
+            <div class='nav-btn prev-slide'></div><div class='nav-btn next-slide'></div>
                <Carousel2/>
             </div>
+           
          </div>
       </section>
       
 
-      <section className="consultunt">
+      {/* <section className="consultunt">
          <div className="container">
             <div className="row">
                <div className="consultunt-inner">
@@ -306,7 +308,7 @@ onChangeHandlerdoctor = (e, text) => {
                </div>
             </div>
          </div>
-      </section>
+      </section> */}
       <section className="doctor">
          <div className="container">
             <div className="row">
@@ -320,7 +322,7 @@ onChangeHandlerdoctor = (e, text) => {
             </div>
          </div>
       </section><br/><br/>
-      <section className="partner">
+      {/* <section className="partner">
          <div className="container">
             <div className="row">
                <div className="partnerBG">
@@ -331,8 +333,8 @@ onChangeHandlerdoctor = (e, text) => {
                </div>
             </div>
          </div>
-      </section>
-      <section className="testomonial" id="testimonials">
+      </section> */}
+      {/* <section className="testomonial" id="testimonials">
          <div className="container">
             <div className="row">
                <div className="comman-heading">
@@ -342,11 +344,11 @@ onChangeHandlerdoctor = (e, text) => {
             <div className="row">
                <CarouselReview/>
                    
-            </div>
-         {/* </div> */}
+            </div> 
+       
          </div>
-      </section>
-      <section className="appStore" >
+      </section> */}
+      {/* <section className="appStore" >
          <div className="container">
             <div className="row">
                <div className="appStoreBg clearfix" style={{display:"flex",width: "100%",flexWrap: 'wrap'}}>
@@ -378,7 +380,7 @@ onChangeHandlerdoctor = (e, text) => {
                </div>
             </div>
          </div>
-      </section>
+      </section> */}
       <Footer/>
       </div>
       
@@ -390,26 +392,29 @@ function ToggleButton(props) {
    if(props.acPerm){
        return(
          <li className="dropdown">
-         <a className="dropdown-toggle" data-toggle="dropdown" href="#">
+         <button className="btn header-drop" data-toggle="dropdown">
              <i className="fa fa-user fa-2x"></i> 
-         </a>
+         </button>
          <ul className="dropdown-menu dropdown-user">
-             <li><a href="/dashboard" className="dropdown-item">Dashboard</a>
-             </li>
+            {
+               props.acPerm?
+                  <>
+                     <li>
+                        <Link className="dropdown-item" to={`/profile/${props.acPerm.split('|')[0]}`}>
+                           Profile
+                        </Link>
+                     </li>
+                     <li><Link to="/dashboard" className="dropdown-item">Dashboard</Link>
+                     </li>
+                  </>
+               : null
+            }
+             
              <li className="divider"></li>
-             <li><a onClick={props.logout} className="dropdown-item"> Logout</a>
+             <li><button onClick={props.logout} className="dropdown-item"> Logout</button>
              </li>
          </ul>
-       </li>  
-         // <DropdownButton style={{background: 'white'}} title="Welcome !">
-         //    <Dropdown.Item >
-         //    <Link to="/dashboard">
-         //       Dashboard
-         //   </Link>
-         //    </Dropdown.Item>
-         //    <Dropdown.Item onClick={props.logout}>Logout</Dropdown.Item>
-         // </DropdownButton>
-           
+       </li>             
        );
    }
    return(
@@ -419,10 +424,6 @@ function ToggleButton(props) {
       >
          Sign in/Sign up
       </Link>
-
-      //  <Link to="/login" className="btn-white loginSignbtn color-blue-dark" >
-      //      Sign In/ Sign Up
-      //  </Link>
    )
 }
 

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Button, Accordion, Card, Container, Form, Alert } from 'react-bootstrap';
-import { Checkbox, FormGroup, FormControlLabel, Select, MenuItem , FormControl, InputLabel} from '@material-ui/core'
+import { Checkbox, FormControlLabel } from '@material-ui/core'
 
 import Cookies from 'js-cookie';
 import './article.css'
@@ -8,7 +8,7 @@ import Carousel from './Carousel'
 import EditorJs from 'react-editor-js';
 import { EDITOR_JS_TOOLS } from './tools';
 import Options from './Options';
-import Header from '../Header/Header';
+// import Header from '../Header/Header';
 import Footer from '../Footer/Footer';
 
 export default class Test extends Component {
@@ -20,11 +20,7 @@ export default class Test extends Component {
         this.handleChange = this.handleChange.bind(this);
         this.instanceRef = React.createRef();
         this.handleSave = this.handleSave.bind(this);
-        // this.renderStatus = this.renderStatus.bind(this)
-        // this.submitForm = this.submitForm.bind(this);
-        // this.handleClick().bind(this)
         this.state = {
-            // acPerm: Cookies.get('acPerm'),
             acPerm: Cookies.get('acPerm'),
             isLoggedIn: false,
             ac: '',
@@ -62,7 +58,6 @@ export default class Test extends Component {
 
     handleSubmit() {
         this.setState({ShowSubmitAlert: true});
-        // this.state.articleValues.title = null;
     }
 
     handleErrorSubmit(){
@@ -93,6 +88,7 @@ export default class Test extends Component {
     }
     
     componentDidMount(){
+        document.title = 'All Cures | Article'
         Promise.all([
 
             fetch('/article/all/table/languages').then(res => res.json()),
@@ -119,7 +115,6 @@ export default class Test extends Component {
             console.error(res)
         })
     }
-    // ARTICLE FORM SUBMIT
 
     submitArticleForm = async e => {
         e.preventDefault();
@@ -214,7 +209,6 @@ export default class Test extends Component {
 
       let articleHTML = '';
 
-    // RENDER DIFFERENT TYPES OF DATA
     
 savedData.blocks.map(obj => {
 switch (obj.type) {
@@ -368,7 +362,6 @@ document.getElementById('articlePreview').innerHTML=articleHTML;
                         <option>Open this select menu</option>
                         <option value="1">Work in Progress</option>
                         <option value="2">Review</option>
-                        {/* <option value="3" disabled>Publish</option> */}
                     </Form.Control>                       
                 </Form.Group>
             )
@@ -412,7 +405,6 @@ document.getElementById('articlePreview').innerHTML=articleHTML;
       );
     } else if(isLoaded){
         
-        // console.log('Promo COde article page: ', this.props.location.state.promoCode)
     return (
         <div>
             {/* <Header/> */}
@@ -500,9 +492,7 @@ document.getElementById('articlePreview').innerHTML=articleHTML;
                                     </Form.Group>
 
                                     {this.renderStatus()}
-                                   
-                                        
-                                        
+                                          
                                     
                                     <Form.Group className="col-md-6 float-left">
                                         <Form.Label>Language</Form.Label>

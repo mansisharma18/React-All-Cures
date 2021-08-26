@@ -24,6 +24,7 @@ class Profile extends Component {
     super(props);
     const params = props.match.params
     this.editToggle = this.editToggle.bind(this)
+    this.fetchDoctorData = this.fetchDoctorData.bind(this)
     this.state = { 
       items: [],
       commentItems: [],
@@ -49,9 +50,9 @@ class Profile extends Component {
     .catch(err => console.log(err))
     console.log('closed');
   }
-
-  fetchDoctorData() {
-    fetch(`/DoctorsActionController?docid=${this.state.param.id}&cmd=getProfile`)
+  
+  fetchDoctorData = (id) => {
+    fetch(`/DoctorsActionController?docid=${id}&cmd=getProfile`)
       // .then(res => JSON.parse(res))
       .then((res) => res.json())
       .then((json) => {
@@ -76,7 +77,8 @@ class Profile extends Component {
   }
 
   componentDidMount() {
-    this.fetchDoctorData()
+    document.title = "All Cures | Profile"
+    this.fetchDoctorData(this.state.param.id)
     this.getComments()
   }
 
@@ -151,7 +153,7 @@ class Profile extends Component {
                             <div className="h5 ">{items.primary_spl}</div>
                             <div className="h5 ">{items.experience}</div>
                             <div className="h5 ">
-                              {items.hospital_affliated} {items.statename}{" "}
+                              {items.hospital_affliated}{" "}
                               {items.country_code}
                             </div>
                             {/* <!--  <button onclick="loadUsers()">Click</button> --> */}
@@ -189,32 +191,13 @@ class Profile extends Component {
                               </Button>
                               : null
                             }
-                            
-
       <EditProfile
         show={this.state.modalShow}
         onHide={() => this.setModalShow(false)}
         items={items}
         fetchDoctor = {this.fetchDoctorData}
+        id={this.state.param.id}
       />
-      {/* <Button variant="primary" onClick={this.handleShow}>
-        Launch demo modal
-      </Button> */}
-
-      {/* <Modal show={this.state.show} onHide={this.handleClose}>
-        <Modal.Header closeButton>
-          <Modal.Title>Modal heading</Modal.Title>
-        </Modal.Header>
-        <Modal.Body>Woohoo, you're reading this text in a modal!</Modal.Body>
-        <Modal.Footer>
-          <Button variant="secondary" onClick={this.handleClose}>
-            Close
-          </Button>
-          <Button variant="primary" onClick={this.handleClose}>
-            Save Changes
-          </Button>
-        </Modal.Footer>
-      </Modal> */}
                           </div>
                         </div>
                       </div>
@@ -260,8 +243,8 @@ class Profile extends Component {
                       </ul>
                     </div>
                     <br />
-                    <div className="abt-articles d-grid">
-                        <div className="h4 font-weight-bold">Articles Published</div>
+                    {/* <div className="abt-articles d-grid">
+                        <div className="h4 font-weight-bold">Articles Published</div> */}
                     {/* <div class="row">
                       <div class="col-sm m-1 card ">
                         <div className="img-wrapper">
@@ -299,8 +282,18 @@ class Profile extends Component {
                       </div>
                     </div> */}
                    
-                    </div>
-                    
+                    {/* </div> */}
+                    <div className="abt-eduction ">
+                    <div className="h4 font-weight-bold">Miscellaneous
+                      </div>
+                        <div className="h6">Accepts Insurance: 
+                        {
+                          items.insurance_accept === true?
+                          <span> <i class="fa fa-check" style={{color: 'green'}} aria-hidden="true"></i></span>
+                          : <span> <i class="fas fa-times-circle " style={{color: 'red'}}></i></span>
+                        }
+                        </div>
+                      </div>
                     {/* <div className="abt-eduction">
                       <h2>Education</h2>
                       <p>{items.edu_training}</p>
@@ -476,7 +469,7 @@ class Profile extends Component {
                             )
                           })}
                           
-                          <div className="rating-patient">
+                          {/* <div className="rating-patient">
                             <div className="rating-patient-grid clearfix">
                               <div className="paitent-profile">
                                 {" "}
@@ -535,8 +528,8 @@ class Profile extends Component {
                                 </ul>
                               </div>
                             </div>
-                          </div>
-                          <div className="rating-patient">
+                          </div> */}
+                          {/* <div className="rating-patient">
                             <div className="rating-patient-grid clearfix">
                               <div className="paitent-profile">
                                 {" "}
@@ -595,8 +588,8 @@ class Profile extends Component {
                                 </ul>
                               </div>
                             </div>
-                          </div>
-                          <div className="rating-patient">
+                          </div> */}
+                          {/* <div className="rating-patient">
                             <div className="rating-patient-grid clearfix">
                               <div className="paitent-profile">
                                 {" "}
@@ -655,7 +648,7 @@ class Profile extends Component {
                                 </ul>
                               </div>
                             </div>
-                          </div>
+                          </div> */}
 
                           
                           <div className="rating-footer">
@@ -678,7 +671,7 @@ class Profile extends Component {
                               Read more Reviews
                             </a>{" "}
                           </div>
-                          <div className="faqs" id="faq">
+                          {/* <div className="faqs" id="faq">
                             <div className="faqs-wrap">
                               <div className="question">
                                 <h2>
@@ -728,11 +721,11 @@ class Profile extends Component {
                                 </p>
                               </div>
                             </div>
-                          </div>
+                          </div> */}
                           <div className="rating-footer">
                             <div className="back-top">
                               {" "}
-                              <a href=" #">
+                              {/* <a href=" #">
                                 <p>
                                   <i
                                     className="fa fa-angle-up"
@@ -740,24 +733,24 @@ class Profile extends Component {
                                   ></i>{" "}
                                   Back to Top
                                 </p>
-                              </a>{" "}
+                              </a>{" "} */}
                             </div>
-                            <a
+                            {/* <a
                               href="//#"
                               className="read-more-rating"
                             >
                               Read more Reviews
-                            </a>{" "}
+                            </a>{" "} */}
                           </div>
                         </div>
                       </div>
                       <div id="recomended" className="tab-pane fade">
-                        <h3>Menu 1</h3>
-                        <p>
+                        {/* <h3>Menu 1</h3> */}
+                        {/* <p>
                           Ut enim ad minim veniam, quis nostrud exercitation
                           ullamco laboris nisi ut aliquip ex ea commodo
                           consequat.
-                        </p>
+                        </p> */}
                       </div>
                     </div>
                   </div>

@@ -36,6 +36,7 @@ export default function UpdatePromo(props){
     }
 
     useEffect(() => {
+        document.title = "All Cures | Dashboard | Update Promo"
         fetchPromo();
     }, [])
 

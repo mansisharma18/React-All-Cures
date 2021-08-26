@@ -278,7 +278,7 @@
 }
 .autocomplete #search {
   position: absolute;
-  z-index: 1;
+  z-index: 0;
   right: 6.4rem;
   top: 0.5rem;
   border-radius: 2rem;
@@ -316,3 +316,13 @@
   z-index: 2;
   position: relative;
 } */
+
+.header-drop {
+  background-color: #00415e;
+  padding: 0.6rem 0.8rem;
+  color: white;
+}
+
+.header-drop i {
+  color: #fff;
+}
