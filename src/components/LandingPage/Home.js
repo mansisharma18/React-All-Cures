@@ -40,18 +40,24 @@ class Home extends Component {
 
  componentWillMount(){
    const loadUsers = async () => {
-      const response = await axios.get('/city/all');
-      this.setState ({
-         users: response.data
+      await axios.get('/city/all')
+      .then(res => {
+         this.setState ({
+            users: res.data
+         })
       })
+      .catch(res => console.log(res))
     }
     loadUsers();
 
    const loaddoctor = async () => {
-      const response = await axios.get('/IntegratedActionController')
-      this.setState ({
-         doctor: response.data
+      await axios.get('/IntegratedActionController')
+      .then(res => {
+         this.setState ({
+            doctor: res.data
+         })
       })
+      .catch(res =>  console.log(res))
     }
     loaddoctor();
  }
