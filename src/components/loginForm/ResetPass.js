@@ -5,7 +5,7 @@ import { usePasswordValidation } from "../hooks/usePasswordValidation";
 import { Alert,Form, Dropdown, DropdownButton } from 'react-bootstrap';
 import Footer from '../Footer/Footer';
 import Heart from"../../assets/img/heart.png";
-import { useHistory, Link} from 'react-router-dom'
+import { useHistory, Link, Redirect} from 'react-router-dom'
 import axios from 'axios';
 import history from '../history'
 import { useParams } from "react-router-dom";
@@ -54,15 +54,20 @@ const[email,setEmail] = useState('');
 
     const submitForm = async (e) => {
         e.preventDefault()
+       
         setSubmitAlert(true)    
         if(validLength && upperCase && lowerCase && match && password.firstPassword){
             axios.put(`/users/updatepassword`, {
                 "updated_password": password.firstPassword,
-                "email": email.Mail,
+                "email": email,
                 })
             .then(res => {
                 if(res.data =="1"){
-                    history.push("/home");
+                    setAlert(true)
+                setTimeout(()=>{
+                    window.location.href="/home";
+                },1000)
+               
           
             }else if(res.data == "Sorry, the email address you entered does not exist in our database."){
                 noAlert(true)
@@ -88,16 +93,18 @@ const[email,setEmail] = useState('');
     }
     
     useEffect(() => {
-        const params = new URLSearchParams(window.location.search);
-        const getEmail= params.get('em');
-        setEmail(getEmail)
-         console.log(getEmail);
+
+        // const params = new URLSearchParams(location.search);
+        // const getEmail= params.get('em');
+      
+       const getEmail = props.location.search
+       
          axios.post(`/users/getemdecrypt`,
          {
-             "email":getEmail
+             "email":getEmail.split('em=')[1]
          })
-         .then(res =>{
-             console.log(res.data);
+         .then(res => {
+            setEmail(res.data)
          })
          
         }, [])
