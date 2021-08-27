@@ -72,24 +72,7 @@ const CenterWell = ({content, type, text, title, message, source, embed, caption
                                 </div>
                             </div>,
                                 
-                    // 'table': <div class="container">
-                    //             <table class="tc-table text-center">
-                    //                 <tbody>
-                    //                     <tr style={{border: '1px solid #ebebeb'}}>
-                    //                         <td class="tc-table__cell">
-                    //                             <div class="tc-table__area">
-                    //                                 <div class="text-center" contenteditable="true">{content[0]}</div>
-                    //                             </div>
-                    //                         </td>
-                    //                         <td class="tc-table__cell">
-                    //                             <div class="tc-table__area">
-                    //                                 <div class="text-center" contenteditable="true">{content[1]}</div>
-                    //                             </div>
-                    //                         </td>
-                    //                     </tr>
-                    //                 </tbody>
-                    //             </table>
-                    //         </div>,
+                   
                 }[type]
             }
         </div>

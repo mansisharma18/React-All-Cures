@@ -57,15 +57,6 @@ class Search extends Component {
         })            
       });
     }
-    // fetch(`/SearchActionController?cmd=getResults&city=${this.state.param.city}&doctors=${this.state.param.name}&Latitude=&Longitude=`)
-    //   .then(res => res.json())
-    //   .then(json => {
-    //     console.log(json.map.DoctorDetails.myArrayList);
-    //     this.setState({
-    //       isLoaded: true,
-    //       items: json.map.DoctorDetails.myArrayList,
-    //     })            
-    //   });
   }
 
   render() {

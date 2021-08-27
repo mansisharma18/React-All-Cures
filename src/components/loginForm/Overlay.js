@@ -6,8 +6,9 @@ const WelcomeOverlay = ({ toggleMode, mode }) => (
   <InnerLogin className="inner">
     <h1 id='he3'>Welcome Back!</h1>
     <p id='p3'>To keep connected <span><br></br></span> with us please login with <span><br></br></span>your personal info</p>
-    <button id='b3' onClick={toggleMode}>
-      <span>Sign up</span>
+    <h3 id='he3'>OR</h3>
+    <button id='b1' onClick={toggleMode}>
+       <span>Sign up</span>
     </button>
   </InnerLogin>
 )

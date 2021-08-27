@@ -4,27 +4,19 @@ import Footer from '../Footer/Footer'
 
 import { Container } from "react-bootstrap";
 import AllPost from './Allpost';
-// import {Link } from 'react-router-dom'
-// import CenterWell from './CenterWell';
-// import Sidebar from "./leftMenu";
-// import SidebarRight from "./RightMenu";
-// import { render } from '@testing-library/react';
+
 
 export default class Blogpage extends Component{
     constructor(props) {
         super(props);
-        // const params = props.match.params
         this.state = { 
           items: [],
           isLoaded: false,
-        //   param : params
         };
       }
     
       componentDidMount() {
-        // console.log('Paramsssss '+ JSON.stringify(this.state.param))
         fetch(`/article/all`)
-          // .then(res => JSON.parse(res))
           .then((res) => res.json())
           .then((json) => {
             console.log(json);
@@ -49,12 +41,6 @@ export default class Blogpage extends Component{
         </>  
       );
     } else if(isLoaded){
-        // console.log(items);
-        // var artContent = items.content;
-        // var a = JSON.parse(artContent)
-        // console.log("article Content:", artContent)
-        // var b = a.blocks
-        // console.log("aaaaaaaaaa", a.blocks)
         return(
             <>
             <Header/>

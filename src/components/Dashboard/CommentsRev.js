@@ -213,16 +213,10 @@ render(){
                                   selected={selectedCheckboxes.includes(item.rate_id)}
                                   className="check"
                                   defaultChecked={item.reviewed}
-                                //  onChange={this.toggleChange}
+                                
                                   
                                 />
-                                
-                                
-
                               </div>
-                              
-
-                              
                               : <input type = "checkbox"
                               onChange={() => this.onChange(item.rate_id)}
                               selected={selectedCheckboxes.includes(item.rate_id)}
@@ -232,10 +226,6 @@ render(){
                             />
                         }
                               
-                              
-                             
-                             
-
                               <div className="patient-msg">
                               
                                 <p>{item.rate_id}</p>
@@ -245,8 +235,6 @@ render(){
                               </>
                             )
                           })}
-                          {/* <p>Selected checkboxes: {JSON.stringify(selectedCheckboxes)}</p>
-                          <p>unselected checkboxes: {JSON.stringify(unselectedCheckboxes)}</p> */}
                          
                           <div>
                                 

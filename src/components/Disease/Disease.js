@@ -35,19 +35,7 @@ class Disease extends Component {
         document.title = `All Cures | ${json.data.title}`
       });
   }
-  // componentDidUpdate(props) {
-  //   // console.log('Paramsssss '+ JSON.stringify(this.state.param))
-  //   fetch(`/article/${this.props.match.params.id}`)
-  //   // .then(res => JSON.parse(res))
-  //     .then((res) => res.json())
-  //     .then((json) => {
-  //       console.log(json);
-  //       this.setState({
-  //         isLoaded: true,
-  //         items: json,
-  //       });
-  //     });
-  // }
+ 
   
   handleChange = e => {
     this.setState({
@@ -79,33 +67,6 @@ class Disease extends Component {
     <div>
       <Header/>
         <div style={{height: "8rem", borderBottom: "1px solid #4b798d", borderTop: "1px solid #4b798d"}}></div>
-        {/* <HeaderAd style={ {height: "10rem", display: "inline-block"}} /> */}
-        {/* <Navbar  bg="blue" expand="lg">
-          <Navbar.Brand href="#home">React-Bootstrap</Navbar.Brand>
-          <Navbar.Toggle aria-controls="basic-navbar-nav" />
-          <Navbar.Collapse id="basic-navbar-nav">
-            <Nav className="mr-auto">
-              <Nav.Link href="#home">Home</Nav.Link>
-              <Nav.Link href="#link">Link</Nav.Link>
-              <NavDropdown title="Dropdown" id="basic-nav-dropdown">
-                <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
-                <NavDropdown.Item href="#action/3.2">Another action</NavDropdown.Item>
-                <NavDropdown.Item href="#action/3.3">Something</NavDropdown.Item>
-                <NavDropdown.Divider />
-                <NavDropdown.Item href="#action/3.4">Separated link</NavDropdown.Item>
-              </NavDropdown>
-            </Nav>
-            <Form inline>
-              <FormControl type="text" variant="outline-success" onChange={this.handleChange} placeholder="Search" className="mr-sm-2" required aria-required="true"/>
-              <Link
-                className="btn btn-outline-success" 
-                id="search"
-                to={`/blogs/${this.state.disease}`}>
-                  Search
-              </Link>
-            </Form>
-          </Navbar.Collapse>
-        </Navbar> */}
         <Row>
           <Col md={2} id="sidebar-wrapper">      
             <Sidebar diseaseId={items.disease_condition_id} name={items.dc_name} />
