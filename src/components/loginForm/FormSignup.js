@@ -78,7 +78,7 @@ const setSecond = (event) => {
     setClicked(1);
     var res;
     if(validEmail && upperCase && lowerCase && match){
-      axios.post(`/RegistrationActionController?firstname=${firstName}&lastname=${lastName}&email=${email}&psw=${password.firstPassword}&psw-repeat=${password.secondPassword}&rempwd=${rempwd}&doc_patient=${userType}&acceptTnc=${terms}&number=${number}&gender=${gender}&region=${country}`
+      axios.post(`/RegistrationActionController?firstname=${firstName}&lastname=${lastName}&email=${email}&psw=${password.firstPassword}&psw-repeat=${password.secondPassword}&rempwd=${rempwd}&doc_patient=${userType}&acceptTnc=${terms}&number=${number}`
     ) .then(response => {
       if(response.data == 'Email Address already Exists in the System'){
         setExists(true);
