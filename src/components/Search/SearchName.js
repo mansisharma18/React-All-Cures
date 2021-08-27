@@ -24,6 +24,7 @@ class SearchName extends Component {
   }
     // USE if statement
   componentDidMount() {
+    document.title = `All Cures | Search | ${this.state.param.name}`
       fetch(`/SearchActionController?cmd=getResults&city=&doctors=${this.state.param.name}&Latitude=32.7266&Longitude=74.8570`)
       .then(res => res.json())
       .then(json => {

@@ -46,9 +46,11 @@ export default class Blogpage extends Component{
       
       componentDidMount() {
         if(this.state.param.type){
+          document.title = `All Cures | Blogs | ${this.state.param.type}`
           console.log('Disease Post executed')
           this.diseasePosts()
         } else {
+          document.title = "All Cures | Blogs"
           console.log('All Post executed')
           this.allPosts()
         }

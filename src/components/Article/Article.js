@@ -88,6 +88,7 @@ export default class Test extends Component {
     }
     
     componentDidMount(){
+        document.title = 'All Cures | Article'
         Promise.all([
 
             fetch('/article/all/table/languages').then(res => res.json()),
