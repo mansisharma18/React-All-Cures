@@ -12,6 +12,7 @@ import './custom.css';
 import Carousel1 from './Caousel1';
 import Carousel2 from './Carousel2';
 import CarouselReview from './CarouselReview';
+import { Dropdown, DropdownButton, Nav } from 'react-bootstrap';
 // import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 // import ToggleButton from '../Header/Header'
 
@@ -397,31 +398,28 @@ onChangeHandlerdoctor = (e, text) => {
 function ToggleButton(props) {
    if(props.acPerm){
        return(
-         <li className="dropdown">
-         <button className="btn header-drop" data-toggle="dropdown">
-             <i className="fa fa-user fa-2x"></i> 
-         </button>
-         <ul className="dropdown-menu dropdown-user">
-            {
-               props.acPerm?
-                  <>
-                     <li>
-                        <Link className="dropdown-item" to={`/profile/${props.acPerm.split('|')[0]}`}>
-                           Profile
-                        </Link>
-                     </li>
-                     <li><Link to="/dashboard" className="dropdown-item">Dashboard</Link>
-                     </li>
-                  </>
-               : null
-            }
-             
-             <li className="divider"></li>
-             <li><button onClick={props.logout} className="dropdown-item"> Logout</button>
-             </li>
-         </ul>
-       </li>             
-       );
+         <div>
+         <Dropdown>
+           <Dropdown.Toggle  className="header-drop">
+           <i className="fa fa-user fa-2x"></i> 
+           </Dropdown.Toggle>
+           <Dropdown.Menu>
+             <Dropdown.Item>
+             <Link  className="text-dark btn" to={`/profile/${props.acPerm.split('|')[0]}`}>
+                               Profile
+                      </Link>
+             </Dropdown.Item>
+             <Dropdown.Item >
+             <Link to="/dashboard" className="text-dark btn">
+                Dashboard</Link>
+             </Dropdown.Item>
+             <Dropdown.Item >
+             <button className="btn text-dark text-capitalize" onClick={props.logout}> Logout</button>
+             </Dropdown.Item>
+           </Dropdown.Menu>
+         </Dropdown>
+       </div>
+          );
    }
    return(
       <Link 
