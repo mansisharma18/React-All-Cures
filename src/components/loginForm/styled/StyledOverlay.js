@@ -19,6 +19,8 @@ export const InnerSignup = posed.div({
   }
 })
 
+
+
 export const InnerLogin = posed.div({
   login: {
     transition,

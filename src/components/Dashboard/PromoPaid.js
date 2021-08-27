@@ -38,12 +38,7 @@ class PromoPaid extends Component {
         
         console.log('kjdghkhgkhgsd',this.state.unselectedCheckboxes)
       })
-      // .then(res => {
-      //   res.data.map((i) => {
-      //     console.log(i.article_id)
-      //   })
-      //   // console.log(check)
-      // })
+
       .catch(err => console.log(err))
     
   }
@@ -66,15 +61,11 @@ class PromoPaid extends Component {
 
     
   }
-
-  
-
   componentDidMount() {
     
   
     this.getComments('/')
-
-    
+ 
   }
   
   onChange = id => {
@@ -92,8 +83,7 @@ class PromoPaid extends Component {
     const findIdx = selectedCheckboxes.indexOf(id);
     const unselectIdx = unselectedCheckboxes.indexOf(id);
 
-    // Index > -1 means that the item exists and that the checkbox is checked
-    // and in that case we want to remove it from the array and uncheck it
+   
     if (findIdx > -1) {
       selectedCheckboxes.splice(findIdx, 1);
     } else {
@@ -107,10 +97,6 @@ class PromoPaid extends Component {
       selectedCheckboxes: selectedCheckboxes
     });
 
-    
-    // this.setState({
-    //   UnselectedCheckboxes: UnselectedCheckboxes
-    // });
   };
   toggleChange = () => {
     this.setState({
@@ -142,10 +128,7 @@ render(){
                 
                                     <select name=""className="form-select"
                                       onChange={(e)=> {
-                                        
-                                        // this.setState({
-                                        //   getComments: e.target.value
-                                        // })
+                                     
                                         if(e.target.value == '0') {
                                           this.getComments('/0')
                                         }else if(e.target.value == '1') {
@@ -163,9 +146,6 @@ render(){
                                     
                                 </div>
              
-
- 
-    
                       <div id="patient" className="tab-pane active">
                         
                         <div className="rating-outer" id="rating">
@@ -206,10 +186,6 @@ render(){
                             />
                         }
                               
-                              
-                             
-                             
-
                               <div className="patient-msg">
                               
                                 <p>{item.article_id}</p>

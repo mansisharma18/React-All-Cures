@@ -4,14 +4,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import BrandButton from './styled/BrandButton'
 import SlidingForm from './styled/SlidingForm'
 import { Checkbox, FormGroup, FormControlLabel, Select, MenuItem , FormControl, InputLabel} from '@material-ui/core';
-import { Form } from "react-bootstrap";
-import { useHistory } from 'react-router-dom'
-
-import Radio from '@material-ui/core/Radio';
-import RadioGroup from '@material-ui/core/RadioGroup';
-import FormLabel from '@material-ui/core/FormLabel';
 import { Redirect } from 'react-router';
-import { Alert } from 'react-bootstrap';
 import { usePasswordValidation } from '../hooks/usePasswordValidation';
 import axios from 'axios';
 import history from '../history';
@@ -35,12 +28,15 @@ const FormSignup = () => {
   const [message, setMessage] = useState("");
   const [isError, setError] = useState(false);
   const [status, setStatus] = useState("");
-  const [country, setCountry] = useState('')
-  const [countriesList,setCountriesList] = useState([])
+  // const [country, setCountry] = useState('')
+  // const [state, setstate] = useState('')
+  // const [city, setCity] = useState('')
+  // const [countriesList,setCountriesList] = useState([])
+  // const [statesList,setStatesList] = useState([])
 
   const [buttonClick, setClicked] = useState("");
-  const [region, setRname]= useState("");
-  const [gender, setGender]= useState("");
+  // const [region, setRname]= useState("");
+  // const [gender, setGender]= useState("");
   const [number, setMname]= useState("");
   // const [form, setForm]= useState("");
    const [emailExists, setExists] = useState(false)
@@ -144,17 +140,29 @@ function Redirec(){
     }
   }
 
-  const getCountries = () => {
-    axios.get('/article/all/table/countries')
-    .then(res => {
-        setCountriesList(res.data)
-    })
-    .catch(err => console.log(err))
-}
+//   const getCountries = () => {
+//     axios.get('/article/all/table/countries')
+//     .then(res => {
+//         setCountriesList(res.data)
+//     })
+//     .catch(err => console.log(err))
+// }
 
-useEffect(() => {
-  getCountries()
-}, [])
+// const getStates = () => {
+//   axios.get('/article/all/table/states')
+//   .then(res => {
+//       setStatesList(res.data)
+//   })
+//   .catch(err => console.log(err))
+// }
+
+// useEffect(() => {
+//   getCountries()
+// }, [])
+
+// useEffect(() => {
+//   getStates()
+// }, [])
   const handleTermsCheckbox = (event) => {
     setTerms(event.target.value)
   };
@@ -246,15 +254,7 @@ useEffect(() => {
           }
           required
         />
-        {/* <input 
-          placeholder="Region" 
-          type="dropdown" 
-          name="region"
-          onChange={
-            e => setRname(e.target.value)
-          }
-          required
-        /> */}
+        
  
         {
           buttonClick === 1?
