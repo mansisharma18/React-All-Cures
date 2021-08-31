@@ -50,7 +50,7 @@ export default function Rating() {
 
   const getRating = () => {
 
-    axios.get(`/rating/target/1/targettype/1`)
+    axios.get(`/rating/target/1/targettype/1/avg`)
     .then(res => {
       console.log(res.data[0].ratingVal)
       setRatingValue(res.data)

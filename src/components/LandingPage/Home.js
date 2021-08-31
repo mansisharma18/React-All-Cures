@@ -3,7 +3,9 @@ import Footer from '../Footer/Footer';
 import { Link } from 'react-router-dom';
 import Cookies from 'js-cookie';
 import Heart from"../../assets/img/heart.png";
+import Doct from "../../assets/img/doct.png";
 import axios from 'axios';
+import { Dropdown, DropdownButton } from 'react-bootstrap';
 import '../../assets/healthcare/css/main.css';
 import '../../assets/healthcare/css/responsive.css';
 import '../../assets/healthcare/css/animate.css';
@@ -348,7 +350,7 @@ onChangeHandlerdoctor = (e, text) => {
        
          </div>
       </section> */}
-      {/* <section className="appStore" >
+      <section className="appStore" >
          <div className="container">
             <div className="row">
                <div className="appStoreBg clearfix" style={{display:"flex",width: "100%",flexWrap: 'wrap'}}>
@@ -380,7 +382,7 @@ onChangeHandlerdoctor = (e, text) => {
                </div>
             </div>
          </div>
-      </section> */}
+      </section>
       <Footer/>
       </div>
       
@@ -392,29 +394,26 @@ function ToggleButton(props) {
    if(props.acPerm){
        return(
          <li className="dropdown">
-         <button className="btn header-drop" data-toggle="dropdown">
+         <a className="dropdown-toggle" data-toggle="dropdown" href="#">
              <i className="fa fa-user fa-2x"></i> 
-         </button>
+         </a>
          <ul className="dropdown-menu dropdown-user">
-            {
-               props.acPerm?
-                  <>
-                     <li>
-                        <Link className="dropdown-item" to={`/profile/${props.acPerm.split('|')[0]}`}>
-                           Profile
-                        </Link>
-                     </li>
-                     <li><Link to="/dashboard" className="dropdown-item">Dashboard</Link>
-                     </li>
-                  </>
-               : null
-            }
-             
+             <li><a href="/dashboard" className="dropdown-item">Dashboard</a>
+             </li>
              <li className="divider"></li>
-             <li><button onClick={props.logout} className="dropdown-item"> Logout</button>
+             <li><a onClick={props.logout} className="dropdown-item"> Logout</a>
              </li>
          </ul>
-       </li>             
+       </li>  
+         // <DropdownButton style={{background: 'white'}} title="Welcome !">
+         //    <Dropdown.Item >
+         //    <Link to="/dashboard">
+         //       Dashboard
+         //   </Link>
+         //    </Dropdown.Item>
+         //    <Dropdown.Item onClick={props.logout}>Logout</Dropdown.Item>
+         // </DropdownButton>
+           
        );
    }
    return(
@@ -424,6 +423,10 @@ function ToggleButton(props) {
       >
          Sign in/Sign up
       </Link>
+
+      //  <Link to="/login" className="btn-white loginSignbtn color-blue-dark" >
+      //      Sign In/ Sign Up
+      //  </Link>
    )
 }
 

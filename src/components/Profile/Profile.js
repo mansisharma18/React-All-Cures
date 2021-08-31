@@ -158,14 +158,7 @@ class Profile extends Component {
                             </div>
                             {/* <!--  <button onclick="loadUsers()">Click</button> --> */}
                           </div>
-                          {/* <div className="check-icon">
-                            {" "}
-                            <span className="icon-correct-2">
-                              <span className="path1"></span>
-                              <span className="path2"></span>
-                              <span className="path3"></span>
-                            </span>{" "}
-                          </div> */}
+                          
                         </div>
                         <div className="rating-reviews">
                           <div className="profile-info-rating">
@@ -179,11 +172,7 @@ class Profile extends Component {
                             </h2>
                           </div>
                           <div className="reviews" >
-                            {/* {
-                              this.state.edit?
-                                <button onClick={this.editToggle.bind(this)} className="btn btn-dark text-white text-decoration-none">Edit Profile</button>
-                                : <button onClick={this.editToggle.bind(this)} className="btn btn-dark text-white        text-decoration-none">Save Changes</button>
-                            } */}
+                            
                             {
                               acPerm[1] == 9 || acPerm[0] == items.docid?
                               <Button variant="dark" onClick={() => this.setModalShow(true)}>
@@ -209,10 +198,7 @@ class Profile extends Component {
                       About {items.prefix}. {items.docname_first} {items.docname_middle}{" "}
                       {items.docname_last}
                     </div>
-                    {/* <h2 id="about">
-                      About Dr. {items.docname_first} {items.docname_middle}{" "}
-                      {items.docname_last}
-                    </h2> */}
+                   
                     <div id="about-contain">
                       <p className="text one">
                         {" "}
@@ -224,15 +210,11 @@ class Profile extends Component {
                       <div className="h4 font-weight-bold">Specialties</div>
                       <ul>
                         <li>{items.primary_spl}</li>
-                        {/* <li>{items.sub_spls}</li> */}
-                        {/* <li>{items.other_spls}</li> */}
-                        {/* <li> </li>
-                                <li> ajbakb</li> */}
+                      
                       </ul>
                       <ul>
                         <li>{items.other_spls}</li>
-                        {/* <li>Cardiologist</li>
-                                <li>Interventional Cardiologist</li> */}
+                       
                       </ul>
                     </div>
                     <br/>
@@ -243,44 +225,6 @@ class Profile extends Component {
                       </ul>
                     </div>
                     <br />
-                    {/* <div className="abt-articles d-grid">
-                        <div className="h4 font-weight-bold">Articles Published</div> */}
-                    {/* <div class="row">
-                      <div class="col-sm m-1 card ">
-                        <div className="img-wrapper">
-                          <picture className="ds-image">
-                            <img src={Pexel1}/>
-                          </picture>
-                        </div>
-                        One of three columns
-                      </div>
-                      <div class="col-sm m-1 card ">
-                        <div className="img-wrapper">
-                          <picture className="ds-image">
-                            <img src={Pexel3} height="14rem"/>
-                          </picture>
-                        </div>
-                        One of three columns
-                      </div>
-                    </div>
-                    <div class="row">
-                      <div class="col-sm m-1 card ">
-                        <div className="img-wrapper">
-                          <picture className="ds-image">
-                            <img src={Pexel3}/>
-                          </picture>
-                        </div>
-                        One of three columns
-                      </div>
-                      <div class="col-sm m-1 card ">
-                        <div className="img-wrapper">
-                          <picture className="ds-image">
-                            <img src={Pexel4}/>
-                          </picture>
-                        </div>
-                        One of three columns
-                      </div>
-                    </div> */}
                    
                     {/* </div> */}
                     <div className="abt-eduction ">
@@ -294,74 +238,7 @@ class Profile extends Component {
                         }
                         </div>
                       </div>
-                    {/* <div className="abt-eduction">
-                      <h2>Education</h2>
-                      <p>{items.edu_training}</p>
-                    </div>
-                    <br /> */}
-
-                    {/* <div className="abt-photos">
-                      <h2>Photos</h2>
-                      <ul>
-                        <li>
-                          {" "}
-                          <a href="//#"></a>{" "}
-                        </li>
-                        <li>
-                          {" "}
-                          <a href="//#"></a>{" "}
-                        </li>
-                        <li>
-                          {" "}
-                          <a href="//#"></a>{" "}
-                        </li>
-                        <li>
-                          {" "}
-                          <a href="//#"></a>{" "}
-                        </li>
-                        <li>
-                          {" "}
-                          <a href="//#"></a>{" "}
-                        </li>
-                        <li>
-                          {" "}
-                          <a href="//#"></a>{" "}
-                        </li>
-                        <li>
-                          {" "}
-                          <a href="//#"></a>{" "}
-                        </li>
-                        <li>
-                          {" "}
-                          <a href="//#"></a>{" "}
-                        </li>
-                      </ul>
-                    </div>
-                    <br />
-                    <div className="abt-address">
-                      <h2>Address</h2>
-                      <div className="row">
-                        <div className="col-md-6">
-                          <div className="map">
-                            <iframe
-                              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3781.598439251183!2d73.72995831436974!3d18.592134071835297!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bc2bbc3bc58288d%3A0x93c746b34d487608!2sThe%20Digital%20Group%20Infotech!5e0!3m2!1sen!2sin!4v1603163746315!5m2!1sen!2sin"
-                              width="300"
-                              height="168.75px"
-                              frameborder="0"
-                              style={{ border: 0 }}
-                              allowfullscreen=""
-                              aria-hidden="false"
-                              tabindex="0"
-                            ></iframe>
-                          </div>
-                        </div>
-                        <div className="col-md-6">
-                          <div className="street">
-                            <p>110 West 14th Street, New York, NY, 10011</p>
-                          </div>
-                        </div>
-                      </div>
-                    </div> */}
+                    
                   </div>
                   <div className="comment-box">
                     <Comment refreshComments={this.getComments} />
@@ -370,8 +247,10 @@ class Profile extends Component {
                     <div className="tab-nav">
                       <div className="rating-heading">
                         <div className="profile-info-rating">
-                          <h2>Rating 4.2</h2>
-                          <ul>
+                        <Rating />
+                          
+                          {/* <h2>Rating 4.2</h2> */}
+                          {/* <ul>
                             <li>
                               <i className="fas fa-star" aria-hidden="true"></i>
                             </li>
@@ -390,7 +269,7 @@ class Profile extends Component {
                                 aria-hidden="true"
                               ></i>
                             </li>
-                          </ul>
+                          </ul> */}
                         </div>
                       </div>
                       {/* <!-- Nav tabs --> */}
@@ -469,186 +348,7 @@ class Profile extends Component {
                             )
                           })}
                           
-                          {/* <div className="rating-patient">
-                            <div className="rating-patient-grid clearfix">
-                              <div className="paitent-profile">
-                                {" "}
-                                <img src={ClientA} alt="ClientA" />{" "}
-                              </div>
-                            </div>
-                            <div className="patient-msg">
-                              <p>
-                                “Lorem ipsum dolor sit amet, consectetur
-                                adipiscing elit. Donec congue turpis
-                                sollicitudin nulla finibus dignissim. Curabitur
-                                eu urna sed risus tempor venenatis. Morbi quis
-                                libero at odio elementum scelerisque at nec
-                                libero. Integer quis magna nunc. Sed malesuada
-                                efficitur tellus, a posuere risus finibus
-                                vitae.”
-                              </p>
-                            </div>
-                            <div className="patient-name-add">
-                              <div>
-                                <h3>Mahyar Eidgah</h3>
-                                <span>New York, NY</span>{" "}
-                              </div>
-                              <div className="patient-rating">
-                                <ul>
-                                  <li>
-                                    <i
-                                      className="fa fa-star"
-                                      aria-hidden="true"
-                                    ></i>
-                                  </li>
-                                  <li>
-                                    <i
-                                      className="fa fa-star"
-                                      aria-hidden="true"
-                                    ></i>
-                                  </li>
-                                  <li>
-                                    <i
-                                      className="fa fa-star"
-                                      aria-hidden="true"
-                                    ></i>
-                                  </li>
-                                  <li>
-                                    <i
-                                      className="fa fa-star"
-                                      aria-hidden="true"
-                                    ></i>
-                                  </li>
-                                  <li>
-                                    <i
-                                      className="fa fa-star-half"
-                                      aria-hidden="true"
-                                    ></i>
-                                  </li>
-                                </ul>
-                              </div>
-                            </div>
-                          </div> */}
-                          {/* <div className="rating-patient">
-                            <div className="rating-patient-grid clearfix">
-                              <div className="paitent-profile">
-                                {" "}
-                                <img src={ClientA} alt="ClientA" />{" "}
-                              </div>
-                            </div>
-                            <div className="patient-msg">
-                              <p>
-                                “Lorem ipsum dolor sit amet, consectetur
-                                adipiscing elit. Donec congue turpis
-                                sollicitudin nulla finibus dignissim. Curabitur
-                                eu urna sed risus tempor venenatis. Morbi quis
-                                libero at odio elementum scelerisque at nec
-                                libero. Integer quis magna nunc. Sed malesuada
-                                efficitur tellus, a posuere risus finibus
-                                vitae.”
-                              </p>
-                            </div>
-                            <div className="patient-name-add">
-                              <div>
-                                <h3>Mahyar Eidgah</h3>
-                                <span>New York, NY</span>{" "}
-                              </div>
-                              <div className="patient-rating">
-                                <ul>
-                                  <li>
-                                    <i
-                                      className="fa fa-star"
-                                      aria-hidden="true"
-                                    ></i>
-                                  </li>
-                                  <li>
-                                    <i
-                                      className="fa fa-star"
-                                      aria-hidden="true"
-                                    ></i>
-                                  </li>
-                                  <li>
-                                    <i
-                                      className="fa fa-star"
-                                      aria-hidden="true"
-                                    ></i>
-                                  </li>
-                                  <li>
-                                    <i
-                                      className="fa fa-star"
-                                      aria-hidden="true"
-                                    ></i>
-                                  </li>
-                                  <li>
-                                    <i
-                                      className="fa fa-star-half"
-                                      aria-hidden="true"
-                                    ></i>
-                                  </li>
-                                </ul>
-                              </div>
-                            </div>
-                          </div> */}
-                          {/* <div className="rating-patient">
-                            <div className="rating-patient-grid clearfix">
-                              <div className="paitent-profile">
-                                {" "}
-                                <img src={ClientA} alt="ClientA" />{" "}
-                              </div>
-                            </div>
-                            <div className="patient-msg">
-                              <p>
-                                “Lorem ipsum dolor sit amet, consectetur
-                                adipiscing elit. Donec congue turpis
-                                sollicitudin nulla finibus dignissim. Curabitur
-                                eu urna sed risus tempor venenatis. Morbi quis
-                                libero at odio elementum scelerisque at nec
-                                libero. Integer quis magna nunc. Sed malesuada
-                                efficitur tellus, a posuere risus finibus
-                                vitae.”
-                              </p>
-                            </div>
-                            <div className="patient-name-add">
-                              <div>
-                                <h3>Mahyar Eidgah</h3>
-                                <span>New York, NY</span>{" "}
-                              </div>
-                              <div className="patient-rating">
-                                <ul>
-                                  <li>
-                                    <i
-                                      className="fa fa-star"
-                                      aria-hidden="true"
-                                    ></i>
-                                  </li>
-                                  <li>
-                                    <i
-                                      className="fa fa-star"
-                                      aria-hidden="true"
-                                    ></i>
-                                  </li>
-                                  <li>
-                                    <i
-                                      className="fa fa-star"
-                                      aria-hidden="true"
-                                    ></i>
-                                  </li>
-                                  <li>
-                                    <i
-                                      className="fa fa-star"
-                                      aria-hidden="true"
-                                    ></i>
-                                  </li>
-                                  <li>
-                                    <i
-                                      className="fa fa-star-half"
-                                      aria-hidden="true"
-                                    ></i>
-                                  </li>
-                                </ul>
-                              </div>
-                            </div>
-                          </div> */}
+                        
 
                           
                           <div className="rating-footer">
@@ -671,86 +371,18 @@ class Profile extends Component {
                               Read more Reviews
                             </a>{" "}
                           </div>
-                          {/* <div className="faqs" id="faq">
-                            <div className="faqs-wrap">
-                              <div className="question">
-                                <h2>
-                                  How soon can I make an appointment with Dr.
-                                  Jordan Reich?
-                                </h2>
-                                <p>
-                                  Generally, Dr. Jordan Reich has appointments
-                                  available on Zocdoc within 1 week. You can see
-                                  Dr. Sanghi's earliest availability on Zocdoc
-                                  and{" "}
-                                  <a href="/#">Make an appointment online.</a>
-                                </p>
-                              </div>
-                              <div className="question">
-                                <h2>
-                                  Is Dr. Jordan Reich accepting new patients?
-                                </h2>
-                                <p>
-                                  Dr. Pramod Sanghi generally accepts new
-                                  patients on Zocdoc. You can see Dr. Reich's
-                                  earliest availability on Zocdoc and{" "}
-                                  <a href="/#">
-                                    Schedule an appointment online.
-                                  </a>
-                                </p>
-                              </div>
-                              <div className="question">
-                                <h2>
-                                  Does Dr. Jordan reich accept my insurance?
-                                </h2>
-                                <p>
-                                  <a href="/#">Choose your insurance plan</a> to
-                                  verify if Dr. Jordan Reich is in-network.
-                                </p>
-                              </div>
-                              <div className="question">
-                                <h2>
-                                  Can I make an appointment with Dr. Jordan
-                                  Reich online?
-                                </h2>
-                                <p>
-                                  Yes, you can{" "}
-                                  <a href="/#">Make an appointment online.</a>{" "}
-                                  with Dr. Reich using Zocdoc. It’s simple,
-                                  secure, and free.
-                                </p>
-                              </div>
-                            </div>
-                          </div> */}
+                          
                           <div className="rating-footer">
                             <div className="back-top">
                               {" "}
-                              {/* <a href=" #">
-                                <p>
-                                  <i
-                                    className="fa fa-angle-up"
-                                    aria-hidden="true"
-                                  ></i>{" "}
-                                  Back to Top
-                                </p>
-                              </a>{" "} */}
+                            
                             </div>
-                            {/* <a
-                              href="//#"
-                              className="read-more-rating"
-                            >
-                              Read more Reviews
-                            </a>{" "} */}
+                          
                           </div>
                         </div>
                       </div>
                       <div id="recomended" className="tab-pane fade">
-                        {/* <h3>Menu 1</h3> */}
-                        {/* <p>
-                          Ut enim ad minim veniam, quis nostrud exercitation
-                          ullamco laboris nisi ut aliquip ex ea commodo
-                          consequat.
-                        </p> */}
+                      
                       </div>
                     </div>
                   </div>
