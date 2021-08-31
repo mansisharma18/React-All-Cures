@@ -4,16 +4,10 @@ import { makeStyles } from '@material-ui/core/styles';
 import BrandButton from './styled/BrandButton'
 import SlidingForm from './styled/SlidingForm'
 import { Checkbox, FormGroup, FormControlLabel, Select, MenuItem , FormControl, InputLabel} from '@material-ui/core';
-import { Form } from "react-bootstrap";
-import { useHistory } from 'react-router-dom'
-
-import Radio from '@material-ui/core/Radio';
-import RadioGroup from '@material-ui/core/RadioGroup';
-import FormLabel from '@material-ui/core/FormLabel';
 import { Redirect } from 'react-router';
-import { Alert } from 'react-bootstrap';
 import { usePasswordValidation } from '../hooks/usePasswordValidation';
 import axios from 'axios';
+import history from '../history';
 
 const FormSignup = () => {
 
@@ -45,9 +39,10 @@ const FormSignup = () => {
   // const [gender, setGender]= useState("");
   const [number, setMname]= useState("");
   // const [form, setForm]= useState("");
-
-  const [promo, setPromo] =useState(1)
+   const [emailExists, setExists] = useState(false)
+  const [promo, setPromo] =useState(null)
   const [validEmail, setValidEmail] = useState()
+   const [success, setSuccess] = useState(false)
 
   const [
     validLength,
@@ -83,39 +78,30 @@ const setSecond = (event) => {
     setClicked(1);
     var res;
     if(validEmail && upperCase && lowerCase && match){
-      
-     res = await fetch("/RegistrationActionController?", {
-      method: "POST",
-      body: `firstname=${firstName}&lastname=${lastName}&email=${email}&psw=${password.firstPassword}&psw-repeat=${password.secondPassword}&rempwd=${rempwd}&doc_patient=${userType}&acceptTnc=${terms}&number=${number}`,
-      headers: {
-      "Content-Type": "application/x-www-form-urlencoded"
+      axios.post(`/RegistrationActionController?firstname=${firstName}&lastname=${lastName}&email=${email}&psw=${password.firstPassword}&psw-repeat=${password.secondPassword}&rempwd=${rempwd}&doc_patient=${userType}&acceptTnc=${terms}&number=${number}`
+    ) .then(response => {
+      if(response.data == 'Email Address already Exists in the System'){
+        setExists(true);
+        setTimeout(() => {
+          setExists(false)
+        }, 3500);
       }
-  }).then(response => console.log(response))
-  .catch(res => console.log(res.data))
-
-    // setStatus(res.status);
-    // console.log('Statsus res ',res.status)
-  // const data = await res.text();
-  // console.log('dataaaaa ', res)
-    // !data.hasOwnProperty("error")
-    //   ? setMessage( 'success' )
-    //   : setError( true );
+      else if(response.data.registration_id){
+        setSuccess(true);
+        setTimeout(() => {
+          setSuccess(false)
+        }, 3500);
+      }
+    })
+      .catch(res => {
+        setError(true) 
+        console.log(res.data)
+      })
 
     } else {
       console.log('not posssiiibbbllleee')
     }
-    
-  
 }
-function Error(){
-  // setReload(true)
-  setTimeout(() => {
-    return(
-      <div className="alert alert-secondary" role="alert">Email or Password incorrect</div>
-    )
-  }, 1000);
-}
-
 // Redirect and Reload after logging in
 
 function Redirec(){
@@ -147,9 +133,6 @@ function Redirec(){
     if(!re.test(e.target.value)){
       setValidEmail(false)
       console.log('Enter valid email')
-      // return(
-      //   <Alert className="alert alert-danger">Please enter valid email</Alert>
-      // )
     } else {
       setEmail(e.target.value)
       setValidEmail(true)
@@ -187,12 +170,42 @@ function Redirec(){
   const handleRemember = (event) => {
     setRempwd(event.target.value)
   }
-  const handlePolicyCheckbox = (event) => {
-    setPolicy(event.target.value)
-  }
+
   const classes = useStyles();
 
-  console.log(firstName, lastName, password, email, terms, policy, userType, number,)
+  const afterSignUp = () => {
+    console.log(emailExists, 'Email already exists')
+    console.log(success, 'Successfully signed up')
+    if(emailExists === true){
+      return(<div className="alert alert-secondary">Email already exists!</div>);
+    }
+    else if(success === true){
+      if(promo){
+        return(
+          <Redirect to={{
+            pathname: '/article',
+            state: { promoCode: '1' }
+          }}
+          />
+        )
+      } else {
+        setTimeout(() => {
+          window.location.reload();
+        }, 1000);
+        return(
+          <Redirect to={{
+            pathname: '#'
+          }}/>
+        ) 
+      }
+    }
+    else if(isError === true){
+      return(
+        <div className="alert alert-secondary">Some error occured!</div>
+      );
+    }
+  }
+  console.log(firstName, lastName, password, email, terms, policy, userType, number)
   return(
     
     <SlidingForm signup className="text-center">
@@ -200,11 +213,9 @@ function Redirec(){
        <p id='p2'className="text-center">or register with your email</p>
        <form onSubmit={SignUpForm}>
         { 
-          buttonClick === 1? 
-            status === 200 ? 
-              Redirec()
-              : Error()
-            : console.log('Button not clicked')
+          buttonClick == 1? 
+            afterSignUp()
+            : null
         }
         <input 
           placeholder="First Name" 
@@ -347,22 +358,7 @@ function Redirec(){
                                                             </option>
                                                     ))}
                                             </Form.Control>
-                                        </Form.Group>
-
-                                        <Form.Group className="col-md-12 float-left">
-                    <Form.Label>State</Form.Label>
-                    <Form.Control as="select" value={state} name="stateId" custom
-                    onChange={(e)=> setstate(e.target.value)} placeholder="State" required>
-                    <option>Open this menu</option>
-                                                    {statesList.map((i) => (  
-                                                        <option
-                                                            value={i[0]}>
-                                                            {i[1]}
-                                                            </option>
-                                                    ))}
-                                            </Form.Control>
                                         </Form.Group> */}
-        
         
 
         <FormControl className={classes.formControl}>
