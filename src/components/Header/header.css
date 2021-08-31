@@ -326,3 +326,11 @@
 .header-drop i {
   color: #fff;
 }
+
+.header-drop.btn:focus {
+  background-color: #00415e;
+}
+
+.header-drop.btn:hover {
+  background-color: #00415e;
+}

@@ -776,8 +776,8 @@ h6 {
 
 .owl-prev {
   position: relative;
-left: 540px;
-top: 30px;
+  left: 540px;
+  top: 30px;
 }
 
 #specialists .owl-next {
@@ -2592,6 +2592,15 @@ p.lorem-text {
 
 .submit-popup {
   position: absolute;
-  left: -25rem;
+  left: -20vw;
   bottom: 1rem;
+}
+
+a.text-underline {
+  text-decoration: underline;
+}
+
+a.text-underline:hover {
+  text-decoration: underline;
+  color: rgb(231, 211, 211);
 }

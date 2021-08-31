@@ -102,28 +102,9 @@ const setSecond = (event) => {
       console.log('not posssiiibbbllleee')
     }
 }
+
 // Redirect and Reload after logging in
 
-function Redirec(){
-  if(promo){
-    return(
-      <Redirect to={{
-        pathname: '/article',
-        state: { promoCode: '1' }
-      }}
-      />
-    )
-  } else {
-    setTimeout(() => {
-      window.location.reload();
-    }, 1000);
-    return(
-      <Redirect to={{
-        pathname: '#'
-      }}/>
-    ) 
-  }
-}
   const handleChange = (event) => {
     setUserType(event.target.value);
   };
@@ -140,29 +121,6 @@ function Redirec(){
     }
   }
 
-//   const getCountries = () => {
-//     axios.get('/article/all/table/countries')
-//     .then(res => {
-//         setCountriesList(res.data)
-//     })
-//     .catch(err => console.log(err))
-// }
-
-// const getStates = () => {
-//   axios.get('/article/all/table/states')
-//   .then(res => {
-//       setStatesList(res.data)
-//   })
-//   .catch(err => console.log(err))
-// }
-
-// useEffect(() => {
-//   getCountries()
-// }, [])
-
-// useEffect(() => {
-//   getStates()
-// }, [])
   const handleTermsCheckbox = (event) => {
     setTerms(event.target.value)
   };
