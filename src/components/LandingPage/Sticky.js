@@ -14,7 +14,6 @@ import './custom.css';
 import Carousel1 from './Caousel1';
 import Carousel2 from './Carousel2';
 import CarouselReview from './CarouselReview';
-// import { Dropdown, DropdownButton, Nav } from 'react-bootstrap';
 // import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 // import ToggleButton from '../Header/Header'
 
@@ -43,24 +42,18 @@ class Home extends Component {
 
  componentWillMount(){
    const loadUsers = async () => {
-      await axios.get('/city/all')
-      .then(res => {
-         this.setState ({
-            users: res.data
-         })
+      const response = await axios.get('/city/all');
+      this.setState ({
+         users: response.data
       })
-      .catch(res => console.log(res))
     }
     loadUsers();
 
    const loaddoctor = async () => {
-      await axios.get('/IntegratedActionController')
-      .then(res => {
-         this.setState ({
-            doctor: res.data
-         })
+      const response = await axios.get('/IntegratedActionController')
+      this.setState ({
+         doctor: response.data
       })
-      .catch(res =>  console.log(res))
     }
     loaddoctor();
  }
@@ -329,19 +322,35 @@ onChangeHandlerdoctor = (e, text) => {
             <div className="row">
                <Carousel2/>
             </div>
-        
          </div>
-
-         {/* NewsLetter Icon */}
-         <div>
-         <a
-        href="https://wa.me/7889761896"
-        class="newsletter_float"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-         <i class="fas fa-envelope-open-text newsletter-icon"></i>
-         <section className="appStore" >
+      </section><br/><br/>
+      {/* <section className="partner">
+         <div className="container">
+            <div className="row">
+               <div className="partnerBG">
+                  <h2>Be our Partners and <br/> Expand your Client base</h2>
+                  <div className="learnBtn">
+                     <Link href="/#" className="btn-bg nearmoreBtn">Learn More</Link>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </section> */}
+      {/* <section className="testomonial" id="testimonials">
+         <div className="container">
+            <div className="row">
+               <div className="comman-heading">
+                  <h2>What our patients say</h2>
+               </div>
+            </div>
+            <div className="row">
+               <CarouselReview/>
+                   
+            </div> 
+       
+         </div>
+      </section> */}
+      <section className="appStore" >
          <div className="container">
             <div className="row">
                <div className="appStoreBg clearfix" style={{display:"flex",width: "100%",flexWrap: 'wrap'}}>
@@ -374,37 +383,6 @@ onChangeHandlerdoctor = (e, text) => {
             </div>
          </div>
       </section>
-    
-      </a>
-         </div>
-      </section><br/><br/>
-      {/* <section className="partner">
-         <div className="container">
-            <div className="row">
-               <div className="partnerBG">
-                  <h2>Be our Partners and <br/> Expand your Client base</h2>
-                  <div className="learnBtn">
-                     <Link href="/#" className="btn-bg nearmoreBtn">Learn More</Link>
-                  </div>
-               </div>
-            </div>
-         </div>
-      </section> */}
-      {/* <section className="testomonial" id="testimonials">
-         <div className="container">
-            <div className="row">
-               <div className="comman-heading">
-                  <h2>What our patients say</h2>
-               </div>
-            </div>
-            <div className="row">
-               <CarouselReview/>
-                   
-            </div> 
-       
-         </div>
-      </section> */}
-     
       <Footer/>
       </div>
       
@@ -415,28 +393,28 @@ onChangeHandlerdoctor = (e, text) => {
 function ToggleButton(props) {
    if(props.acPerm){
        return(
-         <div>
-         <Dropdown>
-           <Dropdown.Toggle  className="header-drop">
-           <i className="fa fa-user fa-2x"></i> 
-           </Dropdown.Toggle>
-           <Dropdown.Menu>
-             <Dropdown.Item>
-             <Link  className="text-dark btn" to={`/profile/${props.acPerm.split('|')[0]}`}>
-                               Profile
-                      </Link>
-             </Dropdown.Item>
-             <Dropdown.Item >
-             <Link to="/dashboard" className="text-dark btn">
-                Dashboard</Link>
-             </Dropdown.Item>
-             <Dropdown.Item >
-             <button className="btn text-dark text-capitalize" onClick={props.logout}> Logout</button>
-             </Dropdown.Item>
-           </Dropdown.Menu>
-         </Dropdown>
-       </div>
-          );
+         <li className="dropdown">
+         <a className="dropdown-toggle" data-toggle="dropdown" href="#">
+             <i className="fa fa-user fa-2x"></i> 
+         </a>
+         <ul className="dropdown-menu dropdown-user">
+             <li><a href="/dashboard" className="dropdown-item">Dashboard</a>
+             </li>
+             <li className="divider"></li>
+             <li><a onClick={props.logout} className="dropdown-item"> Logout</a>
+             </li>
+         </ul>
+       </li>  
+         // <DropdownButton style={{background: 'white'}} title="Welcome !">
+         //    <Dropdown.Item >
+         //    <Link to="/dashboard">
+         //       Dashboard
+         //   </Link>
+         //    </Dropdown.Item>
+         //    <Dropdown.Item onClick={props.logout}>Logout</Dropdown.Item>
+         // </DropdownButton>
+           
+       );
    }
    return(
       <Link 

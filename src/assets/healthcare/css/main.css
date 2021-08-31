@@ -2597,13 +2597,13 @@ p.lorem-text {
 }
 
 
- .whatsapp_float {
+ .newsletter_float {
           position: fixed;
           width: 60px;
           height: 60px;
           bottom: 40px;
           right: 40px;
-          background-color: #25d366;
+          background-color: #3ad0ff;
           color: #FFF;
           border-radius: 50px;
           text-align: center;
@@ -2612,17 +2612,17 @@ p.lorem-text {
           z-index: 100;
       }
 
-      .whatsapp-icon {
+      .newsletter-icon {
           margin-top: 16px;
       }
 
       /* for mobile */
       @media screen and (max-width: 767px) {
-          .whatsapp-icon {
+          .newsletter-icon {
               margin-top: 10px;
           }
 
-          .whatsapp_float {
+          .newsletter_float {
               width: 40px;
               height: 40px;
               bottom: 20px;

@@ -3,6 +3,7 @@ import Cookies from 'js-cookie';
 import { BrowserRouter, Switch, Route, Redirect } from "react-router-dom";
 
 import Home from "./LandingPage/Home";
+import Sticky from "./LandingPage/Sticky"
 import Profile from "./Profile/Profile";
 
 import Search from "./Search/Search";
@@ -95,6 +96,7 @@ const Routes = (props) => {
       <Route exact path="/dashboard/promopaid" component={PromoPaid} />
       <Route exact path="/dashboard/promoadmin" component={PromoAdmin} />
       <Route exact path="/dashboard/promoadmin" component={PromoAdmin} />
+      <Route exact path="/landingPage/sticky" component={Sticky} />
 
     
       <Route exact path="/loginForm/ResetPass" component={ResetPass} />
