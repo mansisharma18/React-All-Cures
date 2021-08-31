@@ -327,6 +327,14 @@ onChangeHandlerdoctor = (e, text) => {
             <div className="row">
                <Carousel2/>
             </div>
+            <a
+        href="https://wa.me/2348100000000"
+        class="whatsapp_float"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+       <i class="fab fa-whatsapp whatsapp-icon"></i>
+      </a>
          </div>
       </section><br/><br/>
       {/* <section className="partner">
