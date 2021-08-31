@@ -20,7 +20,7 @@ const FormLogin = (props) => {
     
     setClicked(1);
     axios.post(`/login?cmd=login&email=${email}&psw=${password}&rempwd=on`)
-    .then(response => console.log(response))
+    .then(response => console.log(response.data))
     .catch(res => console.log(res))
     // const res = await fetch("/login?cmd=login", {
     //   method: "POST",

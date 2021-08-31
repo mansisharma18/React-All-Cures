@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Button, Accordion, Card, Container, Form, Alert } from 'react-bootstrap';
-import { Checkbox, FormControlLabel } from '@material-ui/core'
+import { Checkbox, FormGroup, FormControlLabel, Select, MenuItem , FormControl, InputLabel} from '@material-ui/core'
 
 import Cookies from 'js-cookie';
 import './article.css'
@@ -8,7 +8,7 @@ import Carousel from './Carousel'
 import EditorJs from 'react-editor-js';
 import { EDITOR_JS_TOOLS } from './tools';
 import Options from './Options';
-// import Header from '../Header/Header';
+import Header from '../Header/Header';
 import Footer from '../Footer/Footer';
 
 export default class Test extends Component {
@@ -20,7 +20,11 @@ export default class Test extends Component {
         this.handleChange = this.handleChange.bind(this);
         this.instanceRef = React.createRef();
         this.handleSave = this.handleSave.bind(this);
+        // this.renderStatus = this.renderStatus.bind(this)
+        // this.submitForm = this.submitForm.bind(this);
+        // this.handleClick().bind(this)
         this.state = {
+            // acPerm: Cookies.get('acPerm'),
             acPerm: Cookies.get('acPerm'),
             isLoggedIn: false,
             ac: '',
@@ -58,6 +62,7 @@ export default class Test extends Component {
 
     handleSubmit() {
         this.setState({ShowSubmitAlert: true});
+        // this.state.articleValues.title = null;
     }
 
     handleErrorSubmit(){
@@ -88,7 +93,6 @@ export default class Test extends Component {
     }
     
     componentDidMount(){
-        document.title = 'All Cures | Article'
         Promise.all([
 
             fetch('/article/all/table/languages').then(res => res.json()),
@@ -111,10 +115,9 @@ export default class Test extends Component {
                 country: countryData
             });
 
-        }).catch(res => {
-            console.error(res)
         })
     }
+    // ARTICLE FORM SUBMIT
 
     submitArticleForm = async e => {
         e.preventDefault();
@@ -123,7 +126,7 @@ export default class Test extends Component {
         console.log(JSON.stringify(this.state.ac))
         const res = await fetch("/content?cmd=createArticle", {
             method: "POST",
-            body: `title=${this.state.articleValues.title}&language=${this.state.articleValues.language}&friendlyName=${this.state.articleValues.friendlyName}&contentType=${this.state.articleValues.contentType}&disclaimerId=${this.state.articleValues.disclaimerId}&authById=${this.state.articleValues.authById}&copyId=${this.state.articleValues.copyId}&articleStatus=${this.state.articleValues.articleStatus}&winTitle=${this.state.articleValues.winTitle}&countryId=${this.state.articleValues.countryId}&diseaseConditionId=${this.state.articleValues.diseaseConditionId}&articleContent=${encodeURIComponent(JSON.stringify(this.state.ac))}&comments=${this.state.articleValues.comments}&promoId=${this.props.location.state.promoCode}`,
+            body: `title=${this.state.articleValues.title}&language=${this.state.articleValues.language}&friendlyName=${this.state.articleValues.friendlyName}&contentType=${this.state.articleValues.contentType}&disclaimerId=${this.state.articleValues.disclaimerId}&authById=${this.state.articleValues.authById}&copyId=${this.state.articleValues.copyId}&articleStatus=${this.state.articleValues.articleStatus}&winTitle=${this.state.articleValues.winTitle}&countryId=${this.state.articleValues.countryId}&diseaseConditionId=${this.state.articleValues.diseaseConditionId}&articleContent=${encodeURIComponent(JSON.stringify(this.state.ac))}&comments=${this.state.articleValues.comments}`,
             headers: {
             "Content-Type": "application/x-www-form-urlencoded"
             }
@@ -209,6 +212,7 @@ export default class Test extends Component {
 
       let articleHTML = '';
 
+    // RENDER DIFFERENT TYPES OF DATA
     
 savedData.blocks.map(obj => {
 switch (obj.type) {
@@ -346,13 +350,8 @@ document.getElementById('articlePreview').innerHTML=articleHTML;
 
     renderStatus = () => {
         const {acPerm} =this.state;
-        var permission;
-        if(acPerm){
-            permission = acPerm.split('|')
-            permission = parseInt(permission[1])
-        }
-        
-        
+        var permission = 1
+        permission = parseInt(permission[1])
         console.log('Permission: ',typeof(permission))
         if(permission <= 4){
             return(
@@ -362,6 +361,7 @@ document.getElementById('articlePreview').innerHTML=articleHTML;
                         <option>Open this select menu</option>
                         <option value="1">Work in Progress</option>
                         <option value="2">Review</option>
+                        {/* <option value="3" disabled>Publish</option> */}
                     </Form.Control>                       
                 </Form.Group>
             )
@@ -404,7 +404,6 @@ document.getElementById('articlePreview').innerHTML=articleHTML;
         </>  
       );
     } else if(isLoaded){
-        
     return (
         <div>
             {/* <Header/> */}
@@ -492,7 +491,9 @@ document.getElementById('articlePreview').innerHTML=articleHTML;
                                     </Form.Group>
 
                                     {this.renderStatus()}
-                                          
+                                   
+                                        
+                                        
                                     
                                     <Form.Group className="col-md-6 float-left">
                                         <Form.Label>Language</Form.Label>

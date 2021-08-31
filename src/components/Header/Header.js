@@ -50,21 +50,27 @@ import Autocomplete from '../Autocomplete'
           .catch(res => {
              console.error(res)
           })
-            const loadUsers = async () => {
-               const response = await axios.get('/city/all');
+          const loadUsers = async () => {
+            await axios.get('/city/all')
+            .then(res => {
                this.setState ({
-                  users: response.data
+                  users: res.data
                })
-             }
-             loadUsers();
-         
-            const loaddoctor = async () => {
-               const response = await axios.get('/IntegratedActionController');
+            })
+            .catch(res => console.log(res))
+          }
+          loadUsers();
+      
+         const loaddoctor = async () => {
+            await axios.get('/IntegratedActionController')
+            .then(res => {
                this.setState ({
-                  doctor: response.data
+                  doctor: res.data
                })
-             }
-             loaddoctor();
+            })
+            .catch(res =>  console.log(res))
+          }
+          loaddoctor();
           }
          
            onSuggestHandler = (text, ano) => {
