@@ -327,7 +327,9 @@ onChangeHandlerdoctor = (e, text) => {
             <div className="row">
                <Carousel2/>
             </div>
+        
          </div>
+         
       </section><br/><br/>
       {/* <section className="partner">
          <div className="container">
@@ -355,14 +357,33 @@ onChangeHandlerdoctor = (e, text) => {
        
          </div>
       </section> */}
-      {/* <section className="appStore" >
+      <div>
+         <button i className="fas fa-envelope-open-text newsletter-icon btn  newsletter_float" data-toggle="modal"data-target=".bd-example-modal-lg">
+      
+            </button>
+ {/* < i class="fas fa-envelope-open-text newsletter-icon"/>
+
+                <a
+        href="https://wa.me/7889761896"
+        class="newsletter_float"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+         <i class="fas fa-envelope-open-text newsletter-icon"></i>
+    
+      </a> */}
+         </div>
+<div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+    <section className="appStore" >
          <div className="container">
             <div className="row">
                <div className="appStoreBg clearfix" style={{display:"flex",width: "100%",flexWrap: 'wrap'}}>
                   <div className="col-md-6 col-sm-6 col-sx-12">
                      <div className="innerapp">
                         <div className="doc-img">
-                           <img src={Doct} alt="doct"/>
+                           {/* <img src={doct} alt="doct"/> */}
                         </div>
                         <div className="btn-Gropu">
                            <a href="/#" className="appBTN">App Store</a>
@@ -387,7 +408,16 @@ onChangeHandlerdoctor = (e, text) => {
                </div>
             </div>
          </div>
-      </section> */}
+      </section>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
       <Footer/>
       </div>
       
