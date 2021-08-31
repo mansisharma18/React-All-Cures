@@ -327,13 +327,52 @@ onChangeHandlerdoctor = (e, text) => {
             <div className="row">
                <Carousel2/>
             </div>
-            <a
-        href="https://wa.me/2348100000000"
-        class="whatsapp_float"
+        
+         </div>
+
+         {/* NewsLetter Icon */}
+         <div>
+         <a
+        href="https://wa.me/7889761896"
+        class="newsletter_float"
         target="_blank"
         rel="noopener noreferrer"
       >
-       <i class="fab fa-whatsapp whatsapp-icon"></i>
+         <i class="fas fa-envelope-open-text newsletter-icon"></i>
+         <section className="appStore" >
+         <div className="container">
+            <div className="row">
+               <div className="appStoreBg clearfix" style={{display:"flex",width: "100%",flexWrap: 'wrap'}}>
+                  <div className="col-md-6 col-sm-6 col-sx-12">
+                     <div className="innerapp">
+                        <div className="doc-img">
+                           {/* <img src={Doc} alt="doct"/> */}
+                        </div>
+                        <div className="btn-Gropu">
+                           <a href="/#" className="appBTN">App Store</a>
+                           <a href="/#" className="appBTN">App Store</a>
+                        </div>
+                     </div>
+                  </div>
+                  <div className="col-md-6 col-sm-6 col-sx-12">
+                     <div className="subscribe">
+                        <h1>Get along with us on</h1>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec congue  turpis sollicitudin nulla finibus dignissim.</p>
+                        <div className="form-group relative">
+                           <div className="aaa">
+                              <input type="text" name="" className="form-control"/>
+                           </div>
+                           <div>
+                              <a href="/#" className="subscribeBtn">Subscribe</a>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </section>
+    
       </a>
          </div>
       </section><br/><br/>
@@ -363,39 +402,7 @@ onChangeHandlerdoctor = (e, text) => {
        
          </div>
       </section> */}
-      {/* <section className="appStore" >
-         <div className="container">
-            <div className="row">
-               <div className="appStoreBg clearfix" style={{display:"flex",width: "100%",flexWrap: 'wrap'}}>
-                  <div className="col-md-6 col-sm-6 col-sx-12">
-                     <div className="innerapp">
-                        <div className="doc-img">
-                           <img src={Doct} alt="doct"/>
-                        </div>
-                        <div className="btn-Gropu">
-                           <a href="/#" className="appBTN">App Store</a>
-                           <a href="/#" className="appBTN">App Store</a>
-                        </div>
-                     </div>
-                  </div>
-                  <div className="col-md-6 col-sm-6 col-sx-12">
-                     <div className="subscribe">
-                        <h1>Get along with us on</h1>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec congue  turpis sollicitudin nulla finibus dignissim.</p>
-                        <div className="form-group relative">
-                           <div className="aaa">
-                              <input type="text" name="" className="form-control"/>
-                           </div>
-                           <div>
-                              <a href="/#" className="subscribeBtn">Subscribe</a>
-                           </div>
-                        </div>
-                     </div>
-                  </div>
-               </div>
-            </div>
-         </div>
-      </section> */}
+     
       <Footer/>
       </div>
       
