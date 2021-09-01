@@ -1,9 +1,11 @@
 import React, {useEffect,useState, useRef} from 'react';
 import {useParams} from 'react-router-dom';
 import axios from 'axios';
-
+import { Checkbox, FormGroup, FormControlLabel, Select, MenuItem , FormControl, InputLabel,TextField} from '@material-ui/core'
 import EditorJs from 'react-editor-js';
 import { EDITOR_JS_TOOLS } from './tools'
+import Input from '@material-ui/core/Input';
+import { Button, Accordion, Card, Container, Form, Alert } from 'react-bootstrap';
 const EditModal = () => {
 
     const editId = useParams()
@@ -14,7 +16,7 @@ const EditModal = () => {
     const [disclaimer, setDisclaimer] = useState('')
     const [copyright, setCopyright] = useState('')
     const [language, setLanguage] = useState('')
-    const [author, setAuthor] = useState('')
+    const [author, setAuthor] = useState([])
     const [country, setCountry] = useState('')
     const [win, setWin] = useState('')
     const [articleStatus, setArticleStatus] = useState('')
@@ -249,7 +251,7 @@ const EditModal = () => {
                         })}
                     </select>
                 </div>
-                <div className="col-lg-6 form-group">
+                {/* <div className="col-lg-6 form-group">
                     <label htmlFor="">Author By ID</label>
                      <select name="" value={author} onChange={(e) =>  setAuthor(e.target.value)} className="form-control" id="">
 
@@ -261,7 +263,35 @@ const EditModal = () => {
                         </select>
                     
     
-                </div>
+                </div> */}
+
+<div className="col-lg-6 form-group">
+
+<label htmlFor="">Author</label>
+
+      
+        <Select
+         multiple
+    
+          value={author}
+          onChange={(e) =>  setAuthor(e.target.value)}
+          input={<Input id="select-multiple-chip" />}
+          // MenuProps={MenuProps}
+          className="form-control"
+        >
+          {authList.map((lan) => {
+                            return (
+                                <MenuItem key={lan[0]} value={lan[0]} >
+                                {lan[1]}{lan[3]}
+                              </MenuItem>
+                            )
+                        })}
+        </Select>
+     
+ </div>
+
+
+
                 <div className="col-lg-6 form-group">
                     <label htmlFor="">Win Title</label>
                     <input type="text" value={win}  onChange={(e) => setWin(e.target.value)} placeholder="Enter title" className="form-control" />

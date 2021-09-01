@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 import { Button, Accordion, Card, Container, Form, Alert } from 'react-bootstrap';
-import { Checkbox, FormGroup, FormControlLabel, Select, MenuItem , FormControl, InputLabel} from '@material-ui/core'
+import { Checkbox, FormGroup, FormControlLabel, Select, MenuItem , FormControl, InputLabel,TextField} from '@material-ui/core'
+import { Autocomplete } from '@material-ui/lab';
+import MultiSelect from 'multiselect-react-dropdown';
+import Input from '@material-ui/core/Input';
 
 import Cookies from 'js-cookie';
 import './article.css'
@@ -47,7 +50,7 @@ export default class Test extends Component {
                 friendlyName: "",
                 contentType: [],
                 disclaimerId : 1,
-                authById: 9,
+                authById: [],
                 copyId: 11,
                 articleStatus: 1,
                 winTitle : "",
@@ -84,11 +87,12 @@ export default class Test extends Component {
     handleLogoutClick() {
       this.setState({isLoggedIn: false});
     }
-
+    
     handleChange (e) {
         this.setState({
             articleValues: { ...this.state.articleValues, [e.target.name]:  Array.from(e.target.selectedOptions, (item) => item.value) }
         });
+
         console.log(this.state.articleValues.contentType)
     }
     
@@ -142,16 +146,16 @@ export default class Test extends Component {
         } else {
             this.handleErrorSubmit();
         }
-        setTimeout(() => this.setState({
-            isError: false,
-            message: "",
-            articleValues: { 
-                title: '', 
-                language: '',
-                friendlyName: '',
-                contentType: '',
-            }
-            }), 1600);
+        // setTimeout(() => this.setState({
+        //     isError: false,
+        //     message: "",
+        //     articleValues: { 
+        //         title: '', 
+        //         language: '',
+        //         friendlyName: '',
+        //         contentType: '',
+        //     }
+        //     }), 1600);
     }
 
     handleArticleChange = e => {
@@ -160,6 +164,8 @@ export default class Test extends Component {
         });
         console.log(e.target.name + e.target.value)
     }
+
+
 
     submitForm = async e => {
         e.preventDefault();
@@ -193,6 +199,16 @@ export default class Test extends Component {
     this.setState({
       values: { ...this.state.values, [e.target.name]: e.target.value }
     });
+
+    handleMultiChange = e => {
+        this.setState({
+            articleValues: { ...this.state.articleValues, [e.target.name]: e.target.value }
+        });
+    console.log(e.target)
+        console.log(this.state.articleValues.authById)
+    }
+
+
 
     onStatusChange(e) {
         this.setState({ articleStatus: e.target.value })
@@ -404,6 +420,8 @@ document.getElementById('articlePreview').innerHTML=articleHTML;
         </>  
       );
     } else if(isLoaded){
+        console.log('author: ', this.state.author)
+        console.log(this.state.authById)
     return (
         <div>
             {/* <Header/> */}
@@ -458,23 +476,7 @@ document.getElementById('articlePreview').innerHTML=articleHTML;
                                             <option value="3">Specialities</option>
                                         </Form.Control>
                                     </Form.Group>
-                                    {
-                                        this.state.articleValues.contentType.indexOf('2') === -1
-                                        ?   console.log('Treatment not selected')
-                                            : <Form.Group className="col-md-6 float-left">
-                                            <Form.Label>Country</Form.Label>
-                                                <Form.Control as="select" name="countryId" custom
-                                                onChange={this.handleArticleChange} placeholder="Country" required>
-                                                    <option>Open this menu</option>
-                                                    {this.state.country.map((i) => (  
-                                                        <Options
-                                                            value={i[0]}
-                                                            name={i[1]}
-                                                        />
-                                                    ))}
-                                            </Form.Control>
-                                        </Form.Group>
-                                    }
+                                   
                                     <Form.Group className="col-md-6 float-left">
                                         <Form.Label>Disclaimer ID</Form.Label>
                                         <Form.Control as="select" name="disclaimer" custom onChange={this.handleArticleChange} required>
@@ -519,18 +521,61 @@ document.getElementById('articlePreview').innerHTML=articleHTML;
                                             ))}
                                         </Form.Control>
                                     </Form.Group>
-                                    <Form.Group className="col-md-6 float-left">
-                                        <Form.Label>Author By ID</Form.Label>
-                                        <Form.Control as="select" name="authById" custom value={this.state.values.authById}
-                                        onChange={this.handleArticleChange} required>
-                                            <option>Open this select menu</option>
-                                            {this.state.author.map((i) => (
-                                                <Options
-                                                value={i[0]}
-                                                name={i[1]}
-                                                />
-                                            ))}
-                                        </Form.Control>
+                                
+                                     
+{/* <Autocomplete
+        onChange={this.handleMultiChange} required
+        multiple
+        value={this.state.authById}
+        name="authById"
+        id="tags-standard"
+       options={this.state.author}
+        getOptionLabel={(option) => option[1]+' '+ option[2]+' '+option[3]}
+        filterSelectedOptions
+ 
+
+        renderInput={(params) => (
+          <TextField
+            {...params}
+            variant="outlined"
+            
+            placeholder="Author"
+          />
+        )}
+      /> */}
+    <Form.Group className="col-md-6 float-left">
+<FormControl className="col-md-12 ">
+        <Form.Label>Author</Form.Label>
+        <Select
+          labelId="demo-mutiple-chip-label"
+          id="demo-mutiple-chip"
+          multiple
+          name="authById"
+          value={this.state.articleValues.authById}
+          onChange={this.handleMultiChange}
+          input={<Input id="select-multiple-chip" />}
+          // MenuProps={MenuProps}
+          className=""
+        >
+          {this.state.author.map((i) => (
+            <MenuItem key={i[0]} value={i[0]} >
+              {i[1]}{i[3]}
+            </MenuItem>
+          ))}
+        </Select>
+      </FormControl>
+{/* <MultiSelect
+  value={this.state.authById} // From useState
+  onChange={this.handleChange} // From useState
+  options={this.state.author[1]}
+  label="Movie"
+  labelPlural="Movies"
+/>                         */}
+                                            
+                                   
+                                       
+                                     
+
                                     </Form.Group>
                                     <Form.Group className="col-md-6 float-left">
                                         <Form.Label>Win Title</Form.Label>
@@ -548,6 +593,25 @@ document.getElementById('articlePreview').innerHTML=articleHTML;
                                         style={{ height: '100px' }}
                                     />
                               </Form.Group>
+
+                              {
+                                        this.state.articleValues.contentType.indexOf('2') === -1
+                                        ?   console.log('Treatment not selected')
+                                            : <Form.Group className="col-md-6 float-left">
+                                            <Form.Label>Country</Form.Label>
+                                                <Form.Control as="select" name="countryId" custom
+                                                onChange={this.handleArticleChange} placeholder="Country" required>
+                                                    <option>Open this menu</option>
+                                                    {this.state.country.map((i) => (  
+                                                        <Options
+                                                            value={i[0]}
+                                                            name={i[1]}
+                                                        />
+                                                    ))}
+                                            </Form.Control>
+                                        </Form.Group>
+                                    }
+
                                 </Card.Body>
                             </Accordion.Collapse>
                         </Card>
