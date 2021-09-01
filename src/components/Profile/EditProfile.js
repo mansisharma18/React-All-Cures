@@ -95,7 +95,6 @@ const EditProfile = (props) => {
         size="lg"
         aria-labelledby="contained-modal-title-vcenter"
         centered
-        className="my-4"
       >
           <form onSubmit={formSubmit}>
         <Modal.Header className="p-4 mb-4" closeButton style={{backgroundColor: '#b9daf1'}}>

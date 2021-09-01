@@ -14,7 +14,7 @@ export const InnerSignup = posed.div({
   },
   login: {
     transition,
-    x: '-100%',
+    x: '-140%',
     opacity: 0
   }
 })

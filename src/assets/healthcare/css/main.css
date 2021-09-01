@@ -776,8 +776,8 @@ h6 {
 
 .owl-prev {
   position: relative;
-left: 540px;
-top: 30px;
+  left: 540px;
+  top: 30px;
 }
 
 #specialists .owl-next {
@@ -2592,41 +2592,49 @@ p.lorem-text {
 
 .submit-popup {
   position: absolute;
-  left: -25rem;
+  left: -20vw;
   bottom: 1rem;
 }
 
+a.text-underline {
+  text-decoration: underline;
+}
 
- .newsletter_float {
-          position: fixed;
-          width: 60px;
-          height: 60px;
-          bottom: 40px;
-          right: 40px;
-          background-color: #3ad0ff;
-          color: #FFF;
-          border-radius: 50px;
-          text-align: center;
-          font-size: 30px;
-          box-shadow: 2px 2px 3px #999;
-          z-index: 100;
-      }
+a.text-underline:hover {
+  text-decoration: underline;
+  color: rgb(231, 211, 211);
+}
 
-      .newsletter-icon {
-          margin-top: 16px;
-      }
+.newsletter_float {
+  position: fixed;
+  width: 60px;
+  height: 60px;
+  bottom: 40px;
+  right: 40px;
+  background-color: #3ad0ff;
+  color: #fff;
+  border-radius: 50px;
+  text-align: center;
+  font-size: 30px;
+  box-shadow: 2px 2px 3px #999;
+  z-index: 100;
+}
 
-      /* for mobile */
-      @media screen and (max-width: 767px) {
-          .newsletter-icon {
-              margin-top: 10px;
-          }
+.newsletter-icon {
+  margin-top: 16px;
+}
 
-          .newsletter_float {
-              width: 40px;
-              height: 40px;
-              bottom: 20px;
-              right: 10px;
-              font-size: 22px;
-          }
-      }
+/* for mobile */
+@media screen and (max-width: 767px) {
+  .newsletter-icon {
+    margin-top: 10px;
+  }
+
+  .newsletter_float {
+    width: 40px;
+    height: 40px;
+    bottom: 20px;
+    right: 10px;
+    font-size: 22px;
+  }
+}

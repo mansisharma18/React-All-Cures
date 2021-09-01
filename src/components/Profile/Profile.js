@@ -9,10 +9,6 @@ import '../../assets/healthcare/css/main.css';
 import '../../assets/healthcare/css/responsive.css';
 import '../../assets/healthcare/css/animate.css';
 import '../../assets/healthcare/icomoon/style.css';
-import Pexel1 from './pexel1.jpg'
-import Pexel2 from './pexel2.jpg'
-import Pexel3 from './pexel3.jpg'
-import Pexel4 from './pexel4.jpg'
 import { Container, Button } from "react-bootstrap";
 import {Link} from 'react-router-dom'
 import Comment from "../Comment";
@@ -286,13 +282,21 @@ class Profile extends Component {
                     <div className="abt-eduction ">
                     <div className="h4 font-weight-bold">Miscellaneous
                       </div>
-                        <div className="h6">Accepts Insurance: 
+                        <div className="h6 font-weight-bold">Accepts Insurance: 
                         {
                           items.insurance_accept === true?
                           <span> <i class="fa fa-check" style={{color: 'green'}} aria-hidden="true"></i></span>
                           : <span> <i class="fas fa-times-circle " style={{color: 'red'}}></i></span>
                         }
                         </div>
+                        <div className="h6 font-weight-bold">Gender: 
+                        {
+                          items.gender === 2?
+                          <span> Male </span>
+                          : <span> Female</span>
+                        }
+                        </div>
+
                       </div>
                     {/* <div className="abt-eduction">
                       <h2>Education</h2>
