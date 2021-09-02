@@ -13,6 +13,7 @@ import CheckList from '@editorjs/checklist'
 import Delimiter from '@editorjs/delimiter'
 import InlineCode from '@editorjs/inline-code'
 import SimpleImage from '@editorjs/simple-image'
+import SimpleVideo from 'simple-video-editorjs'
 // import Image from '@editorjs/image'
 
 export const EDITOR_JS_TOOLS = {
@@ -32,5 +33,6 @@ export const EDITOR_JS_TOOLS = {
   delimiter: Delimiter,
   inlineCode: InlineCode,
   simpleImage: SimpleImage,
+  video: SimpleVideo,
   // image: image
 }

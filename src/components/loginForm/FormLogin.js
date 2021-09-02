@@ -3,6 +3,7 @@ import { Redirect } from "react-router-dom";
 import BrandButton from './styled/BrandButton'
 import SlidingForm from './styled/SlidingForm'
 import { Checkbox, FormGroup, FormControlLabel} from '@material-ui/core'
+import GoogleLogin from 'react-google-login'
 import axios from 'axios';
 
 const FormLogin = (props) => {
@@ -76,13 +77,24 @@ function AfterLogin() {
       <div className="alert alert-secondary" role="alert">Some Error Occured!</div>
     )
   }
-}
+} 
+  const responseGoogle = (res) => {
+    console.log(res);
+    console.log(res.profileObj);
+  }
   return(
   <SlidingForm className="text-center">
     <h1 id='he4' className="text-center">Sign in</h1>
     
     <p className="text-center">or use your account</p>
-    
+    <GoogleLogin
+        clientId="529398297055-37e0rfns77ig0nih2moffq1pdp533329.apps.googleusercontent.com"
+        buttonText="Login"
+        onSuccess={responseGoogle}
+        onFailure={responseGoogle}
+        cookiePolicy={'single_host_origin'}
+        className="text-dark"
+      />
     {/* { 
       buttonClick === 1? 
         status === 200 ? 
