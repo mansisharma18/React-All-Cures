@@ -44,15 +44,10 @@ const EditModal = () => {
             setLanguage(res.data.language_id)
             setWin(res.data.window_title)
             setArticleStatus(res.data.pubstatus_id)
-<<<<<<< HEAD
-            // setArticleDisplay(res.data.friendly_name)
-            setAuthor(res.data.authored_by)
-=======
             setArticleDisplay(res.data.friendly_name)
             // setAuthor(res.data.authored_by)
->>>>>>> aa617a89036bf7635c6b2425cffb4e78f818aedc
-            setContentType(res.data.content_type)
-            setType(res.data.type)
+            setArticleContent(res.data.articleContent)
+            setType(res.data.content_type)
             setCountry(res.data.country_id)
             setDisease(res.data.disease_condition_id)
         })
@@ -70,12 +65,12 @@ const EditModal = () => {
             "title":title,
             "friendly_name": articleDisplay,
             "subheading": "1",
-            "content_type": contentType,
-            "type":type,
+            "content_type": "'["+type+"]'",
+        
             "keywords": "1",
             "window_title": win,
             // "content_location": "1",
-            "authored_by": author,
+            "authored_by": "'["+author+"]'",
             "published_by": 1,
             "edited_by": 1,
             "copyright_id": copyright,
@@ -210,7 +205,9 @@ const EditModal = () => {
 
                 <div className="col-lg-6 form-group">
                     <label htmlFor="">Type</label>
-                    <select name="type" placeholder="Type" 
+                    <select 
+                    multiple
+                    name="type" placeholder="Type" 
                     value={type} 
                     
                     onChange={(e)=> {
@@ -270,24 +267,6 @@ const EditModal = () => {
                     </select>
                 </div>
 
-<<<<<<< HEAD
-<div className="col-lg-6 form-group">
-
-<label htmlFor="">Author</label>
-
-      
-        <Select
-         multiple
-    
-          value={author}
-          onChange={(e) =>  setAuthor(e.target.value)}
-          input={<Input id="select-multiple-chip" />}
-          // MenuProps={MenuProps}
-          className="form-control"
-        >
-          {
-          authList.map((lan) => {
-=======
                 <div className="col-lg-6 form-group">
                     <label htmlFor="">Author</label>
                         <Select multiple
@@ -297,7 +276,6 @@ const EditModal = () => {
                         // MenuProps={MenuProps}
                         className="form-control">
                         {authList.map((lan) => {
->>>>>>> aa617a89036bf7635c6b2425cffb4e78f818aedc
                             return (
                                 <MenuItem key={lan[0]}value={lan[0]} >
                                     {lan[1]+' '+lan[3]}
@@ -311,15 +289,9 @@ const EditModal = () => {
                     <label htmlFor="">Win Title</label>
                     <input type="text" value={win}  onChange={(e) => setWin(e.target.value)} placeholder="Enter title" className="form-control" />
                 </div>
-<<<<<<< HEAD
-
-                {
-                contentType.indexOf('2') === -1 
-=======
                 {   
                     type?
                     type.indexOf('2') === -1 
->>>>>>> aa617a89036bf7635c6b2425cffb4e78f818aedc
                     ? null 
                     : <div className="form-group col-lg-6">
                         <label htmlFor="">Country</label>
