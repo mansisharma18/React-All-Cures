@@ -5,7 +5,6 @@ import { Checkbox, FormGroup, FormControlLabel, Select, MenuItem , FormControl, 
 import EditorJs from 'react-editor-js';
 import { EDITOR_JS_TOOLS } from './tools'
 import Input from '@material-ui/core/Input';
-import { Button, Accordion, Card, Container, Form, Alert } from 'react-bootstrap';
 const EditModal = () => {
 
     const editId = useParams()
@@ -45,8 +44,13 @@ const EditModal = () => {
             setLanguage(res.data.language_id)
             setWin(res.data.window_title)
             setArticleStatus(res.data.pubstatus_id)
+<<<<<<< HEAD
             // setArticleDisplay(res.data.friendly_name)
             setAuthor(res.data.authored_by)
+=======
+            setArticleDisplay(res.data.friendly_name)
+            // setAuthor(res.data.authored_by)
+>>>>>>> aa617a89036bf7635c6b2425cffb4e78f818aedc
             setContentType(res.data.content_type)
             setType(res.data.type)
             setCountry(res.data.country_id)
@@ -206,21 +210,13 @@ const EditModal = () => {
 
                 <div className="col-lg-6 form-group">
                     <label htmlFor="">Type</label>
-                    <select multiple name="type" placeholder="Type" 
+                    <select name="type" placeholder="Type" 
                     value={type} 
+                    
                     onChange={(e)=> {
                         handleSelect(e.target.selectedOptions)
-                        if(type.indexOf('2') === -1){
-                            setShowCountry(false)
-                        } else {
-                            setShowCountry(true)
-                        }
-                        
                     }}
                     required class="form-control">
-
-                   
-                     
                         <option value="1">Disease</option>
                         <option value="2">Treatment</option>
                         <option value="3">Specialities</option>
@@ -273,20 +269,8 @@ const EditModal = () => {
                         })}
                     </select>
                 </div>
-                {/* <div className="col-lg-6 form-group">
-                    <label htmlFor="">Author By ID</label>
-                     <select name="" value={author} onChange={(e) =>  setAuthor(e.target.value)} className="form-control" id="">
 
-                    {authList.map((lan) => {
-                            return (
-                                <option value={lan[0]}>{lan[1]}</option>
-                            )
-                        })}
-                        </select>
-                    
-    
-                </div> */}
-
+<<<<<<< HEAD
 <div className="col-lg-6 form-group">
 
 <label htmlFor="">Author</label>
@@ -303,39 +287,52 @@ const EditModal = () => {
         >
           {
           authList.map((lan) => {
+=======
+                <div className="col-lg-6 form-group">
+                    <label htmlFor="">Author</label>
+                        <Select multiple
+                        value={author}
+                        onChange={(e) =>  setAuthor(e.target.value)}
+                        input={<Input id="select-multiple-chip" />}
+                        // MenuProps={MenuProps}
+                        className="form-control">
+                        {authList.map((lan) => {
+>>>>>>> aa617a89036bf7635c6b2425cffb4e78f818aedc
                             return (
                                 <MenuItem key={lan[0]}value={lan[0]} >
-                                {lan[1]+' '+lan[3]}
-                              </MenuItem>
+                                    {lan[1]+' '+lan[3]}
+                                </MenuItem>
                             )
                         })}
-                       
-        </Select>
-     
- </div>
-
-
+                        </Select>
+                </div>
 
                 <div className="col-lg-6 form-group">
                     <label htmlFor="">Win Title</label>
                     <input type="text" value={win}  onChange={(e) => setWin(e.target.value)} placeholder="Enter title" className="form-control" />
                 </div>
+<<<<<<< HEAD
 
                 {
                 contentType.indexOf('2') === -1 
+=======
+                {   
+                    type?
+                    type.indexOf('2') === -1 
+>>>>>>> aa617a89036bf7635c6b2425cffb4e78f818aedc
                     ? null 
                     : <div className="form-group col-lg-6">
-                 <label htmlFor="">Country</label>
-                 <select name="country" value={country} onChange={(e) => setCountry(e.target.value)} placeholder="Country" required="" class="form-control">
-                     
-                     {countriesList.map((lan) => {
-                         return (
-                             <option value={lan[0]}>{lan[1]}</option>
-                         )
-                     })}
-                     
-                 </select>
-             </div> }
+                        <label htmlFor="">Country</label>
+                        <select name="country" value={country} onChange={(e) => setCountry(e.target.value)} placeholder="Country" required="" class="form-control">
+                            {countriesList.map((lan) => {
+                                return (
+                                    <option value={lan[0]}>{lan[1]}</option>
+                                )
+                            })}
+                        </select>
+                    </div> 
+                    : null
+                }
                 </div>
                             </div>
                             </div>

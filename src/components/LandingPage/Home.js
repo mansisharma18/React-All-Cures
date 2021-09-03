@@ -12,10 +12,10 @@ import './custom.css';
 import Carousel1 from './Caousel1';
 import Carousel2 from './Carousel2';
 import CarouselReview from './CarouselReview';
-import { Dropdown, DropdownButton, Nav } from 'react-bootstrap';
+import { Dropdown, Button, DropdownButton, Nav, Modal } from 'react-bootstrap';
 // import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 // import ToggleButton from '../Header/Header'
-
+import Test from './test'
 
 
 class Home extends Component {
@@ -29,6 +29,9 @@ class Home extends Component {
          doctor : '',
          getPincode:null,
          getCityName:null,
+         edit: false,
+      modalShow: false,
+      show: false,
          docname : '',
           acPerm: Cookies.get('acPerm'),
           searchParams: {
@@ -139,6 +142,11 @@ onChangeHandlerdoctor = (e, text) => {
         }, 1000);
    }
 
+   setModalShow =(action) => {
+      this.setState({
+        modalShow: action
+      })
+    }
 
    render() {
       console.log(this.state.suggestions)
@@ -158,7 +166,9 @@ onChangeHandlerdoctor = (e, text) => {
                               </div>
                               <div className="loginSign"> 
                               {/* <Link to="/profile">Go to Profile</Link> */}
-                              
+                              <Button variant="dark" onClick={() => this.setModalShow(true)}>
+         sign
+      </Button>
                                  <ToggleButton acPerm={this.state.acPerm} match={this.props.match.url} logout={this.logout}/> 
                                  {/* <button onClick={this.logout}></button> */}
                               </div>  
@@ -177,6 +187,10 @@ onChangeHandlerdoctor = (e, text) => {
                      <div className="row">
                         <div className="search-wrap-inner clearfix">
                            <form className="mainSearch">
+                           <Test
+        show={this.state.modalShow}
+        onHide={() => this.setModalShow(false)}
+      />
                               <div className="col-md-4 pd-0 col-sx-12 col-sm-4">
                                  <div className="form-group search">
                                  <input type="text" placeholder="Doctor Name, Disease or Condition" name="name" id="doctors" 
@@ -452,12 +466,15 @@ function ToggleButton(props) {
           );
    }
    return(
+      <>
+      
       <Link 
          className="btn-white loginSignbtn color-blue-dark" 
          to={{pathname: props.match, search: '?login=true', state: {open: true}}}
       >
          Sign in/Sign up
       </Link>
+      </>
    )
 }
 

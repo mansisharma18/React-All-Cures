@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 import { Button, Accordion, Card, Container, Form, Alert } from 'react-bootstrap';
-import { Checkbox, FormGroup, FormControlLabel, Select, MenuItem , FormControl, InputLabel,TextField} from '@material-ui/core'
-
-import Input from '@material-ui/core/Input';
+import { Checkbox, FormGroup, FormControlLabel, Select, MenuItem , FormControl, Input} from '@material-ui/core'
 
 import Cookies from 'js-cookie';
 import './article.css'
@@ -33,6 +31,7 @@ export default class Test extends Component {
             showAuthorAccordian: false,
             ShowSubmitAlert: false,
             ShowErrorAlert: false,
+            author: [],
             values: {
                 authorFN: "",
                 authorMN:"",
@@ -87,13 +86,14 @@ export default class Test extends Component {
     handleLogoutClick() {
       this.setState({isLoggedIn: false});
     }
-    
+
     handleChange (e) {
         this.setState({
             articleValues: { ...this.state.articleValues, [e.target.name]:  Array.from(e.target.selectedOptions, (item) => item.value) }
         });
 
         console.log(this.state.author);
+        console.log(this.state.articleValues.contentType)
     }
     
     componentDidMount(){
@@ -146,16 +146,16 @@ export default class Test extends Component {
         } else {
             this.handleErrorSubmit();
         }
-        // setTimeout(() => this.setState({
-        //     isError: false,
-        //     message: "",
-        //     articleValues: { 
-        //         title: '', 
-        //         language: '',
-        //         friendlyName: '',
-        //         contentType: '',
-        //     }
-        //     }), 1600);
+        setTimeout(() => this.setState({
+            isError: false,
+            message: "",
+            articleValues: { 
+                title: '', 
+                language: '',
+                friendlyName: '',
+                contentType: '',
+            }
+            }), 1600);
     }
 
     handleArticleChange = e => {
@@ -165,7 +165,7 @@ export default class Test extends Component {
         console.log(e.target.name + e.target.value)
     }
 
-
+    
 
     submitForm = async e => {
         e.preventDefault();
@@ -199,16 +199,6 @@ export default class Test extends Component {
     this.setState({
       values: { ...this.state.values, [e.target.name]: e.target.value }
     });
-
-    handleMultiChange = e => {
-        this.setState({
-            articleValues: { ...this.state.articleValues, [e.target.name]: e.target.value }
-        });
-    console.log(e.target)
-        console.log(this.state.articleValues.authById)
-    }
-
-
 
     onStatusChange(e) {
         this.setState({ articleStatus: e.target.value })
@@ -420,8 +410,6 @@ document.getElementById('articlePreview').innerHTML=articleHTML;
         </>  
       );
     } else if(isLoaded){
-        console.log('author: ', this.state.author)
-        console.log(this.state.authById)
     return (
         <div>
             {/* <Header/> */}
@@ -491,7 +479,7 @@ document.getElementById('articlePreview').innerHTML=articleHTML;
                                             <option value="3">Specialities</option>
                                         </Form.Control>
                                     </Form.Group>
-                                   
+                                    
                                     <Form.Group className="col-md-6 float-left">
                                         <Form.Label>Disclaimer ID</Form.Label>
                                         <Form.Control as="select" name="disclaimer" custom onChange={this.handleArticleChange} required>
@@ -548,7 +536,7 @@ document.getElementById('articlePreview').innerHTML=articleHTML;
           multiple
           name="authById"
           value={this.state.articleValues.authById}
-          onChange={this.handleMultiChange}
+          onChange={this.handleArticleChange}
           input={<Input id="select-multiple-chip" />}
           // MenuProps={MenuProps}
           className=""
@@ -603,7 +591,6 @@ document.getElementById('articlePreview').innerHTML=articleHTML;
                                             </Form.Control>
                                         </Form.Group>
                                     }
-
                                 </Card.Body>
                             </Accordion.Collapse>
                         </Card>
