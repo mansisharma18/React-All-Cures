@@ -12,7 +12,8 @@ const EditModal = () => {
     const [title, setTitle] = useState('')
     const [articleDisplay, setArticleDisplay] = useState('')
     const [content, setContent] = useState()
-    const [contentType,setContentType] = useState([])
+    const [contentType,setContentType] = useState('')
+    const [type,setType] = useState([])
     const [disclaimer, setDisclaimer] = useState('')
     const [copyright, setCopyright] = useState('')
     const [language, setLanguage] = useState('')
@@ -47,6 +48,7 @@ const EditModal = () => {
             setArticleDisplay(res.data.friendly_name)
             setAuthor(res.data.authored_by)
             setContentType(res.data.content_type)
+            setType(res.data.type)
             setCountry(res.data.country_id)
             setDisease(res.data.disease_condition_id)
         })
@@ -65,6 +67,7 @@ const EditModal = () => {
             "friendly_name": articleDisplay,
             "subheading": "1",
             "content_type": contentType,
+            "type":type,
             "keywords": "1",
             "window_title": win,
             // "content_location": "1",
@@ -146,10 +149,9 @@ const EditModal = () => {
         for (let i=0; i<countries.length; i++) {
             flavors.push(countries[i].value);
         }
-        setContentType(flavors);
-        console.log(contentType)
+        setType(flavors);
     }
-   console.log("COntent : ", content)
+
    
     return (
         <>
@@ -184,11 +186,31 @@ const EditModal = () => {
                 
                 <div className="col-lg-6 form-group">
                     <label htmlFor="">Content Type</label>
-                    <select multiple name="contentType" placeholder="Content Type" 
+                    <select name="contentType" placeholder="Content Type" 
                     value={contentType} 
                     onChange={(e)=> {
+                        setContentType(e.target.value)
+                     }}
+                     
+                    required class="form-control">
+
+                   
+                     
+                        <option value="1">Article</option>
+                        <option value="2">Video</option>
+                      
+                    </select>
+                </div>
+                
+
+
+                <div className="col-lg-6 form-group">
+                    <label htmlFor="">Type</label>
+                    <select multiple name="type" placeholder="Type" 
+                    value={type} 
+                    onChange={(e)=> {
                         handleSelect(e.target.selectedOptions)
-                        if(contentType.indexOf('2') === -1){
+                        if(type.indexOf('2') === -1){
                             setShowCountry(false)
                         } else {
                             setShowCountry(true)
@@ -281,11 +303,12 @@ const EditModal = () => {
         >
           {authList.map((lan) => {
                             return (
-                                <MenuItem key={lan[0]} value={lan[0]} >
-                                {lan[1]}{lan[3]}
+                                <MenuItem key={lan[0]}value={lan[0]} >
+                                {lan[1]+' '+lan[3]}
                               </MenuItem>
                             )
                         })}
+                       
         </Select>
      
  </div>
@@ -296,7 +319,9 @@ const EditModal = () => {
                     <label htmlFor="">Win Title</label>
                     <input type="text" value={win}  onChange={(e) => setWin(e.target.value)} placeholder="Enter title" className="form-control" />
                 </div>
-                {contentType.indexOf('2') === -1 
+
+                {
+                type.indexOf('2') === -1 
                     ? null 
                     : <div className="form-group col-lg-6">
                  <label htmlFor="">Country</label>

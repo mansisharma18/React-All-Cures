@@ -48,7 +48,8 @@ export default class Test extends Component {
             articleValues: {
                 title: "",
                 friendlyName: "",
-                contentType: [],
+                type:[],
+                contentType: "",
                 disclaimerId : 1,
                 authById: [],
                 copyId: 11,
@@ -93,7 +94,7 @@ export default class Test extends Component {
             articleValues: { ...this.state.articleValues, [e.target.name]:  Array.from(e.target.selectedOptions, (item) => item.value) }
         });
 
-        console.log(this.state.articleValues.contentType)
+        console.log(this.state.author);
     }
     
     componentDidMount(){
@@ -465,10 +466,25 @@ document.getElementById('articlePreview').innerHTML=articleHTML;
                                         <Form.Label>Content Type</Form.Label>
                                         <Form.Control as="select"
                                             name="contentType" 
-                                            multiple 
+                                       
                                             placeholder="Content Type"
-                                            onChange={this.handleChange}
+                                            onChange={this.handleArticleChange}
                                             value={this.state.articleValues.contentType}
+                                            required
+                                        >
+                                            <option value="1">Article</option>
+                                            <option value="2">Video</option>
+                                           
+                                        </Form.Control>
+                                    </Form.Group>
+                                    <Form.Group className="col-md-6 float-left">
+                                        <Form.Label>Type</Form.Label>
+                                        <Form.Control as="select"
+                                            name="type" 
+                                            multiple 
+                                            placeholder="Type"
+                                            onChange={this.handleChange}
+                                            value={this.state.articleValues.Type}
                                             required
                                         >
                                             <option value="1">Disease</option>
@@ -522,31 +538,12 @@ document.getElementById('articlePreview').innerHTML=articleHTML;
                                         </Form.Control>
                                     </Form.Group>
                                 
-                                     
-{/* <Autocomplete
-        onChange={this.handleMultiChange} required
-        multiple
-        value={this.state.authById}
-        name="authById"
-        id="tags-standard"
-       options={this.state.author}
-        getOptionLabel={(option) => option[1]+' '+ option[2]+' '+option[3]}
-        filterSelectedOptions
- 
 
-        renderInput={(params) => (
-          <TextField
-            {...params}
-            variant="outlined"
-            
-            placeholder="Author"
-          />
-        )}
-      /> */}
     <Form.Group className="col-md-6 float-left">
 <FormControl className="col-md-12 ">
         <Form.Label>Author</Form.Label>
         <Select
+        placeholder="Author"
           labelId="demo-mutiple-chip-label"
           id="demo-mutiple-chip"
           multiple
@@ -559,24 +556,20 @@ document.getElementById('articlePreview').innerHTML=articleHTML;
         >
           {this.state.author.map((i) => (
             <MenuItem key={i[0]} value={i[0]} >
-              {i[1]}{i[3]}
+              {i[1]+' '+i[3]}
+          
             </MenuItem>
           ))}
         </Select>
       </FormControl>
-{/* <MultiSelect
-  value={this.state.authById} // From useState
-  onChange={this.handleChange} // From useState
-  options={this.state.author[1]}
-  label="Movie"
-  labelPlural="Movies"
-/>                         */}
+      </Form.Group>
+
                                             
                                    
                                        
                                      
 
-                                    </Form.Group>
+                                  
                                     <Form.Group className="col-md-6 float-left">
                                         <Form.Label>Win Title</Form.Label>
                                         <Form.Control required type="text" name="winTitle" value={this.state.values.winTitle}
@@ -595,7 +588,7 @@ document.getElementById('articlePreview').innerHTML=articleHTML;
                               </Form.Group>
 
                               {
-                                        this.state.articleValues.contentType.indexOf('2') === -1
+                                        this.state.articleValues.type.indexOf('2') === -1
                                         ?   console.log('Treatment not selected')
                                             : <Form.Group className="col-md-6 float-left">
                                             <Form.Label>Country</Form.Label>
