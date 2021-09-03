@@ -45,7 +45,7 @@ const EditModal = () => {
             setLanguage(res.data.language_id)
             setWin(res.data.window_title)
             setArticleStatus(res.data.pubstatus_id)
-            setArticleDisplay(res.data.friendly_name)
+            // setArticleDisplay(res.data.friendly_name)
             setAuthor(res.data.authored_by)
             setContentType(res.data.content_type)
             setType(res.data.type)
