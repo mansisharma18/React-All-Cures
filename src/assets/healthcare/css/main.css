@@ -2638,3 +2638,6 @@ a.text-underline:hover {
     font-size: 22px;
   }
 }
+div.MuiSelect-root.MuiSelect-select.MuiSelect-selectMenu.MuiInputBase-input.MuiInput-input {
+  width: 100%;
+}

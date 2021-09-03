@@ -65,11 +65,7 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
-<<<<<<< HEAD
-  "proxy": "http://192.168.29.160:8080/cures/",
-=======
-  "proxy": "http://192.168.29.228:8080/cures/",
->>>>>>> 9ddb4f76b34221d36b6358de8aea0566be62b2e0
+  "proxy": "http://localhost:8080/cures/",
   "eslintConfig": {
     "extends": [
       "react-app",
