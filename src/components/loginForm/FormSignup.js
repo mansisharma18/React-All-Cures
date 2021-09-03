@@ -1,9 +1,11 @@
-import React, {useEffect, useState} from 'react'
+import React, { useState } from 'react'
 import { makeStyles } from '@material-ui/core/styles';
 
 import BrandButton from './styled/BrandButton'
 import SlidingForm from './styled/SlidingForm'
-import { Checkbox, FormGroup, FormControlLabel, Select, MenuItem , FormControl, InputLabel} from '@material-ui/core';
+import { Select, MenuItem , FormControl, InputLabel} from '@material-ui/core';
+import GoogleLogin from 'react-google-login'
+
 import { Redirect } from 'react-router';
 import { usePasswordValidation } from '../hooks/usePasswordValidation';
 import axios from 'axios';
@@ -163,12 +165,26 @@ const setSecond = (event) => {
       );
     }
   }
+
+  const responseGoogle = (res) => {
+    console.log(res);
+    console.log(res.profileObj);
+  }
+
   console.log(firstName, lastName, password, email, terms, policy, userType, number)
   return(
-    
+    <>
     <SlidingForm signup className="text-center">
       <h1 id='he2' className="text-center">Create Account</h1>
        <p id='p2'className="text-center">or register with your email</p>
+       <GoogleLogin
+    clientId="529398297055-37e0rfns77ig0nih2moffq1pdp533329.apps.googleusercontent.com"
+    buttonText="Register"
+    onSuccess={responseGoogle}
+    onFailure={responseGoogle}
+    cookiePolicy={'single_host_origin'}
+    className="text-dark"
+  />
        <form onSubmit={SignUpForm}>
         { 
           buttonClick == 1? 
@@ -333,7 +349,7 @@ const setSecond = (event) => {
         </Select>
         </FormControl>
 
-          <FormGroup>
+          {/* <FormGroup>
             <FormControlLabel
               control={<Checkbox name="Terms" onChange={handleTermsCheckbox} value="on" required/>}
               label="Accept Terms & Conditions"
@@ -344,12 +360,13 @@ const setSecond = (event) => {
               label="Remember Me"
               required
             />
-          </FormGroup>
+          </FormGroup> */}
           <BrandButton id='b2' type="submit">Sign up</BrandButton>
 
       </form>
 
     </SlidingForm>
+    </>
   )
 }
 

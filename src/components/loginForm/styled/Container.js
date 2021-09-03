@@ -49,6 +49,9 @@ export default styled(posed.div({}))`
     background: #004180
   }
 
+  .text-dark span{
+    color: darkcyan
+  }
   .container__form {
     padding: 4rem;
     overflow: hidden;
