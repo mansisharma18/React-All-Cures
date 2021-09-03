@@ -301,7 +301,8 @@ const EditModal = () => {
           // MenuProps={MenuProps}
           className="form-control"
         >
-          {authList.map((lan) => {
+          {
+          authList.map((lan) => {
                             return (
                                 <MenuItem key={lan[0]}value={lan[0]} >
                                 {lan[1]+' '+lan[3]}
@@ -321,7 +322,7 @@ const EditModal = () => {
                 </div>
 
                 {
-                type.indexOf('2') === -1 
+                contentType.indexOf('2') === -1 
                     ? null 
                     : <div className="form-group col-lg-6">
                  <label htmlFor="">Country</label>

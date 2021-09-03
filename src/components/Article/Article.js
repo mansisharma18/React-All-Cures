@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
 import { Button, Accordion, Card, Container, Form, Alert } from 'react-bootstrap';
 import { Checkbox, FormGroup, FormControlLabel, Select, MenuItem , FormControl, InputLabel,TextField} from '@material-ui/core'
-import { Autocomplete } from '@material-ui/lab';
-import MultiSelect from 'multiselect-react-dropdown';
+
 import Input from '@material-ui/core/Input';
 
 import Cookies from 'js-cookie';
