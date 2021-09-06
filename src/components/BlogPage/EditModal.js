@@ -5,6 +5,7 @@ import { Checkbox, FormGroup, FormControlLabel, Select, MenuItem , FormControl, 
 import EditorJs from 'react-editor-js';
 import { EDITOR_JS_TOOLS } from './tools'
 import Input from '@material-ui/core/Input';
+
 const EditModal = () => {
 
     const editId = useParams()
@@ -31,7 +32,7 @@ const EditModal = () => {
     const [succMsg,setSuccMsg] = useState('')
     const [disclaimerId,setDisclaimerId] = useState([]) 
     const [getContentList,setGetContentList] = useState([]) 
-
+    
     const getPosts = () =>{
 
         axios.get(`/article/${editId.id}`)
