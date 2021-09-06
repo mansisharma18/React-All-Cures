@@ -5,7 +5,7 @@ import Cookies from 'js-cookie';
 import Heart from"../../assets/img/heart.png";
 import Doct from "../../assets/img/doct.png";
 import axios from 'axios';
-import { Dropdown, DropdownButton } from 'react-bootstrap';
+// import { Dropdown, DropdownButton } from 'react-bootstrap';
 import '../../assets/healthcare/css/main.css';
 import '../../assets/healthcare/css/responsive.css';
 import '../../assets/healthcare/css/animate.css';
@@ -14,11 +14,7 @@ import './custom.css';
 import Carousel1 from './Caousel1';
 import Carousel2 from './Carousel2';
 import CarouselReview from './CarouselReview';
-<<<<<<< HEAD
-// import { Dropdown, DropdownButton, Nav } from 'react-bootstrap';
-=======
 import { Dropdown, Button, DropdownButton, Nav, Modal } from 'react-bootstrap';
->>>>>>> 86ca4ce48e786717965dbd39996a01d416eb0d8f
 // import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 // import ToggleButton from '../Header/Header'
 import Test from './test'
@@ -519,14 +515,7 @@ function ToggleButton(props) {
       >
          Sign in/Sign up
       </Link>
-<<<<<<< HEAD
-
-      //  <Link to="/login" className="btn-white loginSignbtn color-blue-dark" >
-      //      Sign In/ Sign Up
-      //  </Link>
-=======
       </>
->>>>>>> 86ca4ce48e786717965dbd39996a01d416eb0d8f
    )
 }
 
