@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Button, Accordion, Card, Container, Form, Alert } from 'react-bootstrap';
-import { Checkbox, FormGroup, FormControlLabel, Select, MenuItem , FormControl, InputLabel} from '@material-ui/core'
+import { Checkbox, FormGroup, FormControlLabel, Select, MenuItem , FormControl, Input} from '@material-ui/core'
 
 import Cookies from 'js-cookie';
 import './article.css'
@@ -31,6 +31,7 @@ export default class Test extends Component {
             showAuthorAccordian: false,
             ShowSubmitAlert: false,
             ShowErrorAlert: false,
+            author: [],
             values: {
                 authorFN: "",
                 authorMN:"",
@@ -45,9 +46,10 @@ export default class Test extends Component {
             articleValues: {
                 title: "",
                 friendlyName: "",
-                contentType: [],
+                type:[],
+                contentType: "",
                 disclaimerId : 1,
-                authById: 9,
+                authById: "[]",
                 copyId: 11,
                 articleStatus: 1,
                 winTitle : "",
@@ -89,6 +91,8 @@ export default class Test extends Component {
         this.setState({
             articleValues: { ...this.state.articleValues, [e.target.name]:  Array.from(e.target.selectedOptions, (item) => item.value) }
         });
+
+        console.log(this.state.author);
         console.log(this.state.articleValues.contentType)
     }
     
@@ -160,6 +164,8 @@ export default class Test extends Component {
         });
         console.log(e.target.name + e.target.value)
     }
+
+    
 
     submitForm = async e => {
         e.preventDefault();
@@ -447,10 +453,25 @@ document.getElementById('articlePreview').innerHTML=articleHTML;
                                         <Form.Label>Content Type</Form.Label>
                                         <Form.Control as="select"
                                             name="contentType" 
-                                            multiple 
+                                       
                                             placeholder="Content Type"
-                                            onChange={this.handleChange}
+                                            onChange={this.handleArticleChange}
                                             value={this.state.articleValues.contentType}
+                                            required
+                                        >
+                                            <option value="1">Article</option>
+                                            <option value="2">Video</option>
+                                           
+                                        </Form.Control>
+                                    </Form.Group>
+                                    <Form.Group className="col-md-6 float-left">
+                                        <Form.Label>Type</Form.Label>
+                                        <Form.Control as="select"
+                                            name="type" 
+                                            multiple 
+                                            placeholder="Type"
+                                            onChange={this.handleChange}
+                                            value={this.state.articleValues.Type}
                                             required
                                         >
                                             <option value="1">Disease</option>
@@ -458,23 +479,7 @@ document.getElementById('articlePreview').innerHTML=articleHTML;
                                             <option value="3">Specialities</option>
                                         </Form.Control>
                                     </Form.Group>
-                                    {
-                                        this.state.articleValues.contentType.indexOf('2') === -1
-                                        ?   console.log('Treatment not selected')
-                                            : <Form.Group className="col-md-6 float-left">
-                                            <Form.Label>Country</Form.Label>
-                                                <Form.Control as="select" name="countryId" custom
-                                                onChange={this.handleArticleChange} placeholder="Country" required>
-                                                    <option>Open this menu</option>
-                                                    {this.state.country.map((i) => (  
-                                                        <Options
-                                                            value={i[0]}
-                                                            name={i[1]}
-                                                        />
-                                                    ))}
-                                            </Form.Control>
-                                        </Form.Group>
-                                    }
+                                    
                                     <Form.Group className="col-md-6 float-left">
                                         <Form.Label>Disclaimer ID</Form.Label>
                                         <Form.Control as="select" name="disclaimer" custom onChange={this.handleArticleChange} required>
@@ -519,19 +524,39 @@ document.getElementById('articlePreview').innerHTML=articleHTML;
                                             ))}
                                         </Form.Control>
                                     </Form.Group>
-                                    <Form.Group className="col-md-6 float-left">
-                                        <Form.Label>Author By ID</Form.Label>
-                                        <Form.Control as="select" name="authById" custom value={this.state.values.authById}
-                                        onChange={this.handleArticleChange} required>
-                                            <option>Open this select menu</option>
-                                            {this.state.author.map((i) => (
-                                                <Options
-                                                value={i[0]}
-                                                name={i[1]}
-                                                />
-                                            ))}
-                                        </Form.Control>
-                                    </Form.Group>
+                                
+
+    <Form.Group className="col-md-6 float-left">
+<FormControl className="col-md-12 ">
+        <Form.Label>Author</Form.Label>
+        <Select
+        placeholder="Author"
+          labelId="demo-mutiple-chip-label"
+          id="demo-mutiple-chip"
+          multiple
+          name="authById"
+          value={this.state.articleValues.authById}
+          onChange={this.handleArticleChange}
+          input={<Input id="select-multiple-chip" />}
+          // MenuProps={MenuProps}
+          className=""
+        >
+          {this.state.author.map((i) => (
+            <MenuItem key={i[0]} value={i[0]} >
+              {i[1]+' '+i[3]}
+          
+            </MenuItem>
+          ))}
+        </Select>
+      </FormControl>
+      </Form.Group>
+
+                                            
+                                   
+                                       
+                                     
+
+                                  
                                     <Form.Group className="col-md-6 float-left">
                                         <Form.Label>Win Title</Form.Label>
                                         <Form.Control required type="text" name="winTitle" value={this.state.values.winTitle}
@@ -548,6 +573,24 @@ document.getElementById('articlePreview').innerHTML=articleHTML;
                                         style={{ height: '100px' }}
                                     />
                               </Form.Group>
+
+                              {
+                                        this.state.articleValues.type.indexOf('2') === -1
+                                        ?   console.log('Treatment not selected')
+                                            : <Form.Group className="col-md-6 float-left">
+                                            <Form.Label>Country</Form.Label>
+                                                <Form.Control as="select" name="countryId" custom
+                                                onChange={this.handleArticleChange} placeholder="Country" required>
+                                                    <option>Open this menu</option>
+                                                    {this.state.country.map((i) => (  
+                                                        <Options
+                                                            value={i[0]}
+                                                            name={i[1]}
+                                                        />
+                                                    ))}
+                                            </Form.Control>
+                                        </Form.Group>
+                                    }
                                 </Card.Body>
                             </Accordion.Collapse>
                         </Card>

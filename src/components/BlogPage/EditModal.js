@@ -1,20 +1,22 @@
 import React, {useEffect,useState, useRef} from 'react';
 import {useParams} from 'react-router-dom';
 import axios from 'axios';
-
+import { Checkbox, FormGroup, FormControlLabel, Select, MenuItem , FormControl, InputLabel,TextField} from '@material-ui/core'
 import EditorJs from 'react-editor-js';
 import { EDITOR_JS_TOOLS } from './tools'
+import Input from '@material-ui/core/Input';
 const EditModal = () => {
 
     const editId = useParams()
     const [title, setTitle] = useState('')
     const [articleDisplay, setArticleDisplay] = useState('')
     const [content, setContent] = useState()
-    const [contentType,setContentType] = useState([])
+    const [contentType,setContentType] = useState('')
+    const [type,setType] = useState([])
     const [disclaimer, setDisclaimer] = useState('')
     const [copyright, setCopyright] = useState('')
     const [language, setLanguage] = useState('')
-    const [author, setAuthor] = useState('')
+    const [author, setAuthor] = useState([])
     const [country, setCountry] = useState('')
     const [win, setWin] = useState('')
     const [articleStatus, setArticleStatus] = useState('')
@@ -43,8 +45,9 @@ const EditModal = () => {
             setWin(res.data.window_title)
             setArticleStatus(res.data.pubstatus_id)
             setArticleDisplay(res.data.friendly_name)
-            setAuthor(res.data.authored_by)
-            setContentType(res.data.content_type)
+            // setAuthor(res.data.authored_by)
+            setArticleContent(res.data.articleContent)
+            setType(res.data.content_type)
             setCountry(res.data.country_id)
             setDisease(res.data.disease_condition_id)
         })
@@ -62,11 +65,12 @@ const EditModal = () => {
             "title":title,
             "friendly_name": articleDisplay,
             "subheading": "1",
-            "content_type": contentType,
+            "content_type": "'["+type+"]'",
+        
             "keywords": "1",
             "window_title": win,
             // "content_location": "1",
-            "authored_by": author,
+            "authored_by": "'["+author+"]'",
             "published_by": 1,
             "edited_by": 1,
             "copyright_id": copyright,
@@ -144,10 +148,9 @@ const EditModal = () => {
         for (let i=0; i<countries.length; i++) {
             flavors.push(countries[i].value);
         }
-        setContentType(flavors);
-        console.log(contentType)
+        setType(flavors);
     }
-   console.log("COntent : ", content)
+
    
     return (
         <>
@@ -182,21 +185,35 @@ const EditModal = () => {
                 
                 <div className="col-lg-6 form-group">
                     <label htmlFor="">Content Type</label>
-                    <select multiple name="contentType" placeholder="Content Type" 
+                    <select name="contentType" placeholder="Content Type" 
                     value={contentType} 
                     onChange={(e)=> {
-                        handleSelect(e.target.selectedOptions)
-                        if(contentType.indexOf('2') === -1){
-                            setShowCountry(false)
-                        } else {
-                            setShowCountry(true)
-                        }
-                        
-                    }}
+                        setContentType(e.target.value)
+                     }}
+                     
                     required class="form-control">
 
                    
                      
+                        <option value="1">Article</option>
+                        <option value="2">Video</option>
+                      
+                    </select>
+                </div>
+                
+
+
+                <div className="col-lg-6 form-group">
+                    <label htmlFor="">Type</label>
+                    <select 
+                    multiple
+                    name="type" placeholder="Type" 
+                    value={type} 
+                    
+                    onChange={(e)=> {
+                        handleSelect(e.target.selectedOptions)
+                    }}
+                    required class="form-control">
                         <option value="1">Disease</option>
                         <option value="2">Treatment</option>
                         <option value="3">Specialities</option>
@@ -249,37 +266,45 @@ const EditModal = () => {
                         })}
                     </select>
                 </div>
-                <div className="col-lg-6 form-group">
-                    <label htmlFor="">Author By ID</label>
-                     <select name="" value={author} onChange={(e) =>  setAuthor(e.target.value)} className="form-control" id="">
 
-                    {authList.map((lan) => {
+                <div className="col-lg-6 form-group">
+                    <label htmlFor="">Author</label>
+                        <Select multiple
+                        value={author}
+                        onChange={(e) =>  setAuthor(e.target.value)}
+                        input={<Input id="select-multiple-chip" />}
+                        // MenuProps={MenuProps}
+                        className="form-control">
+                        {authList.map((lan) => {
                             return (
-                                <option value={lan[0]}>{lan[1]}</option>
+                                <MenuItem key={lan[0]}value={lan[0]} >
+                                    {lan[1]+' '+lan[3]}
+                                </MenuItem>
                             )
                         })}
-                        </select>
-                    
-    
+                        </Select>
                 </div>
+
                 <div className="col-lg-6 form-group">
                     <label htmlFor="">Win Title</label>
                     <input type="text" value={win}  onChange={(e) => setWin(e.target.value)} placeholder="Enter title" className="form-control" />
                 </div>
-                {contentType.indexOf('2') === -1 
+                {   
+                    type?
+                    type.indexOf('2') === -1 
                     ? null 
                     : <div className="form-group col-lg-6">
-                 <label htmlFor="">Country</label>
-                 <select name="country" value={country} onChange={(e) => setCountry(e.target.value)} placeholder="Country" required="" class="form-control">
-                     
-                     {countriesList.map((lan) => {
-                         return (
-                             <option value={lan[0]}>{lan[1]}</option>
-                         )
-                     })}
-                     
-                 </select>
-             </div> }
+                        <label htmlFor="">Country</label>
+                        <select name="country" value={country} onChange={(e) => setCountry(e.target.value)} placeholder="Country" required="" class="form-control">
+                            {countriesList.map((lan) => {
+                                return (
+                                    <option value={lan[0]}>{lan[1]}</option>
+                                )
+                            })}
+                        </select>
+                    </div> 
+                    : null
+                }
                 </div>
                             </div>
                             </div>
