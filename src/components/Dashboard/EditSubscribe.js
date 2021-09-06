@@ -9,88 +9,33 @@ import { useHistory, Link, Redirect} from 'react-router-dom'
 import axios from 'axios';
 import history from '../history'
 import { useParams } from "react-router-dom";
-
-
-
+import '../../assets/healthcare/css/main.css';
+import Input from '@material-ui/core/Input';
+import { Checkbox, FormGroup, FormControlLabel, Select, MenuItem , FormControl, InputLabel,TextField} from '@material-ui/core'
 
 function LoginInfo(props) {  
-const[email,setEmail] = useState('');
-    const [password, setPassword] = useState({
-          firstPassword: "",
-          secondPassword: "",
-         });
+const[number,setNumber] = useState('');
+const [countriesList,setCountriesList] = useState([])
     const [alert, setSubmitAlert] = useState(false)
     const [acPerm, setacPerm] = useState(Cookies.get('acPerm'))
     const [states, setStates] = useState([])
- 
+    const [type,setType] = useState([])
     const [selectedState, setSelectedState] = useState('')
     const [submitAlert, setAlert] = useState(false)
     const [notAlert, noAlert] = useState(false)
     const [errAlert, erAlert] = useState(false)
-    const [
-        validLength,
-        hasNumber,
-        upperCase,
-        lowerCase,
-        match,
-        specialChar,
-    ] = usePasswordValidation({
-        Mail: email.Mail,
-    firstPassword: password.firstPassword,
-    secondPassword: password.secondPassword,
-    });
-    
+    const [disease, setDisease] = useState([])
+    const [cures, setCures] = useState([])
+    const [diseaseList, setDiseaseList] = useState([])
     const setMail = (event)=>{
-        setEmail({ ...email,Mail: event.target.value})
+        setNumber({ ...number,Mail: event.target.value})
     }
-    const setFirst = (event) => {
-      setPassword({ ...password, firstPassword: event.target.value });
-    };
-    const setSecond = (event) => {
-      setPassword({ ...password, secondPassword: event.target.value });
-    };
-
+    
     
 
-    const submitForm = async (e) => {
-        e.preventDefault()
        
-        setSubmitAlert(true)    
-        if(validLength && upperCase && lowerCase && match && password.firstPassword){
-            axios.put(`/users/updatepassword`, {
-                "updated_password": password.firstPassword,
-                "email": email,
-                })
-            .then(res => {
-                if(res.data =="1"){
-                    setAlert(true)
-                setTimeout(()=>{
-                    window.location.href="/home";
-                },1000)
-               
-          
-            }else if(res.data == "Sorry, the email address you entered does not exist in our database."){
-                noAlert(true)
-                setTimeout(()=>{
-                    noAlert(false)
-                },4000)
-            }
-            else if(res.data == "0"){
-                erAlert(true)
-                setTimeout(()=>{
-                    noAlert(false)
-                },4000)
-            }
-          
-        }
-            )
-            .catch(err => {
-                console.log(err);
-                console.log('error in Resetting')
-            })
-    
-        }
-    }
+      
+        
     
     useEffect(() => {
 
@@ -104,8 +49,13 @@ const[email,setEmail] = useState('');
              "email":getEmail.split('em=')[1]
          })
          .then(res => {
-            setEmail(res.data)
+            setNumber(res.data)
          })
+         
+    
+     
+        getDisease()
+
          
         }, [])
 
@@ -117,6 +67,21 @@ const[email,setEmail] = useState('');
            window.location.reload()
         }, 1000);
      }
+     const handleSelect = function(countries) {
+        const flavors = [];
+        for (let i=0; i<countries.length; i++) {
+            flavors.push(countries[i].value);
+        }
+        setType(flavors);
+    }
+    const getDisease = () => {
+        axios.get('/article/all/table/disease_condition')
+        .then(res => {
+            console.log(res.data);
+            setDiseaseList(res.data)
+        })
+        .catch(err => console.log(err))
+    }
 
     return (
         <>
@@ -145,6 +110,7 @@ const[email,setEmail] = useState('');
                         <div className="container">
                 <div className="h2 text-center my-3">Reset Your Password</div>
         <div className="card mb-5">
+      
                     <div className="card-body">
                         <form>
                         <div className='LoginInfo'>
@@ -153,65 +119,83 @@ const[email,setEmail] = useState('');
     
       </div>
                            
-                            
-                       <div className="d-flex flex-column  align-items-md-center">
-                       <Form.Group className="col-md-6  " style={{zIndex: 1}}>
+      <div className="row">
+                  
+      <div className="col-lg-6 form-group">
+                    <label htmlFor="">Type</label>
+                    <select 
+                    multiple
+               
+                    name="type" placeholder="Type" 
+                    value={type} 
+                    
+                    onChange={(e)=> {
+                        handleSelect(e.target.selectedOptions)
+                    }}
+                    required class="form-control">
+                        <option value="1">All</option>
+                        <option value="2">Disease</option>
+                        <option value="3">Cures</option>
+                    </select>
+                </div>
+                       <Form.Group className="col-lg-6  " style={{zIndex: 1}}>
                                 <Form.Label>Mobile Number</Form.Label>
-                                <Form.Control disabled onChange={setMail} value={email} type="Email" name="" placeholder="Enter Email" required/>
+                                <Form.Control disabled onChange={setMail} value={number} type="Email" name="" required/>
                             </Form.Group>
-                            <Form.Group className="col-md-6  " style={{zIndex: 1}}>
-                                <Form.Label>Password</Form.Label>
-                                <Form.Control onChange={setFirst} type="password" name="" placeholder="Enter Password" required/>
-                            </Form.Group>
-                            <Form.Group className="col-md-6 " style={{zIndex: 1}}>
-                                <Form.Label>Confirm Password</Form.Label>
-                                <Form.Control  type="password" name="" onChange={setSecond} placeholder="Confirm password" required/>
-                            </Form.Group>
-                            </div>
-                            {
-                                alert?
-                                <div>
-                                <ul>
-                                  <li className="m-3">
-                                    {validLength ? <span className="px-3 py-1 alert-success">Contains minimum amount of characters</span> : <span className="px-3 py-1 alert-danger">Minimum 8 characters required</span>}
-                                  </li>
-                                  {/* <li className="m-3">
-                                    {hasNumber ? null : <span className="px-3 py-1 alert-danger">Should contain at least one numeric character</span>}
-                                  </li> */}
-                                  <li className="m-3">
-                                    {upperCase ? <span className="px-3 py-1 alert-success">Contains uppercase character</span> : <span className="px-3 py-1 alert-danger">Should contain at least one uppercase character</span>}
-                                  </li>
-                                  <li className="m-3">
-                                    {lowerCase ? <span className="px-3 py-1 alert-success">Contains Lowercase</span> : <span className="px-3 py-1 alert-danger">Should contain at least one lowercase character</span>}
-                                  </li>
-                                  <li className="m-3">{match ? <span className="px-3 py-1 alert-success">Passwords match</span> : <span className="px-3 py-1 alert-danger">Passwords do not match</span>}</li>
-                                  {/* <li className="m-3">
-                                    {specialChar ? null : <span className="px-3 py-1 alert-danger">Should contain at least one special character</span>}
-                                  </li> */}
-                              </ul>
-                              </div>
-                            //   :null
-                              : null
-                            }
 
-{
-                   submitAlert?
-                   <Alert variant="success" className="h6 mx-3">Password reset successfully!!</Alert>
-                   : null
-                             }
-                             
-                             {
-                   notAlert?
-                   <Alert variant="danger" className="h6 mx-3">Email not found</Alert>
-                   : null
-                             }
-{
-                  errAlert?
-                   <Alert variant="danger" className="h6 mx-3">Error in Resetting</Alert>
-                   : null
-                             }
-                            <div className="d-flex flex-column align-items-sm-center">
-                            <button onClick={submitForm} className="btn btn-dark col-md-4">Submit</button>
+
+                              {   
+                    type?
+                    type.indexOf('2') === -1 
+                    ? null 
+                    :                             <div className="col-lg-6 form-group">
+                    <label htmlFor="">Disease</label>
+                        <Select multiple
+                        value={disease}
+                        onChange={(e) =>  setDisease(e.target.value)}
+                        input={<Input id="select-multiple-chip" />}
+                        // MenuProps={MenuProps}
+                        className="form-control">
+                        {diseaseList.map((lan) => {
+                            return (
+                                <MenuItem key={lan[0]}value={lan[0]} >
+                                    {lan[1]}
+                                </MenuItem>
+                            )
+                        })}
+                        </Select>
+                </div>
+                    : null
+                } 
+                  {   
+                    type?
+                    type.indexOf('3') === -1 
+                    ? null 
+                    :  <div className="col-lg-6 form-group">
+                    <label htmlFor="">Cures</label>
+                        <Select multiple
+                        value={cures}
+                        onChange={(e) =>  setCures(e.target.value)}
+                        input={<Input id="select-multiple-chip" />}
+                        // MenuProps={MenuProps}
+                        className="form-control">
+                        {diseaseList.map((lan) => {
+                            return (
+                                <MenuItem key={lan[0]}value={lan[0]} >
+                                    {lan[1]}
+                                </MenuItem>
+                            )
+                        })}
+                        </Select>
+                </div>
+                    : null
+                } 
+                
+                
+                </div> 
+                       
+      <div className="d-flex flex-column align-items-sm-center">
+                            <button  className="btn btn-dark col-md-4">Submit</button>
                             </div>
                         </form>
                     </div>
