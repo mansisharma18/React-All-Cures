@@ -1,16 +1,20 @@
- import React, { Component, useState, useEffect } from 'react';
+import React, { Component, useState, useEffect } from 'react';
+
 import Cookies from 'js-cookie';
 import { usePasswordValidation } from "../hooks/usePasswordValidation";
-import { Form, Dropdown, DropdownButton } from 'react-bootstrap';
+import { Alert,Form, Dropdown, DropdownButton } from 'react-bootstrap';
 import Footer from '../Footer/Footer';
 import Heart from"../../assets/img/heart.png";
-import { useHistory, Link} from 'react-router-dom'
+import { useHistory, Link, Redirect} from 'react-router-dom'
 import axios from 'axios';
-import { Redirect } from "react-router-dom";
+import history from '../history'
+import { useParams } from "react-router-dom";
+
+
 
 
 function LoginInfo(props) {  
-
+const[email,setEmail] = useState('');
     const [password, setPassword] = useState({
           firstPassword: "",
           secondPassword: "",
@@ -18,10 +22,11 @@ function LoginInfo(props) {
     const [alert, setSubmitAlert] = useState(false)
     const [acPerm, setacPerm] = useState(Cookies.get('acPerm'))
     const [states, setStates] = useState([])
-    const [uprn, setUprn] = useState('')
+ 
     const [selectedState, setSelectedState] = useState('')
-    const [regNum, setRegNumber] = useState('')
-
+    const [submitAlert, setAlert] = useState(false)
+    const [notAlert, noAlert] = useState(false)
+    const [errAlert, erAlert] = useState(false)
     const [
         validLength,
         hasNumber,
@@ -30,10 +35,14 @@ function LoginInfo(props) {
         match,
         specialChar,
     ] = usePasswordValidation({
+        Mail: email.Mail,
     firstPassword: password.firstPassword,
     secondPassword: password.secondPassword,
     });
     
+    const setMail = (event)=>{
+        setEmail({ ...email,Mail: event.target.value})
+    }
     const setFirst = (event) => {
       setPassword({ ...password, firstPassword: event.target.value });
     };
@@ -41,43 +50,63 @@ function LoginInfo(props) {
       setPassword({ ...password, secondPassword: event.target.value });
     };
 
-    const history = useHistory();
-
-    const routeChange = (docid) =>{ 
-        let path = `/profile/${docid}`; 
-        history.push(path);
-    }
+    
 
     const submitForm = async (e) => {
         e.preventDefault()
-        setSubmitAlert(true)
-        if(validLength && upperCase && lowerCase && match && uprn && regNum && password.firstPassword && selectedState){
-            axios.post(`/doctors/verification`, {
-                "uprn": uprn,
-                "registration_number": regNum,
-                "password": password.firstPassword,
-                "stateid": selectedState,
-                "email": 'anil3.kumar@test.com',
+       
+        setSubmitAlert(true)    
+        if(validLength && upperCase && lowerCase && match && password.firstPassword){
+            axios.put(`/users/updatepassword`, {
+                "updated_password": password.firstPassword,
+                "email": email,
                 })
             .then(res => {
-                console.log('Updated Successfully', res.data)
-                routeChange(res.data)
-            })
+                if(res.data =="1"){
+                    setAlert(true)
+                setTimeout(()=>{
+                    window.location.href="/home";
+                },1000)
+               
+          
+            }else if(res.data == "Sorry, the email address you entered does not exist in our database."){
+                noAlert(true)
+                setTimeout(()=>{
+                    noAlert(false)
+                },4000)
+            }
+            else if(res.data == "0"){
+                erAlert(true)
+                setTimeout(()=>{
+                    noAlert(false)
+                },4000)
+            }
+          
+        }
+            )
             .catch(err => {
                 console.log(err);
-                console.log('error in updating')
+                console.log('error in Resetting')
             })
     
         }
     }
     
     useEffect(() => {
-        Promise.all([
-            fetch('/article/all/table/states').then(res => res.json()),
-        ]).then(([statesData]) => {
-            console.log('States Data: ',statesData)
-                setStates(statesData);
-            });
+
+        // const params = new URLSearchParams(location.search);
+        // const getEmail= params.get('em');
+      
+       const getEmail = props.location.search
+       
+         axios.post(`/users/getemdecrypt`,
+         {
+             "email":getEmail.split('em=')[1]
+         })
+         .then(res => {
+            setEmail(res.data)
+         })
+         
         }, [])
 
     const logout = async e => {
@@ -114,7 +143,7 @@ function LoginInfo(props) {
                 </div>
                  </div>
                         <div className="container">
-                <div className="h2 text-center my-3">Let us know you better!</div>
+                <div className="h2 text-center my-3">Reset Your Password</div>
         <div className="card mb-5">
                     <div className="card-body">
                         <form>
@@ -123,37 +152,22 @@ function LoginInfo(props) {
                         
     
       </div>
-                            <Form.Group className="col-md-12 float-left" style={{zIndex: 1}}>
-                                 <Form.Label>UPNR</Form.Label>
-                                 <Form.Control value={uprn} onChange={(e) => setUprn(e.target.value)} type="text" name=""
-                                     placeholder="Enter your UPNR here" required/>
-                            </Form.Group>
+                           
                             
-                            <Form.Group className="col-md-6 float-left" style={{zIndex: 1}}>
-                                        <Form.Label>Select State</Form.Label>
-                                        <Form.Control value={selectedState} onChange={(e)=>setSelectedState(e.target.value)} as="select" name="authById" custom
-                                        required>
-                                            <option>Open this select menu</option>
-                                            {states.map((i) => (
-                                                <option value={i[0]}>
-                                                    {i[1]}
-                                                </option>                                                
-                                            ))}
-                                        </Form.Control>
-                                    </Form.Group>
-                                    <Form.Group className="col-md-6 float-left" style={{zIndex: 1}}>
-                                 <Form.Label>Registration Number</Form.Label>
-                                 <Form.Control value={regNum} onChange={(e)=>setRegNumber(e.target.value)} type="text" name=""
-                                     placeholder="Enter your Registration/MIN ID here" required/>
+                       <div className="d-flex flex-column  align-items-md-center">
+                       <Form.Group className="col-md-6  " style={{zIndex: 1}}>
+                                <Form.Label>Mobile Number</Form.Label>
+                                <Form.Control disabled onChange={setMail} value={email} type="Email" name="" placeholder="Enter Email" required/>
                             </Form.Group>
-                            <Form.Group className="col-md-6 float-left" style={{zIndex: 1}}>
+                            <Form.Group className="col-md-6  " style={{zIndex: 1}}>
                                 <Form.Label>Password</Form.Label>
                                 <Form.Control onChange={setFirst} type="password" name="" placeholder="Enter Password" required/>
                             </Form.Group>
-                            <Form.Group className="col-md-6 float-left" style={{zIndex: 1}}>
+                            <Form.Group className="col-md-6 " style={{zIndex: 1}}>
                                 <Form.Label>Confirm Password</Form.Label>
                                 <Form.Control  type="password" name="" onChange={setSecond} placeholder="Confirm password" required/>
                             </Form.Group>
+                            </div>
                             {
                                 alert?
                                 <div>
@@ -179,8 +193,25 @@ function LoginInfo(props) {
                             //   :null
                               : null
                             }
-                            <div className="col-md-12 text-center">
-                            <button onClick={submitForm} className="btn btn-dark col-md-12">Submit</button>
+
+{
+                   submitAlert?
+                   <Alert variant="success" className="h6 mx-3">Password reset successfully!!</Alert>
+                   : null
+                             }
+                             
+                             {
+                   notAlert?
+                   <Alert variant="danger" className="h6 mx-3">Email not found</Alert>
+                   : null
+                             }
+{
+                  errAlert?
+                   <Alert variant="danger" className="h6 mx-3">Error in Resetting</Alert>
+                   : null
+                             }
+                            <div className="d-flex flex-column align-items-sm-center">
+                            <button onClick={submitForm} className="btn btn-dark col-md-4">Submit</button>
                             </div>
                         </form>
                     </div>
@@ -212,4 +243,4 @@ function LoginInfo(props) {
             </Link>
         )
     }
-    export default LoginInfo;
+    export default LoginInfo;       

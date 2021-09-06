@@ -32,6 +32,9 @@ import PromoAdmin from './Dashboard/PromoAdmin.js'
 import ResetPass from './loginForm/ResetPass.js'
 import Promo from "./Dashboard/Promo/CreatePromo";
 import Verify from './loginForm/Verify.js'
+import Subscribe from './Dashboard/Subscribe.js'
+import Subs from './Dashboard/Subs.js'
+import EditSubscribe from './Dashboard/EditSubscribe'
 
 
 // import Blogs from './Disease/Disease'
@@ -97,6 +100,9 @@ const Routes = (props) => {
       <Route exact path="/dashboard/promoadmin" component={PromoAdmin} />
       <Route exact path="/dashboard/promoadmin" component={PromoAdmin} />
       <Route exact path="/landingPage/sticky" component={Sticky} />
+      <Route exact path="/subscribe" component={Subscribe} />
+      <Route exact path="/subs" component={Subs} />
+      <Route exact path="/editsubscribe" component={EditSubscribe} />
 
     
       <Route exact path="/loginForm/ResetPass" component={ResetPass} />

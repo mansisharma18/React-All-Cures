@@ -59,6 +59,15 @@ export const mainListItems = (
       <ListItemIcon>
         <BarChartIcon />
       </ListItemIcon>
+
+      <Link to="/subscribe">
+               Subscibe
+           </Link>
+    </ListItem>
+    <ListItem button>
+      <ListItemIcon>
+        <BarChartIcon />
+      </ListItemIcon>
       {/* <ListItemText primary="Reports" /> */}
       <Link to="/dashboard/Promoadmin">
         Promo
@@ -91,6 +100,7 @@ export const mainListItems = (
     <ListItemText primary="Create Promo" />
            </Link>
     </ListItem>
+    
   
   </div>
 );

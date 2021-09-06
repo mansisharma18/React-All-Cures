@@ -37,6 +37,7 @@ class Home extends Component {
             city: '',
             Pincode: '',
             name: '',
+            subscription: '',
         }
       };
   }
@@ -64,6 +65,41 @@ class Home extends Component {
     }
     loaddoctor();
  }
+   
+ postSubscribtion() {
+    
+   // console.log(selected.join())
+   // console.log(rejected.join())
+   
+   axios.post(`/users/subscribe/7889761896`, {
+   //   "articles_ids": selected.join(),
+   //   "articles_ids_rejected": rejected.join()
+   "nl_subscription_disease_id": 1,
+   "nl_sub_type":1,
+   "nl_subscription_cures_id":0,
+   })
+     .then(res => {
+       console.log(res)
+      
+     })
+     .catch(err => console.log(err))
+
+   
+ }
+//    postSubscribtion(){
+//    axios.post(`/users/subscribe/7889761896`,{
+
+   // "nl_subscription_disease_id": 1,
+   // "nl_sub_type":1,
+   // "nl_subscription_cures_id":0,
+
+// })
+// .then(res => {
+//    console.log(res)
+  
+//  })
+//  .catch(err => console.log(err))
+//   }
 
   onSuggestHandler = (text, ano) => {
     if(Number.isInteger(this.state.getPincode)) {
@@ -331,52 +367,7 @@ onChangeHandlerdoctor = (e, text) => {
             </div>
         
          </div>
-
-         {/* NewsLetter Icon */}
-         <div>
-         <a
-        href="https://wa.me/7889761896"
-        class="newsletter_float"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-         <i class="fas fa-envelope-open-text newsletter-icon"></i>
-         <section className="appStore" >
-         <div className="container">
-            <div className="row">
-               <div className="appStoreBg clearfix" style={{display:"flex",width: "100%",flexWrap: 'wrap'}}>
-                  <div className="col-md-6 col-sm-6 col-sx-12">
-                     <div className="innerapp">
-                        <div className="doc-img">
-                           <img src={Doct} alt="doct"/>
-                        </div>
-                        <div className="btn-Gropu">
-                           <a href="/#" className="appBTN">App Store</a>
-                           <a href="/#" className="appBTN">App Store</a>
-                        </div>
-                     </div>
-                  </div>
-                  <div className="col-md-6 col-sm-6 col-sx-12">
-                     <div className="subscribe">
-                        <h1>Get along with us on</h1>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec congue  turpis sollicitudin nulla finibus dignissim.</p>
-                        <div className="form-group relative">
-                           <div className="aaa">
-                              <input type="text" name="" className="form-control"/>
-                           </div>
-                           <div>
-                              <a href="/#" className="subscribeBtn">Subscribe</a>
-                           </div>
-                        </div>
-                     </div>
-                  </div>
-               </div>
-            </div>
-         </div>
-      </section>
-    
-      </a>
-         </div>
+         
       </section><br/><br/>
       {/* <section className="partner">
          <div className="container">
@@ -404,7 +395,70 @@ onChangeHandlerdoctor = (e, text) => {
        
          </div>
       </section> */}
+      <div>
+         <button i className=" newsletter-icon btn  newsletter_float" data-toggle="modal"data-target=".bd-example-modal-lg">
+      Subscribe
      
+            </button>
+ 
+         </div>
+<div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+    <div class="modal-header">
+        
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+    <section className="appStore" >
+         <div className="container">
+            <div className="row">
+               <div className="appStoreBg clearfix" style={{display:"flex",width: "100%",flexWrap: 'wrap'}}>
+                  <div className="col-md-6 col-sm-6 col-sx-12">
+                     <div className="innerapp">
+                        <div className="doc-img">
+                           <img src={Doct} alt="doct"/>
+                        </div>
+                        <div className="btn-Gropu">
+                           <a href="/#" className="appBTN">App Store</a>
+                           <a href="/#" className="appBTN">App Store</a>
+                        </div>
+                     </div>
+                  </div>
+                  <div className="col-md-6 col-sm-6 col-sx-12">
+                     <div className="subscribe">
+                        <h1>Get along with us on</h1>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec congue  turpis sollicitudin nulla finibus dignissim.</p>
+                        <div className="form-group relative">
+                           <div className="aaa">
+                              <input type="text" name="" className="form-control"/>
+                           </div>
+                           <div>
+                              {/* <a href="/#" className="subscribeBtn">Subscribe</a> */}
+                              
+                                
+                                <button onClick={() => {this.postSubscribtion()}}>Submit</button>
+                              
+                             
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+        
+      </section>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
       <Footer/>
       </div>
       
