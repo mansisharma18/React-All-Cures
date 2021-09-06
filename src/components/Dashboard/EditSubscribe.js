@@ -30,7 +30,20 @@ const [countriesList,setCountriesList] = useState([])
     const setMail = (event)=>{
         setNumber({ ...number,Mail: event.target.value})
     }
-    
+     
+  const putSubscribe= async e => {
+       e.preventDefault()
+    axios.post('/users/subscribe/7889761896',
+  {   
+ "nl_subscription_disease_id":1,
+  "nl_sub_type":1,
+  "nl_subscription_cures_id": 0
+  })
+  .then(res => {
+      console.log(res)
+  })
+  .catch(err => console.log(err))
+   }
     
 
        
@@ -59,14 +72,14 @@ const [countriesList,setCountriesList] = useState([])
          
         }, [])
 
-    const logout = async e => {
-        const res = await fetch("/LogoutActionController", {
-           method: "POST"
-        });
-        setTimeout(() => {
-           window.location.reload()
-        }, 1000);
-     }
+    // const logout = async e => {
+    //     const res = await fetch("/LogoutActionController", {
+    //        method: "POST"
+    //     });
+    //     setTimeout(() => {
+    //        window.location.reload()
+    //     }, 1000);
+    //  }
      const handleSelect = function(countries) {
         const flavors = [];
         for (let i=0; i<countries.length; i++) {
@@ -99,7 +112,7 @@ const [countriesList,setCountriesList] = useState([])
                         </div>
     
                         <div className="loginSign">
-                            <ToggleButton acPerm={acPerm} url={props.url} logout={logout}/> 
+                            {/* <ToggleButton acPerm={acPerm} url={props.url} logout={logout}/>  */}
                         </div>   	
                         </div>
                     </div>
@@ -195,7 +208,7 @@ const [countriesList,setCountriesList] = useState([])
                 </div> 
                        
       <div className="d-flex flex-column align-items-sm-center">
-                            <button  className="btn btn-dark col-md-4">Submit</button>
+                            <button onClick={putSubscribe} className="btn btn-dark col-md-4" >Submit</button>
                             </div>
                         </form>
                     </div>
