@@ -49,7 +49,7 @@ export default class Test extends Component {
                 type:[],
                 contentType: "",
                 disclaimerId : 1,
-                authById: "[]",
+                authById: [],
                 copyId: 11,
                 articleStatus: 1,
                 winTitle : "",
