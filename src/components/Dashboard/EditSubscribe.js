@@ -112,7 +112,7 @@ const[number,setNumber] = useState('');
                 </div>
                  </div>
                         <div className="container">
-                <div className="h2 text-center my-3">Reset Your Password</div>
+                <div className="h2 text-center my-3">Edit Subscribe</div>
         <div className="card mb-5">
       
                     <div className="card-body">
