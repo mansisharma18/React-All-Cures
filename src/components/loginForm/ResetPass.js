@@ -7,8 +7,7 @@ import Footer from '../Footer/Footer';
 import Heart from"../../assets/img/heart.png";
 import { useHistory, Link, Redirect} from 'react-router-dom'
 import axios from 'axios';
-import history from '../history'
-import { useParams } from "react-router-dom";
+
 
 
 

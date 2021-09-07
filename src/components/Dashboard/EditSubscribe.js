@@ -1,29 +1,20 @@
 import React, { Component, useState, useEffect } from 'react';
 
-import Cookies from 'js-cookie';
-import { usePasswordValidation } from "../hooks/usePasswordValidation";
 import { Alert,Form, Dropdown, DropdownButton } from 'react-bootstrap';
 import Footer from '../Footer/Footer';
 import Heart from"../../assets/img/heart.png";
 import { useHistory, Link, Redirect} from 'react-router-dom'
 import axios from 'axios';
-import history from '../history'
-import { useParams } from "react-router-dom";
+
 import '../../assets/healthcare/css/main.css';
 import Input from '@material-ui/core/Input';
 import { Checkbox, FormGroup, FormControlLabel, Select, MenuItem , FormControl, InputLabel,TextField} from '@material-ui/core'
 
 function LoginInfo(props) {  
 const[number,setNumber] = useState('');
-const [countriesList,setCountriesList] = useState([])
-    const [alert, setSubmitAlert] = useState(false)
-    const [acPerm, setacPerm] = useState(Cookies.get('acPerm'))
-    const [states, setStates] = useState([])
+
     const [type,setType] = useState([])
-    const [selectedState, setSelectedState] = useState('')
-    const [submitAlert, setAlert] = useState(false)
-    const [notAlert, noAlert] = useState(false)
-    const [errAlert, erAlert] = useState(false)
+   
     const [disease, setDisease] = useState([])
     const [cures, setCures] = useState([])
     const [diseaseList, setDiseaseList] = useState([])
