@@ -1138,9 +1138,7 @@ a.btn-bg.nearmoreBtn {
 -------- App store News Later ---------
 **************************************************************/
 
-section.appStore {
-  margin-bottom: 36px;
-}
+
 
 a.appBTN {
   background: #00415e;
@@ -1153,8 +1151,8 @@ a.appBTN {
 .appStoreBg {
   background: #3ad0ff;
   border-radius: 20px;
-  height: 260px;
-  margin-top: 78px;
+  height: 341px;
+  
 }
 
 .innerapp {
@@ -1174,7 +1172,7 @@ a.appBTN {
 
 .innerapp img {
   position: absolute;
-  top: -79px;
+  top: 2px;
   right: 0;
 }
 
@@ -2607,15 +2605,14 @@ a.text-underline:hover {
 
 .newsletter_float {
   position: fixed;
-  width: 60px;
-  height: 60px;
+  
   bottom: 40px;
   right: 40px;
   background-color: #3ad0ff;
   color: #fff;
   border-radius: 50px;
   text-align: center;
-  font-size: 30px;
+ 
   box-shadow: 2px 2px 3px #999;
   z-index: 100;
 }
