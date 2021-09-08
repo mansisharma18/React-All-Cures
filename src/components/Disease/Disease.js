@@ -32,7 +32,7 @@ class Disease extends Component {
           isLoaded: true,
           items: json,
         });
-        document.title = `All Cures | ${json.data.title}`
+        // document.title = `All Cures | ${json.data.title}`
       });
   }
  
@@ -59,7 +59,7 @@ class Disease extends Component {
   } else if(isLoaded){
     var artContent = items.content;
     console.log(artContent)
-    var a = JSON.parse(decodeURI(artContent))
+    var a = JSON.parse(artContent)
     console.log(a)
     var b = a.blocks
     // console.log("aaaaaaaaaa", a.blocks)

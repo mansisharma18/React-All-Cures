@@ -5,8 +5,9 @@ import { Checkbox, FormGroup, FormControlLabel, Select, MenuItem , FormControl, 
 import EditorJs from 'react-editor-js';
 import { EDITOR_JS_TOOLS } from './tools'
 import Input from '@material-ui/core/Input';
+import history from '../history';
 
-const EditModal = () => {
+const EditModal = (props) => {
 
     const editId = useParams()
     const [title, setTitle] = useState('')
@@ -47,7 +48,7 @@ const EditModal = () => {
             setArticleStatus(res.data.pubstatus_id)
             setArticleDisplay(res.data.friendly_name)
             // setAuthor(res.data.authored_by)
-            setArticleContent(res.data.articleContent)
+            setArticleContent(JSON.parse(res.data.content))
             setType(res.data.content_type)
             setCountry(res.data.country_id)
             setDisease(res.data.disease_condition_id)
@@ -74,14 +75,16 @@ const EditModal = () => {
             "authored_by": "'["+author+"]'",
             "published_by": 1,
             "edited_by": 1,
-            "copyright_id": copyright,
-            "disclaimer_id": disclaimer,
-            "pubstatus_id": articleStatus,
-            "language_id": language,
-            "articleContent": articleContent,
+            "copyright_id": parseInt(copyright),
+            "disclaimer_id": parseInt(disclaimer),
+            "pubstatus_id": parseInt(articleStatus),
+            "language_id": parseInt(language),
+            "articleContent": JSON.stringify(articleContent),
         })
         .then(res => {
             setSuccMsg('Updated Successfully')
+            history.incognito(`/blog/${editId.id}`)
+            // window.location.href(`blog/${editId.id}`)
         })
         .catch(err => {
             console.log(err);
@@ -119,6 +122,7 @@ const EditModal = () => {
         axios.get('/article/all/table/disclaimer')
         .then(res => {
             setDisclaimerId(res.data)
+            console.log('disclaimer: ', res.data)
         })
         .catch(err => console.log(err))
     }
@@ -130,20 +134,21 @@ const EditModal = () => {
         })
         .catch(err => console.log(err))
     }
-
+    
     useEffect(() => {
-        console.log("Useeffect")
+        if(editId.id){
+            console.log("Useeffect: ", editId.id)
         getPosts()
+        }
         getLanguages()
         getAuthor()
         getCountries()
         getDisclaimer()
-        getDisease()
+        getDisease()        
     }, [win])
 
     const instanceRef = useRef(null)
 
-    
     const handleSelect = function(countries) {
         const flavors = [];
         for (let i=0; i<countries.length; i++) {
@@ -152,7 +157,160 @@ const EditModal = () => {
         setType(flavors);
     }
 
-   
+    const submitArticleForm = async e => {
+        e.preventDefault();
+        console.log('submit article formmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmm')
+        const res = await fetch("/content?cmd=createArticle", {
+            method: "POST",
+            body: `title=${title}&language=${language}&friendlyName=${articleDisplay}&contentType=${type}&disclaimerId=${disclaimer}&authById=${author}&copyId=${copyright}&articleStatus=${articleStatus}&winTitle=${win}&countryId=${country}&diseaseConditionId=${disease}&articleContent=${JSON.stringify(articleContent)}`,
+            headers: {
+            "Content-Type": "application/x-www-form-urlencoded"
+            }
+        });
+        // const data = await res.text();
+        console.log('Data', res)
+    }
+
+    async function handleSave() {
+        const savedData = await instanceRef.current.save();        
+        console.log("savedData", savedData);
+        setArticleContent(savedData)
+        let articleHTML = '';
+  
+        // RENDER DIFFERENT TYPES OF DATA
+      
+        savedData.blocks.map(obj => {
+        switch (obj.type) {
+            case 'paragraph':
+            articleHTML += `<div class="ce-block">
+            <div class="ce-block__content">
+                <div class="ce-paragraph cdx-block">
+                <p>${obj.data.text}</p>
+                </div>
+            </div>
+            </div>\n`;
+            break;
+            case 'table':
+                obj.data.content.map((i) => (
+                    articleHTML += `
+                    <div class="container">
+                    <table class="tc-table text-center">
+                                    <tbody>
+                                        <tr style="border: 1px solid #ebebeb">
+                                            <td class="tc-table__cell">
+                                                <div class="tc-table__area">
+                                                    <div class="text-center" contenteditable="true">${i[0]}<br></div>
+                                                </div>
+                                            </td>
+                                            <td class="tc-table__cell">
+                                                <div class="tc-table__area">
+                                                    <div class="text-center" contenteditable="true">${i[1]}</div>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                    </div>
+                                    `
+                ))
+                break;
+            case 'simpleImage':
+            articleHTML += `<div class="ce-block">
+            <div class="ce-block__content">
+                <div class="cdx-block cdx-simple-image">
+                <div class="cdx-simple-image__picture">
+                <img src="${obj.data.url}" alt="${obj.data.caption}" />
+                </div>
+                <div class="text-center">
+                <i>${obj.data.caption}</i>
+                </div>
+            </div>
+            </div>
+        </div>\n`;
+            break;
+            case 'header':
+            articleHTML += `<div class="ce-block">
+            <div class="ce-block__content">
+                <div class="ce-paragraph cdx-block">
+                <h3>${obj.data.text}</h3>
+                </div>
+            </div>
+            </div>\n`;
+            break;
+            case 'raw':
+            articleHTML += `<div class="ce-block">
+            <div class="ce-block__content">
+                    <div class="ce-code">
+                <code>${obj.data.html}</code>
+                </div>
+            </div>
+            </div>\n`;
+            break;
+            case 'code':
+                articleHTML += `<div class="ce-block">
+                <div class="ce-block__content">
+                <div class="ce-code">
+                <code>${obj.data.code}</code>
+                </div>
+            </div>
+        </div>\n`;
+        break;
+        case 'list':
+        if (obj.data.style === 'unordered') {
+            const list = obj.data.items.map(item => {
+            return `<li class="cdx-list__item">${item}</li>`;
+            });
+            articleHTML += `<div class="ce-block">
+            <div class="ce-block__content">
+                <div class="ce-paragraph cdx-block">
+                <ul class="cdx-list--unordered">${list.join('')}</ul>
+                </div>
+                </div>
+            </div>\n`;
+        } else {
+            const list = obj.data.items.map(item => {
+            return `<li class="cdx-list__item">${item}</li>`;
+            });
+            articleHTML += `<div class="ce-block">
+            <div class="ce-block__content">
+                <div class="ce-paragraph cdx-block">
+                <ol class="cdx-list--ordered">${list}</ol>
+                </div>
+                </div>
+            </div>\n`;
+        }
+        break;
+        case 'delimiter':
+        articleHTML += `<h1 class="text-center my-2">***</h1>\n`;
+        break;
+        case 'warning':
+            articleHTML+= `<div class="ce-block">
+            <div class="ce-block__content py-2 text-center" style="background-color: blanchedalmond">
+                <strong> ${obj.data.title}: </strong><span>${obj.data.message}</span>
+            </div>
+            </div>\n`;
+            break;
+        case 'embed':
+            articleHTML += `<div class="ce-block ce-block--focused"><div class="ce-block__content"><div class="cdx-block embed-tool"><preloader class="embed-tool__preloader"><div class="embed-tool__url">${obj.data.source}</div></preloader>
+            <iframe style="width:100%;" allowfullscreen="" src=${obj.data.embed} class="embed-tool__content" height="320" frameborder="0"></iframe>
+            <div class="text-center">
+                <i>${obj.data.caption}</i>
+                </div>\n`;
+                break;
+        case 'quote':
+            articleHTML+= `<div style="text-align: ${obj.data.alignment}" class="ce-block ce-block--focused"><div class="ce-block__content"><h3 style="font-style: italic" class="cdx-block">"${obj.data.text}"</h3></div>
+            <div class="text-center">
+                <i>- ${obj.data.caption}</i>    
+            </div>
+        </div>\n`;
+            break;
+        default:
+        return '';
+        }
+        });
+        document.getElementById('article-preview').innerHTML=articleHTML;
+    }
+
     return (
         <>
             <div className="transparent_bg">
@@ -161,7 +319,9 @@ const EditModal = () => {
                 <h2 className="mainTitle text-center h3 py-3 card-header">Article</h2>
                     <div className="card-body">
                     <form action="" onSubmit={(e) => {
+                        editId.id?
                         singlePostEdit(e)
+                        : submitArticleForm(e)
                         // handleSave()
                     }}>
                     <div id="accordion">
@@ -195,7 +355,7 @@ const EditModal = () => {
                     required class="form-control">
 
                    
-                     
+<option>Open this select menu</option>
                         <option value="1">Article</option>
                         <option value="2">Video</option>
                       
@@ -224,8 +384,10 @@ const EditModal = () => {
                 <div className="col-lg-6 form-group">
                     <label htmlFor="">Disclaimer ID</label>
                     <select name="" value={disclaimer}  onChange={(e) => setDisclaimer(e.target.value)} className="form-control" id="">
+                    <option>Open this select menu</option>
                         {disclaimerId.map((lan) => {
                             return (
+                                
                                 <option value={lan[0]}>{lan[0]}</option>
                             )
                         })}
@@ -235,6 +397,7 @@ const EditModal = () => {
                 <div className="col-lg-6 form-group">
                     <label htmlFor="">Copyright ID</label>
                     <select name="" value={copyright}  onChange={(e) => setCopyright(e.target.value)} className="form-control" id="">
+                    <option>Open this select menu</option>
                         <option value="11">Temporary</option>
                     </select>
                     
@@ -242,6 +405,7 @@ const EditModal = () => {
                 <div className="col-lg-6 form-group">
                     <label htmlFor="">Article Status</label>
                     <select name="" value={articleStatus}  onChange={(e) => setArticleStatus(e.target.value)} className="form-control" id="">
+                    <option>Open this select menu</option>
                         <option value="1">Work in Progress</option>
                         <option value="2">Review</option>
                         <option value="3">Publish</option>
@@ -250,6 +414,7 @@ const EditModal = () => {
                 <div className="col-lg-6 form-group">
                     <label htmlFor="">Language</label>
                     <select value={language} name="" onChange={(e) => setLanguage(e.target.value)} className="form-control" id="">
+                    <option>Open this select menu</option>
                         {lanList.map((lan) => {
                             return (
                                 <option value={lan[0]}>{lan[1]}</option>
@@ -260,6 +425,7 @@ const EditModal = () => {
                 <div className="col-lg-6 form-group">
                     <label htmlFor="">Disease and Conditions</label>
                     <select value={disease} name="" onChange={(e) => setDisease(e.target.value)} className="form-control" id="">
+                    <option>Open this select menu</option>
                         {diseaseList.map((lan) => {
                             return (
                                 <option value={lan[0]}>{lan[3]}</option>
@@ -276,6 +442,7 @@ const EditModal = () => {
                         input={<Input id="select-multiple-chip" />}
                         // MenuProps={MenuProps}
                         className="form-control">
+                            <option>Open this select menu</option>
                         {authList.map((lan) => {
                             return (
                                 <MenuItem key={lan[0]}value={lan[0]} >
@@ -320,11 +487,11 @@ const EditModal = () => {
                             <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
                             <div class="card-body">
                                     <EditorJs
-                                        data = {content}
+                                        onChange={handleSave}
+                                        data = {articleContent}
                                         enableReInitialize = {true}
-                                        instanceRef={(instance) => (instanceRef.current = instance)}
+                                        instanceRef={instance => (instanceRef.current = instance)}
                                         tools = {EDITOR_JS_TOOLS} 
-                                       
                                     />
                             </div>
                             </div>
@@ -335,6 +502,7 @@ const EditModal = () => {
                         <button type="submit" className="btn mt-3 btn-dark">Submit</button>
                     </div>
                     </form>
+                    <div id="article-preview"></div>
                     </div>
                 </div>
             </div>
