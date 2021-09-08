@@ -1,7 +1,7 @@
 import React, {useEffect,useState, useRef} from 'react';
 import {useParams} from 'react-router-dom';
 import axios from 'axios';
-import { Checkbox, FormGroup, FormControlLabel, Select, MenuItem , FormControl, InputLabel,TextField} from '@material-ui/core'
+import { Select, MenuItem } from '@material-ui/core'
 import EditorJs from 'react-editor-js';
 import { EDITOR_JS_TOOLS } from './tools'
 import Input from '@material-ui/core/Input';
@@ -18,7 +18,7 @@ const EditModal = (props) => {
     const [disclaimer, setDisclaimer] = useState('')
     const [copyright, setCopyright] = useState('')
     const [language, setLanguage] = useState('')
-    const [author, setAuthor] = useState([])
+    const [author, setAuthor] = useState()
     const [country, setCountry] = useState('')
     const [win, setWin] = useState('')
     const [articleStatus, setArticleStatus] = useState('')
@@ -47,12 +47,16 @@ const EditModal = (props) => {
             setWin(res.data.window_title)
             setArticleStatus(res.data.pubstatus_id)
             setArticleDisplay(res.data.friendly_name)
-            // setAuthor(res.data.authored_by)
+            setAuthor(res.data.authored_by)
             setArticleContent(JSON.parse(res.data.content))
-            setType(res.data.content_type)
+            setType(res.data.type)
+            setContentType(res.data.content_type)
             setCountry(res.data.country_id)
             setDisease(res.data.disease_condition_id)
         })
+        .then(
+            console.log('auttttttthhhhoooorrrrrrrrrrrrr: ', author)
+        )
         .catch(err => console.log("errrrrrrorrrrrrrrrrrrrrrrrr",err))
     }
 
@@ -66,13 +70,13 @@ const EditModal = (props) => {
         axios.post(`/article/${editId.id}`, {
             "title":title,
             "friendly_name": articleDisplay,
-            "subheading": "1",
-            "content_type": "'["+type+"]'",
-        
-            "keywords": "1",
+            // "subheading": "1",
+            "content_type": contentType,
+            "type": type,
+            // "keywords": "1",
             "window_title": win,
             // "content_location": "1",
-            "authored_by": "'["+author+"]'",
+            "authored_by": author,
             "published_by": 1,
             "edited_by": 1,
             "copyright_id": parseInt(copyright),
@@ -83,7 +87,7 @@ const EditModal = (props) => {
         })
         .then(res => {
             setSuccMsg('Updated Successfully')
-            history.incognito(`/blog/${editId.id}`)
+            // history.incognito(`/blog/${editId.id}`)
             // window.location.href(`blog/${editId.id}`)
         })
         .catch(err => {
@@ -106,6 +110,7 @@ const EditModal = (props) => {
         axios.get('/article/all/table/author')
         .then(res => {
             setAuthList(res.data)
+            console.log('author: ', res.data)
         })
         .catch(err => console.log(err))
     }
@@ -149,26 +154,32 @@ const EditModal = (props) => {
 
     const instanceRef = useRef(null)
 
-    const handleSelect = function(countries) {
-        const flavors = [];
-        for (let i=0; i<countries.length; i++) {
-            flavors.push(countries[i].value);
+    const handleSelect = function(e, c) {
+        const ctype = [];
+        for (let i=0; i<c.length; i++) {
+            ctype.push(c[i].value);
         }
-        setType(flavors);
+        setType(ctype);
     }
 
     const submitArticleForm = async e => {
         e.preventDefault();
         console.log('submit article formmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmm')
-        const res = await fetch("/content?cmd=createArticle", {
+        fetch("/content?cmd=createArticle", {
             method: "POST",
-            body: `title=${title}&language=${language}&friendlyName=${articleDisplay}&contentType=${type}&disclaimerId=${disclaimer}&authById=${author}&copyId=${copyright}&articleStatus=${articleStatus}&winTitle=${win}&countryId=${country}&diseaseConditionId=${disease}&articleContent=${JSON.stringify(articleContent)}`,
+            body: `title=${title}&language=${language}&friendlyName=${articleDisplay}&contentType=${contentType}&type=${type}&disclaimerId=${disclaimer}&authById=${author}&copyId=${copyright}&articleStatus=${articleStatus}&winTitle=${win}&countryId=${country}&diseaseConditionId=${disease}&articleContent=${JSON.stringify(articleContent)}`,
             headers: {
             "Content-Type": "application/x-www-form-urlencoded"
             }
-        });
-        // const data = await res.text();
-        console.log('Data', res)
+        }).then(res => {
+            setSuccMsg('Article Created Successfully!')
+            // history.incognito(`/blog/${editId.id}`)
+            // window.location.href(`blog/${editId.id}`)
+        })
+        .catch(err => {
+            console.log(err);
+            setSuccMsg('error in updating')
+        })
     }
 
     async function handleSave() {
@@ -310,7 +321,7 @@ const EditModal = (props) => {
         });
         document.getElementById('article-preview').innerHTML=articleHTML;
     }
-
+    console.log('select author: ', [author])
     return (
         <>
             <div className="transparent_bg">
@@ -355,9 +366,9 @@ const EditModal = (props) => {
                     required class="form-control">
 
                    
-<option>Open this select menu</option>
-                        <option value="1">Article</option>
-                        <option value="2">Video</option>
+                    <option>Open this select menu</option>
+                        <option value="article">Article</option>
+                        <option value="video">Video</option>
                       
                     </select>
                 </div>
@@ -372,7 +383,7 @@ const EditModal = (props) => {
                     value={type} 
                     
                     onChange={(e)=> {
-                        handleSelect(e.target.selectedOptions)
+                        handleSelect(e, e.target.selectedOptions)
                     }}
                     required class="form-control">
                         <option value="1">Disease</option>
@@ -437,12 +448,12 @@ const EditModal = (props) => {
                 <div className="col-lg-6 form-group">
                     <label htmlFor="">Author</label>
                         <Select multiple
-                        value={author}
+                        value={[author]}
                         onChange={(e) =>  setAuthor(e.target.value)}
                         input={<Input id="select-multiple-chip" />}
                         // MenuProps={MenuProps}
+                        placeholder="Select Author"
                         className="form-control">
-                            <option>Open this select menu</option>
                         {authList.map((lan) => {
                             return (
                                 <MenuItem key={lan[0]}value={lan[0]} >
@@ -464,9 +475,11 @@ const EditModal = (props) => {
                     : <div className="form-group col-lg-6">
                         <label htmlFor="">Country</label>
                         <select name="country" value={country} onChange={(e) => setCountry(e.target.value)} placeholder="Country" required="" class="form-control">
-                            {countriesList.map((lan) => {
+                        <option>Select Country</option>
+                            {countriesList.map((c) => {
+                                
                                 return (
-                                    <option value={lan[0]}>{lan[1]}</option>
+                                    <option value={c[0]}>{c[1]}</option>
                                 )
                             })}
                         </select>
@@ -480,7 +493,6 @@ const EditModal = (props) => {
                         <div class="card">
                             <div class="card-header" id="headingTwo" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
                             <h5 class="mb-0">
-                                
                                 Write Article Here
                             </h5>
                             </div>
@@ -489,7 +501,7 @@ const EditModal = (props) => {
                                     <EditorJs
                                         onChange={handleSave}
                                         data = {articleContent}
-                                        enableReInitialize = {true}
+                                        // enableReInitialize = {true}
                                         instanceRef={instance => (instanceRef.current = instance)}
                                         tools = {EDITOR_JS_TOOLS} 
                                     />

@@ -225,9 +225,9 @@ onChangeHandlerdoctor = (e, text) => {
                         <div className="search-wrap-inner clearfix">
                            <form className="mainSearch">
                            <Test
-        show={this.state.modalShow}
-        onHide={() => this.setModalShow(false)}
-      />
+                              show={this.state.modalShow}
+                              onHide={() => this.setModalShow(false)}
+                           />
                               <div className="col-md-4 pd-0 col-sx-12 col-sm-4">
                                  <div className="form-group search">
                                  <input type="text" placeholder="Doctor Name, Disease or Condition" name="name" id="doctors" 
