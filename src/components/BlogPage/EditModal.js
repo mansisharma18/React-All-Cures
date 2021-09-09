@@ -1,14 +1,23 @@
 import React, {useEffect,useState, useRef} from 'react';
+import Cookies from 'js-cookie';
 import {useParams} from 'react-router-dom';
 import axios from 'axios';
 import { Select, MenuItem } from '@material-ui/core'
 import EditorJs from 'react-editor-js';
 import { EDITOR_JS_TOOLS } from './tools'
 import Input from '@material-ui/core/Input';
+import { Redirect } from 'react-router';
 import history from '../history';
 
 const EditModal = (props) => {
 
+    const acPerm = Cookies.get("acPerm")
+    const [userAccess, setAccess] = useState(acPerm.split('|')[1]);
+    const [userId, setId] = useState(acPerm.split('|')[0]);
+    // if(acPerm){
+    //     setId(acPerm.split('|')[0])
+    //     setAccess(acPerm.split('|')[1])
+    // }
     const editId = useParams()
     const [title, setTitle] = useState('')
     const [articleDisplay, setArticleDisplay] = useState('')
@@ -55,7 +64,8 @@ const EditModal = (props) => {
             setDisease(res.data.disease_condition_id)
         })
         .then(
-            console.log('auttttttthhhhoooorrrrrrrrrrrrr: ', author)
+            checkAccess()
+            // console.log('auttttttthhhhoooorrrrrrrrrrrrr: ', author)
         )
         .catch(err => console.log("errrrrrrorrrrrrrrrrrrrrrrrr",err))
     }
@@ -94,8 +104,21 @@ const EditModal = (props) => {
             console.log(err);
             setSuccMsg('error in updating')
         })
+    }
 
-
+    const checkAccess = () => {
+        if(articleStatus == 1 && userAccess == 9){
+            return null;
+        }
+        if(articleStatus == 1 && author.includes(userId)){
+            return null;
+        }
+        if(articleStatus == 2 && (userAccess == 7 || author.includes(userId))){
+            return null;
+        }
+        else{
+            window.alert('Restricted Access!!')
+        }
     }
 
     const getLanguages = () => {
@@ -150,7 +173,7 @@ const EditModal = (props) => {
         getCountries()
         getDisclaimer()
         getDisease()        
-    }, [win])
+    }, [title])
 
     const instanceRef = useRef(null)
 
@@ -184,7 +207,7 @@ const EditModal = (props) => {
 
     async function handleSave() {
         const savedData = await instanceRef.current.save();        
-        console.log("savedData", savedData);
+        // console.log("savedData", savedData);
         setArticleContent(savedData)
         let articleHTML = '';
   
@@ -321,7 +344,7 @@ const EditModal = (props) => {
         });
         document.getElementById('article-preview').innerHTML=articleHTML;
     }
-    console.log('select author: ', [author])
+    // console.log('select author: ', [author])
     return (
         <>
             <div className="transparent_bg">
@@ -362,10 +385,7 @@ const EditModal = (props) => {
                     onChange={(e)=> {
                         setContentType(e.target.value)
                      }}
-                     
                     required class="form-control">
-
-                   
                     <option>Open this select menu</option>
                         <option value="article">Article</option>
                         <option value="video">Video</option>
@@ -398,7 +418,6 @@ const EditModal = (props) => {
                     <option>Open this select menu</option>
                         {disclaimerId.map((lan) => {
                             return (
-                                
                                 <option value={lan[0]}>{lan[0]}</option>
                             )
                         })}
@@ -509,7 +528,7 @@ const EditModal = (props) => {
                             </div>
                         </div>
                     </div>
-                    {succMsg ? <h4 className="mt-3">{succMsg}</h4> : null}
+                    {succMsg ? <h4 className="mt-3 alert alert-success">{succMsg}</h4> : null}
                     <div className="form-group">
                         <button type="submit" className="btn mt-3 btn-dark">Submit</button>
                     </div>

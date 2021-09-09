@@ -23,11 +23,11 @@ class Home extends Component {
    constructor(props){
       super(props);
       this.state = {
-         users: '',
+         users: [],
          texts: '',
          suggestions: [],
          suggestionsDoc: [],
-         doctor : '',
+         doctor : [],
          getPincode:null,
          getCityName:null,
          edit: false,
@@ -44,7 +44,7 @@ class Home extends Component {
       };
   }
 
- componentWillMount(){
+ componentDidMount(){
    const loadUsers = async () => {
       await axios.get('/city/all')
       .then(res => {

@@ -35,18 +35,22 @@ import Verify from './loginForm/Verify.js'
 import Subscribe from './Dashboard/Subscribe.js'
 import Subs from './Dashboard/Subs.js'
 import EditSubscribe from './Dashboard/EditSubscribe'
+import { now } from "jquery";
 
 
 // import Blogs from './Disease/Disease'
 
 function Main(props) {
   // render() {
-  const [auth, setAuth] = React.useState(false);
+  const [auth, setAuth] = React.useState(true);
   const readCookie = () => {
-    const user = Cookies.get("acPerm")
-    if(user){
-      setAuth(true);
-    }
+    // if(Cookies.get('acPerm')){
+      const user = Cookies.get("acPerm")
+      const userAccess = user.split('|')[1]
+      if(userAccess != 3 ){
+        setAuth(false)
+        console.log('USERRRRRRRRRRRRRRRRRRRRRRRRRRRRRRR:'+user)
+      }
   }
   const url = props.url;
   React.useEffect(() => {
@@ -111,7 +115,7 @@ const Routes = (props) => {
       <Route exact path='/loginForm/FormSignup' component={FormSignup}/>
      
       
-      
+      {/* <ProtectedArticle path="/article/:id" component={EditPost} auth={Auth.auth} /> */}
       
     </Switch>
           <Route path="/" component={LoginPage}/>
@@ -150,6 +154,25 @@ const ProtectedLogin = ({auth, component:Component, ...rest}) => {
     }
       />
     )
+}
+
+const ProtectedArticle = ({auth, component:Component, ...rest}) => {
+  
+  return(
+    <Route
+      {...rest}
+        render = {() => auth?(
+          <Component/>
+          // console.log('Auth: Nope', auth)
+          ):
+        (
+          <Redirect to="/home"/>
+          
+          // console.log('AuthSuccess: ', auth)
+        )
+      }
+    />
+  )
 }
 
 export default Main;
