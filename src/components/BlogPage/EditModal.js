@@ -12,8 +12,8 @@ import history from '../history';
 const EditModal = (props) => {
 
     const acPerm = Cookies.get("acPerm")
-    const [userAccess, setAccess] = useState(acPerm.split('|')[1]);
-    const [userId, setId] = useState(acPerm.split('|')[0]);
+    const [userAccess, setAccess] = useState(acPerm? acPerm.split('|')[1]: null);
+    const [userId, setId] = useState(acPerm? acPerm.split('|')[0]: null);
     // if(acPerm){
     //     setId(acPerm.split('|')[0])
     //     setAccess(acPerm.split('|')[1])

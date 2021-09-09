@@ -46,8 +46,8 @@ function Main(props) {
   const readCookie = () => {
     // if(Cookies.get('acPerm')){
       const user = Cookies.get("acPerm")
-      const userAccess = user.split('|')[1]
-      if(userAccess != 3 ){
+      // const userAccess = user.split('|')[1]
+      if(user){
         setAuth(false)
         console.log('USERRRRRRRRRRRRRRRRRRRRRRRRRRRRRRR:'+user)
       }
