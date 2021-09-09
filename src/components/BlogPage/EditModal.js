@@ -1,12 +1,13 @@
 import React, {useEffect,useState, useRef} from 'react';
 import {useParams} from 'react-router-dom';
 import axios from 'axios';
-import { Checkbox, FormGroup, FormControlLabel, Select, MenuItem , FormControl, InputLabel,TextField} from '@material-ui/core'
+import { Select, MenuItem } from '@material-ui/core'
 import EditorJs from 'react-editor-js';
 import { EDITOR_JS_TOOLS } from './tools'
 import Input from '@material-ui/core/Input';
+import history from '../history';
 
-const EditModal = () => {
+const EditModal = (props) => {
 
     const editId = useParams()
     const [title, setTitle] = useState('')
@@ -17,7 +18,7 @@ const EditModal = () => {
     const [disclaimer, setDisclaimer] = useState('')
     const [copyright, setCopyright] = useState('')
     const [language, setLanguage] = useState('')
-    const [author, setAuthor] = useState([])
+    const [author, setAuthor] = useState()
     const [country, setCountry] = useState('')
     const [win, setWin] = useState('')
     const [articleStatus, setArticleStatus] = useState('')
@@ -46,12 +47,16 @@ const EditModal = () => {
             setWin(res.data.window_title)
             setArticleStatus(res.data.pubstatus_id)
             setArticleDisplay(res.data.friendly_name)
-            // setAuthor(res.data.authored_by)
-            setArticleContent(res.data.articleContent)
-            setType(res.data.content_type)
+            setAuthor(res.data.authored_by)
+            setArticleContent(JSON.parse(res.data.content))
+            setType(res.data.type)
+            setContentType(res.data.content_type)
             setCountry(res.data.country_id)
             setDisease(res.data.disease_condition_id)
         })
+        .then(
+            console.log('auttttttthhhhoooorrrrrrrrrrrrr: ', author)
+        )
         .catch(err => console.log("errrrrrrorrrrrrrrrrrrrrrrrr",err))
     }
 
@@ -65,23 +70,25 @@ const EditModal = () => {
         axios.post(`/article/${editId.id}`, {
             "title":title,
             "friendly_name": articleDisplay,
-            "subheading": "1",
-            "content_type": "'["+type+"]'",
-        
-            "keywords": "1",
+            // "subheading": "1",
+            "content_type": contentType,
+            "type": type,
+            // "keywords": "1",
             "window_title": win,
             // "content_location": "1",
-            "authored_by": "'["+author+"]'",
+            "authored_by": author,
             "published_by": 1,
             "edited_by": 1,
-            "copyright_id": copyright,
-            "disclaimer_id": disclaimer,
-            "pubstatus_id": articleStatus,
-            "language_id": language,
-            "articleContent": articleContent,
+            "copyright_id": parseInt(copyright),
+            "disclaimer_id": parseInt(disclaimer),
+            "pubstatus_id": parseInt(articleStatus),
+            "language_id": parseInt(language),
+            "articleContent": JSON.stringify(articleContent),
         })
         .then(res => {
             setSuccMsg('Updated Successfully')
+            // history.incognito(`/blog/${editId.id}`)
+            // window.location.href(`blog/${editId.id}`)
         })
         .catch(err => {
             console.log(err);
@@ -103,6 +110,7 @@ const EditModal = () => {
         axios.get('/article/all/table/author')
         .then(res => {
             setAuthList(res.data)
+            console.log('author: ', res.data)
         })
         .catch(err => console.log(err))
     }
@@ -119,6 +127,7 @@ const EditModal = () => {
         axios.get('/article/all/table/disclaimer')
         .then(res => {
             setDisclaimerId(res.data)
+            console.log('disclaimer: ', res.data)
         })
         .catch(err => console.log(err))
     }
@@ -130,29 +139,189 @@ const EditModal = () => {
         })
         .catch(err => console.log(err))
     }
-
+    
     useEffect(() => {
-        console.log("Useeffect")
+        if(editId.id){
+            console.log("Useeffect: ", editId.id)
         getPosts()
+        }
         getLanguages()
         getAuthor()
         getCountries()
         getDisclaimer()
-        getDisease()
+        getDisease()        
     }, [win])
 
     const instanceRef = useRef(null)
 
-    
-    const handleSelect = function(countries) {
-        const flavors = [];
-        for (let i=0; i<countries.length; i++) {
-            flavors.push(countries[i].value);
+    const handleSelect = function(e, c) {
+        const ctype = [];
+        for (let i=0; i<c.length; i++) {
+            ctype.push(c[i].value);
         }
-        setType(flavors);
+        setType(ctype);
     }
 
-   
+    const submitArticleForm = async e => {
+        e.preventDefault();
+        console.log('submit article formmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmm')
+        fetch("/content?cmd=createArticle", {
+            method: "POST",
+            body: `title=${title}&language=${language}&friendlyName=${articleDisplay}&contentType=${contentType}&type=${type}&disclaimerId=${disclaimer}&authById=${author}&copyId=${copyright}&articleStatus=${articleStatus}&winTitle=${win}&countryId=${country}&diseaseConditionId=${disease}&articleContent=${JSON.stringify(articleContent)}`,
+            headers: {
+            "Content-Type": "application/x-www-form-urlencoded"
+            }
+        }).then(res => {
+            setSuccMsg('Article Created Successfully!')
+            // history.incognito(`/blog/${editId.id}`)
+            // window.location.href(`blog/${editId.id}`)
+        })
+        .catch(err => {
+            console.log(err);
+            setSuccMsg('error in updating')
+        })
+    }
+
+    async function handleSave() {
+        const savedData = await instanceRef.current.save();        
+        console.log("savedData", savedData);
+        setArticleContent(savedData)
+        let articleHTML = '';
+  
+        // RENDER DIFFERENT TYPES OF DATA
+      
+        savedData.blocks.map(obj => {
+        switch (obj.type) {
+            case 'paragraph':
+            articleHTML += `<div class="ce-block">
+            <div class="ce-block__content">
+                <div class="ce-paragraph cdx-block">
+                <p>${obj.data.text}</p>
+                </div>
+            </div>
+            </div>\n`;
+            break;
+            case 'table':
+                obj.data.content.map((i) => (
+                    articleHTML += `
+                    <div class="container">
+                    <table class="tc-table text-center">
+                                    <tbody>
+                                        <tr style="border: 1px solid #ebebeb">
+                                            <td class="tc-table__cell">
+                                                <div class="tc-table__area">
+                                                    <div class="text-center" contenteditable="true">${i[0]}<br></div>
+                                                </div>
+                                            </td>
+                                            <td class="tc-table__cell">
+                                                <div class="tc-table__area">
+                                                    <div class="text-center" contenteditable="true">${i[1]}</div>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                    </div>
+                                    `
+                ))
+                break;
+            case 'simpleImage':
+            articleHTML += `<div class="ce-block">
+            <div class="ce-block__content">
+                <div class="cdx-block cdx-simple-image">
+                <div class="cdx-simple-image__picture">
+                <img src="${obj.data.url}" alt="${obj.data.caption}" />
+                </div>
+                <div class="text-center">
+                <i>${obj.data.caption}</i>
+                </div>
+            </div>
+            </div>
+        </div>\n`;
+            break;
+            case 'header':
+            articleHTML += `<div class="ce-block">
+            <div class="ce-block__content">
+                <div class="ce-paragraph cdx-block">
+                <h3>${obj.data.text}</h3>
+                </div>
+            </div>
+            </div>\n`;
+            break;
+            case 'raw':
+            articleHTML += `<div class="ce-block">
+            <div class="ce-block__content">
+                    <div class="ce-code">
+                <code>${obj.data.html}</code>
+                </div>
+            </div>
+            </div>\n`;
+            break;
+            case 'code':
+                articleHTML += `<div class="ce-block">
+                <div class="ce-block__content">
+                <div class="ce-code">
+                <code>${obj.data.code}</code>
+                </div>
+            </div>
+        </div>\n`;
+        break;
+        case 'list':
+        if (obj.data.style === 'unordered') {
+            const list = obj.data.items.map(item => {
+            return `<li class="cdx-list__item">${item}</li>`;
+            });
+            articleHTML += `<div class="ce-block">
+            <div class="ce-block__content">
+                <div class="ce-paragraph cdx-block">
+                <ul class="cdx-list--unordered">${list.join('')}</ul>
+                </div>
+                </div>
+            </div>\n`;
+        } else {
+            const list = obj.data.items.map(item => {
+            return `<li class="cdx-list__item">${item}</li>`;
+            });
+            articleHTML += `<div class="ce-block">
+            <div class="ce-block__content">
+                <div class="ce-paragraph cdx-block">
+                <ol class="cdx-list--ordered">${list}</ol>
+                </div>
+                </div>
+            </div>\n`;
+        }
+        break;
+        case 'delimiter':
+        articleHTML += `<h1 class="text-center my-2">***</h1>\n`;
+        break;
+        case 'warning':
+            articleHTML+= `<div class="ce-block">
+            <div class="ce-block__content py-2 text-center" style="background-color: blanchedalmond">
+                <strong> ${obj.data.title}: </strong><span>${obj.data.message}</span>
+            </div>
+            </div>\n`;
+            break;
+        case 'embed':
+            articleHTML += `<div class="ce-block ce-block--focused"><div class="ce-block__content"><div class="cdx-block embed-tool"><preloader class="embed-tool__preloader"><div class="embed-tool__url">${obj.data.source}</div></preloader>
+            <iframe style="width:100%;" allowfullscreen="" src=${obj.data.embed} class="embed-tool__content" height="320" frameborder="0"></iframe>
+            <div class="text-center">
+                <i>${obj.data.caption}</i>
+                </div>\n`;
+                break;
+        case 'quote':
+            articleHTML+= `<div style="text-align: ${obj.data.alignment}" class="ce-block ce-block--focused"><div class="ce-block__content"><h3 style="font-style: italic" class="cdx-block">"${obj.data.text}"</h3></div>
+            <div class="text-center">
+                <i>- ${obj.data.caption}</i>    
+            </div>
+        </div>\n`;
+            break;
+        default:
+        return '';
+        }
+        });
+        document.getElementById('article-preview').innerHTML=articleHTML;
+    }
+    console.log('select author: ', [author])
     return (
         <>
             <div className="transparent_bg">
@@ -161,7 +330,9 @@ const EditModal = () => {
                 <h2 className="mainTitle text-center h3 py-3 card-header">Article</h2>
                     <div className="card-body">
                     <form action="" onSubmit={(e) => {
+                        editId.id?
                         singlePostEdit(e)
+                        : submitArticleForm(e)
                         // handleSave()
                     }}>
                     <div id="accordion">
@@ -195,9 +366,9 @@ const EditModal = () => {
                     required class="form-control">
 
                    
-                     
-                        <option value="1">Article</option>
-                        <option value="2">Video</option>
+                    <option>Open this select menu</option>
+                        <option value="article">Article</option>
+                        <option value="video">Video</option>
                       
                     </select>
                 </div>
@@ -212,7 +383,7 @@ const EditModal = () => {
                     value={type} 
                     
                     onChange={(e)=> {
-                        handleSelect(e.target.selectedOptions)
+                        handleSelect(e, e.target.selectedOptions)
                     }}
                     required class="form-control">
                         <option value="1">Disease</option>
@@ -224,8 +395,10 @@ const EditModal = () => {
                 <div className="col-lg-6 form-group">
                     <label htmlFor="">Disclaimer ID</label>
                     <select name="" value={disclaimer}  onChange={(e) => setDisclaimer(e.target.value)} className="form-control" id="">
+                    <option>Open this select menu</option>
                         {disclaimerId.map((lan) => {
                             return (
+                                
                                 <option value={lan[0]}>{lan[0]}</option>
                             )
                         })}
@@ -235,6 +408,7 @@ const EditModal = () => {
                 <div className="col-lg-6 form-group">
                     <label htmlFor="">Copyright ID</label>
                     <select name="" value={copyright}  onChange={(e) => setCopyright(e.target.value)} className="form-control" id="">
+                    <option>Open this select menu</option>
                         <option value="11">Temporary</option>
                     </select>
                     
@@ -242,6 +416,7 @@ const EditModal = () => {
                 <div className="col-lg-6 form-group">
                     <label htmlFor="">Article Status</label>
                     <select name="" value={articleStatus}  onChange={(e) => setArticleStatus(e.target.value)} className="form-control" id="">
+                    <option>Open this select menu</option>
                         <option value="1">Work in Progress</option>
                         <option value="2">Review</option>
                         <option value="3">Publish</option>
@@ -250,6 +425,7 @@ const EditModal = () => {
                 <div className="col-lg-6 form-group">
                     <label htmlFor="">Language</label>
                     <select value={language} name="" onChange={(e) => setLanguage(e.target.value)} className="form-control" id="">
+                    <option>Open this select menu</option>
                         {lanList.map((lan) => {
                             return (
                                 <option value={lan[0]}>{lan[1]}</option>
@@ -260,6 +436,7 @@ const EditModal = () => {
                 <div className="col-lg-6 form-group">
                     <label htmlFor="">Disease and Conditions</label>
                     <select value={disease} name="" onChange={(e) => setDisease(e.target.value)} className="form-control" id="">
+                    <option>Open this select menu</option>
                         {diseaseList.map((lan) => {
                             return (
                                 <option value={lan[0]}>{lan[3]}</option>
@@ -271,10 +448,11 @@ const EditModal = () => {
                 <div className="col-lg-6 form-group">
                     <label htmlFor="">Author</label>
                         <Select multiple
-                        value={author}
+                        value={[author]}
                         onChange={(e) =>  setAuthor(e.target.value)}
                         input={<Input id="select-multiple-chip" />}
                         // MenuProps={MenuProps}
+                        placeholder="Select Author"
                         className="form-control">
                         {authList.map((lan) => {
                             return (
@@ -297,9 +475,11 @@ const EditModal = () => {
                     : <div className="form-group col-lg-6">
                         <label htmlFor="">Country</label>
                         <select name="country" value={country} onChange={(e) => setCountry(e.target.value)} placeholder="Country" required="" class="form-control">
-                            {countriesList.map((lan) => {
+                        <option>Select Country</option>
+                            {countriesList.map((c) => {
+                                
                                 return (
-                                    <option value={lan[0]}>{lan[1]}</option>
+                                    <option value={c[0]}>{c[1]}</option>
                                 )
                             })}
                         </select>
@@ -313,18 +493,17 @@ const EditModal = () => {
                         <div class="card">
                             <div class="card-header" id="headingTwo" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
                             <h5 class="mb-0">
-                                
                                 Write Article Here
                             </h5>
                             </div>
                             <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
                             <div class="card-body">
                                     <EditorJs
-                                        data = {content}
-                                        enableReInitialize = {true}
-                                        instanceRef={(instance) => (instanceRef.current = instance)}
+                                        onChange={handleSave}
+                                        data = {articleContent}
+                                        // enableReInitialize = {true}
+                                        instanceRef={instance => (instanceRef.current = instance)}
                                         tools = {EDITOR_JS_TOOLS} 
-                                       
                                     />
                             </div>
                             </div>
@@ -335,6 +514,7 @@ const EditModal = () => {
                         <button type="submit" className="btn mt-3 btn-dark">Submit</button>
                     </div>
                     </form>
+                    <div id="article-preview"></div>
                     </div>
                 </div>
             </div>
