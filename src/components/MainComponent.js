@@ -83,8 +83,9 @@ const Routes = (props) => {
           <Route exact path="/searchName/:name" component={SearchName} /> 
           <Route path="/search/:city/:name" component={Search} />
           {/* <Route path="/search/:city/:name" component={Search} /> */}
-          <Route path="/editPost/:id" component={EditPost}/>
-          <Route path="/article" auth={Auth.auth} component={Article} />
+          <Route path="/article/:id" component={EditPost}/>
+          <Route path="/article" component={EditPost}/>
+          <Route path="/edit" auth={Auth.auth} component={Article} />
           <Route exact path="/dashboard" component={Dashboard} />
           <ProtectedRoute exact path="/sign" component={SignIn} />
           <Route exact path="/blogs" component={Blogpage}/>

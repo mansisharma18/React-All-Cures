@@ -1151,7 +1151,7 @@ a.appBTN {
 .appStoreBg {
   background: #3ad0ff;
   border-radius: 20px;
-  height: 341px;
+  height: 400px;
   
 }
 
@@ -1172,8 +1172,8 @@ a.appBTN {
 
 .innerapp img {
   position: absolute;
-  top: 2px;
-  right: 0;
+  top: 61px;
+  right: -5px;
 }
 
 .subscribe h1 {

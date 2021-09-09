@@ -8,7 +8,8 @@ import '../../assets/healthcare/css/main.css';
 import '../../assets/healthcare/css/responsive.css';
 import '../../assets/healthcare/css/animate.css';
 import '../../assets/healthcare/icomoon/style.css';
-import { Container } from 'react-bootstrap';
+import {Form ,Container } from 'react-bootstrap';
+import Options from '../Article/Options';
 import axios from 'axios';
 class Search extends Component {
   constructor(props){
@@ -20,9 +21,21 @@ class Search extends Component {
       isLoaded: false,
       param: params,
       acPerm: Cookies.get('acPerm'),
-      reload: false
+      reload: false,
+      speciality:[],
+      articleValues:
+      {
+        diseaseConditionId: 1,
+      }
     }
   }
+  
+  handleArticleChange = e => {
+    this.setState({
+        articleValues: { ...this.state.articleValues, [e.target.name]: e.target.value }
+    });
+    console.log(e.target.name + e.target.value)
+}
   postSubscribtion() {
     
     // console.log(selected.join())
@@ -45,6 +58,19 @@ class Search extends Component {
   }
     // USE if statement
   componentDidMount() {
+    Promise.all([
+    fetch('/article/all/table/disease_condition').then(res => res.json())
+    ])
+    .then(diseaseData => {
+      this.setState({
+     
+        speciality: diseaseData
+       
+    });
+
+    })
+    
+  
     if((this.state.param.city) && (this.state.param.name)) {
       document.title = `All Cures | ${this.state.param.city} | ${this.state.param.name}`
       fetch(`/SearchActionController?cmd=getResults&city=${this.state.param.city}&doctors=${this.state.param.name}&Latitude=&Longitude=`)
@@ -197,6 +223,22 @@ class Search extends Component {
                      <div className="subscribe">
                         <h1>Get along with us on</h1>
                         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec congue  turpis sollicitudin nulla finibus dignissim.</p>
+                       <div>
+                        <Form.Group className="col-md-6 float-left">
+                                        <Form.Label>disease</Form.Label>
+                                        <Form.Control as="select" name="diseaseConditionId" custom onChange={this.handleArticleChange} required>
+                                        <option>Open this select menu</option>
+                                        
+                                            {this.state.speciality.map((i) => (  
+                                                <Options
+                                                    value={i[0]}
+                                                    name={i[3]}
+                                                />
+                                            ))}
+                                            
+                                        </Form.Control>
+                                    </Form.Group>
+                                    </div>
                         <div className="form-group relative">
                            <div className="aaa">
                               <input type="text" name="" className="form-control"/>
