@@ -176,7 +176,7 @@ const[number,setNumber] = useState('');
                     type.indexOf('3') === -1 
                     ? null 
                     :  <div className="col-lg-6 form-group">
-                    <label htmlFor="">Cures</label>
+                    <label htmlFor="">Cure</label>
                         <Select multiple
                         value={cures}
                         onChange={(e) =>  setCures(e.target.value)}
@@ -184,6 +184,7 @@ const[number,setNumber] = useState('');
                         // MenuProps={MenuProps}
                         className="form-control">
                         {diseaseList.map((lan) => {
+
                             return (
                                 <MenuItem key={lan[0]}value={lan[0]} >
                                     {lan[1]}
