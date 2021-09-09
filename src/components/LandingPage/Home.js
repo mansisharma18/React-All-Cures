@@ -28,18 +28,21 @@ class Home extends Component {
          suggestions: [],
          suggestionsDoc: [],
          doctor : [],
+         mobile: '',
          getPincode:null,
          getCityName:null,
          edit: false,
       modalShow: false,
       show: false,
          docname : '',
+   
           acPerm: Cookies.get('acPerm'),
           searchParams: {
             city: '',
             Pincode: '',
             name: '',
             subscription: '',
+          
         }
       };
   }
@@ -73,9 +76,10 @@ class Home extends Component {
    // console.log(selected.join())
    // console.log(rejected.join())
    
-   axios.post(`/users/subscribe/7889761896`, {
+   axios.post(`/users/subscribe/${this.state.mobile}`, {
    //   "articles_ids": selected.join(),
    //   "articles_ids_rejected": rejected.join()
+
    "nl_subscription_disease_id": 1,
    "nl_sub_type":1,
    "nl_subscription_cures_id":0,
@@ -184,6 +188,13 @@ onChangeHandlerdoctor = (e, text) => {
         modalShow: action
       })
     }
+    setMobile= e => {
+       
+       console.log(e.target.value)
+       this.setState({
+         mobile: e.target.value
+       })
+    }
 
    render() {
       console.log(this.state.suggestions)
@@ -225,9 +236,9 @@ onChangeHandlerdoctor = (e, text) => {
                         <div className="search-wrap-inner clearfix">
                            <form className="mainSearch">
                            <Test
-                              show={this.state.modalShow}
-                              onHide={() => this.setModalShow(false)}
-                           />
+        show={this.state.modalShow}
+        onHide={() => this.setModalShow(false)}
+      />
                               <div className="col-md-4 pd-0 col-sx-12 col-sm-4">
                                  <div className="form-group search">
                                  <input type="text" placeholder="Doctor Name, Disease or Condition" name="name" id="doctors" 
@@ -445,7 +456,8 @@ onChangeHandlerdoctor = (e, text) => {
                         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec congue  turpis sollicitudin nulla finibus dignissim.</p>
                         <div className="form-group relative">
                            <div className="aaa">
-                              <input type="text" name="" className="form-control"/>
+                              <input type="text" name="" onChange={this.setMobile} className="form-control"/>
+                              
                            </div>
                            <div>
                               {/* <a href="/#" className="subscribeBtn">Subscribe</a> */}
