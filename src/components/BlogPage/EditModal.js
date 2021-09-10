@@ -44,7 +44,8 @@ const EditModal = (props) => {
     const [succMsg,setSuccMsg] = useState('')
     const [disclaimerId,setDisclaimerId] = useState([]) 
     const [getContentList,setGetContentList] = useState([]) 
-    
+    const [comment, setComment] = useState('')
+
     const getPosts = () =>{
 
         axios.get(`/article/${editId.id}`)
@@ -70,7 +71,7 @@ const EditModal = (props) => {
             setContentType(res.data.content_type)
             setCountry(res.data.country_id)
             setDisease(res.data.disease_condition_id)
-            
+            setComment(res.data.comments)
             // setContent(JSON.parse(res.data.content));
            
         })
@@ -501,6 +502,19 @@ const EditModal = (props) => {
                     <label htmlFor="">Win Title</label>
                     <input type="text" value={win}  onChange={(e) => setWin(e.target.value)} placeholder="Enter title" className="form-control" />
                 </div>
+
+                                    <div className="col-md-6 float-left">
+                                        <label>Remarks</label>
+                                    <input className="form-control"
+                                        value={comment}
+                                        // defaultValue={about}
+                                        onChange={setComment}
+                                        name="comments"
+                                        as="textarea"
+                                        placeholder="Leave a comment here"
+                                        // style={{ height: '100px' }}
+                                    />
+                              </div>
                 {   
                     type?
                     type.indexOf('2') === -1 
