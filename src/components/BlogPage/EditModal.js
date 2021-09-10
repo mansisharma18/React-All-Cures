@@ -6,6 +6,7 @@ import { Select, MenuItem } from '@material-ui/core'
 import EditorJs from 'react-editor-js';
 import { EDITOR_JS_TOOLS } from './tools'
 import Input from '@material-ui/core/Input';
+import { useStateWithCallbackLazy } from 'use-state-with-callback';
 import { Redirect } from 'react-router';
 import history from '../history';
 
@@ -30,7 +31,8 @@ const EditModal = (props) => {
     const [author, setAuthor] = useState()
     const [country, setCountry] = useState('')
     const [win, setWin] = useState('')
-    const [articleStatus, setArticleStatus] = useState('')
+    const [articleStatus, setArticleStatus] = useStateWithCallbackLazy()
+    const [editedBy, setEditedBy] = useState(0)
     const [disease, setDisease] = useState('')
     const [articleContent, setArticleContent] = useState('')
     const [diseaseList, setDiseaseList] = useState([])
@@ -48,25 +50,34 @@ const EditModal = (props) => {
         axios.get(`/article/${editId.id}`)
         .then(res => {
             console.log("get post",res);
+            setEditedBy(res.data.edited_by)
+            setAuthor(res.data.authored_by)
             setTitle(res.data.title);
-            setContent(JSON.parse(res.data.content));
             setDisclaimer(res.data.disclaimer_id)
             setCopyright(res.data.copyright_id)
             setLanguage(res.data.language_id)
             setWin(res.data.window_title)
-            setArticleStatus(res.data.pubstatus_id)
+            if(author != undefined & editedBy != 0){
+                setArticleStatus(res.data.pubstatus_id, (articleStatus) => {
+                    checkAccess(articleStatus, author, editedBy);
+                });
+            }
+            //setArticleStatus(res.data.pubstatus_id, () => checkAccess(articleStatus))
+            
             setArticleDisplay(res.data.friendly_name)
-            setAuthor(res.data.authored_by)
-            setArticleContent(JSON.parse(res.data.content))
+            // setArticleContent(JSON.parse(res.data.content))
             setType(res.data.type)
             setContentType(res.data.content_type)
             setCountry(res.data.country_id)
             setDisease(res.data.disease_condition_id)
+            
+            // setContent(JSON.parse(res.data.content));
+           
         })
-        .then(
-            checkAccess()
-            // console.log('auttttttthhhhoooorrrrrrrrrrrrr: ', author)
-        )
+        // .then(
+        //     checkAccess()
+        //     // console.log('auttttttthhhhoooorrrrrrrrrrrrr: ', author)
+        // )
         .catch(err => console.log("errrrrrrorrrrrrrrrrrrrrrrrr",err))
     }
 
@@ -106,14 +117,16 @@ const EditModal = (props) => {
         })
     }
 
-    const checkAccess = () => {
-        if(articleStatus == 1 && userAccess == 9){
+    // useEffect(() => {
+    //     checkAccess()
+    // }, [articleStatus])
+
+    const checkAccess = (stat) => {
+        console.log('Article Status', stat,'author', author, 'user access', userAccess, 'edited BY:', editedBy)
+        if(userAccess == 9 || [author].includes(userId) || editedBy == userId || userAccess == 4){
             return null;
         }
-        if(articleStatus == 1 && author.includes(userId)){
-            return null;
-        }
-        if(articleStatus == 2 && (userAccess == 7 || author.includes(userId))){
+        else if(stat == 2 && (userAccess == 7)){
             return null;
         }
         else{
@@ -172,7 +185,8 @@ const EditModal = (props) => {
         getAuthor()
         getCountries()
         getDisclaimer()
-        getDisease()        
+        getDisease()  
+        // checkAccess()      
     }, [title])
 
     const instanceRef = useRef(null)
