@@ -508,7 +508,7 @@ const EditModal = (props) => {
                                     <input className="form-control"
                                         value={comment}
                                         // defaultValue={about}
-                                        onChange={setComment}
+                                        onChange={(e) => setComment(e.target.value)}
                                         name="comments"
                                         as="textarea"
                                         placeholder="Leave a comment here"
