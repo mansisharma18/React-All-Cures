@@ -23,13 +23,12 @@ import Test from './test'
 class Home extends Component {
    constructor(props){
       super(props);
-      this.
-      state = {
-         users: '',
+      this.state = {
+         users: [],
          texts: '',
          suggestions: [],
          suggestionsDoc: [],
-         doctor : '',
+         doctor : [],
          mobile: '',
          getPincode:null,
          getCityName:null,
@@ -53,7 +52,7 @@ class Home extends Component {
   }
  
 
- componentWillMount(){
+ componentDidMount(){
    const loadUsers = async () => {
       await axios.get('/city/all')
       .then(res => {

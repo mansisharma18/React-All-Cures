@@ -1,14 +1,24 @@
 import React, {useEffect,useState, useRef} from 'react';
+import Cookies from 'js-cookie';
 import {useParams} from 'react-router-dom';
 import axios from 'axios';
 import { Select, MenuItem } from '@material-ui/core'
 import EditorJs from 'react-editor-js';
 import { EDITOR_JS_TOOLS } from './tools'
 import Input from '@material-ui/core/Input';
+import { useStateWithCallbackLazy } from 'use-state-with-callback';
+import { Redirect } from 'react-router';
 import history from '../history';
 
 const EditModal = (props) => {
 
+    const acPerm = Cookies.get("acPerm")
+    const [userAccess, setAccess] = useState(acPerm? acPerm.split('|')[1]: null);
+    const [userId, setId] = useState(acPerm? acPerm.split('|')[0]: null);
+    // if(acPerm){
+    //     setId(acPerm.split('|')[0])
+    //     setAccess(acPerm.split('|')[1])
+    // }
     const editId = useParams()
     const [title, setTitle] = useState('')
     const [articleDisplay, setArticleDisplay] = useState('')
@@ -21,7 +31,8 @@ const EditModal = (props) => {
     const [author, setAuthor] = useState()
     const [country, setCountry] = useState('')
     const [win, setWin] = useState('')
-    const [articleStatus, setArticleStatus] = useState('')
+    const [articleStatus, setArticleStatus] = useStateWithCallbackLazy()
+    const [editedBy, setEditedBy] = useState(0)
     const [disease, setDisease] = useState('')
     const [articleContent, setArticleContent] = useState('')
     const [diseaseList, setDiseaseList] = useState([])
@@ -33,30 +44,41 @@ const EditModal = (props) => {
     const [succMsg,setSuccMsg] = useState('')
     const [disclaimerId,setDisclaimerId] = useState([]) 
     const [getContentList,setGetContentList] = useState([]) 
-    
+    const [comment, setComment] = useState('')
+
     const getPosts = () =>{
 
         axios.get(`/article/${editId.id}`)
         .then(res => {
             console.log("get post",res);
+            setEditedBy(res.data.edited_by)
+            setAuthor(res.data.authored_by)
             setTitle(res.data.title);
-            setContent(JSON.parse(res.data.content));
             setDisclaimer(res.data.disclaimer_id)
             setCopyright(res.data.copyright_id)
             setLanguage(res.data.language_id)
             setWin(res.data.window_title)
-            setArticleStatus(res.data.pubstatus_id)
+            if(author != undefined & editedBy != 0){
+                setArticleStatus(res.data.pubstatus_id, (articleStatus) => {
+                    checkAccess(articleStatus, author, editedBy);
+                });
+            }
+            //setArticleStatus(res.data.pubstatus_id, () => checkAccess(articleStatus))
+            
             setArticleDisplay(res.data.friendly_name)
-            setAuthor(res.data.authored_by)
-            setArticleContent(JSON.parse(res.data.content))
+            // setArticleContent(JSON.parse(res.data.content))
             setType(res.data.type)
             setContentType(res.data.content_type)
             setCountry(res.data.country_id)
             setDisease(res.data.disease_condition_id)
+            setComment(res.data.comments)
+            // setContent(JSON.parse(res.data.content));
+           
         })
-        .then(
-            console.log('auttttttthhhhoooorrrrrrrrrrrrr: ', author)
-        )
+        // .then(
+        //     checkAccess()
+        //     // console.log('auttttttthhhhoooorrrrrrrrrrrrr: ', author)
+        // )
         .catch(err => console.log("errrrrrrorrrrrrrrrrrrrrrrrr",err))
     }
 
@@ -94,8 +116,23 @@ const EditModal = (props) => {
             console.log(err);
             setSuccMsg('error in updating')
         })
+    }
 
+    // useEffect(() => {
+    //     checkAccess()
+    // }, [articleStatus])
 
+    const checkAccess = (stat) => {
+        console.log('Article Status', stat,'author', author, 'user access', userAccess, 'edited BY:', editedBy)
+        if(userAccess == 9 || [author].includes(userId) || editedBy == userId || userAccess == 4){
+            return null;
+        }
+        else if(stat == 2 && (userAccess == 7)){
+            return null;
+        }
+        else{
+            window.alert('Restricted Access!!')
+        }
     }
 
     const getLanguages = () => {
@@ -149,8 +186,9 @@ const EditModal = (props) => {
         getAuthor()
         getCountries()
         getDisclaimer()
-        getDisease()        
-    }, [win])
+        getDisease()  
+        // checkAccess()      
+    }, [title])
 
     const instanceRef = useRef(null)
 
@@ -184,7 +222,7 @@ const EditModal = (props) => {
 
     async function handleSave() {
         const savedData = await instanceRef.current.save();        
-        console.log("savedData", savedData);
+        // console.log("savedData", savedData);
         setArticleContent(savedData)
         let articleHTML = '';
   
@@ -321,7 +359,7 @@ const EditModal = (props) => {
         });
         document.getElementById('article-preview').innerHTML=articleHTML;
     }
-    console.log('select author: ', [author])
+    // console.log('select author: ', [author])
     return (
         <>
             <div className="transparent_bg">
@@ -362,10 +400,7 @@ const EditModal = (props) => {
                     onChange={(e)=> {
                         setContentType(e.target.value)
                      }}
-                     
                     required class="form-control">
-
-                   
                     <option>Open this select menu</option>
                         <option value="article">Article</option>
                         <option value="video">Video</option>
@@ -398,7 +433,6 @@ const EditModal = (props) => {
                     <option>Open this select menu</option>
                         {disclaimerId.map((lan) => {
                             return (
-                                
                                 <option value={lan[0]}>{lan[0]}</option>
                             )
                         })}
@@ -468,6 +502,19 @@ const EditModal = (props) => {
                     <label htmlFor="">Win Title</label>
                     <input type="text" value={win}  onChange={(e) => setWin(e.target.value)} placeholder="Enter title" className="form-control" />
                 </div>
+
+                                    <div className="col-md-6 float-left">
+                                        <label>Remarks</label>
+                                    <input className="form-control"
+                                        value={comment}
+                                        // defaultValue={about}
+                                        onChange={setComment}
+                                        name="comments"
+                                        as="textarea"
+                                        placeholder="Leave a comment here"
+                                        // style={{ height: '100px' }}
+                                    />
+                              </div>
                 {   
                     type?
                     type.indexOf('2') === -1 
@@ -509,7 +556,7 @@ const EditModal = (props) => {
                             </div>
                         </div>
                     </div>
-                    {succMsg ? <h4 className="mt-3">{succMsg}</h4> : null}
+                    {succMsg ? <h4 className="mt-3 alert alert-success">{succMsg}</h4> : null}
                     <div className="form-group">
                         <button type="submit" className="btn mt-3 btn-dark">Submit</button>
                     </div>
