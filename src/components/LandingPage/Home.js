@@ -13,7 +13,8 @@ import './custom.css';
 import Carousel1 from './Caousel1';
 import Carousel2 from './Carousel2';
 import CarouselReview from './CarouselReview';
-import { Dropdown, Button, DropdownButton, Nav, Modal } from 'react-bootstrap';
+import { Dropdown, Button, DropdownButton, Nav, Modal, Alert} from 'react-bootstrap';
+import Autocomplete from '../Autocomplete'
 // import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 // import ToggleButton from '../Header/Header'
 import Test from './test'
@@ -35,6 +36,7 @@ class Home extends Component {
       modalShow: false,
       show: false,
          docname : '',
+         spec1: [],
    
           acPerm: Cookies.get('acPerm'),
           searchParams: {
@@ -44,8 +46,11 @@ class Home extends Component {
             subscription: '',
           
         }
-      };
+        
+    };
+      
   }
+ 
 
  componentDidMount(){
    const loadUsers = async () => {
@@ -72,7 +77,6 @@ class Home extends Component {
  }
    
  postSubscribtion() {
-    
    // console.log(selected.join())
    // console.log(rejected.join())
    
@@ -86,9 +90,14 @@ class Home extends Component {
    })
      .then(res => {
        console.log(res)
+       this.setState({ShowSubmitAlert: true});
       
      })
-     .catch(err => console.log(err))
+     .catch(err => {
+        console.log(err)
+        this.setState({ShowErrorAlert: true});
+
+   })
 
    
  }
@@ -172,7 +181,26 @@ onChangeHandlerdoctor = (e, text) => {
             searchParams: { ...this.state.searchParams, [e.target.name]: e.target.value }
         });
 
-   
+        componentWillMount(){
+         Promise.all([
+            fetch('/article/all/table/disease_condition')
+            .then(res => res.json()),
+          ]).then(([diseaseData]) => {
+            console.log('Speciality Data: ', diseaseData)
+            this.setState({
+                isLoaded: true,
+                speciality: diseaseData,
+            });
+
+          }).then(() => {
+            this.state.speciality.map((i) => {
+              this.state.spec1.push(i[3])
+            })
+          })
+          .catch(res => {
+             console.error(res)
+          })
+         }
    logout = async e => {
       const res = await fetch("/LogoutActionController", {
          method: "POST"
@@ -210,13 +238,22 @@ onChangeHandlerdoctor = (e, text) => {
                                  <Link to='/home'>
                                     <img src={Heart} alt="All Cures logo"/>
                                     <span>All Cures</span>
-                                 </Link>     
+                                 </Link>    
+                                 {
+                  this.state.spec1?
+                    <Autocomplete value={this.state.temp} suggestions={this.state.spec1}/>
+                  : null
+                } 
                               </div>
                               <div className="loginSign"> 
                               {/* <Link to="/profile">Go to Profile</Link> */}
                               <Button variant="dark" onClick={() => this.setModalShow(true)}>
          sign
       </Button>
+    
+      <Link to="/article">
+        Create Article
+      </Link>    
                                  <ToggleButton acPerm={this.state.acPerm} match={this.props.match.url} logout={this.logout}/> 
                                  {/* <button onClick={this.logout}></button> */}
                               </div>  
@@ -321,7 +358,8 @@ onChangeHandlerdoctor = (e, text) => {
                                     {/* //  { `/search/${this.state.searchParams.city}/${this.state.searchParams.name}`}
                                     //  >Search</Link>   */}
                                  </div>
-                              </div>              
+                              </div>         
+                            
                            </form>
                         </div>
                      </div>   
@@ -420,11 +458,13 @@ onChangeHandlerdoctor = (e, text) => {
          </div>
       </section> */}
       <div>
+         
          <button i className=" newsletter-icon btn  newsletter_float" data-toggle="modal"data-target=".bd-example-modal-lg">
       Subscribe
      
             </button>
- 
+            
+           
          </div>
 <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-lg">
@@ -462,8 +502,23 @@ onChangeHandlerdoctor = (e, text) => {
                            <div>
                               {/* <a href="/#" className="subscribeBtn">Subscribe</a> */}
                               
+                              {
+                                        this.state.ShowSubmitAlert
+                                            ? <SubmitAlert ShowSubmitAlert={this.state.ShowSubmitAlert}/>
+                                            : console.log('Submit ALert')
+                                    }
+
+                                    {
+                                        this.state.ShowErrorAlert
+                                            ? <SubmitError ShowErrorAlert={this.state.ShowErrorAlert}/>
+                                            : console.log('')
+                                    }
+                                <button onClick={( ) => {this.postSubscribtion()}}>Submit
                                 
-                                <button onClick={() => {this.postSubscribtion()}}>Submit</button>
+                                </button>
+
+                                
+                                
                               
                              
                            </div>
@@ -528,6 +583,28 @@ function ToggleButton(props) {
       </Link>
       </>
    )
+}
+
+// SHOW ALERT
+
+function SubmitAlert(props) {
+   console.log('Submit ALert', props.ShowSubmitAlert)
+   if(props.ShowSubmitAlert) {
+       return(
+           <Alert className="bg-green">Subscribe has been saved successfully!</Alert>
+       );
+   }
+}
+
+// Show Error Alert
+
+function SubmitError(props) {
+   console.log('Submit ALert', props.ShowErrorAlert)
+   if(props.ShowErrorAlert) {
+       return(
+           <Alert className="bg-red">Some Error occured!</Alert>
+       );
+   }
 }
 
 export default Home;

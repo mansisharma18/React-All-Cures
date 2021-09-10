@@ -37,6 +37,9 @@ import Subs from './Dashboard/Subs.js'
 import EditSubscribe from './Dashboard/EditSubscribe'
 import { now } from "jquery";
 
+import DeleteSubscribe from './Dashboard/DeleteSubscribe'
+
+
 
 // import Blogs from './Disease/Disease'
 
@@ -108,6 +111,9 @@ const Routes = (props) => {
       <Route exact path="/subscribe" component={Subscribe} />
       <Route exact path="/subs" component={Subs} />
       <Route exact path="/editsubscribe" component={EditSubscribe} />
+      
+      <Route exact path="/deletesubscribe" component={DeleteSubscribe} />
+      
 
     
       <Route exact path="/loginForm/ResetPass" component={ResetPass} />
