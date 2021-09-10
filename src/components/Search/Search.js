@@ -169,7 +169,7 @@ class Search extends Component {
                           More Filters
                         </a> 
                       </div>
-                        {items.map((i) => (
+                        {items.map((i) => ( 
                           <ProfileTab
                             docid= {i.map.doctorid}
                             name = {i.map.name}

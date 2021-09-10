@@ -34,6 +34,7 @@ import Promo from "./Dashboard/Promo/CreatePromo";
 import Verify from './loginForm/Verify.js'
 import Subscribe from './Dashboard/Subscribe.js'
 import Subs from './Dashboard/Subs.js'
+import EditSubscribe from './Dashboard/EditSubscribe'
 
 import DeleteSubscribe from './Dashboard/DeleteSubscribe'
 
@@ -105,6 +106,7 @@ const Routes = (props) => {
       <Route exact path="/landingPage/sticky" component={Sticky} />
       <Route exact path="/subscribe" component={Subscribe} />
       <Route exact path="/subs" component={Subs} />
+      <Route exact path="/editsubscribe" component={EditSubscribe} />
       
       <Route exact path="/deletesubscribe" component={DeleteSubscribe} />
       

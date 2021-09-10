@@ -1,39 +1,32 @@
 import React, { Component, useState, useEffect } from 'react';
 
-import Cookies from 'js-cookie';
-import { usePasswordValidation } from "../hooks/usePasswordValidation";
 import { Alert,Form, Dropdown, DropdownButton } from 'react-bootstrap';
 import Footer from '../Footer/Footer';
 import Heart from"../../assets/img/heart.png";
 import { useHistory, Link, Redirect} from 'react-router-dom'
 import axios from 'axios';
-import history from '../history'
-import { useParams } from "react-router-dom";
+
 import '../../assets/healthcare/css/main.css';
 import Input from '@material-ui/core/Input';
 import { Checkbox, FormGroup, FormControlLabel, Select, MenuItem , FormControl, InputLabel,TextField} from '@material-ui/core'
 
 function LoginInfo(props) {  
 const[number,setNumber] = useState('');
-const [countriesList,setCountriesList] = useState([])
-    const [alert, setSubmitAlert] = useState(false)
-    const [acPerm, setacPerm] = useState(Cookies.get('acPerm'))
-    const [states, setStates] = useState([])
+
     const [type,setType] = useState([])
-    const [selectedState, setSelectedState] = useState('')
-    const [submitAlert, setAlert] = useState(false)
-    const [notAlert, noAlert] = useState(false)
-    const [errAlert, erAlert] = useState(false)
+   
     const [disease, setDisease] = useState([])
     const [cures, setCures] = useState([])
     const [diseaseList, setDiseaseList] = useState([])
+       
+    const [subscribeList, setSubscribeList] = useState([])
     const setMail = (event)=>{
         setNumber({ ...number,Mail: event.target.value})
     }
      
   const putSubscribe= async e => {
        e.preventDefault()
-    axios.post('/users/unsubscribe/7889761896',
+    axios.post('/users/subscribe/7889761896',
   {   
  "nl_subscription_disease_id":1,
   "nl_sub_type":1,
@@ -47,8 +40,28 @@ const [countriesList,setCountriesList] = useState([])
     
 
        
-      
-        
+//    const getSubscribe = () => {
+    
+//     axios.get(`/subscriptiondetails/7889761896`)
+//     .then(res => {
+//       console.log(res.data[0].subscribeVal)
+//       setSubscribeValue(res.data)
+//     })
+//     .catch(err => console.log(err))
+//   }
+//   React.useEffect(() => {
+//     getSubscribe()
+  
+//   },[])
+getSubscribe()
+const getSubscribe = () => {
+    axios.get('/subscriptiondetails/7889761896')
+    .then(res => {
+        console.log(res.data);
+        setSubscribeList(res.data)
+    })
+    .catch(err => console.log(err))
+}
     
     useEffect(() => {
 
@@ -68,6 +81,7 @@ const [countriesList,setCountriesList] = useState([])
     
      
         getDisease()
+        
 
          
         }, [])
@@ -121,12 +135,16 @@ const [countriesList,setCountriesList] = useState([])
                 </div>
                  </div>
                         <div className="container">
-                <div className="p text-center my-3">We Didnt feel good as you have unscbscribed us . Hope You wil subscribe as soon</div>
+                <div className="h2 text-center my-3">Edit Subscribe</div>
         <div className="card mb-5">
       
-                   
+                    <div className="card-body">
                         <form>
-                       
+                        <div className='LoginInfo'>
+                            
+                        
+    
+      </div>
                            
       <div className="row">
                   
@@ -205,12 +223,12 @@ const [countriesList,setCountriesList] = useState([])
                 </div> 
                        
       <div className="d-flex flex-column align-items-sm-center">
-                            {/* <button onClick={putSubscribe} className="btn btn-dark col-md-4" >Submit</button> */}
+                            <button onClick={putSubscribe} className="btn btn-dark col-md-4" >Submit</button>
                             </div>
                         </form>
                     </div>
                 </div>
-        
+            </div>
             <Footer/>
             </>
       );
