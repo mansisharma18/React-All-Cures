@@ -5,6 +5,7 @@ import Cookies from 'js-cookie';
 import Heart from"../../assets/img/heart.png";
 import Doct from "../../assets/img/doct.png";
 import axios from 'axios';
+import ListItem from '@material-ui/core/ListItem';
 import '../../assets/healthcare/css/main.css';
 import '../../assets/healthcare/css/responsive.css';
 import '../../assets/healthcare/css/animate.css';
@@ -15,6 +16,7 @@ import Carousel2 from './Carousel2';
 import CarouselReview from './CarouselReview';
 import { Dropdown, Button, DropdownButton, Nav, Modal, Alert} from 'react-bootstrap';
 import Autocomplete from '../Autocomplete'
+import SearchField from 'react-search-field';
 // import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 // import ToggleButton from '../Header/Header'
 import Test from './test'
@@ -239,21 +241,18 @@ onChangeHandlerdoctor = (e, text) => {
                                     <img src={Heart} alt="All Cures logo"/>
                                     <span>All Cures</span>
                                  </Link>    
-                                 {
-                  this.state.spec1?
-                    <Autocomplete value={this.state.temp} suggestions={this.state.spec1}/>
-                  : null
-                } 
+                                
                               </div>
                               <div className="loginSign"> 
                               {/* <Link to="/profile">Go to Profile</Link> */}
                               <Button variant="dark" onClick={() => this.setModalShow(true)}>
          sign
       </Button>
-    
-      <Link to="/article">
+      
+     
+      {/* <Link to="/article">
         Create Article
-      </Link>    
+      </Link>     */}
                                  <ToggleButton acPerm={this.state.acPerm} match={this.props.match.url} logout={this.logout}/> 
                                  {/* <button onClick={this.logout}></button> */}
                               </div>  
@@ -262,16 +261,31 @@ onChangeHandlerdoctor = (e, text) => {
                      </div>
                      <div className="row">
                         <div className="serchlabel">
-                           <h1>Find Doctors <br/>near by your location</h1>
+                           <h1>Find Doctors <br/>near by your location</h1><br/><br/><br/>
+                           <Link to="/article">
+        Create Article
+      </Link>  
+     
                         </div>
-                     </div>      
+                        
+                     </div>    
+                       
                   </div>
+                  <SearchField 
+  placeholder='Search articles'
+  
+/>
+                  
                </section>
                <section className="megaSearch">
+                  
                   <div className="container">
+                  
                      <div className="row">
+                        
                         <div className="search-wrap-inner clearfix">
                            <form className="mainSearch">
+                              
                            <Test
         show={this.state.modalShow}
         onHide={() => this.setModalShow(false)}
@@ -381,6 +395,8 @@ onChangeHandlerdoctor = (e, text) => {
                      </li>
                      <li role="presentation"><a href="#Children" aria-controls="Children" role="tab" data-toggle="tab">Children</a>
                      </li>
+                     
+                     
                   </ul>
                </div>
                   <Carousel1 city={this.state.searchParams.city}/>

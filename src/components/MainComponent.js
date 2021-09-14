@@ -35,8 +35,10 @@ import Verify from './loginForm/Verify.js'
 import Subscribe from './Dashboard/Subscribe.js'
 import Subs from './Dashboard/Subs.js'
 import EditSubscribe from './Dashboard/EditSubscribe'
-import { now } from "jquery";
-
+  import Pagination from '../Pagination'
+  import List from '../List'
+  import SearchPage from '../SearchBar/SearchPage'
+  
 import DeleteSubscribe from './Dashboard/DeleteSubscribe'
 
 
@@ -111,8 +113,11 @@ const Routes = (props) => {
       <Route exact path="/subscribe" component={Subscribe} />
       <Route exact path="/subs" component={Subs} />
       <Route exact path="/editsubscribe" component={EditSubscribe} />
-      
+      <Route exact path="/searchpage" component={SearchPage} />
       <Route exact path="/deletesubscribe" component={DeleteSubscribe} />
+      <Route exact path="/pagination" component={Pagination} />
+      <Route exact path="/list" component={List} />
+      
       
 
     

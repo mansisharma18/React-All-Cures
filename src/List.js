@@ -1,26 +1,15 @@
-import React, { Component } from 'react';
-import Header from '../Header/Header';
-import Footer from '../Footer/Footer'
-// import EditModal from './EditModal'
-import {Container} from "react-bootstrap";
-import AllPost from './Allpost.js';
-import  Pagination  from '../../Pagination';
+import React, {Component} from 'react'
 import axios from 'axios'
 import ReactPaginate from 'react-paginate';
+import "./styles.css";
+import Blogpage from './components/BlogPage/Blogpage';
 
 
-export default class Blogpage extends Component{
-
+export default class App extends Component {
     constructor(props) {
         super(props);
-        console.log(props)
-        const params = props.match.params
-        this.state = { 
-          // url: props.url,
-          param: params,
-          items: [],
-          isLoaded: false,
-          offset: 0,
+        this.state = {
+            offset: 0,
             data: [],
             perPage: 4,
             currentPage: 0
@@ -28,28 +17,19 @@ export default class Blogpage extends Component{
         this.handlePageClick = this
             .handlePageClick
             .bind(this);
-      }
-
-      receivedData() {
+    }
+    
+    receivedData() {
         axios
             .get(`/article/allkv`)
             .then(res => {
 
-              
+
                 const data = res.data;
-                
                 const slice = data.slice(this.state.offset, this.state.offset + this.state.perPage)
-                
                 const postData = slice.map(pd => <React.Fragment>
-                  
-                  <div className="container-fluid">
-                  <div className="row" >
-                  
-                    {pd.title}
-                    {pd.w_title}
-                    
-                    </div>
-                    </div>
+                    <p>{pd.title}</p>
+                    <img src={pd.thumbnailUrl} alt=""/>
                 </React.Fragment>)
                 
 
@@ -72,19 +52,12 @@ export default class Blogpage extends Component{
         });
 
     };
-  
-      
-     
-      
-      componentDidMount() {
-        this.receivedData()        
-      }
-      
-    render(){
-        return(
-            <>
-            <Header/>
-            
+
+    componentDidMount() {
+        this.receivedData()
+    }
+    render() {
+        return (
             <div>
                 {this.state.postData}
                 
@@ -101,8 +74,7 @@ export default class Blogpage extends Component{
                     subContainerClassName={"pages pagination"}
                     activeClassName={"active"}/>
             </div>
-            <Footer/>
-            </>
-        );
+
+        )
     }
 }
