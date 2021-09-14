@@ -3,7 +3,7 @@ import React, {useEffect, useState} from 'react';
 import { Modal } from 'react-bootstrap';
 import { Redirect } from "react-router-dom";
 import axios from 'axios'
-import { Select, MenuItem , FormControl, InputLabel, Checkbox, FormGroup, FormControlLabel} from '@material-ui/core';
+import {Select, MenuItem , InputLabel, FormControl, Checkbox, FormGroup, FormControlLabel} from '@material-ui/core';
 import GoogleLogin from 'react-google-login';
 import { usePasswordValidation } from '../hooks/usePasswordValidation';
 
@@ -28,10 +28,10 @@ const Test = (props) => {
       firstPassword: "",
       secondPassword: "",
     });
-    const [userType, setUserType] = useState("");
     const [terms, setTerms] = useState("");
     const [policy, setPolicy] = useState("");
     const [rempwd, setRempwd] = useState("");
+    const [userType, setUserType] = useState("");
     const [message, setMessage] = useState("");
     const [isError, setError] = useState(false);
     const [buttonSignUpClick, setSignUpClicked] = useState("");
@@ -325,6 +325,19 @@ const Test = (props) => {
               required
             />
           </FormGroup> */}
+          <FormControl className="mb-4 w-100">
+        <InputLabel id="demo-simple-select-label">User Type</InputLabel>
+          <Select 
+            labelId="demo-simple-select-label"
+            id="demo-simple-select"
+            value={userType}
+            onChange={(e) => setUserType(e.target.value)}
+            required
+          >
+          <MenuItem value="doctor">Doctor</MenuItem>
+          <MenuItem value="other">Other</MenuItem>
+        </Select>
+        </FormControl>
         <button type="submit" className="ghost">Sign Up</button>
       </form>
     </div>

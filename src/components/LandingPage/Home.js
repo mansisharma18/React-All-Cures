@@ -239,22 +239,16 @@ onChangeHandlerdoctor = (e, text) => {
                                     <img src={Heart} alt="All Cures logo"/>
                                     <span>All Cures</span>
                                  </Link>    
-                                 {
-                  this.state.spec1?
-                    <Autocomplete value={this.state.temp} suggestions={this.state.spec1}/>
-                  : null
-                } 
+                                 
                               </div>
                               <div className="loginSign"> 
                               {/* <Link to="/profile">Go to Profile</Link> */}
-                              <Button variant="dark" onClick={() => this.setModalShow(true)}>
-         sign
-      </Button>
+                              
     
-      <Link to="/article">
+      <Link className="btn border mr-2 btn-white loginSignbtn color-blue-dark"  to="/article">
         Create Article
       </Link>    
-                                 <ToggleButton acPerm={this.state.acPerm} match={this.props.match.url} logout={this.logout}/> 
+                                 <ToggleButton setModalShow={this.setModalShow} acPerm={this.state.acPerm} match={this.props.match.url} logout={this.logout}/> 
                                  {/* <button onClick={this.logout}></button> */}
                               </div>  
                            </div>   
@@ -263,10 +257,18 @@ onChangeHandlerdoctor = (e, text) => {
                      <div className="row">
                         <div className="serchlabel">
                            <h1>Find Doctors <br/>near by your location</h1>
+                           <br/>
+                           {
+                              this.state.spec1?
+                              <Autocomplete value={this.state.temp} suggestions={this.state.spec1}/>
+                              : null
+                           }    
                         </div>
-                     </div>      
+                     </div>   
+                     
                   </div>
                </section>
+               
                <section className="megaSearch">
                   <div className="container">
                      <div className="row">
@@ -574,13 +576,20 @@ function ToggleButton(props) {
    }
    return(
       <>
-      
-      <Link 
+      <button 
+         className="btn btn-dark text-light border loginSignbtn color-blue-dark" 
+         variant="dark" 
+         style={{width: '10rem'}}
+         onClick={() => props.setModalShow(true)}
+      >
+            Sign in/Sign up
+      </button>
+      {/* <Link 
          className="btn-white loginSignbtn color-blue-dark" 
          to={{pathname: props.match, search: '?login=true', state: {open: true}}}
       >
          Sign in/Sign up
-      </Link>
+      </Link> */}
       </>
    )
 }
