@@ -26,6 +26,7 @@ import Promo from './Promo/CreatePromo'
 import GetPromo from './Promo/GetPromo';
 import UpdatePromo from './Promo/UpdatePromo';
 import Title from './Title';
+import Article from '.././Article/Article'
 
 
 function Copyright() {
