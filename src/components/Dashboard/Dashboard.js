@@ -24,7 +24,7 @@ import Review from './Review';
 import Promo from './Promo/CreatePromo'
 import GetPromo from './Promo/GetPromo';
 import UpdatePromo from './Promo/UpdatePromo';
-import Heart from"../../assets/img/heart.png";
+import Title from './Title';
 
 
 function Copyright() {
@@ -125,6 +125,9 @@ export default function Dashboard(props) {
   console.log(props.location)
   const classes = useStyles();
   const [open, setOpen] = React.useState(true);
+  const [items, setItems] = React.useState([])
+  const [isLoaded, setIsLoaded] = React.useState(false)
+
   const handleDrawerOpen = () => {
     setOpen(true);
   };
@@ -132,7 +135,25 @@ export default function Dashboard(props) {
     setOpen(false);
   };
 
-  useEffect(() => document.title = 'All Cures | Dashboard')
+  useEffect(() => {
+    document.title = 'All Cures | Dashboard'
+    setIsLoaded(false);
+
+    fetch("/dashboard/articlecount")
+      .then((res) => res.json())
+      .then((json) => {
+        setItems(json);
+        setIsLoaded(true);
+        <RenderComponent 
+            search={props.location.search} 
+            container={classes.container} 
+            fixedHeightPaper={fixedHeightPaper} 
+            ajaxIsLoaded={isLoaded}
+            ajaxItems={items}
+          />
+      });
+    }, []);
+
   const fixedHeightPaper = clsx(classes.paper, classes.fixedHeight);
 
   return (
@@ -180,12 +201,39 @@ export default function Dashboard(props) {
             search={props.location.search} 
             container={classes.container} 
             fixedHeightPaper={fixedHeightPaper} 
+            ajaxIsLoaded={isLoaded}
+            ajaxItems={items}
           />
           {/* <Promo/> */}
+          {/* <div className="timer">Timer: {mytable}s</div> */}
       </main>
     </div>
     </div>
   );
+}
+
+function handleCountClick(key,value){
+  console.log("CCCCCCCCCCLIIIIIIIIIICCCCCCCKKKKKKKKKKK"+key+value)
+  if(key){
+  return(
+      <div className='card'>
+        <Grid item xs={12} md={4} lg={3}>
+          <Paper>
+            <React.Fragment>
+              <Title>{key} Articles</Title>  
+              <ul>
+              {value.map(item => {
+                <li>{item[0]}</li>;
+              })}
+              </ul> 
+              <Typography color="textSecondary">
+              </Typography>
+            </React.Fragment>
+          </Paper>
+        </Grid>
+      </div>
+    )
+  }
 }
 
 function RenderComponent(props){
@@ -230,11 +278,54 @@ function RenderComponent(props){
       <UpdatePromo search={props.search}/>
     )
   } else {
+    if (!props.ajaxIsLoaded) {
+
+      return <div>Loading...</div>;
+    } else if (props.ajaxIsLoaded) {
     return(
-      <Container maxWidth="lg" className={props.container}>
+    <Container maxWidth="lg" className={props.container}>
     <Grid container spacing={3}>
-     
-      <Grid item xs={12} md={4} lg={3}>
+     <Grid item xs={12} md={4} lg={3}>
+       <Paper className={props.fixedHeightPaper}>
+        <React.Fragment>
+          <Title>Draft Articles</Title>   
+          <div onClick={() => handleCountClick("Draft",props.ajaxItems["draft_article"])}>{props.ajaxItems["draft_article"].length}</div>
+          <Typography color="textSecondary">
+          </Typography>
+        </React.Fragment>
+       </Paper>
+     </Grid>
+     <Grid item xs={12} md={4} lg={3}>
+       <Paper className={props.fixedHeightPaper}>
+        <React.Fragment>
+          <Title>Approval Articles</Title>   
+          <div onClick={() => handleCountClick("Approval",props.ajaxItems["approval_article"])}>{props.ajaxItems["approval_article"].length}</div>
+          <Typography color="textSecondary">
+          </Typography>
+        </React.Fragment>
+       </Paper>
+     </Grid>
+     <Grid item xs={12} md={4} lg={3}>
+       <Paper className={props.fixedHeightPaper}>
+        <React.Fragment>
+          <Title>Review Articles</Title>   
+          <div onClick={() => handleCountClick("Review",props.ajaxItems["review_article"])}>{props.ajaxItems["review_article"].length}</div>
+          <Typography color="textSecondary">
+          </Typography>
+        </React.Fragment>
+       </Paper>
+     </Grid>
+     <Grid item xs={12} md={4} lg={3}>
+       <Paper className={props.fixedHeightPaper}>
+        <React.Fragment>
+          <Title>Publish Articles</Title>   
+          <div onClick={() => handleCountClick("Publish",props.ajaxItems["published_article"])}>{props.ajaxItems["published_article"].length}</div>  
+          <Typography color="textSecondary">
+          </Typography>
+        </React.Fragment>
+       </Paper>
+     </Grid>
+      {/* <Grid item xs={12} md={4} lg={3}>
         <Paper className={props.fixedHeightPaper}>
           <Deposits />
         </Paper>
@@ -253,12 +344,13 @@ function RenderComponent(props){
         <Paper className={props.fixedHeightPaper}>
           <Review />
         </Paper>
-      </Grid>
+      </Grid> */}
     </Grid>
     <Box pt={4}>
       <Copyright />
     </Box>
   </Container>
     )
+    }
   }
 }
