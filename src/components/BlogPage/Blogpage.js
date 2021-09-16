@@ -1,55 +1,46 @@
-import React, { Component } from 'react';
-import Header from '../Header/Header';
-import Footer from '../Footer/Footer'
-// import EditModal from './EditModal'
-import {Container} from "react-bootstrap";
-import AllPost from './Allpost.js';
-import  Pagination  from '../../Pagination';
+import React, {Component} from 'react'
 import axios from 'axios'
 import ReactPaginate from 'react-paginate';
+import AllPost from './Allpost';
+import Header from '../Header/Header';
+import Footer from '../Footer/Footer'
 
 
-export default class Blogpage extends Component{
 
+
+export default class App extends Component {
     constructor(props) {
         super(props);
-        console.log(props)
-        const params = props.match.params
-        this.state = { 
-          // url: props.url,
-          param: params,
-          items: [],
-          isLoaded: false,
-          offset: 0,
+        this.state = {
+            offset: 0,
             data: [],
-            perPage: 4,
+            perPage: 10,
             currentPage: 0
+            
         };
         this.handlePageClick = this
             .handlePageClick
             .bind(this);
-      }
-
-      receivedData() {
+    }
+    receivedData() {
         axios
-            .get(`/article/allkv`)
+            .get(`/article/all`)
             .then(res => {
 
-              
                 const data = res.data;
-                
                 const slice = data.slice(this.state.offset, this.state.offset + this.state.perPage)
-                
                 const postData = slice.map(pd => <React.Fragment>
-                  
-                  <div className="container-fluid">
-                  <div className="row" >
-                  
-                    {pd.title}
-                    {pd.w_title}
-                    
-                    </div>
-                    </div>
+                     <div className="container my-4">
+                     <div className="row" id="posts-container">
+                     <AllPost
+                                            key={pd[0]}
+                                            id = {pd[0]}
+                                            title = {pd[1]}
+                                            f_title = {pd[2]}
+                                            w_title = {pd[6]}
+                                        />
+                                        </div>
+                                        </div>
                 </React.Fragment>)
                 
 
@@ -72,22 +63,15 @@ export default class Blogpage extends Component{
         });
 
     };
-  
-      
-     
-      
-      componentDidMount() {
-        this.receivedData()        
-      }
-      
-    render(){
-        return(
-            <>
-            <Header/>
-            
+
+    componentDidMount() {
+        this.receivedData()
+    }
+    render() {
+        return (
             <div>
+                <Header/>
                 {this.state.postData}
-                
                 <ReactPaginate
                     previousLabel={"prev"}
                     nextLabel={"next"}
@@ -100,9 +84,12 @@ export default class Blogpage extends Component{
                     containerClassName={"pagination"}
                     subContainerClassName={"pages pagination"}
                     activeClassName={"active"}/>
+                     <Footer/>
             </div>
-            <Footer/>
-            </>
-        );
+            
+
+        )
+        
     }
+    
 }

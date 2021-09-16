@@ -28,7 +28,7 @@ const EditModal = (props) => {
     const [disclaimer, setDisclaimer] = useState('')
     const [copyright, setCopyright] = useState('')
     const [language, setLanguage] = useState('')
-    const [author, setAuthor] = useState()
+    const [author, setAuthor] = useState([])
     const [country, setCountry] = useState('')
     const [win, setWin] = useState('')
     const [articleStatus, setArticleStatus] = useStateWithCallbackLazy()
@@ -52,7 +52,7 @@ const EditModal = (props) => {
         .then(res => {
             console.log("get post",res);
             setEditedBy(res.data.edited_by)
-            setAuthor(res.data.authored_by)
+            setAuthor(author.concat((res.data.authored_by).split(',')))
             setTitle(res.data.title);
             setDisclaimer(res.data.disclaimer_id)
             setCopyright(res.data.copyright_id)
@@ -66,19 +66,13 @@ const EditModal = (props) => {
             //setArticleStatus(res.data.pubstatus_id, () => checkAccess(articleStatus))
             
             setArticleDisplay(res.data.friendly_name)
-            // setArticleContent(JSON.parse(res.data.content))
             setType(res.data.type)
             setContentType(res.data.content_type)
             setCountry(res.data.country_id)
             setDisease(res.data.disease_condition_id)
-            setComment(res.data.comments)
-            // setContent(JSON.parse(res.data.content));
-           
+            setComment(res.data.comments) 
+            setArticleContent(JSON.parse(res.data.content))
         })
-        // .then(
-        //     checkAccess()
-        //     // console.log('auttttttthhhhoooorrrrrrrrrrrrr: ', author)
-        // )
         .catch(err => console.log("errrrrrrorrrrrrrrrrrrrrrrrr",err))
     }
 
@@ -106,11 +100,12 @@ const EditModal = (props) => {
             "pubstatus_id": parseInt(articleStatus),
             "language_id": parseInt(language),
             "articleContent": JSON.stringify(articleContent),
+            "comments": comment
         })
         .then(res => {
             setSuccMsg('Updated Successfully')
             // history.incognito(`/blog/${editId.id}`)
-            // window.location.href(`blog/${editId.id}`)
+            // window.location.href(`blog/${editId.id}`)    
         })
         .catch(err => {
             console.log(err);
@@ -131,7 +126,12 @@ const EditModal = (props) => {
             return null;
         }
         else{
+            document.getElementById('article-submit').disabled = true
             window.alert('Restricted Access!!')
+            // return(
+            //     // history.push('/home')
+            //     <Redirect to="/home"/>
+            // )
         }
     }
 
@@ -177,10 +177,18 @@ const EditModal = (props) => {
         .catch(err => console.log(err))
     }
     
+    const onAuthorChange = (e) => {
+        if(author.includes(e.target.value)){
+            return null
+        } else {
+            setAuthor(author.concat(e.target.value), console.log(author))
+        }
+    }
+
     useEffect(() => {
         if(editId.id){
             console.log("Useeffect: ", editId.id)
-        getPosts()
+            getPosts()
         }
         getLanguages()
         getAuthor()
@@ -188,7 +196,7 @@ const EditModal = (props) => {
         getDisclaimer()
         getDisease()  
         // checkAccess()      
-    }, [title])
+    }, [userId])
 
     const instanceRef = useRef(null)
 
@@ -205,7 +213,7 @@ const EditModal = (props) => {
         console.log('submit article formmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmm')
         fetch("/content?cmd=createArticle", {
             method: "POST",
-            body: `title=${title}&language=${language}&friendlyName=${articleDisplay}&contentType=${contentType}&type=${type}&disclaimerId=${disclaimer}&authById=${author}&copyId=${copyright}&articleStatus=${articleStatus}&winTitle=${win}&countryId=${country}&diseaseConditionId=${disease}&articleContent=${JSON.stringify(articleContent)}`,
+            body: `title=${title}&language=${language}&friendlyName=${articleDisplay}&contentType=${contentType}&type=${type}&disclaimerId=${disclaimer}&authById=${author}&copyId=${copyright}&articleStatus=${articleStatus}&winTitle=${win}&countryId=${country}&diseaseConditionId=${disease}&articleContent=${JSON.stringify(articleContent)}&comments=${comment}`,
             headers: {
             "Content-Type": "application/x-www-form-urlencoded"
             }
@@ -359,7 +367,7 @@ const EditModal = (props) => {
         });
         document.getElementById('article-preview').innerHTML=articleHTML;
     }
-    // console.log('select author: ', [author])
+
     return (
         <>
             <div className="transparent_bg">
@@ -415,8 +423,7 @@ const EditModal = (props) => {
                     <select 
                     multiple
                     name="type" placeholder="Type" 
-                    value={type} 
-                    
+                    value={type}
                     onChange={(e)=> {
                         handleSelect(e, e.target.selectedOptions)
                     }}
@@ -482,8 +489,8 @@ const EditModal = (props) => {
                 <div className="col-lg-6 form-group">
                     <label htmlFor="">Author</label>
                         <Select multiple
-                        value={[author]}
-                        onChange={(e) =>  setAuthor(e.target.value)}
+                        value={author}
+                        onChange={(e) => onAuthorChange(e)}
                         input={<Input id="select-multiple-chip" />}
                         // MenuProps={MenuProps}
                         placeholder="Select Author"
@@ -545,20 +552,29 @@ const EditModal = (props) => {
                             </div>
                             <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
                             <div class="card-body">
+                                {
+                                    articleContent != ''?
                                     <EditorJs
-                                        onChange={handleSave}
-                                        data = {articleContent}
-                                        // enableReInitialize = {true}
-                                        instanceRef={instance => (instanceRef.current = instance)}
-                                        tools = {EDITOR_JS_TOOLS} 
+                                    onChange={handleSave}
+                                    data = {articleContent}
+                                    // enableReInitialize = {true}
+                                    instanceRef={instance => (instanceRef.current = instance)}
+                                    tools = {EDITOR_JS_TOOLS} 
                                     />
+                                    : <EditorJs
+                                    onChange={handleSave}
+                                    instanceRef={instance => (instanceRef.current = instance)}
+                                    tools = {EDITOR_JS_TOOLS} 
+                                    />
+                                }
+                                    
                             </div>
                             </div>
                         </div>
                     </div>
                     {succMsg ? <h4 className="mt-3 alert alert-success">{succMsg}</h4> : null}
                     <div className="form-group">
-                        <button type="submit" className="btn mt-3 btn-dark">Submit</button>
+                        <button type="submit" id="article-submit" className="btn mt-3 btn-dark">Submit</button>
                     </div>
                     </form>
                     <div id="article-preview"></div>

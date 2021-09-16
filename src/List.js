@@ -1,8 +1,10 @@
 import React, {Component} from 'react'
 import axios from 'axios'
 import ReactPaginate from 'react-paginate';
-import "./styles.css";
-import Blogpage from './components/BlogPage/Blogpage';
+import AllPost from './components/BlogPage/Allpost'
+import Header from './components/Header/Header';
+import Footer from './components/Footer/Footer'
+import './App.css'
 
 
 export default class App extends Component {
@@ -11,25 +13,33 @@ export default class App extends Component {
         this.state = {
             offset: 0,
             data: [],
-            perPage: 4,
+            perPage: 10,
             currentPage: 0
+            
         };
         this.handlePageClick = this
             .handlePageClick
             .bind(this);
     }
-    
     receivedData() {
         axios
-            .get(`/article/allkv`)
+            .get(`/article/all`)
             .then(res => {
-
 
                 const data = res.data;
                 const slice = data.slice(this.state.offset, this.state.offset + this.state.perPage)
                 const postData = slice.map(pd => <React.Fragment>
-                    <p>{pd.title}</p>
-                    <img src={pd.thumbnailUrl} alt=""/>
+                     <div className="container my-4">
+                     <div className="row" id="posts-container">
+                     <AllPost
+                                            key={pd[0]}
+                                            id = {pd[0]}
+                                            title = {pd[1]}
+                                            f_title = {pd[2]}
+                                            w_title = {pd[6]}
+                                        />
+                                        </div>
+                                        </div>
                 </React.Fragment>)
                 
 
@@ -59,8 +69,8 @@ export default class App extends Component {
     render() {
         return (
             <div>
+                <Header/>
                 {this.state.postData}
-                
                 <ReactPaginate
                     previousLabel={"prev"}
                     nextLabel={"next"}
@@ -73,8 +83,12 @@ export default class App extends Component {
                     containerClassName={"pagination"}
                     subContainerClassName={"pages pagination"}
                     activeClassName={"active"}/>
+                     <Footer/>
             </div>
+            
 
         )
+        
     }
+    
 }

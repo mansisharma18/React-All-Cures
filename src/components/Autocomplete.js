@@ -105,7 +105,7 @@ class Autocomplete extends Component {
       }
       return (
         <Fragment>
-          <div  className=" autocomplete col-lg-4">
+          <div  className=" autocomplete col-lg-">
            
               <input
                 type="text"

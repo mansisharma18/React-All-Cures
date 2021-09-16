@@ -1,22 +1,66 @@
-import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
-import Pagination from '@material-ui/lab/Pagination';
+import { usedatasource, useEffect, dataSource } from 'react';
+import { Alert, Table } from 'react-bootstrap';
+// import "antd/dist/antd.css"
+import{useState} from 'react'
 
-const useStyles = makeStyles((theme) => ({
-  root: {
-    '& > *': {
-      marginTop: theme.spacing(2),
-    },
+function Pagination() {
+  const [loading, setLoading] = useState(false)
+  const [dataSource, setDataSource] = useState([])
+  useEffect(() => {
+    setLoading(true)
+    fetch("https://jsonplaceholder.typicode.com/todos")
+    .then(response=>response.json())
+    .then (data=>{
+      setDataSource(data)
+    }).catch(err=>{
+      console.log(err)
+    }).finally(()=>{
+      setLoading(false)
+    })
+      
+
   },
-}));
 
-export default function PaginationRounded() {
-  const classes = useStyles();
+ [] )
 
-  return (
-    <div className={classes.root}>
-      <Pagination count={10} shape="rounded" />
-      <Pagination count={10} variant="outlined" shape="rounded" />
-    </div>
-  );
+const columns = [
+{
+key:"1",
+title:'Id',
+dataIndex:'id',
+},
+{
+  key:"2",
+  title:'User Id',
+  dataIndex:'userid',
+  },
+  {
+    key:"3",
+    title:'Status',
+    dataIndex:'completed',
+    render:(completed)=>{
+      return <p>{completed?'Complete':'In Progress'}</p>
+    }
+    },
+
+]
+
+return(
+<div className="App">
+<header className="App-header">
+<Table
+loading={loading}
+columns={columns}
+dataSource={dataSource}>
+
+</Table>
+
+
+</header>
+
+</div>
+
+
+);
 }
+export default Pagination;
