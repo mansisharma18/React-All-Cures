@@ -150,7 +150,14 @@ const Test = (props) => {
     e.preventDefault();
     setClicked(1);
     axios.post(`/login?cmd=login&email=${email}&psw=${signInpassword}&rempwd=on`)
-    .then(response => console.log(response.data))
+    .then(response => {
+      if(response.data.registration_id){
+        setTimeout(() => {
+          window.location.reload()
+        }, 500);
+      }
+      console.log(response.data)
+    })
     .catch(res => console.log(res))
   }
   
