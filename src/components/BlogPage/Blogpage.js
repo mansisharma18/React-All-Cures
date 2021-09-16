@@ -3,7 +3,8 @@ import axios from 'axios'
 import ReactPaginate from 'react-paginate';
 import AllPost from './Allpost';
 import Header from '../Header/Header';
-import Footer from '../Footer/Footer'
+import Footer from '../Footer/Footer';
+import Grid from '@material-ui/core/Grid';
 
 
 

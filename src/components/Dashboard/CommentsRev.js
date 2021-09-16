@@ -2,6 +2,7 @@ import React, { Component } from "react";
 
 import axios from 'axios';
 import Results from './Results'
+import Grid from '@material-ui/core/Grid';
 
 
 
@@ -192,7 +193,7 @@ render(){
                             return (
                               <>
                                 <div className="rating-patient">
-                            <div className="rating-patient-grid clearfix">
+                            <div >
                               <div className="paitent-profile">
                              
                                 {" "}

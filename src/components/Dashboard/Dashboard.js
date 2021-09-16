@@ -25,6 +25,7 @@ import Review from './Review';
 import Promo from './Promo/CreatePromo'
 import GetPromo from './Promo/GetPromo';
 import UpdatePromo from './Promo/UpdatePromo';
+import Article from '.././Article/Article'
 import Heart from"../../assets/img/heart.png";
 
 
@@ -125,7 +126,7 @@ const useStyles = makeStyles((theme) => ({
 export default function Dashboard(props) {
   console.log(props.location)
   const classes = useStyles();
-  const acPerm = Cookies.get("acPerm").split('|')
+  // const acPerm = Cookies.get("acPerm").split('|')
   const [open, setOpen] = React.useState(true);
   const handleDrawerOpen = () => {
     setOpen(true);
@@ -191,6 +192,9 @@ export default function Dashboard(props) {
 }
 
 function RenderComponent(props){
+  if(props.search == '?article'){
+    return(<Article/>);
+  }
   if(props.search == '?create_promo'){
     return(<Promo/>);
   } else if(props.search == '?stats'){
@@ -199,7 +203,8 @@ function RenderComponent(props){
      
       <Grid item xs={12} md={4} lg={3}>
         <Paper className={props.fixedHeightPaper}>
-          <Deposits />
+        
+          <Review />
         </Paper>
       </Grid>
       <Grid item xs={12} md={4} lg={3}>
@@ -214,7 +219,7 @@ function RenderComponent(props){
       </Grid>
       <Grid item xs={12} md={4} lg={3}>
         <Paper className={props.fixedHeightPaper}>
-          <Review />
+        <Deposits />
         </Paper>
       </Grid>
     </Grid>
@@ -227,10 +232,12 @@ function RenderComponent(props){
     return(
       <GetPromo/>
     )
+    
   } else if(props.search.split('=')[0] == '?edit'){
     return(
       <UpdatePromo search={props.search}/>
     )
+  // 
   } else {
     return(
       <Container maxWidth="lg" className={props.container}>
