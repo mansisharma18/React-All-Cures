@@ -550,13 +550,7 @@ document.getElementById('articlePreview').innerHTML=articleHTML;
         </Select>
       </FormControl>
       </Form.Group>
-
-                                            
-                                   
-                                       
-                                     
-
-                                  
+    
                                     <Form.Group className="col-md-6 float-left">
                                         <Form.Label>Win Title</Form.Label>
                                         <Form.Control required type="text" name="winTitle" value={this.state.values.winTitle}
@@ -648,7 +642,7 @@ document.getElementById('articlePreview').innerHTML=articleHTML;
                 {/* SLIDESHOW */}
                 <div className="slideshow"></div>
             </Container>
-            <Footer/>
+            {/* <Footer/> */}
         </div>
         );
         }

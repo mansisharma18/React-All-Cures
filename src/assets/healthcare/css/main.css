@@ -2030,10 +2030,10 @@ button.close {
 
 button {
   border-radius: 20px;
-  border: 1px solid #ff4b2b;
-  background-color: #ff4b2b;
+  border: 1px solid #3ad0ff;
+  background-color:#3ad0ff;
   color: #ffffff;
-  font-size: 12px;
+  margin: 15px 70px;
   font-weight: bold;
   padding: 12px 45px;
   letter-spacing: 1px;
@@ -2466,8 +2466,10 @@ p.lorem-text {
   min-height: 100vh;
   align-items: center;
   justify-content: center;
-  background: url("../img/images/wallpaperflare.com_wallpaper\(9\).jpg") center
-    center/cover no-repeat;
+  background-color:rgb(140, 212, 235);
+
+  /* background: url("../img/images/wallpaperflare.com_wallpaper\(9\).jpg") center
+    center/cover no-repeat; */
 }
 
 .ds-image {

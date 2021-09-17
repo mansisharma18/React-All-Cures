@@ -31,18 +31,18 @@ class CommentsRev extends Component {
       .then(res => {
         console.log(res.data)
         
-        // rate_id: 8
+        // comments: 8
         // reviewed: 1
         const approvedIds = res.data.filter(item => {
           if(item.reviewed) return true
           return false
-        }).map(item => item.rate_id)
+        }).map(item => item.comments)
 
         this.setState({ approvedIds })
 
         var s = [];
         res.data.map(i => {
-          s.push(i.rate_id);
+          s.push(i.comments);
         })
         console.log(s)
         this.setState({
@@ -54,7 +54,7 @@ class CommentsRev extends Component {
       })
       // .then(res => {
       //   res.data.map((i) => {
-      //     console.log(i.rate_id)
+      //     console.log(i.comments)
       //   })
       //   // console.log(check)
       // })
@@ -203,15 +203,15 @@ render(){
                                   <div>
                                   <input type = "checkbox"
                                   onChange={() => {
-                                    this.onChange(item.rate_id)
+                                    this.onChange(item.comments)
                                     
                                     this.setState({
-                                      customSelector: [...new Set(this.state.customSelector), item.rate_id ],
+                                      customSelector: [...new Set(this.state.customSelector), item.comments ],
                                       checked: !this.state.isChecked
                                     })
                                     console.log('custom select ' + this.state.customSelector);
                                   }}
-                                  selected={selectedCheckboxes.includes(item.rate_id)}
+                                  selected={selectedCheckboxes.includes(item.comments)}
                                   className="check"
                                   defaultChecked={item.reviewed}
                                 
@@ -219,8 +219,8 @@ render(){
                                 />
                               </div>
                               : <input type = "checkbox"
-                              onChange={() => this.onChange(item.rate_id)}
-                              selected={selectedCheckboxes.includes(item.rate_id)}
+                              onChange={() => this.onChange(item.comments)}
+                              selected={selectedCheckboxes.includes(item.comments)}
                               className="check"
                               
                               
@@ -229,7 +229,7 @@ render(){
                               
                               <div className="patient-msg">
                               
-                                <p>{item.rate_id}</p>
+                                <p>{item.comments}</p>
                               </div>
                             </div>
                           </div>
@@ -237,21 +237,14 @@ render(){
                             )
                           })}
                          
-                          <div>
+                          <div><br/>
                                 
                                 <button onClick={() => {this.postApproved(selectedCheckboxes, unselectedCheckboxes)}}>Submit</button>
                               </div>
                          
                         </div>
                       </div>
-                      <div id="recomended" className="tab-pane fade">
-                        <h3>Menu 1</h3>
-                        <p>
-                          Ut enim ad minim veniam, quis nostrud exercitation
-                          ullamco laboris nisi ut aliquip ex ea commodo
-                          consequat.
-                        </p>
-                      </div>
+                     
                     </div>
     </>
     

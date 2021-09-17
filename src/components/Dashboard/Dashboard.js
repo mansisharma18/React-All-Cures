@@ -27,6 +27,7 @@ import GetPromo from './Promo/GetPromo';
 import UpdatePromo from './Promo/UpdatePromo';
 import Title from './Title';
 import Article from '.././Article/Article'
+import BlogAllPost from './BlogAllPost'
 
 
 function Copyright() {
@@ -242,6 +243,9 @@ function handleCountClick(key,value){
 function RenderComponent(props){
   if(props.search == '?article'){
     return(<Article/>);
+  }
+  if(props.search == '?blogs'){
+    return(<BlogAllPost/>);
   }
   if(props.search == '?create_promo'){
     return(<Promo/>);
