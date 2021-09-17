@@ -34,17 +34,15 @@ export const mainListItems = (
     <Link to="/dashboard?article">
     <ListItemText primary="New Article" />
            </Link>
-    </ListItem>
-  
-   
+           </ListItem>
     <ListItem button>
       <ListItemIcon>
-        <BarChartIcon />
+        <PeopleIcon />
       </ListItemIcon>
-      {/* <ListItemText primary="Reports" /> */}
-      <Link to="/dashboard/blogs">
-        Blogs
-      </Link>
+      {/* <ListItemText primary="Customers"  /> */}
+    <Link to="/dashboard?blogs">
+    <ListItemText primary="Blogs" />
+           </Link>
     </ListItem>
     <ListItem button>
       <ListItemIcon>
@@ -54,15 +52,7 @@ export const mainListItems = (
     <Link to="/dashboard/reviewcomments">
                comments
            </Link>
-    </ListItem>
-    <ListItem button>
-      <ListItemIcon>
-        <BarChartIcon />
-      </ListItemIcon>
-
-      <Link to="/subscribe">
-               Subscibe
-           </Link>
+    
     </ListItem>
     <ListItem button>
       <ListItemIcon>
@@ -96,7 +86,7 @@ export const mainListItems = (
         <PeopleIcon />
       </ListItemIcon>
       {/* <ListItemText primary="Customers"  /> */}
-    <Link to="/dashboard?blogs">
+    <Link to="/dashboard?create_promo">
     <ListItemText primary="Create Promo" />
            </Link>
     </ListItem>
