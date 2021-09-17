@@ -340,14 +340,16 @@ onChangeHandlerdoctor = (e, text) => {
                                  value={this.state.searchParams.city} 
                                  className="formVal form-control"
                                  />
+                                 <div className="suggest">
                                  { this.state.suggestions.map((suggestion, i) =>
-                                    <div key={i} className="suggestion col-md-12 justify-content-md-center"
+                                    <div key={i} className="col-md-12 justify-content-md-center suggestionSearch"
                                        onClick={() => this.onSuggestHandler(suggestion.Cityname,suggestion.Pincode)}
                                     >
                                        {Number.isInteger(this.state.getPincode) ? suggestion.Pincode :  suggestion.Cityname}
 
                                     </div>
                                  )}
+                                 </div>
                                  </div>
                               </div>
                                  <input type="hidden" name="Latitude" id="Latitude"  className="form-control"/>
