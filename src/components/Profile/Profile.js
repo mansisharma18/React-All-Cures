@@ -30,7 +30,7 @@ class Profile extends Component {
       modalShow: false,
       show: false,
       acPerm: Cookies.get('acPerm').split('|')
-    };
+    }; 
     // this.editToggle = this.editToggle.bind()
   }
   postSubscribtion() {

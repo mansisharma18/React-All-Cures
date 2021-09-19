@@ -37,6 +37,8 @@ import Subs from './Dashboard/Subs.js'
 import EditSubscribe from './Dashboard/EditSubscribe'
 import Test from './LandingPage/test'
 import DeleteSubscribe from './Dashboard/DeleteSubscribe'
+import Pagination from '../Pagination'
+import List from '../List'
 
 
 
@@ -110,8 +112,11 @@ const Routes = (props) => {
       <Route exact path="/subscribe" component={Subscribe} />
       <Route exact path="/subs" component={Subs} />
       <Route exact path="/editsubscribe" component={EditSubscribe} />
-      
+      <Route exact path="/pagination" component={Pagination} />
+      <Route exact path="/list" component={List} />
       <Route exact path="/deletesubscribe" component={DeleteSubscribe} />
+      
+      
       
 
     

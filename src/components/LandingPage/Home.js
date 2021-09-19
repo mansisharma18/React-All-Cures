@@ -5,6 +5,7 @@ import Cookies from 'js-cookie';
 import Heart from"../../assets/img/heart.png";
 import Doct from "../../assets/img/doct.png";
 import axios from 'axios';
+import ListItem from '@material-ui/core/ListItem';
 import '../../assets/healthcare/css/main.css';
 import '../../assets/healthcare/css/responsive.css';
 import '../../assets/healthcare/css/animate.css';
@@ -15,6 +16,7 @@ import Carousel2 from './Carousel2';
 import CarouselReview from './CarouselReview';
 import { Dropdown, Button, DropdownButton, Nav, Modal, Alert} from 'react-bootstrap';
 import Autocomplete from '../Autocomplete'
+import SearchField from 'react-search-field';
 // import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 // import ToggleButton from '../Header/Header'
 import Test from './test'
@@ -23,6 +25,8 @@ import Test from './test'
 class Home extends Component {
    constructor(props){
       super(props);
+      console.log(props)
+      const params = props.match.params
       this.state = {
          users: [],
          texts: '',
@@ -37,6 +41,7 @@ class Home extends Component {
       show: false,
          docname : '',
          spec1: [],
+         param: params,
    
           acPerm: Cookies.get('acPerm'),
           searchParams: {
@@ -74,6 +79,18 @@ class Home extends Component {
       .catch(res =>  console.log(res))
     }
     loaddoctor();
+ }
+
+ diseasePosts(){                     // For specific blogs like "/blogs/diabetes"
+   fetch(`/isearch/${this.state.param.type}`)
+     .then((res) => res.json())
+     .then((json) => {
+       console.log(json);
+       this.setState({
+         isLoaded: true,
+         items: json,
+       });
+     });
  }
    
  postSubscribtion() {
@@ -267,13 +284,22 @@ onChangeHandlerdoctor = (e, text) => {
                      </div>   
                      
                   </div>
+                  {/* <SearchField 
+  placeholder='Search articles'
+  
+/> */}
+                  
                </section>
                
                <section className="megaSearch">
+                  
                   <div className="container">
+                  
                      <div className="row">
+                        
                         <div className="search-wrap-inner clearfix">
                            <form className="mainSearch">
+                              
                            <Test
         show={this.state.modalShow}
         onHide={() => this.setModalShow(false)}
@@ -314,14 +340,16 @@ onChangeHandlerdoctor = (e, text) => {
                                  value={this.state.searchParams.city} 
                                  className="formVal form-control"
                                  />
+                                 <div className="suggest">
                                  { this.state.suggestions.map((suggestion, i) =>
-                                    <div key={i} className="suggestion col-md-12 justify-content-md-center"
+                                    <div key={i} className="col-md-12 justify-content-md-center suggestionSearch"
                                        onClick={() => this.onSuggestHandler(suggestion.Cityname,suggestion.Pincode)}
                                     >
                                        {Number.isInteger(this.state.getPincode) ? suggestion.Pincode :  suggestion.Cityname}
 
                                     </div>
                                  )}
+                                 </div>
                                  </div>
                               </div>
                                  <input type="hidden" name="Latitude" id="Latitude"  className="form-control"/>
@@ -383,6 +411,8 @@ onChangeHandlerdoctor = (e, text) => {
                      </li>
                      <li role="presentation"><a href="#Children" aria-controls="Children" role="tab" data-toggle="tab">Children</a>
                      </li>
+                     
+                     
                   </ul>
                </div>
                   <Carousel1 city={this.state.searchParams.city}/>

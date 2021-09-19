@@ -14,9 +14,12 @@ class Footer extends Component {
          <div class="container">
             <div class="row">
                <div class="col-md-4 col-sm-4 col-sx-12">
-                  <div class="footer-inner">
+                  <div class="footer-inner" >
                      <h1>About us</h1>
-                     <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec congue turpis sollicitudin nulla finibus dignissim. Curabitur eu urna sed risus tempor venenatis. Morbi quis libero at odio elementum scelerisque at nec libero. Integer quis magna nunc. Sed malesuada efficitur tellus, a posuere risus finibus vitae. Aenean eleifend lacinia consectetur. Donec nec feugiat sem, vitae gravida felis. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Maecenas consectetur orci vel felis lacinia scelerisque. Praesent ut sollicitudin enim. Etiam facilisis sagittis diam, id sollicitudin risus varius non. Proin eget semper ipsum.</p>
+                     <p >We are a new age healthcare technology firm who are trying make it simple and convenient for the users to get information 
+                        on Cures from anywhere in the world.With over 20 years of experience building technology products in the healthcare segment, 
+                        our team is developing an integrated platform for all your health needs. 
+                        We are passionate about giving our users the unique experience that is both fulfilling and wholesome.</p>
                   </div>
                </div>
                <div class="col-md-2 col-sm-2 col-sx-12">
@@ -84,8 +87,8 @@ class Footer extends Component {
                </div>
                <div class="col-md-3 col-sm-3 col-sx-12">
                   <div class="footer-inner">
-                     <h1>Are you a Doctor or Health Service?</h1>
-                     <p> List your practice on Zocdoc Become an API partner</p>
+                     <h1>Our Mission</h1>
+                     <p> We are a new age healthcare technology firm who are trying make it simple and convenient for the users to get information on Cures from anywhere in the world.</p>
                      <div class="helth-app">
                         <h2>Get the Digi Healthcare App</h2>
                         <a href="/#" class="appBtn">App Store</a>
@@ -155,9 +158,12 @@ class Footer extends Component {
                      </ul>
                   </div>
                </div>
-               <a href="/#" id="scroll"style={{display: "block"}} >
+               <div className="back-top">
+               <a href="#" id="scroll"style={{display: "block"}} >
                    <span></span>
+                  
                 </a>
+                </div>
              
             </div>
         </div>
