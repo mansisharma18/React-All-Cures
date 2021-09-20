@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 import Rating from '../StarRating';
+import BlogAllPost from './BlogAllPost'
 
 const AllPost = ({id, title, f_title, w_title,allPostsContent}) => {
 
@@ -11,7 +12,7 @@ const AllPost = ({id, title, f_title, w_title,allPostsContent}) => {
         console.log('delete',postId);
         axios.delete(`/article/${postId}`)
         .then(res => {
-            allPostsContent()
+            singlePostDelete()
         })
         .then(err => {
             console.log(err);
@@ -42,7 +43,7 @@ const AllPost = ({id, title, f_title, w_title,allPostsContent}) => {
                                 if (confirmBox === true) {
                                     singlePostDelete(id)                                }
                               }}> Delete</button>
-                            <Link className="btn btn-info btn-sm" to={ `/editPost/${id}`}>Edit</Link>
+                            <Link className="btn btn-info btn-sm" to={ `/article/:id/${id}`}>Edit</Link>
                         </div>
                         </div>
                     

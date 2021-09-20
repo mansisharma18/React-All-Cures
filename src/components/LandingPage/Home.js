@@ -16,7 +16,7 @@ import Carousel2 from './Carousel2';
 import CarouselReview from './CarouselReview';
 import { Dropdown, Button, DropdownButton, Nav, Modal, Alert} from 'react-bootstrap';
 import Autocomplete from '../Autocomplete'
-import SearchField from 'react-search-field';
+
 // import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 // import ToggleButton from '../Header/Header'
 import Test from './test'
@@ -284,10 +284,7 @@ onChangeHandlerdoctor = (e, text) => {
                      </div>   
                      
                   </div>
-                  <SearchField 
-  placeholder='Search articles'
-  
-/>
+                
                   
                </section>
                
@@ -523,10 +520,10 @@ onChangeHandlerdoctor = (e, text) => {
                   <div className="col-md-6 col-sm-6 col-sx-12">
                      <div className="subscribe">
                         <h1>Get along with us on</h1>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec congue  turpis sollicitudin nulla finibus dignissim.</p>
+                        <h2>Please provide Your Mobile Number.</h2>
                         <div className="form-group relative">
                            <div className="aaa">
-                              <input type="text" name="" onChange={this.setMobile} className="form-control"/>
+                              <input type="tel" name="" onChange={this.setMobile} className="form-control"/>
                               
                            </div>
                            <div>
