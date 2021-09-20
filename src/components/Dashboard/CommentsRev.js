@@ -154,7 +154,7 @@ render(){
     <>
     
               <div className="tab-content">
-              <div><input type="checkbox" onClick={select} className="select-all" />
+              <div><input type="checkbox"  onClick={select} className="select-all all" />
               <label for="checkbox" className="select-all">Select All</label></div>
               <div className="my-3 container" style={{zIndex: '999999'} }>
                 <Results/>
@@ -201,7 +201,7 @@ render(){
                               {
                                 item.reviewed === 1 ?
                                   <div>
-                                  <input type = "checkbox"
+                                  <input type = "checkbox" 
                                   onChange={() => {
                                     this.onChange(item.comments)
                                     
@@ -212,16 +212,16 @@ render(){
                                     console.log('custom select ' + this.state.customSelector);
                                   }}
                                   selected={selectedCheckboxes.includes(item.comments)}
-                                  className="check"
+                                  className="check c1"
                                   defaultChecked={item.reviewed}
                                 
                                   
                                 />
                               </div>
-                              : <input type = "checkbox"
+                              : <input type = "checkbox" 
                               onChange={() => this.onChange(item.comments)}
                               selected={selectedCheckboxes.includes(item.comments)}
-                              className="check"
+                              className="check c1"
                               
                               
                             />
@@ -239,7 +239,7 @@ render(){
                          
                           <div><br/>
                                 
-                                <button onClick={() => {this.postApproved(selectedCheckboxes, unselectedCheckboxes)}}>Submit</button>
+                                <button class="bcolor"onClick={() => {this.postApproved(selectedCheckboxes, unselectedCheckboxes)}}>Submit</button>
                               </div>
                          
                         </div>

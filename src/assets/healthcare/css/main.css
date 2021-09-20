@@ -2065,6 +2065,11 @@ input {
   float: right;
 }
 
+
+
+.bcolor{
+  background-color: #00415e;
+}
 .outer {
   /*background-color: #fff;*/
   border-radius: 15px;
@@ -2118,7 +2123,21 @@ input {
     z-index: 5;
   }
 }
-
+.all{
+  position: relative;
+  top: 55px;
+  left: 340px;
+}
+.c1{
+  position: relative;
+  left: 200px;
+  top: 20px;
+}
+.c2{
+  position: relative;
+  left: 200px;
+  top: 20px;
+}
 .overlay-container {
   position: absolute;
   top: 0;

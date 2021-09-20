@@ -121,7 +121,7 @@ render(){
     <>
     
               <div className="tab-content">
-              <div><input type="checkbox" onClick={select} className="select-all" />
+              <div><input type="checkbox" onClick={select} className="select-all all" />
               <label for="checkbox" className="select-all">Select All</label></div>
               <div className="my-3 container" style={{zIndex: '999999'} }>
                 <Results/>
@@ -166,7 +166,7 @@ render(){
                                   <input type = "checkbox"
                                  onChange={() => this.onChange(item.article_id)}
                                  selected={selectedCheckboxes.includes(item.article_id)}
-                                 className="check"
+                                 className="check c1"
                                  checked
                                   
                                 />
@@ -180,7 +180,7 @@ render(){
                               : <input type = "checkbox"
                               onChange={() => this.onChange(item.article_id)}
                               selected={selectedCheckboxes.includes(item.article_id)}
-                              className="check"
+                              className="check c1"
                               
                               
                             />
@@ -200,7 +200,7 @@ render(){
                          
                           <div>
                                 
-                                <button onClick={() => {
+                                <button className='bcolor'onClick={() => {
                                 const confirmBox = window.confirm(
                                   "Are You Sure?"
                                 )

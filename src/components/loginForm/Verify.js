@@ -70,13 +70,13 @@ const[email,setEmail] = useState(
                     setTimeout(()=>{
                         setAlert(false)
                         
-                    },4000)
+                    },2000)
                 
             }else {
                 noAlert(true)
                 setTimeout(()=>{
                     noAlert(false)
-                },4000)
+                },2000)
             }
            
           

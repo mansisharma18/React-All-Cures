@@ -113,6 +113,9 @@ class Home extends Component {
      .catch(err => {
         console.log(err)
         this.setState({ShowErrorAlert: true});
+        setTimeout(()=>{
+        this.setState({ShowErrorAlert: false});
+        },2000)
 
    })
 
@@ -528,7 +531,7 @@ onChangeHandlerdoctor = (e, text) => {
                         <h2>Please provide Your Mobile Number.</h2>
                         <div className="form-group relative">
                            <div className="aaa">
-                              <input type="tel" name="" onChange={this.setMobile} className="form-control"/>
+                              <input type="number" name="" onChange={this.setMobile} className="form-control"/>
                               
                            </div>
                            <div>
@@ -545,7 +548,7 @@ onChangeHandlerdoctor = (e, text) => {
                                             ? <SubmitError ShowErrorAlert={this.state.ShowErrorAlert}/>
                                             : console.log('')
                                     }
-                                <button onClick={( ) => {this.postSubscribtion()}}>Submit
+                                <button class="bcolor"onClick={( ) => {this.postSubscribtion()}}>Submit
                                 
                                 </button>
 
