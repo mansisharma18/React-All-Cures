@@ -1,9 +1,9 @@
 import React, {useEffect, useState} from 'react';
 // import './Login.js'
 import { Modal } from 'react-bootstrap';
-import { Redirect } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 import axios from 'axios'
-import { Select, MenuItem , FormControl, InputLabel, Checkbox, FormGroup, FormControlLabel} from '@material-ui/core';
+import {Select, MenuItem , InputLabel, FormControl, Checkbox, FormGroup, FormControlLabel} from '@material-ui/core';
 import GoogleLogin from 'react-google-login';
 import { usePasswordValidation } from '../hooks/usePasswordValidation';
 
@@ -28,10 +28,10 @@ const Test = (props) => {
       firstPassword: "",
       secondPassword: "",
     });
-    const [userType, setUserType] = useState("");
     const [terms, setTerms] = useState("");
     const [policy, setPolicy] = useState("");
     const [rempwd, setRempwd] = useState("");
+    const [userType, setUserType] = useState("");
     const [message, setMessage] = useState("");
     const [isError, setError] = useState(false);
     const [buttonSignUpClick, setSignUpClicked] = useState("");
@@ -68,24 +68,29 @@ const Test = (props) => {
     setSignUpClicked(1);
     var res;
     if(validEmail && upperCase && lowerCase && match){
-      axios.post(`/RegistrationActionController?firstname=${firstName}&lastname=${lastName}&email=${email}&psw=${password.firstPassword}&psw-repeat=${password.secondPassword}&rempwd=${rempwd}&doc_patient=${userType}&acceptTnc=${terms}&number=${number}`
+      axios.post(`/RegistrationActionController?firstname=${firstName}&lastname=${lastName}&email=${email}&psw=${password.firstPassword}&psw-repeat=${password.secondPassword}&rempwd=1&doc_patient=${userType}&acceptTnc=${terms}&number=${number}`
     ) .then(response => {
       if(response.data == 'Email Address already Exists in the System'){
-        setExists(true);
+        // setExists(true);
         setTimeout(() => {
-          setExists(false)
-        }, 3500);
+          setSignUpClicked(3)
+        }, 5000);
+        document.getElementById('signup-msg').innerText = 'Email already exists!'
+        console.log('kjsdhkasjdhkj: ', response.data)
       }
-      else if(response.data.registration_id){
-        setSuccess(true);
+      else if(response.data == 1){
+        // setSuccess(true);
         setTimeout(() => {
-          setSuccess(false)
-        }, 3500);
+          window.location.reload()
+        }, 500);
       }
     })
-      .catch(res => {
-        setError(true) 
-        console.log(res.data)
+      .catch(err => {
+        setTimeout(() => {
+          setSignUpClicked(3)
+        }, 5000);
+        document.getElementById('signup-msg').innerText = 'Some error occured!' 
+        console.log(err.response.data)
       })
 
     } else {
@@ -150,8 +155,24 @@ const Test = (props) => {
     e.preventDefault();
     setClicked(1);
     axios.post(`/login?cmd=login&email=${email}&psw=${signInpassword}&rempwd=on`)
-    .then(response => console.log(response.data))
-    .catch(res => console.log(res))
+    .then(response => {
+      if(response.data.registration_id){
+        setTimeout(() => {
+          window.location.reload()
+        }, 500);
+      } else {
+        document.getElementById('login-msg').innerText="Some error occured!"
+      }
+      console.log(response.data)
+    })
+    .catch(err => {
+      if(err.response.data.includes('Incorrect email')){
+        document.getElementById('login-msg').innerText="Incorrect email or password"
+      } else {
+        document.getElementById('login-msg').innerText="Some error occured!"
+      }
+      console.log(err.response.data)
+    })
   }
   
   // Redirect and Reload after logging in
@@ -166,20 +187,6 @@ const Test = (props) => {
       }}/>
     )
   }
-  
-  function AfterLogin() {
-    if(status === 200){
-      console.log('logged in')
-    } else if(status === 401){
-      return(
-        <div className="alert alert-secondary" role="alert">{data}</div>
-      )
-    } else {
-      return(
-        <div className="alert alert-danger mt-2 py-1 px-3 border border-dark" role="alert">Some Error Occured! Try Again</div>
-      )
-    }
-  } 
 
     const responseGoogle = (res) => {
       console.log(res);
@@ -199,22 +206,22 @@ const Test = (props) => {
         <div className="container sign" id="container">
     <div className="form-container sign-up-container">
       <form className="sign" onSubmit={SignUpForm}>
-        <h1>Create Account</h1>
+        <div className="h2 py-0 my-1">Create Account</div>
         <span>or use your email for registration</span>
-        <GoogleLogin
+        {/* <GoogleLogin
         clientId="529398297055-37e0rfns77ig0nih2moffq1pdp533329.apps.googleusercontent.com"
         buttonText="Register"
         onSuccess={responseGoogle}
         onFailure={responseGoogle}
         cookiePolicy={'single_host_origin'}
         className="text-dark"
-      />
+      /> */}
       { 
-          buttonSignUpClick == 1? 
-            afterSignUp()
-            : null
-        }
-        <input className="p-2 rounded border-dark border" 
+        buttonSignUpClick == 1? 
+          <div id="signup-msg" className="alert alert-danger mt-2 py-1 px-3 border border-dark"></div>
+          : null
+      }
+        <input className="px-2 py-1 rounded border-dark border" 
           type="text" 
           placeholder="First Name" 
           onChange={
@@ -222,7 +229,7 @@ const Test = (props) => {
           }
           required
         />
-        <input className="p-2 rounded border-dark border" 
+        <input className="px-2 py-1 rounded border-dark border" 
           type="text" 
           placeholder="Last Name" 
           onChange={
@@ -230,7 +237,7 @@ const Test = (props) => {
           }
           required
         />
-        <input className="p-2 rounded border-dark border" 
+        <input className="px-2 py-1 rounded border-dark border" 
           type="email" 
           placeholder="Email"
           onChange={
@@ -238,7 +245,7 @@ const Test = (props) => {
           }
           required 
           />
-        <input className="p-2 rounded border-dark border" 
+        <input className="px-2 py-1 rounded border-dark border" 
           type="number" 
           placeholder="Mobile Number"
           onChange={
@@ -247,7 +254,7 @@ const Test = (props) => {
           required
         />
         <input 
-          className="p-2 rounded border-dark border" 
+          className="px-2 py-1 rounded border-dark border" 
           type="password" 
           placeholder="Password" 
           onChange={
@@ -289,7 +296,7 @@ const Test = (props) => {
         : null
         }
         <input 
-          className="p-2 rounded border-dark border" 
+          className="px-2 py-1 rounded border-dark border" 
           type="password" 
           placeholder="Confirm Password" 
           onChange={
@@ -325,6 +332,19 @@ const Test = (props) => {
               required
             />
           </FormGroup> */}
+          <FormControl className="mb-4 w-75">
+        <InputLabel id="demo-simple-select-label">User Type</InputLabel>
+          <Select 
+            labelId="demo-simple-select-label"
+            id="demo-simple-select"
+            value={userType}
+            onChange={(e) => setUserType(e.target.value)}
+            required
+          >
+          <MenuItem value="doctor">Doctor</MenuItem>
+          <MenuItem value="other">Other</MenuItem>
+        </Select>
+        </FormControl>
         <button type="submit" className="ghost">Sign Up</button>
       </form>
     </div>
@@ -341,11 +361,17 @@ const Test = (props) => {
         cookiePolicy={'single_host_origin'}
         className="text-dark"
       />
-        {
+        {/* {
           buttonClick === 1?
             AfterLogin()
             : null
+        } */}
+        {
+          buttonClick === 1?
+          <div id="login-msg" className="alert alert-danger mt-2 py-1 px-3 border border-dark"></div>
+          : null
         }
+        
         <input 
           className="p-2 rounded border-dark border" 
           type="email" 
@@ -363,7 +389,7 @@ const Test = (props) => {
             e => setPass(e.target.value)
           }
         />
-        <a className="text-dark" href="#">Forgot your password?</a>
+        <Link className="text-dark" to="/loginForm/verify">Forgot your password?</Link>
         <FormGroup>
         <FormControlLabel
           control={<Checkbox name="Terms" value="on"/>}

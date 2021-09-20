@@ -5,6 +5,7 @@ import Cookies from 'js-cookie';
 import Heart from"../../assets/img/heart.png";
 import Doct from "../../assets/img/doct.png";
 import axios from 'axios';
+import ListItem from '@material-ui/core/ListItem';
 import '../../assets/healthcare/css/main.css';
 import '../../assets/healthcare/css/responsive.css';
 import '../../assets/healthcare/css/animate.css';
@@ -15,6 +16,7 @@ import Carousel2 from './Carousel2';
 import CarouselReview from './CarouselReview';
 import { Dropdown, Button, DropdownButton, Nav, Modal, Alert} from 'react-bootstrap';
 import Autocomplete from '../Autocomplete'
+
 // import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 // import ToggleButton from '../Header/Header'
 import Test from './test'
@@ -23,6 +25,8 @@ import Test from './test'
 class Home extends Component {
    constructor(props){
       super(props);
+      console.log(props)
+      const params = props.match.params
       this.state = {
          users: [],
          texts: '',
@@ -37,6 +41,7 @@ class Home extends Component {
       show: false,
          docname : '',
          spec1: [],
+         param: params,
    
           acPerm: Cookies.get('acPerm'),
           searchParams: {
@@ -74,6 +79,18 @@ class Home extends Component {
       .catch(res =>  console.log(res))
     }
     loaddoctor();
+ }
+
+ diseasePosts(){                     // For specific blogs like "/blogs/diabetes"
+   fetch(`/isearch/${this.state.param.type}`)
+     .then((res) => res.json())
+     .then((json) => {
+       console.log(json);
+       this.setState({
+         isLoaded: true,
+         items: json,
+       });
+     });
  }
    
  postSubscribtion() {
@@ -239,22 +256,16 @@ onChangeHandlerdoctor = (e, text) => {
                                     <img src={Heart} alt="All Cures logo"/>
                                     <span>All Cures</span>
                                  </Link>    
-                                 {
-                  this.state.spec1?
-                    <Autocomplete value={this.state.temp} suggestions={this.state.spec1}/>
-                  : null
-                } 
+                                 
                               </div>
                               <div className="loginSign"> 
                               {/* <Link to="/profile">Go to Profile</Link> */}
-                              <Button variant="dark" onClick={() => this.setModalShow(true)}>
-         sign
-      </Button>
+                              
     
-      <Link to="/article">
+      <Link className="btn border mr-2 btn-white loginSignbtn color-blue-dark"  to="/article">
         Create Article
       </Link>    
-                                 <ToggleButton acPerm={this.state.acPerm} match={this.props.match.url} logout={this.logout}/> 
+                                 <ToggleButton setModalShow={this.setModalShow} acPerm={this.state.acPerm} match={this.props.match.url} logout={this.logout}/> 
                                  {/* <button onClick={this.logout}></button> */}
                               </div>  
                            </div>   
@@ -263,15 +274,32 @@ onChangeHandlerdoctor = (e, text) => {
                      <div className="row">
                         <div className="serchlabel">
                            <h1>Find Doctors <br/>near by your location</h1>
+                           <br/>
+                           {
+                              this.state.spec1?
+                              <Autocomplete value={this.state.temp} suggestions={this.state.spec1}/>
+                              : null
+                           }    
                         </div>
-                     </div>      
+                     </div>   
+                     
                   </div>
+                  {/* <SearchField 
+  placeholder='Search articles'
+  
+/> */}
+                  
                </section>
+               
                <section className="megaSearch">
+                  
                   <div className="container">
+                  
                      <div className="row">
+                        
                         <div className="search-wrap-inner clearfix">
                            <form className="mainSearch">
+                              
                            <Test
         show={this.state.modalShow}
         onHide={() => this.setModalShow(false)}
@@ -312,14 +340,16 @@ onChangeHandlerdoctor = (e, text) => {
                                  value={this.state.searchParams.city} 
                                  className="formVal form-control"
                                  />
+                                 <div className="suggest">
                                  { this.state.suggestions.map((suggestion, i) =>
-                                    <div key={i} className="suggestion col-md-12 justify-content-md-center"
+                                    <div key={i} className="col-md-12 justify-content-md-center suggestionSearch"
                                        onClick={() => this.onSuggestHandler(suggestion.Cityname,suggestion.Pincode)}
                                     >
                                        {Number.isInteger(this.state.getPincode) ? suggestion.Pincode :  suggestion.Cityname}
 
                                     </div>
                                  )}
+                                 </div>
                                  </div>
                               </div>
                                  <input type="hidden" name="Latitude" id="Latitude"  className="form-control"/>
@@ -381,6 +411,8 @@ onChangeHandlerdoctor = (e, text) => {
                      </li>
                      <li role="presentation"><a href="#Children" aria-controls="Children" role="tab" data-toggle="tab">Children</a>
                      </li>
+                     
+                     
                   </ul>
                </div>
                   <Carousel1 city={this.state.searchParams.city}/>
@@ -493,10 +525,10 @@ onChangeHandlerdoctor = (e, text) => {
                   <div className="col-md-6 col-sm-6 col-sx-12">
                      <div className="subscribe">
                         <h1>Get along with us on</h1>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec congue  turpis sollicitudin nulla finibus dignissim.</p>
+                        <h2>Please provide Your Mobile Number.</h2>
                         <div className="form-group relative">
                            <div className="aaa">
-                              <input type="text" name="" onChange={this.setMobile} className="form-control"/>
+                              <input type="tel" name="" onChange={this.setMobile} className="form-control"/>
                               
                            </div>
                            <div>
@@ -574,13 +606,20 @@ function ToggleButton(props) {
    }
    return(
       <>
-      
-      <Link 
+      <button 
+         className="btn btn-dark text-light border loginSignbtn color-blue-dark" 
+         variant="dark" 
+         style={{width: '10rem'}}
+         onClick={() => props.setModalShow(true)}
+      >
+            Sign in/Sign up
+      </button>
+      {/* <Link 
          className="btn-white loginSignbtn color-blue-dark" 
          to={{pathname: props.match, search: '?login=true', state: {open: true}}}
       >
          Sign in/Sign up
-      </Link>
+      </Link> */}
       </>
    )
 }

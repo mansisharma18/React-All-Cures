@@ -16,7 +16,7 @@ import Article
 
 from "./Article/Article.js";
 import Dashboard from "./Dashboard/Dashboard.js";
-import LoginPage from "./login";
+// import LoginPage from "./login";
 import SignIn from "./Article/SignIn";
 import Blogpage from "./BlogPage/Blogpage";
 import EditPost from './BlogPage/EditModal';
@@ -35,9 +35,10 @@ import Verify from './loginForm/Verify.js'
 import Subscribe from './Dashboard/Subscribe.js'
 import Subs from './Dashboard/Subs.js'
 import EditSubscribe from './Dashboard/EditSubscribe'
-import { now } from "jquery";
-
+import Test from './LandingPage/test'
 import DeleteSubscribe from './Dashboard/DeleteSubscribe'
+import Pagination from '../Pagination'
+import List from '../List'
 
 
 
@@ -111,8 +112,11 @@ const Routes = (props) => {
       <Route exact path="/subscribe" component={Subscribe} />
       <Route exact path="/subs" component={Subs} />
       <Route exact path="/editsubscribe" component={EditSubscribe} />
-      
+      <Route exact path="/pagination" component={Pagination} />
+      <Route exact path="/list" component={List} />
       <Route exact path="/deletesubscribe" component={DeleteSubscribe} />
+      
+      
       
 
     
@@ -124,8 +128,8 @@ const Routes = (props) => {
       {/* <ProtectedArticle path="/article/:id" component={EditPost} auth={Auth.auth} /> */}
       
     </Switch>
-          <Route path="/" component={LoginPage}/>
-          <ProtectedLogin path='?login=true' auth={Auth.auth}/>
+          {/* <Route path="/" component={LoginPage}/> */}
+          <ProtectedLogin path='?login=true' auth={Auth.auth} component={Test} />
           {/* <Child login={query.get("login")} url = {currentPath}/> */}
     </>
   )

@@ -1,11 +1,10 @@
 import React, {Component} from 'react'
 import axios from 'axios'
 import ReactPaginate from 'react-paginate';
-import AllPost from './Allpost';
-import Header from '../Header/Header';
-import Footer from '../Footer/Footer'
-
-
+import AllPost from './components/BlogPage/Allpost'
+import Header from './components/Header/Header';
+import Footer from './components/Footer/Footer'
+import './App.css'
 
 
 export default class App extends Component {

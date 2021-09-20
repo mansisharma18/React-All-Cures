@@ -11,6 +11,9 @@ import Typography from '@material-ui/core/Typography';
 import Divider from '@material-ui/core/Divider';
 import IconButton from '@material-ui/core/IconButton';
 import Container from '@material-ui/core/Container';
+import TestAjax from './test/TestAjax'
+import Userprofile from '../UserProfile/Userprofile';
+import Cookies from 'js-cookie';
 import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
 import Link from '@material-ui/core/Link';
@@ -24,15 +27,17 @@ import Review from './Review';
 import Promo from './Promo/CreatePromo'
 import GetPromo from './Promo/GetPromo';
 import UpdatePromo from './Promo/UpdatePromo';
-import Heart from"../../assets/img/heart.png";
+import Title from './Title';
+import Article from '.././Article/Article'
+import BlogAllPost from './BlogAllPost'
 
 
 function Copyright() {
   return (
     <Typography variant="body2" color="textSecondary" align="center">
       {'Copyright © '}
-      <Link color="inherit" href="https://material-ui.com/">
-        Your Website
+      <Link color="inherit" href="/">
+        All Cures
       </Link>{' '}
       {new Date().getFullYear()}
       {'.'}
@@ -124,7 +129,11 @@ const useStyles = makeStyles((theme) => ({
 export default function Dashboard(props) {
   console.log(props.location)
   const classes = useStyles();
+  // const acPerm = Cookies.get("acPerm").split('|')
   const [open, setOpen] = React.useState(true);
+  const [items, setItems] = React.useState([])
+  const [isLoaded, setIsLoaded] = React.useState(false)
+
   const handleDrawerOpen = () => {
     setOpen(true);
   };
@@ -132,7 +141,25 @@ export default function Dashboard(props) {
     setOpen(false);
   };
 
-  useEffect(() => document.title = 'All Cures | Dashboard')
+  useEffect(() => {
+    document.title = 'All Cures | Dashboard'
+    setIsLoaded(false);
+
+    fetch("/dashboard/articlecount")
+      .then((res) => res.json())
+      .then((json) => {
+        setItems(json);
+        setIsLoaded(true);
+        <RenderComponent 
+            search={props.location.search} 
+            container={classes.container} 
+            fixedHeightPaper={fixedHeightPaper} 
+            ajaxIsLoaded={isLoaded}
+            ajaxItems={items}
+          />
+      });
+    }, []);
+
   const fixedHeightPaper = clsx(classes.paper, classes.fixedHeight);
 
   return (
@@ -180,41 +207,82 @@ export default function Dashboard(props) {
             search={props.location.search} 
             container={classes.container} 
             fixedHeightPaper={fixedHeightPaper} 
+            ajaxIsLoaded={isLoaded}
+            ajaxItems={items}
           />
           {/* <Promo/> */}
+          {/* <div className="timer">Timer: {mytable}s</div> */}
       </main>
     </div>
     </div>
   );
 }
 
+function handleCountClick(key,value){
+  console.log("CCCCCCCCCCLIIIIIIIIIICCCCCCCKKKKKKKKKKK"+key+value)
+  if(key){
+  return(
+      <div className='card'>
+        <Grid item xs={12} md={4} lg={3}>
+          <Paper>
+            <React.Fragment>
+              <Title>{key} Articles</Title>  
+              <ul>
+              {value.map(item => {
+                <li>{item[0]}</li>;
+              })}
+              </ul> 
+              <Typography color="textSecondary">
+              </Typography>
+            </React.Fragment>
+          </Paper>
+        </Grid>
+      </div>
+    )
+  }
+}
+
 function RenderComponent(props){
+  if(props.search == '?article'){
+    return(<Article/>);
+  }
+  if(props.search == '?blogs'){
+    return(<BlogAllPost/>);
+  }
   if(props.search == '?create_promo'){
     return(<Promo/>);
   } else if(props.search == '?stats'){
     return(<Container maxWidth="lg" className={props.container}>
     <Grid container spacing={3}>
      
-      <Grid item xs={12} md={4} lg={3}>
+      <Grid item xs={12} md={4}>
         <Paper className={props.fixedHeightPaper}>
-          <Deposits />
-        </Paper>
-      </Grid>
-      <Grid item xs={12} md={4} lg={3}>
-        <Paper className={props.fixedHeightPaper}>
-          <Draft/>
-        </Paper>
-      </Grid>
-      <Grid item xs={12} md={4} lg={3}>
-        <Paper className={props.fixedHeightPaper}>
+          <div className="h4">Article Statistics</div>
+          <div className="h6">Published : <TestAjax name="published_article"/></div>
+          {/* <Deposits /> */}
+          <div className="h6">Draft: <TestAjax name="draft_article"/></div>
+          <div className="h6">Approval: <TestAjax name="approval_article"/></div>
+          <div className="h6">Review: <TestAjax name="review_article"/></div>
+          {/* <Draft/>
           <Approval />
+          <Review /> */}
+
+        </Paper>
+      </Grid>
+      {/* <Grid item xs={12} md={4} lg={3}>
+        <Paper className={props.fixedHeightPaper}>
+          
         </Paper>
       </Grid>
       <Grid item xs={12} md={4} lg={3}>
         <Paper className={props.fixedHeightPaper}>
-          <Review />
         </Paper>
       </Grid>
+      <Grid item xs={12} md={4} lg={3}>
+        <Paper className={props.fixedHeightPaper}>
+        <Deposits />
+        </Paper>
+      </Grid> */}
     </Grid>
     <Box pt={4}>
       <Copyright />
@@ -225,21 +293,36 @@ function RenderComponent(props){
     return(
       <GetPromo/>
     )
+    
   } else if(props.search.split('=')[0] == '?edit'){
     return(
       <UpdatePromo search={props.search}/>
     )
+  // 
   } else {
+    // if (!props.ajaxIsLoaded) {
+
+    //   return <div>Loading...</div>;
+    // } else if (props.ajaxIsLoaded) {
     return(
-      <Container maxWidth="lg" className={props.container}>
+    <Container maxWidth="lg" className={props.container}>
     <Grid container spacing={3}>
-     
       <Grid item xs={12} md={4} lg={3}>
         <Paper className={props.fixedHeightPaper}>
-          <Deposits />
+          <div className="h4">Your Details</div>
+          <Userprofile/>
         </Paper>
       </Grid>
       <Grid item xs={12} md={4} lg={3}>
+        <Paper className={props.fixedHeightPaper}>
+        <div className="h4">Article Statistics</div>
+          <div className="h6">Published : <TestAjax name="published_article"/></div>
+          <div className="h6">Draft: <TestAjax name="draft_article"/></div>
+          <div className="h6">Approval: <TestAjax name="approval_article"/></div>
+          <div className="h6">Review: <TestAjax name="review_article"/></div>
+        </Paper>
+      </Grid>
+      {/* <Grid item xs={12} md={4} lg={3}>
         <Paper className={props.fixedHeightPaper}>
           <Draft/>
         </Paper>
@@ -253,12 +336,13 @@ function RenderComponent(props){
         <Paper className={props.fixedHeightPaper}>
           <Review />
         </Paper>
-      </Grid>
+      </Grid> */}
     </Grid>
     <Box pt={4}>
       <Copyright />
     </Box>
   </Container>
     )
+    // }
   }
 }

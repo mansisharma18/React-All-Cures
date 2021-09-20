@@ -588,6 +588,9 @@ h6 {
   color: #00415e;
 }
 
+.serchlabel .autocomplete {
+  width: 100%;
+}
 .search {
   position: relative;
 }
@@ -672,7 +675,7 @@ h6 {
 
 .serchlabel {
   position: absolute;
-  bottom: 119px;
+  bottom: 90px;
 }
 
 .search-wrap-inner {
@@ -1138,8 +1141,6 @@ a.btn-bg.nearmoreBtn {
 -------- App store News Later ---------
 **************************************************************/
 
-
-
 a.appBTN {
   background: #00415e;
   border-radius: 25px;
@@ -1152,7 +1153,6 @@ a.appBTN {
   background: #3ad0ff;
   border-radius: 20px;
   height: 400px;
-  
 }
 
 .innerapp {
@@ -2030,10 +2030,10 @@ button.close {
 
 button {
   border-radius: 20px;
-  border: 1px solid #ff4b2b;
-  background-color: #ff4b2b;
+  /* border: 1px solid #3ad0ff; */
+  /* background-color:#3ad0ff; */
   color: #ffffff;
-  font-size: 12px;
+  /* margin: 15px 70px; */
   font-weight: bold;
   padding: 12px 45px;
   letter-spacing: 1px;
@@ -2440,10 +2440,11 @@ p.lorem-text {
 }
 
 .wallpaper-dashboard {
-  background: url("https://media.istockphoto.com/photos/light-blue-ribbons-with-blood-on-blue-background-world-diabetes-day-picture-id1173495247?k=20&m=1173495247&s=612x612&w=0&h=mrk-YFvEDYnqTAGotzkY87DF5yVcbQRMYqhqhd0k7K8=")
-    no-repeat center center/cover;
-    opacity: inherit;
-    /* background-color: #3ad0ff; */
+  background-color: rgb(140, 212, 235);
+  /* background: url("https://media.istockphoto.com/photos/light-blue-ribbons-with-blood-on-blue-background-world-diabetes-day-picture-id1173495247?k=20&m=1173495247&s=612x612&w=0&h=mrk-YFvEDYnqTAGotzkY87DF5yVcbQRMYqhqhd0k7K8=")
+    no-repeat center center/cover; */
+  opacity: inherit;
+  /* background-color: #3ad0ff; */
 }
 
 .home__test {
@@ -2465,8 +2466,10 @@ p.lorem-text {
   min-height: 100vh;
   align-items: center;
   justify-content: center;
-  background: url("../img/images/wallpaperflare.com_wallpaper\(9\).jpg") center
-    center/cover no-repeat;
+  background-color: rgb(140, 212, 235);
+
+  /* background: url("../img/images/wallpaperflare.com_wallpaper\(9\).jpg") center
+    center/cover no-repeat; */
 }
 
 .ds-image {
@@ -2607,14 +2610,14 @@ a.text-underline:hover {
 
 .newsletter_float {
   position: fixed;
-  
+
   bottom: 40px;
   right: 40px;
   background-color: #3ad0ff;
   color: #fff;
   border-radius: 50px;
   text-align: center;
-  
+
   box-shadow: 2px 2px 3px #999;
   z-index: 100;
 }
