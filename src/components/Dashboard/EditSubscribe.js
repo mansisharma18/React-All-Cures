@@ -18,8 +18,6 @@ const[number,setNumber] = useState('');
     const [disease, setDisease] = useState([])
     const [cures, setCures] = useState([])
     const [diseaseList, setDiseaseList] = useState([])
-       
-    const [subscribeList, setSubscribeList] = useState([])
     const setMail = (event)=>{
         setNumber({ ...number,Mail: event.target.value})
     }
@@ -40,28 +38,8 @@ const[number,setNumber] = useState('');
     
 
        
-//    const getSubscribe = () => {
-    
-//     axios.get(`/subscriptiondetails/7889761896`)
-//     .then(res => {
-//       console.log(res.data[0].subscribeVal)
-//       setSubscribeValue(res.data)
-//     })
-//     .catch(err => console.log(err))
-//   }
-//   React.useEffect(() => {
-//     getSubscribe()
-  
-//   },[])
-getSubscribe()
-const getSubscribe = () => {
-    axios.get('/subscriptiondetails/7889761896')
-    .then(res => {
-        console.log(res.data);
-        setSubscribeList(res.data)
-    })
-    .catch(err => console.log(err))
-}
+      
+        
     
     useEffect(() => {
 
@@ -81,7 +59,6 @@ const getSubscribe = () => {
     
      
         getDisease()
-        
 
          
         }, [])
