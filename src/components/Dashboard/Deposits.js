@@ -7,8 +7,8 @@ export default function Deposits(props) {
  
   return (
     <React.Fragment>
-      <Title>Published Articles</Title>
-      <TestAjax name="published_article"/>
+      <div className="h5">Published Articles: <TestAjax name="published_article"/></div>
+      
      
       <Typography color="textSecondary">
       </Typography>

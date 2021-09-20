@@ -11,6 +11,8 @@ import Typography from '@material-ui/core/Typography';
 import Divider from '@material-ui/core/Divider';
 import IconButton from '@material-ui/core/IconButton';
 import Container from '@material-ui/core/Container';
+import TestAjax from './test/TestAjax'
+import Userprofile from '../UserProfile/Userprofile';
 import Cookies from 'js-cookie';
 import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
@@ -34,8 +36,8 @@ function Copyright() {
   return (
     <Typography variant="body2" color="textSecondary" align="center">
       {'Copyright © '}
-      <Link color="inherit" href="https://material-ui.com/">
-        Your Website
+      <Link color="inherit" href="/">
+        All Cures
       </Link>{' '}
       {new Date().getFullYear()}
       {'.'}
@@ -253,27 +255,34 @@ function RenderComponent(props){
     return(<Container maxWidth="lg" className={props.container}>
     <Grid container spacing={3}>
      
-      <Grid item xs={12} md={4} lg={3}>
+      <Grid item xs={12} md={4}>
         <Paper className={props.fixedHeightPaper}>
-        
-          <Review />
-        </Paper>
-      </Grid>
-      <Grid item xs={12} md={4} lg={3}>
-        <Paper className={props.fixedHeightPaper}>
-          <Draft/>
-        </Paper>
-      </Grid>
-      <Grid item xs={12} md={4} lg={3}>
-        <Paper className={props.fixedHeightPaper}>
+          <div className="h4">Article Statistics</div>
+          <div className="h6">Published : <TestAjax name="published_article"/></div>
+          {/* <Deposits /> */}
+          <div className="h6">Draft: <TestAjax name="draft_article"/></div>
+          <div className="h6">Approval: <TestAjax name="approval_article"/></div>
+          <div className="h6">Review: <TestAjax name="review_article"/></div>
+          {/* <Draft/>
           <Approval />
+          <Review /> */}
+
+        </Paper>
+      </Grid>
+      {/* <Grid item xs={12} md={4} lg={3}>
+        <Paper className={props.fixedHeightPaper}>
+          
+        </Paper>
+      </Grid>
+      <Grid item xs={12} md={4} lg={3}>
+        <Paper className={props.fixedHeightPaper}>
         </Paper>
       </Grid>
       <Grid item xs={12} md={4} lg={3}>
         <Paper className={props.fixedHeightPaper}>
         <Deposits />
         </Paper>
-      </Grid>
+      </Grid> */}
     </Grid>
     <Box pt={4}>
       <Copyright />
@@ -291,59 +300,29 @@ function RenderComponent(props){
     )
   // 
   } else {
-    if (!props.ajaxIsLoaded) {
+    // if (!props.ajaxIsLoaded) {
 
-      return <div>Loading...</div>;
-    } else if (props.ajaxIsLoaded) {
+    //   return <div>Loading...</div>;
+    // } else if (props.ajaxIsLoaded) {
     return(
     <Container maxWidth="lg" className={props.container}>
     <Grid container spacing={3}>
-     <Grid item xs={12} md={4} lg={3}>
-       <Paper className={props.fixedHeightPaper}>
-        <React.Fragment>
-          <Title>Draft Articles</Title>   
-          <div onClick={() => handleCountClick("Draft",props.ajaxItems["draft_article"])}>{props.ajaxItems["draft_article"].length}</div>
-          <Typography color="textSecondary">
-          </Typography>
-        </React.Fragment>
-       </Paper>
-     </Grid>
-     <Grid item xs={12} md={4} lg={3}>
-       <Paper className={props.fixedHeightPaper}>
-        <React.Fragment>
-          <Title>Approval Articles</Title>   
-          <div onClick={() => handleCountClick("Approval",props.ajaxItems["approval_article"])}>{props.ajaxItems["approval_article"].length}</div>
-          <Typography color="textSecondary">
-          </Typography>
-        </React.Fragment>
-       </Paper>
-     </Grid>
-     <Grid item xs={12} md={4} lg={3}>
-       <Paper className={props.fixedHeightPaper}>
-        <React.Fragment>
-          <Title>Review Articles</Title>   
-          <div onClick={() => handleCountClick("Review",props.ajaxItems["review_article"])}>{props.ajaxItems["review_article"].length}</div>
-          <Typography color="textSecondary">
-          </Typography>
-        </React.Fragment>
-       </Paper>
-     </Grid>
-     <Grid item xs={12} md={4} lg={3}>
-       <Paper className={props.fixedHeightPaper}>
-        <React.Fragment>
-          <Title>Publish Articles</Title>   
-          <div onClick={() => handleCountClick("Publish",props.ajaxItems["published_article"])}>{props.ajaxItems["published_article"].length}</div>  
-          <Typography color="textSecondary">
-          </Typography>
-        </React.Fragment>
-       </Paper>
-     </Grid>
-      {/* <Grid item xs={12} md={4} lg={3}>
+      <Grid item xs={12} md={4} lg={3}>
         <Paper className={props.fixedHeightPaper}>
-          <Deposits />
+          <div className="h4">Your Details</div>
+          <Userprofile/>
         </Paper>
       </Grid>
       <Grid item xs={12} md={4} lg={3}>
+        <Paper className={props.fixedHeightPaper}>
+        <div className="h4">Article Statistics</div>
+          <div className="h6">Published : <TestAjax name="published_article"/></div>
+          <div className="h6">Draft: <TestAjax name="draft_article"/></div>
+          <div className="h6">Approval: <TestAjax name="approval_article"/></div>
+          <div className="h6">Review: <TestAjax name="review_article"/></div>
+        </Paper>
+      </Grid>
+      {/* <Grid item xs={12} md={4} lg={3}>
         <Paper className={props.fixedHeightPaper}>
           <Draft/>
         </Paper>
@@ -364,6 +343,6 @@ function RenderComponent(props){
     </Box>
   </Container>
     )
-    }
+    // }
   }
 }

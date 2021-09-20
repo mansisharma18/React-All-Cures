@@ -283,14 +283,16 @@ import Autocomplete from '../Autocomplete'
                                  value={this.state.searchParams.city} 
                                  className="formVal form-control"
                                  />
+                                 <div className="suggest">
                                  {this.state.suggestions && this.state.suggestions.map((suggestion, i) =>
-                                    <div key={i} className="suggestion col-md-12 justify-content-md-center"
+                                    <div key={i} className="suggestionSearch col-md-12 justify-content-md-center"
                                        onClick={() => this.onSuggestHandler(suggestion.Cityname,suggestion.Pincode)}
                                     >
                                        {Number.isInteger(this.state.getPincode) ? suggestion.Pincode :  suggestion.Cityname}
 
                                     </div>
                                  )}
+                                 </div>
                 	    	</div>
                 		 </div>
          					 

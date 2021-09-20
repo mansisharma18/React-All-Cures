@@ -25,13 +25,13 @@ class TestAjax extends Component {
     var { isLoaded, items } = this.state;
     if (!isLoaded) {
 
-      return <div>Loading...</div>;
+      return <span>Loading...</span>;
     } else if (isLoaded) {
       // return <TestAjax {...this.props} {...this.state} />;
 
       return (
         // <TestAjax quip="Don't believe everything you think.{items.draft_article}" />
-        <div>
+        <span>
             {items[this.props.name]}
 
             {/* {<ul>
@@ -40,7 +40,7 @@ class TestAjax extends Component {
                 <li key={items.review_article}>Review Artile: {items.review_article}</li>
                 <li key={items.approval_article}>Approval Article: {items.approval_article}</li>
             </ul>} */}
-        </div>
+        </span>
       );
     }
   }

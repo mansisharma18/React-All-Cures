@@ -2030,10 +2030,10 @@ button.close {
 
 button {
   border-radius: 20px;
-  border: 1px solid #3ad0ff;
-  background-color:#3ad0ff;
+  /* border: 1px solid #3ad0ff; */
+  /* background-color:#3ad0ff; */
   color: #ffffff;
-  margin: 15px 70px;
+  /* margin: 15px 70px; */
   font-weight: bold;
   padding: 12px 45px;
   letter-spacing: 1px;
@@ -2440,7 +2440,7 @@ p.lorem-text {
 }
 
 .wallpaper-dashboard {
-  background-color:rgb(140, 212, 235);
+  background-color: rgb(140, 212, 235);
   /* background: url("https://media.istockphoto.com/photos/light-blue-ribbons-with-blood-on-blue-background-world-diabetes-day-picture-id1173495247?k=20&m=1173495247&s=612x612&w=0&h=mrk-YFvEDYnqTAGotzkY87DF5yVcbQRMYqhqhd0k7K8=")
     no-repeat center center/cover; */
   opacity: inherit;
@@ -2466,7 +2466,7 @@ p.lorem-text {
   min-height: 100vh;
   align-items: center;
   justify-content: center;
-  background-color:rgb(140, 212, 235);
+  background-color: rgb(140, 212, 235);
 
   /* background: url("../img/images/wallpaperflare.com_wallpaper\(9\).jpg") center
     center/cover no-repeat; */

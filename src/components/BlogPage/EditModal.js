@@ -71,7 +71,7 @@ const EditModal = (props) => {
             setCountry(res.data.country_id)
             setDisease(res.data.disease_condition_id)
             setComment(res.data.comments) 
-            setArticleContent(JSON.parse(res.data.content))
+            // setArticleContent(JSON.parse(res.data.content))
         })
         .catch(err => console.log("errrrrrrorrrrrrrrrrrrrrrrrr",err))
     }
@@ -83,34 +83,66 @@ const EditModal = (props) => {
     const singlePostEdit = (e) => {
         e.preventDefault()
         console.log(editId);
-        axios.post(`/article/${editId.id}`, {
-            "title":title,
-            "friendly_name": articleDisplay,
-            // "subheading": "1",
-            "content_type": contentType,
-            "type": type,
-            // "keywords": "1",
-            "window_title": win,
-            // "content_location": "1",
-            "authored_by": author,
-            "published_by": 1,
-            "edited_by": 1,
-            "copyright_id": parseInt(copyright),
-            "disclaimer_id": parseInt(disclaimer),
-            "pubstatus_id": parseInt(articleStatus),
-            "language_id": parseInt(language),
-            "articleContent": JSON.stringify(articleContent),
-            "comments": comment
-        })
-        .then(res => {
-            setSuccMsg('Updated Successfully')
-            // history.incognito(`/blog/${editId.id}`)
-            // window.location.href(`blog/${editId.id}`)    
-        })
-        .catch(err => {
-            console.log(err);
-            setSuccMsg('error in updating')
-        })
+        if(articleStatus == 3){
+            axios.post(`/article/${editId.id}`, {
+                "title":title,
+                "friendly_name": articleDisplay,
+                // "subheading": "1",
+                "content_type": contentType,
+                "type": type,
+                // "keywords": "1",
+                "window_title": win,
+                // "content_location": "1",
+                "authored_by": author,
+                "published_by": parseInt(userId),
+                // "edited_by": 1,
+                "copyright_id": parseInt(copyright),
+                "disclaimer_id": parseInt(disclaimer),
+                "pubstatus_id": parseInt(articleStatus),
+                "language_id": parseInt(language),
+                "articleContent": JSON.stringify(articleContent),
+                "comments": comment
+            })
+            .then(res => {
+                setSuccMsg('Updated Successfully')
+                // history.incognito(`/blog/${editId.id}`)
+                // window.location.href(`blog/${editId.id}`)    
+            })
+            .catch(err => {
+                console.log(err);
+                setSuccMsg('error in updating')
+            })
+        } else {
+            axios.post(`/article/${editId.id}`, {
+                "title":title,
+                "friendly_name": articleDisplay,
+                // "subheading": "1",
+                "content_type": contentType,
+                "type": type,
+                // "keywords": "1",
+                "window_title": win,
+                // "content_location": "1",
+                "authored_by": author,
+                // "published_by": 1,
+                "edited_by": parseInt(userId),
+                "copyright_id": parseInt(copyright),
+                "disclaimer_id": parseInt(disclaimer),
+                "pubstatus_id": parseInt(articleStatus),
+                "language_id": parseInt(language),
+                "articleContent": JSON.stringify(articleContent),
+                "comments": comment
+            })
+            .then(res => {
+                setSuccMsg('Updated Successfully')
+                // history.incognito(`/blog/${editId.id}`)
+                // window.location.href(`blog/${editId.id}`)    
+            })
+            .catch(err => {
+                console.log(err);
+                setSuccMsg('error in updating')
+            })
+        }
+        
     }
 
     // useEffect(() => {
@@ -218,13 +250,19 @@ const EditModal = (props) => {
             "Content-Type": "application/x-www-form-urlencoded"
             }
         }).then(res => {
-            setSuccMsg('Article Created Successfully!')
+            res.json().then(function(data){
+                if(data == 1){
+                    setSuccMsg('Article Created Successfully!')
+                } else{
+                    setSuccMsg('Some error occured!')
+                }
+            })
             // history.incognito(`/blog/${editId.id}`)
             // window.location.href(`blog/${editId.id}`)
         })
         .catch(err => {
             console.log(err);
-            setSuccMsg('error in updating')
+            setSuccMsg('Error in updating!')
         })
     }
 
