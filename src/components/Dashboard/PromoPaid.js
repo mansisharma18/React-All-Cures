@@ -156,8 +156,10 @@ render(){
                                 <div className="rating-patient">
                             <div className="rating-patient-grid clearfix">
                               <div className="paitent-profile">
-                              {item.article_id}
-                              {item.promo_code}
+                              {/* {item.article_id}
+                              {item.promo_code} */}
+                              <div className="pb-2"><span className="font-weight-bold">Artcile Id:</span> {item.article_id}</div>
+                              <div className="pb-2"><span className="font-weight-bold">Promo Code:</span> {item.promo_code}</div>
                                 {" "}
                               </div>
                               {
@@ -188,7 +190,7 @@ render(){
                               
                               <div className="patient-msg">
                               
-                                <p>{item.article_id}</p>
+                                {/* <p>{item.article_id}</p> */}
                               </div>
                             </div>
                           </div>

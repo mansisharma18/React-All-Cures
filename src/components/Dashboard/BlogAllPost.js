@@ -15,7 +15,7 @@ export default class App extends Component {
         this.state = {
             offset: 0,
             data: [],
-            perPage: 10,
+            perPage: 8,
             currentPage: 0
             
         };
@@ -31,16 +31,21 @@ export default class App extends Component {
                 const data = res.data;
                 const slice = data.slice(this.state.offset, this.state.offset + this.state.perPage)
                 const postData = slice.map(pd => <React.Fragment>
-                     <div className="container my-4">
+                    <div >
+                <div >
+                     <div className="card col-md-8 mt-5 mx-3 border p-3 h4">
                        
-                     <div className="row" id="posts-container">
+                     <div >
+                         
                      <AllPost
-                                            key={pd[0]}
-                                            id = {pd[0]}
+                                            // key={pd[0]}
+                                            // id = {pd[0]}
                                             title = {pd[1]}
                                             f_title = {pd[2]}
                                             w_title = {pd[6]}
                                         />
+                                        </div>
+                                        </div>
                                         </div>
                                         </div>
                 </React.Fragment>)
@@ -71,7 +76,7 @@ export default class App extends Component {
     }
     render() {
         return (
-            <div>
+            <div >
                {/* <h1 style="text-align:center">All Articles</h1> */}
                 {this.state.postData}
                 <ReactPaginate

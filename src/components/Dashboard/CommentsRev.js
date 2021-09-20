@@ -227,9 +227,9 @@ render(){
                             />
                         }
                               
-                              <div className="patient-msg">
-                              
-                                <p>{item.comments}</p>
+                              <div>
+                              <div className="pb-2"><span className="font-weight-bold"><h2>Comments:</h2></span> {item.comments}</div>
+                                {/* <p>{item.comments}</p> */}
                               </div>
                             </div>
                           </div>

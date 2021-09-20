@@ -4,7 +4,7 @@ import {useParams} from 'react-router-dom';
 import axios from 'axios';
 import { Select, MenuItem } from '@material-ui/core'
 import EditorJs from 'react-editor-js';
-import { EDITOR_JS_TOOLS } from './tools'
+import { EDITOR_JS_TOOLS } from '../BlogPage/tools'
 import Input from '@material-ui/core/Input';
 import { useStateWithCallbackLazy } from 'use-state-with-callback';
 import { Redirect } from 'react-router';

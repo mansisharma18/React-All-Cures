@@ -30,6 +30,7 @@ import UpdatePromo from './Promo/UpdatePromo';
 import Title from './Title';
 import Article from '.././Article/Article'
 import BlogAllPost from './BlogAllPost'
+// import EditModal from './EditModal';
 
 
 function Copyright() {
@@ -246,6 +247,9 @@ function RenderComponent(props){
   if(props.search == '?article'){
     return(<Article/>);
   }
+  // if(props.search == '?editarticle'){
+  //   return(<EditModal/>);
+  // }
   if(props.search == '?blogs'){
     return(<BlogAllPost/>);
   }
