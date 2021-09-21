@@ -2,6 +2,7 @@ import React, { Component } from "react";
 
 import axios from 'axios';
 import Results from './Results'
+import { Dropdown, Button, DropdownButton, Nav, Modal, Alert} from 'react-bootstrap';
 
 
 
@@ -55,9 +56,14 @@ class PromoPaid extends Component {
     })
       .then(res => {
         console.log(res)
+        this.setState({ShowSubmitAlert: true});
        
       })
       .catch(err => console.log(err))
+      this.setState({ShowErrorAlert: true});
+        setTimeout(()=>{
+        this.setState({ShowErrorAlert: false});
+        },2000)
 
     
   }
@@ -201,7 +207,17 @@ render(){
                           <p>unselected checkboxes: {JSON.stringify(unselectedCheckboxes)}</p> */}
                          
                           <div>
-                                
+                          {
+                                        this.state.ShowSubmitAlert
+                                            ? <SubmitAlert ShowSubmitAlert={this.state.ShowSubmitAlert}/>
+                                            : console.log('Submit ALert')
+                                    }
+
+                                    {
+                                        this.state.ShowErrorAlert
+                                            ? <SubmitError ShowErrorAlert={this.state.ShowErrorAlert}/>
+                                            : console.log('')
+                                    }
                                 <button className='bcolor'onClick={() => {
                                 const confirmBox = window.confirm(
                                   "Are You Sure?"
@@ -226,5 +242,27 @@ render(){
   )
 }
 
+}
+
+// SHOW ALERT
+
+function SubmitAlert(props) {
+  console.log('Submit ALert', props.ShowSubmitAlert)
+  if(props.ShowSubmitAlert) {
+      return(
+          <Alert className="bg-green">Promo has been saved successfully!</Alert>
+      );
+  }
+}
+
+// Show Error Alert
+
+function SubmitError(props) {
+  console.log('Submit ALert', props.ShowErrorAlert)
+  if(props.ShowErrorAlert) {
+      return(
+          <Alert className="bg-red">Some Error occured!</Alert>
+      );
+  }
 }
 export default PromoPaid; 

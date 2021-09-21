@@ -38,11 +38,12 @@ export default class App extends Component {
                      <div >
                          
                      <AllPost
-                                            // key={pd[0]}
-                                            // id = {pd[0]}
+                                            key={pd[0]}
+                                            id = {pd[0]}
                                             title = {pd[1]}
                                             f_title = {pd[2]}
                                             w_title = {pd[6]}
+                                            dis={pd[15]}
                                         />
                                         </div>
                                         </div>

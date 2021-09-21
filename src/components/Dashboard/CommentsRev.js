@@ -2,7 +2,7 @@ import React, { Component } from "react";
 
 import axios from 'axios';
 import Results from './Results'
-import Grid from '@material-ui/core/Grid';
+import { Dropdown, Button, DropdownButton, Nav, Modal, Alert} from 'react-bootstrap';
 
 
 
@@ -31,18 +31,18 @@ class CommentsRev extends Component {
       .then(res => {
         console.log(res.data)
         
-        // comments: 8
+        // rate_id: 8
         // reviewed: 1
         const approvedIds = res.data.filter(item => {
           if(item.reviewed) return true
           return false
-        }).map(item => item.comments)
+        }).map(item => item.rate_id)
 
         this.setState({ approvedIds })
 
         var s = [];
         res.data.map(i => {
-          s.push(i.comments);
+          s.push(i.rate_id);
         })
         console.log(s)
         this.setState({
@@ -54,7 +54,7 @@ class CommentsRev extends Component {
       })
       // .then(res => {
       //   res.data.map((i) => {
-      //     console.log(i.comments)
+      //     console.log(i.rate_id)
       //   })
       //   // console.log(check)
       // })
@@ -77,9 +77,14 @@ class CommentsRev extends Component {
     })
       .then(res => {
         console.log(res)
+        this.setState({ShowSubmitAlert: true});
        
       })
       .catch(err => console.log(err))
+      this.setState({ShowErrorAlert: true});
+      setTimeout(()=>{
+      this.setState({ShowErrorAlert: false});
+      },4000)
 
     
   }
@@ -154,7 +159,7 @@ render(){
     <>
     
               <div className="tab-content">
-              <div><input type="checkbox"  onClick={select} className="select-all all" />
+              <div><input type="checkbox" onClick={select} className="select-all" />
               <label for="checkbox" className="select-all">Select All</label></div>
               <div className="my-3 container" style={{zIndex: '999999'} }>
                 <Results/>
@@ -193,7 +198,7 @@ render(){
                             return (
                               <>
                                 <div className="rating-patient">
-                            <div >
+                            <div className="rating-patient-grid clearfix">
                               <div className="paitent-profile">
                              
                                 {" "}
@@ -201,55 +206,108 @@ render(){
                               {
                                 item.reviewed === 1 ?
                                   <div>
-                                  <input type = "checkbox" 
+                                  <input type = "checkbox"
                                   onChange={() => {
-                                    this.onChange(item.comments)
+                                    this.onChange(item.rate_id)
                                     
                                     this.setState({
-                                      customSelector: [...new Set(this.state.customSelector), item.comments ],
+                                      customSelector: [...new Set(this.state.customSelector), item.rate_id ],
                                       checked: !this.state.isChecked
                                     })
                                     console.log('custom select ' + this.state.customSelector);
                                   }}
-                                  selected={selectedCheckboxes.includes(item.comments)}
-                                  className="check c1"
+                                  selected={selectedCheckboxes.includes(item.rate_id)}
+                                  className="check"
                                   defaultChecked={item.reviewed}
-                                
+                                //  onChange={this.toggleChange}
                                   
                                 />
+                                
+                                
+
                               </div>
-                              : <input type = "checkbox" 
-                              onChange={() => this.onChange(item.comments)}
-                              selected={selectedCheckboxes.includes(item.comments)}
-                              className="check c1"
+                              
+
+                              
+                              : <input type = "checkbox"
+                              onChange={() => this.onChange(item.rate_id)}
+                              selected={selectedCheckboxes.includes(item.rate_id)}
+                              className="check"
                               
                               
                             />
                         }
                               
-                              <div>
-                              <div className="pb-2"><span className="font-weight-bold"><h2>Comments:</h2></span> {item.comments}</div>
-                                {/* <p>{item.comments}</p> */}
+                              
+                             
+                             
+
+                              <div className="patient-msg">
+                              
+                                {/* <p>{item.rate_id}</p> */}
+                                <div className="pb-2"><span className="font-weight-bold"><h2>Comments:</h2></span> {item.comments}</div>
                               </div>
                             </div>
                           </div>
                               </>
                             )
                           })}
+                          {/* <p>Selected checkboxes: {JSON.stringify(selectedCheckboxes)}</p>
+                          <p>unselected checkboxes: {JSON.stringify(unselectedCheckboxes)}</p> */}
                          
-                          <div><br/>
+                          <div>
+                          {
+                                        this.state.ShowSubmitAlert
+                                            ? <SubmitAlert ShowSubmitAlert={this.state.ShowSubmitAlert}/>
+                                            : console.log('Submit ALert')
+                                    }
+
+                                    {
+                                        this.state.ShowErrorAlert
+                                            ? <SubmitError ShowErrorAlert={this.state.ShowErrorAlert}/>
+                                            : console.log('')
+                                    }
                                 
-                                <button class="bcolor"onClick={() => {this.postApproved(selectedCheckboxes, unselectedCheckboxes)}}>Submit</button>
+                                <button onClick={() => {this.postApproved(selectedCheckboxes, unselectedCheckboxes)}}>Submit</button>
                               </div>
                          
                         </div>
                       </div>
-                     
+                      <div id="recomended" className="tab-pane fade">
+                        <h3>Menu 1</h3>
+                        <p>
+                          Ut enim ad minim veniam, quis nostrud exercitation
+                          ullamco laboris nisi ut aliquip ex ea commodo
+                          consequat.
+                        </p>
+                      </div>
                     </div>
     </>
     
   )
 }
 
+}
+
+// SHOW ALERT
+
+function SubmitAlert(props) {
+  console.log('Submit ALert', props.ShowSubmitAlert)
+  if(props.ShowSubmitAlert) {
+      return(
+          <Alert className="bg-green">Comments has been saved successfully!</Alert>
+      );
+  }
+}
+
+// Show Error Alert
+
+function SubmitError(props) {
+  console.log('Submit ALert', props.ShowErrorAlert)
+  if(props.ShowErrorAlert) {
+      return(
+          <Alert className="bg-red">Some Error occured!</Alert>
+      );
+  }
 }
 export default CommentsRev; 
