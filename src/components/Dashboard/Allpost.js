@@ -41,7 +41,7 @@ const AllPost = ({id, title, f_title, w_title,allPostsContent}) => {
                                   "Do you really want to delete this Crumb?"
                                 )
                                 if (confirmBox === true) {
-                                    singlePostDelete(id)             }
+                                    singlePostDelete(id)     }
                               }}> Delete</button>
                             <Link className="btn btn-info btn-sm" to={ `/dashboard?editarticle/${id}`}>Edit</Link>
                             {/* <Link to={`/dashboard?editarticle=${id}`} className="col-md-3 btn mr-2" style={{backgroundColor: '#9289be', color: '#fff'}}>Edit</Link> */}
