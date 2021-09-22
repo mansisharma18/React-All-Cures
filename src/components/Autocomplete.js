@@ -125,7 +125,7 @@ class Autocomplete extends Component {
               id="search"
               style={{height: 'max-content'}}
               to={`/blogs/${this.state.userInput}`}>
-                <i class="fa fa-search" aria-hidden="true"></i>
+                <i class="fa fa-search fa1" aria-hidden="true"></i>
             </Link>
           </div>
         </Fragment>

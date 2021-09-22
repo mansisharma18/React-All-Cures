@@ -2069,6 +2069,9 @@ input {
 
 .bcolor{
   background-color: #00415e;
+  position: relative;
+top: 30px;
+left: 55px;
 }
 .outer {
   /*background-color: #fff;*/

@@ -10,7 +10,6 @@ import {Container, Row, Col, Breadcrumb } from "react-bootstrap";
 
 
 
-
 export default class App extends Component {
     constructor(props) {
         super(props);
@@ -113,7 +112,6 @@ export default class App extends Component {
             </div>
           
             
-
         )
         
     }
