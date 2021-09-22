@@ -1,18 +1,27 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 import Rating from '../StarRating';
 import BlogAllPost from './BlogAllPost'
+import { Dropdown, Button, DropdownButton, Nav, Modal, Alert} from 'react-bootstrap';
 
-const AllPost = ({id, title, f_title, w_title,allPostsContent}) => {
+const AllPost = ({id, article_id,title, f_title, w_title,dis}) => {
 
+    if (dis==0) dis = true 
+    else dis = false
+    const [disable, setDisable] = React.useState(dis);
+    console.log('dis'+dis)
+    const [deleteAlert, setAlert] = useState(false)
     
-    const singlePostDelete = (postId) => {
-        
-        console.log('delete',postId);
-        axios.delete(`/article/${postId}`)
+    const singlePostDelete = (id) => {
+        console.log('delete',id);
+        axios.delete(`/article/${id}`)
         .then(res => {
             singlePostDelete()
+            setAlert(true)
+            setTimeout(() => {
+                setAlert(false)
+            }, 4000);
         })
         .then(err => {
             console.log(err);
@@ -35,25 +44,37 @@ const AllPost = ({id, title, f_title, w_title,allPostsContent}) => {
                         </Link>
                         </div>
                         <div className="delete-edit-buttons">
-                            <button className="btn btn-danger btn-sm mr-2"
+
+                        {
+                            deleteAlert?
+                                <Alert variant="success" className="h6 mx-3">Deleted  successfully!!</Alert>
+                                : null
+                        }
+                            
+                            <button className="btn btn-danger btn-sm mr-2" disabled={disable}  
                             onClick={() => {
+                                
                                 const confirmBox = window.confirm(
                                   "Do you really want to delete this Crumb?"
                                 )
                                 if (confirmBox === true) {
                                     singlePostDelete(id)     }
+                                    setDisable(true)
                               }}> Delete</button>
-                            <Link className="btn btn-info btn-sm" to={ `/dashboard?editarticle/${id}`}>Edit</Link>
-                            {/* <Link to={`/dashboard?editarticle=${id}`} className="col-md-3 btn mr-2" style={{backgroundColor: '#9289be', color: '#fff'}}>Edit</Link> */}
+                              
+                               
+                             
+                            <Link className="btn btn-info btn-sm" to={ `/article/${id}`}>Edit</Link>
+                            
                         </div>
                         </div>
                     
                     <div className="card-info">
                         {/* <div>{f_title}</div>
                         <div>{w_title}</div> */}
-                        <div className="pb-2"><span className="font-weight-bold">Title:</span> {title}</div>
-                        <div className="pb-2"><span className="font-weight-bold">Friendlytitle:</span> {f_title}</div>
-                        <div className="pb-2"><span className="font-weight-bold">Window Title:</span> {w_title}</div>
+                        <div className="pb-2"><span className="font-weight-bold">Tittle:</span> {title}</div>
+                        <div className="pb-2"><span className="font-weight-bold">Friendly Name:</span> {f_title}</div>
+                        <div className="pb-2"><span className="font-weight-bold">Window Tittle:</span> {w_title}</div>
 
                     </div>
                     {/* <Rating /> */}
@@ -66,7 +87,27 @@ const AllPost = ({id, title, f_title, w_title,allPostsContent}) => {
 
 }
 
+// SHOW ALERT
 
+function SubmitAlert(props) {
+    console.log('Submit ALert', props.ShowSubmitAlert)
+    if(props.ShowSubmitAlert) {
+        return(
+            <Alert className="bg-green">Subscribe has been saved successfully!</Alert>
+        );
+    }
+ }
+ 
+ // Show Error Alert
+ 
+ function SubmitError(props) {
+    console.log('Submit ALert', props.ShowErrorAlert)
+    if(props.ShowErrorAlert) {
+        return(
+            <Alert className="bg-red">Some Error occured!</Alert>
+        );
+    }
+ }
    
 
 

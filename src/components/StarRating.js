@@ -2,6 +2,8 @@ import axios from "axios";
 import React from "react";
 // import "./styles.css";
 import ReactStars from "react-rating-stars-component";
+import Comment from "../components/Comment";
+import Header from '../components/Header/Header'
 
 // const firstExample = {
 //   size: 30,
@@ -84,7 +86,9 @@ const thirdExample = {
   return (
     <div className="App">
       
+     
       <ReactStars {...thirdExample} />
+  
     </div>
   );
 }
