@@ -4,7 +4,8 @@ import Footer from '../Footer/Footer'
 // import EditModal from './EditModal'
 import {Container} from "react-bootstrap";
 import AllPost from './Allpost.js';
-
+import ReactPaginate from 'react-paginate';
+import axios from 'axios'
 export default class Blogpage extends Component{
 
     constructor(props) {
@@ -16,9 +17,13 @@ export default class Blogpage extends Component{
           param: params,
           items: [],
           isLoaded: false,
+          offset: 0,
+          data: [],
+          perPage: 2,
+          currentPage: 0
         };
       }
-    
+     
 
       allPosts() {                        // For all available blogs "/blogs"
         fetch(`/article/allkv`)
@@ -52,7 +57,7 @@ export default class Blogpage extends Component{
           console.log('All Post executed')
           this.allPosts()
         }
-        
+
       }
       
     render(){
@@ -95,6 +100,24 @@ export default class Blogpage extends Component{
                     ))}
                     </div>
                 </div>
+                <div >
+               {/* <h1 style="text-align:center">All Articles</h1> */}
+                {this.state.postData}
+                <ReactPaginate
+                    previousLabel={"prev"}
+                    nextLabel={"next"}
+                    breakLabel={"..."}
+                    breakClassName={"break-me"}
+                    pageCount={this.state.pageCount}
+                    marginPagesDisplayed={2}
+                    pageRangeDisplayed={5}
+                    onPageChange={this.handlePageClick}
+                    containerClassName={"pagination"}
+                    subContainerClassName={"pages pagination"}
+                    activeClassName={"active"}/>
+                     
+            </div>
+
             <Footer/>
             </>
         );
