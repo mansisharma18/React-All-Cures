@@ -12,7 +12,7 @@ const AllPost = ({id, title, f_title, w_title}) => {
                             <div className="d-flex justify-content-between align-items-center">
                             <div>
                             <Link to={ `/blog/${id}` }  className="d-flex justify-content-between align-items-center">
-                                
+                            <div className="pb-2"><span className="font-weight-bold">Tittle:</span> {title}</div>
                             </Link>
                             </div>
                             
@@ -20,9 +20,9 @@ const AllPost = ({id, title, f_title, w_title}) => {
                         
                         <div className="card-info">
                             
-                        <div className="pb-2"><span className="font-weight-bold">Title:</span> {title}</div>
-                        <div className="pb-2"><span className="font-weight-bold">Friendlytitle:</span> {f_title}</div>
-                        <div className="pb-2"><span className="font-weight-bold">Window Title:</span> {w_title}</div>
+                       
+                        <div className="pb-2"><span className="font-weight-bold">Friendly Name:</span> {f_title}</div>
+                        <div className="pb-2"><span className="font-weight-bold">Window Tittle:</span> {w_title}</div>
                         </div>
                     </div>
                 </div>

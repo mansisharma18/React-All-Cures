@@ -72,9 +72,9 @@ const AllPost = ({id, article_id,title, f_title, w_title,dis}) => {
                     <div className="card-info">
                         {/* <div>{f_title}</div>
                         <div>{w_title}</div> */}
-                        <div className="pb-2"><span className="font-weight-bold">Title:</span> {title}</div>
-                        <div className="pb-2"><span className="font-weight-bold">Friendlytitle:</span> {f_title}</div>
-                        <div className="pb-2"><span className="font-weight-bold">Window Title:</span> {w_title}</div>
+                        <div className="pb-2"><span className="font-weight-bold">Tittle:</span> {title}</div>
+                        <div className="pb-2"><span className="font-weight-bold">Friendly Name:</span> {f_title}</div>
+                        <div className="pb-2"><span className="font-weight-bold">Window Tittle:</span> {w_title}</div>
 
                     </div>
                     {/* <Rating /> */}
