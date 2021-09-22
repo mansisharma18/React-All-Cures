@@ -4,6 +4,8 @@ import ReactPaginate from 'react-paginate';
 import AllPost from './Allpost';
 import Header from '../Header/Header';
 import Footer from '../Footer/Footer'
+import Right from './Right'
+import {Container, Row, Col, Breadcrumb } from "react-bootstrap";
 
 
 
@@ -45,10 +47,13 @@ export default class App extends Component {
                                             w_title = {pd[6]}
                                             dis={pd[15]}
                                         />
+                                        
                                         </div>
                                         </div>
                                         </div>
                                         </div>
+
+                                        
                 </React.Fragment>)
                 
 
@@ -79,8 +84,17 @@ export default class App extends Component {
         return (
             <div >
               <Header/>
+
                {/* <h1 style="text-align:center">All Articles</h1> */}
                 {this.state.postData}
+                 <div className="col-md-4 pdr-0">
+                  
+                  <div className="bookAnAppoinment">
+                    <h1>Book an appointment</h1>
+                    
+                  
+                  </div>
+                </div>
                 <ReactPaginate
                     previousLabel={"prev"}
                     nextLabel={"next"}
@@ -93,6 +107,8 @@ export default class App extends Component {
                     containerClassName={"pagination"}
                     subContainerClassName={"pages pagination"}
                     activeClassName={"active"}/>
+                    
+                    
                        <Footer/>
             </div>
           
