@@ -44,7 +44,7 @@ const AllPost = ({id, article_id,title, f_title, w_title,dis}) => {
                             <h5 className="card-title mb-1 p-0">{title}</h5>
                         </Link>
                         <div className="card-info">
-                        <div className="h6">{f_title}</div>
+                        {/* <div className="h6">{f_title}</div> */}
                             <div className="h6">{w_title}</div>
 
                     </div>
@@ -75,18 +75,7 @@ const AllPost = ({id, article_id,title, f_title, w_title,dis}) => {
                         </div>
                         </div>
                     
-<<<<<<< HEAD
                     
-=======
-                    <div className="card-info">
-                        {/* <div>{f_title}</div>
-                        <div>{w_title}</div> */}
-                        <div className="pb-2"><span className="font-weight-bold">Tittle:</span> {title}</div>
-                        <div className="pb-2"><span className="font-weight-bold">Friendly Name:</span> {f_title}</div>
-                        <div className="pb-2"><span className="font-weight-bold">Window Tittle:</span> {w_title}</div>
-
-                    </div>
->>>>>>> 4952af24c172074819d78ad27dccafd2af138d9c
                     {/* <Rating /> */}
                 </div>
             </div>

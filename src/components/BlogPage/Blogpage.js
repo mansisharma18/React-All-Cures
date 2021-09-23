@@ -4,14 +4,11 @@ import ReactPaginate from 'react-paginate';
 import AllPost from './Allpost';
 import Header from '../Header/Header';
 import Footer from '../Footer/Footer'
-<<<<<<< HEAD
-=======
 import Right from './Right'
 import {Container, Row, Col, Breadcrumb } from "react-bootstrap";
 
 
 
->>>>>>> 4952af24c172074819d78ad27dccafd2af138d9c
 
 export default class App extends Component {
     constructor(props) {
@@ -37,11 +34,7 @@ export default class App extends Component {
                 const postData = slice.map(pd => <React.Fragment>
                     <div >
                 <div >
-<<<<<<< HEAD
                      <div className="container p-3">
-=======
-                     <div className="card col-md-8 mt-5 mx-5 border p-4 h3">
->>>>>>> 4952af24c172074819d78ad27dccafd2af138d9c
                        
                      <div >
                          
@@ -93,9 +86,7 @@ export default class App extends Component {
 
                {/* <h1 style="text-align:center">All Articles</h1> */}
                 {this.state.postData}
-<<<<<<< HEAD
                 <div className="container">
-=======
                  <div className="col-md-4 pdr-0">
                   
                   <div className="bookAnAppoinment">
@@ -104,7 +95,6 @@ export default class App extends Component {
                   
                   </div>
                 </div>
->>>>>>> 4952af24c172074819d78ad27dccafd2af138d9c
                 <ReactPaginate
                     previousLabel={"Prev"}
                     nextLabel={"Next"}
@@ -117,13 +107,10 @@ export default class App extends Component {
                     containerClassName={"pagination"}
                     subContainerClassName={"pages pagination"}
                     activeClassName={"active"}/>
-<<<<<<< HEAD
                 </div>
                 
-=======
                     
                     
->>>>>>> 4952af24c172074819d78ad27dccafd2af138d9c
                        <Footer/>
             </div>
           
