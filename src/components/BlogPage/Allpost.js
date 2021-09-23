@@ -12,17 +12,15 @@ const AllPost = ({id, title, f_title, w_title}) => {
                             <div className="d-flex justify-content-between align-items-center">
                             <div>
                             <Link to={ `/blog/${id}` }  className="d-flex justify-content-between align-items-center">
-                                
+                                <div className="card-title h4 m-0 p-0">{title}</div>
                             </Link>
                             </div>
                             
                             </div>
                         
                         <div className="card-info">
-                            
-                        <div className="pb-2"><span className="font-weight-bold">Title:</span> {title}</div>
-                        <div className="pb-2"><span className="font-weight-bold">Friendlytitle:</span> {f_title}</div>
-                        <div className="pb-2"><span className="font-weight-bold">Window Title:</span> {w_title}</div>
+                            <h4>{f_title}</h4>
+                            <h4>{w_title}</h4>
                         </div>
                     </div>
                 </div>
@@ -32,9 +30,4 @@ const AllPost = ({id, title, f_title, w_title}) => {
         )    
 
 }
-
-
-   
-
-
 export default AllPost;

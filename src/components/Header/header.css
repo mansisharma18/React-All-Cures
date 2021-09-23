@@ -319,8 +319,9 @@
 
 .header-drop {
   background-color: #00415e;
-  padding: 0.6rem 0.8rem;
   color: white;
+  border-radius: 0.9rem;
+  padding: 0.4rem 1.7rem;
 }
 
 .header-drop i {
@@ -333,4 +334,5 @@
 
 .header-drop.btn:hover {
   background-color: #00415e;
+  color: #f4f4f4;
 }

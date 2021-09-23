@@ -39,6 +39,7 @@ import Test from './LandingPage/test'
 import DeleteSubscribe from './Dashboard/DeleteSubscribe'
 import Pagination from '../Pagination'
 import List from '../List'
+import Userprofile from "./Profile/Userprofile";
 
 
 
@@ -99,6 +100,7 @@ const Routes = (props) => {
           <Route path="/blogs/:type" component={Blogpage}/>
           {/* <Route exact path="/blogs/:id" component={Blogs}/> */}
       <Route exact path="/profile/:id" component={Profile} />
+      <Route exact path="/user/profile/" component={Userprofile} />
       <Route exact path="/profile/:id/edit" component={LoginInfo} />
       <Route exact path="/dashboard/blogs" component={BlogAllPost} />
       <Route exact path="/comment" component={Comment} />

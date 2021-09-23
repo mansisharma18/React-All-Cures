@@ -34,14 +34,20 @@ const AllPost = ({id, article_id,title, f_title, w_title,dis}) => {
     return (
         <>
         <div className="col-lg-12">
-            <div className="card m-2" style={{background: 'ghostwhite'}}>
+            <div className="card" style={{background: 'ghostwhite'}}>
                 <div className="card-body">
                     
                         <div className="d-flex justify-content-between align-items-center">
+                        
                         <div>
                         <Link to={ `/blog/${id}` }  className="d-flex justify-content-between align-items-center">
-                            {/* <h5 className="card-title m-0 p-0">{title}</h5> */}
+                            <h5 className="card-title mb-1 p-0">{title}</h5>
                         </Link>
+                        <div className="card-info">
+                        <div className="h6">{f_title}</div>
+                            <div className="h6">{w_title}</div>
+
+                    </div>
                         </div>
                         <div className="delete-edit-buttons">
 
@@ -69,14 +75,7 @@ const AllPost = ({id, article_id,title, f_title, w_title,dis}) => {
                         </div>
                         </div>
                     
-                    <div className="card-info">
-                        {/* <div>{f_title}</div>
-                        <div>{w_title}</div> */}
-                        <div className="pb-2"><span className="font-weight-bold">Title:</span> {title}</div>
-                        <div className="pb-2"><span className="font-weight-bold">Friendlytitle:</span> {f_title}</div>
-                        <div className="pb-2"><span className="font-weight-bold">Window Title:</span> {w_title}</div>
-
-                    </div>
+                    
                     {/* <Rating /> */}
                 </div>
             </div>

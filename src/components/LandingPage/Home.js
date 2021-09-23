@@ -264,11 +264,10 @@ onChangeHandlerdoctor = (e, text) => {
                               <div className="loginSign"> 
                               {/* <Link to="/profile">Go to Profile</Link> */}
                               
-    
       <Link className="btn border mr-2 btn-white loginSignbtn color-blue-dark"  to="/article">
         Create Article
-      </Link>    
-                                 <ToggleButton setModalShow={this.setModalShow} acPerm={this.state.acPerm} match={this.props.match.url} logout={this.logout}/> 
+      </Link>
+                                 <ToggleButton userName={Cookies.get('uName')} setModalShow={this.setModalShow} acPerm={this.state.acPerm} match={this.props.match.url} logout={this.logout}/> 
                                  {/* <button onClick={this.logout}></button> */}
                               </div>  
                            </div>   
@@ -584,10 +583,10 @@ onChangeHandlerdoctor = (e, text) => {
 function ToggleButton(props) {
    if(props.acPerm){
        return(
-         <div>
+         <>
          <Dropdown>
-           <Dropdown.Toggle  className="header-drop">
-           <i className="fa fa-user fa-2x"></i> 
+           <Dropdown.Toggle  className="header-drop text-capitalize">
+           Hi {props.userName}
            </Dropdown.Toggle>
            <Dropdown.Menu>
              <Dropdown.Item>
@@ -604,7 +603,7 @@ function ToggleButton(props) {
              </Dropdown.Item>
            </Dropdown.Menu>
          </Dropdown>
-       </div>
+       </>
           );
    }
    return(

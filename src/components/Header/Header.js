@@ -236,7 +236,7 @@ import Autocomplete from '../Autocomplete'
                             {/* <Container className="btn-white loginSignbtn color-blue-dark" triggerText={this.state.triggerText} onSubmit={this.onModalSubmit} /> */}
                             {/* <ToggleButton acPerm={this.state.acPerm} match={this.props.match.url} />  */}
 
-                            <ToggleButton acPerm={this.state.acPerm} url={this.props.url} logout={this.logout}/> 
+                            <ToggleButton userName={Cookies.get('uName')} acPerm={this.state.acPerm} url={this.props.url} logout={this.logout}/> 
                         </div>   	
                         </div>
                     </div>
@@ -372,8 +372,8 @@ function ToggleButton(props) {
       //  </li>  
       <div>
       <Dropdown>
-        <Dropdown.Toggle  className="header-drop">
-        <i className="fa fa-user fa-2x"></i> 
+        <Dropdown.Toggle  className="header-drop text-capitalize">
+        Hi {props.userName}
         </Dropdown.Toggle>
         <Dropdown.Menu>
           <Dropdown.Item>

@@ -33,7 +33,7 @@ export default class App extends Component {
                 const postData = slice.map(pd => <React.Fragment>
                     <div >
                 <div >
-                     <div className="card col-md-8 mt-5 mx-3 border p-3 h4">
+                     <div className="col-md-11  mt-5 ml-5">
                        
                      <div >
                          

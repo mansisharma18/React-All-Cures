@@ -12,7 +12,7 @@ import Divider from '@material-ui/core/Divider';
 import IconButton from '@material-ui/core/IconButton';
 import Container from '@material-ui/core/Container';
 import TestAjax from './test/TestAjax'
-import Userprofile from '../UserProfile/Userprofile';
+// import Userprofile from '../UserProfile/Userprofile';
 import Cookies from 'js-cookie';
 import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
@@ -314,7 +314,7 @@ function RenderComponent(props){
       <Grid item xs={12} md={4} lg={3}>
         <Paper className={props.fixedHeightPaper}>
           <div className="h4">Your Details</div>
-          <Userprofile/>
+          {/* <Userprofile/> */}
         </Paper>
       </Grid>
       <Grid item xs={12} md={4} lg={3}>

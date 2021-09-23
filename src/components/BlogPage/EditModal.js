@@ -58,12 +58,13 @@ const EditModal = (props) => {
             setCopyright(res.data.copyright_id)
             setLanguage(res.data.language_id)
             setWin(res.data.window_title)
-            if(author != undefined & editedBy != 0){
-                setArticleStatus(res.data.pubstatus_id, (articleStatus) => {
-                    checkAccess(articleStatus, author, editedBy);
-                });
-            }
-            //setArticleStatus(res.data.pubstatus_id, () => checkAccess(articleStatus))
+            // if(author != undefined & editedBy != 0){
+                setArticleStatus(res.data.pubstatus_id)
+                    // window.alert('khbdksjbckjsb')
+                //     checkAccess(articleStatus, author, editedBy);
+                // });
+            // }
+            // setArticleStatus(res.data.pubstatus_id, () => checkAccess(articleStatus))
             
             setArticleDisplay(res.data.friendly_name)
             setType(res.data.type)
@@ -71,7 +72,7 @@ const EditModal = (props) => {
             setCountry(res.data.country_id)
             setDisease(res.data.disease_condition_id)
             setComment(res.data.comments) 
-            // setArticleContent(JSON.parse(res.data.content))
+            setArticleContent(JSON.parse(res.data.content))
         })
         .catch(err => console.log("errrrrrrorrrrrrrrrrrrrrrrrr",err))
     }
@@ -230,6 +231,12 @@ const EditModal = (props) => {
         // checkAccess()      
     }, [userId])
 
+    useEffect(() => {
+        if(author != undefined && editedBy != 0){
+            checkAccess(articleStatus, author, editedBy)
+        }
+    }, [articleStatus])
+
     const instanceRef = useRef(null)
 
     const handleSelect = function(e, c) {
@@ -265,8 +272,9 @@ const EditModal = (props) => {
             setSuccMsg('Error in updating!')
         })
     }
-
+    
     async function handleSave() {
+        // console.log('ksdufhaouhaohoaih')
         const savedData = await instanceRef.current.save();        
         // console.log("savedData", savedData);
         setArticleContent(savedData)
@@ -544,7 +552,7 @@ const EditModal = (props) => {
                 </div>
 
                 <div className="col-lg-6 form-group">
-                    <label htmlFor="">Win Title</label>
+                    <label htmlFor="">Window Title</label>
                     <input type="text" value={win}  onChange={(e) => setWin(e.target.value)} placeholder="Enter title" className="form-control" />
                 </div>
 
@@ -592,18 +600,18 @@ const EditModal = (props) => {
                             <div class="card-body">
                                 {
                                     articleContent != ''?
-                                    <EditorJs
-                                    onChange={handleSave}
-                                    data = {articleContent}
-                                    // enableReInitialize = {true}
-                                    instanceRef={instance => (instanceRef.current = instance)}
-                                    tools = {EDITOR_JS_TOOLS} 
-                                    />
-                                    : <EditorJs
-                                    onChange={handleSave}
-                                    instanceRef={instance => (instanceRef.current = instance)}
-                                    tools = {EDITOR_JS_TOOLS} 
-                                    />
+                                        <EditorJs
+                                        onChange={handleSave}
+                                        data = {articleContent}
+                                        enableReInitialize = {true}
+                                        instanceRef={instance => (instanceRef.current = instance)}
+                                        tools = {EDITOR_JS_TOOLS} 
+                                        />
+                                    :   <EditorJs
+                                        onChange={handleSave}
+                                        instanceRef={instance => (instanceRef.current = instance)}
+                                        tools = {EDITOR_JS_TOOLS} 
+                                        />
                                 }
                                     
                             </div>

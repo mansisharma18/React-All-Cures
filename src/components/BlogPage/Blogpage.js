@@ -5,10 +5,6 @@ import AllPost from './Allpost';
 import Header from '../Header/Header';
 import Footer from '../Footer/Footer'
 
-
-
-
-
 export default class App extends Component {
     constructor(props) {
         super(props);
@@ -33,7 +29,7 @@ export default class App extends Component {
                 const postData = slice.map(pd => <React.Fragment>
                     <div >
                 <div >
-                     <div className="card col-md-8 mt-5 mx-3 border p-3 h4">
+                     <div className="container p-3">
                        
                      <div >
                          
@@ -81,9 +77,10 @@ export default class App extends Component {
               <Header/>
                {/* <h1 style="text-align:center">All Articles</h1> */}
                 {this.state.postData}
+                <div className="container">
                 <ReactPaginate
-                    previousLabel={"prev"}
-                    nextLabel={"next"}
+                    previousLabel={"Prev"}
+                    nextLabel={"Next"}
                     breakLabel={"..."}
                     breakClassName={"break-me"}
                     pageCount={this.state.pageCount}
@@ -93,6 +90,8 @@ export default class App extends Component {
                     containerClassName={"pagination"}
                     subContainerClassName={"pages pagination"}
                     activeClassName={"active"}/>
+                </div>
+                
                        <Footer/>
             </div>
           
