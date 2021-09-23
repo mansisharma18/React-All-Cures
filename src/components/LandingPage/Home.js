@@ -526,11 +526,12 @@ onChangeHandlerdoctor = (e, text) => {
                   </div>
                   <div className="col-md-6 col-sm-6 col-sx-12">
                      <div className="subscribe">
-                        <h1>Get along with us on</h1>
-                        <h2>Please provide Your Mobile Number.</h2>
+                        <h1>All Cures</h1>
+                        <h2>Sign up for our free <br/>All Cures Daily Newsletter</h2><br/>
+                        <h2>Get doctor-approved health tips, news, and more</h2>
                         <div className="form-group relative">
                            <div className="aaa">
-                              <input type="number" name="" onChange={this.setMobile} className="form-control"/>
+                              <input type="number" name="" onChange={this.setMobile} className="form-control" placeholder="Please Share Your Mobile Number"/>
                               
                            </div>
                            <div>

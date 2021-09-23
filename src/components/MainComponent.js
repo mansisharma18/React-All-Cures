@@ -40,6 +40,7 @@ import DeleteSubscribe from './Dashboard/DeleteSubscribe'
 import Pagination from '../Pagination'
 import List from '../List'
 import Userprofile from "./Profile/Userprofile";
+import StarRating from './StarRating'
 
 
 
@@ -117,6 +118,7 @@ const Routes = (props) => {
       <Route exact path="/pagination" component={Pagination} />
       <Route exact path="/list" component={List} />
       <Route exact path="/deletesubscribe" component={DeleteSubscribe} />
+      <Route exact path="/starrating" component={StarRating} />
       
       
       

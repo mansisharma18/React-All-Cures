@@ -8,7 +8,8 @@ import CenterWell from './CenterWell';
 import Sidebar from "./leftMenu";
 import SidebarRight from "./RightMenu";
 // import CenterWell from './CenterWell'
-class Disease extends Component {
+class 
+Disease extends Component {
   constructor(props) {
     super(props);
     // const params = props.match.params
