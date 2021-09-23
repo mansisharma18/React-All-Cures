@@ -52,7 +52,8 @@ const EditModal = (props) => {
         .then(res => {
             console.log("get post",res);
             setEditedBy(res.data.edited_by)
-            setAuthor(author.concat((res.data.authored_by).split(',')))
+            
+            setAuthor(JSON.parse(res.data.authored_by))
             setTitle(res.data.title);
             setDisclaimer(res.data.disclaimer_id)
             setCopyright(res.data.copyright_id)
@@ -63,7 +64,7 @@ const EditModal = (props) => {
                     checkAccess(articleStatus, author, editedBy);
                 });
             }
-            //setArticleStatus(res.data.pubstatus_id, () => checkAccess(articleStatus))
+            setArticleStatus(res.data.pubstatus_id)
             
             setArticleDisplay(res.data.friendly_name)
             setType(res.data.type)
@@ -213,7 +214,8 @@ const EditModal = (props) => {
         if(author.includes(e.target.value)){
             return null
         } else {
-            setAuthor(author.concat(e.target.value), console.log(author))
+            setAuthor(e.target.value)
+            console.log(author)
         }
     }
 
@@ -595,7 +597,7 @@ const EditModal = (props) => {
                                     <EditorJs
                                     onChange={handleSave}
                                     data = {articleContent}
-                                    // enableReInitialize = {true}
+                                    enableReInitialize = {true}
                                     instanceRef={instance => (instanceRef.current = instance)}
                                     tools = {EDITOR_JS_TOOLS} 
                                     />
