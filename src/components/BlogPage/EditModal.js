@@ -476,7 +476,11 @@ const EditModal = (props) => {
                         handleSelect(e, e.target.selectedOptions)
                     }}
                     required class="form-control">
+<<<<<<< HEAD
                         <option value="1">Default</option>
+=======
+                        <option value="1">Disease-Default</option>
+>>>>>>> c7e09549609d206ce04d4d79b40f92d3fe3e9a52
                         <option value="2">Treatment</option>
                         <option value="3">Symptoms</option>
                     </select>
