@@ -103,7 +103,10 @@ const EditModal = (props) => {
                 "pubstatus_id": parseInt(articleStatus),
                 "language_id": parseInt(language),
                 "articleContent": JSON.stringify(articleContent),
+                "country_id": parseInt(country),
+
                 "comments": comment
+
             })
             .then(res => {
                 setSuccMsg('Updated Successfully')
@@ -132,7 +135,8 @@ const EditModal = (props) => {
                 "pubstatus_id": parseInt(articleStatus),
                 "language_id": parseInt(language),
                 "articleContent": JSON.stringify(articleContent),
-                "comments": comment
+                "comments": comment,
+                "country_id": parseInt(country),
             })
             .then(res => {
                 setSuccMsg('Updated Successfully')
@@ -476,11 +480,7 @@ const EditModal = (props) => {
                         handleSelect(e, e.target.selectedOptions)
                     }}
                     required class="form-control">
-<<<<<<< HEAD
-                        <option value="1">Default</option>
-=======
                         <option value="1">Disease-Default</option>
->>>>>>> c7e09549609d206ce04d4d79b40f92d3fe3e9a52
                         <option value="2">Treatment</option>
                         <option value="3">Symptoms</option>
                     </select>
@@ -572,6 +572,7 @@ const EditModal = (props) => {
                                         as="textarea"
                                         placeholder="Leave a comment here"
                                         // style={{ height: '100px' }}
+
                                     />
                               </div>
                 {   
