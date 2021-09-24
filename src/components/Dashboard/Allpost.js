@@ -70,7 +70,7 @@ const AllPost = ({id, article_id,title, f_title, w_title,dis}) => {
                               
                                
                              
-                            <Link className="btn btn-info btn-sm" to={ `/article/${id}`}>Edit</Link>
+                            <Link className="btn btn-info btn-sm" to={ `/dashboard?editarticle=${id}`}>Edit</Link>
                             
                         </div>
                         </div>

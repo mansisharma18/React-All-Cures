@@ -128,6 +128,8 @@ export default class Test extends Component {
         this.setState({ isSubmitting: true });
         console.log("########################ANIL###############")
         console.log(JSON.stringify(this.state.ac))
+        debugger
+        // this.state.articleValues.authById
         const res = await fetch("/content?cmd=createArticle", {
             method: "POST",
             body: `title=${this.state.articleValues.title}&language=${this.state.articleValues.language}&friendlyName=${this.state.articleValues.friendlyName}&contentType=${this.state.articleValues.contentType}&disclaimerId=${this.state.articleValues.disclaimerId}&authById=${this.state.articleValues.authById}&copyId=${this.state.articleValues.copyId}&articleStatus=${this.state.articleValues.articleStatus}&winTitle=${this.state.articleValues.winTitle}&countryId=${this.state.articleValues.countryId}&diseaseConditionId=${this.state.articleValues.diseaseConditionId}&articleContent=${encodeURIComponent(JSON.stringify(this.state.ac))}&comments=${this.state.articleValues.comments}`,

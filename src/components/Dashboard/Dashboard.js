@@ -30,6 +30,7 @@ import UpdatePromo from './Promo/UpdatePromo';
 import Title from './Title';
 import Article from '.././Article/Article'
 import BlogAllPost from './BlogAllPost'
+import EditModal from '../BlogPage/EditModal'
 // import EditModal from './EditModal';
 
 
@@ -247,9 +248,8 @@ function RenderComponent(props){
   if(props.search == '?article'){
     return(<Article/>);
   }
-  // if(props.search == '?editarticle'){
-  //   return(<EditModal/>);
-  // }
+ 
+ 
   if(props.search == '?blogs'){
     return(<BlogAllPost/>);
   }
@@ -302,6 +302,13 @@ function RenderComponent(props){
     return(
       <UpdatePromo search={props.search}/>
     )
+
+       
+  } else if(props.search.split('=')[0] == '?editarticle'){
+    return(
+      <EditModal search={props.search}/>
+    )
+  
   // 
   } else {
     // if (!props.ajaxIsLoaded) {
