@@ -248,7 +248,7 @@ const EditModal = (props) => {
         }
         setType(ctype);
     }
-
+    console.log(articleContent)
     const submitArticleForm = async e => {
         e.preventDefault();
         console.log('submit article formmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmm')
@@ -601,19 +601,20 @@ const EditModal = (props) => {
                             <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
                             <div class="card-body">
                                 {
-                                    articleContent != ''?
+                                    articleContent.time &&
                                     <EditorJs
                                     onChange={handleSave}
                                     data = {articleContent}
-                                    enableReInitialize = {true}
+                                    // enableReInitialize = {true}
                                     instanceRef={instance => (instanceRef.current = instance)}
                                     tools = {EDITOR_JS_TOOLS} 
                                     />
-                                    : <EditorJs
-                                    onChange={handleSave}
-                                    instanceRef={instance => (instanceRef.current = instance)}
-                                    tools = {EDITOR_JS_TOOLS} 
-                                    />
+                                    // console.log('heheheheheh')
+                                    // : <EditorJs
+                                    // onChange={handleSave}
+                                    // instanceRef={instance => (instanceRef.current = instance)}
+                                    // tools = {EDITOR_JS_TOOLS} 
+                                    // />
                                 }
                                     
                             </div>
