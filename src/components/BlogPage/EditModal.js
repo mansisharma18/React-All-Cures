@@ -254,7 +254,7 @@ const EditModal = (props) => {
         console.log('submit article formmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmm')
         fetch("/content?cmd=createArticle", {
             method: "POST",
-            body: `title=${title}&language=${language}&friendlyName=${articleDisplay}&contentType=${contentType}&type=${type}&disclaimerId=${disclaimer}&authById=${author}&copyId=${copyright}&articleStatus=${articleStatus}&winTitle=${win}&countryId=${country}&diseaseConditionId=${disease}&articleContent=${JSON.stringify(articleContent)}&comments=${comment}`,
+            body: `title=${title}&language=${language}&friendlyName=${articleDisplay}&contentType=${contentType}&type=${type}&disclaimerId=${disclaimer}&authById=${JSON.stringify(author)}&copyId=${copyright}&articleStatus=${articleStatus}&winTitle=${win}&countryId=${country}&diseaseConditionId=${disease}&articleContent=${JSON.stringify(articleContent)}&comments=${comment}`,
             headers: {
             "Content-Type": "application/x-www-form-urlencoded"
             }
@@ -476,9 +476,9 @@ const EditModal = (props) => {
                         handleSelect(e, e.target.selectedOptions)
                     }}
                     required class="form-control">
-                        <option value="1">Disease</option>
+                        <option value="1">Disease-Default</option>
                         <option value="2">Treatment</option>
-                        <option value="3">Specialities</option>
+                        <option value="3">Symptoms</option>
                     </select>
                 </div>
                 
