@@ -31,6 +31,7 @@ import Title from './Title';
 import Article from '.././Article/Article'
 import BlogAllPost from './BlogAllPost'
 // import EditModal from './EditModal';
+// import RenderComponentArticle from './RenderComponentArticle'
 
 
 function Copyright() {
@@ -132,31 +133,46 @@ export default function Dashboard(props) {
   const classes = useStyles();
   // const acPerm = Cookies.get("acPerm").split('|')
   const [open, setOpen] = React.useState(true);
-  const [items, setItems] = React.useState([])
-  const [isLoaded, setIsLoaded] = React.useState(false)
+  const [items, setItems] = React.useState([]);
+  const [isLoaded, setIsLoaded] = React.useState(false);
+  const [isOnline, setIsOnline] = React.useState(null);
+
 
   const handleDrawerOpen = () => {
     setOpen(true);
   };
   const handleDrawerClose = () => {
     setOpen(false);
+  }; 
+  
+  const handleCountClick = (key,value) => {
+    // e.preventDefault()
+    console.log("CCCCCCCCCCLIIIIIIIIIICCCCCCCKKKKKKKKKKK"+key+value);
+    setIsOnline(true);
+    // useEffect(() => {
+    //   setKey(key)
+    // }, []);
+     // return "CCCCCCCCCCLIIIIIIIIIICCCCCCCKKKKKKKKKKK"+key+value
+  //  return (<RenderComponentArticle value={value} key={key} kv={1}/>);
+  //  return (<div></div>)
+ // props.dispatch(<RenderComponentArticle value={value} key={key} kv={1}/>);
   };
-
+  
   useEffect(() => {
     document.title = 'All Cures | Dashboard'
     setIsLoaded(false);
-
     fetch("/dashboard/articlecount")
       .then((res) => res.json())
       .then((json) => {
         setItems(json);
-        setIsLoaded(true);
+        setIsLoaded(true);        
         <RenderComponent 
             search={props.location.search} 
             container={classes.container} 
             fixedHeightPaper={fixedHeightPaper} 
             ajaxIsLoaded={isLoaded}
             ajaxItems={items}
+            isOnline={isOnline}
           />
       });
     }, []);
@@ -210,40 +226,51 @@ export default function Dashboard(props) {
             fixedHeightPaper={fixedHeightPaper} 
             ajaxIsLoaded={isLoaded}
             ajaxItems={items}
+            handleCountClick = {handleCountClick}
           />
           {/* <Promo/> */}
-          {/* <div className="timer">Timer: {mytable}s</div> */}
+          {/* <RenderComponentArticle value={items} key={123}/>
+          <div className="timer">Timer: {isLoaded}s</div> */}
       </main>
     </div>
     </div>
   );
 }
 
-function handleCountClick(key,value){
-  console.log("CCCCCCCCCCLIIIIIIIIIICCCCCCCKKKKKKKKKKK"+key+value)
-  if(key){
-  return(
-      <div className='card'>
-        <Grid item xs={12} md={4} lg={3}>
-          <Paper>
-            <React.Fragment>
-              <Title>{key} Articles</Title>  
-              <ul>
-              {value.map(item => {
-                <li>{item[0]}</li>;
-              })}
-              </ul> 
-              <Typography color="textSecondary">
-              </Typography>
-            </React.Fragment>
-          </Paper>
-        </Grid>
-      </div>
-    )
-  }
-}
+
+//   if(key){
+//   return(
+//       <div className='card'>{key}
+//         <Grid item xs={12} md={4} lg={3}>
+//           <Paper>
+//             <React.Fragment>
+//               <Title>{key} Article IDs</Title>  
+//               <ul>
+//               {value.map(item => {
+//                 <li>{item}</li>;
+//               })}
+//               </ul> 
+//               <Typography color="textSecondary">
+//               </Typography>
+//             </React.Fragment>
+//           </Paper>
+//         </Grid>
+//       </div>
+//     )
+// }
+//}
 
 function RenderComponent(props){
+  debugger
+  // if (props.ajaxItems){
+  // console.log("aaaaaaa"+props.key)
+  // console.log(props.ajaxItems["draft_article"])
+  // this.ajaxItems['draft_article']
+  // if(props.key == "Draft"){
+    // if (props.key)
+    // return(<RenderComponentArticle value={props.ajaxItems[props.key]} key={props.key}/>);
+  // }
+// }
   if(props.search == '?article'){
     return(<Article/>);
   }
@@ -256,6 +283,7 @@ function RenderComponent(props){
   if(props.search == '?create_promo'){
     return(<Promo/>);
   } else if(props.search == '?stats'){
+    
     return(<Container maxWidth="lg" className={props.container}>
     <Grid container spacing={3}>
      
@@ -304,20 +332,20 @@ function RenderComponent(props){
     )
   // 
   } else {
-    // if (!props.ajaxIsLoaded) {
+    if (!props.ajaxIsLoaded) {
 
-    //   return <div>Loading...</div>;
-    // } else if (props.ajaxIsLoaded) {
+      return <div>Loading...</div>;
+    } else if (props.ajaxIsLoaded) {
     return(
     <Container maxWidth="lg" className={props.container}>
     <Grid container spacing={3}>
-      <Grid item xs={12} md={4} lg={3}>
+        {/* <Grid item xs={12} md={4} lg={3}>
         <Paper className={props.fixedHeightPaper}>
           <div className="h4">Your Details</div>
-          {/* <Userprofile/> */}
+          <Userprofile/>
         </Paper>
-      </Grid>
-      <Grid item xs={12} md={4} lg={3}>
+      </Grid> */}
+      {/* <Grid item xs={12} md={4} lg={3}>
         <Paper className={props.fixedHeightPaper}>
         <div className="h4">Article Statistics</div>
           <div className="h6">Published : <TestAjax name="published_article"/></div>
@@ -325,7 +353,49 @@ function RenderComponent(props){
           <div className="h6">Approval: <TestAjax name="approval_article"/></div>
           <div className="h6">Review: <TestAjax name="review_article"/></div>
         </Paper>
-      </Grid>
+      </Grid> */}
+      <Grid item xs={12} md={4} lg={3}>
+       <Paper className={props.fixedHeightPaper}>
+        <React.Fragment>
+          <Title>Draft Articles</Title>   
+          <div onClick={(e) => props.handleCountClick("Draft",props.ajaxItems["draft_article"],e)}>{props.ajaxItems["draft_article"].length}</div>
+          {/* <div style={{ color: props.isOnline ? 'green' : 'black' }} onClick={(e) => props.handleCountClick("Draft",props.ajaxItems["draft_article"])}>Test</div> */}
+
+          <Typography color="textSecondary">
+          </Typography>
+        </React.Fragment>
+       </Paper>
+     </Grid>
+     <Grid item xs={12} md={4} lg={3}>
+       <Paper className={props.fixedHeightPaper}>
+        <React.Fragment>
+          <Title>Approval Articles</Title>   
+          <div onClick={() => props.handleCountClick("Approval",props.ajaxItems["approval_article"])}>{props.ajaxItems["approval_article"].length}</div>
+          <Typography color="textSecondary">
+          </Typography>
+        </React.Fragment>
+       </Paper>
+     </Grid>
+     <Grid item xs={12} md={4} lg={3}>
+       <Paper className={props.fixedHeightPaper}>
+        <React.Fragment>
+          <Title>Review Articles</Title>   
+          <div onClick={() => props.handleCountClick("Review",props.ajaxItems["review_article"])}>{props.ajaxItems["review_article"].length}</div>
+          <Typography color="textSecondary">
+          </Typography>
+        </React.Fragment>
+       </Paper>
+     </Grid>
+     <Grid item xs={12} md={4} lg={3}>
+       <Paper className={props.fixedHeightPaper}>
+        <React.Fragment>
+          <Title>Publish Articles</Title>   
+          <div onClick={() => props.handleCountClick("Publish",props.ajaxItems["published_article"])}>{props.ajaxItems["published_article"].length}</div>  
+          <Typography color="textSecondary">
+          </Typography>
+        </React.Fragment>
+       </Paper>
+     </Grid>
       {/* <Grid item xs={12} md={4} lg={3}>
         <Paper className={props.fixedHeightPaper}>
           <Draft/>
@@ -347,6 +417,6 @@ function RenderComponent(props){
     </Box>
   </Container>
     )
-    // }
+    }
   }
 }
