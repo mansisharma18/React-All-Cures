@@ -406,7 +406,7 @@ function RenderComponent(props){
      <p id="Default" style={{ width:'100%', color: props.isOnline ? 'green' : 'black'  }} onClick={(e) => props.handleCountClick("Draft",props.ajaxItems["draft_article"])}> draft_article: {JSON.stringify(props.ajaxItems["draft_article"])}</p>
      <p id="Review" style={{ width:'100%',  color: props.isOnline ? 'green' : 'black' }} onClick={(e) => props.handleCountClick("Review",props.ajaxItems["review_article"])}> review_article: {JSON.stringify(props.ajaxItems["review_article"])}</p>
      <p id="Approval" style={{ width:'100%',  color: props.isOnline ? 'green' : 'black' }} onClick={(e) => props.handleCountClick("Approval",props.ajaxItems["approval_article"])}> approval_article: {JSON.stringify(props.ajaxItems["approval_article"])}</p>
-     <p id="Publish" style={{ width:'100%',  color: props.isOnline ? 'green' : 'black' }} onClick={(e) => props.handleCountClick("Publish",props.ajaxItems["publish_article"])}> publish_article: {JSON.stringify(props.ajaxItems["publish_article"])}</p>
+     <p id="Publish" style={{ width:'100%',  color: props.isOnline ? 'green' : 'black' }} onClick={(e) => props.handleCountClick("Publish",props.ajaxItems["published_article"])}> publish_article: {JSON.stringify(props.ajaxItems["published_article"])}</p>
       {/* <Grid item xs={12} md={4} lg={3}>
         <Paper className={props.fixedHeightPaper}>
           <Draft/>

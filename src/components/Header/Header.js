@@ -377,7 +377,7 @@ function ToggleButton(props) {
         </Dropdown.Toggle>
         <Dropdown.Menu>
           <Dropdown.Item>
-          <Link  className="text-dark btn" to={`/profile/${props.acPerm.split('|')[0]}`}>
+          <Link  className="text-dark btn" to={`/user/profile/`}>
                             Profile
                    </Link>
           </Dropdown.Item>

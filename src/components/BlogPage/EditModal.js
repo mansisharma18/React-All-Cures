@@ -5,6 +5,8 @@ import axios from 'axios';
 import { Select, MenuItem } from '@material-ui/core'
 import EditorJs from 'react-editor-js';
 import { EDITOR_JS_TOOLS } from '../BlogPage/tools'
+import Header from '../Header/Header';
+import Footer from '../Footer/Footer'
 import Input from '@material-ui/core/Input';
 import { useStateWithCallbackLazy } from 'use-state-with-callback';
 import { Redirect } from 'react-router';
@@ -480,7 +482,7 @@ const EditModal = (props) => {
                         handleSelect(e, e.target.selectedOptions)
                     }}
                     required class="form-control">
-                        <option value="1">Disease-Default</option>
+                        <option value="1">Overview</option>
                         <option value="2">Treatment</option>
                         <option value="3">Symptoms</option>
                     </select>
