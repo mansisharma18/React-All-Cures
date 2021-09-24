@@ -610,11 +610,21 @@ const EditModal = (props) => {
                                     tools = {EDITOR_JS_TOOLS} 
                                     />
                                     // console.log('heheheheheh')
-                                    // : <EditorJs
+                                    // articleContent &&
+                                    // <EditorJs
                                     // onChange={handleSave}
                                     // instanceRef={instance => (instanceRef.current = instance)}
                                     // tools = {EDITOR_JS_TOOLS} 
                                     // />
+                                }
+                                {
+                                    articleContent == ''?
+                                    <EditorJs
+                                    onChange={handleSave}
+                                    instanceRef={instance => (instanceRef.current = instance)}
+                                    tools = {EDITOR_JS_TOOLS} 
+                                    />
+                                    : null
                                 }
                                     
                             </div>

@@ -262,7 +262,7 @@ export default function Dashboard(props) {
 //}
 
 function RenderComponent(props){
-  debugger
+  // debugger
   // if (props.ajaxItems){
   // console.log("aaaaaaa"+props.key)
   // console.log(props.ajaxItems["draft_article"])
@@ -273,7 +273,7 @@ function RenderComponent(props){
   // }
 // }
   if(props.search == '?article'){
-    return(<Article/>);
+    return(<EditModal/>);
   }
  
  
