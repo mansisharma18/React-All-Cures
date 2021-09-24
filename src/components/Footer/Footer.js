@@ -87,8 +87,8 @@ class Footer extends Component {
                </div>
                <div class="col-md-3 col-sm-3 col-sx-12">
                   <div class="footer-inner">
-                     <h1>Our Mission</h1>
-                     <p> We are a new age healthcare technology firm who are trying make it simple and convenient for the users to get information on Cures from anywhere in the world.</p>
+                     {/* <h1>Our Mission</h1>
+                     <p> We are a new age healthcare technology firm who are trying make it simple and convenient for the users to get information on Cures from anywhere in the world.</p> */}
                      <div class="helth-app">
                         <h2>Get the Digi Healthcare App</h2>
                         <a href="/#" class="appBtn">App Store</a>
