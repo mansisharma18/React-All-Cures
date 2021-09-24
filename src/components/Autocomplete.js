@@ -95,12 +95,12 @@ class Autocomplete extends Component {
             </ul>
             </div>
           );
-        } else {
-          suggestionsListComponent = (
-            <div class="no-suggestions">
-              <em>No suggestions available.</em>
-            </div>
-          );
+        // } else {
+        //   suggestionsListComponent = (
+        //     <div class="no-suggestions">
+        //       <em>No suggestions available1.</em>
+        //     </div>
+        //   );
         }
       }
       return (
