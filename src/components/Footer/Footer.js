@@ -120,7 +120,7 @@ class Footer extends Component {
                   <div class="socia-media-footer">
                      <ul>
                         <li>
-                           <a href="/#">
+                           <a href="https://www.facebook.com/Etherium-Technologies-100724305715107/">
                               <span>
                                  <img src={Facebook} alt="Facebook Link" height="30px" width="30px"></img>
                               </span> 
@@ -138,7 +138,7 @@ class Footer extends Component {
                            </a>
                         </li>
                         <li>
-                           <a href="/#">
+                           <a href="https://www.linkedin.com/company/etherium-technologies/">
                               <span>
                                  <img src={Linkedin} alt="LinkedIn Link" height="30px" width="30px"></img>
                               </span> 
@@ -146,7 +146,7 @@ class Footer extends Component {
                               <span class="path2"></span>
                            </a>
                         </li>
-                        <li>
+                        {/* <li>
                         <a href="/#">
                               <span>
                                  <img src={Twitter} alt="Twitter Link" height="30px" width="30px"></img>
@@ -154,7 +154,7 @@ class Footer extends Component {
                               <span class="path1"></span>
                               <span class="path2"></span>
                            </a>
-                        </li>
+                        </li> */}
                      </ul>
                   </div>
                </div>

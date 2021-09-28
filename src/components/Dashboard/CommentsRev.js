@@ -262,11 +262,11 @@ render(){
                                             : console.log('Submit ALert')
                                     }
 
-                                    {
+                                    {/* {
                                         this.state.ShowErrorAlert
                                             ? <SubmitError ShowErrorAlert={this.state.ShowErrorAlert}/>
                                             : console.log('')
-                                    }
+                                    } */}
                                 
                                 <button className='bcolor' onClick={() => {this.postApproved(selectedCheckboxes, unselectedCheckboxes)}}>Submit</button>
                               </div>
@@ -302,12 +302,12 @@ function SubmitAlert(props) {
 
 // Show Error Alert
 
-function SubmitError(props) {
-  console.log('Submit ALert', props.ShowErrorAlert)
-  if(props.ShowErrorAlert) {
-      return(
-          <Alert className="bg-red">Some Error occured!</Alert>
-      );
-  }
-}
+// function SubmitError(props) {
+//   console.log('Submit ALert', props.ShowErrorAlert)
+//   if(props.ShowErrorAlert) {
+//       return(
+//           <Alert className="bg-red">Some Error occured!</Alert>
+//       );
+//   }
+// }
 export default CommentsRev; 

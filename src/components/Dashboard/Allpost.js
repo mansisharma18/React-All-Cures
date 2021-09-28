@@ -46,6 +46,7 @@ const AllPost = ({id, article_id,title, f_title, w_title,dis}) => {
                         <div className="card-info">
                         {/* <div className="h6">{f_title}</div> */}
                             <div className="h6">{w_title}</div>
+                           
 
                     </div>
                         </div>

@@ -108,6 +108,7 @@ class Home extends Component {
      .then(res => {
        console.log(res)
        this.setState({ShowSubmitAlert: true});
+       window.location.reload(true);
       
      })
      .catch(err => {
@@ -115,7 +116,7 @@ class Home extends Component {
         this.setState({ShowErrorAlert: true});
         setTimeout(()=>{
         this.setState({ShowErrorAlert: false});
-        },2000)
+        },4000)
 
    })
 
@@ -644,7 +645,7 @@ function SubmitError(props) {
    console.log('Submit ALert', props.ShowErrorAlert)
    if(props.ShowErrorAlert) {
        return(
-           <Alert className="bg-red">Some Error occured!</Alert>
+           <Alert className="bg-red">Please Provide Your Mobile Number!</Alert>
        );
    }
 }

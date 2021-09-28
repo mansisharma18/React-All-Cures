@@ -284,6 +284,14 @@
   border-radius: 2rem;
 }
 
+/* .autocomplete #search1 {
+  position: absolute;
+  z-index: 0;
+  right: 2.2rem;
+  top: 0.6rem;
+  border-radius: 2rem;
+} */
+
 .autocomplete input {
   float: left;
 }

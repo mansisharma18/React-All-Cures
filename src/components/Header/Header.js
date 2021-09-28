@@ -207,11 +207,11 @@ import Autocomplete from '../Autocomplete'
   {/* </button> */}
   
 </div>
-<div>
+{/* <div>
       <Nav.Link className="nav-dropdown-link" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" href="#features">Supplements</Nav.Link></div>
       <div>
       <Nav.Link className="nav-dropdown-link" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" href="#pricing">News</Nav.Link>
-      </div>
+      </div> */}
       
     </Nav>
     {/* <Form inline>

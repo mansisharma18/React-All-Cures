@@ -9,6 +9,7 @@ import Header from '../Header/Header';
 import Footer from '../Footer/Footer'
 import Input from '@material-ui/core/Input';
 import { useStateWithCallbackLazy } from 'use-state-with-callback';
+import { Checkbox, FormGroup, FormControlLabel, FormControl,} from '@material-ui/core'
 import { Redirect } from 'react-router';
 import history from '../history';
 
@@ -112,8 +113,7 @@ const EditModal = (props) => {
             })
             .then(res => {
                 setSuccMsg('Updated Successfully')
-                // history.incognito(`/blog/${editId.id}`)
-                // window.location.href(`blog/${editId.id}`)    
+                window.location.reload(`false`)     
             })
             .catch(err => {
                 console.log(err);
@@ -142,8 +142,8 @@ const EditModal = (props) => {
             })
             .then(res => {
                 setSuccMsg('Updated Successfully')
-                // history.incognito(`/blog/${editId.id}`)
-                // window.location.href(`blog/${editId.id}`)    
+                // history.incognito(`/blogs`)
+                // window.location.reload(`false`)    
             })
             .catch(err => {
                 console.log(err);
@@ -639,6 +639,16 @@ const EditModal = (props) => {
                         </div>
                     </div>
                     {succMsg ? <h4 className="mt-3 alert alert-success">{succMsg}</h4> : null}
+                    <FormControlLabel
+                                        control={<Checkbox name="Terms" value="on" required/>}
+                                        label="Accept Terms & Conditions"
+                                        required
+                                    />
+                                    <FormControlLabel
+                                        control={<Checkbox name="Policy" value="on" required/>}
+                                        label="Privacy Policy"
+                                        required
+                                    />
                     <div className="form-group">
                         <button type="submit" id="article-submit" className="btn mt-3 btn-dark">Submit</button>
                     </div>
