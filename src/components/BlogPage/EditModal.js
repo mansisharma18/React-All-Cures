@@ -102,8 +102,10 @@ const EditModal = (props) => {
                 "authored_by": author,
                 "published_by": parseInt(userId),
                 // "edited_by": 1,
-                "copyright_id": parseInt(copyright),
-                "disclaimer_id": parseInt(disclaimer),
+                // "copyright_id": parseInt(copyright),
+                // "disclaimer_id": parseInt(disclaimer),
+                "copyright_id": 11,
+                "disclaimer_id": 1,
                 "pubstatus_id": parseInt(articleStatus),
                 "language_id": parseInt(language),
                 "articleContent": encodeURIComponent(JSON.stringify(articleContent)),
@@ -134,8 +136,10 @@ const EditModal = (props) => {
                 "authored_by": author,
                 // "published_by": 1,
                 "edited_by": parseInt(userId),
-                "copyright_id": parseInt(copyright),
-                "disclaimer_id": parseInt(disclaimer),
+                // "copyright_id": parseInt(copyright),
+                // "disclaimer_id": parseInt(disclaimer),
+                "copyright_id": 11,
+                "disclaimer_id": 1,
                 "pubstatus_id": parseInt(articleStatus),
                 "language_id": parseInt(language),
                 "articleContent": encodeURIComponent(JSON.stringify(articleContent)),
@@ -263,7 +267,7 @@ const EditModal = (props) => {
         console.log('submit article formmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmm')
         fetch("/content?cmd=createArticle", {
             method: "POST",
-            body: `title=${title}&language=${language}&friendlyName=${articleDisplay}&contentType=${contentType}&type=${type}&disclaimerId=${disclaimer}&authById=${JSON.stringify(author)}&copyId=${copyright}&articleStatus=2&winTitle=${win}&countryId=${country}&diseaseConditionId=${disease}&articleContent=${encodeURIComponent(JSON.stringify(articleContent))}&comments=${comment}&keywords=${keywords}`,
+            body: `title=${title}&language=${language}&friendlyName=${articleDisplay}&contentType=${contentType}&type=${type}&disclaimerId=1&authById=${JSON.stringify(author)}&copyId=11&articleStatus=2&winTitle=${win}&countryId=${country}&diseaseConditionId=${disease}&articleContent=${encodeURIComponent(JSON.stringify(articleContent))}&comments=${comment}&keywords=${keywords}`,
             headers: {
             "Content-Type": "application/x-www-form-urlencoded"
             }
@@ -289,7 +293,7 @@ const EditModal = (props) => {
         console.log('submit article formmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmm')
         fetch("/content?cmd=createArticle", {
             method: "POST",
-            body: `title=${title}&language=${language}&friendlyName=${articleDisplay}&contentType=${contentType}&type=${type}&disclaimerId=${disclaimer}&authById=${JSON.stringify(author)}&copyId=${copyright}&articleStatus=1&winTitle=${win}&countryId=${country}&diseaseConditionId=${disease}&articleContent=${encodeURIComponent(JSON.stringify(articleContent))}&comments=${comment}&keywords=${keywords}`,
+            body: `title=${title}&language=${language}&friendlyName=${articleDisplay}&contentType=${contentType}&type=${type}&disclaimerId=1&authById=${JSON.stringify(author)}&copyId=11&articleStatus=1&winTitle=${win}&countryId=${country}&diseaseConditionId=${disease}&articleContent=${encodeURIComponent(JSON.stringify(articleContent))}&comments=${comment}&keywords=${keywords}`,
             headers: {
             "Content-Type": "application/x-www-form-urlencoded"
             }
@@ -480,7 +484,7 @@ const EditModal = (props) => {
                     <input type="text" value={title}   onChange={(e) => setTitle(e.target.value)} placeholder="Enter title" className="form-control" />
                 </div>
                 {
-                    userAccess == 7?
+                    userAccess == 7 || userAccess == 9?
                     <>
                     <div className="col-lg-6 form-group">
                     <label htmlFor="">Article Display Name</label>
@@ -520,7 +524,7 @@ const EditModal = (props) => {
                     </select>
                 </div>
                 
-                <div className="col-lg-6 form-group">
+                {/* <div className="col-lg-6 form-group">
                     <label htmlFor="">Disclaimer ID</label>
                     <select name="" value={disclaimer}  onChange={(e) => setDisclaimer(e.target.value)} className="form-control" id="">
                     <option>Open this select menu</option>
@@ -539,7 +543,7 @@ const EditModal = (props) => {
                         <option value="11">Temporary</option>
                     </select>
                     
-                </div>
+                </div> */}
                 <div className="col-lg-6 form-group">
                     <label htmlFor="">Article Status</label>
                     <select name="" value={articleStatus}  onChange={(e) => setArticleStatus(e.target.value)} className="form-control" id="">
