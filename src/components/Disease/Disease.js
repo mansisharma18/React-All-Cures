@@ -86,10 +86,12 @@ Disease extends Component {
                     {items.dc_name}
                   </Link>
                 </Breadcrumb.Item>
-                <Breadcrumb.Item active>{items.title}</Breadcrumb.Item>
+                {/* <Breadcrumb.Item active>{items.title}</Breadcrumb.Item> */}
               </Breadcrumb>
+              <div className="ml-5 h1 text-uppercase text-decoration-underline">{items.title}</div>
                 {b.map((i) => (
                   <CenterWell
+                    pageTitle = {items.title}
                     content = {i.data.content}
                     type = {i.type}
                     text = {i.data.text}
