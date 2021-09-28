@@ -48,6 +48,7 @@ const EditModal = (props) => {
     const [disclaimerId,setDisclaimerId] = useState([]) 
     const [getContentList,setGetContentList] = useState([]) 
     const [comment, setComment] = useState('')
+    const [keywords, setKeywords] = useState('')
 
     const getPosts = () =>{
 
@@ -76,7 +77,8 @@ const EditModal = (props) => {
             setCountry(res.data.country_id)
             setDisease(res.data.disease_condition_id)
             setComment(res.data.comments) 
-            setArticleContent(JSON.parse(res.data.content))
+            setKeywords(res.data.keywords) 
+            setArticleContent(JSON.parse(decodeURIComponent(res.data.content)))
         })
         .catch(err => console.log("errrrrrrorrrrrrrrrrrrrrrrrr",err))
     }
@@ -101,13 +103,15 @@ const EditModal = (props) => {
                 "authored_by": author,
                 "published_by": parseInt(userId),
                 // "edited_by": 1,
-                "copyright_id": parseInt(copyright),
-                "disclaimer_id": parseInt(disclaimer),
+                // "copyright_id": parseInt(copyright),
+                // "disclaimer_id": parseInt(disclaimer),
+                "copyright_id": 11,
+                "disclaimer_id": 1,
                 "pubstatus_id": parseInt(articleStatus),
                 "language_id": parseInt(language),
-                "articleContent": JSON.stringify(articleContent),
+                "articleContent": encodeURIComponent(JSON.stringify(articleContent)),
                 "country_id": parseInt(country),
-
+                "keywords": keywords,
                 "comments": comment
 
             })
@@ -132,12 +136,15 @@ const EditModal = (props) => {
                 "authored_by": author,
                 // "published_by": 1,
                 "edited_by": parseInt(userId),
-                "copyright_id": parseInt(copyright),
-                "disclaimer_id": parseInt(disclaimer),
+                // "copyright_id": parseInt(copyright),
+                // "disclaimer_id": parseInt(disclaimer),
+                "copyright_id": 11,
+                "disclaimer_id": 1,
                 "pubstatus_id": parseInt(articleStatus),
                 "language_id": parseInt(language),
-                "articleContent": JSON.stringify(articleContent),
+                "articleContent": encodeURIComponent(JSON.stringify(articleContent)),
                 "comments": comment,
+                "keywords": keywords,
                 "country_id": parseInt(country),
             })
             .then(res => {
@@ -159,7 +166,7 @@ const EditModal = (props) => {
 
     const checkAccess = (stat) => {
         console.log('Article Status', stat,'author', author, 'user access', userAccess, 'edited BY:', editedBy)
-        if(userAccess == 9 || [author].includes(userId) || editedBy == userId || userAccess == 4){
+        if(userAccess == 9 || [author].includes(userId) || editedBy == userId || userAccess == 4 || userAccess == 7){
             return null;
         }
         else if(stat == 2 && (userAccess == 7)){
@@ -254,13 +261,13 @@ const EditModal = (props) => {
         }
         setType(ctype);
     }
-    console.log(articleContent)
+    console.log(JSON.stringify(articleContent))
     const submitArticleForm = async e => {
         e.preventDefault();
         console.log('submit article formmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmm')
         fetch("/content?cmd=createArticle", {
             method: "POST",
-            body: `title=${title}&language=${language}&friendlyName=${articleDisplay}&contentType=${contentType}&type=${type}&disclaimerId=${disclaimer}&authById=${JSON.stringify(author)}&copyId=${copyright}&articleStatus=${articleStatus}&winTitle=${win}&countryId=${country}&diseaseConditionId=${disease}&articleContent=${JSON.stringify(articleContent)}&comments=${comment}`,
+            body: `title=${title}&language=${language}&friendlyName=${articleDisplay}&contentType=${contentType}&type=${type}&disclaimerId=1&authById=${JSON.stringify(author)}&copyId=11&articleStatus=2&winTitle=${win}&countryId=${country}&diseaseConditionId=${disease}&articleContent=${encodeURIComponent(JSON.stringify(articleContent))}&comments=${comment}&keywords=${keywords}`,
             headers: {
             "Content-Type": "application/x-www-form-urlencoded"
             }
@@ -281,11 +288,37 @@ const EditModal = (props) => {
         })
     }
     
+    const finishLater = (e) => {
+        e.preventDefault();
+        console.log('submit article formmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmm')
+        fetch("/content?cmd=createArticle", {
+            method: "POST",
+            body: `title=${title}&language=${language}&friendlyName=${articleDisplay}&contentType=${contentType}&type=${type}&disclaimerId=1&authById=${JSON.stringify(author)}&copyId=11&articleStatus=1&winTitle=${win}&countryId=${country}&diseaseConditionId=${disease}&articleContent=${encodeURIComponent(JSON.stringify(articleContent))}&comments=${comment}&keywords=${keywords}`,
+            headers: {
+            "Content-Type": "application/x-www-form-urlencoded"
+            }
+        }).then(res => {
+            res.json().then(function(data){
+                if(data == 1){
+                    setSuccMsg('Article Created Successfully!')
+                } else{
+                    setSuccMsg('Some error occured!')
+                }
+            })
+            // history.incognito(`/blog/${editId.id}`)
+            // window.location.href(`blog/${editId.id}`)
+        })
+        .catch(err => {
+            console.log(err);
+            setSuccMsg('Error in updating!')
+        })
+    }
     async function handleSave() {
         // console.log('ksdufhaouhaohoaih')
         const savedData = await instanceRef.current.save();        
         // console.log("savedData", savedData);
         setArticleContent(savedData)
+        console.log('json stringify: ', JSON.stringify(savedData))
         let articleHTML = '';
   
         // RENDER DIFFERENT TYPES OF DATA
@@ -447,10 +480,13 @@ const EditModal = (props) => {
                             <div class="card-body">
                 <div className="row">
                     <div className="col-lg-6 form-group">
-                    <label htmlFor="">Article Title</label>
+                    <label htmlFor="">Title</label>
                     <input type="text" value={title}   onChange={(e) => setTitle(e.target.value)} placeholder="Enter title" className="form-control" />
                 </div>
-                <div className="col-lg-6 form-group">
+                {
+                    userAccess == 7 || userAccess == 9?
+                    <>
+                    <div className="col-lg-6 form-group">
                     <label htmlFor="">Article Display Name</label>
                     <input type="text" value={articleDisplay}  onChange={(e) => setArticleDisplay(e.target.value)} placeholder="Enter title" className="form-control" />
                 </div>
@@ -488,7 +524,7 @@ const EditModal = (props) => {
                     </select>
                 </div>
                 
-                <div className="col-lg-6 form-group">
+                {/* <div className="col-lg-6 form-group">
                     <label htmlFor="">Disclaimer ID</label>
                     <select name="" value={disclaimer}  onChange={(e) => setDisclaimer(e.target.value)} className="form-control" id="">
                     <option>Open this select menu</option>
@@ -507,14 +543,14 @@ const EditModal = (props) => {
                         <option value="11">Temporary</option>
                     </select>
                     
-                </div>
+                </div> */}
                 <div className="col-lg-6 form-group">
                     <label htmlFor="">Article Status</label>
                     <select name="" value={articleStatus}  onChange={(e) => setArticleStatus(e.target.value)} className="form-control" id="">
                     <option>Open this select menu</option>
                         <option value="1">Work in Progress</option>
                         <option value="2">Review</option>
-                        <option value="3">Publish</option>
+                            <option value="3">Publish</option>
                     </select>
                 </div>
                 <div className="col-lg-6 form-group">
@@ -563,20 +599,6 @@ const EditModal = (props) => {
                     <label htmlFor="">Window Title</label>
                     <input type="text" value={win}  onChange={(e) => setWin(e.target.value)} placeholder="Enter title" className="form-control" />
                 </div>
-
-                                    <div className="col-md-6 float-left">
-                                        <label>Remarks</label>
-                                    <input className="form-control"
-                                        value={comment}
-                                        // defaultValue={about}
-                                        onChange={(e) => setComment(e.target.value)}
-                                        name="comments"
-                                        as="textarea"
-                                        placeholder="Leave a comment here"
-                                        // style={{ height: '100px' }}
-
-                                    />
-                              </div>
                 {   
                     type?
                     type.indexOf('2') === -1 
@@ -595,6 +617,35 @@ const EditModal = (props) => {
                     </div> 
                     : null
                 }
+                <div className="col-md-6 float-left">
+                    <label>Keywords</label>
+                    <input className="form-control"
+                    value={keywords}
+                    // defaultValue={about}
+                    onChange={(e) => setKeywords(e.target.value)}
+                    name="keywords"
+                    as="textarea"
+                    placeholder="Enter Keywords here"
+                    // style={{ height: '100px' }}
+                    />
+                </div>
+                </>
+                : null
+                }
+
+                <div className="col-md-6 float-left">
+                    <label>Remarks</label>
+                    <input className="form-control"
+                    value={comment}
+                    // defaultValue={about}
+                    onChange={(e) => setComment(e.target.value)}
+                    name="comments"
+                    as="textarea"
+                    placeholder="Leave a comment here"
+                    // style={{ height: '100px' }}
+                    />
+                </div>
+
                 </div>
                             </div>
                             </div>
@@ -651,6 +702,7 @@ const EditModal = (props) => {
                                     />
                     <div className="form-group">
                         <button type="submit" id="article-submit" className="btn mt-3 btn-dark">Submit</button>
+                        <button onClick={(e) => finishLater(e)} id="article-submit" className="btn ml-3 mt-3 btn-secondary">Finish Later</button>
                     </div>
                     </form>
                     <div id="article-preview"></div>
