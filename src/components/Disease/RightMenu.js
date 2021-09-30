@@ -3,6 +3,8 @@ import {Nav} from "react-bootstrap";
 import { withRouter } from "react-router";
 import AllPost from "../BlogPage/Allpost";
 import './style.css'
+import Comment from "../Comment";
+import Rating from "../StarRating";  
 
 const Side = (props) => {
     const [isloaded, setisLoaded] = useState(true)
@@ -60,8 +62,11 @@ const Side = (props) => {
                     : null
                 }
             </Nav.Item>
-           
+            <Rating />
+            <Comment  /> 
             </Nav>
+         
+           
           
         </>
         );
