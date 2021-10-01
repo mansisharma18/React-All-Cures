@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import { Dropdown, Button, DropdownButton, Nav, Modal, Alert} from 'react-bootstrap';
  
-const Comment = ({refreshComments}) => {
+const Comment = ({refreshComments, docid}) => {
 
     const [cmtText,setCmtText] = React.useState('')
     const [succAlert, setAlert] = useState('')
@@ -14,14 +14,14 @@ const Comment = ({refreshComments}) => {
         e.preventDefault()
 
         if(cmtText != '') {
-            axios.post(`/DoctorRatingActionController?ratingVal=3&comments='${cmtText}'&ratedbyid=1&ratedbytype=1&targetid=1&targetTypeid=1&cmd=rateAsset`)
+            axios.post(`/DoctorRatingActionController?ratingVal=3&comments='${cmtText}'&ratedbyid=1&ratedbytype=1&targetid=1&targetTypeid=${docid}&cmd=rateAsset`)
             .then(res => {
                
                 setAlert(true)
                 setTimeout(() => {
                     setAlert(false)
                 }, 4000);
-                window.location.reload(false);
+                // window.location.reload(false);
             })
             
             .then(err => {

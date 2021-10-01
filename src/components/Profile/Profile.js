@@ -280,7 +280,7 @@ class Profile extends Component {
                     
                   </div>
                   <div className="comment-box">
-                    <Comment refreshComments={this.getComments} />
+                    <Comment refreshComments={this.getComments} docid={this.state.param.id}/>
                   </div>
                   <div className="profile-rating">
                     <div className="tab-nav">
