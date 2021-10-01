@@ -264,10 +264,14 @@ onChangeHandlerdoctor = (e, text) => {
                               </div>
                               <div className="loginSign"> 
                               {/* <Link to="/profile">Go to Profile</Link> */}
-                              
-      <Link className="btn border mr-2 btn-white loginSignbtn color-blue-dark"  to="/article">
-        Create Article
-      </Link>
+                           {
+                              this.state.acPerm?
+                              <Link className="btn border mr-2 btn-white loginSignbtn color-blue-dark"  to="/article">
+                              Create Article
+                            </Link>
+                              : null
+                           }   
+      
                                  <ToggleButton userName={Cookies.get('uName')} setModalShow={this.setModalShow} acPerm={this.state.acPerm} match={this.props.match.url} logout={this.logout}/> 
                                  {/* <button onClick={this.logout}></button> */}
                               </div>  
@@ -569,12 +573,6 @@ onChangeHandlerdoctor = (e, text) => {
     </div>
   </div>
 </div>
-
-
-
-
-
-
       <Footer/>
       </div>
       

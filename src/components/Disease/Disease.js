@@ -60,7 +60,7 @@ Disease extends Component {
   } else if(isLoaded){
     var artContent = items.content;
     console.log(artContent)
-    var a = JSON.parse(artContent)
+    var a = JSON.parse(decodeURIComponent(artContent))
     console.log(a)
     var b = a.blocks
     // console.log("aaaaaaaaaa", a.blocks)

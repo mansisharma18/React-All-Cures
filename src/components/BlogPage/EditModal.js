@@ -267,7 +267,7 @@ const EditModal = (props) => {
         console.log('submit article formmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmm')
         fetch("/content?cmd=createArticle", {
             method: "POST",
-            body: `title=${title}&language=${language}&friendlyName=${articleDisplay}&contentType=${contentType}&type=${type}&disclaimerId=1&authById=${JSON.stringify(author)}&copyId=11&articleStatus=2&winTitle=${win}&countryId=${country}&diseaseConditionId=${disease}&articleContent=${encodeURIComponent(JSON.stringify(articleContent))}&comments=${comment}&keywords=${keywords}`,
+            body: `title=${title}&language=${language}&friendlyName=${articleDisplay}&contentType=${contentType}&type=${type}&disclaimerId=1&authById=${author == []? JSON.stringify(author) : Array(userId)}&copyId=11&articleStatus=2&winTitle=${win}&countryId=${country}&diseaseConditionId=${disease}&articleContent=${encodeURIComponent(JSON.stringify(articleContent))}&comments=${comment}&keywords=${keywords}`,
             headers: {
             "Content-Type": "application/x-www-form-urlencoded"
             }
@@ -481,7 +481,7 @@ const EditModal = (props) => {
                 <div className="row">
                     <div className="col-lg-6 form-group">
                     <label htmlFor="">Title</label>
-                    <input type="text" value={title}   onChange={(e) => setTitle(e.target.value)} placeholder="Enter title" className="form-control" />
+                    <input type="text" value={title}   onChange={(e) => setTitle(e.target.value)} placeholder="Enter title" className="form-control" required/>
                 </div>
                 {
                     userAccess == 7 || userAccess == 9?
@@ -642,6 +642,7 @@ const EditModal = (props) => {
                     name="comments"
                     as="textarea"
                     placeholder="Leave a comment here"
+                    required
                     // style={{ height: '100px' }}
                     />
                 </div>
