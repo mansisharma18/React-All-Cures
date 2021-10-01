@@ -8,6 +8,7 @@ import './style.css'
 const Side = props => {
     // const [isloaded, setisLoaded] = useState(true)
     const [items, setItems] = useState([])
+    const [commentItems, setCommentItems] = useState([])
     console.log('Propsssssssssssssssssss: ', props.diseaseId)
     function  allPosts() {                        // For all available blogs "/blogs"
         fetch(`/isearch/hierarchy/${props.diseaseId}`)
@@ -17,8 +18,18 @@ const Side = props => {
             setItems(json)
           });
       }
+      function  comments() {                        // For all available blogs "/blogs"
+        fetch('/rating/target/1/targettype/1')
+          .then((res) => res.json())
+          .then((json) => {
+            console.log(json);
+            setCommentItems(json)
+          });
+      }
       useEffect(() => {
+          comments()
         allPosts()
+
         if(items){
             console.log(items)
         }
@@ -64,6 +75,16 @@ const Side = props => {
                 </div>
                 {/* </ul> */}
             </Nav.Item>
+            <h1>Comments </h1>
+            {   
+                    commentItems?
+                    commentItems.map((i) => (
+                            <div className=" menu-item">
+                                <Link className="text-dark h3">{i.comments}</Link>
+                            </div>
+                        ))
+                    : null
+                }
             </Nav>
           
         </>

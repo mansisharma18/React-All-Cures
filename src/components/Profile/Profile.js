@@ -24,6 +24,8 @@ class Profile extends Component {
     this.state = { 
       items: [],
       commentItems: [],
+      firstName: [],
+      lastName: [],
       isLoaded: false,
       param: params,
       edit: false,
@@ -66,6 +68,19 @@ class Profile extends Component {
     console.log('closed');
   }
   
+  getProfile = (profileId) => {
+    console.log('fired');
+    axios.get(`/profile/${profileId}`)
+    .then(res => {
+      console.log(res)
+      this.setState({
+        firstName:res.data,
+        lastName:res.data
+      })
+    })
+    .catch(err => console.log(err))
+    console.log('closed');
+  }
   fetchDoctorData = (id) => {
     fetch(`/DoctorsActionController?docid=${id}&cmd=getProfile`)
       // .then(res => JSON.parse(res))
@@ -95,6 +110,7 @@ class Profile extends Component {
     document.title = "All Cures | Profile"
     this.fetchDoctorData(this.state.param.id)
     this.getComments()
+    this.getProfile(this.state.param.profileId)
   }
 
   setModalShow =(action) => {
@@ -272,27 +288,7 @@ class Profile extends Component {
                         <div className="profile-info-rating">
                         <Rating />
                           
-                          {/* <h2>Rating 4.2</h2> */}
-                          {/* <ul>
-                            <li>
-                              <i className="fas fa-star" aria-hidden="true"></i>
-                            </li>
-                            <li>
-                              <i className="fas fa-star" aria-hidden="true"></i>
-                            </li>
-                            <li>
-                              <i className="fas fa-star" aria-hidden="true"></i>
-                            </li>
-                            <li>
-                              <i className="fas fa-star" aria-hidden="true"></i>
-                            </li>
-                            <li>
-                              <i
-                                className="fas fa-star-half"
-                                aria-hidden="true"
-                              ></i>
-                            </li>
-                          </ul> */}
+                        
                         </div>
                       </div>
                       {/* <!-- Nav tabs --> */}
@@ -326,10 +322,7 @@ class Profile extends Component {
                                 <p>{item.comments}</p>
                               </div>
                               <div className="patient-name-add">
-                                <div>
-                                  <h3>Mahyar Eidgah</h3>
-                                  <span>New York, NY</span>{" "}
-                                </div>
+                              <div className="h4 text-capitalize">Name: {item.firstName} {item.lastName}</div>
                                 <div className="patient-rating">
                                   <ul>
                                     <li>
