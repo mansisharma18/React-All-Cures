@@ -2,11 +2,12 @@ import React, { Component } from 'react';
 import Header from '../Header/Header';
 import Footer from '../Footer/Footer'
 
-import {Container, Row, Col, Breadcrumb } from "react-bootstrap";
+import {Container, Row, Col, Breadcrumb, Button } from "react-bootstrap";
 import {Link } from 'react-router-dom'
 import CenterWell from './CenterWell';
 import Sidebar from "./leftMenu";
 import SidebarRight from "./RightMenu";
+import Wall from "../../assets/img/wall.jpg";
 // import CenterWell from './CenterWell'
 class 
 Disease extends Component {
@@ -67,7 +68,7 @@ Disease extends Component {
     return (
     <div>
       <Header/>
-        <div style={{height: "8rem", borderBottom: "1px solid #4b798d", borderTop: "1px solid #4b798d"}}></div>
+        <div className="ad-spac"><img src={Wall} height="200px" width="1900px"/></div>
         <Row>
           <Col md={2} id="sidebar-wrapper">      
             <Sidebar diseaseId={items.disease_condition_id} name={items.dc_name} />
@@ -88,6 +89,11 @@ Disease extends Component {
                 </Breadcrumb.Item>
                 {/* <Breadcrumb.Item active>{items.title}</Breadcrumb.Item> */}
               </Breadcrumb>
+              <div className="d-flex justify-content-end">
+                <Button className="mr-2" variant="info">Indian</Button>
+                <Button className="mr-2" variant="success">Chinese</Button>
+                <Button variant="primary">Iranian</Button>
+              </div>
               <div className="ml-5 h1 text-uppercase text-decoration-underline">{items.title}</div>
                 {b.map((i) => (
                   <CenterWell

@@ -2065,13 +2065,11 @@ input {
   float: right;
 }
 
-
-
-.bcolor{
+.bcolor {
   background-color: #00415e;
   position: relative;
-top: 30px;
-left: 55px;
+  top: 30px;
+  left: 55px;
 }
 .outer {
   /*background-color: #fff;*/
@@ -2126,17 +2124,17 @@ left: 55px;
     z-index: 5;
   }
 }
-.all{
+.all {
   position: relative;
   top: 55px;
   left: 340px;
 }
-.c1{
+.c1 {
   position: relative;
   left: 200px;
   top: 20px;
 }
-.c2{
+.c2 {
   position: relative;
   left: 200px;
   top: 20px;
@@ -2664,4 +2662,11 @@ a.text-underline:hover {
 }
 div.MuiSelect-root.MuiSelect-select.MuiSelect-selectMenu.MuiInputBase-input.MuiInput-input {
   width: 100%;
+}
+
+.ad-space {
+  background: url(../../img/wall.jpg) center center/no-repeat;
+  height: "8rem";
+  /* borderBottom: "1px solid #4b798d";
+  borderTop: "1px solid #4b798d" */
 }
