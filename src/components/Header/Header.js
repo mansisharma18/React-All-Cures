@@ -6,6 +6,7 @@ import { Dropdown, DropdownButton, Nav } from 'react-bootstrap';
 import Heart from"../../assets/img/heart.png";
 import { Link } from "react-router-dom";
 import Autocomplete from '../Autocomplete'
+import Test from '../LandingPage/test'
 
    class Header extends Component {
        
@@ -86,6 +87,12 @@ import Autocomplete from '../Autocomplete'
               });
           }
          
+          setModalShow =(action) => {
+            this.setState({
+              modalShow: action
+            })
+          }
+
           onChangeHandler = (e, text) => {
          
             const testVal = parseInt(e.target.value)   
@@ -236,7 +243,7 @@ import Autocomplete from '../Autocomplete'
                             {/* <Container className="btn-white loginSignbtn color-blue-dark" triggerText={this.state.triggerText} onSubmit={this.onModalSubmit} /> */}
                             {/* <ToggleButton acPerm={this.state.acPerm} match={this.props.match.url} />  */}
 
-                            <ToggleButton userName={Cookies.get('uName')} acPerm={this.state.acPerm} url={this.props.url} logout={this.logout}/> 
+                            <ToggleButton userName={Cookies.get('uName')} setModalShow={this.setModalShow} acPerm={this.state.acPerm} logout={this.logout}/> 
                         </div>   	
                         </div>
                     </div>
@@ -336,70 +343,59 @@ import Autocomplete from '../Autocomplete'
                   </div>
                </div>   
             </div>
+            <Test
+        show={this.state.modalShow}
+        onHide={() => this.setModalShow(false)}
+      />
       </section>
             </div>
         </div>
         );
     }
 }
-
 function ToggleButton(props) {
    if(props.acPerm){
        return(
-      //    <li className="dropdown">
-      //    <button className="btn header-drop" data-toggle="dropdown" >
-      //        <i className="fa fa-user fa-2x"></i> 
-      //    </button>
-      //    <ul className="dropdown-menu dropdown-user">
-      //       {
-      //          props.acPerm?
-      //             <>
-      //                <li>
-      //                   <Link className="dropdown-item" to={`/profile/${props.acPerm.split('|')[0]}`}>
-      //                      Profile
-      //                   </Link>
-      //                </li>
-      //                <li><Link to="/dashboard" className="dropdown-item">Dashboard</Link>
-      //                </li>
-      //             </>
-      //          : null
-      //       }
-             
-      //        <li className="divider"></li>
-      //        <li><button onClick={props.logout} className="dropdown-item"> Logout</button>
-      //        </li>
-      //    </ul>
-      //  </li>  
-      <div>
-      <Dropdown>
-        <Dropdown.Toggle  className="header-drop text-capitalize">
-        Hi {props.userName}
-        </Dropdown.Toggle>
-        <Dropdown.Menu>
-          <Dropdown.Item>
-          <Link  className="text-dark btn" to={`/user/profile/`}>
-                            Profile
-                   </Link>
-          </Dropdown.Item>
-          <Dropdown.Item >
-          <Link to="/dashboard" className="text-dark btn">
-             Dashboard</Link>
-          </Dropdown.Item>
-          <Dropdown.Item >
-          <button className="btn text-dark text-capitalize" onClick={props.logout}> Logout</button>
-          </Dropdown.Item>
-        </Dropdown.Menu>
-      </Dropdown>
-    </div>
-       );
+         <>
+         <Dropdown>
+           <Dropdown.Toggle  className="header-drop text-capitalize">
+           Hi {props.userName}
+           </Dropdown.Toggle>
+           <Dropdown.Menu>
+             <Dropdown.Item>
+             <Link  className="text-dark btn" to={`/user/profile/`}>
+                               Profile
+                      </Link>
+             </Dropdown.Item>
+             <Dropdown.Item >
+             <Link to="/dashboard" className="text-dark btn">
+                Dashboard</Link>
+             </Dropdown.Item>
+             <Dropdown.Item >
+             <button className="btn text-dark text-capitalize" onClick={props.logout}> Logout</button>
+             </Dropdown.Item>
+           </Dropdown.Menu>
+         </Dropdown>
+       </>
+          );
    }
    return(
-      <Link 
+      <>
+      <button 
+         className="btn btn-dark text-light border loginSignbtn color-blue-dark" 
+         variant="dark" 
+         style={{width: '10rem'}}
+         onClick={() => props.setModalShow(true)}
+      >
+            Sign in/Sign up
+      </button>
+      {/* <Link 
          className="btn-white loginSignbtn color-blue-dark" 
          to={{pathname: props.match, search: '?login=true', state: {open: true}}}
       >
          Sign in/Sign up
-      </Link>
+      </Link> */}
+      </>
    )
 }
 

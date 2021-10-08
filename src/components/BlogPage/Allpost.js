@@ -9,7 +9,7 @@ const AllPost = ({id, title, f_title, w_title}) => {
                 <div  >
                     {/* <div className="card-body"> */}
                         
-                            <div className="d-flex justify-content-between align-items-center">
+                            <div className="d-flex justify-content-between align-items-center mb-2">
                             <div>
                             <Link to={ `/blog/${id}` }  className="d-flex justify-content-between align-items-center">
                                 <div className="card-title">{title}</div>
