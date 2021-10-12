@@ -267,7 +267,7 @@ const EditModal = (props) => {
         console.log('submit article formmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmm')
         fetch("/content?cmd=createArticle", {
             method: "POST",
-            body: `title=${title}&language=${language}&friendlyName=${articleDisplay}&contentType=${contentType}&type=${type}&disclaimerId=1&authById=${author == []? JSON.stringify(author) : Array(userId)}&copyId=11&articleStatus=2&winTitle=${win}&countryId=${country}&diseaseConditionId=${disease}&articleContent=${encodeURIComponent(JSON.stringify(articleContent))}&comments=${comment}&keywords=${keywords}`,
+            body: `title=${title}&language=${language}&friendlyName=${articleDisplay}&contentType=${contentType}&type=${type}&disclaimerId=1&authById=[${userId}]&copyId=11&articleStatus=2&winTitle=${win}&countryId=${country}&diseaseConditionId=${disease}&articleContent=${encodeURIComponent(JSON.stringify(articleContent))}&comments=${comment}&keywords=${keywords}`,
             headers: {
             "Content-Type": "application/x-www-form-urlencoded"
             }
@@ -293,7 +293,7 @@ const EditModal = (props) => {
         console.log('submit article formmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmm')
         fetch("/content?cmd=createArticle", {
             method: "POST",
-            body: `title=${title}&language=${language}&friendlyName=${articleDisplay}&contentType=${contentType}&type=${type}&disclaimerId=1&authById=${JSON.stringify(author)}&copyId=11&articleStatus=1&winTitle=${win}&countryId=${country}&diseaseConditionId=${disease}&articleContent=${encodeURIComponent(JSON.stringify(articleContent))}&comments=${comment}&keywords=${keywords}`,
+            body: `title=${title}&language=${language}&friendlyName=${articleDisplay}&contentType=${contentType}&type=${type}&disclaimerId=1&authById=[${userId}]&copyId=11&articleStatus=1&winTitle=${win}&countryId=${country}&diseaseConditionId=${disease}&articleContent=${encodeURIComponent(JSON.stringify(articleContent))}&comments=${comment}&keywords=${keywords}`,
             headers: {
             "Content-Type": "application/x-www-form-urlencoded"
             }
@@ -454,7 +454,7 @@ const EditModal = (props) => {
         });
         document.getElementById('article-preview').innerHTML=articleHTML;
     }
-
+    console.log('User ID: ', Array(userId))
     return (
         <>
             <div className="transparent_bg">
@@ -550,7 +550,11 @@ const EditModal = (props) => {
                     <option>Open this select menu</option>
                         <option value="1">Work in Progress</option>
                         <option value="2">Review</option>
+                        {
+                            editId.id?
                             <option value="3">Publish</option>
+                            : null
+                        }
                     </select>
                 </div>
                 <div className="col-lg-6 form-group">
