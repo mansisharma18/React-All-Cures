@@ -16,6 +16,9 @@ export default class Blogpage extends Component{
           param: params,
           items: [],
           isLoaded: false,
+          regionPostsLoaded: false,
+          country: new URLSearchParams(this.props.location.search).get('c'),
+          diseaseCondition: new URLSearchParams(this.props.location.search).get('dc')
         };
       }
     
@@ -43,11 +46,26 @@ export default class Blogpage extends Component{
             });
           });
       }
-      
+
+      regionalPosts(){
+        fetch(`/isearch/treatmentregions/2`)          // /isearch/treatmentregions/${this.state.diseaseCondition}
+        .then((res) => res.json())
+        .then((json) => {
+          console.log('Regional posts: ',json)
+          this.setState({
+            regionPostsLoaded: true,
+            items: json,
+          });
+        })
+      }
+
       componentDidMount() {
+        
         if(this.state.param.type){
           console.log('Disease Post executed')
           this.diseasePosts()
+        } else if(this.props.location.search){
+          this.regionalPosts()
         } else {
           console.log('All Post executed')
           this.allPosts()
@@ -56,10 +74,13 @@ export default class Blogpage extends Component{
       }
       
     render(){
-        var { isLoaded,items } = this.state;
-        console.log(this.state.param)
+        var { isLoaded,items, regionPostsLoaded, country } = this.state;
+        console.log(new URLSearchParams(this.props.location.search).get('c'))
         console.log(this.state.url)
-        if(!isLoaded) {
+      console.log('kakhgauhdkjadkudhkajsdksjhd7rny9: ', regionPostsLoaded)
+
+        if(!isLoaded && !regionPostsLoaded) {
+          console.log('not is loaded')
         console.log(items);
         return (
         <>
@@ -71,6 +92,7 @@ export default class Blogpage extends Component{
         </>  
       );
     } else if(isLoaded){
+      console.log('is loaded')
         return(
             <>
             <Header/>
@@ -98,6 +120,34 @@ export default class Blogpage extends Component{
             <Footer/>
             </>
         );
+    } else if(regionPostsLoaded){
+      return(
+        <>
+            <Header/>
+            
+                <div className="container my-4">
+                  {
+                    this.state.param.type?
+                    <h1 className="h2 text-center">Blogs related to "{this.state.param.type}"</h1>
+                    :<h1 className="h2 text-center">All Blogs</h1>
+                  }
+                    <div className="row" id="posts-container">
+                    {items.map((i) => (
+                      i.country_id == this.state.country ?            // Selects articles according to country required
+                        <AllPost
+                            id = {i.article_id}
+                            title = {i.title}
+                            // f_title = {i.friendly_name}
+                            // w_title = {i.window_title}
+                            // allPostsContent={() => this.allPosts()}
+                        />
+                        : null
+                    ))}
+                    </div>
+                </div>
+            <Footer/>
+            </>
+      );
     }
 }
 }

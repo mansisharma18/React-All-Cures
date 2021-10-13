@@ -16,7 +16,7 @@ import Carousel2 from './Carousel2';
 import CarouselReview from './CarouselReview';
 import { Dropdown, Button, DropdownButton, Nav, Modal, Alert} from 'react-bootstrap';
 import Autocomplete from '../Autocomplete'
-
+import { backendHost } from '../../api-config';
 // import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 // import ToggleButton from '../Header/Header'
 import Test from './test'
@@ -70,7 +70,7 @@ class Home extends Component {
     loadUsers();
 
    const loaddoctor = async () => {
-      await axios.get('/IntegratedActionController')
+      await axios.get(`${backendHost}/IntegratedActionController`)
       .then(res => {
          this.setState ({
             doctor: res.data
@@ -82,7 +82,7 @@ class Home extends Component {
  }
 
  diseasePosts(){                     // For specific blogs like "/blogs/diabetes"
-   fetch(`/isearch/${this.state.param.type}`)
+   fetch(`${backendHost}/isearch/${this.state.param.type}`)
      .then((res) => res.json())
      .then((json) => {
        console.log(json);
@@ -97,7 +97,7 @@ class Home extends Component {
    // console.log(selected.join())
    // console.log(rejected.join())
    
-   axios.post(`/users/subscribe/${this.state.mobile}`, {
+   axios.post(`${backendHost}/users/subscribe/${this.state.mobile}`, {
    //   "articles_ids": selected.join(),
    //   "articles_ids_rejected": rejected.join()
 
@@ -204,7 +204,7 @@ onChangeHandlerdoctor = (e, text) => {
 
         componentWillMount(){
          Promise.all([
-            fetch('/article/all/table/disease_condition')
+            fetch(`${backendHost}/article/all/table/disease_condition`)
             .then(res => res.json()),
           ]).then(([diseaseData]) => {
             console.log('Speciality Data: ', diseaseData)
@@ -223,7 +223,7 @@ onChangeHandlerdoctor = (e, text) => {
           })
          }
    logout = async e => {
-      const res = await fetch("/LogoutActionController", {
+      const res = await fetch(`${backendHost}/LogoutActionController`, {
          method: "POST"
       });
         const data = await res.text();
@@ -434,7 +434,7 @@ onChangeHandlerdoctor = (e, text) => {
                </div>
             </div>
             <div className="row">
-            <div class='nav-btn prev-slide'></div><div class='nav-btn next-slide'></div>
+            <div className='nav-btn prev-slide'></div><div className='nav-btn next-slide'></div>
                <Carousel2/>
             </div>
            
@@ -505,12 +505,12 @@ onChangeHandlerdoctor = (e, text) => {
             
            
          </div>
-<div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-lg">
-    <div class="modal-content">
-    <div class="modal-header">
+<div className="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+  <div className="modal-dialog modal-lg">
+    <div className="modal-content">
+    <div className="modal-header">
         
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <button type="button" className="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
@@ -553,7 +553,7 @@ onChangeHandlerdoctor = (e, text) => {
                                             ? <SubmitError ShowErrorAlert={this.state.ShowErrorAlert}/>
                                             : console.log('')
                                     }
-                                <button class="bcolor"onClick={( ) => {this.postSubscribtion()}}>Submit
+                                <button className="bcolor"onClick={( ) => {this.postSubscribtion()}}>Submit
                                 
                                 </button>
 

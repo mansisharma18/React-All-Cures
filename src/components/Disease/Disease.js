@@ -37,8 +37,7 @@ Disease extends Component {
         // document.title = `All Cures | ${json.data.title}`
       });
   }
- 
-  
+
   handleChange = e => {
     this.setState({
         disease: e.target.value 
@@ -90,9 +89,9 @@ Disease extends Component {
                 {/* <Breadcrumb.Item active>{items.title}</Breadcrumb.Item> */}
               </Breadcrumb>
               <div className="d-flex justify-content-end">
-                <Button className="mr-2" variant="info">Indian</Button>
-                <Button className="mr-2" variant="success">Chinese</Button>
-                <Button variant="primary">Iranian</Button>
+                <Link to={`/blogs?c=9&dc=${items.disease_condition_id}`} className="mr-2 btn btn-info" >Indian</Link>
+                <Link to={``} className="mr-2 btn btn-success" >Chinese</Link>
+                <Link to={`/blogs?c=10&dc=${items.disease_condition_id}`} className="btn btn-primary">Iranian</Link>
               </div>
               <div className="ml-5 h1 text-uppercase text-decoration-underline">{items.title}</div>
                 {b.map((i) => (
