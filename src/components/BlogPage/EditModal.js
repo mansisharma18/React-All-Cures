@@ -12,6 +12,7 @@ import { useStateWithCallbackLazy } from 'use-state-with-callback';
 import { Checkbox, FormGroup, FormControlLabel, FormControl,} from '@material-ui/core'
 import { Redirect } from 'react-router';
 import history from '../history';
+import { backendHost } from '../../api-config';
 
 const EditModal = (props) => {
 
@@ -52,7 +53,7 @@ const EditModal = (props) => {
 
     const getPosts = () =>{
 
-        axios.get(`/article/${editId.id}`)
+        axios.get(`${backendHost}/article/${editId.id}`)
         .then(res => {
             console.log("get post",res);
             setEditedBy(res.data.edited_by)
@@ -91,7 +92,7 @@ const EditModal = (props) => {
         e.preventDefault()
         console.log(editId);
         if(articleStatus == 3){
-            axios.post(`/article/${editId.id}`, {
+            axios.post(`${backendHost}/article/${editId.id}`, {
                 "title":title,
                 "friendly_name": articleDisplay,
                 // "subheading": "1",
@@ -124,7 +125,7 @@ const EditModal = (props) => {
                 setSuccMsg('error in updating')
             })
         } else {
-            axios.post(`/article/${editId.id}`, {
+            axios.post(`${backendHost}/article/${editId.id}`, {
                 "title":title,
                 "friendly_name": articleDisplay,
                 // "subheading": "1",
@@ -183,7 +184,7 @@ const EditModal = (props) => {
     }
 
     const getLanguages = () => {
-        axios.get('/article/all/table/languages')
+        axios.get(`${backendHost}/article/all/table/languages`)
         .then(res => {
             setLanList(res.data)
         })
@@ -191,16 +192,16 @@ const EditModal = (props) => {
     }
 
     const getAuthor = () => {
-        axios.get('/article/all/table/author')
+        axios.get(`${backendHost}/article/all/table/author`)
         .then(res => {
             setAuthList(res.data)
-            console.log('author: ', res.data)
+            console.log(`author: `, res.data)
         })
         .catch(err => console.log(err))
     }
 
     const getCountries = () => {
-        axios.get('/article/all/table/countries')
+        axios.get(`${backendHost}/article/all/table/countries`)
         .then(res => {
             setCountriesList(res.data)
         })
@@ -208,15 +209,15 @@ const EditModal = (props) => {
     }
 
     const getDisclaimer = () => {
-        axios.get('/article/all/table/disclaimer')
+        axios.get(`${backendHost}/article/all/table/disclaimer`)
         .then(res => {
             setDisclaimerId(res.data)
-            console.log('disclaimer: ', res.data)
+            console.log(`disclaimer: `, res.data)
         })
         .catch(err => console.log(err))
     }
     const getDisease = () => {
-        axios.get('/article/all/table/disease_condition')
+        axios.get(`${backendHost}/article/all/table/disease_condition`)
         .then(res => {
             console.log(res.data);
             setDiseaseList(res.data)
@@ -265,7 +266,7 @@ const EditModal = (props) => {
     const submitArticleForm = async e => {
         e.preventDefault();
         console.log('submit article formmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmm')
-        fetch("/content?cmd=createArticle", {
+        fetch(`${backendHost}/content?cmd=createArticle`, {
             method: "POST",
             body: `title=${title}&language=${language}&friendlyName=${articleDisplay}&contentType=${contentType}&type=${type}&disclaimerId=1&authById=[${userId}]&copyId=11&articleStatus=2&winTitle=${win}&countryId=${country}&diseaseConditionId=${disease}&articleContent=${encodeURIComponent(JSON.stringify(articleContent))}&comments=${comment}&keywords=${keywords}`,
             headers: {
@@ -291,7 +292,7 @@ const EditModal = (props) => {
     const finishLater = (e) => {
         e.preventDefault();
         console.log('submit article formmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmm')
-        fetch("/content?cmd=createArticle", {
+        fetch(`${backendHost}/content?cmd=createArticle`, {
             method: "POST",
             body: `title=${title}&language=${language}&friendlyName=${articleDisplay}&contentType=${contentType}&type=${type}&disclaimerId=1&authById=[${userId}]&copyId=11&articleStatus=1&winTitle=${win}&countryId=${country}&diseaseConditionId=${disease}&articleContent=${encodeURIComponent(JSON.stringify(articleContent))}&comments=${comment}&keywords=${keywords}`,
             headers: {

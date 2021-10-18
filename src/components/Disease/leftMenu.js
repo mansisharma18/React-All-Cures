@@ -4,6 +4,7 @@ import { withRouter } from "react-router";
 import { Link } from "react-router-dom";
 import AllPost from "../BlogPage/Allpost";
 import './style.css'
+import { backendHost } from '../../api-config';
 
 const Side = props => {
     // const [isloaded, setisLoaded] = useState(true)
@@ -11,7 +12,7 @@ const Side = props => {
     const [commentItems, setCommentItems] = useState([])
     console.log('Propsssssssssssssssssss: ', props.diseaseId)
     function  allPosts() {                        // For all available blogs "/blogs"
-        fetch(`/isearch/hierarchy/${props.diseaseId}`)
+        fetch(`${backendHost}/isearch/hierarchy/${props.diseaseId}`)
           .then((res) => res.json())
           .then((json) => {
             console.log(json);
@@ -19,7 +20,7 @@ const Side = props => {
           });
       }
       function  comments() {                        // For all available blogs "/blogs"
-        fetch('/rating/target/1/targettype/1')
+        fetch(`${backendHost}/rating/target/1/targettype/1`)
           .then((res) => res.json())
           .then((json) => {
             console.log(json);

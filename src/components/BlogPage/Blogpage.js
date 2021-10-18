@@ -4,6 +4,7 @@ import Footer from '../Footer/Footer'
 // import EditModal from './EditModal'
 import {Container} from "react-bootstrap";
 import AllPost from './Allpost.js';
+import { backendHost } from '../../api-config';
 
 export default class Blogpage extends Component{
 
@@ -24,7 +25,7 @@ export default class Blogpage extends Component{
     
 
       allPosts() {                        // For all available blogs "/blogs"
-        fetch(`/article/allkv`)
+        fetch(`${backendHost}/article/allkv`)
           .then((res) => res.json())
           .then((json) => {
             console.log(json);
@@ -36,7 +37,7 @@ export default class Blogpage extends Component{
       }
       
       diseasePosts(){                     // For specific blogs like "/blogs/diabetes"
-        fetch(`/isearch/${this.state.param.type}`)
+        fetch(`${backendHost}/isearch/${this.state.param.type}`)
           .then((res) => res.json())
           .then((json) => {
             console.log(json);
@@ -48,7 +49,7 @@ export default class Blogpage extends Component{
       }
 
       regionalPosts(){
-        fetch(`/isearch/treatmentregions/2`)          // /isearch/treatmentregions/${this.state.diseaseCondition}
+        fetch(`${backendHost}/isearch/treatmentregions/2`)          // /isearch/treatmentregions/${this.state.diseaseCondition}
         .then((res) => res.json())
         .then((json) => {
           console.log('Regional posts: ',json)

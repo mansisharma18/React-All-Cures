@@ -3,6 +3,8 @@ import Cookies from 'js-cookie';
 import axios from 'axios';
 import Header from '../Header/Header';
 import Footer from '../Footer/Footer';
+import { backendHost } from '../../api-config';
+
 export default function Userprofile(props) {
     const [profileId, setProfile] = useState(Cookies.get('acPerm').split('|')[0])
     const [firstName, setFirstName] = useState('')
@@ -12,7 +14,7 @@ export default function Userprofile(props) {
     const [gender, setGender] = useState('')
 
     const getProfile = () => {
-        axios.get(`/profile/${profileId}`)
+        axios.get(`${backendHost}/profile/${profileId}`)
         .then(res => {
             setFirstName(res.data.first_name)
             setLastName(res.data.last_name)

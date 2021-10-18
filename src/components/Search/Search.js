@@ -11,6 +11,8 @@ import '../../assets/healthcare/icomoon/style.css';
 import {Form ,Container } from 'react-bootstrap';
 import Options from '../Article/Options';
 import axios from 'axios';
+import { backendHost } from '../../api-config';
+
 class Search extends Component {
   constructor(props){
     super(props);
@@ -41,7 +43,7 @@ class Search extends Component {
     // console.log(selected.join())
     // console.log(rejected.join())
     
-    axios.post(`/users/subscribe/7889761896`, {
+    axios.post(`${backendHost}/users/subscribe/7889761896`, {
     //   "articles_ids": selected.join(),
     //   "articles_ids_rejected": rejected.join()
     "nl_subscription_disease_id": 1,
@@ -59,7 +61,7 @@ class Search extends Component {
     // USE if statement
   componentDidMount() {
     Promise.all([
-    fetch('/article/all/table/disease_condition').then(res => res.json())
+    fetch(`${backendHost}/article/all/table/disease_condition`).then(res => res.json())
     ])
     .then(diseaseData => {
       this.setState({
@@ -73,7 +75,7 @@ class Search extends Component {
   
     if((this.state.param.city) && (this.state.param.name)) {
       document.title = `All Cures | ${this.state.param.city} | ${this.state.param.name}`
-      fetch(`/SearchActionController?cmd=getResults&city=${this.state.param.city}&doctors=${this.state.param.name}&Latitude=&Longitude=`)
+      fetch(`${backendHost}/SearchActionController?cmd=getResults&city=${this.state.param.city}&doctors=${this.state.param.name}&Latitude=&Longitude=`)
       .then(res => res.json())
       .then(json => {
         this.setState({
@@ -83,7 +85,7 @@ class Search extends Component {
       });
     } else if((this.state.param.name) && (!this.state.param.city)) {
       document.title = `All Cures | ${this.state.param.name}`
-      fetch(`/SearchActionController?cmd=getResults&doctors=${this.state.param.name}&Latitude=32.7266&Longitude=74.8570`)
+      fetch(`${backendHost}/SearchActionController?cmd=getResults&doctors=${this.state.param.name}&Latitude=32.7266&Longitude=74.8570`)
       .then(res => res.json())
       .then(json => {
         this.setState({
@@ -93,7 +95,7 @@ class Search extends Component {
       });
     } else if((this.state.param.city) && (!this.state.param.name)) {
       document.title = `All Cures | ${this.state.param.city}`
-      fetch(`/SearchActionController?cmd=getResults&city=${this.state.param.city}&Latitude=32.7266&Longitude=74.8570`)
+      fetch(`${backendHost}/SearchActionController?cmd=getResults&city=${this.state.param.city}&Latitude=32.7266&Longitude=74.8570`)
       .then(res => res.json())
       .then(json => {
         this.setState({

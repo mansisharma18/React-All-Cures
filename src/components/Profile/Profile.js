@@ -14,6 +14,7 @@ import {Link} from 'react-router-dom'
 import Comment from "../Comment";
 import axios from 'axios';
 import EditProfile from "./EditProfile";
+import { backendHost } from '../../api-config';
 
 class Profile extends Component {
   constructor(props) {
@@ -40,7 +41,7 @@ class Profile extends Component {
     // console.log(selected.join())
     // console.log(rejected.join())
     
-    axios.post(`/users/subscribe/7889761896`, {
+    axios.post(`${backendHost}/users/subscribe/7889761896`, {
     //   "articles_ids": selected.join(),
     //   "articles_ids_rejected": rejected.join()
     "nl_subscription_disease_id": 1,
@@ -57,7 +58,7 @@ class Profile extends Component {
   }
   getComments() {
     console.log('fired');
-    axios.get('/rating/target/1/targettype/1')
+    axios.get(`${backendHost}/rating/target/1/targettype/1`)
     .then(res => {
       console.log(res)
       this.setState({
@@ -70,7 +71,7 @@ class Profile extends Component {
   
   getProfile = (profileId) => {
     console.log('fired');
-    axios.get(`/profile/${profileId}`)
+    axios.get(`${backendHost}/profile/${profileId}`)
     .then(res => {
       console.log(res)
       this.setState({
@@ -82,7 +83,7 @@ class Profile extends Component {
     console.log('closed');
   }
   fetchDoctorData = (id) => {
-    fetch(`/DoctorsActionController?docid=${id}&cmd=getProfile`)
+    fetch(`${backendHost}/DoctorsActionController?docid=${id}&cmd=getProfile`)
       // .then(res => JSON.parse(res))
       .then((res) => res.json())
       .then((json) => {

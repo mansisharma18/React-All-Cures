@@ -9,6 +9,8 @@ import '../../assets/healthcare/css/responsive.css';
 import '../../assets/healthcare/css/animate.css';
 import '../../assets/healthcare/icomoon/style.css';
 import { Container } from 'react-bootstrap';
+import { backendHost } from '../../api-config';
+
 class SearchName extends Component {
   constructor(props){
     super(props);
@@ -25,7 +27,7 @@ class SearchName extends Component {
     // USE if statement
   componentDidMount() {
     document.title = `All Cures | Search | ${this.state.param.name}`
-      fetch(`/SearchActionController?cmd=getResults&city=&doctors=${this.state.param.name}&Latitude=32.7266&Longitude=74.8570`)
+      fetch(`${backendHost}/SearchActionController?cmd=getResults&city=&doctors=${this.state.param.name}&Latitude=32.7266&Longitude=74.8570`)
       .then(res => res.json())
       .then(json => {
         this.setState({

@@ -7,6 +7,7 @@ import Heart from"../../assets/img/heart.png";
 import { Link } from "react-router-dom";
 import Autocomplete from '../Autocomplete'
 import Test from '../LandingPage/test'
+import { backendHost } from '../../api-config';
 
    class Header extends Component {
        
@@ -34,7 +35,7 @@ import Test from '../LandingPage/test'
 
         componentWillMount(){
          Promise.all([
-            fetch('/article/all/table/disease_condition')
+            fetch(`${backendHost}/article/all/table/disease_condition`)
             .then(res => res.json()),
           ]).then(([diseaseData]) => {
             console.log('Speciality Data: ', diseaseData)
@@ -52,7 +53,7 @@ import Test from '../LandingPage/test'
              console.error(res)
           })
           const loadUsers = async () => {
-            await axios.get('/city/all')
+            await axios.get(`${backendHost}/city/all`)
             .then(res => {
                this.setState ({
                   users: res.data
@@ -63,7 +64,7 @@ import Test from '../LandingPage/test'
           loadUsers();
       
          const loaddoctor = async () => {
-            await axios.get('/IntegratedActionController')
+            await axios.get(`${backendHost}/IntegratedActionController`)
             .then(res => {
                this.setState ({
                   doctor: res.data
@@ -147,7 +148,7 @@ import Test from '../LandingPage/test'
             });
     
          logout = async e => {
-            const res = await fetch("/LogoutActionController", {
+            const res = await fetch(`${backendHost}/LogoutActionController`, {
                method: "POST"
             });
             setTimeout(() => {

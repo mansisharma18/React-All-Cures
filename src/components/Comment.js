@@ -2,7 +2,8 @@ import React, { useState } from 'react';
 // import CommentBox from 'react-commentbox';
 import axios from 'axios';
 import { Dropdown, Button, DropdownButton, Nav, Modal, Alert} from 'react-bootstrap';
- 
+import { backendHost } from '../api-config';
+
 const Comment = ({refreshComments, docid}) => {
 
     const [cmtText,setCmtText] = React.useState('')
@@ -14,7 +15,7 @@ const Comment = ({refreshComments, docid}) => {
         e.preventDefault()
 
         if(cmtText != '') {
-            axios.post(`/DoctorRatingActionController?ratingVal=3&comments='${cmtText}'&ratedbyid=1&ratedbytype=1&targetid=1&targetTypeid=${docid}&cmd=rateAsset`)
+            axios.post(`${backendHost}/DoctorRatingActionController?ratingVal=3&comments='${cmtText}'&ratedbyid=1&ratedbytype=1&targetid=1&targetTypeid=${docid}&cmd=rateAsset`)
             .then(res => {
                
                 setAlert(true)

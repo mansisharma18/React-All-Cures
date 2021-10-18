@@ -126,7 +126,7 @@ const Routes = (props) => {
     
       <Route exact path="/loginForm/ResetPass" component={ResetPass} />
       <Route exact path="/loginForm/verify" component={Verify} />
-      <Route exact path='/loginForm/FormSignup' component={FormSignup}/>
+      {/* <Route exact path='/loginForm/FormSignup' component={FormSignup}/> */}
      
       
       {/* <ProtectedArticle path="/article/:id" component={EditPost} auth={Auth.auth} /> */}

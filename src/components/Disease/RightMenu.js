@@ -5,12 +5,13 @@ import AllPost from "../BlogPage/Allpost";
 import './style.css'
 import Comment from "../Comment";
 import Rating from "../StarRating";  
+import { backendHost } from '../../api-config';
 
 const Side = (props) => {
     const [isloaded, setisLoaded] = useState(true)
     const [items, setItems] = useState([])
     function diseasePosts(){                     // For specific blogs like "/blogs/diabetes"
-        fetch(`/isearch/${props.title}`)
+        fetch(`${backendHost}/isearch/${props.title}`)
           .then((res) => res.json())
           .then((json) => {                      
             console.log(json);
@@ -21,7 +22,7 @@ const Side = (props) => {
           });
       }
       function allPosts() {                        // For all available blogs "/blogs"
-        fetch(`/article/allkv`)
+        fetch(`${backendHost}/article/allkv`)
           .then((res) => res.json())
           .then((json) => {
             console.log(json);

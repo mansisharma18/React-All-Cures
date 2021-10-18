@@ -7,6 +7,7 @@ import Cookies from 'js-cookie'
 import {Select, MenuItem , InputLabel, FormControl, Checkbox, FormGroup, FormControlLabel} from '@material-ui/core';
 import GoogleLogin from 'react-google-login';
 import { usePasswordValidation } from '../hooks/usePasswordValidation';
+import { backendHost } from '../../api-config';
 
 import './test.css'
 
@@ -69,7 +70,7 @@ const Test = (props) => {
     setSignUpClicked(1);
     var res;
     if(validEmail && upperCase && lowerCase && match){
-      axios.post(`/RegistrationActionController?firstname=${firstName}&lastname=${lastName}&email=${email}&psw=${password.firstPassword}&psw-repeat=${password.secondPassword}&rempwd=on&doc_patient=${userType}&acceptTnc=${terms}&number=${number}`
+      axios.post(`${backendHost}/RegistrationActionController?firstname=${firstName}&lastname=${lastName}&email=${email}&psw=${password.firstPassword}&psw-repeat=${password.secondPassword}&rempwd=on&doc_patient=${userType}&acceptTnc=${terms}&number=${number}`
     ) .then(response => {
       if(response.data == 'Email Address already Exists in the System'){
         // setExists(true);
@@ -156,7 +157,7 @@ const Test = (props) => {
   const loginForm = async (e, props) => {
     e.preventDefault();
     setClicked(1);
-    axios.post(`/login?cmd=login&email=${email}&psw=${signInpassword}&rempwd=on`)
+    axios.post(`${backendHost}/login?cmd=login&email=${email}&psw=${signInpassword}&rempwd=on`)
     .then(response => {
       if(response.data.registration_id){
         Cookies.set('uName', response.data.first_name)

@@ -13,6 +13,7 @@ import Input from '@material-ui/core/Input';
 import MenuItem from '@material-ui/core/MenuItem';
 import Select from '@material-ui/core/Select';
 import { Alert } from 'bootstrap';
+import { backendHost } from '../../api-config';
 
 const EditProfile = (props) => {
   const [personName, setPersonName] = React.useState([]);
@@ -40,7 +41,7 @@ const EditProfile = (props) => {
     const formSubmit = (e) => {
         e.preventDefault()
         console.log(firstName, lastName, primarySpl, secondarySpl, otherSpl, education, num, hospital, acceptInsurance, gender)
-        axios.post("/doctors/updateprofile", {
+        axios.post(`${backendHost}/doctors/updateprofile`, {
             "docid": item.docid,
             "docname_first" : firstName,
             "docname_last" : lastName,
@@ -69,8 +70,8 @@ const EditProfile = (props) => {
 
     const fetchTables = () => {
         Promise.all([
-            fetch('/article/all/table/specialties').then(res => res.json()),
-            fetch('/article/all/table/hospital').then(res => res.json()),
+            fetch(`${backendHost}/article/all/table/specialties`).then(res => res.json()),
+            fetch(`${backendHost}/article/all/table/hospital`).then(res => res.json()),
             // fetch('/article/all/table/countries').then(res => res.json()),
         ]).then(([diseaseData, hospitalData]) => {
             console.log('Speciality Data: ', diseaseData)

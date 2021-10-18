@@ -8,6 +8,8 @@ import CenterWell from './CenterWell';
 import Sidebar from "./leftMenu";
 import SidebarRight from "./RightMenu";
 import Wall from "../../assets/img/wall.jpg";
+import { backendHost } from '../../api-config';
+
 // import CenterWell from './CenterWell'
 class 
 Disease extends Component {
@@ -25,7 +27,7 @@ Disease extends Component {
   componentDidMount() {
     
     // console.log('Paramsssss '+ JSON.stringify(this.state.param))
-    fetch(`/article/${this.props.match.params.id}`)
+    fetch(`${backendHost}/article/${this.props.match.params.id}`)
     // .then(res => JSON.parse(res))
       .then((res) => res.json())
       .then((json) => {

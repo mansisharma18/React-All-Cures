@@ -20,7 +20,10 @@ import { backendHost } from '../../api-config';
 // import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 // import ToggleButton from '../Header/Header'
 import Test from './test'
+import { env } from 'process';
 
+env.REACT_APP = 'http://117.241.171.115:8080/cures';
+console.log('ukaygduayn87ncwyc8qy: ',env.REACT_APP);
 
 class Home extends Component {
    constructor(props){
@@ -59,7 +62,7 @@ class Home extends Component {
 
  componentDidMount(){
    const loadUsers = async () => {
-      await axios.get('/city/all')
+      await axios.get(`${backendHost}/city/all`)
       .then(res => {
          this.setState ({
             users: res.data
@@ -204,7 +207,7 @@ onChangeHandlerdoctor = (e, text) => {
 
         componentWillMount(){
          Promise.all([
-            fetch(`${backendHost}/article/all/table/disease_condition`)
+            fetch(`${env.REACT_APP}/article/all/table/disease_condition`)
             .then(res => res.json()),
           ]).then(([diseaseData]) => {
             console.log('Speciality Data: ', diseaseData)
@@ -223,7 +226,7 @@ onChangeHandlerdoctor = (e, text) => {
           })
          }
    logout = async e => {
-      const res = await fetch(`${backendHost}/LogoutActionController`, {
+      const res = await fetch(`${env.REACT_APP}/LogoutActionController`, {
          method: "POST"
       });
         const data = await res.text();
@@ -247,6 +250,7 @@ onChangeHandlerdoctor = (e, text) => {
 
    render() {
       console.log(this.state.suggestions)
+      // console.log(process.env)
       return(
          <div>
             <div className="homeHeader">
