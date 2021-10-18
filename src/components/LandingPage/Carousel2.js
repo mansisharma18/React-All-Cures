@@ -5,6 +5,7 @@ import "owl.carousel/dist/assets/owl.theme.default.css";
 import { Link } from 'react-router-dom';
 import "@fortawesome/free-solid-svg-icons";
 import "@fortawesome/fontawesome-svg-core"
+import { backendHost } from '../../api-config';
 
 const options = {
    margin: 30,
@@ -50,7 +51,7 @@ export default class Carousel2 extends Component {
     }
 
    componentDidMount(){
-      fetch(`/SearchActionController?cmd=getResults&city=jammu&doctors=&Latitude=&Longitude=`)
+      fetch(`${backendHost}/SearchActionController?cmd=getResults&city=jammu&doctors=&Latitude=&Longitude=`)
         .then(res => res.json())
         .then(json => {
           this.setState({

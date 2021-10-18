@@ -11,8 +11,7 @@ import Wall from "../../assets/img/wall.jpg";
 import { backendHost } from '../../api-config';
 
 // import CenterWell from './CenterWell'
-class 
-Disease extends Component {
+class Disease extends Component {
   constructor(props) {
     super(props);
     // const params = props.match.params
