@@ -2670,3 +2670,9 @@ div.MuiSelect-root.MuiSelect-select.MuiSelect-selectMenu.MuiInputBase-input.MuiI
   /* borderBottom: "1px solid #4b798d";
   borderTop: "1px solid #4b798d" */
 }
+
+.detail-l .btn-group button {
+  border-radius: 15px;
+  padding: 5px 32px;
+  margin-right: 10px;
+}

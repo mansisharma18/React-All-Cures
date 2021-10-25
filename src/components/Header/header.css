@@ -95,7 +95,7 @@
   padding: 9px 26px;
   border-radius: 100px;
   position: absolute;
-  top: 0;
+  top: 5px;
   right: 0;
 }
 
@@ -126,6 +126,9 @@
   border-radius: 0 100px 100px 0;
 }
 
+.city .form-control {
+  border-radius: 0 100px 100px 0;
+}
 .serchlabel {
   position: absolute;
   bottom: 119px;
@@ -279,7 +282,7 @@
 .autocomplete #search {
   position: absolute;
   z-index: 0;
-  right: 6.4rem;
+  right: 0;
   top: 0.5rem;
   border-radius: 2rem;
 }
@@ -343,4 +346,12 @@
 .header-drop.btn:hover {
   background-color: #00415e;
   color: #f4f4f4;
+}
+
+.btn-article-search {
+  background-color: #00415e;
+}
+
+.btn-article-search i {
+  padding: 0.7rem;
 }

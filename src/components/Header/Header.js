@@ -5,10 +5,18 @@ import axios from 'axios';
 import { Dropdown, DropdownButton, Nav } from 'react-bootstrap';
 import Heart from"../../assets/img/heart.png";
 import { Link } from "react-router-dom";
-import Autocomplete from '../Autocomplete'
+// import Autocomplete from '../Autocomplete'
 import Test from '../LandingPage/test'
 import { backendHost } from '../../api-config';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
+import FormControl from '@material-ui/core/FormControl';
+import FormLabel from '@material-ui/core/FormLabel';
+import TextField from '@mui/material/TextField';
+import Autocomplete from '@mui/material/Autocomplete';
 
+import Input from '@material-ui/core/Input';
+import MenuItem from '@material-ui/core/MenuItem';
+import Select from '@material-ui/core/Select';
    class Header extends Component {
        
         constructor(props){
@@ -23,6 +31,7 @@ import { backendHost } from '../../api-config';
                getPincode:null,
                getCityName:null,
                docname : '',
+               article: '',
                 acPerm: Cookies.get('acPerm'),
                 searchParams: {
                   city: '',
@@ -48,10 +57,12 @@ import { backendHost } from '../../api-config';
             this.state.speciality.map((i) => {
               this.state.spec1.push(i[3])
             })
+            console.log('spec1111111111111111111111: ', this.state.spec1)
           })
           .catch(res => {
              console.error(res)
           })
+
           const loadUsers = async () => {
             await axios.get(`${backendHost}/city/all`)
             .then(res => {
@@ -94,10 +105,8 @@ import { backendHost } from '../../api-config';
             })
           }
 
-          onChangeHandler = (e, text) => {
-         
+         onChangeHandler = (e, text) => {
             const testVal = parseInt(e.target.value)   
-         
             let matches = []
             if (text.length > 0) {
               matches = this.state.users.filter(user => {
@@ -115,17 +124,16 @@ import { backendHost } from '../../api-config';
                texts: text,
                suggestions: matches,
                searchParams: { ...this.state.searchParams, [e.target.name]: text }
-         
             });
-          }
+         }
          
-          onSuggestHandlerdoctor = (text) => {
-             
+          onSuggestHandlerdoctor = (text) => {    
             this.state.searchParams.name= text;
             this.setState({
                suggestionsDoc: []
             });
          }
+
          onChangeHandlerdoctor = (e, text) => {
           let matches = []
           if (text.length > 0) {
@@ -155,12 +163,40 @@ import { backendHost } from '../../api-config';
                window.location.reload()
             }, 1000);
          }
-    render() {
+
+   onSearch = (e) => {
+      var {city, name } = this.state.searchParams
+      e.preventDefault()
+      console.log(city, name)
+      if(city && name){
+         window.location.href = `/search/${city}/${name}`
+         console.log('city && name')
+      } else if(city){
+         window.location.href = `/search/${city}`
+         console.log('only city')
+      } else if(name) {
+         window.location.href = `/searchName/${name}`
+         console.log('only name')
+      }
+   }
+   
+   onChangeArticle = (e , newValue) => {
+      this.setState({
+         article: newValue
+      })
+      console.log(this.state.article)
+   }
+
+   articleSearch = (e) => {
+      e.preventDefault()
+      window.location.href = `/blogs/${this.state.article}`
+   }
+   render() {
       const userStyle ={
         display: 'grid',
         gridTemplateColumns: 'repeat(2,1fr)',
         gridGap:'1rem' 
-    }
+      }
         return(
             <div className="profilePage">
                 <div className="comman-pg-header">
@@ -224,26 +260,42 @@ import { backendHost } from '../../api-config';
     </Nav>
     {/* <Form inline>
               <FormControl type="text" variant="outline-success" onChange={this.handleChange} placeholder="Search" className="mr-sm-2" required aria-required="true"/> */}
-              {
+
+              {/* {
                   this.state.spec1?
                     <Autocomplete value={this.state.temp} suggestions={this.state.spec1}/>
                   : null
-                }
-              {/* <Link
-                className="btn btn-outline-success" 
-                id="search"
-                to={`/blogs/${this.state.disease}`}>
-                  Search
-              </Link> */}
-              {/* <Link className variant="outline-success">Search</Link className> */}
-            {/* </Form> */}
-        
-                        <div className="loginSign">
-                        {/* <Link to="/profile">Go to Profile</Link> */}
-                {/* <Link to={{pathname: this.props.match.url, search: '?login=true'}}>Login</Link> */}
-                            {/* <Container className="btn-white loginSignbtn color-blue-dark" triggerText={this.state.triggerText} onSubmit={this.onModalSubmit} /> */}
-                            {/* <ToggleButton acPerm={this.state.acPerm} match={this.props.match.url} />  */}
+                } */}
+            <form onSubmit={(e) => this.articleSearch(e)}>
+               <div className="float-left">    
+               <Autocomplete className="bg-white color-black"
+               freeSolo
+                  
+                  value={this.state.article}
+                  onChange={(event, newValue) => {
+                     this.setState({
+                        article: newValue
+                     })
+                     console.log(this.state.article)
 
+                  }}
+                  inputValue={this.state.article ? this.state.article : ''}
+                  onInputChange={(event, newInputValue) => {
+                     this.setState({
+                        article: newInputValue
+                     })
+                     console.log(this.state.article)
+                   }}
+                  id="combo-box-demo"
+                  options={this.state.spec1}
+                  sx={{ width: 300 }}
+                  
+                  renderInput={(params) => <TextField {...params} label="Search Articles" />}
+               />
+            </div>
+            <button className="btn btn-article-search color-white" type="float-right submit"><i class="fas fa-search"></i></button>
+            </form>
+                        <div className="loginSign">
                             <ToggleButton userName={Cookies.get('uName')} setModalShow={this.setModalShow} acPerm={this.state.acPerm} logout={this.logout}/> 
                         </div>   	
                         </div>
@@ -254,8 +306,8 @@ import { backendHost } from '../../api-config';
          <div className="container">
             <div className="row">
                <div className="search-wrap-inner clearfix">
-                        <form class="mainSearch" >
-                     	  <div className="col-md-4 pd-0 col-sx-12 col-sm-4">
+                        <form onSubmit={e => this.onSearch(e)} class="mainSearch" >
+                     	  <div className="col-md-6 pd-0 col-sx-12 col-sm-4">
                    			<div className="form-group search">
                                <input type="text" placeholder="Doctor Name, Disease or Condition" name="name" id="doctors" 
                                  autoComplete="off"
@@ -271,7 +323,7 @@ import { backendHost } from '../../api-config';
                                     </div>
                                  </div>
                               </div>
-                              <div className="col-md-4 pd-0 col-sx-12 col-sm-4">
+                              <div className="col-md-6 pd-0 col-sx-12 col-sm-4">
                                  <div className="form-group city zipcode">
                                  <input type= "text" placeholder="City or Zip-code" name="city" id="city"
                                  autoComplete="off" 
@@ -291,6 +343,8 @@ import { backendHost } from '../../api-config';
                                  value={this.state.searchParams.city} 
                                  className="formVal form-control"
                                  />
+                              <button type="submit" className="btn-bg searchBtn" >Search</button>
+
                                  <div className="suggest">
                                  {this.state.suggestions && this.state.suggestions.map((suggestion, i) =>
                                     <div key={i} className="suggestionSearch col-md-12 justify-content-md-center"
@@ -307,13 +361,12 @@ import { backendHost } from '../../api-config';
               			  <input type="hidden" name="Latitude" id="Latitude"  className="form-control"/>
     	 
                        	 <input type="hidden" name="Longitude" id="Longitude"  className="form-control"/>
-                         <div className="col-md-4 pd-0 col-sx-12 col-sm-4">
+                         {/* <div className="col-md-4 pd-0 col-sx-12 col-sm-4">
          					 <div className="form-group date">
-                              <input type="text" name="" placeholder="Date" className="form-control" onFocus={(e) => e.target.type = 'date'}/>
-                              {
+                              <input type="text" name="" placeholder="Date" className="form-control" onFocus={(e) => e.target.type = 'date'}/> */}
+                              {/* {
                                        this.state.searchParams.name
-                                       ? <Link type="
-                                       submit" 
+                                       ? <Link type="submit" 
                                        className="btn-bg searchBtn" 
                                        id="search"
                                        to={ `/search/${this.state.searchParams.name}`}
@@ -327,17 +380,16 @@ import { backendHost } from '../../api-config';
 
                                     }
                                     <Link 
-                                     type="
-                                     submit" 
+                                     type="submit" 
                                      className="btn-bg searchBtn" 
                                      id="search"
                                      to={
                                        this.state.searchParams.name
                                        ?  `/searchName/${this.state.searchParams.name}`
                                        :`/search/${this.state.searchParams.city}/${this.state.searchParams.name}`
-                                    }>Search</Link>
-                           	 </div>
-                       	 </div> 
+                                    }>Search</Link> */}
+                           	 {/* </div>
+                       	 </div>  */}
                        	                                                 
                         </form>
                     
@@ -345,9 +397,9 @@ import { backendHost } from '../../api-config';
                </div>   
             </div>
             <Test
-        show={this.state.modalShow}
-        onHide={() => this.setModalShow(false)}
-      />
+               show={this.state.modalShow}
+               onHide={() => this.setModalShow(false)}
+            />
       </section>
             </div>
         </div>

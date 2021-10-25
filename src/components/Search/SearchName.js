@@ -10,6 +10,8 @@ import '../../assets/healthcare/css/animate.css';
 import '../../assets/healthcare/icomoon/style.css';
 import { Container } from 'react-bootstrap';
 import { backendHost } from '../../api-config';
+import Test from '../LandingPage/test'
+
 
 class SearchName extends Component {
   constructor(props){
@@ -24,10 +26,10 @@ class SearchName extends Component {
       reload: false
     }
   }
-    // USE if statement
-  componentDidMount() {
-    document.title = `All Cures | Search | ${this.state.param.name}`
-      fetch(`${backendHost}/SearchActionController?cmd=getResults&city=&doctors=${this.state.param.name}&Latitude=32.7266&Longitude=74.8570`)
+
+  fetchDoctors(name) {
+    document.title = `All Cures | Search | ${name}`
+      fetch(`${backendHost}/SearchActionController?cmd=getResults&city=&doctors=${name}&Latitude=32.7266&Longitude=74.8570`)
       .then(res => res.json())
       .then(json => {
         this.setState({
@@ -35,9 +37,38 @@ class SearchName extends Component {
           items: json.map.DoctorDetails.myArrayList,
         })            
       });
-    }
- 
+  }
 
+  fetchDiseaseList(){
+    Promise.all([
+      fetch(`${backendHost}/article/all/table/disease_condition`).then(res => res.json())
+      ])
+      .then(diseaseData => {
+        this.setState({
+          speciality: diseaseData
+      });
+      })
+  }
+
+    componentDidMount() {
+      this.fetchDoctors(this.props.match.params.name);
+      this.fetchDiseaseList();  
+      const some = Header.onSug
+    }
+  
+    componentDidUpdate(prevProps){
+      if ( prevProps.match.params.name !== this.props.match.params.name){
+        console.log('prevpropsssssssss: ', prevProps.match.params.name, this.props.match.params.name )
+        this.fetchDoctors(this.props.match.params.name)
+      }
+    }
+  
+    setModalShow =(action) => {
+      this.setState({
+        modalShow: action
+      })
+    }
+  
   render() {
     var { isLoaded,items } = this.state;
       if(!isLoaded) {
@@ -112,8 +143,13 @@ class SearchName extends Component {
                             acPerm = {this.state.acPerm}
                             url = {this.props.url}
                             reload = {this.state.reload}
+                            setModalShow = {this.setModalShow}
                           />
                         ))}
+                        <Test
+                          show={this.state.modalShow}
+                          onHide={() => this.setModalShow(false)}
+                        />
                     </div>
                   </div>
                 </div> 

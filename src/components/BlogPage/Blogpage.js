@@ -36,8 +36,9 @@ export default class Blogpage extends Component{
           });
       }
       
-      diseasePosts(){                     // For specific blogs like "/blogs/diabetes"
-        fetch(`${backendHost}/isearch/${this.state.param.type}`)
+      diseasePosts(type){                     // For specific blogs like "/blogs/diabetes"
+        if(type){
+          fetch(`${backendHost}/isearch/${type}`)
           .then((res) => res.json())
           .then((json) => {
             console.log(json);
@@ -46,6 +47,18 @@ export default class Blogpage extends Component{
               items: json,
             });
           });
+        }
+        else {
+          fetch(`${backendHost}/isearch/${this.props.match.params.type}`)
+          .then((res) => res.json())
+          .then((json) => {
+            console.log(json);
+            this.setState({
+              isLoaded: true,
+              items: json,
+            });
+          });
+        }
       }
 
       regionalPosts(){
@@ -61,7 +74,6 @@ export default class Blogpage extends Component{
       }
 
       componentDidMount() {
-        
         if(this.state.param.type){
           console.log('Disease Post executed')
           this.diseasePosts()
@@ -71,7 +83,13 @@ export default class Blogpage extends Component{
           console.log('All Post executed')
           this.allPosts()
         }
-        
+      }
+
+      componentDidUpdate(prevProps){
+        if ( prevProps.match.params.type !== this.props.match.params.type){
+          console.log('prevpropsssssssss: ', prevProps.match.params.type, this.props.match.params.type )
+          this.diseasePosts(this.props.match.params.type)
+        }
       }
       
     render(){
@@ -101,7 +119,7 @@ export default class Blogpage extends Component{
                 <div className="container my-4">
                   {
                     this.state.param.type?
-                    <h1 className="h2 text-center">Blogs related to "{this.state.param.type}"</h1>
+                    <h1 className="h2 text-center">Blogs related to "{this.props.match.params.type}"</h1>
                     :<h1 className="h2 text-center">All Blogs</h1>
                   }
                     <div className="row" id="posts-container">

@@ -109,7 +109,7 @@ class Autocomplete extends Component {
            
               <input
                 type="text"
-                className="form-control w-75"
+                className="form-control w-100"
                 placeholder="Search for articles"
                 variant = "success"
                 onChange={onChange}

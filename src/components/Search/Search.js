@@ -12,6 +12,8 @@ import {Form ,Container } from 'react-bootstrap';
 import Options from '../Article/Options';
 import axios from 'axios';
 import { backendHost } from '../../api-config';
+import Test from '../LandingPage/test'
+
 
 class Search extends Component {
   constructor(props){
@@ -58,24 +60,12 @@ class Search extends Component {
  
     
   }
-    // USE if statement
-  componentDidMount() {
-    Promise.all([
-    fetch(`${backendHost}/article/all/table/disease_condition`).then(res => res.json())
-    ])
-    .then(diseaseData => {
-      this.setState({
-     
-        speciality: diseaseData
-       
-    });
 
-    })
-    
-  
-    if((this.state.param.city) && (this.state.param.name)) {
-      document.title = `All Cures | ${this.state.param.city} | ${this.state.param.name}`
-      fetch(`${backendHost}/SearchActionController?cmd=getResults&city=${this.state.param.city}&doctors=${this.state.param.name}&Latitude=&Longitude=`)
+  fetchDoctors(city){
+    if((city) && (this.state.param.name)) {
+      console.log('city &&&& name')
+      document.title = `All Cures | ${city} | ${this.state.param.name}`
+      fetch(`${backendHost}/SearchActionController?cmd=getResults&city=${city}&doctors=${this.state.param.name}&Latitude=&Longitude=`)
       .then(res => res.json())
       .then(json => {
         this.setState({
@@ -83,7 +73,9 @@ class Search extends Component {
           items: json.map.DoctorDetails.myArrayList,
         })            
       });
-    } else if((this.state.param.name) && (!this.state.param.city)) {
+    } else if((this.state.param.name) && (!city)) {
+      console.log('not city &&&& name')
+
       document.title = `All Cures | ${this.state.param.name}`
       fetch(`${backendHost}/SearchActionController?cmd=getResults&doctors=${this.state.param.name}&Latitude=32.7266&Longitude=74.8570`)
       .then(res => res.json())
@@ -93,9 +85,11 @@ class Search extends Component {
           items: json.map.DoctorDetails.myArrayList,
         })            
       });
-    } else if((this.state.param.city) && (!this.state.param.name)) {
-      document.title = `All Cures | ${this.state.param.city}`
-      fetch(`${backendHost}/SearchActionController?cmd=getResults&city=${this.state.param.city}&Latitude=32.7266&Longitude=74.8570`)
+    } else if((city) && (!this.state.param.name)) {
+      console.log('city &&&& not name')
+
+      document.title = `All Cures | ${city}`
+      fetch(`${backendHost}/SearchActionController?cmd=getResults&city=${city}&Latitude=32.7266&Longitude=74.8570`)
       .then(res => res.json())
       .then(json => {
         this.setState({
@@ -105,6 +99,35 @@ class Search extends Component {
         })            
       });
     }
+  }
+
+  fetchDiseaseList(){
+    Promise.all([
+      fetch(`${backendHost}/article/all/table/disease_condition`).then(res => res.json())
+      ])
+      .then(diseaseData => {
+        this.setState({
+          speciality: diseaseData
+      });
+      })
+  }
+    // USE if statement
+  componentDidMount() {
+    this.fetchDoctors(this.props.match.params.city);
+    this.fetchDiseaseList();  
+  }
+
+  componentDidUpdate(prevProps){
+    if ( prevProps.match.params.city !== this.props.match.params.city){
+      console.log('prevpropsssssssss: ', prevProps.match.params.city, this.props.match.params.city )
+      this.fetchDoctors(this.props.match.params.city)
+    }
+  }
+
+  setModalShow =(action) => {
+    this.setState({
+      modalShow: action
+    })
   }
 
   render() {
@@ -182,8 +205,13 @@ class Search extends Component {
                             acPerm = {this.state.acPerm}
                             url = {this.props.url}
                             reload = {this.state.reload}
+                            setModalShow = {this.setModalShow}
                           />
                         ))}
+                        <Test
+                          show={this.state.modalShow}
+                          onHide={() => this.setModalShow(false)}
+                        />
                     </div>
                   </div>
                 </div> 

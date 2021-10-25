@@ -207,7 +207,7 @@ onChangeHandlerdoctor = (e, text) => {
 
         componentWillMount(){
          Promise.all([
-            fetch(`${env.REACT_APP}/article/all/table/disease_condition`)
+            fetch(`${backendHost}/article/all/table/disease_condition`)
             .then(res => res.json()),
           ]).then(([diseaseData]) => {
             console.log('Speciality Data: ', diseaseData)
@@ -226,7 +226,7 @@ onChangeHandlerdoctor = (e, text) => {
           })
          }
    logout = async e => {
-      const res = await fetch(`${env.REACT_APP}/LogoutActionController`, {
+      const res = await fetch(`${backendHost}/LogoutActionController`, {
          method: "POST"
       });
         const data = await res.text();
@@ -247,6 +247,22 @@ onChangeHandlerdoctor = (e, text) => {
          mobile: e.target.value
        })
     }
+
+   onSearch = (e) => {
+      var {city, name } = this.state.searchParams
+      e.preventDefault()
+      console.log(city, name)
+      if(city && name){
+         window.location.href = `/search/${city}/${name}`
+         console.log('city && name')
+      } else if(city){
+         window.location.href = `/search/${city}`
+         console.log('only city')
+      } else if(name) {
+         window.location.href = `/searchName/${name}`
+         console.log('only name')
+      }
+   }
 
    render() {
       console.log(this.state.suggestions)
@@ -307,17 +323,15 @@ onChangeHandlerdoctor = (e, text) => {
                   <div className="container">
                   
                      <div className="row">
-                        
-                        <div className="search-wrap-inner clearfix">
-                           <form className="mainSearch">
-                              
-                           <Test
+                     <Test
         show={this.state.modalShow}
         onHide={() => this.setModalShow(false)}
       />
-                              <div className="col-md-4 pd-0 col-sx-12 col-sm-4">
-                                 <div className="form-group search">
-                                 <input type="text" placeholder="Doctor Name, Disease or Condition" name="name" id="doctors" 
+                        <div className="search-wrap-inner clearfix">
+                        <form onSubmit={e => this.onSearch(e)} class="mainSearch" >
+                     	  <div className="col-md-6 pd-0 col-sx-12 col-sm-4">
+                   			<div className="form-group search">
+                               <input type="text" placeholder="Doctor Name, Disease or Condition" name="name" id="doctors" 
                                  autoComplete="off"
                                  onChange={e => this.onChangeHandlerdoctor(e, e.target.value)} 
                                  value={this.state.searchParams.name} 
@@ -331,7 +345,7 @@ onChangeHandlerdoctor = (e, text) => {
                                     </div>
                                  </div>
                               </div>
-                              <div className="col-md-4 pd-0 col-sx-12 col-sm-4">
+                              <div className="col-md-6 pd-0 col-sx-12 col-sm-4">
                                  <div className="form-group city zipcode">
                                  <input type= "text" placeholder="City or Zip-code" name="city" id="city"
                                  autoComplete="off" 
@@ -351,9 +365,11 @@ onChangeHandlerdoctor = (e, text) => {
                                  value={this.state.searchParams.city} 
                                  className="formVal form-control"
                                  />
+                              <button type="submit" className="btn-bg searchBtn" >Search</button>
+
                                  <div className="suggest">
-                                 { this.state.suggestions.map((suggestion, i) =>
-                                    <div key={i} className="col-md-12 justify-content-md-center suggestionSearch"
+                                 {this.state.suggestions && this.state.suggestions.map((suggestion, i) =>
+                                    <div key={i} className="suggestionSearch col-md-12 justify-content-md-center"
                                        onClick={() => this.onSuggestHandler(suggestion.Cityname,suggestion.Pincode)}
                                     >
                                        {Number.isInteger(this.state.getPincode) ? suggestion.Pincode :  suggestion.Cityname}
@@ -361,18 +377,18 @@ onChangeHandlerdoctor = (e, text) => {
                                     </div>
                                  )}
                                  </div>
-                                 </div>
-                              </div>
-                                 <input type="hidden" name="Latitude" id="Latitude"  className="form-control"/>
-               
-                                    <input type="hidden" name="Longitude" id="Longitude"  className="form-control"/>
-                              <div className="col-md-4 pd-0 col-sx-12 col-sm-4">
-                                 <div className="form-group date">
-                                    <input type="text" name="" placeholder="Date" className="form-control" onFocus={(e) => e.target.type = 'date'}/>
-                                    {
+                	    	</div>
+                		 </div>
+         					 
+              			  <input type="hidden" name="Latitude" id="Latitude"  className="form-control"/>
+    	 
+                       	 <input type="hidden" name="Longitude" id="Longitude"  className="form-control"/>
+                         {/* <div className="col-md-4 pd-0 col-sx-12 col-sm-4">
+         					 <div className="form-group date">
+                              <input type="text" name="" placeholder="Date" className="form-control" onFocus={(e) => e.target.type = 'date'}/> */}
+                              {/* {
                                        this.state.searchParams.name
-                                       ? <Link type="
-                                       submit" 
+                                       ? <Link type="submit" 
                                        className="btn-bg searchBtn" 
                                        id="search"
                                        to={ `/search/${this.state.searchParams.name}`}
@@ -386,22 +402,18 @@ onChangeHandlerdoctor = (e, text) => {
 
                                     }
                                     <Link 
-                                     type="
-                                     submit" 
+                                     type="submit" 
                                      className="btn-bg searchBtn" 
                                      id="search"
                                      to={
                                        this.state.searchParams.name
                                        ?  `/searchName/${this.state.searchParams.name}`
                                        :`/search/${this.state.searchParams.city}/${this.state.searchParams.name}`
-                                    }>Search</Link>
-                                    
-                                    {/* //  { `/search/${this.state.searchParams.city}/${this.state.searchParams.name}`}
-                                    //  >Search</Link>   */}
-                                 </div>
-                              </div>         
-                            
-                           </form>
+                                    }>Search</Link> */}
+                           	 {/* </div>
+                       	 </div>  */}
+                       	                                                 
+                        </form>
                         </div>
                      </div>   
                   </div>
