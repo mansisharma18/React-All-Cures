@@ -179,7 +179,7 @@ import Select from '@material-ui/core/Select';
          }
 
    onSearch = (e) => {
-      var {city, name } = this.state.searchParams
+      var {city, name } = this.state
       e.preventDefault()
       console.log(city, name)
       if(city && name){
