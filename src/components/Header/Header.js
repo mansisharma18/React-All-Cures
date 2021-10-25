@@ -24,8 +24,13 @@ import Select from '@material-ui/core/Select';
             this.state = {
                users: '',
                texts: '',
+               city: '',
+               cityList: [],
+               pinList: [],
+               name: '',
                suggestions: [],
                suggestionsDoc: [],
+               doctorLoaded: false,
                doctor : '',
                spec1: [],
                getPincode:null,
@@ -69,6 +74,14 @@ import Select from '@material-ui/core/Select';
                this.setState ({
                   users: res.data
                })
+               this.state.users.map((u) => {
+                  this.state.cityList.push(u.Cityname)
+               })
+               this.state.users.map((u) => {
+                  this.state.pinList.push(u.Pincode)
+               })
+               console.log('CIty & pincode: ', this.state.users)
+               console.log('CIty list: ', this.state.cityList)
             })
             .catch(res => console.log(res))
           }
@@ -78,7 +91,8 @@ import Select from '@material-ui/core/Select';
             await axios.get(`${backendHost}/IntegratedActionController`)
             .then(res => {
                this.setState ({
-                  doctor: res.data
+                  doctor: res.data,
+                  doctorLoaded: true
                })
             })
             .catch(res =>  console.log(res))
@@ -189,7 +203,11 @@ import Select from '@material-ui/core/Select';
 
    articleSearch = (e) => {
       e.preventDefault()
-      window.location.href = `/blogs/${this.state.article}`
+      if(this.state.article){
+         window.location.href = `/blogs/${this.state.article}`
+      } else {
+         window.location.href = `/blogs`
+      }
    }
    render() {
       const userStyle ={
@@ -306,90 +324,87 @@ import Select from '@material-ui/core/Select';
          <div className="container">
             <div className="row">
                <div className="search-wrap-inner clearfix">
-                        <form onSubmit={e => this.onSearch(e)} class="mainSearch" >
-                     	  <div className="col-md-6 pd-0 col-sx-12 col-sm-4">
-                   			<div className="form-group search">
-                               <input type="text" placeholder="Doctor Name, Disease or Condition" name="name" id="doctors" 
-                                 autoComplete="off"
-                                 onChange={e => this.onChangeHandlerdoctor(e, e.target.value)} 
-                                 value={this.state.searchParams.name} 
-                                 className="formVal form-control "/>
-                                    <div className="suggest">
-                                       {this.state.suggestionsDoc.map((item,index)=>{
-                                          return  <div key={index} className="col-md-12 justify-content-md-center  suggestionSearch"
-                                          onClick={() => this.onSuggestHandlerdoctor(item)}
-                                       >{item}</div>
-                                       })}
-                                    </div>
+               <form onSubmit={(e) => this.onSearch(e)} class="mainSearch" >
+                     	  {/* <div className="col-md-6 pd-0 col-sx-12 col-sm-4">
+                   			<div className="form-group search"> */}
+                            <div className="d-flex justify-content-around col-md-12 p-0">
+                            
+                            <div className="col-md-6 p-0">
+                            <Autocomplete className="bg-white color-black"
+                              freeSolo
+                              value={this.state.name}
+                              onChange={(event, newValue) => {
+                                 this.setState({
+                                    name: newValue
+                                 })
+                                 console.log(this.state.name)
+                              }}
+                              inputValue={this.state.name ? this.state.name : ''}
+                              onInputChange={(event, newInputValue) => {
+                                 this.setState({
+                                    name: newInputValue
+                                 })
+                                 console.log(this.state.name)
+                              }}
+                              id="combo-box-demo"
+                              options={
+                                 this.state.doctorLoaded? 
+                                 this.state.doctor.map.Doctorname.myArrayList
+                                 : [
+                                    "Dr Sangeeta  Gupta",
+                                    "Dr Nusrat  Jabeen",
+                                    "Dr Rachna  Magotra",
+                                    "Dr Shahnaz  Choudhary",
+                                    "Dr Ashwani Kumar Sharma",
+                                    "Dr Parveen  Akhtar",
+                                    "Dr Sonia  Jandial"
+                                  ]
+                                 }
+                              // sx={{ width: 600 }}
+                                 
+                              renderInput={(params) => <TextField {...params} label="Search Doctors (Name)" />}
+                           />
+                            </div>
+                            
+                                 {/* </div>
+                              </div> */}
+                              {/* <div className="col-md-5 pd-0 col-sx-12 col-sm-4">
+                                 <div className="form-group city zipcode"> */}
+                                 <div className="col-md-5 p-0">
+                                 <Autocomplete className="bg-white p-0 color-black"
+                              freeSolo
+                              value={this.state.city}
+                              onChange={(event, newValue) => {
+                                 this.setState({
+                                    city: newValue
+                                 })
+                                 console.log(this.state.city)
+                              }}
+                              inputValue={this.state.city ? this.state.city : ''}
+                              onInputChange={(event, newInputValue) => {
+                                 this.setState({
+                                    city: newInputValue
+                                 })
+                                 console.log(this.state.city)
+                              }}
+                              id="combo-box-demo"
+                              options={this.state.cityList || this.state.pinList}
+                              // sx={{ width: 490 }}
+                                 
+                              renderInput={(params) => <TextField {...params} label="Search Doctors (City or Pincode)" />}
+                           />
                                  </div>
+                                 
+                           <button type="submit" className="col-md-1 btn btn-article-search color-white float-right" >
+                                 <i class="fas fa-search"></i>
+                              </button>
                               </div>
-                              <div className="col-md-6 pd-0 col-sx-12 col-sm-4">
-                                 <div className="form-group city zipcode">
-                                 <input type= "text" placeholder="City or Zip-code" name="city" id="city"
-                                 autoComplete="off" 
-                                 onChange={e => {
-                                    this.onChangeHandler(e, e.target.value)
-                                    if(e.target.value){
-                                       this.setState({
-                                          getPincode: parseInt(e.target.value)
-                                       })
-                                    }else {
-                                       this.setState({
-                                          getCityName: String(e.target.value)
-                                       })
-                                    }
-                                    
-                                 }} 
-                                 value={this.state.searchParams.city} 
-                                 className="formVal form-control"
-                                 />
-                              <button type="submit" className="btn-bg searchBtn" >Search</button>
-
-                                 <div className="suggest">
-                                 {this.state.suggestions && this.state.suggestions.map((suggestion, i) =>
-                                    <div key={i} className="suggestionSearch col-md-12 justify-content-md-center"
-                                       onClick={() => this.onSuggestHandler(suggestion.Cityname,suggestion.Pincode)}
-                                    >
-                                       {Number.isInteger(this.state.getPincode) ? suggestion.Pincode :  suggestion.Cityname}
-
-                                    </div>
-                                 )}
-                                 </div>
-                	    	</div>
-                		 </div>
-         					 
+                	    	{/* </div>
+                		 </div> */}
+                              
               			  <input type="hidden" name="Latitude" id="Latitude"  className="form-control"/>
     	 
                        	 <input type="hidden" name="Longitude" id="Longitude"  className="form-control"/>
-                         {/* <div className="col-md-4 pd-0 col-sx-12 col-sm-4">
-         					 <div className="form-group date">
-                              <input type="text" name="" placeholder="Date" className="form-control" onFocus={(e) => e.target.type = 'date'}/> */}
-                              {/* {
-                                       this.state.searchParams.name
-                                       ? <Link type="submit" 
-                                       className="btn-bg searchBtn" 
-                                       id="search"
-                                       to={ `/search/${this.state.searchParams.name}`}
-                                       >Search</Link>
-                                       : <Link type="
-                                       submit" 
-                                       className="btn-bg searchBtn" 
-                                       id="search"
-                                       to={ `/search/${this.state.searchParams.city}/${this.state.searchParams.name}`}
-                                       >Search</Link> 
-
-                                    }
-                                    <Link 
-                                     type="submit" 
-                                     className="btn-bg searchBtn" 
-                                     id="search"
-                                     to={
-                                       this.state.searchParams.name
-                                       ?  `/searchName/${this.state.searchParams.name}`
-                                       :`/search/${this.state.searchParams.city}/${this.state.searchParams.name}`
-                                    }>Search</Link> */}
-                           	 {/* </div>
-                       	 </div>  */}
                        	                                                 
                         </form>
                     
