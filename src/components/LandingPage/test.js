@@ -358,14 +358,14 @@ const Test = (props) => {
         <h1>Sign in</h1>
         <span>or use your account</span>
         
-        <GoogleLogin
+        {/* <GoogleLogin
         clientId="529398297055-37e0rfns77ig0nih2moffq1pdp533329.apps.googleusercontent.com"
         buttonText="Login"
         onSuccess={responseGoogle}
         onFailure={responseGoogle}
         cookiePolicy={'single_host_origin'}
         className="text-dark"
-      />
+      /> */}
         {/* {
           buttonClick === 1?
             AfterLogin()

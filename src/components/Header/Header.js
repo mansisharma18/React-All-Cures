@@ -75,11 +75,11 @@ import Select from '@material-ui/core/Select';
                   users: res.data
                })
                this.state.users.map((u) => {
-                  this.state.cityList.push(u.Cityname)
+                  this.state.cityList.push(u.Cityname, u.Pincode)
                })
-               this.state.users.map((u) => {
-                  this.state.pinList.push(u.Pincode)
-               })
+               // this.state.users.map((u) => {
+               //    this.state.pinList.push(u.Pincode)
+               // })
                console.log('CIty & pincode: ', this.state.users)
                console.log('CIty list: ', this.state.cityList)
             })
@@ -284,8 +284,9 @@ import Select from '@material-ui/core/Select';
                     <Autocomplete value={this.state.temp} suggestions={this.state.spec1}/>
                   : null
                 } */}
-            <form onSubmit={(e) => this.articleSearch(e)}>
-               <div className="float-left">    
+            <form onSubmit={(e) => this.articleSearch(e)} className="article-search">
+                              <div className="col-md-12 row">
+               <div className="col-md-10 p-0">    
                <Autocomplete className="bg-white color-black"
                freeSolo
                   
@@ -311,7 +312,12 @@ import Select from '@material-ui/core/Select';
                   renderInput={(params) => <TextField {...params} label="Search Articles" />}
                />
             </div>
-            <button className="btn btn-article-search color-white" type="float-right submit"><i class="fas fa-search"></i></button>
+            <div className="col-md-2 p-0 mainBtn">
+            <button className="btn btn-article-search color-white" type="submit">
+               <i class="fas fa-search"></i>
+            </button>
+            </div>
+            </div>
             </form>
                         <div className="loginSign">
                             <ToggleButton userName={Cookies.get('uName')} setModalShow={this.setModalShow} acPerm={this.state.acPerm} logout={this.logout}/> 
@@ -324,12 +330,12 @@ import Select from '@material-ui/core/Select';
          <div className="container">
             <div className="row">
                <div className="search-wrap-inner clearfix">
-               <form onSubmit={(e) => this.onSearch(e)} class="mainSearch" >
+               <form onSubmit={(e) => this.onSearch(e)} className="mainSearch" >
                      	  {/* <div className="col-md-6 pd-0 col-sx-12 col-sm-4">
                    			<div className="form-group search"> */}
-                            <div className="d-flex justify-content-around col-md-12 p-0">
-                            
-                            <div className="col-md-6 p-0">
+                            <div className="col-md-12 p-0">
+                            <div className="row">
+                            <div className="doc-name col-md-6 col-sm-12">
                             <Autocomplete className="bg-white color-black"
                               freeSolo
                               value={this.state.name}
@@ -350,15 +356,7 @@ import Select from '@material-ui/core/Select';
                               options={
                                  this.state.doctorLoaded? 
                                  this.state.doctor.map.Doctorname.myArrayList
-                                 : [
-                                    "Dr Sangeeta  Gupta",
-                                    "Dr Nusrat  Jabeen",
-                                    "Dr Rachna  Magotra",
-                                    "Dr Shahnaz  Choudhary",
-                                    "Dr Ashwani Kumar Sharma",
-                                    "Dr Parveen  Akhtar",
-                                    "Dr Sonia  Jandial"
-                                  ]
+                                 : []
                                  }
                               // sx={{ width: 600 }}
                                  
@@ -370,7 +368,7 @@ import Select from '@material-ui/core/Select';
                               </div> */}
                               {/* <div className="col-md-5 pd-0 col-sx-12 col-sm-4">
                                  <div className="form-group city zipcode"> */}
-                                 <div className="col-md-5 p-0">
+                                 <div className="city-name col-md-5">
                                  <Autocomplete className="bg-white p-0 color-black"
                               freeSolo
                               value={this.state.city}
@@ -388,16 +386,19 @@ import Select from '@material-ui/core/Select';
                                  console.log(this.state.city)
                               }}
                               id="combo-box-demo"
-                              options={this.state.cityList || this.state.pinList}
+                              options={this.state.cityList }
                               // sx={{ width: 490 }}
                                  
                               renderInput={(params) => <TextField {...params} label="Search Doctors (City or Pincode)" />}
                            />
                                  </div>
                                  
-                           <button type="submit" className="col-md-1 btn btn-article-search color-white float-right" >
+                                 <div className="mainBtn col-md-1">
+                           <button type="submit" className=" btn btn-article-search color-white float-right" >
                                  <i class="fas fa-search"></i>
                               </button>
+                              </div>
+                              </div>
                               </div>
                 	    	{/* </div>
                 		 </div> */}

@@ -77,12 +77,12 @@ class Home extends Component {
             users: res.data
          })
          this.state.users.map((u) => {
-            this.state.cityList.push(u.Cityname)
+            this.state.cityList.push(u.Cityname, u.Pincode)
          })
-         this.state.users.map((u) => {
-            this.state.pinList.push(u.Pincode)
-         })
-         console.log('CIty & pincode: ', this.state.users)
+         // this.state.users.map((u) => {
+         //    this.state.pinList.push(u.Pincode)
+         // })
+         // console.log('CIty & pincode: ', this.state.pinList)
          console.log('CIty list: ', this.state.cityList)
       })
       .catch(res => console.log(res))
@@ -144,81 +144,7 @@ class Home extends Component {
 
    
  }
-//    postSubscribtion(){
-//    axios.post(`/users/subscribe/7889761896`,{
 
-   // "nl_subscription_disease_id": 1,
-   // "nl_sub_type":1,
-   // "nl_subscription_cures_id":0,
-
-// })
-// .then(res => {
-//    console.log(res)
-  
-//  })
-//  .catch(err => console.log(err))
-//   }
-
-  onSuggestHandler = (text, ano) => {
-    if(Number.isInteger(this.state.getPincode)) {
-      this.state.searchParams.city = ano;
-    }else{
-      this.state.searchParams.city = text;
-    }
-    
-   //  this.state.Pincode.city = text;
-     this.setState({
-        suggestions: []
-     });
- }
-
- onChangeHandler = (e, text) => {
-
-   const testVal = parseInt(e.target.value)   
-
-   let matches = []
-   if (text.length > 0) {
-     matches = this.state.users.filter(user => {
-       const regex = new RegExp(`${text}`, "gi");
-       return user.Cityname.match(regex)
-     })
-   }
-   if (Number.isInteger(testVal)) {
-      matches = this.state.users.filter(user => {
-      //   const regex = new RegExp(`${testVal}`, "gi");
-        return user.Pincode.match(testVal)
-      })
-    }
-   this.setState({
-      texts: text,
-      suggestions: matches,
-      searchParams: { ...this.state.searchParams, [e.target.name]: text }
-
-   });
- }
-
- onSuggestHandlerdoctor = (text) => {
-    
-   this.state.searchParams.name= text;
-   this.setState({
-      suggestionsDoc: []
-   });
-}
-onChangeHandlerdoctor = (e, text) => {
- let matches = []
- if (text.length > 0) {
-   matches = this.state.doctor.map.Doctorname.myArrayList.filter(user => {
-     const regex = new RegExp(`${text}`, "gi");
-     return user.match(regex)
-   })
- }
- this.setState({
-    texts: text,
-    suggestionsDoc: matches,
-    searchParams: { ...this.state.searchParams, [e.target.name]: text }
-
- });
-}
   handleChange = e => 
         this.setState({
             searchParams: { ...this.state.searchParams, [e.target.name]: e.target.value }
@@ -268,7 +194,7 @@ onChangeHandlerdoctor = (e, text) => {
     }
 
    onSearch = (e) => {
-      var {city, name } = this.state
+      var { city, name } = this.state
       e.preventDefault()
       console.log(city, name)
       if(city && name){
@@ -335,8 +261,9 @@ onChangeHandlerdoctor = (e, text) => {
                               <Autocomplete value={this.state.temp} suggestions={this.state.spec1}/>
                               : null
                            }     */}
-                           <form onSubmit={(e) => this.articleSearch(e)}>
-               <div className="float-left">    
+                           <form onSubmit={(e) => this.articleSearch(e)} className="article-search">
+                              <div className="col-md-12 row">
+               <div className="col-md-10 p-0">    
                <Autocomplete className="bg-white color-black"
                freeSolo
                   
@@ -362,9 +289,12 @@ onChangeHandlerdoctor = (e, text) => {
                   renderInput={(params) => <TextField {...params} label="Search Articles" />}
                />
             </div>
-            <button className="btn btn-article-search color-white" type="float-right submit">
+            <div className="col-md-2 p-0 mainBtn">
+            <button className="btn btn-article-search color-white" type="submit">
                <i class="fas fa-search"></i>
             </button>
+            </div>
+            </div>
             </form>
                         </div>
                      </div>   
@@ -387,12 +317,12 @@ onChangeHandlerdoctor = (e, text) => {
         onHide={() => this.setModalShow(false)}
       />
                         <div className="search-wrap-inner clearfix">
-                        <form onSubmit={(e) => this.onSearch(e)} class="mainSearch" >
+                        <form onSubmit={(e) => this.onSearch(e)} className="mainSearch" >
                      	  {/* <div className="col-md-6 pd-0 col-sx-12 col-sm-4">
                    			<div className="form-group search"> */}
-                            <div className="d-flex justify-content-around col-md-12 p-0">
-                            
-                            <div className="col-md-6 p-0">
+                            <div className="col-md-12 p-0">
+                            <div className="row">
+                            <div className="doc-name col-md-6 col-sm-12">
                             <Autocomplete className="bg-white color-black"
                               freeSolo
                               value={this.state.name}
@@ -413,15 +343,7 @@ onChangeHandlerdoctor = (e, text) => {
                               options={
                                  this.state.doctorLoaded? 
                                  this.state.doctor.map.Doctorname.myArrayList
-                                 : [
-                                    "Dr Sangeeta  Gupta",
-                                    "Dr Nusrat  Jabeen",
-                                    "Dr Rachna  Magotra",
-                                    "Dr Shahnaz  Choudhary",
-                                    "Dr Ashwani Kumar Sharma",
-                                    "Dr Parveen  Akhtar",
-                                    "Dr Sonia  Jandial"
-                                  ]
+                                 : []
                                  }
                               // sx={{ width: 600 }}
                                  
@@ -433,7 +355,7 @@ onChangeHandlerdoctor = (e, text) => {
                               </div> */}
                               {/* <div className="col-md-5 pd-0 col-sx-12 col-sm-4">
                                  <div className="form-group city zipcode"> */}
-                                 <div className="col-md-5 p-0">
+                                 <div className="city-name col-md-5">
                                  <Autocomplete className="bg-white p-0 color-black"
                               freeSolo
                               value={this.state.city}
@@ -451,16 +373,19 @@ onChangeHandlerdoctor = (e, text) => {
                                  console.log(this.state.city)
                               }}
                               id="combo-box-demo"
-                              options={this.state.cityList || this.state.pinList}
+                              options={this.state.cityList }
                               // sx={{ width: 490 }}
                                  
                               renderInput={(params) => <TextField {...params} label="Search Doctors (City or Pincode)" />}
                            />
                                  </div>
                                  
-                           <button type="submit" className="col-md-1 btn btn-article-search color-white float-right" >
+                                 <div className="mainBtn col-md-1">
+                           <button type="submit" className=" btn btn-article-search color-white float-right" >
                                  <i class="fas fa-search"></i>
                               </button>
+                              </div>
+                              </div>
                               </div>
                 	    	{/* </div>
                 		 </div> */}
