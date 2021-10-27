@@ -71,7 +71,7 @@ class Disease extends Component {
         <div className="ad-spac"><img src={Wall} height="200px" width="1900px"/></div>
         <Row>
           <Col md={2} id="sidebar-wrapper">      
-            <Sidebar diseaseId={items.disease_condition_id} name={items.dc_name} />
+            <Sidebar diseaseId={items.disease_condition_id} id={this.props.match.params.id}  name={items.dc_name} />
           </Col>
           <Col  md={7} id="page-content-wrapper" className="col-xs-12 pb-5">
             <div id="center-well" className="">

@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import AllPost from "../BlogPage/Allpost";
 import './style.css'
 import { backendHost } from '../../api-config';
+import ArticleComment from '../ArticleComment';
 
 const Side = props => {
     // const [isloaded, setisLoaded] = useState(true)
@@ -20,7 +21,7 @@ const Side = props => {
           });
       }
       function  comments() {                        // For all available blogs "/blogs"
-        fetch(`${backendHost}/rating/target/1/targettype/1`)
+        fetch(`${backendHost}/rating/target/${props.id}/targettype/2`)
           .then((res) => res.json())
           .then((json) => {
             console.log(json);
@@ -76,6 +77,7 @@ const Side = props => {
                 </div>
                 {/* </ul> */}
             </Nav.Item>
+            <ArticleComment refreshComments={comments} article_id={props.match.params.id}/>
             <h1>Comments </h1>
             {   
                     commentItems?
