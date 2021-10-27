@@ -5,7 +5,6 @@ import Cookies from 'js-cookie';
 import Heart from"../../assets/img/heart.png";
 import Doct from "../../assets/img/doct.png";
 import axios from 'axios';
-import ListItem from '@material-ui/core/ListItem';
 import '../../assets/healthcare/css/main.css';
 import '../../assets/healthcare/css/responsive.css';
 import '../../assets/healthcare/css/animate.css';
@@ -14,17 +13,13 @@ import './custom.css';
 import Carousel1 from './Caousel1';
 import Carousel2 from './Carousel2';
 import CarouselReview from './CarouselReview';
-import { Dropdown, Button, DropdownButton, Nav, Modal, Alert} from 'react-bootstrap';
-// import Autocomplete from '../Autocomplete'
-import { backendHost } from '../../api-config';
+import { Dropdown, Alert } from 'react-bootstrap';
 
+import { backendHost } from '../../api-config';
 import TextField from '@mui/material/TextField';
 import Autocomplete from '@mui/material/Autocomplete';
-// import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-// import ToggleButton from '../Header/Header'
 import Test from './test'
 import { env } from 'process';
-import { ThreeSixtyOutlined } from '@material-ui/icons';
 
 env.REACT_APP = 'http://117.241.171.115:8080/cures';
 console.log('ukaygduayn87ncwyc8qy: ',env.REACT_APP);
@@ -32,7 +27,7 @@ console.log('ukaygduayn87ncwyc8qy: ',env.REACT_APP);
 class Home extends Component {
    constructor(props){
       super(props);
-      console.log(props)
+      console.log('poiuytrewqasdfghjkl', props.history)
       const params = props.match.params
       this.state = {
          users: [],
@@ -194,17 +189,23 @@ class Home extends Component {
     }
 
    onSearch = (e) => {
+      // const history = useHistory();
       var { city, name } = this.state
       e.preventDefault()
       console.log(city, name)
       if(city && name){
-         window.location.href = `/search/${city}/${name}`
+         this.props.history.push(`/search/${city}/${name}`)
+         // window.location.href = `/search/${city}/${name}`
          console.log('city && name')
       } else if(city){
-         window.location.href = `/search/${city}`
+         this.props.history.push(`/search/${city}`)
+
+         // window.location.href = `/search/${city}`
          console.log('only city')
       } else if(name) {
-         window.location.href = `/searchName/${name}`
+         this.props.history.push(`/searchName/${name}`)
+
+         // window.location.href = `/searchName/${name}`
          console.log('only name')
       }
    }
@@ -212,9 +213,9 @@ class Home extends Component {
    articleSearch = (e) => {
       e.preventDefault()
       if(this.state.article){
-         window.location.href = `/blogs/${this.state.article}`
+         this.props.history.push(`/blogs/${this.state.article}`)
       } else {
-         window.location.href = `/blogs`
+         this.props.history.push(`/blogs`)
       }
    }
    

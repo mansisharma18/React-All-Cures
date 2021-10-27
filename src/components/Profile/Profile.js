@@ -137,7 +137,7 @@ class Profile extends Component {
 
       return(
         <>
-          <Header/>
+          <Header history={this.props.history}/>
             <Container className="mt-5 my-5">
               <h3 className="text-left">Loading...</h3>
             </Container>
@@ -148,7 +148,7 @@ class Profile extends Component {
     } else if(isLoaded && items == null){
       return(
         <>
-        <Header/>
+        <Header history={this.props.history}/>
           <Container className="mt-5 my-5">
           <h3 className="m-auto text-center"><span className="icon-loupe "></span></h3>
           <h3 className="text-center">Doctor not found</h3>
@@ -160,7 +160,7 @@ class Profile extends Component {
       // console.log(new URLSearchParams(this.props.location.search).get("edit"))
       return (
         <div>
-          <Header />
+          <Header history={this.props.history} />
           
           <section className="Profileleft">
             <div className="container">

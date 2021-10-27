@@ -51,7 +51,7 @@ class Disease extends Component {
     console.log(items);    
     return (
       <>
-      <Header/>
+      <Header history={this.props.history}/>
         <Container className="mt-5 my-5 loading">
           <h3 className="text-left">Loading...</h3>
         </Container>
@@ -67,7 +67,7 @@ class Disease extends Component {
     // console.log("aaaaaaaaaa", a.blocks)
     return (
     <div>
-      <Header/>
+      <Header history={this.props.history}/>
         <div className="ad-spac"><img src={Wall} height="200px" width="1900px"/></div>
         <Row>
           <Col md={2} id="sidebar-wrapper">      

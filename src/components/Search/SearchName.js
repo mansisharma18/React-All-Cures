@@ -74,7 +74,7 @@ class SearchName extends Component {
       if(!isLoaded) {
         return (
         <>
-          <Header url={this.props.match.url}/>
+          <Header history={this.props.history} url={this.props.match.url}/>
             <Container className="mt-5 my-5 loading">
               <h3 className="text-left">Loading...</h3>
             </Container>
@@ -85,7 +85,7 @@ class SearchName extends Component {
           if(this.state.param.city){
             return(
               <>
-              <Header url={this.props.match.url}/>
+              <Header history={this.props.history} url={this.props.match.url}/>
                 <Container className="mt-5 my-5 loading">
                 <h3 className="pt-5 text-center"><span className="icon-loupe "></span></h3>
                 <h3 className="mt-3 text-center">We couldn't find any doctors matching '{this.state.param.city}'</h3>
@@ -97,7 +97,7 @@ class SearchName extends Component {
           } else if(this.state.param.name){
             return(
               <>
-              <Header/>
+              <Header history={this.props.history}/>
                 <Container className="mt-5 my-5">
                 <h3 className="pt-5 text-center"><span className="icon-loupe "></span></h3>
                 <h3 className="text-center">We couldn't find any doctors matching '{this.state.param.name}'</h3>
@@ -112,7 +112,7 @@ class SearchName extends Component {
       else if(isLoaded){
         return(
           <div>
-            <Header url={this.props.match.url}/>
+            <Header history={this.props.history} url={this.props.match.url}/>
               <section className="physicians-tab">
                 <div className="container">
                   <div className="row">

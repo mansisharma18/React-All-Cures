@@ -2,25 +2,21 @@ import React, { Component } from "react";
 import './header.css';
 import Cookies from 'js-cookie';
 import axios from 'axios';
-import { Dropdown, DropdownButton, Nav } from 'react-bootstrap';
+import { Dropdown, Nav } from 'react-bootstrap';
 import Heart from"../../assets/img/heart.png";
 import { Link } from "react-router-dom";
 // import Autocomplete from '../Autocomplete'
 import Test from '../LandingPage/test'
 import { backendHost } from '../../api-config';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-import FormControl from '@material-ui/core/FormControl';
-import FormLabel from '@material-ui/core/FormLabel';
 import TextField from '@mui/material/TextField';
 import Autocomplete from '@mui/material/Autocomplete';
+import history from "../history";
 
-import Input from '@material-ui/core/Input';
-import MenuItem from '@material-ui/core/MenuItem';
-import Select from '@material-ui/core/Select';
    class Header extends Component {
        
         constructor(props){
             super(props);
+            console.log(props)
             this.state = {
                users: '',
                texts: '',
@@ -183,13 +179,13 @@ import Select from '@material-ui/core/Select';
       e.preventDefault()
       console.log(city, name)
       if(city && name){
-         window.location.href = `/search/${city}/${name}`
+         this.props.history.push(`/search/${city}/${name}`)
          console.log('city && name')
       } else if(city){
-         window.location.href = `/search/${city}`
+         this.props.history.push(`/search/${city}`)
          console.log('only city')
       } else if(name) {
-         window.location.href = `/searchName/${name}`
+         this.props.history.push(`/searchName/${name}`)
          console.log('only name')
       }
    }
@@ -204,9 +200,9 @@ import Select from '@material-ui/core/Select';
    articleSearch = (e) => {
       e.preventDefault()
       if(this.state.article){
-         window.location.href = `/blogs/${this.state.article}`
+         this.props.history.push(`/blogs/${this.state.article}`)
       } else {
-         window.location.href = `/blogs`
+         this.props.history.push(`/blogs`)
       }
    }
    render() {

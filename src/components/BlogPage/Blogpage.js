@@ -103,7 +103,7 @@ export default class Blogpage extends Component{
         console.log(items);
         return (
         <>
-          <Header/>
+          <Header history={this.props.history}/>
             <Container className="mt-5 my-5 loading">
               <h3 className="text-left">Loading...</h3>
             </Container>
@@ -114,7 +114,7 @@ export default class Blogpage extends Component{
       console.log('is loaded')
         return(
             <>
-            <Header/>
+            <Header history={this.props.history}/>
             
                 <div className="container my-4">
                   {
@@ -142,7 +142,7 @@ export default class Blogpage extends Component{
     } else if(regionPostsLoaded){
       return(
         <>
-            <Header/>
+            <Header history={this.props.history}/>
             
                 <div className="container my-4">
                   {

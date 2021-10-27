@@ -2,7 +2,7 @@
   "name": "all-cures1",
   "version": "0.1.0",
   "private": true,
-  "homepage": "http://all-cures.com",
+  "homepage": "http://all-cures.com:8080/ui",
   "dependencies": {
     "@editorjs/checklist": "^1.3.0",
     "@editorjs/delimiter": "^1.2.0",

@@ -1,6 +1,6 @@
 import React from "react";
 import Cookies from 'js-cookie';
-import { BrowserRouter, Switch, Route, Redirect } from "react-router-dom";
+import { BrowserRouter, Switch, Route, Redirect, Router } from "react-router-dom";
 
 import Home from "./LandingPage/Home";
 import Sticky from "./LandingPage/Sticky"
@@ -41,6 +41,7 @@ import Pagination from '../Pagination'
 import List from '../List'
 import Userprofile from "./Profile/Userprofile";
 import StarRating from './StarRating'
+import history from "./history";
 
 
 
@@ -66,7 +67,7 @@ function Main(props) {
     return (
       <div>
         <AuthApi.Provider value={{auth, setAuth}}>
-          <BrowserRouter basename={process.env.REACT_APP_ROUTER_BASE || ''}>
+          <BrowserRouter history={history} basename={'/ui'}>
             <Routes url = {url}/>
           </BrowserRouter>
         </AuthApi.Provider>
