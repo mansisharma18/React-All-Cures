@@ -4,6 +4,8 @@ import { Alert,Form, Dropdown, DropdownButton } from 'react-bootstrap';
 import Footer from '../Footer/Footer';
 import Heart from"../../assets/img/heart.png";
 import { useHistory, Link, Redirect} from 'react-router-dom'
+import { backendHost } from '../../api-config';
+
 import axios from 'axios';
 
 import '../../assets/healthcare/css/main.css';
@@ -24,7 +26,7 @@ const[number,setNumber] = useState('');
      
   const putSubscribe= async e => {
        e.preventDefault()
-    axios.post('/users/subscribe/7889761896',
+    axios.post(`${backendHost}/users/subscribe/7889761896`,
   {   
  "nl_subscription_disease_id":1,
   "nl_sub_type":1,
@@ -48,7 +50,7 @@ const[number,setNumber] = useState('');
       
        const getEmail = props.location.search
        
-         axios.post(`/users/getemdecrypt`,
+         axios.post(`${backendHost}/users/getemdecrypt`,
          {
              "email":getEmail.split('em=')[1]
          })
@@ -79,7 +81,7 @@ const[number,setNumber] = useState('');
         setType(flavors);
     }
     const getDisease = () => {
-        axios.get('/article/all/table/disease_condition')
+        axios.get('${backendHost}/article/all/table/disease_condition')
         .then(res => {
             console.log(res.data);
             setDiseaseList(res.data)

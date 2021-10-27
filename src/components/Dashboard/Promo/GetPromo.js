@@ -1,10 +1,12 @@
 import React, {useEffect, useState} from 'react';
 import {Link} from 'react-router-dom'
+import { backendHost } from '../../../api-config';
+
 import axios from 'axios';
 function GetPromo(){
     const [promoData, setPromo] = useState([])
     const fetchPromo = (e) => {
-        axios.get(`/promo/all`)
+        axios.get(`${backendHost}/promo/all`)
         .then(res => {
             console.log(res.data)
             setPromo(res.data)
@@ -17,7 +19,7 @@ function GetPromo(){
     }, [])
 
     const PromoDelete = (promoId) => {
-        axios.delete(`/promo/${promoId}`)
+        axios.delete(`${backendHost}/promo/${promoId}`)
         .then(res => {
             fetchPromo()
         })

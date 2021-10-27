@@ -64,7 +64,7 @@ const Side = (props) => {
                 }
             </Nav.Item>
             <Rating />
-            <Comment  /> 
+          
             </Nav>
          
            

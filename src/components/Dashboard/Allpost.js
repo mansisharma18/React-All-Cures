@@ -4,6 +4,9 @@ import axios from 'axios';
 import Rating from '../StarRating';
 import BlogAllPost from './BlogAllPost'
 import { Dropdown, Button, DropdownButton, Nav, Modal, Alert} from 'react-bootstrap';
+import { backendHost } from '../../api-config';
+
+
 
 const AllPost = ({id, article_id,title, f_title, w_title,dis}) => {
 
@@ -15,7 +18,7 @@ const AllPost = ({id, article_id,title, f_title, w_title,dis}) => {
     
     const singlePostDelete = (id) => {
         console.log('delete',id);
-        axios.delete(`/article/${id}`)
+        axios.delete(`${backendHost}/article/${id}`)
         .then(res => {
             singlePostDelete()
             setAlert(true)

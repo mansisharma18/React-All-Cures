@@ -4,6 +4,8 @@ import ReactPaginate from 'react-paginate';
 import AllPost from './Allpost';
 import Header from '../Header/Header';
 import Footer from '../Footer/Footer'
+import { backendHost } from '../../api-config';
+
 
 
 
@@ -25,7 +27,7 @@ export default class App extends Component {
     }
     receivedData() {
         axios
-            .get(`/article/all`)
+            .get(`${backendHost}/article/all`)
             .then(res => {
 
                 const data = res.data;

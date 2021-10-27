@@ -7,6 +7,8 @@ import Footer from '../Footer/Footer';
 import Heart from"../../assets/img/heart.png";
 import { useHistory, Link, Redirect} from 'react-router-dom'
 import axios from 'axios';
+import { backendHost } from '../../api-config';
+
 
 
 
@@ -56,7 +58,7 @@ const[email,setEmail] = useState('');
        
         setSubmitAlert(true)    
         if(validLength && upperCase && lowerCase && match && password.firstPassword){
-            axios.put(`/users/updatepassword`, {
+            axios.put(`${backendHost}/users/updatepassword`, {
                 "updated_password": password.firstPassword,
                 "email": email,
                 })
@@ -98,7 +100,7 @@ const[email,setEmail] = useState('');
       
        const getEmail = props.location.search
        
-         axios.post(`/users/getemdecrypt`,
+         axios.post(`${backendHost}/users/getemdecrypt`,
          {
              "email":getEmail.split('em=')[1]
          })
@@ -109,7 +111,7 @@ const[email,setEmail] = useState('');
         }, [])
 
     const logout = async e => {
-        const res = await fetch("/LogoutActionController", {
+        const res = await fetch(`${backendHost}/LogoutActionController`, {
            method: "POST"
         });
         setTimeout(() => {

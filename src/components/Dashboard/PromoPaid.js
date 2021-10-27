@@ -3,6 +3,8 @@ import React, { Component } from "react";
 import axios from 'axios';
 import Results from './Results'
 import { Dropdown, Button, DropdownButton, Nav, Modal, Alert} from 'react-bootstrap';
+import { backendHost } from '../../api-config';
+
 
 
 
@@ -24,7 +26,7 @@ class PromoPaid extends Component {
   
   getComments(val) {
     
-    axios.get(`/promo/articlespromostage/${val}`)
+    axios.get(`${backendHost}/promo/articlespromostage/${val}`)
       .then(res => {
         console.log(res.data)
         var s = [];
@@ -50,7 +52,7 @@ class PromoPaid extends Component {
     console.log(selected.join())
     console.log(rejected.join())
     
-    axios.post(`/promo/reviewedby/1/stage/1`, {
+    axios.post(`${backendHost}/promo/reviewedby/1/stage/1`, {
       "articles_ids": selected.join(),
       "articles_ids_rejected": rejected.join()
     })

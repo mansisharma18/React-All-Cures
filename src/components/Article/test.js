@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import { Button, Accordion, Card, Container, Form } from 'react-bootstrap';
+import { backendHost } from '../../api-config';
+
 
 import Cookies from 'js-cookie';
 import './article.css'
@@ -88,7 +90,7 @@ export default class Test extends Component {
         console.log(JSON.parse(JSON.stringify(this.state.articleValues)))
         this.setState({ isSubmitting: true });
 
-        const res = await fetch("/content?cmd=createArticle", {
+        const res = await fetch(`${backendHost}/content?cmd=createArticle`, {
             method: "POST",
             body: `title=${this.state.articleValues.title}&language=${this.state.articleValues.language}&friendlyName=${this.state.articleValues.friendlyName}&contentType=${this.state.articleValues.contentType}&disclaimerId=${this.state.articleValues.disclaimerId}&authById=${this.state.articleValues.authById}&copyId=${this.state.articleValues.copyId}&articleStatus=${this.state.articleValues.articleStatus}&winTitle=${this.state.articleValues.winTitle}&articleContent=${JSON.stringify(this.state.ac)}`,
             headers: {
@@ -122,7 +124,7 @@ export default class Test extends Component {
         console.log(JSON.parse(JSON.stringify(this.state.values)))
         this.setState({ isSubmitting: true });
 
-        const res = await fetch("/author?cmd=createAuthor", {
+        const res = await fetch(`${backendHost}/author?cmd=createAuthor`, {
             method: "POST",
             body: `authorFN=${this.state.values.authorFN}&authorMN=${this.state.values.authorMN}&authorLN=${this.state.values.authorLN}&authorTel=${this.state.values.authorTel}&authorStatus=${this.state.values.authorStatus}&authorAddr=${this.state.values.authorAddr}&authorEmail=${this.state.values.authorEmail}`,
             headers: {

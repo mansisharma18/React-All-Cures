@@ -3,6 +3,8 @@ import React, { Component } from "react";
 import axios from 'axios';
 import Results from './Results'
 import { Dropdown, Button, DropdownButton, Nav, Modal, Alert} from 'react-bootstrap';
+import { backendHost } from '../../api-config';
+
 
 
 
@@ -27,7 +29,7 @@ class CommentsRev extends Component {
   
   getComments(val) {
     
-    axios.get(`/rating/comments${val}`)
+    axios.get(`${backendHost}/rating/comments${val}`)
       .then(res => {
         console.log(res.data)
         
@@ -71,7 +73,7 @@ class CommentsRev extends Component {
     const isCurrentItemApproved = !this.state.approvedIds.includes(this.state.currentlySelected) ? 1 : 0
     console.log(isCurrentItemApproved, this.state.currentlySelected,this.state.approvedIds)
     
-    axios.post(`/rating/reviewedby/1/reviewed/${isCurrentItemApproved}`, {
+    axios.post(`${backendHost}/rating/reviewedby/1/reviewed/${isCurrentItemApproved}`, {
       "rateids": selected.join(),
       "rateids_rejected": rejected.join()
     })
