@@ -5,6 +5,8 @@ import SlidingForm from './styled/SlidingForm'
 import { Checkbox, FormGroup, FormControlLabel} from '@material-ui/core'
 import GoogleLogin from 'react-google-login'
 import axios from 'axios';
+import { backendHost } from '../../api-config';
+
 
 const FormLogin = (props) => {
   
@@ -20,7 +22,7 @@ const FormLogin = (props) => {
     e.preventDefault();
     
     setClicked(1);
-    axios.post(`/login?cmd=login&email=${email}&psw=${password}&rempwd=on`)
+    axios.post(`${backendHost}/login?cmd=login&email=${email}&psw=${password}&rempwd=on`)
     .then(response => console.log(response.data))
     .catch(res => console.log(res))
     // const res = await fetch("/login?cmd=login", {

@@ -4,6 +4,8 @@ import React from "react";
 import ReactStars from "react-rating-stars-component";
 import Comment from "../components/Comment";
 import Header from '../components/Header/Header'
+import { backendHost } from '../api-config';
+
 
 // const firstExample = {
 //   size: 30,
@@ -45,14 +47,14 @@ export default function Rating() {
   const [showValue, setShowValue] = React.useState([])
   const postRating = (rating) => {
 
-    axios.post(`/DoctorRatingActionController?ratingVal=${rating}&comments='another rating'&ratedbyid=1&ratedbytype=1&targetid=1&targetTypeid=1&cmd=rateAsset`)
+    axios.post(`${backendHost}/DoctorRatingActionController?ratingVal=${rating}&comments='another rating'&ratedbyid=1&ratedbytype=1&targetid=1&targetTypeid=1&cmd=rateAsset`)
     .then(res => console.log(res))
     .catch(err => console.log(err))
   }
 
   const getRating = () => {
 
-    axios.get(`/rating/target/1/targettype/1/avg`)
+    axios.get(`${backendHost}/rating/target/1/targettype/1/avg`)
     .then(res => {
       console.log(res.data[0].ratingVal)
       setRatingValue(res.data)

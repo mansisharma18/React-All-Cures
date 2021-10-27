@@ -9,6 +9,8 @@ import { useHistory, Link, Redirect} from 'react-router-dom'
 import axios from 'axios';
 import history from '../history'
 import { useParams } from "react-router-dom";
+import { backendHost } from '../../api-config';
+
 import '../../assets/healthcare/css/main.css';
 import Input from '@material-ui/core/Input';
 import { Checkbox, FormGroup, FormControlLabel, Select, MenuItem , FormControl, InputLabel,TextField} from '@material-ui/core'
@@ -33,7 +35,7 @@ const [countriesList,setCountriesList] = useState([])
      
   const putSubscribe= async e => {
        e.preventDefault()
-    axios.post('/users/unsubscribe/7889761896',
+    axios.post(`${backendHost}/users/unsubscribe/7889761896`,
   {   
  "nl_subscription_disease_id":1,
   "nl_sub_type":1,
@@ -57,7 +59,7 @@ const [countriesList,setCountriesList] = useState([])
       
        const getEmail = props.location.search
        
-         axios.post(`/users/getemdecrypt`,
+         axios.post(`${backendHost}/users/getemdecrypt`,
          {
              "email":getEmail.split('em=')[1]
          })
@@ -88,7 +90,7 @@ const [countriesList,setCountriesList] = useState([])
         setType(flavors);
     }
     const getDisease = () => {
-        axios.get('/article/all/table/disease_condition')
+        axios.get(`${backendHost}/article/all/table/disease_condition`)
         .then(res => {
             console.log(res.data);
             setDiseaseList(res.data)

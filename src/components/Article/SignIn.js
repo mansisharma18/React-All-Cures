@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import { backendHost } from '../../api-config';
+
 
 export default class SignIn extends Component {
     constructor(props){
@@ -16,7 +18,7 @@ export default class SignIn extends Component {
     submitForm = async e => {
         e.preventDefault();
         console.log(this.state);
-        fetch('/login?email=mr.sahilgupta@gmail.com&rempwd=on&psw=Sahil123&cmd=login')
+        fetch(`${backendHost}/login?email=mr.sahilgupta@gmail.com&rempwd=on&psw=Sahil123&cmd=login`)
         .then(response => response.json())
         .then(data => this.setState({ totalReactPackages: data.total }));
       };

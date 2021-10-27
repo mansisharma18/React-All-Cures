@@ -5,6 +5,8 @@ import AllPost from './components/BlogPage/Allpost'
 import Header from './components/Header/Header';
 import Footer from './components/Footer/Footer'
 import './App.css'
+import { backendHost } from './api-config';
+
 
 
 export default class App extends Component {
@@ -23,7 +25,7 @@ export default class App extends Component {
     }
     receivedData() {
         axios
-            .get(`/article/all`)
+            .get(`${backendHost}/article/all`)
             .then(res => {
 
                 const data = res.data;

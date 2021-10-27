@@ -7,6 +7,8 @@ import Heart from"../../assets/img/heart.png";
 import { useHistory, Link} from 'react-router-dom'
 import axios from 'axios';
 import { Redirect } from "react-router-dom";
+import { backendHost } from '../../api-config';
+
 
 
 function LoginInfo(props) {  
@@ -52,7 +54,7 @@ function LoginInfo(props) {
         e.preventDefault()
         setSubmitAlert(true)
         if(validLength && upperCase && lowerCase && match && uprn && regNum && password.firstPassword && selectedState){
-            axios.post(`/doctors/verification`, {
+            axios.post(`${backendHost}/doctors/verification`, {
                 "uprn": uprn,
                 "registration_number": regNum,
                 "password": password.firstPassword,
@@ -73,7 +75,7 @@ function LoginInfo(props) {
     
     useEffect(() => {
         Promise.all([
-            fetch('/article/all/table/states').then(res => res.json()),
+            fetch(`${backendHost}/article/all/table/states`).then(res => res.json()),
         ]).then(([statesData]) => {
             console.log('States Data: ',statesData)
                 setStates(statesData);
@@ -81,7 +83,7 @@ function LoginInfo(props) {
         }, [])
 
     const logout = async e => {
-        const res = await fetch("/LogoutActionController", {
+        const res = await fetch(`${backendHost}/LogoutActionController`, {
            method: "POST"
         });
         setTimeout(() => {

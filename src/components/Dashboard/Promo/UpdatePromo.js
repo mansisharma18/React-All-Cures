@@ -4,6 +4,8 @@ import Cookies from 'js-cookie';
 import axios from 'axios';
 import {useLocation} from "react-router-dom";
 import history from '../../history';
+import { backendHost } from '../../../api-config';
+
 
 export default function UpdatePromo(props){
     const [code, setCode] = useState('')
@@ -21,7 +23,7 @@ export default function UpdatePromo(props){
     console.log('IIIIIIIDDDDDDDDDDDD: ', id)
 
     const fetchPromo = (e) => {
-        axios.get(`/promo/${id}`)
+        axios.get(`${backendHost}/promo/${id}`)
         .then(res => {
             console.log(res.data[0])
             setPromo(res.data)
@@ -42,7 +44,7 @@ export default function UpdatePromo(props){
 
     const submitForm = (e) => {
         e.preventDefault();
-        axios.put(`/promo/${id}`, {
+        axios.put(`${backendHost}/promo/${id}`, {
             "promo_code": code,
             "promo_start_datetime": startDate,
             "promo_end_datetime": endDate,

@@ -5,6 +5,8 @@ import Cookies from 'js-cookie';
 import Heart from"../../assets/img/heart.png";
 import Doct from "../../assets/img/doct.png";
 import axios from 'axios';
+import { backendHost } from '../../api-config';
+
 import { Dropdown, DropdownButton } from 'react-bootstrap';
 import '../../assets/healthcare/css/main.css';
 import '../../assets/healthcare/css/responsive.css';
@@ -13,6 +15,7 @@ import '../../assets/healthcare/icomoon/style.css';
 import './custom.css';
 import Carousel1 from './Caousel1';
 import Carousel2 from './Carousel2';
+
 import CarouselReview from './CarouselReview';
 // import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 // import ToggleButton from '../Header/Header'
@@ -42,7 +45,7 @@ class Home extends Component {
 
  componentWillMount(){
    const loadUsers = async () => {
-      const response = await axios.get('/city/all');
+      const response = await axios.get(`${backendHost}/city/all`);
       this.setState ({
          users: response.data
       })
@@ -50,7 +53,7 @@ class Home extends Component {
     loadUsers();
 
    const loaddoctor = async () => {
-      const response = await axios.get('/IntegratedActionController')
+      const response = await axios.get(`${backendHost}/IntegratedActionController`)
       this.setState ({
          doctor: response.data
       })
@@ -125,7 +128,7 @@ onChangeHandlerdoctor = (e, text) => {
 
    
    logout = async e => {
-      const res = await fetch("/LogoutActionController", {
+      const res = await fetch(`${backendHost}/LogoutActionController`, {
          method: "POST"
       });
         const data = await res.text();

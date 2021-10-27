@@ -1,4 +1,6 @@
 import React, { Component } from "react";
+import { backendHost } from '../../../api-config';
+
 
 class TestAjax extends Component {
   constructor(props) {
@@ -10,7 +12,7 @@ class TestAjax extends Component {
   }
 
   componentDidMount() {
-    fetch("/dashboard/articlecount")
+    fetch(`${backendHost}/dashboard/articlecount`)
       // .then(res => JSON.parse(res))
       .then((res) => res.json())
       .then((json) => {

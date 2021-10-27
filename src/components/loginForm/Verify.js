@@ -10,6 +10,8 @@ import axios from 'axios';
 import history from '../history'
 import { Redirect } from "react-router-dom";
 import { Mail } from '@material-ui/icons';
+import { backendHost } from '../../api-config';
+
 
 
 function LoginInfo(props) {  
@@ -60,7 +62,7 @@ const[email,setEmail] = useState(
         
         setSubmitAlert(true)
         if(email.Mail){
-            axios.post(`/users/checkemail`,
+            axios.post(`${backendHost}/users/checkemail`,
             {
                 "email": email.Mail
             })
@@ -92,7 +94,7 @@ const[email,setEmail] = useState(
     
     useEffect(() => {
         Promise.all([
-            fetch('/article/all/table/states').then(res => res.json()),
+            fetch(`${backendHost}/article/all/table/states`).then(res => res.json()),
         ]).then(([statesData]) => {
             console.log('States Data: ',statesData)
                 setStates(statesData);
@@ -100,7 +102,7 @@ const[email,setEmail] = useState(
         }, [])
 
     const logout = async e => {
-        const res = await fetch("/LogoutActionController", {
+        const res = await fetch(`${backendHost}/LogoutActionController`, {
            method: "POST"
         });
         setTimeout(() => {

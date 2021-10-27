@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { Alert, Form } from 'react-bootstrap';
 import axios from 'axios';
+import { backendHost } from '../../../api-config';
+
 import Cookies from 'js-cookie';
 
 function Promo(props) {
@@ -14,7 +16,7 @@ function Promo(props) {
     
     const submitForm = (e) => {
         e.preventDefault();
-        axios.post(`/promo/create`, {
+        axios.post(`${backendHost}/promo/create`, {
             "promo_code": code,
             "promo_start_datetime": startDate,
             "promo_end_datetime": endDate,
