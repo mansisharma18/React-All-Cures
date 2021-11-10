@@ -31,6 +31,7 @@ import Title from './Title';
 import Article from '.././Article/Article'
 import BlogAllPost from './BlogAllPost'
 import EditModal from '../BlogPage/EditModal'
+import { backendHost } from '../../api-config';
 // import EditModal from './EditModal';
 // import RenderComponentArticle from './RenderComponentArticle'
 
@@ -162,7 +163,7 @@ export default function Dashboard(props) {
   useEffect(() => {
     document.title = 'All Cures | Dashboard'
     setIsLoaded(false);
-    fetch("/cures/dashboard/articlecount")
+    fetch(`${backendHost}/dashboard/articlecount`)
       .then((res) => res.json())
       .then((json) => {
         setItems(json);

@@ -16,6 +16,7 @@ import Carousel2 from './Carousel2';
 import CarouselReview from './CarouselReview';
 import { Dropdown, Button, DropdownButton, Nav, Modal, Alert} from 'react-bootstrap';
 import Autocomplete from '../Autocomplete'
+import { backendHost } from '../../api-config';
 
 // import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 // import ToggleButton from '../Header/Header'
@@ -59,7 +60,7 @@ class Home extends Component {
 
  componentDidMount(){
    const loadUsers = async () => {
-      await axios.get('/city/all')
+      await axios.get(`${backendHost}/city/all`)
       .then(res => {
          this.setState ({
             users: res.data
@@ -70,7 +71,7 @@ class Home extends Component {
     loadUsers();
 
    const loaddoctor = async () => {
-      await axios.get('/IntegratedActionController')
+      await axios.get(`${backendHost}/IntegratedActionController`)
       .then(res => {
          this.setState ({
             doctor: res.data
@@ -82,7 +83,7 @@ class Home extends Component {
  }
 
  diseasePosts(){                     // For specific blogs like "/blogs/diabetes"
-   fetch(`/isearch/${this.state.param.type}`)
+   fetch(`${backendHost}/isearch/${this.state.param.type}`)
      .then((res) => res.json())
      .then((json) => {
        console.log(json);
@@ -97,7 +98,7 @@ class Home extends Component {
    // console.log(selected.join())
    // console.log(rejected.join())
    
-   axios.post(`/users/subscribe/${this.state.mobile}`, {
+   axios.post(`${backendHost}/users/subscribe/${this.state.mobile}`, {
    //   "articles_ids": selected.join(),
    //   "articles_ids_rejected": rejected.join()
 
@@ -203,7 +204,7 @@ onChangeHandlerdoctor = (e, text) => {
 
         componentWillMount(){
          Promise.all([
-            fetch('/article/all/table/disease_condition')
+            fetch(`${backendHost}/article/all/table/disease_condition`)
             .then(res => res.json()),
           ]).then(([diseaseData]) => {
             console.log('Speciality Data: ', diseaseData)
@@ -222,7 +223,7 @@ onChangeHandlerdoctor = (e, text) => {
           })
          }
    logout = async e => {
-      const res = await fetch("/LogoutActionController", {
+      const res = await fetch(`${backendHost}/LogoutActionController`, {
          method: "POST"
       });
         const data = await res.text();
