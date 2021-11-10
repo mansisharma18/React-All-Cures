@@ -1,0 +1,41 @@
+{
+  "files": {
+    "main.css": "http://all-cures.com/static/css/main.67fc7345.chunk.css",
+    "main.js": "http://all-cures.com/static/js/main.08ccb965.chunk.js",
+    "main.js.map": "http://all-cures.com/static/js/main.08ccb965.chunk.js.map",
+    "runtime-main.js": "http://all-cures.com/static/js/runtime-main.6dd5cb26.js",
+    "runtime-main.js.map": "http://all-cures.com/static/js/runtime-main.6dd5cb26.js.map",
+    "static/css/2.591db2b6.chunk.css": "http://all-cures.com/static/css/2.591db2b6.chunk.css",
+    "static/js/2.20cced20.chunk.js": "http://all-cures.com/static/js/2.20cced20.chunk.js",
+    "static/js/2.20cced20.chunk.js.map": "http://all-cures.com/static/js/2.20cced20.chunk.js.map",
+    "static/js/3.d9bebd6b.chunk.js": "http://all-cures.com/static/js/3.d9bebd6b.chunk.js",
+    "static/js/3.d9bebd6b.chunk.js.map": "http://all-cures.com/static/js/3.d9bebd6b.chunk.js.map",
+    "index.html": "http://all-cures.com/index.html",
+    "static/css/2.591db2b6.chunk.css.map": "http://all-cures.com/static/css/2.591db2b6.chunk.css.map",
+    "static/css/main.67fc7345.chunk.css.map": "http://all-cures.com/static/css/main.67fc7345.chunk.css.map",
+    "static/js/2.20cced20.chunk.js.LICENSE.txt": "http://all-cures.com/static/js/2.20cced20.chunk.js.LICENSE.txt",
+    "static/media/client-a.873e4371.jpg": "http://all-cures.com/static/media/client-a.873e4371.jpg",
+    "static/media/client-b.f01d87a1.jpg": "http://all-cures.com/static/media/client-b.f01d87a1.jpg",
+    "static/media/doct.ff4abe3c.png": "http://all-cures.com/static/media/doct.ff4abe3c.png",
+    "static/media/facebook.1e46937b.svg": "http://all-cures.com/static/media/facebook.1e46937b.svg",
+    "static/media/heart.30b5f0b3.png": "http://all-cures.com/static/media/heart.30b5f0b3.png",
+    "static/media/style.css": "http://all-cures.com/static/media/icomoon.a7517629.svg",
+    "static/media/instagram.a31b2bcd.svg": "http://all-cures.com/static/media/instagram.a31b2bcd.svg",
+    "static/media/linkedin.8861cb0e.svg": "http://all-cures.com/static/media/linkedin.8861cb0e.svg",
+    "static/media/main.css": "http://all-cures.com/static/media/wall.34ab3143.jpg",
+    "static/media/slider-1.5aea7249.png": "http://all-cures.com/static/media/slider-1.5aea7249.png",
+    "static/media/slider-2.c34db0a8.png": "http://all-cures.com/static/media/slider-2.c34db0a8.png",
+    "static/media/slider-3.df5f90bf.png": "http://all-cures.com/static/media/slider-3.df5f90bf.png",
+    "static/media/slider-4.76b4b9cf.png": "http://all-cures.com/static/media/slider-4.76b4b9cf.png",
+    "static/media/slider-5.4ed80503.png": "http://all-cures.com/static/media/slider-5.4ed80503.png",
+    "static/media/slider-6.9dd56720.png": "http://all-cures.com/static/media/slider-6.9dd56720.png",
+    "static/media/twitter.665d9096.svg": "http://all-cures.com/static/media/twitter.665d9096.svg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.6dd5cb26.js",
+    "static/css/2.591db2b6.chunk.css",
+    "static/js/2.20cced20.chunk.js",
+    "static/css/main.67fc7345.chunk.css",
+    "static/js/main.08ccb965.chunk.js"
+  ]
+}

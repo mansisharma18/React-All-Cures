@@ -162,7 +162,7 @@ export default function Dashboard(props) {
   useEffect(() => {
     document.title = 'All Cures | Dashboard'
     setIsLoaded(false);
-    fetch("/dashboard/articlecount")
+    fetch("/cures/dashboard/articlecount")
       .then((res) => res.json())
       .then((json) => {
         setItems(json);
