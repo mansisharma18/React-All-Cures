@@ -1,6 +1,6 @@
 import React from "react";
 import Cookies from 'js-cookie';
-import { HashRouter, Switch, Route, Redirect, Router } from "react-router-dom";
+import { HashRouter, Switch, Route, Redirect, Router, BrowserRouter } from "react-router-dom";
 
 import Home from "./LandingPage/Home";
 import Sticky from "./LandingPage/Sticky"
@@ -67,9 +67,9 @@ function Main(props) {
     return (
       <div>
         <AuthApi.Provider value={{auth, setAuth}}>
-          <HashRouter history={history} basename={''}>
+          <BrowserRouter history={history} basename={''}>
             <Routes url = {url}/>
-          </HashRouter>
+          </BrowserRouter>
         </AuthApi.Provider>
       </div>
     );
