@@ -67,9 +67,9 @@ function Main(props) {
     return (
       <div>
         <AuthApi.Provider value={{auth, setAuth}}>
-          <BrowserRouter history={history} basename={''}>
+          <HashRouter history={history} basename={''}>
             <Routes url = {url}/>
-          </BrowserRouter>
+          </HashRouter>
         </AuthApi.Provider>
       </div>
     );
