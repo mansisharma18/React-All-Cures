@@ -5,7 +5,6 @@ import Cookies from 'js-cookie';
 import Heart from"../../assets/img/heart.png";
 import Doct from "../../assets/img/doct.png";
 import axios from 'axios';
-import ListItem from '@material-ui/core/ListItem';
 import '../../assets/healthcare/css/main.css';
 import '../../assets/healthcare/css/responsive.css';
 import '../../assets/healthcare/css/animate.css';
@@ -14,23 +13,29 @@ import './custom.css';
 import Carousel1 from './Caousel1';
 import Carousel2 from './Carousel2';
 import CarouselReview from './CarouselReview';
-import { Dropdown, Button, DropdownButton, Nav, Modal, Alert} from 'react-bootstrap';
-import Autocomplete from '../Autocomplete'
+import { Dropdown, Alert } from 'react-bootstrap';
+
 import { backendHost } from '../../api-config';
-
-// import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-// import ToggleButton from '../Header/Header'
+import TextField from '@mui/material/TextField';
+import Autocomplete from '@mui/material/Autocomplete';
 import Test from './test'
+import { env } from 'process';
 
+env.REACT_APP = 'http://117.241.171.115:8080/cures';
+console.log('ukaygduayn87ncwyc8qy: ',env.REACT_APP);
 
 class Home extends Component {
    constructor(props){
       super(props);
-      console.log(props)
+      console.log('poiuytrewqasdfghjkl', props.history)
       const params = props.match.params
       this.state = {
          users: [],
+         city: '',
+         name: '',
          texts: '',
+         cityList: [],
+         pinList: [],
          suggestions: [],
          suggestionsDoc: [],
          doctor : [],
@@ -38,6 +43,7 @@ class Home extends Component {
          getPincode:null,
          getCityName:null,
          edit: false,
+         doctorLoaded: false,
       modalShow: false,
       show: false,
          docname : '',
@@ -65,6 +71,14 @@ class Home extends Component {
          this.setState ({
             users: res.data
          })
+         this.state.users.map((u) => {
+            this.state.cityList.push(u.Cityname, u.Pincode)
+         })
+         // this.state.users.map((u) => {
+         //    this.state.pinList.push(u.Pincode)
+         // })
+         // console.log('CIty & pincode: ', this.state.pinList)
+         console.log('CIty list: ', this.state.cityList)
       })
       .catch(res => console.log(res))
     }
@@ -74,8 +88,10 @@ class Home extends Component {
       await axios.get(`${backendHost}/IntegratedActionController`)
       .then(res => {
          this.setState ({
-            doctor: res.data
+            doctor: res.data,
+            doctorLoaded: true
          })
+         console.log('dkihukhdskuhdkushdudhsdkh: ',this.state.doctor.map.Doctorname.myArrayList)
       })
       .catch(res =>  console.log(res))
     }
@@ -109,6 +125,7 @@ class Home extends Component {
      .then(res => {
        console.log(res)
        this.setState({ShowSubmitAlert: true});
+       window.location.reload(true);
       
      })
      .catch(err => {
@@ -116,87 +133,13 @@ class Home extends Component {
         this.setState({ShowErrorAlert: true});
         setTimeout(()=>{
         this.setState({ShowErrorAlert: false});
-        },2000)
+        },4000)
 
    })
 
    
  }
-//    postSubscribtion(){
-//    axios.post(`/users/subscribe/7889761896`,{
 
-   // "nl_subscription_disease_id": 1,
-   // "nl_sub_type":1,
-   // "nl_subscription_cures_id":0,
-
-// })
-// .then(res => {
-//    console.log(res)
-  
-//  })
-//  .catch(err => console.log(err))
-//   }
-
-  onSuggestHandler = (text, ano) => {
-    if(Number.isInteger(this.state.getPincode)) {
-      this.state.searchParams.city = ano;
-    }else{
-      this.state.searchParams.city = text;
-    }
-    
-   //  this.state.Pincode.city = text;
-     this.setState({
-        suggestions: []
-     });
- }
-
- onChangeHandler = (e, text) => {
-
-   const testVal = parseInt(e.target.value)   
-
-   let matches = []
-   if (text.length > 0) {
-     matches = this.state.users.filter(user => {
-       const regex = new RegExp(`${text}`, "gi");
-       return user.Cityname.match(regex)
-     })
-   }
-   if (Number.isInteger(testVal)) {
-      matches = this.state.users.filter(user => {
-      //   const regex = new RegExp(`${testVal}`, "gi");
-        return user.Pincode.match(testVal)
-      })
-    }
-   this.setState({
-      texts: text,
-      suggestions: matches,
-      searchParams: { ...this.state.searchParams, [e.target.name]: text }
-
-   });
- }
-
- onSuggestHandlerdoctor = (text) => {
-    
-   this.state.searchParams.name= text;
-   this.setState({
-      suggestionsDoc: []
-   });
-}
-onChangeHandlerdoctor = (e, text) => {
- let matches = []
- if (text.length > 0) {
-   matches = this.state.doctor.map.Doctorname.myArrayList.filter(user => {
-     const regex = new RegExp(`${text}`, "gi");
-     return user.match(regex)
-   })
- }
- this.setState({
-    texts: text,
-    suggestionsDoc: matches,
-    searchParams: { ...this.state.searchParams, [e.target.name]: text }
-
- });
-}
   handleChange = e => 
         this.setState({
             searchParams: { ...this.state.searchParams, [e.target.name]: e.target.value }
@@ -245,8 +188,40 @@ onChangeHandlerdoctor = (e, text) => {
        })
     }
 
+   onSearch = (e) => {
+      // const history = useHistory();
+      var { city, name } = this.state
+      e.preventDefault()
+      console.log(city, name)
+      if(city && name){
+         this.props.history.push(`/search/${city}/${name}`)
+         // window.location.href = `/search/${city}/${name}`
+         console.log('city && name')
+      } else if(city){
+         this.props.history.push(`/search/${city}`)
+
+         // window.location.href = `/search/${city}`
+         console.log('only city')
+      } else if(name) {
+         this.props.history.push(`/searchName/${name}`)
+
+         // window.location.href = `/searchName/${name}`
+         console.log('only name')
+      }
+   }
+
+   articleSearch = (e) => {
+      e.preventDefault()
+      if(this.state.article){
+         this.props.history.push(`/blogs/${this.state.article}`)
+      } else {
+         this.props.history.push(`/blogs`)
+      }
+   }
+   
    render() {
       console.log(this.state.suggestions)
+      // console.log(process.env)
       return(
          <div>
             <div className="homeHeader">
@@ -264,12 +239,15 @@ onChangeHandlerdoctor = (e, text) => {
                               </div>
                               <div className="loginSign"> 
                               {/* <Link to="/profile">Go to Profile</Link> */}
-                              
-    
-      <Link className="btn border mr-2 btn-white loginSignbtn color-blue-dark"  to="/article">
-        Create Article
-      </Link>    
-                                 <ToggleButton setModalShow={this.setModalShow} acPerm={this.state.acPerm} match={this.props.match.url} logout={this.logout}/> 
+                           {
+                              this.state.acPerm?
+                              <Link className="btn border mr-2 btn-white loginSignbtn color-blue-dark"  to="/article">
+                              Create Article
+                            </Link>
+                              : null
+                           }   
+      
+                                 <ToggleButton userName={Cookies.get('uName')} setModalShow={this.setModalShow} acPerm={this.state.acPerm} match={this.props.match.url} logout={this.logout}/> 
                                  {/* <button onClick={this.logout}></button> */}
                               </div>  
                            </div>   
@@ -279,11 +257,46 @@ onChangeHandlerdoctor = (e, text) => {
                         <div className="serchlabel">
                            <h1>Find Doctors <br/>near by your location</h1>
                            <br/>
-                           {
+                           {/* {
                               this.state.spec1?
                               <Autocomplete value={this.state.temp} suggestions={this.state.spec1}/>
                               : null
-                           }    
+                           }     */}
+                           <form onSubmit={(e) => this.articleSearch(e)} className="article-search">
+                              <div className="col-md-12 row">
+               <div className="col-md-10 p-0">    
+               <Autocomplete className="bg-white color-black"
+               freeSolo
+                  
+                  value={this.state.article}
+                  onChange={(event, newValue) => {
+                     this.setState({
+                        article: newValue
+                     })
+                     console.log(this.state.article)
+
+                  }}
+                  inputValue={this.state.article ? this.state.article : ''}
+                  onInputChange={(event, newInputValue) => {
+                     this.setState({
+                        article: newInputValue
+                     })
+                     console.log(this.state.article)
+                   }}
+                  id="combo-box-demo"
+                  options={this.state.spec1}
+                  sx={{ width: 300 }}
+                  
+                  renderInput={(params) => <TextField {...params} label="Search Articles" />}
+               />
+            </div>
+            <div className="col-md-2 p-0 mainBtn">
+            <button className="btn btn-article-search color-white" type="submit">
+               <i class="fas fa-search"></i>
+            </button>
+            </div>
+            </div>
+            </form>
                         </div>
                      </div>   
                      
@@ -300,101 +313,89 @@ onChangeHandlerdoctor = (e, text) => {
                   <div className="container">
                   
                      <div className="row">
-                        
-                        <div className="search-wrap-inner clearfix">
-                           <form className="mainSearch">
-                              
-                           <Test
+                     <Test
         show={this.state.modalShow}
         onHide={() => this.setModalShow(false)}
       />
-                              <div className="col-md-4 pd-0 col-sx-12 col-sm-4">
-                                 <div className="form-group search">
-                                 <input type="text" placeholder="Doctor Name, Disease or Condition" name="name" id="doctors" 
-                                 autoComplete="off"
-                                 onChange={e => this.onChangeHandlerdoctor(e, e.target.value)} 
-                                 value={this.state.searchParams.name} 
-                                 className="formVal form-control "/>
-                                    <div className="suggest">
-                                       {this.state.suggestionsDoc.map((item,index)=>{
-                                          return  <div key={index} className="col-md-12 justify-content-md-center  suggestionSearch"
-                                          onClick={() => this.onSuggestHandlerdoctor(item)}
-                                       >{item}</div>
-                                       })}
-                                    </div>
-                                 </div>
-                              </div>
-                              <div className="col-md-4 pd-0 col-sx-12 col-sm-4">
-                                 <div className="form-group city zipcode">
-                                 <input type= "text" placeholder="City or Zip-code" name="city" id="city"
-                                 autoComplete="off" 
-                                 onChange={e => {
-                                    this.onChangeHandler(e, e.target.value)
-                                    if(e.target.value){
-                                       this.setState({
-                                          getPincode: parseInt(e.target.value)
-                                       })
-                                    }else {
-                                       this.setState({
-                                          getCityName: String(e.target.value)
-                                       })
-                                    }
-                                    
-                                 }} 
-                                 value={this.state.searchParams.city} 
-                                 className="formVal form-control"
-                                 />
-                                 <div className="suggest">
-                                 { this.state.suggestions.map((suggestion, i) =>
-                                    <div key={i} className="col-md-12 justify-content-md-center suggestionSearch"
-                                       onClick={() => this.onSuggestHandler(suggestion.Cityname,suggestion.Pincode)}
-                                    >
-                                       {Number.isInteger(this.state.getPincode) ? suggestion.Pincode :  suggestion.Cityname}
-
-                                    </div>
-                                 )}
-                                 </div>
-                                 </div>
-                              </div>
-                                 <input type="hidden" name="Latitude" id="Latitude"  className="form-control"/>
-               
-                                    <input type="hidden" name="Longitude" id="Longitude"  className="form-control"/>
-                              <div className="col-md-4 pd-0 col-sx-12 col-sm-4">
-                                 <div className="form-group date">
-                                    <input type="text" name="" placeholder="Date" className="form-control" onFocus={(e) => e.target.type = 'date'}/>
-                                    {
-                                       this.state.searchParams.name
-                                       ? <Link type="
-                                       submit" 
-                                       className="btn-bg searchBtn" 
-                                       id="search"
-                                       to={ `/search/${this.state.searchParams.name}`}
-                                       >Search</Link>
-                                       : <Link type="
-                                       submit" 
-                                       className="btn-bg searchBtn" 
-                                       id="search"
-                                       to={ `/search/${this.state.searchParams.city}/${this.state.searchParams.name}`}
-                                       >Search</Link> 
-
-                                    }
-                                    <Link 
-                                     type="
-                                     submit" 
-                                     className="btn-bg searchBtn" 
-                                     id="search"
-                                     to={
-                                       this.state.searchParams.name
-                                       ?  `/searchName/${this.state.searchParams.name}`
-                                       :`/search/${this.state.searchParams.city}/${this.state.searchParams.name}`
-                                    }>Search</Link>
-                                    
-                                    {/* //  { `/search/${this.state.searchParams.city}/${this.state.searchParams.name}`}
-                                    //  >Search</Link>   */}
-                                 </div>
-                              </div>         
+                        <div className="search-wrap-inner clearfix">
+                        <form onSubmit={(e) => this.onSearch(e)} className="mainSearch" >
+                     	  {/* <div className="col-md-6 pd-0 col-sx-12 col-sm-4">
+                   			<div className="form-group search"> */}
+                            <div className="col-md-12 p-0">
+                            <div className="row">
+                            <div className="doc-name col-md-6 col-sm-12">
+                            <Autocomplete className="bg-white color-black"
+                              freeSolo
+                              value={this.state.name}
+                              onChange={(event, newValue) => {
+                                 this.setState({
+                                    name: newValue
+                                 })
+                                 console.log(this.state.name)
+                              }}
+                              inputValue={this.state.name ? this.state.name : ''}
+                              onInputChange={(event, newInputValue) => {
+                                 this.setState({
+                                    name: newInputValue
+                                 })
+                                 console.log(this.state.name)
+                              }}
+                              id="combo-box-demo"
+                              options={
+                                 this.state.doctorLoaded? 
+                                 this.state.doctor.map.Doctorname.myArrayList
+                                 : []
+                                 }
+                              // sx={{ width: 600 }}
+                                 
+                              renderInput={(params) => <TextField {...params} label="Search Doctors (Name)" />}
+                           />
+                            </div>
                             
-                           </form>
+                                 {/* </div>
+                              </div> */}
+                              {/* <div className="col-md-5 pd-0 col-sx-12 col-sm-4">
+                                 <div className="form-group city zipcode"> */}
+                                 <div className="city-name col-md-5">
+                                 <Autocomplete className="bg-white p-0 color-black"
+                              freeSolo
+                              value={this.state.city}
+                              onChange={(event, newValue) => {
+                                 this.setState({
+                                    city: newValue
+                                 })
+                                 console.log(this.state.city)
+                              }}
+                              inputValue={this.state.city ? this.state.city : ''}
+                              onInputChange={(event, newInputValue) => {
+                                 this.setState({
+                                    city: newInputValue
+                                 })
+                                 console.log(this.state.city)
+                              }}
+                              id="combo-box-demo"
+                              options={this.state.cityList }
+                              // sx={{ width: 490 }}
+                                 
+                              renderInput={(params) => <TextField {...params} label="Search Doctors (City or Pincode)" />}
+                           />
+                                 </div>
+                                 
+                                 <div className="mainBtn col-md-1">
+                           <button type="submit" className=" btn btn-article-search color-white float-right" >
+                                 <i class="fas fa-search"></i>
+                              </button>
+                              </div>
+                              </div>
+                              </div>
+                	    	{/* </div>
+                		 </div> */}
+                              
+              			  <input type="hidden" name="Latitude" id="Latitude"  className="form-control"/>
+    	 
+                       	 <input type="hidden" name="Longitude" id="Longitude"  className="form-control"/>
+                       	                                                 
+                        </form>
                         </div>
                      </div>   
                   </div>
@@ -431,7 +432,7 @@ onChangeHandlerdoctor = (e, text) => {
                </div>
             </div>
             <div className="row">
-            <div class='nav-btn prev-slide'></div><div class='nav-btn next-slide'></div>
+            <div className='nav-btn prev-slide'></div><div className='nav-btn next-slide'></div>
                <Carousel2/>
             </div>
            
@@ -502,12 +503,12 @@ onChangeHandlerdoctor = (e, text) => {
             
            
          </div>
-<div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-lg">
-    <div class="modal-content">
-    <div class="modal-header">
+<div className="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+  <div className="modal-dialog modal-lg">
+    <div className="modal-content">
+    <div className="modal-header">
         
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <button type="button" className="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
@@ -527,12 +528,13 @@ onChangeHandlerdoctor = (e, text) => {
                      </div>
                   </div>
                   <div className="col-md-6 col-sm-6 col-sx-12">
-                     <div className="subscribe">
-                        <h1>Get along with us on</h1>
-                        <h2>Please provide Your Mobile Number.</h2>
+                     <div className="subscribe">                    
+                        <h1>All Cures</h1>
+                        <h2>Sign up for our free <br/>All Cures Daily Newsletter</h2><br/>
+                        <h2>Get doctor-approved health tips, news, and more</h2>
                         <div className="form-group relative">
                            <div className="aaa">
-                              <input type="number" name="" onChange={this.setMobile} className="form-control"/>
+                              <input type="number" name="" onChange={this.setMobile} className="form-control" placeholder="Please Share Your Mobile Number"/>
                               
                            </div>
                            <div>
@@ -549,7 +551,7 @@ onChangeHandlerdoctor = (e, text) => {
                                             ? <SubmitError ShowErrorAlert={this.state.ShowErrorAlert}/>
                                             : console.log('')
                                     }
-                                <button class="bcolor"onClick={( ) => {this.postSubscribtion()}}>Submit
+                                <button className="bcolor"onClick={( ) => {this.postSubscribtion()}}>Submit
                                 
                                 </button>
 
@@ -569,12 +571,6 @@ onChangeHandlerdoctor = (e, text) => {
     </div>
   </div>
 </div>
-
-
-
-
-
-
       <Footer/>
       </div>
       
@@ -585,14 +581,14 @@ onChangeHandlerdoctor = (e, text) => {
 function ToggleButton(props) {
    if(props.acPerm){
        return(
-         <div>
+         <>
          <Dropdown>
-           <Dropdown.Toggle  className="header-drop">
-           <i className="fa fa-user fa-2x"></i> 
+           <Dropdown.Toggle  className="header-drop text-capitalize">
+           Hi {props.userName}
            </Dropdown.Toggle>
            <Dropdown.Menu>
              <Dropdown.Item>
-             <Link  className="text-dark btn" to={`/profile/${props.acPerm.split('|')[0]}`}>
+             <Link  className="text-dark btn" to={`/user/profile/`}>
                                Profile
                       </Link>
              </Dropdown.Item>
@@ -605,7 +601,7 @@ function ToggleButton(props) {
              </Dropdown.Item>
            </Dropdown.Menu>
          </Dropdown>
-       </div>
+       </>
           );
    }
    return(
@@ -645,7 +641,7 @@ function SubmitError(props) {
    console.log('Submit ALert', props.ShowErrorAlert)
    if(props.ShowErrorAlert) {
        return(
-           <Alert className="bg-red">Some Error occured!</Alert>
+           <Alert className="bg-red">Please Provide Your Mobile Number!</Alert>
        );
    }
 }
