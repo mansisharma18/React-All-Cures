@@ -1,6 +1,6 @@
 import React from "react";
 import Cookies from 'js-cookie';
-import { HashRouter, Switch, Route, Redirect, Router } from "react-router-dom";
+import { HashRouter, Switch, Route, Redirect, Router, BrowserRouter } from "react-router-dom";
 
 import Home from "./LandingPage/Home";
 import Sticky from "./LandingPage/Sticky"

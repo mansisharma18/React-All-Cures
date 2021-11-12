@@ -30,6 +30,7 @@ class Home extends Component {
       console.log('poiuytrewqasdfghjkl', props.history)
       const params = props.match.params
       this.state = {
+         article: '',
          users: [],
          city: '',
          name: '',
@@ -267,14 +268,12 @@ class Home extends Component {
                <div className="col-md-10 p-0">    
                <Autocomplete className="bg-white color-black"
                freeSolo
-                  
                   value={this.state.article}
                   onChange={(event, newValue) => {
                      this.setState({
                         article: newValue
                      })
                      console.log(this.state.article)
-
                   }}
                   inputValue={this.state.article ? this.state.article : ''}
                   onInputChange={(event, newInputValue) => {
@@ -284,7 +283,13 @@ class Home extends Component {
                      console.log(this.state.article)
                    }}
                   id="combo-box-demo"
-                  options={this.state.spec1}
+                  options={
+                     this.state.article?
+                        this.state.article.length >=1 ? 
+                        this.state.spec1 
+                        : [] 
+                     : []
+                  }
                   sx={{ width: 300 }}
                   
                   renderInput={(params) => <TextField {...params} label="Search Articles" />}
@@ -342,10 +347,14 @@ class Home extends Component {
                               }}
                               id="combo-box-demo"
                               options={
-                                 this.state.doctorLoaded? 
-                                 this.state.doctor.map.Doctorname.myArrayList
-                                 : []
-                                 }
+                                 this.state.doctorLoaded ?
+                                    this.state.name?
+                                    this.state.name.length >= 1? 
+                                       this.state.doctor.map.Doctorname.myArrayList
+                                       : []
+                                    : []
+                                    :[]
+                              }
                               // sx={{ width: 600 }}
                                  
                               renderInput={(params) => <TextField {...params} label="Search Doctors (Name)" />}
@@ -374,7 +383,12 @@ class Home extends Component {
                                  console.log(this.state.city)
                               }}
                               id="combo-box-demo"
-                              options={this.state.cityList }
+                              options={this.state.city?
+                                 this.state.city.length >= 1?
+                                 this.state.cityList 
+                                 : []
+                                 :[]
+                              }
                               // sx={{ width: 490 }}
                                  
                               renderInput={(params) => <TextField {...params} label="Search Doctors (City or Pincode)" />}
