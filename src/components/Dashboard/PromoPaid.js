@@ -47,28 +47,29 @@ class PromoPaid extends Component {
   }
 
 
-  postApproved(selected, rejected) {
-    
-    console.log(selected.join())
-    console.log(rejected.join())
-    
-    axios.post(`${backendHost}/promo/reviewedby/1/stage/1`, {
+  
+  postApproved(selected,rejected){
+    axios.post(`${backendHost}/promo/reviewed/1/stage/1`, {
       "articles_ids": selected.join(),
-      "articles_ids_rejected": rejected.join()
+      "articles_ids_rejected":rejected.join()
     })
-      .then(res => {
-        console.log(res)
-        this.setState({ShowSubmitAlert: true});
-       
-      })
-      .catch(err => console.log(err))
-      this.setState({ShowErrorAlert: true});
-        setTimeout(()=>{
-        this.setState({ShowErrorAlert: false});
-        },2000)
-
+    .then(res => {
+      console.log(res)
+      this.setState({ShowSubmitAlert: true});
+     
+    })
+    .catch(err => console.log(err))
+    this.setState({ShowErrorAlert: true});
+      setTimeout(()=>{
+      this.setState({ShowErrorAlert: false});
+      },2000)
     
+      
+
+
   }
+
+
   componentDidMount() {
     
   

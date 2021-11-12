@@ -347,21 +347,7 @@ function RenderComponent(props){
     return(
     <Container maxWidth="lg" className={props.container}>
     <Grid container spacing={3}>
-        {/* <Grid item xs={12} md={4} lg={3}>
-        <Paper className={props.fixedHeightPaper}>
-          <div className="h4">Your Details</div>
-          <Userprofile/>
-        </Paper>
-      </Grid> */}
-      {/* <Grid item xs={12} md={4} lg={3}>
-        <Paper className={props.fixedHeightPaper}>
-        <div className="h4">Article Statistics</div>
-          <div className="h6">Published : <TestAjax name="published_article"/></div>
-          <div className="h6">Draft: <TestAjax name="draft_article"/></div>
-          <div className="h6">Approval: <TestAjax name="approval_article"/></div>
-          <div className="h6">Review: <TestAjax name="review_article"/></div>
-        </Paper>
-      </Grid> */}
+       
       <Grid item xs={12} md={4} lg={3}>
        <Paper className={props.fixedHeightPaper}>
         <React.Fragment>

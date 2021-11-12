@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
+import Cookies from 'js-cookie';
 // import CommentBox from 'react-commentbox';
 import axios from 'axios';
 import { Dropdown, Button, DropdownButton, Nav, Modal, Alert} from 'react-bootstrap';
 import { backendHost } from '../api-config';
 
 const Comment = ({refreshComments, docid}) => {
+    const acPerm = Cookies.get("acPerm")
 
     const [cmtText,setCmtText] = React.useState('')
     const [succAlert, setAlert] = useState('')
@@ -15,7 +17,7 @@ const Comment = ({refreshComments, docid}) => {
         e.preventDefault()
 
         if(cmtText != '') {
-            axios.post(`${backendHost}/DoctorRatingActionController?ratingVal=3&comments='${cmtText}'&ratedbyid=1&ratedbytype=1&targetid=1&targetTypeid=${docid}&cmd=rateAsset`)
+            axios.post(`${backendHost}/DoctorRatingActionController?ratingVal=3&comments='${cmtText}'&ratedbyid=${Cookies.get("acPerm").split('|')[0]}&ratedbytype=${Cookies.get("acPerm").split('|')[1]}&targetid=${docid}&targetTypeid=1&cmd=rateAsset`)
             .then(res => {
                
                 setAlert(true)
