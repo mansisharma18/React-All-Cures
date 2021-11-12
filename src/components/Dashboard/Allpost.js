@@ -43,7 +43,7 @@ const AllPost = ({id, article_id,title, f_title, w_title,dis}) => {
                         <div className="d-flex justify-content-between align-items-center">
                         
                         <div>
-                        <Link to={ `/blog/${id}` }  className="d-flex justify-content-between align-items-center">
+                        <Link to={ `/cure/${id}` }  className="d-flex justify-content-between align-items-center">
                             <h5 className="card-title mb-1 p-0">{title}</h5>
                         </Link>
                         <div className="card-info">

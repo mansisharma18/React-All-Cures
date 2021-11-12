@@ -22,10 +22,8 @@ class Disease extends Component {
       disease: ''
     };
   }
-    
-  componentDidMount() {
-    
-    // console.log('Paramsssss '+ JSON.stringify(this.state.param))
+  
+  fetchBlog = () => {
     fetch(`${backendHost}/article/${this.props.match.params.id}`)
     // .then(res => JSON.parse(res))
       .then((res) => res.json())
@@ -37,6 +35,17 @@ class Disease extends Component {
         });
         // document.title = `All Cures | ${json.data.title}`
       });
+  }
+
+  componentDidMount() {
+    this.fetchBlog()
+  }
+
+  componentDidUpdate(prevProps){
+    if ( prevProps.match.params.id !== this.props.match.params.id){
+      console.log('prevpropsssssssss: ', prevProps.match.params.id, this.props.match.params.id )
+      this.fetchBlog()
+    }
   }
 
   handleChange = e => {
@@ -78,21 +87,21 @@ class Disease extends Component {
               <Breadcrumb>
                 <Breadcrumb.Item href="/">Home</Breadcrumb.Item>                                     
                 <Breadcrumb.Item>
-                  <Link to="/blogs">
+                  <Link to="/cures">
                     Blogs
                   </Link>
                 </Breadcrumb.Item>
                 <Breadcrumb.Item>
-                  <Link to={`/blogs/${items.dc_name}`}>
+                  <Link to={`/cures/${items.dc_name}`}>
                     {items.dc_name}
                   </Link>
                 </Breadcrumb.Item>
                 {/* <Breadcrumb.Item active>{items.title}</Breadcrumb.Item> */}
               </Breadcrumb>
               <div className="d-flex justify-content-end">
-                <Link to={`/blogs?c=9&dc=${items.disease_condition_id}`} className="mr-2 btn btn-info" >Indian</Link>
+                <Link to={`/cures?c=9&dc=${items.disease_condition_id}`} className="mr-2 btn btn-info" >Indian</Link>
                 <Link to={``} className="mr-2 btn btn-success" >Chinese</Link>
-                <Link to={`/blogs?c=10&dc=${items.disease_condition_id}`} className="btn btn-primary">Iranian</Link>
+                <Link to={`/cures?c=10&dc=${items.disease_condition_id}`} className="btn btn-primary">Iranian</Link>
               </div>
               <div className="ml-5 h1 text-uppercase text-decoration-underline">{items.title}</div>
                 {b.map((i) => (
@@ -114,7 +123,7 @@ class Disease extends Component {
             </div>
           </Col> 
           <Col id="sidebar-wrapper">      
-            <SidebarRight title={items.title}/>
+            <SidebarRight title={items.title} history={this.props.history} />
           </Col>
         </Row>
       <Footer/>

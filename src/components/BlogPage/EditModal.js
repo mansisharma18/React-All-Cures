@@ -280,7 +280,7 @@ const EditModal = (props) => {
                     setSuccMsg('Some error occured!')
                 }
             })
-            // history.incognito(`/blog/${editId.id}`)
+            // history.incognito(`/cure/${editId.id}`)
             // window.location.href(`blog/${editId.id}`)
         })
         .catch(err => {
@@ -306,7 +306,7 @@ const EditModal = (props) => {
                     setSuccMsg('Some error occured!')
                 }
             })
-            // history.incognito(`/blog/${editId.id}`)
+            // history.incognito(`/cure/${editId.id}`)
             // window.location.href(`blog/${editId.id}`)
         })
         .catch(err => {
@@ -458,6 +458,7 @@ const EditModal = (props) => {
     console.log('User ID: ', Array(userId))
     return (
         <>
+            <Header/>
             <div className="transparent_bg">
             <div className="container">
                 <div className="card">
@@ -716,6 +717,7 @@ const EditModal = (props) => {
                 </div>
             </div>
             </div>
+            <Footer/>
         </>
     )         
 }

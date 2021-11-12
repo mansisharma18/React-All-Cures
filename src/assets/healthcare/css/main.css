@@ -1187,9 +1187,12 @@ a.appBTN {
   font-size: 32px;
   line-height: 37px;
   color: #fff;
-  padding: 36px 0 52px 0;
+  padding: 36px 0 36px 0;
 }
 
+.subscribe .h5 span {
+  color: #1e7ca8;
+}
 .subscribe p {
   font-weight: 300;
   font-size: 16px;
@@ -2488,8 +2491,9 @@ p.lorem-text {
 
 /*Edit Post*/
 .transparent_bg {
+  padding: 5vh 0;
   display: flex;
-  min-height: 100vh;
+  min-height: 75vh;
   align-items: center;
   justify-content: center;
   background-color: rgb(140, 212, 235);
@@ -2681,4 +2685,7 @@ div.MuiSelect-root.MuiSelect-select.MuiSelect-selectMenu.MuiInputBase-input.MuiI
   border-radius: 15px;
   padding: 5px 32px;
   margin-right: 10px;
+}
+.subs-hero-2 {
+  border-radius: 0 20px 20px 0;
 }

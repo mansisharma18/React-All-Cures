@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import {Nav} from "react-bootstrap";
 import { withRouter } from "react-router";
-import AllPost from "../BlogPage/Allpost";
+import Post from './Posts'
 import './style.css'
 import Comment from "../Comment";
 import Rating from "../StarRating";  
@@ -52,11 +52,12 @@ const Side = (props) => {
             {   items?
                     items.map((i, index) => index<10 && (
                         i.pubstatus_id === 3?                // Selects articles with publish status = 3 (Published)
-                        <AllPost
+                        <Post
                             id = {i.article_id}
                             title = {i.title}
                             f_title = {i.friendly_name}
                             w_title = {i.window_title}
+                            history = {props.history}
                         />
                         : null
                     ))

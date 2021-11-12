@@ -86,7 +86,7 @@ const Routes = (props) => {
     <>
     <Switch>
        <Route exact path="/" component={Home} />
-       <Route exact path="/blog/:id" component={Disease}/>
+       <Route exact path="/cure/:id" component={Disease}/>
           <Route exact path="/home" component={Home} />
           <Route exact path="/search/:city" component={Search} /> 
           <Route exact path="/searchName/:name" component={SearchName} /> 
@@ -97,7 +97,7 @@ const Routes = (props) => {
           <Route path="/edit" auth={Auth.auth} component={Article} />
           <Route exact path="/dashboard" component={Dashboard} />
           <ProtectedRoute exact path="/sign" component={SignIn} />
-          <Route exact path="/blogs" component={Blogpage}/>
+          <Route exact path="/cures" component={Blogpage}/>
           <Route exact path="/login/doctor" component={LoginInfo}/>
           <Route path="/blogs/:type" component={Blogpage}/>
           {/* <Route exact path="/blogs/:id" component={Blogs}/> */}

@@ -200,9 +200,9 @@ import history from "../history";
    articleSearch = (e) => {
       e.preventDefault()
       if(this.state.article){
-         this.props.history.push(`/blogs/${this.state.article}`)
+         this.props.history.push(`/cures/${this.state.article}`)
       } else {
-         this.props.history.push(`/blogs`)
+         this.props.history.push(`/cures`)
       }
    }
    render() {
@@ -236,7 +236,7 @@ import history from "../history";
                               <Dropdown.Header className="col-8 col-md-6 h5 font-weight-bold border-dark">
                                 Common Conditions</Dropdown.Header>
                                 <span className="border-btm"></span>
-                                <Link to="/blogs/arthritis" class="text-dark pl-4">Arthritis</Link>
+                                <Link to="/cures/arthritis" class="text-dark pl-4">Arthritis</Link>
                                 <Dropdown.Item >Alergies</Dropdown.Item>
                                 <Dropdown.Item >Cancer</Dropdown.Item>
                                 <Dropdown.Item >Cardiology</Dropdown.Item>
@@ -302,7 +302,11 @@ import history from "../history";
                      console.log(this.state.article)
                    }}
                   id="combo-box-demo"
-                  options={this.state.spec1}
+                  options={this.state.article?
+                     this.state.article.length >=1 ? 
+                     this.state.spec1 
+                     : [] 
+                  : []}
                   sx={{ width: 300 }}
                   
                   renderInput={(params) => <TextField {...params} label="Search Articles" />}
@@ -316,6 +320,18 @@ import history from "../history";
             </div>
             </form>
                         <div className="loginSign">
+                        {
+                              this.state.acPerm?
+                              <Link className="btn border mr-2 btn-white loginSignbtn color-blue-dark"  to="/article">
+                              Create Article
+                            </Link>
+                              : <button 
+                              className="btn border mr-2 btn-white loginSignbtn color-blue-dark" 
+                              onClick={() => this.setModalShow(true)}
+                            >
+                             Create Article
+                            </button>
+                           }   
                             <ToggleButton userName={Cookies.get('uName')} setModalShow={this.setModalShow} acPerm={this.state.acPerm} logout={this.logout}/> 
                         </div>   	
                         </div>
@@ -349,10 +365,13 @@ import history from "../history";
                                  console.log(this.state.name)
                               }}
                               id="combo-box-demo"
-                              options={
-                                 this.state.doctorLoaded? 
-                                 this.state.doctor.map.Doctorname.myArrayList
+                              options={this.state.doctorLoaded ?
+                                 this.state.name?
+                                 this.state.name.length >= 1? 
+                                    this.state.doctor.map.Doctorname.myArrayList
+                                    : []
                                  : []
+                                 :[]
                                  }
                               // sx={{ width: 600 }}
                                  
@@ -382,7 +401,11 @@ import history from "../history";
                                  console.log(this.state.city)
                               }}
                               id="combo-box-demo"
-                              options={this.state.cityList }
+                              options={this.state.city?
+                                 this.state.city.length >= 1?
+                                 this.state.cityList 
+                                 : []
+                                 :[] }
                               // sx={{ width: 490 }}
                                  
                               renderInput={(params) => <TextField {...params} label="Search Doctors (City or Pincode)" />}

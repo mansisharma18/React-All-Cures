@@ -99,7 +99,7 @@ class Home extends Component {
     loaddoctor();
  }
 
- diseasePosts(){                     // For specific blogs like "/blogs/diabetes"
+ diseasePosts(){                     // For specific cures like "/cures/diabetes"
    fetch(`${backendHost}/isearch/${this.state.param.type}`)
      .then((res) => res.json())
      .then((json) => {
@@ -214,9 +214,9 @@ class Home extends Component {
    articleSearch = (e) => {
       e.preventDefault()
       if(this.state.article){
-         this.props.history.push(`/blogs/${this.state.article}`)
+         this.props.history.push(`/cures/${this.state.article}`)
       } else {
-         this.props.history.push(`/blogs`)
+         this.props.history.push(`/cures`)
       }
    }
    
@@ -245,7 +245,12 @@ class Home extends Component {
                               <Link className="btn border mr-2 btn-white loginSignbtn color-blue-dark"  to="/article">
                               Create Article
                             </Link>
-                              : null
+                              : <button 
+                              className="btn border mr-2 btn-white loginSignbtn color-blue-dark" 
+                              onClick={() => this.setModalShow(true)}
+                            >
+                             Create Article
+                            </button>
                            }   
       
                                  <ToggleButton userName={Cookies.get('uName')} setModalShow={this.setModalShow} acPerm={this.state.acPerm} match={this.props.match.url} logout={this.logout}/> 
@@ -541,14 +546,14 @@ class Home extends Component {
                         </div>
                      </div>
                   </div>
-                  <div className="col-md-6 col-sm-6 col-sx-12">
+                  <div className="col-md-6 col-sm-6 col-sx-12 bg-white subs-hero-2">
                      <div className="subscribe">                    
-                        <h1>All Cures</h1>
-                        <h2>Sign up for our free <br/>All Cures Daily Newsletter</h2><br/>
-                        <h2>Get doctor-approved health tips, news, and more</h2>
+                        <h1 className="text-dark">All Cures</h1>
+                        <div className="h5">Sign up for our free <span>All Cures</span> Daily Newsletter</div><br/>
+                        <div className="h5">Get <span>doctor-approved</span> health tips, news, and more</div>
                         <div className="form-group relative">
                            <div className="aaa">
-                              <input type="number" name="" onChange={this.setMobile} className="form-control" placeholder="Please Share Your Mobile Number"/>
+                              <input type="number" name="" onChange={this.setMobile} className="form-control border" placeholder="Please Share Your Mobile Number"/>
                               
                            </div>
                            <div>

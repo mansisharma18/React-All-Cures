@@ -1,7 +1,16 @@
+import { parseHTML } from 'jquery';
 import React from 'react';
+import parse from 'html-react-parser';
 
 const CenterWell = ({pageTitle, content, type, text, title, message, source, embed, caption, alignment, url, item}) =>{
     var list;
+    const rows = content.map((row) => {
+        return `<tr style="border: 1px solid #ebebeb" className="text-center">${row.reduce(
+            (acc, cell) => acc + `<td className="tc-table__cell text-center p-2" style="border: 1px solid #ebebeb; text-align: center;
+            padding: 0.6rem;">${cell}</td>`,""
+        )}</tr>`;
+    });
+    console.log(rows)
     return(
         <div>
             {
@@ -71,7 +80,13 @@ const CenterWell = ({pageTitle, content, type, text, title, message, source, emb
                                     </div>
                                 </div>
                             </div>,
-                                
+                    'table':    <table className="tc-table text-center">
+                                    <tbody>
+                                        {rows.map(r => (
+                                            parse(r)
+                                        ))}
+                                    </tbody>
+                                </table>,
                    
                 }[type]
             }
