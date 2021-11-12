@@ -528,7 +528,7 @@ class Home extends Component {
                      </div>
                   </div>
                   <div className="col-md-6 col-sm-6 col-sx-12">
-                     <div className="subscribe">                    
+                     <div className="subscribe">
                         <h1>All Cures</h1>
                         <h2>Sign up for our free <br/>All Cures Daily Newsletter</h2><br/>
                         <h2>Get doctor-approved health tips, news, and more</h2>
