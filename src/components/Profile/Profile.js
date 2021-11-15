@@ -56,9 +56,9 @@ class Profile extends Component {
  
     
   }
-  getComments() {
+  getComments = (id) => {
     console.log('fired');
-    axios.get(`${backendHost}/rating/target/1/targettype/1`)
+    axios.get(`${backendHost}/rating/target/${id}/targettype/1`)
     .then(res => {
       console.log(res)
       this.setState({
@@ -281,7 +281,7 @@ class Profile extends Component {
                     
                   </div>
                   <div className="comment-box">
-                    <Comment refreshComments={this.getComments} docid={this.state.param.id}/>
+                    <Comment refreshComments={this.getComments(this.state.param.id)} docid={this.state.param.id}/>
                   </div>
                   <div className="profile-rating">
                     <div className="tab-nav">
@@ -323,7 +323,56 @@ class Profile extends Component {
                                 <p>{item.comments}</p>
                               </div>
                               <div className="patient-name-add">
-                              <div className="h4 text-capitalize">Name: {item.firstName} {item.lastName}</div>
+                              <div className="h4 text-capitalize">Name: {item.first_name} {item.last_name}</div>
+                                <div className="patient-rating">
+                                  <ul>
+                                    <li>
+                                      <i
+                                        className="fa fa-star"
+                                        aria-hidden="true"
+                                      ></i>
+                                    </li>
+                                    <li>
+                                      <i
+                                        className="fa fa-star"
+                                        aria-hidden="true"
+                                      ></i>
+                                    </li>
+                                    <li>
+                                      <i
+                                        className="fa fa-star"
+                                        aria-hidden="true"
+                                      ></i>
+                                    </li>
+                                    <li>
+                                      <i
+                                        className="fa fa-star"
+                                        aria-hidden="true"
+                                      ></i>
+                                    </li>
+                                    <li>
+                                      <i
+                                        className="fa fa-star-half"
+                                        aria-hidden="true"
+                                      ></i>
+                                    </li>
+                                  </ul>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          <div className="rating-patient">
+                            <div className="rating-patient-grid clearfix">
+                              <div className="paitent-profile">
+                                {" "}
+                                <img src={ClientA} alt="ClientA" />{" "}
+                              </div>
+                              <div className="patient-msg">
+                              
+                                <p>{item.comments}</p>
+                              </div>
+                              <div className="patient-name-add">
+                              <div className="h4 text-capitalize">Name: {item.first_name} {item.last_name}</div>
                                 <div className="patient-rating">
                                   <ul>
                                     <li>
