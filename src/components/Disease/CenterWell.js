@@ -2,14 +2,23 @@ import { parseHTML } from 'jquery';
 import React from 'react';
 import parse from 'html-react-parser';
 
-const CenterWell = ({pageTitle, content, type, text, title, message, source, embed, caption, alignment, url, item}) =>{
+const CenterWell = ({pageTitle, imageUrl, content, type, text, title, message, source, embed, caption, alignment, url, item}) =>{
     var list;
-    const rows = content.map((row) => {
-        return `<tr style="border: 1px solid #ebebeb" className="text-center">${row.reduce(
-            (acc, cell) => acc + `<td className="tc-table__cell text-center p-2" style="border: 1px solid #ebebeb; text-align: center;
-            padding: 0.6rem;">${cell}</td>`,""
-        )}</tr>`;
-    });
+    var rows;
+    var textContent;
+    if(typeof(text) == "string"){
+        textContent = parse(text)
+    }
+    // console.log('TEXTTTTTTTT: ', typeof(text) == "string"?parse(text): 'null' + '/n')
+    if(content){
+        rows = content.map((row) => {
+            return `<tr style="border: 1px solid #ebebeb" className="text-center">${row.reduce(
+                (acc, cell) => acc + `<td className="tc-table__cell text-center p-2" style="border: 1px solid #ebebeb; text-align: center;
+                padding: 0.6rem;">${cell}</td>`,""
+            )}</tr>`;
+        });
+    }
+    
     console.log(rows)
     return(
         <div>
@@ -25,7 +34,7 @@ const CenterWell = ({pageTitle, content, type, text, title, message, source, emb
                     'paragraph': <div class="ce-block">
                                     <div class="ce-block__content">
                                         <div class="ce-paragraph cdx-block">
-                                            <p>{text}</p>
+                                            <p>{textContent}</p>
                                         </div>
                                     </div>
                                 </div>,
@@ -53,11 +62,11 @@ const CenterWell = ({pageTitle, content, type, text, title, message, source, emb
                                     <i>- {caption}</i>    
                                 </div>
                             </div>,
-                    'SimpleImage': <div className="ce-block">
+                    'image': <div className="ce-block">
                                 <div className="ce-block__content">
                                     <div className="cdx-block cdx-simple-image">
                                         <div className="cdx-simple-image__picture">
-                                            <img src={url} alt={caption} />
+                                            <img src={imageUrl} alt={caption} />
                                         </div>
                                         <div className="text-center">
                                             <i>{caption}</i>
@@ -65,6 +74,7 @@ const CenterWell = ({pageTitle, content, type, text, title, message, source, emb
                                     </div>
                                 </div>
                             </div>,
+                    // 'image' : 
                     'list': <div class="ce-block">
                                 <div class="ce-block__content">
                                     <div class="ce-paragraph cdx-block">
@@ -82,9 +92,13 @@ const CenterWell = ({pageTitle, content, type, text, title, message, source, emb
                             </div>,
                     'table':    <table className="tc-table text-center">
                                     <tbody>
-                                        {rows.map(r => (
-                                            parse(r)
-                                        ))}
+                                        {
+                                            typeof(rows) == "object"?
+                                            rows.map(r => (
+                                                parse(r)
+                                            ))
+                                            : null
+                                        }
                                     </tbody>
                                 </table>,
                    

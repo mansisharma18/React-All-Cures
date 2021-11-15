@@ -69,9 +69,9 @@ class Disease extends Component {
     );
   } else if(isLoaded){
     var artContent = items.content;
-    console.log(artContent)
+    console.log('article content: ', artContent)
     var a = JSON.parse(decodeURIComponent(artContent))
-    console.log(a)
+    console.log('decoded: ',a)
     var b = a.blocks
     // console.log("aaaaaaaaaa", a.blocks)
     return (
@@ -116,6 +116,8 @@ class Disease extends Component {
                     embed = {i.data.embed}
                     caption = {i.data.caption}
                     alignment = {i.data.alignment}
+                    imageUrl = {i.data.file? i.data.file.url: null}
+
                     url = {i.data.url}
                     item = {i.data.items}
                   />
