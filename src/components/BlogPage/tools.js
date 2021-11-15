@@ -26,8 +26,8 @@ export const EDITOR_JS_TOOLS = {
     class: Image,
     config: {
       endpoints: {
-        byFile: '/uploadFile', // Your backend file uploader endpoint
-        byUrl: '/fetchUrl', // Your endpoint that provides uploading by Url
+        byFile: 'http://192.168.29.160:8080/article/uploadFile', // Your backend file uploader endpoint
+        byUrl: 'http://192.168.29.160:8080/article/fetchUrl', // Your endpoint that provides uploading by Url
       }
     }
   },
