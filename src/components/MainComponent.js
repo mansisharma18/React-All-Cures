@@ -99,7 +99,7 @@ const Routes = (props) => {
           <ProtectedRoute exact path="/sign" component={SignIn} />
           <Route exact path="/cures" component={Blogpage}/>
           <Route exact path="/login/doctor" component={LoginInfo}/>
-          <Route path="/blogs/:type" component={Blogpage}/>
+          <Route path="/cures/:type" component={Blogpage}/>
           {/* <Route exact path="/blogs/:id" component={Blogs}/> */}
       <Route exact path="/profile/:id" component={Profile} />
       <Route exact path="/user/profile/" component={Userprofile} />

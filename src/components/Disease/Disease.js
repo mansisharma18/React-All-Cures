@@ -19,7 +19,8 @@ class Disease extends Component {
       items: [],
       isLoaded: false,
       param : this.props.match.params,
-      disease: ''
+      disease: '',
+      regions: ''
     };
   }
   
@@ -32,13 +33,26 @@ class Disease extends Component {
         this.setState({
           isLoaded: true,
           items: json,
-        });
+        }, () => this.fetchCountriesCures());
         // document.title = `All Cures | ${json.data.title}`
       });
   }
 
+  fetchCountriesCures = () => {
+    fetch(`${backendHost}/isearch/treatmentregions/${this.state.items.disease_condition_id}`)
+      .then((res)=> res.json())
+      .then((json) => {
+        console.log(json)
+        this.setState({
+          regions: json
+        })
+      })
+  }
   componentDidMount() {
     this.fetchBlog()
+    // if(this.state.items){
+    //   this.fetchCountriesCures(this.state.items)
+    // }
   }
 
   componentDidUpdate(prevProps){
@@ -99,10 +113,17 @@ class Disease extends Component {
                 {/* <Breadcrumb.Item active>{items.title}</Breadcrumb.Item> */}
               </Breadcrumb>
               <div className="d-flex justify-content-end">
-                <Link to={`/cures?c=9&dc=${items.disease_condition_id}`} className="mr-2 btn btn-info" >Indian</Link>
+              { this.state.regions?
+                this.state.regions.map(i => (
+                  <Link to={`/cures?c=${i.country_id}&dc=${items.disease_condition_id}`} className="mr-2 btn btn-info" >{i.countryname}</Link>
+                ))
+                : null
+              }
+              </div>
+                {/* <Link to={`/cures?c=9&dc=${items.disease_condition_id}`} className="mr-2 btn btn-info" >Indian</Link>
                 <Link to={``} className="mr-2 btn btn-success" >Chinese</Link>
                 <Link to={`/cures?c=10&dc=${items.disease_condition_id}`} className="btn btn-primary">Iranian</Link>
-              </div>
+              </div> */}
               <div className="ml-5 h1 text-uppercase text-decoration-underline">{items.title}</div>
                 {b.map((i) => (
                   <CenterWell
