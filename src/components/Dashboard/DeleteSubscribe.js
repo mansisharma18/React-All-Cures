@@ -1,87 +1,39 @@
-import React, { Component, useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 
 import Cookies from 'js-cookie';
-import { usePasswordValidation } from "../hooks/usePasswordValidation";
-import { Alert,Form, Dropdown, DropdownButton } from 'react-bootstrap';
+import { Form, Dropdown, DropdownButton } from 'react-bootstrap';
 import Footer from '../Footer/Footer';
 import Heart from"../../assets/img/heart.png";
-import { useHistory, Link, Redirect} from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import axios from 'axios';
-import history from '../history'
-import { useParams } from "react-router-dom";
 import { backendHost } from '../../api-config';
 
 import '../../assets/healthcare/css/main.css';
 import Input from '@material-ui/core/Input';
-import { Checkbox, FormGroup, FormControlLabel, Select, MenuItem , FormControl, InputLabel,TextField} from '@material-ui/core'
+import { Select, MenuItem } from '@material-ui/core'
 
 function LoginInfo(props) {  
 const[number,setNumber] = useState('');
-const [countriesList,setCountriesList] = useState([])
-    const [alert, setSubmitAlert] = useState(false)
-    const [acPerm, setacPerm] = useState(Cookies.get('acPerm'))
-    const [states, setStates] = useState([])
     const [type,setType] = useState([])
-    const [selectedState, setSelectedState] = useState('')
-    const [submitAlert, setAlert] = useState(false)
-    const [notAlert, noAlert] = useState(false)
-    const [errAlert, erAlert] = useState(false)
     const [disease, setDisease] = useState([])
     const [cures, setCures] = useState([])
     const [diseaseList, setDiseaseList] = useState([])
     const setMail = (event)=>{
         setNumber({ ...number,Mail: event.target.value})
     }
-     
-  const putSubscribe= async e => {
-       e.preventDefault()
-    axios.post(`${backendHost}/users/unsubscribe/7889761896`,
-  {   
- "nl_subscription_disease_id":1,
-  "nl_sub_type":1,
-  "nl_subscription_cures_id": 0
-  })
-  .then(res => {
-      console.log(res)
-  })
-  .catch(err => console.log(err))
-   }
-    
-
-       
-      
-        
     
     useEffect(() => {
-
-        // const params = new URLSearchParams(location.search);
-        // const getEmail= params.get('em');
-      
-       const getEmail = props.location.search
-       
-         axios.post(`${backendHost}/users/getemdecrypt`,
-         {
-             "email":getEmail.split('em=')[1]
-         })
-         .then(res => {
+        const getEmail = props.location.search
+        axios.post(`${backendHost}/users/getemdecrypt`,
+            {
+                "email":getEmail.split('em=')[1]
+            })
+            .then(res => {
             setNumber(res.data)
-         })
-         
-    
-     
+            })
         getDisease()
+    }, [])
 
-         
-        }, [])
-
-    // const logout = async e => {
-    //     const res = await fetch("/LogoutActionController", {
-    //        method: "POST"
-    //     });
-    //     setTimeout(() => {
-    //        window.location.reload()
-    //     }, 1000);
-    //  }
      const handleSelect = function(countries) {
         const flavors = [];
         for (let i=0; i<countries.length; i++) {
@@ -207,7 +159,6 @@ const [countriesList,setCountriesList] = useState([])
                 </div> 
                        
       <div className="d-flex flex-column align-items-sm-center">
-                            {/* <button onClick={putSubscribe} className="btn btn-dark col-md-4" >Submit</button> */}
                             </div>
                         </form>
                     </div>

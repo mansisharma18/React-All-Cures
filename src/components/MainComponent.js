@@ -12,17 +12,12 @@ import SearchName from './Search/SearchName';
 // import Modal from './Modal';
 import AuthApi from './AuthApi'
 import Disease from "./Disease/Disease";
-import Article 
-
-from "./Article/Article.js";
 import Dashboard from "./Dashboard/Dashboard.js";
 // import LoginPage from "./login";
-import SignIn from "./Article/SignIn";
 import Blogpage from "./BlogPage/Blogpage";
 import EditPost from './BlogPage/EditModal';
 import BlogAllPost from './Dashboard/BlogAllPost'
 import LoginInfo from './loginForm/LoginInfo'
-import FormSignup from "./loginForm/FormSignup";
 import Comment from './Comment'
 import CommentsRev from './Dashboard/CommentsRev.js'
 import ReviewComments from './Dashboard/ReviewComments.js'
@@ -30,7 +25,6 @@ import Results from './Dashboard/Results.js'
 import PromoPaid from './Dashboard/PromoPaid.js'
 import PromoAdmin from './Dashboard/PromoAdmin.js'
 import ResetPass from './loginForm/ResetPass.js'
-import Promo from "./Dashboard/Promo/CreatePromo";
 import Verify from './loginForm/Verify.js'
 import Subscribe from './Dashboard/Subscribe.js'
 import Subs from './Dashboard/Subs.js'
@@ -94,9 +88,8 @@ const Routes = (props) => {
           {/* <Route path="/search/:city/:name" component={Search} /> */}
           <Route path="/article/:id" component={EditPost}/>
           <Route path="/article" component={EditPost}/>
-          <Route path="/edit" auth={Auth.auth} component={Article} />
+          {/* <Route path="/edit" auth={Auth.auth} component={Article} /> */}
           <Route exact path="/dashboard" component={Dashboard} />
-          <ProtectedRoute exact path="/sign" component={SignIn} />
           <Route exact path="/cures" component={Blogpage}/>
           <Route exact path="/login/doctor" component={LoginInfo}/>
           <Route path="/cures/:type" component={Blogpage}/>

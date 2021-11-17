@@ -16,7 +16,6 @@ import history from "../history";
        
         constructor(props){
             super(props);
-            console.log(props)
             this.state = {
                users: '',
                texts: '',
@@ -26,6 +25,7 @@ import history from "../history";
                name: '',
                suggestions: [],
                suggestionsDoc: [],
+               diseaseTitle: [],
                doctorLoaded: false,
                doctor : '',
                spec1: [],
@@ -43,12 +43,11 @@ import history from "../history";
         }
 
 
-        componentWillMount(){
+        componentDidMount(){
          Promise.all([
             fetch(`${backendHost}/article/all/table/disease_condition`)
             .then(res => res.json()),
           ]).then(([diseaseData]) => {
-            console.log('Speciality Data: ', diseaseData)
             this.setState({
                 isLoaded: true,
                 speciality: diseaseData,
@@ -58,7 +57,6 @@ import history from "../history";
             this.state.speciality.map((i) => {
               this.state.spec1.push(i[3])
             })
-            console.log('spec1111111111111111111111: ', this.state.spec1)
           })
           .catch(res => {
              console.error(res)
@@ -73,11 +71,6 @@ import history from "../history";
                this.state.users.map((u) => {
                   this.state.cityList.push(u.Cityname, u.Pincode)
                })
-               // this.state.users.map((u) => {
-               //    this.state.pinList.push(u.Pincode)
-               // })
-               console.log('CIty & pincode: ', this.state.users)
-               console.log('CIty list: ', this.state.cityList)
             })
             .catch(res => console.log(res))
           }
@@ -96,6 +89,17 @@ import history from "../history";
           loaddoctor();
           }
          
+          componentDidUpdate(prevProps, prevState){
+            if(prevState.article != this.state.article && this.state.article){
+               axios.get(`${backendHost}/isearch/combo/${this.state.article}`)
+               .then(res => {
+                  this.setState({
+                     diseaseTitle: res.data
+                  })
+               })
+            }
+          }
+
            onSuggestHandler = (text, ano) => {
              if(Number.isInteger(this.state.getPincode)) {
                this.state.searchParams.city = ano;
@@ -177,16 +181,12 @@ import history from "../history";
    onSearch = (e) => {
       var {city, name } = this.state
       e.preventDefault()
-      console.log(city, name)
       if(city && name){
          this.props.history.push(`/search/${city}/${name}`)
-         console.log('city && name')
       } else if(city){
          this.props.history.push(`/search/${city}`)
-         console.log('only city')
       } else if(name) {
          this.props.history.push(`/searchName/${name}`)
-         console.log('only name')
       }
    }
    
@@ -194,7 +194,6 @@ import history from "../history";
       this.setState({
          article: newValue
       })
-      console.log(this.state.article)
    }
 
    articleSearch = (e) => {
@@ -284,31 +283,26 @@ import history from "../history";
                               <div className="col-md-12 row">
                <div className="col-md-10 p-0">    
                <Autocomplete className="bg-white color-black"
-               freeSolo
-                  
+                  freeSolo
                   value={this.state.article}
                   onChange={(event, newValue) => {
                      this.setState({
                         article: newValue
                      })
-                     console.log(this.state.article)
-
                   }}
                   inputValue={this.state.article ? this.state.article : ''}
                   onInputChange={(event, newInputValue) => {
                      this.setState({
                         article: newInputValue
                      })
-                     console.log(this.state.article)
                    }}
                   id="combo-box-demo"
                   options={this.state.article?
                      this.state.article.length >=1 ? 
-                     this.state.spec1 
+                     this.state.diseaseTitle 
                      : [] 
                   : []}
                   sx={{ width: 300 }}
-                  
                   renderInput={(params) => <TextField {...params} label="Search Articles" />}
                />
             </div>
@@ -355,14 +349,12 @@ import history from "../history";
                                  this.setState({
                                     name: newValue
                                  })
-                                 console.log(this.state.name)
                               }}
                               inputValue={this.state.name ? this.state.name : ''}
                               onInputChange={(event, newInputValue) => {
                                  this.setState({
                                     name: newInputValue
                                  })
-                                 console.log(this.state.name)
                               }}
                               id="combo-box-demo"
                               options={this.state.doctorLoaded ?
@@ -373,16 +365,9 @@ import history from "../history";
                                  : []
                                  :[]
                                  }
-                              // sx={{ width: 600 }}
-                                 
                               renderInput={(params) => <TextField {...params} label="Search Doctors (Name)" />}
                            />
                             </div>
-                            
-                                 {/* </div>
-                              </div> */}
-                              {/* <div className="col-md-5 pd-0 col-sx-12 col-sm-4">
-                                 <div className="form-group city zipcode"> */}
                                  <div className="city-name col-md-5">
                                  <Autocomplete className="bg-white p-0 color-black"
                               freeSolo
@@ -391,14 +376,12 @@ import history from "../history";
                                  this.setState({
                                     city: newValue
                                  })
-                                 console.log(this.state.city)
                               }}
                               inputValue={this.state.city ? this.state.city : ''}
                               onInputChange={(event, newInputValue) => {
                                  this.setState({
                                     city: newInputValue
                                  })
-                                 console.log(this.state.city)
                               }}
                               id="combo-box-demo"
                               options={this.state.city?
@@ -406,8 +389,6 @@ import history from "../history";
                                  this.state.cityList 
                                  : []
                                  :[] }
-                              // sx={{ width: 490 }}
-                                 
                               renderInput={(params) => <TextField {...params} label="Search Doctors (City or Pincode)" />}
                            />
                                  </div>
@@ -419,9 +400,7 @@ import history from "../history";
                               </div>
                               </div>
                               </div>
-                	    	{/* </div>
-                		 </div> */}
-                              
+
               			  <input type="hidden" name="Latitude" id="Latitude"  className="form-control"/>
     	 
                        	 <input type="hidden" name="Longitude" id="Longitude"  className="form-control"/>

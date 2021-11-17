@@ -1,25 +1,16 @@
-import React, { Component, useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 
 import Cookies from 'js-cookie';
 import { usePasswordValidation } from "../hooks/usePasswordValidation";
 import { Alert,Form, Dropdown, DropdownButton } from 'react-bootstrap';
 import Footer from '../Footer/Footer';
 import Heart from"../../assets/img/heart.png";
-import { useHistory, Link} from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import axios from 'axios';
-import history from '../history'
-import { Redirect } from "react-router-dom";
-import { Mail } from '@material-ui/icons';
 import { backendHost } from '../../api-config';
 
-
-
 function LoginInfo(props) {  
-const[email,setEmail] = useState(
-    {
-        Mail: "",
-    }
-);
+    const[email,setEmail] = useState({ Mail: ""});
     const [password, setPassword] = useState({
           firstPassword: "",
           secondPassword: "",
@@ -27,9 +18,6 @@ const[email,setEmail] = useState(
     const [alert, setSubmitAlert] = useState(false)
     const [acPerm, setacPerm] = useState(Cookies.get('acPerm'))
     const [states, setStates] = useState([])
-  
-    const [selectedState, setSelectedState] = useState('')
-  
     const [submitAlert, setAlert] = useState(false)
     const [notAlert, noAlert] = useState(false)
     const [errAlert, erAlert] = useState(false)
@@ -47,15 +35,7 @@ const[email,setEmail] = useState(
     
     const setMail = (event)=>{
         setEmail({ ...email,Mail: event.target.value})
-    }
-    const setFirst = (event) => {
-      setPassword({ ...password, firstPassword: event.target.value });
-    };
-    const setSecond = (event) => {
-      setPassword({ ...password, secondPassword: event.target.value });
-    };
-
-    
+    }    
 
     const submitForm = async (e) => {
         e.preventDefault()

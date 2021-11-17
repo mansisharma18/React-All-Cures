@@ -1,19 +1,16 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
-import Rating from '../StarRating';
-import BlogAllPost from './BlogAllPost'
-import { Dropdown, Button, DropdownButton, Nav, Modal, Alert} from 'react-bootstrap';
+import { Alert } from 'react-bootstrap';
 import { backendHost } from '../../api-config';
 
 
 
-const AllPost = ({id, article_id,title, f_title, w_title,dis}) => {
+const AllPost = ({ id, title, w_title, dis }) => {
 
     if (dis==0) dis = true 
     else dis = false
     const [disable, setDisable] = React.useState(dis);
-    console.log('dis'+dis)
     const [deleteAlert, setAlert] = useState(false)
     
     const singlePostDelete = (id) => {
@@ -31,9 +28,6 @@ const AllPost = ({id, article_id,title, f_title, w_title,dis}) => {
         })
     }
 
-
-
-
     return (
         <>
         <div className="col-lg-12">
@@ -43,15 +37,12 @@ const AllPost = ({id, article_id,title, f_title, w_title,dis}) => {
                         <div className="d-flex justify-content-between align-items-center">
                         
                         <div>
-                        <Link to={ `/cure/${id}` }  className="d-flex justify-content-between align-items-center">
-                            <h5 className="card-title mb-1 p-0">{title}</h5>
-                        </Link>
-                        <div className="card-info">
-                        {/* <div className="h6">{f_title}</div> */}
-                            <div className="h6">{w_title}</div>
-                           
-
-                    </div>
+                            <Link to={ `/cure/${id}` }  className="d-flex justify-content-between align-items-center">
+                                <h5 className="card-title mb-1 p-0">{title}</h5>
+                            </Link>
+                            <div className="card-info">
+                                <div className="h6">{w_title}</div>
+                            </div>
                         </div>
                         <div className="delete-edit-buttons">
 
@@ -77,10 +68,7 @@ const AllPost = ({id, article_id,title, f_title, w_title,dis}) => {
                             <Link className="btn btn-info btn-sm" to={ `/article/${id}`}>Edit</Link>
                             
                         </div>
-                        </div>
-                    
-                    
-                    {/* <Rating /> */}
+                        </div>                    
                 </div>
             </div>
         </div>
@@ -89,29 +77,5 @@ const AllPost = ({id, article_id,title, f_title, w_title,dis}) => {
     )
 
 }
-
-// SHOW ALERT
-
-function SubmitAlert(props) {
-    console.log('Submit ALert', props.ShowSubmitAlert)
-    if(props.ShowSubmitAlert) {
-        return(
-            <Alert className="bg-green">Subscribe has been saved successfully!</Alert>
-        );
-    }
- }
- 
- // Show Error Alert
- 
- function SubmitError(props) {
-    console.log('Submit ALert', props.ShowErrorAlert)
-    if(props.ShowErrorAlert) {
-        return(
-            <Alert className="bg-red">Some Error occured!</Alert>
-        );
-    }
- }
-   
-
 
 export default AllPost;
