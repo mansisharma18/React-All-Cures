@@ -42,7 +42,7 @@ export default function Carousel1(props){
             <div className="tab-content category " id="choose-category" style={{maxWidth:"1140px", zIndex: 0}}>
                   <OwlCarousel className="owl-theme owl-loading" items={6} loop margin={150}  {...options}>
                   <div className="item bg-pink">
-                        <Link to={ `/cures/anemia` }>
+                        <Link to={ `/cures/Cough And Cold` }>
                            <div className="item-img">
                               <img src={Slider1} alt="slider-img"/>
                            </div>
