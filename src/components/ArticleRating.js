@@ -9,7 +9,7 @@ import { backendHost } from '../api-config';
 import Cookies from 'js-cookie';
 
 
-export default function Rating(props) {
+export default function ArticleRating(props) {
   const acPerm = Cookies.get("acPerm")
 
   const [ratingValue, setRatingValue] = React.useState([])
@@ -17,7 +17,7 @@ export default function Rating(props) {
   const [submitAlert, setAlert] = useState(false)
   const postRating = (rating, docid) => {
 
-    axios.post(`${backendHost}/DoctorRatingActionController?ratingVal=${rating}&ratedbyid=${Cookies.get("acPerm").split('|')[0]}&ratedbytype=${Cookies.get("acPerm").split('|')[1]}&targetid=${props.docid}&targetTypeid=1&cmd=rateAsset`)
+    axios.post(`${backendHost}/DoctorRatingActionController?ratingVal=${rating}&ratedbyid=${Cookies.get("acPerm").split('|')[0]}&ratedbytype=${Cookies.get("acPerm").split('|')[1]}&targetid=${props.article_id}&targetTypeid=1&cmd=rateAsset`)
     // .then(res => console.log(res)
     .then(res => {
       setAlert(true)
@@ -72,7 +72,7 @@ const thirdExample = {
       <ReactStars {...thirdExample} />
       {
       submitAlert?
-          <Alert variant="success" className="h6 mx-3">You rate this doctor successfully!!</Alert>
+          <Alert variant="success" className="h6 mx-3">You rate this cure successfully!!</Alert>
           : null
   }
   

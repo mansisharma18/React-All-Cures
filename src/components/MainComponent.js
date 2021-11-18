@@ -42,6 +42,7 @@ import List from '../List'
 import Userprofile from "./Profile/Userprofile";
 import StarRating from './StarRating'
 import history from "./history";
+import ArticleRating from './ArticleRating'
 
 
 
@@ -120,6 +121,7 @@ const Routes = (props) => {
       <Route exact path="/list" component={List} />
       <Route exact path="/deletesubscribe" component={DeleteSubscribe} />
       <Route exact path="/starrating" component={StarRating} />
+      <Route exact path="/articlerating" component={ArticleRating} />
       
       
       

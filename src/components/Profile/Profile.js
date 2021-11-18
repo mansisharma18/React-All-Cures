@@ -15,6 +15,7 @@ import Comment from "../Comment";
 import axios from 'axios';
 import EditProfile from "./EditProfile";
 import { backendHost } from '../../api-config';
+import StarRating from '../StarRating.js'
 
 class Profile extends Component {
   constructor(props) {
@@ -25,6 +26,7 @@ class Profile extends Component {
     this.state = { 
       items: [],
       commentItems: [],
+      ratingValue: [],
       firstName: [],
       lastName: [],
       isLoaded: false,
@@ -65,6 +67,18 @@ class Profile extends Component {
         commentItems:res.data
       })
     })
+    .catch(err => console.log(err))
+    console.log('closed');
+  }
+  getRating = (id) => {
+    console.log('fired');
+    axios.get(`${backendHost}/rating/target/${id}/targettype/1/avg`)
+    .then(res => {
+      console.log(res)
+      this.setState({
+        ratingValue:res.data
+      })
+    }) 
     .catch(err => console.log(err))
     console.log('closed');
   }
@@ -111,6 +125,7 @@ class Profile extends Component {
     document.title = "All Cures | Profile"
     this.fetchDoctorData(this.state.param.id)
     this.getComments()
+    this.getRating()
     this.getProfile(this.state.param.profileId)
   }
 
@@ -199,7 +214,7 @@ class Profile extends Component {
                               
                                 className="rating"
                               >
-                                <Rating />
+                                {/* <Rating /> */}
                               </form>
                             </h2>
                           </div>
@@ -281,13 +296,13 @@ class Profile extends Component {
                     
                   </div>
                   <div className="comment-box">
-                    <Comment refreshComments={this.getComments(this.state.param.id)} docid={this.state.param.id}/>
+                    {/* <Comment refreshComments={this.getComments(this.state.param.id)} docid={this.state.param.id}/> */}
                   </div>
                   <div className="profile-rating">
                     <div className="tab-nav">
                       <div className="rating-heading">
                         <div className="profile-info-rating">
-                        <Rating />
+                        <Rating postRatings={this.getRating} docid={this.state.param.id} />
                           
                         
                         </div>
@@ -323,7 +338,7 @@ class Profile extends Component {
                                 <p>{item.comments}</p>
                               </div>
                               <div className="patient-name-add">
-                              <div className="h4 text-capitalize">Name: {item.first_name} {item.last_name}</div>
+                              <div className="h4 text-capitalize"> {item.first_name} {item.last_name}</div>
                                 <div className="patient-rating">
                                   <ul>
                                     <li>
@@ -361,55 +376,7 @@ class Profile extends Component {
                               </div>
                             </div>
                           </div>
-                          <div className="rating-patient">
-                            <div className="rating-patient-grid clearfix">
-                              <div className="paitent-profile">
-                                {" "}
-                                <img src={ClientA} alt="ClientA" />{" "}
-                              </div>
-                              <div className="patient-msg">
-                              
-                                <p>{item.comments}</p>
-                              </div>
-                              <div className="patient-name-add">
-                              <div className="h4 text-capitalize">Name: {item.first_name} {item.last_name}</div>
-                                <div className="patient-rating">
-                                  <ul>
-                                    <li>
-                                      <i
-                                        className="fa fa-star"
-                                        aria-hidden="true"
-                                      ></i>
-                                    </li>
-                                    <li>
-                                      <i
-                                        className="fa fa-star"
-                                        aria-hidden="true"
-                                      ></i>
-                                    </li>
-                                    <li>
-                                      <i
-                                        className="fa fa-star"
-                                        aria-hidden="true"
-                                      ></i>
-                                    </li>
-                                    <li>
-                                      <i
-                                        className="fa fa-star"
-                                        aria-hidden="true"
-                                      ></i>
-                                    </li>
-                                    <li>
-                                      <i
-                                        className="fa fa-star-half"
-                                        aria-hidden="true"
-                                      ></i>
-                                    </li>
-                                  </ul>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
+
                               </>
                             )
                           })}

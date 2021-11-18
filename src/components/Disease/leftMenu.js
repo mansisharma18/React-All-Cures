@@ -6,10 +6,13 @@ import AllPost from "../BlogPage/Allpost";
 import './style.css'
 import { backendHost } from '../../api-config';
 import ArticleComment from '../ArticleComment';
+import Cookies from 'js-cookie';
+
 
 const Side = props => {
     // const [isloaded, setisLoaded] = useState(true)
     const [items, setItems] = useState([])
+    const acPerm = Cookies.get("acPerm")
     const [commentItems, setCommentItems] = useState([])
     console.log('Propsssssssssssssssssss: ', props.diseaseId)
     function  allPosts() {                        // For all available blogs "/blogs"
@@ -77,7 +80,12 @@ const Side = props => {
                 </div>
                 {/* </ul> */}
             </Nav.Item>
-            <ArticleComment refreshComments={comments} article_id={props.match.params.id}/>
+            {
+                              acPerm?
+                              <ArticleComment refreshComments={comments} article_id={props.match.params.id}/>
+                              : null
+                            }
+            
             <h1>Comments </h1>
             {   
                     commentItems?

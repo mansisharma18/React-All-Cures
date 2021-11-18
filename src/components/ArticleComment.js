@@ -55,7 +55,7 @@ const Comment = ({refreshComments,article_id}) => {
                     
                     {
                             succAlert?
-                                <Alert variant="success" className="h6 mx-3">comment  successfully!!</Alert>
+                                <Alert variant="success" className="h6 mx-3">comment  successfully,,,Comment gone for Approval Stage ..!!</Alert>
                                 : null
                         }
                     <div className="my-4">
