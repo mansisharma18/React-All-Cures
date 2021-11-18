@@ -2689,3 +2689,32 @@ div.MuiSelect-root.MuiSelect-select.MuiSelect-selectMenu.MuiInputBase-input.MuiI
 .subs-hero-2 {
   border-radius: 0 20px 20px 0;
 }
+
+.chip {
+  display: inline-block;
+  padding: 0 25px;
+  height: 50px;
+  font-size: 16px;
+  line-height: 50px;
+  border-radius: 25px;
+  background-color: #f1f1f1;
+}
+
+.overview {
+  background-color: #00415e;
+  color: #fff;
+}
+
+.cure {
+  background-color: #6cce63;
+  color: #fff;
+}
+
+.symptoms {
+  background-color: #f77754;
+  color: #fff;
+}
+
+.country {
+  background-color: #3ad0ff;
+}

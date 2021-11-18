@@ -92,8 +92,8 @@ const EditModal = (props) => {
                 "articleContent": encodeURIComponent(JSON.stringify(articleContent)),
                 "country_id": parseInt(country),
                 "keywords": keywords,
-                "comments": comment
-
+                "comments": comment,
+                "disease_condition_id": disease
             })
             .then(res => {
                 setSuccMsg('Updated Successfully')
@@ -487,8 +487,6 @@ const EditModal = (props) => {
                     name="comments"
                     as="textarea"
                     placeholder="Leave a comment here"
-                    required
-                    // style={{ height: '100px' }}
                     />
                 </div>
 

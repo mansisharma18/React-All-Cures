@@ -101,7 +101,18 @@ const CenterWell = ({pageTitle, imageUrl, content, type, text, title, message, s
                                         }
                                     </tbody>
                                 </table>,
-                   
+                    'simpleImage':  <div className="ce-block">
+                    <div className="ce-block__content">
+                        <div className="cdx-block cdx-simple-image">
+                            <div className="cdx-simple-image__picture">
+                                <img src={url} alt={caption} />
+                            </div>
+                            <div className="text-center">
+                                <i>{caption}</i>
+                            </div>
+                        </div>
+                    </div>
+                </div>,
                 }[type]
             }
         </div>

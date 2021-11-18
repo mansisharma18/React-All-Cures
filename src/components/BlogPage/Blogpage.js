@@ -130,6 +130,8 @@ export default class Blogpage extends Component{
                             title = {i.title}
                             f_title = {i.friendly_name}
                             w_title = {i.window_title}
+                            country = {i.country_id}
+                            type = {i.type}
                             allPostsContent={() => this.allPosts()}
                         />
                         : null
