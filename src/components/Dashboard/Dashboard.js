@@ -12,28 +12,19 @@ import Divider from '@material-ui/core/Divider';
 import IconButton from '@material-ui/core/IconButton';
 import Container from '@material-ui/core/Container';
 import TestAjax from './test/TestAjax'
-// import Userprofile from '../UserProfile/Userprofile';
-import Cookies from 'js-cookie';
 import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
 import Link from '@material-ui/core/Link';
 import MenuIcon from '@material-ui/icons/Menu';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import { mainListItems, secondaryListItems } from './listItems';
-import Deposits from './Deposits';
-import Draft from './Draft';
-import Approval from './Approval';
-import Review from './Review';
 import Promo from './Promo/CreatePromo'
 import GetPromo from './Promo/GetPromo';
 import UpdatePromo from './Promo/UpdatePromo';
 import Title from './Title';
-import Article from '.././Article/Article'
 import BlogAllPost from './BlogAllPost'
 import EditModal from '../BlogPage/EditModal'
 import { backendHost } from '../../api-config';
-// import EditModal from './EditModal';
-// import RenderComponentArticle from './RenderComponentArticle'
 
 
 function Copyright() {
@@ -162,13 +153,15 @@ export default function Dashboard(props) {
   
   useEffect(() => {
     document.title = 'All Cures | Dashboard'
+    console.log(props)
     setIsLoaded(false);
     fetch(`${backendHost}/dashboard/articlecount`)
       .then((res) => res.json())
       .then((json) => {
         setItems(json);
         setIsLoaded(true);        
-        <RenderComponent 
+        <RenderComponent
+            pathname={props.location.pathname}
             search={props.location.search} 
             container={classes.container} 
             fixedHeightPaper={fixedHeightPaper} 
@@ -263,6 +256,7 @@ export default function Dashboard(props) {
 //}
 
 function RenderComponent(props){
+  console.log(props)
   // debugger
   // if (props.ajaxItems){
   // console.log("aaaaaaa"+props.key)
@@ -274,7 +268,7 @@ function RenderComponent(props){
   // }
 // }
   if(props.search == '?article'){
-    return(<EditModal/>);
+    return(<EditModal search={props.search} />);
   }
  
  

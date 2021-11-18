@@ -9,24 +9,18 @@ import Header from '../Header/Header';
 import Footer from '../Footer/Footer'
 import Input from '@material-ui/core/Input';
 import { useStateWithCallbackLazy } from 'use-state-with-callback';
-import { Checkbox, FormGroup, FormControlLabel, FormControl,} from '@material-ui/core'
-import { Redirect } from 'react-router';
-import history from '../history';
+import { Checkbox, FormControlLabel } from '@material-ui/core'
 import { backendHost } from '../../api-config';
+import CenterWell from '../Disease/CenterWell';
 
 const EditModal = (props) => {
 
     const acPerm = Cookies.get("acPerm")
     const [userAccess, setAccess] = useState(acPerm? acPerm.split('|')[1]: null);
     const [userId, setId] = useState(acPerm? acPerm.split('|')[0]: null);
-    // if(acPerm){
-    //     setId(acPerm.split('|')[0])
-    //     setAccess(acPerm.split('|')[1])
-    // }
     const editId = useParams()
     const [title, setTitle] = useState('')
     const [articleDisplay, setArticleDisplay] = useState('')
-    const [content, setContent] = useState()
     const [contentType,setContentType] = useState('')
     const [type,setType] = useState([])
     const [disclaimer, setDisclaimer] = useState('')
@@ -40,14 +34,11 @@ const EditModal = (props) => {
     const [disease, setDisease] = useState('')
     const [articleContent, setArticleContent] = useState('')
     const [diseaseList, setDiseaseList] = useState([])
-    const [showCountry, setShowCountry] = useState(false)
     const [lanList,setLanList] = useState([])
-    // const [contentType, setContentType] = useState([])
     const [authList,setAuthList] = useState([])
     const [countriesList,setCountriesList] = useState([])
     const [succMsg,setSuccMsg] = useState('')
     const [disclaimerId,setDisclaimerId] = useState([]) 
-    const [getContentList,setGetContentList] = useState([]) 
     const [comment, setComment] = useState('')
     const [keywords, setKeywords] = useState('')
 
@@ -55,23 +46,14 @@ const EditModal = (props) => {
 
         axios.get(`${backendHost}/article/${editId.id}`)
         .then(res => {
-            console.log("get post",res);
             setEditedBy(res.data.edited_by)
-            
             setAuthor(JSON.parse(res.data.authored_by))
             setTitle(res.data.title);
             setDisclaimer(res.data.disclaimer_id)
             setCopyright(res.data.copyright_id)
             setLanguage(res.data.language_id)
             setWin(res.data.window_title)
-            // if(author != undefined & editedBy != 0){
-                setArticleStatus(res.data.pubstatus_id)
-                    // window.alert('khbdksjbckjsb')
-                //     checkAccess(articleStatus, author, editedBy);
-                // });
-            // }
-            // setArticleStatus(res.data.pubstatus_id, () => checkAccess(articleStatus))
-            
+            setArticleStatus(res.data.pubstatus_id)
             setArticleDisplay(res.data.friendly_name)
             setType(res.data.type)
             setContentType(res.data.content_type)
@@ -81,16 +63,13 @@ const EditModal = (props) => {
             setKeywords(res.data.keywords) 
             setArticleContent(JSON.parse(decodeURIComponent(res.data.content)))
         })
-        .catch(err => console.log("errrrrrrorrrrrrrrrrrrrrrrrr",err))
+        .catch(err => 
+            console.log("errrrrrrorrrrrrrrrrrrrrrrrr",err)
+        )
     }
-
-    // new EditorJs({        
-    //     placeholder: 'Let`s write an awesome story!'
-    //   });
     
     const singlePostEdit = (e) => {
         e.preventDefault()
-        console.log(editId);
         if(articleStatus == 3){
             axios.post(`${backendHost}/article/${editId.id}`, {
                 "title":title,
@@ -166,7 +145,6 @@ const EditModal = (props) => {
     // }, [articleStatus])
 
     const checkAccess = (stat) => {
-        console.log('Article Status', stat,'author', author, 'user access', userAccess, 'edited BY:', editedBy)
         if(userAccess == 9 || [author].includes(userId) || editedBy == userId || userAccess == 4 || userAccess == 7){
             return null;
         }
@@ -176,10 +154,6 @@ const EditModal = (props) => {
         else{
             document.getElementById('article-submit').disabled = true
             window.alert('Restricted Access!!')
-            // return(
-            //     // history.push('/home')
-            //     <Redirect to="/home"/>
-            // )
         }
     }
 
@@ -188,16 +162,19 @@ const EditModal = (props) => {
         .then(res => {
             setLanList(res.data)
         })
-        .catch(err => console.log(err))
+        .catch(err => 
+            console.log(err)
+        )
     }
 
     const getAuthor = () => {
         axios.get(`${backendHost}/article/all/table/author`)
         .then(res => {
             setAuthList(res.data)
-            console.log(`author: `, res.data)
         })
-        .catch(err => console.log(err))
+        .catch(err => 
+            console.log(err)
+        )
     }
 
     const getCountries = () => {
@@ -205,24 +182,28 @@ const EditModal = (props) => {
         .then(res => {
             setCountriesList(res.data)
         })
-        .catch(err => console.log(err))
+        .catch(err => 
+            console.log(err)
+        )
     }
 
     const getDisclaimer = () => {
         axios.get(`${backendHost}/article/all/table/disclaimer`)
         .then(res => {
             setDisclaimerId(res.data)
-            console.log(`disclaimer: `, res.data)
         })
-        .catch(err => console.log(err))
+        .catch(err => 
+            console.log(err)
+        )
     }
     const getDisease = () => {
         axios.get(`${backendHost}/article/all/table/disease_condition`)
         .then(res => {
-            console.log(res.data);
             setDiseaseList(res.data)
         })
-        .catch(err => console.log(err))
+        .catch(err => 
+            console.log(err)
+        )
     }
     
     const onAuthorChange = (e) => {
@@ -230,21 +211,18 @@ const EditModal = (props) => {
             return null
         } else {
             setAuthor(e.target.value)
-            console.log(author)
         }
     }
 
     useEffect(() => {
         if(editId.id){
-            console.log("Useeffect: ", editId.id)
             getPosts()
         }
         getLanguages()
         getAuthor()
         getCountries()
         getDisclaimer()
-        getDisease()  
-        // checkAccess()      
+        getDisease()     
     }, [userId])
 
     useEffect(() => {
@@ -262,13 +240,12 @@ const EditModal = (props) => {
         }
         setType(ctype);
     }
-    console.log(JSON.stringify(articleContent))
+
     const submitArticleForm = async e => {
         e.preventDefault();
-        console.log('submit article formmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmm')
         fetch(`${backendHost}/content?cmd=createArticle`, {
             method: "POST",
-            body: `title=${title}&language=${language}&friendlyName=${articleDisplay}&contentType=${contentType}&type=${type}&disclaimerId=1&authById=[${userId}]&copyId=11&articleStatus=2&winTitle=${win}&countryId=${country}&diseaseConditionId=${disease}&articleContent=${encodeURIComponent(JSON.stringify(articleContent))}&comments=${comment}&keywords=${keywords}`,
+            body: `title=${title}&language=${language}&friendlyName=${articleDisplay}&contentType=${contentType}&type=${type}&disclaimerId=1&authById=[${userId}]&copyId=11&articleStatus=${articleStatus? articleStatus: 2}&winTitle=${win}&countryId=${country}&diseaseConditionId=${disease}&articleContent=${encodeURIComponent(JSON.stringify(articleContent))}&comments=${comment}&keywords=${keywords}`,
             headers: {
             "Content-Type": "application/x-www-form-urlencoded"
             }
@@ -280,18 +257,14 @@ const EditModal = (props) => {
                     setSuccMsg('Some error occured!')
                 }
             })
-            // history.incognito(`/cure/${editId.id}`)
-            // window.location.href(`blog/${editId.id}`)
         })
         .catch(err => {
-            console.log(err);
             setSuccMsg('Error in updating!')
         })
     }
     
     const finishLater = (e) => {
         e.preventDefault();
-        console.log('submit article formmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmm')
         fetch(`${backendHost}/content?cmd=createArticle`, {
             method: "POST",
             body: `title=${title}&language=${language}&friendlyName=${articleDisplay}&contentType=${contentType}&type=${type}&disclaimerId=1&authById=[${userId}]&copyId=11&articleStatus=1&winTitle=${win}&countryId=${country}&diseaseConditionId=${disease}&articleContent=${encodeURIComponent(JSON.stringify(articleContent))}&comments=${comment}&keywords=${keywords}`,
@@ -310,155 +283,21 @@ const EditModal = (props) => {
             // window.location.href(`blog/${editId.id}`)
         })
         .catch(err => {
-            console.log(err);
             setSuccMsg('Error in updating!')
         })
     }
     async function handleSave() {
-        // console.log('ksdufhaouhaohoaih')
         const savedData = await instanceRef.current.save();        
-        // console.log("savedData", savedData);
-        setArticleContent(savedData)
-        console.log('json stringify: ', JSON.stringify(savedData))
-        let articleHTML = '';
-  
-        // RENDER DIFFERENT TYPES OF DATA
-      
-        savedData.blocks.map(obj => {
-        switch (obj.type) {
-            case 'paragraph':
-            articleHTML += `<div class="ce-block">
-            <div class="ce-block__content">
-                <div class="ce-paragraph cdx-block">
-                <p>${obj.data.text}</p>
-                </div>
-            </div>
-            </div>\n`;
-            break;
-            case 'table':
-                obj.data.content.map((i) => (
-                    articleHTML += `
-                    <div class="container">
-                    <table class="tc-table text-center">
-                                    <tbody>
-                                        <tr style="border: 1px solid #ebebeb">
-                                            <td class="tc-table__cell">
-                                                <div class="tc-table__area">
-                                                    <div class="text-center" contenteditable="true">${i[0]}<br></div>
-                                                </div>
-                                            </td>
-                                            <td class="tc-table__cell">
-                                                <div class="tc-table__area">
-                                                    <div class="text-center" contenteditable="true">${i[1]}</div>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                        </tbody>
-                                    </table>
-                                    </div>
-                                    `
-                ))
-                break;
-            case 'simpleImage':
-            articleHTML += `<div class="ce-block">
-            <div class="ce-block__content">
-                <div class="cdx-block cdx-simple-image">
-                <div class="cdx-simple-image__picture">
-                <img src="${obj.data.url}" alt="${obj.data.caption}" />
-                </div>
-                <div class="text-center">
-                <i>${obj.data.caption}</i>
-                </div>
-            </div>
-            </div>
-        </div>\n`;
-            break;
-            case 'header':
-            articleHTML += `<div class="ce-block">
-            <div class="ce-block__content">
-                <div class="ce-paragraph cdx-block">
-                <h3>${obj.data.text}</h3>
-                </div>
-            </div>
-            </div>\n`;
-            break;
-            case 'raw':
-            articleHTML += `<div class="ce-block">
-            <div class="ce-block__content">
-                    <div class="ce-code">
-                <code>${obj.data.html}</code>
-                </div>
-            </div>
-            </div>\n`;
-            break;
-            case 'code':
-                articleHTML += `<div class="ce-block">
-                <div class="ce-block__content">
-                <div class="ce-code">
-                <code>${obj.data.code}</code>
-                </div>
-            </div>
-        </div>\n`;
-        break;
-        case 'list':
-        if (obj.data.style === 'unordered') {
-            const list = obj.data.items.map(item => {
-            return `<li class="cdx-list__item">${item}</li>`;
-            });
-            articleHTML += `<div class="ce-block">
-            <div class="ce-block__content">
-                <div class="ce-paragraph cdx-block">
-                <ul class="cdx-list--unordered">${list.join('')}</ul>
-                </div>
-                </div>
-            </div>\n`;
-        } else {
-            const list = obj.data.items.map(item => {
-            return `<li class="cdx-list__item">${item}</li>`;
-            });
-            articleHTML += `<div class="ce-block">
-            <div class="ce-block__content">
-                <div class="ce-paragraph cdx-block">
-                <ol class="cdx-list--ordered">${list}</ol>
-                </div>
-                </div>
-            </div>\n`;
-        }
-        break;
-        case 'delimiter':
-        articleHTML += `<h1 class="text-center my-2">***</h1>\n`;
-        break;
-        case 'warning':
-            articleHTML+= `<div class="ce-block">
-            <div class="ce-block__content py-2 text-center" style="background-color: blanchedalmond">
-                <strong> ${obj.data.title}: </strong><span>${obj.data.message}</span>
-            </div>
-            </div>\n`;
-            break;
-        case 'embed':
-            articleHTML += `<div class="ce-block ce-block--focused"><div class="ce-block__content"><div class="cdx-block embed-tool"><preloader class="embed-tool__preloader"><div class="embed-tool__url">${obj.data.source}</div></preloader>
-            <iframe style="width:100%;" allowfullscreen="" src=${obj.data.embed} class="embed-tool__content" height="320" frameborder="0"></iframe>
-            <div class="text-center">
-                <i>${obj.data.caption}</i>
-                </div>\n`;
-                break;
-        case 'quote':
-            articleHTML+= `<div style="text-align: ${obj.data.alignment}" class="ce-block ce-block--focused"><div class="ce-block__content"><h3 style="font-style: italic" class="cdx-block">"${obj.data.text}"</h3></div>
-            <div class="text-center">
-                <i>- ${obj.data.caption}</i>    
-            </div>
-        </div>\n`;
-            break;
-        default:
-        return '';
-        }
-        });
-        document.getElementById('article-preview').innerHTML=articleHTML;
+        setArticleContent(savedData)  
     }
-    console.log('User ID: ', Array(userId))
+
     return (
         <>
-            <Header/>
+            {   
+                props.search == '?article'?
+                    null
+                : <Header/>
+            } 
             <div className="transparent_bg">
             <div className="container">
                 <div className="card">
@@ -674,13 +513,6 @@ const EditModal = (props) => {
                                     instanceRef={instance => (instanceRef.current = instance)}
                                     tools = {EDITOR_JS_TOOLS} 
                                     />
-                                    // console.log('heheheheheh')
-                                    // articleContent &&
-                                    // <EditorJs
-                                    // onChange={handleSave}
-                                    // instanceRef={instance => (instanceRef.current = instance)}
-                                    // tools = {EDITOR_JS_TOOLS} 
-                                    // />
                                 }
                                 {
                                     articleContent == ''?
@@ -712,12 +544,36 @@ const EditModal = (props) => {
                         <button onClick={(e) => finishLater(e)} id="article-submit" className="btn ml-3 mt-3 btn-secondary">Finish Later</button>
                     </div>
                     </form>
-                    <div id="article-preview"></div>
+                    <div id="article-preview">
+                        {
+                            articleContent.time?
+                            articleContent.blocks.map((i) => (
+                                <CenterWell
+                                    content = {i.data.content}
+                                    type = {i.type}
+                                    text = {i.data.text}
+                                    title = {i.data.title}
+                                    message = {i.data.message}
+                                    source = {i.data.source}
+                                    embed = {i.data.embed}
+                                    caption = {i.data.caption}
+                                    alignment = {i.data.alignment}
+                                    imageUrl = {i.data.file? i.data.file.url: null}
+                                    url = {i.data.url}
+                                />
+                              ))
+                            : null
+                        }
+                    </div>
                     </div>
                 </div>
             </div>
             </div>
-            <Footer/>
+            {   
+                props.search == '?article'?
+                    null
+                : <Footer/>
+            } 
         </>
     )         
 }

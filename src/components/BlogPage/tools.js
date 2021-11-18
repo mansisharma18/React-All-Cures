@@ -13,6 +13,7 @@ import CheckList from '@editorjs/checklist'
 import Delimiter from '@editorjs/delimiter'
 import InlineCode from '@editorjs/inline-code'
 import SimpleImage from '@editorjs/simple-image'
+import { backendHost } from '../../api-config'
 
 export const EDITOR_JS_TOOLS = {
   embed: Embed,
@@ -26,8 +27,8 @@ export const EDITOR_JS_TOOLS = {
     class: Image,
     config: {
       endpoints: {
-        byFile: 'http://192.168.29.160:8080/article/uploadFile', // Your backend file uploader endpoint
-        byUrl: 'http://192.168.29.160:8080/article/fetchUrl', // Your endpoint that provides uploading by Url
+        byFile: `${backendHost}/article/uploadFile`, // Your backend file uploader endpoint
+        byUrl: `${backendHost}/article/fetchUrl`, // Your endpoint that provides uploading by Url
       }
     }
   },

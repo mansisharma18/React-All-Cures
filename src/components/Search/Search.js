@@ -9,7 +9,6 @@ import '../../assets/healthcare/css/responsive.css';
 import '../../assets/healthcare/css/animate.css';
 import '../../assets/healthcare/icomoon/style.css';
 import {Form ,Container } from 'react-bootstrap';
-import Options from '../Article/Options';
 import axios from 'axios';
 import { backendHost } from '../../api-config';
 import Test from '../LandingPage/test'
@@ -261,10 +260,7 @@ class Search extends Component {
                                         <option>Open this select menu</option>
                                         
                                             {this.state.speciality.map((i) => (  
-                                                <Options
-                                                    value={i[0]}
-                                                    name={i[3]}
-                                                />
+                                              <options value={i[0]}>{i[3]}</options>
                                             ))}
                                             
                                         </Form.Control>

@@ -1,40 +1,30 @@
-import React, { Component, useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 
 import Cookies from 'js-cookie';
 import { usePasswordValidation } from "../hooks/usePasswordValidation";
 import { Alert,Form, Dropdown, DropdownButton } from 'react-bootstrap';
 import Footer from '../Footer/Footer';
 import Heart from"../../assets/img/heart.png";
-import { useHistory, Link, Redirect} from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import axios from 'axios';
 import { backendHost } from '../../api-config';
 
-
-
-
-
-
 function LoginInfo(props) {  
-const[email,setEmail] = useState('');
+    const[email,setEmail] = useState('');
     const [password, setPassword] = useState({
           firstPassword: "",
           secondPassword: "",
          });
     const [alert, setSubmitAlert] = useState(false)
     const [acPerm, setacPerm] = useState(Cookies.get('acPerm'))
-    const [states, setStates] = useState([])
- 
-    const [selectedState, setSelectedState] = useState('')
     const [submitAlert, setAlert] = useState(false)
     const [notAlert, noAlert] = useState(false)
     const [errAlert, erAlert] = useState(false)
     const [
         validLength,
-        hasNumber,
         upperCase,
         lowerCase,
         match,
-        specialChar,
     ] = usePasswordValidation({
         Mail: email.Mail,
     firstPassword: password.firstPassword,
@@ -63,14 +53,14 @@ const[email,setEmail] = useState('');
                 "email": email,
                 })
             .then(res => {
-                if(res.data =="1"){
+                if(res.data == "1"){
                     setAlert(true)
                 setTimeout(()=>{
                     window.location.href="/home";
                 },1000)
                
           
-            }else if(res.data == "Sorry, the email address you entered does not exist in our database."){
+            }else if(res.data === "Sorry, the email address you entered does not exist in our database."){
                 noAlert(true)
                 setTimeout(()=>{
                     noAlert(false)
@@ -186,12 +176,8 @@ const[email,setEmail] = useState('');
                                     {lowerCase ? <span className="px-3 py-1 alert-success">Contains Lowercase</span> : <span className="px-3 py-1 alert-danger">Should contain at least one lowercase character</span>}
                                   </li>
                                   <li className="m-3">{match ? <span className="px-3 py-1 alert-success">Passwords match</span> : <span className="px-3 py-1 alert-danger">Passwords do not match</span>}</li>
-                                  {/* <li className="m-3">
-                                    {specialChar ? null : <span className="px-3 py-1 alert-danger">Should contain at least one special character</span>}
-                                  </li> */}
                               </ul>
                               </div>
-                            //   :null
                               : null
                             }
 

@@ -22,12 +22,10 @@ import Test from './test'
 import { env } from 'process';
 
 env.REACT_APP = 'http://117.241.171.115:8080/cures';
-console.log('ukaygduayn87ncwyc8qy: ',env.REACT_APP);
 
 class Home extends Component {
    constructor(props){
       super(props);
-      console.log('poiuytrewqasdfghjkl', props.history)
       const params = props.match.params
       this.state = {
          article: '',
@@ -40,6 +38,7 @@ class Home extends Component {
          suggestions: [],
          suggestionsDoc: [],
          doctor : [],
+         diseaseTitle: [],
          mobile: '',
          getPincode:null,
          getCityName:null,
@@ -75,11 +74,6 @@ class Home extends Component {
          this.state.users.map((u) => {
             this.state.cityList.push(u.Cityname, u.Pincode)
          })
-         // this.state.users.map((u) => {
-         //    this.state.pinList.push(u.Pincode)
-         // })
-         // console.log('CIty & pincode: ', this.state.pinList)
-         console.log('CIty list: ', this.state.cityList)
       })
       .catch(res => console.log(res))
     }
@@ -92,18 +86,27 @@ class Home extends Component {
             doctor: res.data,
             doctorLoaded: true
          })
-         console.log('dkihukhdskuhdkushdudhsdkh: ',this.state.doctor.map.Doctorname.myArrayList)
       })
       .catch(res =>  console.log(res))
     }
     loaddoctor();
  }
 
+ componentDidUpdate(prevProps, prevState){
+   if(prevState.article != this.state.article && this.state.article){
+      axios.get(`${backendHost}/isearch/combo/${this.state.article}`)
+      .then(res => {
+         this.setState({
+            diseaseTitle: res.data
+         })
+      })
+   }
+ }
+
  diseasePosts(){                     // For specific cures like "/cures/diabetes"
    fetch(`${backendHost}/isearch/${this.state.param.type}`)
      .then((res) => res.json())
      .then((json) => {
-       console.log(json);
        this.setState({
          isLoaded: true,
          items: json,
@@ -112,25 +115,17 @@ class Home extends Component {
  }
    
  postSubscribtion() {
-   // console.log(selected.join())
-   // console.log(rejected.join())
-   
    axios.post(`${backendHost}/users/subscribe/${this.state.mobile}`, {
-   //   "articles_ids": selected.join(),
-   //   "articles_ids_rejected": rejected.join()
-
    "nl_subscription_disease_id": 1,
    "nl_sub_type":1,
    "nl_subscription_cures_id":0,
    })
      .then(res => {
-       console.log(res)
        this.setState({ShowSubmitAlert: true});
        window.location.reload(true);
       
      })
      .catch(err => {
-        console.log(err)
         this.setState({ShowErrorAlert: true});
         setTimeout(()=>{
         this.setState({ShowErrorAlert: false});
@@ -151,7 +146,6 @@ class Home extends Component {
             fetch(`${backendHost}/article/all/table/disease_condition`)
             .then(res => res.json()),
           ]).then(([diseaseData]) => {
-            console.log('Speciality Data: ', diseaseData)
             this.setState({
                 isLoaded: true,
                 speciality: diseaseData,
@@ -182,32 +176,20 @@ class Home extends Component {
       })
     }
     setMobile= e => {
-       
-       console.log(e.target.value)
        this.setState({
          mobile: e.target.value
        })
     }
 
    onSearch = (e) => {
-      // const history = useHistory();
       var { city, name } = this.state
       e.preventDefault()
-      console.log(city, name)
       if(city && name){
          this.props.history.push(`/search/${city}/${name}`)
-         // window.location.href = `/search/${city}/${name}`
-         console.log('city && name')
       } else if(city){
          this.props.history.push(`/search/${city}`)
-
-         // window.location.href = `/search/${city}`
-         console.log('only city')
       } else if(name) {
          this.props.history.push(`/searchName/${name}`)
-
-         // window.location.href = `/searchName/${name}`
-         console.log('only name')
       }
    }
 
@@ -221,8 +203,6 @@ class Home extends Component {
    }
    
    render() {
-      console.log(this.state.suggestions)
-      // console.log(process.env)
       return(
          <div>
             <div className="homeHeader">
@@ -278,20 +258,18 @@ class Home extends Component {
                      this.setState({
                         article: newValue
                      })
-                     console.log(this.state.article)
                   }}
                   inputValue={this.state.article ? this.state.article : ''}
                   onInputChange={(event, newInputValue) => {
                      this.setState({
                         article: newInputValue
                      })
-                     console.log(this.state.article)
                    }}
                   id="combo-box-demo"
                   options={
                      this.state.article?
                         this.state.article.length >=1 ? 
-                        this.state.spec1 
+                        this.state.diseaseTitle 
                         : [] 
                      : []
                   }
@@ -341,14 +319,12 @@ class Home extends Component {
                                  this.setState({
                                     name: newValue
                                  })
-                                 console.log(this.state.name)
                               }}
                               inputValue={this.state.name ? this.state.name : ''}
                               onInputChange={(event, newInputValue) => {
                                  this.setState({
                                     name: newInputValue
                                  })
-                                 console.log(this.state.name)
                               }}
                               id="combo-box-demo"
                               options={
@@ -360,8 +336,6 @@ class Home extends Component {
                                     : []
                                     :[]
                               }
-                              // sx={{ width: 600 }}
-                                 
                               renderInput={(params) => <TextField {...params} label="Search Doctors (Name)" />}
                            />
                             </div>
@@ -378,14 +352,12 @@ class Home extends Component {
                                  this.setState({
                                     city: newValue
                                  })
-                                 console.log(this.state.city)
                               }}
                               inputValue={this.state.city ? this.state.city : ''}
                               onInputChange={(event, newInputValue) => {
                                  this.setState({
                                     city: newInputValue
                                  })
-                                 console.log(this.state.city)
                               }}
                               id="combo-box-demo"
                               options={this.state.city?
@@ -394,8 +366,6 @@ class Home extends Component {
                                  : []
                                  :[]
                               }
-                              // sx={{ width: 490 }}
-                                 
                               renderInput={(params) => <TextField {...params} label="Search Doctors (City or Pincode)" />}
                            />
                                  </div>
@@ -407,9 +377,6 @@ class Home extends Component {
                               </div>
                               </div>
                               </div>
-                	    	{/* </div>
-                		 </div> */}
-                              
               			  <input type="hidden" name="Latitude" id="Latitude"  className="form-control"/>
     	 
                        	 <input type="hidden" name="Longitude" id="Longitude"  className="form-control"/>
@@ -562,22 +529,17 @@ class Home extends Component {
                               {
                                         this.state.ShowSubmitAlert
                                             ? <SubmitAlert ShowSubmitAlert={this.state.ShowSubmitAlert}/>
-                                            : console.log('Submit ALert')
+                                            : null
                                     }
 
                                     {
                                         this.state.ShowErrorAlert
                                             ? <SubmitError ShowErrorAlert={this.state.ShowErrorAlert}/>
-                                            : console.log('')
+                                            : null
                                     }
-                                <button className="bcolor"onClick={( ) => {this.postSubscribtion()}}>Submit
-                                
+                                <button className="bcolor"onClick={( ) => {this.postSubscribtion()}}>
+                                   Submit
                                 </button>
-
-                                
-                                
-                              
-                             
                            </div>
                         </div>
                      </div>
@@ -646,7 +608,6 @@ function ToggleButton(props) {
 // SHOW ALERT
 
 function SubmitAlert(props) {
-   console.log('Submit ALert', props.ShowSubmitAlert)
    if(props.ShowSubmitAlert) {
        return(
            <Alert className="bg-green">Subscribe has been saved successfully!</Alert>
@@ -657,7 +618,6 @@ function SubmitAlert(props) {
 // Show Error Alert
 
 function SubmitError(props) {
-   console.log('Submit ALert', props.ShowErrorAlert)
    if(props.ShowErrorAlert) {
        return(
            <Alert className="bg-red">Please Provide Your Mobile Number!</Alert>
