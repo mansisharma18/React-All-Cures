@@ -4,10 +4,14 @@ import { withRouter } from "react-router";
 import Post from './Posts'
 import './style.css'
 import Comment from "../Comment";
-import Rating from "../StarRating";  
+  
 import { backendHost } from '../../api-config';
+import ArticleRating from "../ArticleRating";
+import Cookies from 'js-cookie';
 
 const Side = (props) => {
+    const acPerm = Cookies.get("acPerm")
+
     const [isloaded, setisLoaded] = useState(true)
     const [items, setItems] = useState([])
     function diseasePosts(){                     // For specific blogs like "/blogs/diabetes"
@@ -64,7 +68,12 @@ const Side = (props) => {
                     : null
                 }
             </Nav.Item>
-            <Rating />
+            {
+                              acPerm?
+
+            <ArticleRating article_id={props.match.params.id} />
+            : null
+        }
           
             </Nav>
          
