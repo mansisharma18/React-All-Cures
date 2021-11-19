@@ -243,22 +243,12 @@ const EditModal = (props) => {
 
     const submitArticleForm = async e => {
         e.preventDefault();
-        axios.post(`${backendHost}/content?cmd=createArticle`, {
-            "title": title,
-            "language": language,
-            "friendlyName": articleDisplay,
-            "contentType": contentType,
-            "type": type,
-            "disclaimerId": 1,
-            "authById": [userId],
-            "copyId": 11,
-            "articleStatus": articleStatus? articleStatus: 2,
-            "winTitle": win,
-            "countryId": country,
-            "diseaseConditionId": disease,
-            "articleContent": encodeURIComponent(JSON.stringify(articleContent)),
-            "comments": comment,
-            "keywords": keywords
+        fetch(`${backendHost}/content?cmd=createArticle`, {
+            method: "POST",
+            body: `title=${title}&language=${language}&friendlyName=${articleDisplay}&contentType=${contentType}&type=${type}&disclaimerId=1&authById=[${userId}]&copyId=11&articleStatus=${articleStatus? articleStatus: 2}&winTitle=${win}&countryId=${country}&diseaseConditionId=${disease}&articleContent=${encodeURIComponent(JSON.stringify(articleContent))}&comments=${comment}&keywords=${keywords}`,
+            headers: {
+            "Content-Type": "application/x-www-form-urlencoded"
+            }
         }).then(res => {
             res.json().then(function(data){
                 if(data == 1){
@@ -271,24 +261,6 @@ const EditModal = (props) => {
         .catch(err => {
             setSuccMsg('Error in updating!')
         })
-        // fetch(`${backendHost}/content?cmd=createArticle`, {
-        //     method: "POST",
-        //     body: `title=${title}&language=${language}&friendlyName=${articleDisplay}&contentType=${contentType}&type=${type}&disclaimerId=1&authById=[${userId}]&copyId=11&articleStatus=${articleStatus? articleStatus: 2}&winTitle=${win}&countryId=${country}&diseaseConditionId=${disease}&articleContent=${encodeURIComponent(JSON.stringify(articleContent))}&comments=${comment}&keywords=${keywords}`,
-        //     headers: {
-        //     "Content-Type": "application/x-www-form-urlencoded"
-        //     }
-        // }).then(res => {
-        //     res.json().then(function(data){
-        //         if(data == 1){
-        //             setSuccMsg('Article Created Successfully!')
-        //         } else{
-        //             setSuccMsg('Some error occured!')
-        //         }
-        //     })
-        // })
-        // .catch(err => {
-        //     setSuccMsg('Error in updating!')
-        // })
     }
     
     const finishLater = (e) => {
