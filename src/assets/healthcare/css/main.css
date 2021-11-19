@@ -2693,9 +2693,9 @@ div.MuiSelect-root.MuiSelect-select.MuiSelect-selectMenu.MuiInputBase-input.MuiI
 .chip {
   display: inline-block;
   padding: 0 25px;
-  height: 50px;
+  height: 38px;
   font-size: 16px;
-  line-height: 50px;
+  line-height: 38px;
   border-radius: 25px;
   background-color: #f1f1f1;
 }

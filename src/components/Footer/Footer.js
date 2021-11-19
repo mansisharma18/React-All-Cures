@@ -10,11 +10,11 @@ class Footer extends Component {
     render() {
         return(
             <div>
-            <section class="footer">
-         <div class="container">
-            <div class="row">
-               <div class="col-md-4 col-sm-4 col-sx-12">
-                  <div class="footer-inner" >
+            <section className="footer">
+         <div className="container">
+            <div className="row">
+               <div className="col-md-4 col-sm-4 col-sx-12">
+                  <div className="footer-inner" >
                      <h1>About us</h1>
                      <p >We are a new age healthcare technology firm who are trying make it simple and convenient for the users to get information 
                         on Cures from anywhere in the world.With over 20 years of experience building technology products in the healthcare segment, 
@@ -22,8 +22,8 @@ class Footer extends Component {
                         We are passionate about giving our users the unique experience that is both fulfilling and wholesome.</p>
                   </div>
                </div>
-               <div class="col-md-2 col-sm-2 col-sx-12">
-                  <div class="footer-inner">
+               <div className="col-md-2 col-sm-2 col-sx-12">
+                  <div className="footer-inner">
                      <h1>Top Specialties</h1>
                      <ul>
                         <li>
@@ -57,8 +57,8 @@ class Footer extends Component {
                      </ul>
                   </div>
                </div>
-               <div class="col-md-3 col-sm-3 col-sx-12">
-                  <div class="footer-inner">
+               <div className="col-md-3 col-sm-3 col-sx-12">
+                  <div className="footer-inner">
                      <h1>Discover</h1>
                      <ul>
                         <li>
@@ -85,14 +85,14 @@ class Footer extends Component {
                      </ul>
                   </div>
                </div>
-               <div class="col-md-3 col-sm-3 col-sx-12">
-                  <div class="footer-inner">
+               <div className="col-md-3 col-sm-3 col-sx-12">
+                  <div className="footer-inner">
                      {/* <h1>Our Mission</h1>
                      <p> We are a new age healthcare technology firm who are trying make it simple and convenient for the users to get information on Cures from anywhere in the world.</p> */}
-                     <div class="helth-app">
+                     <div className="helth-app">
                         <h2>Get the Digi Healthcare App</h2>
-                        <a href="/#" class="appBtn">App Store</a>
-                        <a href="/#" class="appBtn">Google Play</a>
+                        <a href="/#" className="appBtn">App Store</a>
+                        <a href="/#" className="appBtn">Google Play</a>
                      </div>
                   </div>
                </div>
@@ -101,31 +101,31 @@ class Footer extends Component {
         
       </section>
       
-      <div class="footer-bootm">
-         <div class="container">
-            <div class="row">
-               <div class="col-md-4 col-sm-4 col-sx-12">
-                  <div class="logo">
+      <div className="footer-bootm">
+         <div className="container">
+            <div className="row">
+               <div className="col-md-4 col-sm-4 col-sx-12">
+                  <div className="logo">
                      <a href="/#">
                         <img src={Heart} alt="All Cures Logo" /><span>All Cures</span>
                     </a>
                   </div>
                </div>
-               <div class="col-md-4 col-sm-4 col-sx-12">
-                  <div class="copyRight">
+               <div className="col-md-4 col-sm-4 col-sx-12">
+                  <div className="copyRight">
                      <p>All rights Reserved. Copyright @ 2020</p>
                   </div>
                </div>
-               <div class="col-md-4 col-sm-4 col-sx-12">
-                  <div class="socia-media-footer">
+               <div className="col-md-4 col-sm-4 col-sx-12">
+                  <div className="socia-media-footer">
                      <ul>
                         <li>
                            <a href="https://www.facebook.com/Etherium-Technologies-100724305715107/">
                               <span>
                                  <img src={Facebook} alt="Facebook Link" height="30px" width="30px"></img>
                               </span> 
-                              <span class="path1"></span>
-                              <span class="path2"></span>
+                              <span className="path1"></span>
+                              <span className="path2"></span>
                            </a>
                         </li>
                         <li>
@@ -133,8 +133,8 @@ class Footer extends Component {
                               <span>
                                  <img src={Instagram} alt="Instagram Link" height="30px" width="30px"></img>
                               </span> 
-                              <span class="path1"></span>
-                              <span class="path2"></span>
+                              <span className="path1"></span>
+                              <span className="path2"></span>
                            </a>
                         </li>
                         <li>
@@ -142,8 +142,8 @@ class Footer extends Component {
                               <span>
                                  <img src={Linkedin} alt="LinkedIn Link" height="30px" width="30px"></img>
                               </span> 
-                              <span class="path1"></span>
-                              <span class="path2"></span>
+                              <span className="path1"></span>
+                              <span className="path2"></span>
                            </a>
                         </li>
                         {/* <li>
@@ -151,8 +151,8 @@ class Footer extends Component {
                               <span>
                                  <img src={Twitter} alt="Twitter Link" height="30px" width="30px"></img>
                               </span> 
-                              <span class="path1"></span>
-                              <span class="path2"></span>
+                              <span className="path1"></span>
+                              <span className="path2"></span>
                            </a>
                         </li> */}
                      </ul>

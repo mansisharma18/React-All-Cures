@@ -235,7 +235,7 @@ import history from "../history";
                               <Dropdown.Header className="col-8 col-md-6 h5 font-weight-bold border-dark">
                                 Common Conditions</Dropdown.Header>
                                 <span className="border-btm"></span>
-                                <Link to="/cures/arthritis" class="text-dark pl-4">Arthritis</Link>
+                                <Link to="/cures/arthritis" className="text-dark pl-4">Arthritis</Link>
                                 <Dropdown.Item >Alergies</Dropdown.Item>
                                 <Dropdown.Item >Cancer</Dropdown.Item>
                                 <Dropdown.Item >Cardiology</Dropdown.Item>
@@ -257,7 +257,7 @@ import history from "../history";
                             {/* </div> */}
                             </Dropdown>
                             <div >
-  {/* <button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+  {/* <button type="button" className="btn btn-danger dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
     Action                      */}
               
 
@@ -308,7 +308,7 @@ import history from "../history";
             </div>
             <div className="col-md-2 p-0 mainBtn">
             <button className="btn btn-article-search color-white" type="submit">
-               <i class="fas fa-search"></i>
+               <i className="fas fa-search"></i>
             </button>
             </div>
             </div>
@@ -395,7 +395,7 @@ import history from "../history";
                                  
                                  <div className="mainBtn col-md-1">
                            <button type="submit" className=" btn btn-article-search color-white float-right" >
-                                 <i class="fas fa-search"></i>
+                                 <i className="fas fa-search"></i>
                               </button>
                               </div>
                               </div>

@@ -5,7 +5,7 @@ const AllPost = ({id, title, f_title, w_title, country, type}) => {
     console.log('id: ', id)
         return (
             <>
-            <div style={{width:"100%"}} >
+            <div style={{width:"100%"}} key={id.toString()}>
                 <div  >
                     {/* <div className="card-body"> */}
                             
@@ -25,11 +25,14 @@ const AllPost = ({id, title, f_title, w_title, country, type}) => {
                                     <div className="chip symptoms mr-2">Symptoms</div>
                                 : null
                             }
-                            {   country?
-                                    country !== 0?
-                                        <div className="chip country">{country}</div>
+                            {   
+                                country !== 0?
+                                    country === 9?
+                                        <div className ="chip country">India</div>
+                                        : country === 10?
+                                            <div className="chip country">Iran</div>
+                                            :null
                                         : null
-                                    : null
                             }
                             </div>
                             </div>

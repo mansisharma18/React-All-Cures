@@ -63,6 +63,7 @@ export default class Carousel2 extends Component {
     
     render() {
       var { isLoaded,items } = this.state;
+      console.log(items)
       if(!isLoaded) {
         return <div>Loading...</div>;
       }
@@ -71,7 +72,7 @@ export default class Carousel2 extends Component {
          <OwlCarousel {...options} nav="true" id="specialists" items={4} margin={10}>
          {items.map((i) => (
            
-            <div className="item">
+            <div className="item" key={i.map.doctorid}>
                <div className="item-img">
                   {/* <img src={Special2} alt="special-img"/> */}
                   <i className="fas fa-user-md fa-10x"></i>
@@ -89,7 +90,6 @@ export default class Carousel2 extends Component {
                   </div>
                   <Link to="#" className="appointmentBtn allBtn">Appointment</Link>
                </div>
-               {/* <button type="button" role="presentation" class="owl-prev"><span aria-label="Previous">‹</span></button> */}
             </div>
          ))}
                         

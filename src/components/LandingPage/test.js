@@ -102,7 +102,7 @@ const Test = (props) => {
   }
 
   const handleEmail = (e) => {
-    var re= /^[a-zA-Z0-9]+@[a-zA-Z0-9]+\.[A-Za-z]+$/;
+    var re= /^[a-zA-Z-0-9.]+@[a-zA-Z0-9]+\.[A-Za-z]+$/;
     if(!re.test(e.target.value)){
       setValidEmail(false)
       console.log('Enter valid email')

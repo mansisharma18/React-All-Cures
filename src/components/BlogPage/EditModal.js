@@ -291,7 +291,7 @@ const EditModal = (props) => {
         const savedData = await instanceRef.current.save();        
         setArticleContent(savedData)  
     }
-
+    
     return (
         <>
             {   
@@ -311,15 +311,15 @@ const EditModal = (props) => {
                         // handleSave()
                     }}>
                     <div id="accordion">
-                        <div class="card">
-                            <div class="card-header" id="headingOne"  data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                            <h5 class="mb-0">
+                        <div className="card">
+                            <div className="card-header" id="headingOne"  data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                            <h5 className="mb-0">
                                 Article Details
                             </h5>
                             </div>
 
-                            <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
-                            <div class="card-body">
+                            <div id="collapseOne" className="collapse" aria-labelledby="headingOne" data-parent="#accordion">
+                            <div className="card-body">
                 <div className="row">
                     <div className="col-lg-6 form-group">
                     <label htmlFor="">Title</label>
@@ -340,7 +340,7 @@ const EditModal = (props) => {
                     onChange={(e)=> {
                         setContentType(e.target.value)
                      }}
-                    required class="form-control">
+                    required className="form-control">
                     <option>Open this select menu</option>
                         <option value="article">Article</option>
                         <option value="video">Video</option>
@@ -359,7 +359,7 @@ const EditModal = (props) => {
                     onChange={(e)=> {
                         handleSelect(e, e.target.selectedOptions)
                     }}
-                    required class="form-control">
+                    required className="form-control">
                         <option value="1">Overview</option>
                         <option value="2">Treatment</option>
                         <option value="3">Symptoms</option>
@@ -451,7 +451,7 @@ const EditModal = (props) => {
                     ? null 
                     : <div className="form-group col-lg-6">
                         <label htmlFor="">Country</label>
-                        <select name="country" value={country} onChange={(e) => setCountry(e.target.value)} placeholder="Country" required="" class="form-control">
+                        <select name="country" value={country} onChange={(e) => setCountry(e.target.value)} placeholder="Country" required="" className="form-control">
                         <option>Select Country</option>
                             {countriesList.map((c) => {
                                 
@@ -495,14 +495,14 @@ const EditModal = (props) => {
                             </div>
                             </div>
                         </div>
-                        <div class="card">
-                            <div class="card-header" id="headingTwo" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                            <h5 class="mb-0">
+                        <div className="card">
+                            <div className="card-header" id="headingTwo" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                            <h5 className="mb-0">
                                 Write Article Here
                             </h5>
                             </div>
-                            <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
-                            <div class="card-body">
+                            <div id="collapseTwo" className="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
+                            <div className="card-body">
                                 {
                                     articleContent.time &&
                                     <EditorJs

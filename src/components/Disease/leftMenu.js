@@ -10,16 +10,13 @@ import Cookies from 'js-cookie';
 
 
 const Side = props => {
-    // const [isloaded, setisLoaded] = useState(true)
     const [items, setItems] = useState([])
     const acPerm = Cookies.get("acPerm")
     const [commentItems, setCommentItems] = useState([])
-    console.log('Propsssssssssssssssssss: ', props.diseaseId)
     function  allPosts() {                        // For all available blogs "/blogs"
         fetch(`${backendHost}/isearch/hierarchy/${props.diseaseId}`)
           .then((res) => res.json())
           .then((json) => {
-            console.log(json);
             setItems(json)
           });
       }
@@ -27,17 +24,12 @@ const Side = props => {
         fetch(`${backendHost}/rating/target/${props.id}/targettype/2`)
           .then((res) => res.json())
           .then((json) => {
-            console.log(json);
             setCommentItems(json)
           });
       }
       useEffect(() => {
           comments()
         allPosts()
-
-        if(items){
-            console.log(items)
-        }
     }, [])
 
     return (
@@ -62,31 +54,38 @@ const Side = props => {
                     <div className=" menu-item">
                         <Link className="text-dark h6">Treatment & Care</Link>
                     </div>
-                    <div className=" menu-item">
+                    {/* <div className=" menu-item">
                         <Link className="text-dark h6">Living with</Link>
-                    </div>
+                    </div> */}
                 </div>
                 <div className="related mt-5">
-                <div className="h4 pl-2 font-weight-bold">Related to {props.name}</div>
                 {   
-                    items?
-                        items.map((i) => (
-                            <div className=" menu-item">
-                                <Link className="text-dark h6">{i.dc_name}</Link>
-                            </div>
-                        ))
+                    items.length != 0?
+                        <>
+                        <div className="h4 pl-2 font-weight-bold">Related to {props.name}</div>
+                        {
+                            items.map((i) => (
+                                <div className=" menu-item" key={i.dc_id.toString()}>
+                                    <Link to={`/cures/${i.dc_name}`} className="text-dark h6">{i.dc_name}</Link>
+                                </div>
+                            ))
+                        }
+                        </>
                     : null
                 }
                 </div>
                 {/* </ul> */}
             </Nav.Item>
-            {/* {
-                              acPerm? */}
+            {
+                              acPerm?
+                              <>
                               <ArticleComment refreshComments={comments} article_id={props.match.params.id}/>
-                              {/* : null
-                            } */}
+                              <h3>Comments </h3>
+                              </>
+                              : null
+                            }
             
-            <h1>Comments </h1>
+            
             {   
                     commentItems?
                     commentItems.map((i) => (
