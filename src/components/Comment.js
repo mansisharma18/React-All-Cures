@@ -17,7 +17,7 @@ const Comment = ({refreshComments, docid}) => {
         e.preventDefault()
 
         if(cmtText != '') {
-            axios.post(`${backendHost}/DoctorRatingActionController?ratingVal=3&comments='${cmtText}'&ratedbyid=${Cookies.get("acPerm").split('|')[0]}&ratedbytype=${Cookies.get("acPerm").split('|')[1]}&targetid=${docid}&targetTypeid=1&cmd=rateAsset`)
+            axios.post(`${backendHost}/DoctorRatingActionController?comments='${cmtText}'&ratedbyid=${Cookies.get("acPerm").split('|')[0]}&ratedbytype=${Cookies.get("acPerm").split('|')[1]}&targetid=${docid}&targetTypeid=1&cmd=rateAsset`)
             .then(res => {
                
                 setAlert(true)
