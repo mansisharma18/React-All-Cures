@@ -280,8 +280,8 @@ class Profile extends Component {
                         <div className="h6 font-weight-bold">Accepts Insurance: 
                         {
                           items.insurance_accept === true?
-                          <span> <i class="fa fa-check" style={{color: 'green'}} aria-hidden="true"></i></span>
-                          : <span> <i class="fas fa-times-circle " style={{color: 'red'}}></i></span>
+                          <span> <i className="fa fa-check" style={{color: 'green'}} aria-hidden="true"></i></span>
+                          : <span> <i className="fas fa-times-circle " style={{color: 'red'}}></i></span>
                         }
                         </div>
                         <div className="h6 font-weight-bold">Gender: 
@@ -593,12 +593,12 @@ class Profile extends Component {
             </button>
  
          </div>
-<div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-lg">
-    <div class="modal-content">
-    <div class="modal-header">
+<div className="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+  <div className="modal-dialog modal-lg">
+    <div className="modal-content">
+    <div className="modal-header">
         
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <button type="button" className="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>

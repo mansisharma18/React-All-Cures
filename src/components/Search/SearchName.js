@@ -144,6 +144,7 @@ class SearchName extends Component {
                             url = {this.props.url}
                             reload = {this.state.reload}
                             setModalShow = {this.setModalShow}
+                            key = {i.map.doctorid}
                           />
                         ))}
                         <Test

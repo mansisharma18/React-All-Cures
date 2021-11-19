@@ -78,7 +78,7 @@ class Autocomplete extends Component {
         if (filteredSuggestions.length) {
           suggestionsListComponent = (
             <div>
-            <ul class="suggestions">
+            <ul className="suggestions">
               {filteredSuggestions.map((suggestion, index) => {
                 let className;
       
@@ -97,7 +97,7 @@ class Autocomplete extends Component {
           );
         // } else {
         //   suggestionsListComponent = (
-        //     <div class="no-suggestions">
+        //     <div className="no-suggestions">
         //       <em>No suggestions available1.</em>
         //     </div>
         //   );
@@ -125,7 +125,7 @@ class Autocomplete extends Component {
               id="search"
               style={{height: 'max-content'}}
               to={`/blogs/${this.state.userInput}`}>
-                <i class="fa fa-search fa1" aria-hidden="true"></i>
+                <i className="fa fa-search fa1" aria-hidden="true"></i>
             </Link>
           </div>
         </Fragment>

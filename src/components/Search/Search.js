@@ -206,6 +206,7 @@ class Search extends Component {
                             url = {this.props.url}
                             reload = {this.state.reload}
                             setModalShow = {this.setModalShow}
+                            key = {i.map.doctorid}
                           />
                         ))}
                         <Test
@@ -225,12 +226,12 @@ class Search extends Component {
             </button>
  
          </div>
-<div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-lg">
-    <div class="modal-content">
-    <div class="modal-header">
+<div className="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+  <div className="modal-dialog modal-lg">
+    <div className="modal-content">
+    <div className="modal-header">
         
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <button type="button" className="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
@@ -260,7 +261,7 @@ class Search extends Component {
                                         <option>Open this select menu</option>
                                         
                                             {this.state.speciality.map((i) => (  
-                                              <options value={i[0]}>{i[3]}</options>
+                                              <options value={i[0]} key={i[0]}>{i[3]}</options>
                                             ))}
                                             
                                         </Form.Control>

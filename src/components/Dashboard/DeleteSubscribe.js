@@ -95,7 +95,7 @@ const[number,setNumber] = useState('');
                     onChange={(e)=> {
                         handleSelect(e.target.selectedOptions)
                     }}
-                    required class="form-control">
+                    required className="form-control">
                         <option value="1">All</option>
                         <option value="2">Disease</option>
                         <option value="3">Cures</option>

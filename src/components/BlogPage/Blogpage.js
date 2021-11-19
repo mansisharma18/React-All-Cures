@@ -10,9 +10,10 @@ export default class Blogpage extends Component{
 
     constructor(props) {
         super(props);
-        console.log(props)
+        // console.log(props.location.search.split('&')[1].split('='))
         const params = props.match.params
         this.state = { 
+          dc: props.location.search.split('&')[1],
           // url: props.url,
           param: params,
           items: [],
@@ -31,7 +32,7 @@ export default class Blogpage extends Component{
             console.log(json);
             this.setState({
               isLoaded: true,
-              items: json,
+              items: json.reverse(),
             });
           });
       }
@@ -44,7 +45,7 @@ export default class Blogpage extends Component{
             console.log(json);
             this.setState({
               isLoaded: true,
-              items: json,
+              items: json.reverse(),
             });
           });
         }
@@ -55,20 +56,20 @@ export default class Blogpage extends Component{
             console.log(json);
             this.setState({
               isLoaded: true,
-              items: json,
+              items: json.reverse(),
             });
           });
         }
       }
 
       regionalPosts(){
-        fetch(`${backendHost}/isearch/treatmentregions/2`)          // /isearch/treatmentregions/${this.state.diseaseCondition}
+        fetch(`${backendHost}/isearch/treatmentregions/${this.state.dc.split('=')[1]}`)       // /isearch/treatmentregions/${this.state.diseaseCondition}
         .then((res) => res.json())
         .then((json) => {
           console.log('Regional posts: ',json)
           this.setState({
             regionPostsLoaded: true,
-            items: json,
+            items: json.reverse(),
           });
         })
       }
@@ -112,6 +113,7 @@ export default class Blogpage extends Component{
       );
     } else if(isLoaded){
       console.log('is loaded')
+      console.log('response: ', items)
         return(
             <>
             <Header history={this.props.history}/>
@@ -132,6 +134,7 @@ export default class Blogpage extends Component{
                             w_title = {i.window_title}
                             country = {i.country_id}
                             type = {i.type}
+                            key = {i.article_id}
                             allPostsContent={() => this.allPosts()}
                         />
                         : null
@@ -158,6 +161,7 @@ export default class Blogpage extends Component{
                         <AllPost
                             id = {i.article_id}
                             title = {i.title}
+                            key = {i.article_id}
                             // f_title = {i.friendly_name}
                             // w_title = {i.window_title}
                             // allPostsContent={() => this.allPosts()}

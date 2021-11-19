@@ -3,7 +3,6 @@ import {Nav} from "react-bootstrap";
 import { withRouter } from "react-router";
 import Post from './Posts'
 import './style.css'
-import Comment from "../Comment";
   
 import { backendHost } from '../../api-config';
 import ArticleRating from "../ArticleRating";
@@ -17,9 +16,7 @@ const Side = (props) => {
     function diseasePosts(){                     // For specific blogs like "/blogs/diabetes"
         fetch(`${backendHost}/isearch/${props.title}`)
           .then((res) => res.json())
-          .then((json) => {                      
-            console.log(json);
-            
+          .then((json) => {                                  
               setisLoaded(true)
               setItems(json)
             
@@ -29,7 +26,6 @@ const Side = (props) => {
         fetch(`${backendHost}/article/allkv`)
           .then((res) => res.json())
           .then((json) => {
-            console.log(json);
             setisLoaded(true)
             setItems(json.reverse())
           });
@@ -37,9 +33,6 @@ const Side = (props) => {
       useEffect(() => {
           allPosts()
         // diseasePosts()
-        if(items){
-            console.log('reverse: ',items.reverse())
-        }
     }, [])
     // diseasePosts()
     return (
@@ -61,6 +54,8 @@ const Side = (props) => {
                             title = {i.title}
                             f_title = {i.friendly_name}
                             w_title = {i.window_title}
+                            type = {i.type}
+                            country = {i.country_id}
                             history = {props.history}
                         />
                         : null

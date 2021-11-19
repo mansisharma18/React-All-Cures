@@ -295,7 +295,7 @@ onChangeHandlerdoctor = (e, text) => {
                </div>
             </div>
             <div className="row">
-            <div class='nav-btn prev-slide'></div><div class='nav-btn next-slide'></div>
+            <div className='nav-btn prev-slide'></div><div className='nav-btn next-slide'></div>
                <Carousel2/>
             </div>
            

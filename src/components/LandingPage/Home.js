@@ -280,7 +280,7 @@ class Home extends Component {
             </div>
             <div className="col-md-2 p-0 mainBtn">
             <button className="btn btn-article-search color-white" type="submit">
-               <i class="fas fa-search"></i>
+               <i className="fas fa-search"></i>
             </button>
             </div>
             </div>
@@ -372,7 +372,7 @@ class Home extends Component {
                                  
                                  <div className="mainBtn col-md-1">
                            <button type="submit" className=" btn btn-article-search color-white float-right" >
-                                 <i class="fas fa-search"></i>
+                                 <i className="fas fa-search"></i>
                               </button>
                               </div>
                               </div>
