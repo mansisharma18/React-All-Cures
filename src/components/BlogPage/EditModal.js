@@ -180,6 +180,7 @@ const EditModal = (props) => {
     const getCountries = () => {
         axios.get(`${backendHost}/article/all/table/countries`)
         .then(res => {
+            
             setCountriesList(res.data)
         })
         .catch(err => 

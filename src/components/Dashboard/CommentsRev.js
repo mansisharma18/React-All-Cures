@@ -247,7 +247,22 @@ render(){
                               <div className="patient-msg">
                               
                                 {/* <p>{item.rate_id}</p> */}
-                                <div className="pb-2"><span className="font-weight-bold"><h2>Comments:</h2></span> {item.comments}</div>
+                                <div className="pb-2"><span className="font-weight-bold"> <h2><b>(1): Comments:</b></h2></span> {item.comments}</div>
+                              
+                                <div className="pb-2"><span className="font-weight-bold"><h2><b>(2): Commented By:</b></h2></span> <h5>{item.first_name} {item.last_name}</h5></div>
+                               <h2><b>(3): Commented on </b></h2>
+                                {
+                                  
+                               item.target_type_id == '1'?
+                              
+                                    <div className="chip overview mr-2">Doctor id {item.rate_id}</div>
+                                    
+                                : item.target_type_id== '2'?
+                                    <div className="chip cure mr-2">Article id {item.rate_id}</div>
+                               
+                                : null
+                            }
+
                               </div>
                             </div>
                           </div>

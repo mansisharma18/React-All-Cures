@@ -80,18 +80,18 @@ const Side = props => {
                 </div>
                 {/* </ul> */}
             </Nav.Item>
-            {
-                              acPerm?
+            {/* {
+                              acPerm? */}
                               <ArticleComment refreshComments={comments} article_id={props.match.params.id}/>
-                              : null
-                            }
+                              {/* : null
+                            } */}
             
             <h1>Comments </h1>
             {   
                     commentItems?
                     commentItems.map((i) => (
                             <div className=" menu-item">
-                                <Link className="text-dark h3">{i.comments}</Link>
+                                <div className="text-dark h3">{i.comments}</div>
                             </div>
                         ))
                     : null

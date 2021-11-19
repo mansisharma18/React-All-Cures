@@ -37,7 +37,8 @@ import Userprofile from "./Profile/Userprofile";
 import StarRating from './StarRating'
 import history from "./history";
 import ArticleRating from './ArticleRating'
-
+import MyArticle from './Profile/MyArtcle'
+import PostArticle from './Profile/PostArticle'
 
 
 // import Blogs from './Disease/Disease'
@@ -115,6 +116,8 @@ const Routes = (props) => {
       <Route exact path="/deletesubscribe" component={DeleteSubscribe} />
       <Route exact path="/starrating" component={StarRating} />
       <Route exact path="/articlerating" component={ArticleRating} />
+      <Route exact path="/myarticle" component={MyArticle} />
+      <Route exact path="/postarticle" component={PostArticle} />
       
       
       

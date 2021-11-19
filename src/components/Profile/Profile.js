@@ -72,7 +72,7 @@ class Profile extends Component {
   }
   getRating = (id) => {
     console.log('fired');
-    axios.get(`${backendHost}/rating/target/${id}/targettype/1/avg`)
+    axios.get(`${backendHost}/rating/target/23/targettype/1/avg`)
     .then(res => {
       console.log(res)
       this.setState({
@@ -302,9 +302,12 @@ class Profile extends Component {
                     <div className="tab-nav">
                       <div className="rating-heading">
                         <div className="profile-info-rating">
-                        <Rating postRatings={this.getRating} docid={this.state.param.id} />
+                        <Rating ratingValue={this.getRating} docid={this.state.param.id} />
                           
-                        
+                        <div className="rating">
+                  <span className="icon-star-1"></span>
+                  <p>4.2</p>
+               </div>
                         </div>
                       </div>
                       {/* <!-- Nav tabs --> */}
