@@ -90,7 +90,7 @@ const Side = props => {
                     commentItems?
                     commentItems.map((i) => (
                             <div className=" menu-item">
-                                <Link className="text-dark h3">{i.comments}</Link>
+                                <div className="text-dark h3">{i.comments}</div>
                             </div>
                         ))
                     : null
