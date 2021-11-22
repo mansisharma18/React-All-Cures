@@ -243,13 +243,35 @@ const EditModal = (props) => {
 
     const submitArticleForm = async e => {
         e.preventDefault();
-        fetch(`${backendHost}/content?cmd=createArticle`, {
-            method: "POST",
-            body: `title=${title}&language=${language}&friendlyName=${articleDisplay}&contentType=${contentType}&type=${type}&disclaimerId=1&authById=[${userId}]&copyId=11&articleStatus=${articleStatus? articleStatus: 2}&winTitle=${win}&countryId=${country}&diseaseConditionId=${disease}&articleContent=${encodeURIComponent(JSON.stringify(articleContent))}&comments=${comment}&keywords=${keywords}`,
-            headers: {
-            "Content-Type": "application/x-www-form-urlencoded"
-            }
-        }).then(res => {
+        axios.post(`${backendHost}/content?cmd=createArticle`, {
+            "title":title,
+                "friendlyName": articleDisplay,
+                "contentType": contentType,
+                "type": type,
+                // "keywords": "1",
+                "winTitle": win,
+                // "content_location": "1",
+                "authById": [userId],
+                // "published_by": 1,
+                // "copyright_id": parseInt(copyright),
+                // "disclaimer_id": parseInt(disclaimer),
+                "copyId": 11,
+                "disclaimerId": 1,
+                "diseaseConditionId": disease,
+                "articleStatus": articleStatus? articleStatus: 2,
+                "language": parseInt(language),
+                "articleContent": encodeURIComponent(JSON.stringify(articleContent)),
+                "comments": comment,
+                "keywords": keywords,
+                "country_id": country,
+        })
+        // fetch(`${backendHost}/content?cmd=createArticle`, {
+        //     method: "POST",
+        //     body: `title=${title}&language=${language}&friendlyName=${articleDisplay}&contentType=${contentType}&type=${type}&disclaimerId=1&authById=[${userId}]&copyId=11&articleStatus=${articleStatus? articleStatus: 2}&winTitle=${win}&countryId=${country}&diseaseConditionId=${disease}&articleContent=${encodeURIComponent(JSON.stringify(articleContent))}&comments=${comment}&keywords=${keywords}`,
+        //     headers: {
+        //     "Content-Type": "application/x-www-form-urlencoded"
+        //     }
+        .then(res => {
             res.json().then(function(data){
                 if(data == 1){
                     setSuccMsg('Article Created Successfully!')
