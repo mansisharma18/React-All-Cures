@@ -264,7 +264,7 @@ const EditModal = (props) => {
                 "articleContent": encodeURIComponent(JSON.stringify(articleContent)),
                 "comments": comment,
                 "keywords": keywords,
-                "country_id": parseInt(country),
+                "countryId": country,
         })
         // fetch(`${backendHost}/content?cmd=createArticle`, {
         //     method: "POST",
