@@ -273,13 +273,11 @@ const EditModal = (props) => {
         //     "Content-Type": "application/x-www-form-urlencoded"
         //     }
         .then(res => {
-            res.json().then(function(data){
-                if(data == 1){
-                    setSuccMsg('Article Created Successfully!')
-                } else{
-                    setSuccMsg('Some error occured!')
-                }
-            })
+            if(res.data == 1){
+                setSuccMsg('Article Created Successfully!')
+            } else{
+                setSuccMsg('Some error occured!')
+            }
         })
         .catch(err => {
             setSuccMsg('Error in updating!')
