@@ -2,7 +2,6 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 const AllPost = ({id, title, f_title, w_title, country, type}) => {
-    console.log('id: ', id)
         return (
             <>
             <div style={{width:"100%"}} key={id.toString()}>
