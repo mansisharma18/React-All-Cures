@@ -26,7 +26,7 @@ const AllPost = ({id, title, f_title, w_title, country, type}) => {
                             }
                             {
                                 type.includes('2') || type === '2'?
-                                    <div className="chip cure mr-2">Cures</div>
+                                    <div className="chip cure mr-2">Cure</div>
                                     : null
                             }
                             {

@@ -1,6 +1,6 @@
 import React from "react";
 import Cookies from 'js-cookie';
-import { HashRouter, Switch, Route, Redirect, Router, BrowserRouter } from "react-router-dom";
+import { HashRouter, Switch, Route, Redirect } from "react-router-dom";
 
 import Home from "./LandingPage/Home";
 import Sticky from "./LandingPage/Sticky"
@@ -38,20 +38,20 @@ import StarRating from './StarRating'
 import history from "./history";
 import ArticleRating from './ArticleRating'
 import MyArticle from './Profile/MyArtcle'
-import PostArticle from './Profile/PostArticle'
+import ListArticle from './Profile/ListArticle'
 
 
 // import Blogs from './Disease/Disease'
 
 function Main(props) {
   // render() {
-  const [auth, setAuth] = React.useState(true);
+  const [auth, setAuth] = React.useState(false);
   const readCookie = () => {
     // if(Cookies.get('acPerm')){
       const user = Cookies.get("acPerm")
       // const userAccess = user.split('|')[1]
       if(user){
-        setAuth(false)
+        setAuth(true)
         console.log('USERRRRRRRRRRRRRRRRRRRRRRRRRRRRRRR:'+user)
       }
   }
@@ -84,29 +84,29 @@ const Routes = (props) => {
        <Route exact path="/" component={Home} />
        <Route exact path="/cure/:id" component={Disease}/>
           <Route exact path="/home" component={Home} />
-          <Route exact path="/search/:city" component={Search} /> 
+          <Route exact  path="/search/:city" component={Search} /> 
           <Route exact path="/searchName/:name" component={SearchName} /> 
           <Route path="/search/:city/:name" component={Search} />
           {/* <Route path="/search/:city/:name" component={Search} /> */}
-          <Route path="/article/:id" component={EditPost}/>
-          <Route path="/article" component={EditPost}/>
+          <ProtectedRoute auth={Auth.auth} path="/article/:id" component={EditPost}/>
+          <ProtectedRoute auth={Auth.auth} path="/article" component={EditPost}/>
           {/* <Route path="/edit" auth={Auth.auth} component={Article} /> */}
-          <Route exact path="/dashboard" component={Dashboard} />
+          <ProtectedRoute auth={Auth.auth} exact path="/dashboard" component={Dashboard} />
           <Route exact path="/cures" component={Blogpage}/>
           <Route exact path="/login/doctor" component={LoginInfo}/>
           <Route path="/cures/:type" component={Blogpage}/>
           {/* <Route exact path="/blogs/:id" component={Blogs}/> */}
-      <Route exact path="/profile/:id" component={Profile} />
-      <Route exact path="/user/profile/" component={Userprofile} />
-      <Route exact path="/profile/:id/edit" component={LoginInfo} />
-      <Route exact path="/dashboard/blogs" component={BlogAllPost} />
+      <ProtectedRoute auth={Auth.auth} exact path="/profile/:id" component={Profile} />
+      <ProtectedRoute auth={Auth.auth} exact path="/user/profile/" component={Userprofile} />
+      <ProtectedRoute auth={Auth.auth} exact path="/profile/:id/edit" component={LoginInfo} />
+      <ProtectedRoute auth={Auth.auth} exact path="/dashboard/blogs" component={BlogAllPost} />
       <Route exact path="/comment" component={Comment} />
-      <Route exact path="/dashboard/commentsrev" component={CommentsRev} />
-      <Route exact path="/dashboard/reviewcomments" component={ReviewComments} />
-      <Route exact path="/dashboard/results" component={Results} />
-      <Route exact path="/dashboard/promopaid" component={PromoPaid} />
-      <Route exact path="/dashboard/promoadmin" component={PromoAdmin} />
-      <Route exact path="/dashboard/promoadmin" component={PromoAdmin} />
+      <ProtectedRoute auth={Auth.auth} exact path="/dashboard/commentsrev" component={CommentsRev} />
+      <ProtectedRoute auth={Auth.auth} exact path="/dashboard/reviewcomments" component={ReviewComments} />
+      <ProtectedRoute auth={Auth.auth} exact path="/dashboard/results" component={Results} />
+      <ProtectedRoute auth={Auth.auth} exact path="/dashboard/promopaid" component={PromoPaid} />
+      <ProtectedRoute auth={Auth.auth} exact path="/dashboard/promoadmin" component={PromoAdmin} />
+      <ProtectedRoute auth={Auth.auth} exact path="/dashboard/promoadmin" component={PromoAdmin} />
       <Route exact path="/landingPage/sticky" component={Sticky} />
       <Route exact path="/subscribe" component={Subscribe} />
       <Route exact path="/subs" component={Subs} />
@@ -116,19 +116,9 @@ const Routes = (props) => {
       <Route exact path="/deletesubscribe" component={DeleteSubscribe} />
       <Route exact path="/starrating" component={StarRating} />
       <Route exact path="/articlerating" component={ArticleRating} />
-      <Route exact path="/myarticle" component={MyArticle} />
-      <Route exact path="/postarticle" component={PostArticle} />
-      
-      
-      
-
-    
+      <ProtectedRoute auth={Auth.auth} exact path="/myarticle" component={MyArticle} />
       <Route exact path="/loginForm/ResetPass" component={ResetPass} />
       <Route exact path="/loginForm/verify" component={Verify} />
-      {/* <Route exact path='/loginForm/FormSignup' component={FormSignup}/> */}
-     
-      
-      {/* <ProtectedArticle path="/article/:id" component={EditPost} auth={Auth.auth} /> */}
       
     </Switch>
           {/* <Route path="/" component={LoginPage}/> */}
@@ -139,6 +129,7 @@ const Routes = (props) => {
 }
 
 const ProtectedRoute = ({auth, component:Component, ...rest}) => {
+  console.log('Auth: ', auth)
     return(
       <Route
       {...rest}
@@ -147,7 +138,7 @@ const ProtectedRoute = ({auth, component:Component, ...rest}) => {
       ):
         (
           // <Redirect to="/login"/>
-          <Redirect to={{pathname: '#', search: '?login=true', state: {open: true}}}/>
+          <Redirect to={{pathname: '/cures', search: '', state: {open: true}}}/>
         )
     }
       />

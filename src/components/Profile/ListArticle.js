@@ -4,7 +4,7 @@ import axios from 'axios';
 import { Alert } from 'react-bootstrap';
 import { backendHost } from '../../api-config';
 
-const PostArticle = ({id, title, f_title, w_title, country, type, pubstatus_id, dis}) => {
+const ListArticle = ({id, title, f_title, w_title, country, type, pubstatus_id, dis}) => {
 console.log('id: ', id)
 
 if (dis==0) dis = true 
@@ -108,5 +108,5 @@ const singlePostDelete = (id) => {
         )    
 
 }
-export default PostArticle;
+export default ListArticle;
 
