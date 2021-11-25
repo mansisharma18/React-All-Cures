@@ -195,7 +195,7 @@ import history from "../history";
          article: newValue
       })
    }
-
+   
    articleSearch = (e) => {
       e.preventDefault()
       if(this.state.article){
@@ -257,28 +257,9 @@ import history from "../history";
                             {/* </div> */}
                             </Dropdown>
                             <div >
-  {/* <button type="button" className="btn btn-danger dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-    Action                      */}
-              
-
-  {/* </button> */}
   
 </div>
-{/* <div>
-      <Nav.Link className="nav-dropdown-link" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" href="#features">Supplements</Nav.Link></div>
-      <div>
-      <Nav.Link className="nav-dropdown-link" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" href="#pricing">News</Nav.Link>
-      </div> */}
-      
     </Nav>
-    {/* <Form inline>
-              <FormControl type="text" variant="outline-success" onChange={this.handleChange} placeholder="Search" className="mr-sm-2" required aria-required="true"/> */}
-
-              {/* {
-                  this.state.spec1?
-                    <Autocomplete value={this.state.temp} suggestions={this.state.spec1}/>
-                  : null
-                } */}
             <form onSubmit={(e) => this.articleSearch(e)} className="article-search">
                               <div className="col-md-12 row">
                <div className="col-md-10 p-0">    

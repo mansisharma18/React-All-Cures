@@ -44,7 +44,7 @@ class Home extends Component {
          getCityName:null,
          edit: false,
          doctorLoaded: false,
-      modalShow: false,
+      modalShow: this.props.location.state? this.props.location.state.modalShow: false,
       show: false,
          docname : '',
          spec1: [],
@@ -203,6 +203,7 @@ class Home extends Component {
    }
    
    render() {
+      console.log('props: ', this.props)
       return(
          <div>
             <div className="homeHeader">
@@ -302,9 +303,9 @@ class Home extends Component {
                   
                      <div className="row">
                      <Test
-        show={this.state.modalShow}
-        onHide={() => this.setModalShow(false)}
-      />
+                        show={this.state.modalShow}
+                        onHide={() => this.setModalShow(false)}
+                     />
                         <div className="search-wrap-inner clearfix">
                         <form onSubmit={(e) => this.onSearch(e)} className="mainSearch" >
                      	  {/* <div className="col-md-6 pd-0 col-sx-12 col-sm-4">

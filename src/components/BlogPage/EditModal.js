@@ -41,9 +41,9 @@ const EditModal = (props) => {
     const [disclaimerId,setDisclaimerId] = useState([]) 
     const [comment, setComment] = useState('')
     const [keywords, setKeywords] = useState('')
-
+    console.log(props)
     const getPosts = () =>{
-
+        console.log('get posts')
         axios.get(`${backendHost}/article/${editId.id}`)
         .then(res => {
             setEditedBy(res.data.edited_by)
@@ -97,7 +97,6 @@ const EditModal = (props) => {
             })
             .then(res => {
                 setSuccMsg('Updated Successfully')
-                window.location.reload(`false`)     
             })
             .catch(err => {
                 console.log(err);
@@ -244,6 +243,7 @@ const EditModal = (props) => {
 
     const submitArticleForm = async e => {
         e.preventDefault();
+        console.log('author: ', author)
         axios.post(`${backendHost}/content?cmd=createArticle`, {
             "title":title,
                 "friendlyName": articleDisplay,
@@ -252,7 +252,7 @@ const EditModal = (props) => {
                 // "keywords": "1",
                 "winTitle": win,
                 // "content_location": "1",
-                "authById": [parseInt(userId)],
+                "authById": author.length !== 0? author: [],
                 // "published_by": 1,
                 // "copyright_id": parseInt(copyright),
                 // "disclaimer_id": parseInt(disclaimer),
@@ -266,12 +266,6 @@ const EditModal = (props) => {
                 "keywords": keywords,
                 "countryId": country,
         })
-        // fetch(`${backendHost}/content?cmd=createArticle`, {
-        //     method: "POST",
-        //     body: `title=${title}&language=${language}&friendlyName=${articleDisplay}&contentType=${contentType}&type=${type}&disclaimerId=1&authById=[${userId}]&copyId=11&articleStatus=${articleStatus? articleStatus: 2}&winTitle=${win}&countryId=${country}&diseaseConditionId=${disease}&articleContent=${encodeURIComponent(JSON.stringify(articleContent))}&comments=${comment}&keywords=${keywords}`,
-        //     headers: {
-        //     "Content-Type": "application/x-www-form-urlencoded"
-        //     }
         .then(res => {
             if(res.data == 1){
                 setSuccMsg('Article Created Successfully!')
@@ -284,51 +278,6 @@ const EditModal = (props) => {
         })
     }
     
-    // const finishLater = (e) => {
-    //     e.preventDefault();
-    //     axios.post(`${backendHost}/content?cmd=createArticle`, {
-    //         "title":title,
-    //             "friendlyName": articleDisplay,
-    //             "contentType": contentType,
-    //             "type": type,
-    //             // "keywords": "1",
-    //             "winTitle": win,
-    //             // "content_location": "1",
-    //             "authById": [userId],
-    //             // "published_by": 1,
-    //             // "copyright_id": parseInt(copyright),
-    //             // "disclaimer_id": parseInt(disclaimer),
-    //             "copyId": 11,
-    //             "disclaimerId": 1,
-    //             "diseaseConditionId": disease,
-    //             "articleStatus": articleStatus? articleStatus: ,
-    //             "language": parseInt(language),
-    //             "articleContent": encodeURIComponent(JSON.stringify(articleContent)),
-    //             "comments": comment,
-    //             "keywords": keywords,
-    //             "countryId": country,
-    //     })
-    //     fetch(`${backendHost}/content?cmd=createArticle`, {
-    //         method: "POST",
-    //         body: `title=${title}&language=${language}&friendlyName=${articleDisplay}&contentType=${contentType}&type=${type}&disclaimerId=1&authById=[${userId}]&copyId=11&articleStatus=1&winTitle=${win}&countryId=${country}&diseaseConditionId=${disease}&articleContent=${encodeURIComponent(JSON.stringify(articleContent))}&comments=${comment}&keywords=${keywords}`,
-    //         headers: {
-    //         "Content-Type": "application/x-www-form-urlencoded"
-    //         }
-    //     }).then(res => {
-    //         res.json().then(function(data){
-    //             if(data == 1){
-    //                 setSuccMsg('Article Created Successfully!')
-    //             } else{
-    //                 setSuccMsg('Some error occured!')
-    //             }
-    //         })
-    //         // history.incognito(`/cure/${editId.id}`)
-    //         // window.location.href(`blog/${editId.id}`)
-    //     })
-    //     .catch(err => {
-    //         setSuccMsg('Error in updating!')
-    //     })
-    // }
     async function handleSave() {
         const savedData = await instanceRef.current.save();        
         setArticleContent(savedData)  

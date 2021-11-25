@@ -10,11 +10,9 @@ export default class Blogpage extends Component{
 
     constructor(props) {
         super(props);
-        // console.log(props.location.search.split('&')[1].split('='))
         const params = props.match.params
         this.state = { 
           dc: props.location.search.split('&')[1],
-          // url: props.url,
           param: params,
           items: [],
           isLoaded: false,
@@ -29,7 +27,6 @@ export default class Blogpage extends Component{
         fetch(`${backendHost}/article/allkv`)
           .then((res) => res.json())
           .then((json) => {
-            // console.log(json);
             this.setState({
               isLoaded: true,
               items: json.reverse(),
@@ -42,7 +39,6 @@ export default class Blogpage extends Component{
           fetch(`${backendHost}/isearch/${type}`)
           .then((res) => res.json())
           .then((json) => {
-            // console.log(json);
             this.setState({
               isLoaded: true,
               items: json.reverse(),
@@ -53,7 +49,6 @@ export default class Blogpage extends Component{
           fetch(`${backendHost}/isearch/${this.props.match.params.type}`)
           .then((res) => res.json())
           .then((json) => {
-            // console.log(json);
             this.setState({
               isLoaded: true,
               items: json.reverse(),
@@ -66,7 +61,6 @@ export default class Blogpage extends Component{
         fetch(`${backendHost}/isearch/treatmentregions/${this.state.dc.split('=')[1]}`)       // /isearch/treatmentregions/${this.state.diseaseCondition}
         .then((res) => res.json())
         .then((json) => {
-          // console.log('Regional posts: ',json)
           this.setState({
             regionPostsLoaded: true,
             items: json.reverse(),
@@ -76,32 +70,23 @@ export default class Blogpage extends Component{
 
       componentDidMount() {
         if(this.state.param.type){
-          // console.log('Disease Post executed')
           this.diseasePosts()
         } else if(this.props.location.search){
           this.regionalPosts()
         } else {
-          // console.log('All Post executed')
           this.allPosts()
         }
       }
 
       componentDidUpdate(prevProps){
         if ( prevProps.match.params.type !== this.props.match.params.type){
-          // console.log('prevpropsssssssss: ', prevProps.match.params.type, this.props.match.params.type )
           this.diseasePosts(this.props.match.params.type)
         }
       }
       
     render(){
         var { isLoaded,items, regionPostsLoaded, country } = this.state;
-        // console.log(new URLSearchParams(this.props.location.search).get('c'))
-        // console.log(this.state.url)
-      // console.log('kakhgauhdkjadkudhkajsdksjhd7rny9: ', regionPostsLoaded)
-
         if(!isLoaded && !regionPostsLoaded) {
-          // console.log('not is loaded')
-        // console.log(items);
         return (
         <>
           <Header history={this.props.history}/>
@@ -112,8 +97,6 @@ export default class Blogpage extends Component{
         </>  
       );
     } else if(isLoaded){
-      // console.log('is loaded')
-      // console.log('response: ', items)
         return(
             <>
             <Header history={this.props.history}/>
@@ -122,7 +105,7 @@ export default class Blogpage extends Component{
                   {
                     this.state.param.type?
                     <h1 className="h2 text-center">Blogs related to "{this.props.match.params.type}"</h1>
-                    :<h1 className="h2 text-center">All Blogs</h1>
+                    :<h1 className="h2 text-center">Articles</h1>
                   }
                     <div className="row" id="posts-container">
                     {items.map((i) => (

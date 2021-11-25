@@ -32,7 +32,7 @@ export default function Userprofile(props) {
       // console.log(new URLSearchParams(this.props.location.search).get("edit"))
       return (
         <div>
-          <Header />
+          <Header history={this.props.history}/>
           
           <section className="Profileleft">
             <div className="container">
