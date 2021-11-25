@@ -126,6 +126,7 @@ export default class Blogpage extends Component{
                     :<h1 className="h2 text-center">My Cures</h1>
                   }
                     <div className="row" id="posts-container">
+                      
                     {items.map((i) => (
                       
                       
