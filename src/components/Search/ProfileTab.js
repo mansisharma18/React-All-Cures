@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom'
 // import Special1 from '../../assets/img/special-1.jpg'
 
-const ProfileTab = ({ setModalShow, docid, name, pSpl, hospital, state, country, acPerm, url, reload}) => (
+const ProfileTab = ({ setModalShow, docid, rowno, name, pSpl, hospital, state, country, acPerm, url, reload}) => (
     <div>
       <div className="tab-content">
         <div id="men" className="tab-pane fade in active">
@@ -25,7 +25,7 @@ const ProfileTab = ({ setModalShow, docid, name, pSpl, hospital, state, country,
                   <div className="btn-group"> 
                     {
                       acPerm ? 
-                        <Link to={ `/profile/${docid}` } className="btn-bg profile-btn color-white">
+                        <Link to={ `/profile/${rowno}` } className="btn-bg profile-btn color-white">
                           Profile
                         </Link>
                       : <button 

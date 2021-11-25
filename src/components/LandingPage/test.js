@@ -5,7 +5,7 @@ import { Link, Redirect } from "react-router-dom";
 import axios from 'axios';
 import Cookies from 'js-cookie'
 import {Select, MenuItem , InputLabel, FormControl, Checkbox, FormGroup, FormControlLabel} from '@material-ui/core';
-import GoogleLogin from 'react-google-login';
+// import GoogleLogin from 'react-google-login';
 import { usePasswordValidation } from '../hooks/usePasswordValidation';
 import { backendHost } from '../../api-config';
 
@@ -310,45 +310,19 @@ const Test = (props) => {
           autoComplete="off"
           required
         />
-        {/* <FormControl >
-        <InputLabel id="demo-simple-select-label">User Type</InputLabel>
-          <Select 
-            labelId="demo-simple-select-label"
-            id="demo-simple-select"
-            value=""
-            onChange=""
-            required
-            className="select col-md-10"
-          >
-          <MenuItem value="doctor">Doctor</MenuItem>
-          <MenuItem value="other">Other</MenuItem>
-        </Select>
-        </FormControl> */}
 
-          {/* <FormGroup>
-            <FormControlLabel
-              control={<Checkbox name="Terms"  value="on" required/>}
-              label="Accept Terms & Conditions"
+        <FormControl className="mb-4 w-75">
+          <InputLabel id="demo-simple-select-label">User Type</InputLabel>
+            <Select 
+              labelId="demo-simple-select-label"
+              id="demo-simple-select"
+              value={userType}
+              onChange={(e) => setUserType(e.target.value)}
               required
-            />
-            <FormControlLabel
-              control={<Checkbox name="remember_me"value="on"/>}
-              label="Remember Me"
-              required
-            />
-          </FormGroup> */}
-          <FormControl className="mb-4 w-75">
-        <InputLabel id="demo-simple-select-label">User Type</InputLabel>
-          <Select 
-            labelId="demo-simple-select-label"
-            id="demo-simple-select"
-            value={userType}
-            onChange={(e) => setUserType(e.target.value)}
-            required
-          >
-          <MenuItem value="doctor">Doctor</MenuItem>
-          <MenuItem value="other">Other</MenuItem>
-        </Select>
+            >
+            <MenuItem value="doctor">Doctor</MenuItem>
+            <MenuItem value="other">Other</MenuItem>
+          </Select>
         </FormControl>
         <button type="submit" className="ghost">Sign Up</button>
       </form>
@@ -358,19 +332,6 @@ const Test = (props) => {
         <h1>Sign in</h1>
         <span>or use your account</span>
         
-        {/* <GoogleLogin
-        clientId="529398297055-37e0rfns77ig0nih2moffq1pdp533329.apps.googleusercontent.com"
-        buttonText="Login"
-        onSuccess={responseGoogle}
-        onFailure={responseGoogle}
-        cookiePolicy={'single_host_origin'}
-        className="text-dark"
-      /> */}
-        {/* {
-          buttonClick === 1?
-            AfterLogin()
-            : null
-        } */}
         {
           buttonClick === 1?
           <div id="login-msg" className="alert alert-danger mt-2 py-1 px-3 border border-dark"></div>

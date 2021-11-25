@@ -1203,7 +1203,7 @@ a.appBTN {
 
 input.form-control {
   background: #ffffff;
-  border: 1px solid #ffffff;
+  /* border: 1px solid #ffffff; */
   box-sizing: border-box;
   border-radius: 20px;
   box-shadow: none;

@@ -4,9 +4,10 @@ import axios from 'axios';
 import { Alert } from 'react-bootstrap';
 import { backendHost } from '../../api-config';
 
+const ListArticle = ({id, title, f_title, w_title, country, type, pubstatus_id, dis}) => {
+console.log('id: ', id)
 
 
-const AllPost = ({ id, title, w_title, dis,pubstatus_id, }) => {
 
     if (dis==0) dis = true 
     else dis = false
@@ -90,5 +91,5 @@ const AllPost = ({ id, title, w_title, dis,pubstatus_id, }) => {
     )
 
 }
+export default ListArticle;
 
-export default AllPost;

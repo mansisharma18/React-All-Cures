@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import Cookies from 'js-cookie';
 // import CommentBox from 'react-commentbox';
 import axios from 'axios';
-import { Dropdown, Button, DropdownButton, Nav, Modal, Alert} from 'react-bootstrap';
+import { Alert} from 'react-bootstrap';
 import { backendHost } from '../api-config';
 
 const Comment = ({refreshComments, docid}) => {

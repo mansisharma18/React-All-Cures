@@ -15,9 +15,9 @@ export const mainListItems = (
       <ListItemIcon>
         <PeopleIcon />
       </ListItemIcon>
-      {/* <ListItemText primary="Customers"  /> */}
       <Link to="/home">
-               Home
+      <ListItemText primary="Home"  />
+
            </Link>
     </ListItem>
     <ListItem button>
@@ -52,7 +52,8 @@ export const mainListItems = (
       </ListItemIcon>
       {/* <ListItemText primary="Customers"  /> */}
     <Link to="/dashboard/reviewcomments">
-               comments
+    <ListItemText primary="Comments"  />
+
            </Link>
     
     </ListItem>
@@ -62,7 +63,7 @@ export const mainListItems = (
       </ListItemIcon>
       {/* <ListItemText primary="Reports" /> */}
       <Link to="/dashboard/Promoadmin">
-        Promo
+      <ListItemText primary="Promo" />
       </Link>
     </ListItem>
     <ListItem button>

@@ -85,7 +85,7 @@ class Profile extends Component {
     console.log('closed');
   }
   
-  getProfile = (profileId) => {
+  getProfileComments = (profileId) => {
     console.log('fired');
     axios.get(`${backendHost}/profile/${profileId}`)
     .then(res => {
@@ -99,7 +99,7 @@ class Profile extends Component {
     console.log('closed');
   }
   fetchDoctorData = (id) => {
-    fetch(`${backendHost}/DoctorsActionController?docid=${id}&cmd=getProfile`)
+    fetch(`${backendHost}/DoctorsActionController?rowno=${id}&cmd=getProfile`)
       // .then(res => JSON.parse(res))
       .then((res) => res.json())
       .then((json) => {
@@ -128,8 +128,8 @@ class Profile extends Component {
     document.title = "All Cures | Profile"
     this.fetchDoctorData(this.state.param.id)
     this.getComments()
-    this.getRating(this.state.param.id)
-    this.getProfile(this.state.param.profileId)
+    this.getRating()
+    this.getProfileComments(this.state.param.profileId)
   }
 
   setModalShow =(action) => {

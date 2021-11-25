@@ -113,7 +113,7 @@ class Disease extends Component {
                 <Breadcrumb.Item href="/">Home</Breadcrumb.Item>                                     
                 <Breadcrumb.Item>
                   <Link to="/cures">
-                    Blogs
+                    Cures
                   </Link>
                 </Breadcrumb.Item>
                 <Breadcrumb.Item>

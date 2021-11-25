@@ -44,14 +44,14 @@ const Comment = ({refreshComments,article_id}) => {
 
     return (
         <>
-            <div>
+            <div className="pl-4">
                 <form action="" onSubmit={(e) => postComment(e)} className="form-group">
-                    <label htmlFor="">Comment</label>
+                    <label htmlFor="" className="h4 font-weight-bold">Comments</label>
                     <textarea name="" 
                     onChange={(e) => {
                         setCmtText(e.target.value)
                     }}
-                    className="form-control" id="" cols="30" rows="10"></textarea>
+                    className="form-control" id="" cols="40" rows="4"></textarea>
                     
                     {
                             succAlert?

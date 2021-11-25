@@ -63,7 +63,6 @@ export default class Carousel2 extends Component {
     
     render() {
       var { isLoaded,items } = this.state;
-      console.log(items)
       if(!isLoaded) {
         return <div>Loading...</div>;
       }

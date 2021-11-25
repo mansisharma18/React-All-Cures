@@ -2,7 +2,6 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 const AllPost = ({id, title, f_title, w_title, country, type}) => {
-    console.log('id: ', id)
         return (
             <>
             <div style={{width:"100%"}} key={id.toString()}>
@@ -17,13 +16,23 @@ const AllPost = ({id, title, f_title, w_title, country, type}) => {
                                 </div>
                                 <div>
                                 {
-                                type === '1'?
+                                type.includes('1') || type === '1'?
                                     <div className="chip overview mr-2">Overview</div>
-                                : type === '2'?
-                                    <div className="chip cure mr-2">Cures</div>
-                                : type === '3'?
-                                    <div className="chip symptoms mr-2">Symptoms</div>
                                 : null
+                                //     <div className="chip cure mr-2">Cures</div>
+                                // : type === '3'?
+                                //     <div className="chip symptoms mr-2">Symptoms</div>
+                                // : null
+                            }
+                            {
+                                type.includes('2') || type === '2'?
+                                    <div className="chip cure mr-2">Cure</div>
+                                    : null
+                            }
+                            {
+                                type.includes('3') || type === '3'?
+                                <div className="chip symptoms mr-2">Symptoms</div>
+                                    : null
                             }
                             {   
                                 country !== 0?

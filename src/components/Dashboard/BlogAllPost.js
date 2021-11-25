@@ -6,11 +6,6 @@ import Header from '../Header/Header';
 import Footer from '../Footer/Footer'
 import { backendHost } from '../../api-config';
 
-
-
-
-
-
 export default class App extends Component {
     constructor(props) {
         super(props);

@@ -5,7 +5,7 @@ import Footer from '../Footer/Footer'
 import {Container} from "react-bootstrap";
 // import PostArticle from '././components/BlogPage/PostArticle';
 import { backendHost } from '../../api-config';
-import PostArticle from './PostArticle'
+import ListArticle from './ListArticle'
 import Cookies from 'js-cookie';
 
 export default class Blogpage extends Component{
@@ -132,7 +132,7 @@ export default class Blogpage extends Component{
                       
                          this.state.acPerm[0] == i.published_by?
                                 // Selects articles with publish status = 3 (Published)
-                        <PostArticle
+                        <ListArticle
                             id = {i.article_id}
                             title = {i.title}
                             f_title = {i.friendly_name}
@@ -163,7 +163,7 @@ export default class Blogpage extends Component{
                     <div className="row" id="posts-container">
                     {items.map((i) => (
                       i.country_id == this.state.country ?            // Selects articles according to country required
-                        <PostArticle
+                        <ListArticle
                             id = {i.article_id}
                             title = {i.title}
                             // f_title = {i.friendly_name}

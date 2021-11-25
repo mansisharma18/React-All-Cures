@@ -80,7 +80,7 @@ const Side = props => {
                               acPerm?
                               <>
                               <ArticleComment refreshComments={comments} article_id={props.match.params.id}/>
-                              <h3>Comments </h3>
+                              {/* <h3>Comments </h3> */}
                               </>
                               : null
                             }
@@ -89,8 +89,9 @@ const Side = props => {
             {   
                     commentItems?
                     commentItems.map((i) => (
-                            <div className=" menu-item">
-                                <div className="text-dark h3">{i.comments}</div>
+                            <div className="pl-4">
+                                <div className="text-dark h5">{i.comments}</div>
+                                <i className="text-capitalize float-right">{i.first_name} {i.last_name}</i>
                             </div>
                         ))
                     : null
