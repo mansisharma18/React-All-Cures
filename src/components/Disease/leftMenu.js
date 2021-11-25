@@ -88,12 +88,14 @@ const Side = props => {
             
             {   
                     commentItems?
-                    commentItems.map((i) => (
+                    commentItems.map((i) => i.reviewed == 1?(
                             <div className="pl-4">
                                 <div className="text-dark h5">{i.comments}</div>
                                 <i className="text-capitalize float-right">{i.first_name} {i.last_name}</i>
                             </div>
-                        ))
+                        )
+                        :null
+                        )
                     : null
                 }
             </Nav>

@@ -257,10 +257,10 @@ render(){
                                   
                                item.target_type_id == '1'?
                               
-                                    <div className="chip overview mr-2">Doctor id {item.rate_id}</div>
+                                    <div className="chip overview mr-2">Doctor id {item.target_id}</div>
                                     
                                 : item.target_type_id== '2'?
-                                    <div className="chip cure mr-2">Article id {item.rate_id}</div>
+                                    <div className="chip cure mr-2">Article id {item.target_id}</div>
                                
                                 : null
                             }
