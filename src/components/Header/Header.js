@@ -10,7 +10,6 @@ import Test from '../LandingPage/test'
 import { backendHost } from '../../api-config';
 import TextField from '@mui/material/TextField';
 import Autocomplete from '@mui/material/Autocomplete';
-import history from "../history";
 
    class Header extends Component {
        
@@ -198,7 +197,9 @@ import history from "../history";
    
    articleSearch = (e) => {
       e.preventDefault()
-      if(this.state.article){
+      if(this.state.article === ''){
+         this.props.history.push(`/cures`)
+      } else if(this.state.article){
          this.props.history.push(`/cures/${this.state.article}`)
       } else {
          this.props.history.push(`/cures`)

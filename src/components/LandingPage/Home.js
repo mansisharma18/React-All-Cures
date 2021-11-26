@@ -203,7 +203,6 @@ class Home extends Component {
    }
    
    render() {
-      console.log('props: ', this.props)
       return(
          <div>
             <div className="homeHeader">

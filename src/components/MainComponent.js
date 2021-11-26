@@ -38,47 +38,62 @@ const history = useHistory()
 
   // render() {
   const [auth, setAuth] = React.useState('not-logged-in');
+  const [authLoaded, setAuthLoaded] = React.useState(false);
   const readCookie = () => {
     // if(Cookies.get('acPerm')){
-      var user = Cookies.get("acPerm")
-      if(!user){
-        return
-      } else {
-        user = user.split('|')[1]
-      }
-      console.log('userrrrrrrrrr: ', user)
-
-      if(user >= 4 && user<10){             // user access for reviewer to admin previleges
-        setAuth('admin')
-        console.log('Admin:'+user)
-      } else if(user >= 1 && user < 4){     // user access for normal users
-        setAuth('normal-user')
-        console.log('normal user: ', user)
-      } else if(!user){                              // user access for not logged in users
-        setAuth('not-logged-in')
-        console.log('not logged in')
-      }
+    var user = Cookies.get("acPerm")
+    if(!user){
+      return
+    } else {
+      user = user.split('|')[1]
     }
+    // console.log('userrrrrrrrrr: ', user)
+
+    if(user >= 4 && user<10){             // user access for reviewer to admin previleges
+      setAuth('admin',() => setAuthLoaded(true))
+      console.log('Admin:'+user)
+    } else if(user >= 1 && user < 4){     // user access for normal users
+      setAuth('normal-user',() => { setAuthLoaded(true) })
+      console.log('normal user: ', user)
+    } else if(!user){                              // user access for not logged in users
+      setAuth('not-logged-in',() => setAuthLoaded(true))
+      console.log('not logged in')
+    }
+  }
   const url = props.url;
   React.useEffect(() => {
+    // setAuth('authuhuhu', () => console.log('set auth: ', auth))
     readCookie();
-  }, [])
+  })
 
-    return (
+  React.useEffect(() => {
+    setAuthLoaded(true)
+    console.log('Auth Load: ', authLoaded)
+  }, [auth])
+  
+  if(!authLoaded) {
+    return(
+      <div className="loader main">
+        <i className="fa fa-spinner fa-spin fa-10x" />
+      </div>
+    )
+  }
+  else {
+  return (
       <div>
         <AuthApi.Provider value={{auth, setAuth}}>
           <HashRouter history={history} basename={''}>
-            <Routes url = {url}/>
+            <Routes authLoaded={authLoaded} url = {url}/>
           </HashRouter>
         </AuthApi.Provider>
       </div>
     );
-  // }
+  }
 }
 
 const Routes = (props) => {
   const Auth = React.useContext(AuthApi)
-  console.log(Auth.auth)
+  // console.log(Auth.auth)
   return (
     <>
     <Switch>
