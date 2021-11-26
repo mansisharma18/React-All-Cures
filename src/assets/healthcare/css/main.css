@@ -2718,3 +2718,11 @@ div.MuiSelect-root.MuiSelect-select.MuiSelect-selectMenu.MuiInputBase-input.MuiI
 .country {
   background-color: #3ad0ff;
 }
+
+.loader {
+  /* overflow: hidden; */
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
