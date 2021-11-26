@@ -25,6 +25,7 @@ const Comment = ({refreshComments,article_id}) => {
                 setTimeout(() => {
                     setAlert(false)
                 }, 4000);
+                window.location.reload(false);
                  
             })
             

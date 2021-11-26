@@ -28,8 +28,10 @@ import DeleteSubscribe from './Dashboard/DeleteSubscribe'
 import List from '../List'
 import Userprofile from "./Profile/Userprofile";
 import history from "./history";
-import MyArticle from './Profile/MyArtcle'
-import ListArticle from './Profile/ListArticle'
+import MyArticle from './Profile/MyArtcle';
+import ListArticle from './Profile/ListArticle';
+import Geolocation from '../GeoLocation'
+import GeoLocation from "../GeoLocation";
 
 function Main(props) {
 const history = useHistory()
@@ -83,6 +85,7 @@ const Routes = (props) => {
       {/* Home Page */}
        <Route exact path="/" component={Home} />
        <Route exact path="/home" component={Home} />
+       <Route exact path="/geolocation" component={GeoLocation} />
 
       {/* Doctor search page */}
       <Route exact path="/search/:city" component={Search} /> 
@@ -133,6 +136,7 @@ const Routes = (props) => {
       
       <Route exact path="/loginForm/ResetPass" component={ResetPass} />
       <Route exact path="/loginForm/verify" component={Verify} />
+      
     </Switch>
     </>
   )
