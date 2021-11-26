@@ -2721,8 +2721,11 @@ div.MuiSelect-root.MuiSelect-select.MuiSelect-selectMenu.MuiInputBase-input.MuiI
 
 .loader {
   /* overflow: hidden; */
-  height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+.loader.main {
+  height: 100vh;
 }

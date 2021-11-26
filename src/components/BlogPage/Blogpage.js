@@ -93,9 +93,9 @@ export default class Blogpage extends Component{
         return (
         <>
           <Header history={this.props.history}/>
-            <Container className="mt-5 my-5 loading">
-              <h3 className="text-left">Loading...</h3>
-            </Container>
+            <div className="loader my-4">
+              <i className="fa fa-spinner fa-spin fa-6x" />
+            </div>
           <Footer/>
         </>  
       );
@@ -107,7 +107,7 @@ export default class Blogpage extends Component{
                 <div className="container my-4">
                   {
                     this.state.param.type?
-                    <h1 className="h2 text-center">Blogs related to "{this.props.match.params.type}"</h1>
+                    <h1 className="h2 text-center">Articles related to "{this.props.match.params.type}"</h1>
                     :<h1 className="h2 text-center">Articles</h1>
                   }
                     <div className="row" id="posts-container">
