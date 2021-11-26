@@ -18,9 +18,7 @@ const Test = (props) => {
     const [click, setClick] = useState(true)
     const [email, setEmail] = useState("");
     const [signInpassword, setPass] = useState("");
-    const [status, setStatus] = useState("");
     const [buttonClick, setClicked] = useState("");
-    const [data, setData] = useState([])
 
     // Sign up form's states
 
@@ -31,16 +29,10 @@ const Test = (props) => {
       secondPassword: "",
     });
     const [terms, setTerms] = useState("");
-    const [policy, setPolicy] = useState("");
-    const [rempwd, setRempwd] = useState("");
     const [userType, setUserType] = useState("");
-    const [message, setMessage] = useState("");
     const [isError, setError] = useState(false);
     const [buttonSignUpClick, setSignUpClicked] = useState("");
-    // const [region, setRname]= useState("");
-    // const [gender, setGender]= useState("");
     const [number, setMname]= useState("");
-    // const [form, setForm]= useState("");
      const [emailExists, setExists] = useState(false)
     const [promo, setPromo] =useState(null)
     const [validEmail, setValidEmail] = useState()
@@ -48,11 +40,9 @@ const Test = (props) => {
   
     const [
       validLength,
-      hasNumber,
       upperCase,
       lowerCase,
       match,
-      specialChar,
     ] = usePasswordValidation({
           firstPassword: password.firstPassword,
           secondPassword: password.secondPassword,
@@ -68,11 +58,10 @@ const Test = (props) => {
   const SignUpForm = async (e, props) => {
     e.preventDefault();
     setSignUpClicked(1);
-    var res;
     if(validEmail && upperCase && lowerCase && match){
       axios.post(`${backendHost}/RegistrationActionController?firstname=${firstName}&lastname=${lastName}&email=${email}&psw=${password.firstPassword}&psw-repeat=${password.secondPassword}&rempwd=on&doc_patient=${userType}&acceptTnc=${terms}&number=${number}`
-    ) .then(response => {
-      if(response.data == 'Email Address already Exists in the System'){
+    ).then(response => {
+      if(response.data === 'Email Address already Exists in the System'){
         // setExists(true);
         setTimeout(() => {
           setSignUpClicked(3)
@@ -179,24 +168,6 @@ const Test = (props) => {
       console.log(err.response.data)
     })
   }
-  
-  // Redirect and Reload after logging in
-  
-  function Redirec(){
-    setTimeout(() => {
-      window.location.reload();
-    }, 1000);
-    return(
-      <Redirect to={{
-        pathname: '#'
-      }}/>
-    )
-  }
-
-    const responseGoogle = (res) => {
-      console.log(res);
-      console.log(res.profileObj);
-    }
 
     return(
         <div className="sign">

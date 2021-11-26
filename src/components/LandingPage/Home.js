@@ -12,7 +12,7 @@ import '../../assets/healthcare/icomoon/style.css';
 import './custom.css';
 import Carousel1 from './Caousel1';
 import Carousel2 from './Carousel2';
-import CarouselReview from './CarouselReview';
+// import CarouselReview from './CarouselReview';
 import { Dropdown, Alert } from 'react-bootstrap';
 
 import { backendHost } from '../../api-config';
@@ -71,9 +71,9 @@ class Home extends Component {
          this.setState ({
             users: res.data
          })
-         this.state.users.map((u) => {
+         this.state.users.map((u) => (
             this.state.cityList.push(u.Cityname, u.Pincode)
-         })
+         ))
       })
       .catch(res => console.log(res))
     }
@@ -152,9 +152,9 @@ class Home extends Component {
             });
 
           }).then(() => {
-            this.state.speciality.map((i) => {
+            this.state.speciality.map((i) => (
               this.state.spec1.push(i[3])
-            })
+            ))
           })
           .catch(res => {
              console.error(res)
@@ -164,7 +164,6 @@ class Home extends Component {
       const res = await fetch(`${backendHost}/LogoutActionController`, {
          method: "POST"
       });
-        const data = await res.text();
         setTimeout(() => {
            window.location.reload()
         }, 1000);
