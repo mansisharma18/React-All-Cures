@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import Cookies, { set } from 'js-cookie';
+import Cookies from 'js-cookie';
 import axios from 'axios';
 import Header from '../Header/Header';
 import Footer from '../Footer/Footer';

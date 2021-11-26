@@ -2729,3 +2729,7 @@ div.MuiSelect-root.MuiSelect-select.MuiSelect-selectMenu.MuiInputBase-input.MuiI
 .loader.main {
   height: 100vh;
 }
+
+.ad-spac {
+  height: 200px;
+}

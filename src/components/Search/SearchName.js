@@ -53,7 +53,6 @@ class SearchName extends Component {
     componentDidMount() {
       this.fetchDoctors(this.props.match.params.name);
       this.fetchDiseaseList();  
-      const some = Header.onSug
     }
   
     componentDidUpdate(prevProps){

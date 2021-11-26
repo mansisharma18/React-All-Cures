@@ -35,18 +35,18 @@ export default class Blogpage extends Component{
       }
       
       diseasePosts(type){                     // For specific blogs like "/blogs/diabetes"
-        // if(type){
-        //   fetch(`${backendHost}/isearch/${type}`)
-        //   .then((res) => res.json())
-        //   .then((json) => {
-        //     this.setState({
-        //       isLoaded: true,
-        //       items: json.reverse(),
-        //     });
-        //   });
-        // }
-        // else {
-        if(type !== undefined){
+        if(type){
+          fetch(`${backendHost}/isearch/${type}`)
+          .then((res) => res.json())
+          .then((json) => {
+            this.setState({
+              isLoaded: true,
+              items: json.reverse(),
+            });
+          });
+        }
+        else {
+        // if(type !== undefined){
           fetch(`${backendHost}/isearch/${this.props.match.params.type}`)
           .then((res) => res.json())
           .then((json) => {
@@ -55,9 +55,10 @@ export default class Blogpage extends Component{
               items: json.reverse(),
             });
           });
-        } else {
-          this.allPosts()
-        }
+        } 
+        // else {
+        //   this.allPosts()
+        // }
       }
 
       regionalPosts(){

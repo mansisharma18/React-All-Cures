@@ -5,9 +5,6 @@ import { Alert } from 'react-bootstrap';
 import { backendHost } from '../../api-config';
 
 const ListArticle = ({id, title, f_title, w_title, country, type, pubstatus_id, dis}) => {
-console.log('id: ', id)
-
-
 
     if (dis==0) dis = true 
     else dis = false
@@ -15,7 +12,6 @@ console.log('id: ', id)
     const [deleteAlert, setAlert] = useState(false)
     
     const singlePostDelete = (id) => {
-        console.log('delete',id);
         axios.delete(`${backendHost}/article/${id}`)
         .then(res => {
             singlePostDelete()
@@ -47,13 +43,13 @@ console.log('id: ', id)
                         </div>
                         <div className="delete-edit-buttons">
                              {
-                                pubstatus_id == '1'?
+                                pubstatus_id === 1?
                                     <div className="chip overview mr-2">Work In Progress</div>
                                     
-                                : pubstatus_id == '2'?
+                                : pubstatus_id === 2?
                                     <div className="chip symptoms mr-2">Under Review
                                      </div>
-                                : pubstatus_id == '3'? 
+                                : pubstatus_id === 3? 
                                     <div className="chip cure mr-2">Publish </div>
                                 : null
                             }
@@ -64,7 +60,7 @@ console.log('id: ', id)
                                 : null
                         }
                             {
-                                pubstatus_id == '1' || pubstatus_id == '2' || pubstatus_id == '3'  ?
+                                pubstatus_id === 1 || pubstatus_id === 2 || pubstatus_id === 3  ?
                             <button className="btn btn-danger btn-sm mr-2" disabled={disable}  
                             onClick={() => {
                                 

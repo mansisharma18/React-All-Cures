@@ -1,7 +1,6 @@
 import axios from 'axios';
 import React, { useState, useEffect } from 'react';
 import { Button, Modal, Form } from "react-bootstrap";
-import { useHistory } from 'react-router-dom'
 
 import Radio from '@material-ui/core/Radio';
 import RadioGroup from '@material-ui/core/RadioGroup';
@@ -12,7 +11,6 @@ import FormLabel from '@material-ui/core/FormLabel';
 import Input from '@material-ui/core/Input';
 import MenuItem from '@material-ui/core/MenuItem';
 import Select from '@material-ui/core/Select';
-import { Alert } from 'bootstrap';
 import { backendHost } from '../../api-config';
 
 const EditProfile = (props) => {

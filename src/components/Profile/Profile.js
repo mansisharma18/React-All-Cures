@@ -9,13 +9,10 @@ import '../../assets/healthcare/css/main.css';
 import '../../assets/healthcare/css/responsive.css';
 import '../../assets/healthcare/css/animate.css';
 import '../../assets/healthcare/icomoon/style.css';
-import { Container, Button } from "react-bootstrap";
-import {Link} from 'react-router-dom'
-import Comment from "../Comment";
+import { Container, Button } from "react-bootstrap"
 import axios from 'axios';
 import EditProfile from "./EditProfile";
 import { backendHost } from '../../api-config';
-import StarRating from '../StarRating.js'
 
 class Profile extends Component {
   constructor(props) {
@@ -115,10 +112,14 @@ class Profile extends Component {
 
   editToggle = () => {
     if(this.state.edit === false){
-      this.state.edit = true
+      this.setState({
+        edit: true
+      })
       console.log(this.state.edit)
     } else{
-      this.state.edit = false
+      this.setState({
+        edit: false
+      })
       console.log(this.state.edit)
 
     }
@@ -156,8 +157,10 @@ class Profile extends Component {
       return(
         <>
           <Header history={this.props.history}/>
-            <Container className="mt-5 my-5">
-              <h3 className="text-left">Loading...</h3>
+          <Container className="my-5 loading">
+              <div className="loader ">
+                <i className="fa fa-spinner fa-spin fa-6x" />
+              </div>
             </Container>
           <Footer/>
         </>  
@@ -404,7 +407,7 @@ class Profile extends Component {
                           <div className="rating-footer">
                             <div className="back-top">
                               {" "}
-                              <a href="#">
+                              <a href="/#">
                                 <p>
                                   <i
                                     className="fa fa-angle-up"
@@ -661,9 +664,6 @@ class Profile extends Component {
     </div>
   </div>
 </div>
-
-
-
           <Footer />
         </div>
       );
@@ -671,17 +671,6 @@ class Profile extends Component {
     } 
     
   }  
-}
-function ButtonToggle(props){
-  if(props.edit === false){
-    return(
-      <button onClick={props.editToggle.bind(this)} className="btn btn-dark text-white text-decoration-none">Edit Profile</button>
-    );
-  } else if(props.edit === true){
-    return(
-      <button onClick={props.editToggle.bind(this)} className="btn btn-dark text-white text-decoration-none">Save Changes</button>
-    )
-  }
 }
 
 export default Profile;
