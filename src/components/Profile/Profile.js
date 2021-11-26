@@ -70,13 +70,15 @@ class Profile extends Component {
     .catch(err => console.log(err))
     console.log('closed');
   }
-  getRating = (id) => {
+  getRating = (ratingId) => {
     console.log('fired');
-    axios.get(`${backendHost}/rating/target/23/targettype/1/avg`)
+    axios.get(`${backendHost}/rating/target/${ratingId}/targettype/1/avg`)
     .then(res => {
       console.log(res)
       this.setState({
-        ratingValue:res.data
+        ratingValue:res.data,
+        size: 40,
+        count: 5,
       })
     }) 
     .catch(err => console.log(err))
@@ -109,6 +111,7 @@ class Profile extends Component {
       });
 
   }
+  
 
   editToggle = () => {
     if(this.state.edit === false){
@@ -203,7 +206,21 @@ class Profile extends Component {
                               {items.hospital_affliated}{" "}
                               {items.country_code}
                             </div>
-                            {/* <!--  <button onclick="loadUsers()">Click</button> --> */}
+                            <div>
+
+                            
+
+                            </div>
+                            <div className="rating">
+                              
+                           
+                            <p>{this.state.ratingValue}</p>
+                  <span className="fa fa-star"></span>
+
+                  
+                 
+               </div>
+                           
                           </div>
                           
                         </div>
@@ -302,12 +319,9 @@ class Profile extends Component {
                     <div className="tab-nav">
                       <div className="rating-heading">
                         <div className="profile-info-rating">
-                        <Rating ratingValue={this.getRating} docid={this.state.param.id} />
+                        <Rating  docid={this.state.param.id} />
                           
-                        <div className="rating">
-                  <span className="icon-star-1"></span>
-                  <p>4.2</p>
-               </div>
+                       
                         </div>
                       </div>
                       {/* <!-- Nav tabs --> */}

@@ -31,11 +31,12 @@ export default function Rating(props) {
     
   }
 
+
   // const getRating = () => {
 
-  //   axios.get(`${backendHost}/rating/target/23/targettype/1/avg`)
+  //   axios.get(`${backendHost}/rating/target/24/targettype/1/avg`)
   //   .then(res => {
-  //     console.log(res.data[0].ratingVal)
+  //     console.log(res.data[1].ratingVal)
   //     setRatingValue(res.data)
   //   })
   //   .catch(err => console.log(err))
@@ -45,19 +46,17 @@ export default function Rating(props) {
   //   getRating()
   
   // },[])
-
-  
 const thirdExample = {
   size: 40,
   count: 5,
   isHalf: false,
-  value: 0,
+  value:0,
   color: "yellow",
   activeColor: "orange",
   // filledIcon:"orange",
   onChange: newValue => {
     setRatingValue(newValue)
-    
+    // getRating(newValue)
     postRating(newValue)
     console.log(`Example 3: new value is ${newValue}`);
   }
@@ -70,6 +69,8 @@ const thirdExample = {
       
     
       <ReactStars {...thirdExample} />
+      
+
       {
       submitAlert?
           <Alert variant="success" className="h6 mx-3">You rate this doctor successfully!!</Alert>

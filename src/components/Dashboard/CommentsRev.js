@@ -4,6 +4,7 @@ import axios from 'axios';
 import Results from './Results'
 import { Dropdown, Button, DropdownButton, Nav, Modal, Alert} from 'react-bootstrap';
 import { backendHost } from '../../api-config';
+import Cookies from 'js-cookie';
 
 
 
@@ -19,7 +20,8 @@ class CommentsRev extends Component {
       selectedCheckboxes: [],
       unselectedCheckboxes: [],
       isChecked: true,
-      currentlySelected: ''
+      currentlySelected: '',
+      acPerm: Cookies.get('acPerm'),
      
       // param: params,
       // getComments: 'all',
@@ -73,7 +75,7 @@ class CommentsRev extends Component {
     const isCurrentItemApproved = !this.state.approvedIds.includes(this.state.currentlySelected) ? 1 : 0
     console.log(isCurrentItemApproved, this.state.currentlySelected,this.state.approvedIds)
     
-    axios.post(`${backendHost}/rating/reviewedby/1/reviewed/${isCurrentItemApproved}`, {
+    axios.post(`${backendHost}/rating/reviewedby/${Cookies.get("acPerm").split('|')[0]}/reviewed/${isCurrentItemApproved}`, {
       "rateids": selected.join(),
       "rateids_rejected": rejected.join()
     })
@@ -255,10 +257,10 @@ render(){
                                   
                                item.target_type_id == '1'?
                               
-                                    <div className="chip overview mr-2">Doctor id {item.rate_id}</div>
+                                    <div className="chip overview mr-2">Doctor id {item.target_id}</div>
                                     
                                 : item.target_type_id== '2'?
-                                    <div className="chip cure mr-2">Article id {item.rate_id}</div>
+                                    <div className="chip cure mr-2">Article id {item.target_id}</div>
                                
                                 : null
                             }
