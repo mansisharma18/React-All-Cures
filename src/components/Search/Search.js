@@ -61,11 +61,11 @@ class Search extends Component {
     
   }
 
-  fetchDoctors(city){
+  fetchDoctors(city,lat,lon){
     if((city) && (this.state.param.name)) {
       console.log('city &&&& name')
       document.title = `All Cures | ${city} | ${this.state.param.name}`
-      fetch(`${backendHost}/SearchActionController?cmd=getResults&city=${city}&doctors=${this.state.param.name}&Latitude=&Longitude=`)
+      fetch(`${backendHost}/SearchActionController?cmd=getResults&city=${city}&doctors=${this.state.param.name}&Latitude=${Cookies.get('latitude')}&Longitude=${Cookies.get('longitude')}`)
       .then(res => res.json())
       .then(json => {
         this.setState({
@@ -77,7 +77,7 @@ class Search extends Component {
       console.log('not city &&&& name')
 
       document.title = `All Cures | ${this.state.param.name}`
-      fetch(`${backendHost}/SearchActionController?cmd=getResults&doctors=${this.state.param.name}&Latitude=32.7266&Longitude=74.8570`)
+      fetch(`${backendHost}/SearchActionController?cmd=getResults&doctors=${this.state.param.name}&Latitude=${Cookies.get('latitude')}&Longitude=${Cookies.get('longitude')}`)
       .then(res => res.json())
       .then(json => {
         this.setState({
@@ -89,7 +89,7 @@ class Search extends Component {
       console.log('city &&&& not name')
 
       document.title = `All Cures | ${city}`
-      fetch(`${backendHost}/SearchActionController?cmd=getResults&city=${city}&Latitude=32.7266&Longitude=74.8570`)
+      fetch(`${backendHost}/SearchActionController?cmd=getResults&city=${city}&Latitude=${Cookies.get('latitude')}&Longitude=${Cookies.get('longitude')}`)
       .then(res => res.json())
       .then(json => {
         this.setState({

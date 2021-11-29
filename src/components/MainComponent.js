@@ -30,8 +30,8 @@ import Userprofile from "./Profile/Userprofile";
 import history from "./history";
 import MyArticle from './Profile/MyArtcle';
 import ListArticle from './Profile/ListArticle';
-import Geolocation from '../GeoLocation'
-import GeoLocation from "../GeoLocation";
+
+import GeoLocation from '../GeoLocation';
 
 function Main(props) {
 const history = useHistory()
