@@ -4,6 +4,7 @@ import axios from 'axios';
 import Header from '../Header/Header';
 import Footer from '../Footer/Footer';
 import { backendHost } from '../../api-config';
+import { useHistory } from 'react-router-dom';
 
 export default function Userprofile(props) {
     const [profileId, setProfile] = useState(Cookies.get('acPerm').split('|')[0])
@@ -12,6 +13,8 @@ export default function Userprofile(props) {
     const [age, setAge] = useState('')
     const [email, setEmail] = useState('')
     const [gender, setGender] = useState('')
+    const [isLoaded, setLoaded] = useState(false)
+    const history = useHistory()
 
     const getProfile = () => {
         axios.get(`${backendHost}/profile/${profileId}`)
@@ -21,6 +24,7 @@ export default function Userprofile(props) {
             setAge(res.data.age)
             setEmail(res.data.email)
             setGender(res.data.gender)
+            setLoaded(true)
             console.log('Profile: ', res.data)
         })
         .catch(err => console.log(err))
@@ -29,12 +33,23 @@ export default function Userprofile(props) {
         getProfile()
     }, [])
     
+    if(!isLoaded){
+      return(
+      <>
+      <Header history={history}/>
+      <div className="loader my-4">
+        <i className="fa fa-spinner fa-spin fa-6x" />
+      </div>
+      <Footer/>
+      </>
+      );
+    } else {
       // console.log(new URLSearchParams(this.props.location.search).get("edit"))
       return (
         <div>
-          <Header history={this.props.history}/>
+          <Header history={history}/>
           
-          <section className="Profileleft">
+          <section className="Profileleft mb-5">
             <div className="container">
               <div className="row">
                 <div className="col-md-8 pd-0">
@@ -76,7 +91,7 @@ export default function Userprofile(props) {
           <Footer />
         </div>
       );
-      
+    }
     } 
     
         

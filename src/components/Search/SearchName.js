@@ -54,7 +54,6 @@ class SearchName extends Component {
     componentDidMount() {
       this.fetchDoctors(this.props.match.params.name);
       this.fetchDiseaseList();  
-      const some = Header.onSug
     }
   
     componentDidUpdate(prevProps){
@@ -76,8 +75,10 @@ class SearchName extends Component {
         return (
         <>
           <Header history={this.props.history} url={this.props.match.url}/>
-            <Container className="mt-5 my-5 loading">
-              <h3 className="text-left">Loading...</h3>
+            <Container className="my-5 loading">
+              <div className="loader">
+                <i className="fa fa-spinner fa-spin fa-6x" />
+              </div>
             </Container>
           <Footer/>
         </>  

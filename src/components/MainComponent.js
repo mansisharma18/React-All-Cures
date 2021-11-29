@@ -1,6 +1,6 @@
 import React from "react";
 import Cookies from 'js-cookie';
-import { HashRouter, Switch, Route, Redirect, Router, BrowserRouter, useHistory } from "react-router-dom";
+import { HashRouter, Switch, Route, Redirect, useHistory } from "react-router-dom";
 
 import Home from "./LandingPage/Home";
 import Profile from "./Profile/Profile";
@@ -68,7 +68,6 @@ const history = useHistory()
 
   React.useEffect(() => {
     setAuthLoaded(true)
-    console.log('Auth Load: ', authLoaded)
   }, [auth])
   
   if(!authLoaded) {

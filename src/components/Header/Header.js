@@ -53,9 +53,9 @@ import Autocomplete from '@mui/material/Autocomplete';
             });
 
           }).then(() => {
-            this.state.speciality.map((i) => {
+            this.state.speciality.map((i) => (
               this.state.spec1.push(i[3])
-            })
+            ))
           })
           .catch(res => {
              console.error(res)
@@ -67,9 +67,9 @@ import Autocomplete from '@mui/material/Autocomplete';
                this.setState ({
                   users: res.data
                })
-               this.state.users.map((u) => {
+               this.state.users.map((u) => (
                   this.state.cityList.push(u.Cityname, u.Pincode)
-               })
+               ))
             })
             .catch(res => console.log(res))
           }

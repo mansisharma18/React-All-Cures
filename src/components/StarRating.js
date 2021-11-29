@@ -2,18 +2,14 @@ import axios from "axios";
 import React, { useState } from 'react';
 // import "./styles.css";
 import ReactStars from "react-rating-stars-component";
-import { Alert, Form } from 'react-bootstrap';
-import Comment from "../components/Comment";
-import Header from '../components/Header/Header'
+import { Alert } from 'react-bootstrap';
 import { backendHost } from '../api-config';
 import Cookies from 'js-cookie';
 
 
 export default function Rating(props) {
-  const acPerm = Cookies.get("acPerm")
 
   const [ratingValue, setRatingValue] = React.useState([])
-  const [showValue, setShowValue] = React.useState([])
   const [submitAlert, setAlert] = useState(false)
   const postRating = (rating, docid) => {
 

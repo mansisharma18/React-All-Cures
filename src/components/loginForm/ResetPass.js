@@ -16,10 +16,12 @@ function LoginInfo(props) {
           secondPassword: "",
          });
     const [alert, setSubmitAlert] = useState(false)
-    const [acPerm, setacPerm] = useState(Cookies.get('acPerm'))
+    const acPerm = Cookies.get('acPerm')
     const [submitAlert, setAlert] = useState(false)
     const [notAlert, noAlert] = useState(false)
     const [errAlert, erAlert] = useState(false)
+    const getEmail = props.location.search
+
     const [
         validLength,
         upperCase,
@@ -86,10 +88,7 @@ function LoginInfo(props) {
     useEffect(() => {
 
         // const params = new URLSearchParams(location.search);
-        // const getEmail= params.get('em');
-      
-       const getEmail = props.location.search
-       
+        // const getEmail= params.get('em');       
          axios.post(`${backendHost}/users/getemdecrypt`,
          {
              "email":getEmail.split('em=')[1]

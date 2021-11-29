@@ -15,22 +15,15 @@ function LoginInfo(props) {
           firstPassword: "",
           secondPassword: "",
          });
-    const [alert, setSubmitAlert] = useState(false)
     const [acPerm, setacPerm] = useState(Cookies.get('acPerm'))
     const [states, setStates] = useState([])
     const [submitAlert, setAlert] = useState(false)
     const [notAlert, noAlert] = useState(false)
     const [errAlert, erAlert] = useState(false)
     const [
-        validLength,
-        hasNumber,
-        upperCase,
-        lowerCase,
-        match,
-        specialChar,
+        validLength
     ] = usePasswordValidation({
         Mail: email.Mail,
-  
     });
     
     const setMail = (event)=>{
@@ -40,7 +33,6 @@ function LoginInfo(props) {
     const submitForm = async (e) => {
         e.preventDefault()
         
-        setSubmitAlert(true)
         if(email.Mail){
             axios.post(`${backendHost}/users/checkemail`,
             {

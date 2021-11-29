@@ -89,8 +89,10 @@ class Disease extends Component {
     return (
       <>
       <Header history={this.props.history}/>
-        <Container className="mt-5 my-5 loading">
-          <h3 className="text-left">Loading...</h3>
+        <Container className="my-5 loading">
+          <div className="loader ">
+            <i className="fa fa-spinner fa-spin fa-6x" />
+          </div>
         </Container>
       <Footer/>
       </>  
@@ -102,7 +104,9 @@ class Disease extends Component {
     return (
     <div>
       <Header history={this.props.history}/>
-        <div className="ad-spac"><img src={Wall} height="200px" width="1900px"/></div>
+        <div className="ad-spac">
+          {/* <img src={Wall} height="200px" width="1900px"/> */}
+        </div>
         <Row>
           <Col md={2} id="sidebar-wrapper">      
             <Sidebar diseaseId={items.disease_condition_id} id={this.props.match.params.id}  name={items.dc_name} />

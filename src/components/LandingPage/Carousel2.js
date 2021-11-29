@@ -64,7 +64,11 @@ export default class Carousel2 extends Component {
     render() {
       var { isLoaded,items } = this.state;
       if(!isLoaded) {
-        return <div>Loading...</div>;
+        return (
+          <div className="loader my-4">
+        <i className="fa fa-spinner fa-spin fa-6x" />
+      </div>
+        );
       }
       else if(isLoaded){
         return(
