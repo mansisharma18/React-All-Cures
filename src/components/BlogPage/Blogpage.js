@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import Header from '../Header/Header';
 import Footer from '../Footer/Footer'
 // import EditModal from './EditModal'
-import {Container} from "react-bootstrap";
 import AllPost from './Allpost.js';
 import { backendHost } from '../../api-config';
 
@@ -89,7 +88,7 @@ export default class Blogpage extends Component{
       }
       
     render(){
-        var { isLoaded,items, regionPostsLoaded, country } = this.state;
+        var { isLoaded, items, regionPostsLoaded } = this.state;
         if(!isLoaded && !regionPostsLoaded) {
         return (
         <>
@@ -144,7 +143,7 @@ export default class Blogpage extends Component{
                   }
                     <div className="row" id="posts-container">
                     {items.map((i) => (
-                      i.country_id == this.state.country ?            // Selects articles according to country required
+                      parseInt(i.country_id) === parseInt(this.state.country) ?            // Selects articles according to country required
                         <AllPost
                             id = {i.article_id}
                             title = {i.title}

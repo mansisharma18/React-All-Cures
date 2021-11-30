@@ -90,7 +90,7 @@ import Autocomplete from '@mui/material/Autocomplete';
           }
          
           componentDidUpdate(prevProps, prevState){
-            if(prevState.article != this.state.article && this.state.article){
+            if(prevState.article !== this.state.article && this.state.article){
                axios.get(`${backendHost}/isearch/combo/${this.state.article}`)
                .then(res => {
                   this.setState({
@@ -99,70 +99,12 @@ import Autocomplete from '@mui/material/Autocomplete';
                })
             }
           }
-
-           onSuggestHandler = (text, ano) => {
-             if(Number.isInteger(this.state.getPincode)) {
-               this.state.searchParams.city = ano;
-             }else{
-               this.state.searchParams.city = text;
-             }
-             
-            //  this.state.Pincode.city = text;
-              this.setState({
-                 suggestions: []
-              });
-          }
          
           setModalShow =(action) => {
             this.setState({
               modalShow: action
             })
           }
-
-         onChangeHandler = (e, text) => {
-            const testVal = parseInt(e.target.value)   
-            let matches = []
-            if (text.length > 0) {
-              matches = this.state.users.filter(user => {
-                const regex = new RegExp(`${text}`, "gi");
-                return user.Cityname.match(regex)
-              })
-            }
-            if (Number.isInteger(testVal)) {
-               matches = this.state.users.filter(user => {
-               //   const regex = new RegExp(`${testVal}`, "gi");
-                 return user.Pincode.match(testVal)
-               })
-             }
-            this.setState({
-               texts: text,
-               suggestions: matches,
-               searchParams: { ...this.state.searchParams, [e.target.name]: text }
-            });
-         }
-         
-          onSuggestHandlerdoctor = (text) => {    
-            this.state.searchParams.name= text;
-            this.setState({
-               suggestionsDoc: []
-            });
-         }
-
-         onChangeHandlerdoctor = (e, text) => {
-          let matches = []
-          if (text.length > 0) {
-            matches = this.state.doctor.map.Doctorname.myArrayList.filter(user => {
-              const regex = new RegExp(`${text}`, "gi");
-              return user.match(regex)
-            })
-          }
-          this.setState({
-             texts: text,
-             suggestionsDoc: matches,
-             searchParams: { ...this.state.searchParams, [e.target.name]: text }
-         
-          });
-         }
          
          handleChange = e => 
             this.setState({

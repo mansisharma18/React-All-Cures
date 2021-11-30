@@ -20,7 +20,10 @@ import TextField from '@mui/material/TextField';
 import Autocomplete from '@mui/material/Autocomplete';
 import Test from './test'
 import { env } from 'process';
+import { userId } from '../UserId'
+import { userAccess } from '../UserAccess'
 
+console.log('UserIDDDDDDDDDDDD: ', userId,userAccess)
 env.REACT_APP = 'http://117.241.171.115:8080/cures';
 
 class Home extends Component {
@@ -90,10 +93,28 @@ class Home extends Component {
       .catch(res =>  console.log(res))
     }
     loaddoctor();
+
+    Promise.all([
+      fetch(`${backendHost}/article/all/table/disease_condition`)
+      .then(res => res.json()),
+    ]).then(([diseaseData]) => {
+      this.setState({
+          isLoaded: true,
+          speciality: diseaseData,
+      });
+
+    }).then(() => {
+      this.state.speciality.map((i) => (
+        this.state.spec1.push(i[3])
+      ))
+    })
+    .catch(res => {
+       console.error(res)
+    })
  }
 
  componentDidUpdate(prevProps, prevState){
-   if(prevState.article != this.state.article && this.state.article){
+   if(prevState.article !== this.state.article && this.state.article){
       axios.get(`${backendHost}/isearch/combo/${this.state.article}`)
       .then(res => {
          this.setState({
@@ -141,25 +162,6 @@ class Home extends Component {
             searchParams: { ...this.state.searchParams, [e.target.name]: e.target.value }
         });
 
-        componentWillMount(){
-         Promise.all([
-            fetch(`${backendHost}/article/all/table/disease_condition`)
-            .then(res => res.json()),
-          ]).then(([diseaseData]) => {
-            this.setState({
-                isLoaded: true,
-                speciality: diseaseData,
-            });
-
-          }).then(() => {
-            this.state.speciality.map((i) => (
-              this.state.spec1.push(i[3])
-            ))
-          })
-          .catch(res => {
-             console.error(res)
-          })
-         }
    logout = async e => {
       const res = await fetch(`${backendHost}/LogoutActionController`, {
          method: "POST"

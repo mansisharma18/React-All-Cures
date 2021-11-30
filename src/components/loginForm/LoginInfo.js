@@ -1,4 +1,4 @@
- import React, { Component, useState, useEffect } from 'react';
+ import React, { useState, useEffect } from 'react';
 import Cookies from 'js-cookie';
 import { usePasswordValidation } from "../hooks/usePasswordValidation";
 import { Form, Dropdown, DropdownButton } from 'react-bootstrap';
@@ -6,10 +6,7 @@ import Footer from '../Footer/Footer';
 import Heart from"../../assets/img/heart.png";
 import { useHistory, Link} from 'react-router-dom'
 import axios from 'axios';
-import { Redirect } from "react-router-dom";
 import { backendHost } from '../../api-config';
-
-
 
 function LoginInfo(props) {  
 
@@ -18,7 +15,7 @@ function LoginInfo(props) {
           secondPassword: "",
          });
     const [alert, setSubmitAlert] = useState(false)
-    const [acPerm, setacPerm] = useState(Cookies.get('acPerm'))
+    const acPerm = Cookies.get('acPerm')
     const [states, setStates] = useState([])
     const [uprn, setUprn] = useState('')
     const [selectedState, setSelectedState] = useState('')
@@ -26,11 +23,9 @@ function LoginInfo(props) {
 
     const [
         validLength,
-        hasNumber,
         upperCase,
         lowerCase,
-        match,
-        specialChar,
+        match
     ] = usePasswordValidation({
     firstPassword: password.firstPassword,
     secondPassword: password.secondPassword,
@@ -62,7 +57,6 @@ function LoginInfo(props) {
                 "email": 'anil3.kumar@test.com',
                 })
             .then(res => {
-                console.log('Updated Successfully', res.data)
                 routeChange(res.data)
             })
             .catch(err => {

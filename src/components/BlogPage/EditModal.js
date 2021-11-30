@@ -1,5 +1,4 @@
 import React, {useEffect,useState, useRef} from 'react';
-import Cookies from 'js-cookie';
 import {useParams} from 'react-router-dom';
 import axios from 'axios';
 import { Select, MenuItem } from '@material-ui/core'
@@ -12,12 +11,11 @@ import { useStateWithCallbackLazy } from 'use-state-with-callback';
 import { Checkbox, FormControlLabel } from '@material-ui/core'
 import { backendHost } from '../../api-config';
 import CenterWell from '../Disease/CenterWell';
+import { userId } from '../UserId'
+import { userAccess } from '../UserAccess'
 
 const EditModal = (props) => {
 
-    const acPerm = Cookies.get("acPerm")
-    const [userAccess, setAccess] = useState(acPerm? acPerm.split('|')[1]: null);
-    const [userId, setId] = useState(acPerm? acPerm.split('|')[0]: null);
     const editId = useParams()
     const [title, setTitle] = useState('')
     const [articleDisplay, setArticleDisplay] = useState('')
@@ -41,9 +39,8 @@ const EditModal = (props) => {
     const [disclaimerId,setDisclaimerId] = useState([]) 
     const [comment, setComment] = useState('')
     const [keywords, setKeywords] = useState('')
-    console.log(props)
+
     const getPosts = () =>{
-        console.log('get posts')
         axios.get(`${backendHost}/article/${editId.id}`)
         .then(res => {
             setEditedBy(res.data.edited_by)
@@ -70,7 +67,7 @@ const EditModal = (props) => {
     
     const singlePostEdit = (e) => {
         e.preventDefault()
-        if(articleStatus == 3){
+        if(parseInt(articleStatus) === 3){
             axios.post(`${backendHost}/article/${editId.id}`, {
                 "title":title,
                 "friendly_name": articleDisplay,
@@ -144,10 +141,10 @@ const EditModal = (props) => {
     // }, [articleStatus])
 
     const checkAccess = (stat) => {
-        if(userAccess == 9 || [author].includes(userId) || editedBy == userId || userAccess == 4 || userAccess == 7){
+        if(parseInt(userAccess) === 9 || [author].includes(userId) || parseInt(editedBy) === parseInt(userId) || parseInt(userAccess) === 4 || parseInt(userAccess) === 7){
             return null;
         }
-        else if(stat == 2 && (userAccess == 7)){
+        else if(stat === 2 && (parseInt(userAccess) === 7)){
             return null;
         }
         else{
@@ -222,13 +219,15 @@ const EditModal = (props) => {
         getAuthor()
         getCountries()
         getDisclaimer()
-        getDisease()     
+        getDisease()  
+        // eslint-disable-next-line   
     }, [userId])
 
     useEffect(() => {
-        if(author != undefined && editedBy != 0){
+        if(author !== undefined && parseInt(editedBy) !== 0){
             checkAccess(articleStatus, author, editedBy)
         }
+        // eslint-disable-next-line
     }, [articleStatus])
 
     const instanceRef = useRef(null)
@@ -267,7 +266,7 @@ const EditModal = (props) => {
                 "countryId": country,
         })
         .then(res => {
-            if(res.data == 1){
+            if(parseInt(res.data) === 1){
                 setSuccMsg('Article Created Successfully!')
             } else{
                 setSuccMsg('Some error occured!')
@@ -286,7 +285,7 @@ const EditModal = (props) => {
     return (
         <>
             {   
-                props.search == '?article'?
+                props.search === '?article'?
                     null
                 : <Header/>
             } 
@@ -317,7 +316,7 @@ const EditModal = (props) => {
                     <input type="text" value={title}   onChange={(e) => setTitle(e.target.value)} placeholder="Enter title" className="form-control" required/>
                 </div>
                 {
-                    userAccess == 7 || userAccess == 9?
+                    parseInt(userAccess) === 7 || parseInt(userAccess) === 9?
                     <>
                     <div className="col-lg-6 form-group">
                     <label htmlFor="">Article Display Name</label>
@@ -505,7 +504,7 @@ const EditModal = (props) => {
                                     />
                                 }
                                 {
-                                    articleContent == ''?
+                                    articleContent === ''?
                                     <EditorJs
                                     onChange={handleSave}
                                     instanceRef={instance => (instanceRef.current = instance)}
@@ -560,7 +559,7 @@ const EditModal = (props) => {
             </div>
             </div>
             {   
-                props.search == '?article'?
+                props.search === '?article'?
                     null
                 : <Footer/>
             } 

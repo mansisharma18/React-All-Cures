@@ -2,12 +2,11 @@ import React, { Component } from 'react';
 import Header from '../Header/Header';
 import Footer from '../Footer/Footer'
 
-import {Container, Row, Col, Breadcrumb, Button } from "react-bootstrap";
+import {Container, Row, Col, Breadcrumb } from "react-bootstrap";
 import {Link } from 'react-router-dom'
 import CenterWell from './CenterWell';
 import Sidebar from "./leftMenu";
 import SidebarRight from "./RightMenu";
-import Wall from "../../assets/img/wall.jpg";
 import { backendHost } from '../../api-config';
 import Dropdown from 'react-bootstrap/Dropdown';
 // import CenterWell from './CenterWell'

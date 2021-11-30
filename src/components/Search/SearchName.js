@@ -58,7 +58,6 @@ class SearchName extends Component {
   
     componentDidUpdate(prevProps){
       if ( prevProps.match.params.name !== this.props.match.params.name){
-        console.log('prevpropsssssssss: ', prevProps.match.params.name, this.props.match.params.name )
         this.fetchDoctors(this.props.match.params.name)
       }
     }

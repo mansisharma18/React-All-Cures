@@ -17,7 +17,6 @@ import Test from '../LandingPage/test'
 class Search extends Component {
   constructor(props){
     super(props);
-    console.log(props)
     const params = props.match.params
     this.state = {
       url: props.url,
@@ -38,12 +37,8 @@ class Search extends Component {
     this.setState({
         articleValues: { ...this.state.articleValues, [e.target.name]: e.target.value }
     });
-    console.log(e.target.name + e.target.value)
 }
   postSubscribtion() {
-    
-    // console.log(selected.join())
-    // console.log(rejected.join())
     
     axios.post(`${backendHost}/users/subscribe/7889761896`, {
     //   "articles_ids": selected.join(),
@@ -53,7 +48,6 @@ class Search extends Component {
     "nl_subscription_cures_id":0,
     })
       .then(res => {
-        console.log(res)
        
       })
       .catch(err => console.log(err))
@@ -63,7 +57,6 @@ class Search extends Component {
 
   fetchDoctors(city,lat,lon){
     if((city) && (this.state.param.name)) {
-      console.log('city &&&& name')
       document.title = `All Cures | ${city} | ${this.state.param.name}`
       fetch(`${backendHost}/SearchActionController?cmd=getResults&city=${city}&doctors=${this.state.param.name}&Latitude=${Cookies.get('latitude')}&Longitude=${Cookies.get('longitude')}`)
       .then(res => res.json())
@@ -74,7 +67,6 @@ class Search extends Component {
         })            
       });
     } else if((this.state.param.name) && (!city)) {
-      console.log('not city &&&& name')
 
       document.title = `All Cures | ${this.state.param.name}`
       fetch(`${backendHost}/SearchActionController?cmd=getResults&doctors=${this.state.param.name}&Latitude=${Cookies.get('latitude')}&Longitude=${Cookies.get('longitude')}`)
@@ -86,7 +78,6 @@ class Search extends Component {
         })            
       });
     } else if((city) && (!this.state.param.name)) {
-      console.log('city &&&& not name')
 
       document.title = `All Cures | ${city}`
       fetch(`${backendHost}/SearchActionController?cmd=getResults&city=${city}&Latitude=${Cookies.get('latitude')}&Longitude=${Cookies.get('longitude')}`)
@@ -119,7 +110,6 @@ class Search extends Component {
 
   componentDidUpdate(prevProps){
     if ( prevProps.match.params.city !== this.props.match.params.city){
-      console.log('prevpropsssssssss: ', prevProps.match.params.city, this.props.match.params.city )
       this.fetchDoctors(this.props.match.params.city)
     }
   }

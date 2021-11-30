@@ -55,7 +55,7 @@ function LoginInfo(props) {
                 "email": email,
                 })
             .then(res => {
-                if(res.data == "1"){
+                if(parseInt(res.data) === 1){
                     setAlert(true)
                 setTimeout(()=>{
                     window.location.href="/home";
@@ -68,7 +68,7 @@ function LoginInfo(props) {
                     noAlert(false)
                 },4000)
             }
-            else if(res.data == "0"){
+            else if(parseInt(res.data) === 0){
                 erAlert(true)
                 setTimeout(()=>{
                     noAlert(false)
@@ -96,7 +96,7 @@ function LoginInfo(props) {
          .then(res => {
             setEmail(res.data)
          })
-         
+         // eslint-disable-next-line
         }, [])
 
     const logout = async e => {

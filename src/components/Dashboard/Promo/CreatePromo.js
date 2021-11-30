@@ -2,15 +2,13 @@ import React, { useState } from 'react';
 import { Alert, Form } from 'react-bootstrap';
 import axios from 'axios';
 import { backendHost } from '../../../api-config';
-
-import Cookies from 'js-cookie';
+import { userId } from '../../UserId'
 
 function Promo(props) {
     const [code, setCode] = useState('')
     const [startDate, setStart] = useState(Date)
     const [endDate, setEnd] = useState(Date)
     const [maxLimit, setMax] = useState()
-    const [updatedBy, setUpdatedBy] = useState(Cookies.get('acPerm'))
     const [active, setActive] = useState()
     const [submitAlert, setAlert] = useState(false)
     
@@ -22,7 +20,7 @@ function Promo(props) {
             "promo_end_datetime": endDate,
             "promo_max_limit": maxLimit,
             "promo_active": active,
-            "promo_updated_by": updatedBy.split('|')[0],
+            "promo_updated_by": userId,
         })
         .then(res => {
             setAlert(true)

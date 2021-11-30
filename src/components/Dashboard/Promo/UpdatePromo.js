@@ -1,9 +1,9 @@
 import React, {useState, useEffect} from 'react';
 import { Alert, Form } from 'react-bootstrap';
-import Cookies from 'js-cookie';
 import axios from 'axios';
 import {useLocation} from "react-router-dom";
 import history from '../../history';
+import { userId } from '../../UserId'
 import { backendHost } from '../../../api-config';
 
 
@@ -12,7 +12,6 @@ export default function UpdatePromo(props){
     const [startDate, setStart] = useState()
     const [endDate, setEnd] = useState()
     const [maxLimit, setMax] = useState()
-    const [updatedBy, setUpdatedBy] = useState(Cookies.get('acPerm'))
     const [active, setActive] = useState()
     const [submitAlert, setAlert] = useState(false)
     const [promoData, setPromo] = useState([])
@@ -32,7 +31,6 @@ export default function UpdatePromo(props){
             setEnd(res.data[0].promo_end_datetime.split('T')[0])
             setMax(res.data[0].promo_max_limit)
             setActive(res.data[0].promo_active)
-            console.log('Start: ', startDate)
         })
         .catch(res => console.log(res))
     }
@@ -40,6 +38,7 @@ export default function UpdatePromo(props){
     useEffect(() => {
         document.title = "All Cures | Dashboard | Update Promo"
         fetchPromo();
+        // eslint-disable-next-line
     }, [])
 
     const submitForm = (e) => {
@@ -50,7 +49,7 @@ export default function UpdatePromo(props){
             "promo_end_datetime": endDate,
             "promo_max_limit": maxLimit.toString(),
             "promo_active": active.toString(),
-            "promo_updated_by": updatedBy.split('|')[0],
+            "promo_updated_by": userId
         })
         .then(res => {
             history.back()

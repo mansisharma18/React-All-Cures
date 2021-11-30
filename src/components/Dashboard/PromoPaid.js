@@ -2,11 +2,8 @@ import React, { Component } from "react";
 
 import axios from 'axios';
 import Results from './Results'
-import { Dropdown, Button, DropdownButton, Nav, Modal, Alert} from 'react-bootstrap';
+import { Alert} from 'react-bootstrap';
 import { backendHost } from '../../api-config';
-
-
-
 
 class PromoPaid extends Component {
   constructor(props) {
@@ -19,7 +16,6 @@ class PromoPaid extends Component {
       unselectedCheckboxes: [],
       isChecked: true,
      
-     
     };
   }
 
@@ -28,18 +24,14 @@ class PromoPaid extends Component {
     
     axios.get(`${backendHost}/promo/articlespromostage/${val}`)
       .then(res => {
-        console.log(res.data)
         var s = [];
-        res.data.map(i => {
-          s.push(i.article_id);
-        })
-        console.log(s)
+        res.data.map(i => (
+          s.push(i.article_id)
+        ))
         this.setState({
           commentItems:res.data,
           unselectedCheckboxes: s
         })
-        
-        console.log('kjdghkhgkhgsd',this.state.unselectedCheckboxes)
       })
 
       .catch(err => console.log(err))
@@ -54,7 +46,6 @@ class PromoPaid extends Component {
       "articles_ids_rejected":rejected.join()
     })
     .then(res => {
-      console.log(res)
       this.setState({ShowSubmitAlert: true});
      
     })
@@ -63,18 +54,11 @@ class PromoPaid extends Component {
       setTimeout(()=>{
       this.setState({ShowErrorAlert: false});
       },2000)
-    
-      
-
-
   }
 
 
   componentDidMount() {
-    
-  
     this.getComments('/')
- 
   }
   
   onChange = id => {
@@ -83,10 +67,7 @@ class PromoPaid extends Component {
     if (index > -1) {
       this.state.unselectedCheckboxes.splice(index, 1);
     }
-    console.log('after delete: ',this.state.unselectedCheckboxes)
-    console.log('##########################',id)
     const selectedCheckboxes = this.state.selectedCheckboxes;
-    console.log(selectedCheckboxes)
     // Find index
     const unselectedCheckboxes = this.state.unselectedCheckboxes
     const findIdx = selectedCheckboxes.indexOf(id);
@@ -138,9 +119,9 @@ render(){
                                     <select name=""className="form-select"
                                       onChange={(e)=> {
                                      
-                                        if(e.target.value == '0') {
+                                        if(parseInt(e.target.value) === 0) {
                                           this.getComments('/0')
-                                        }else if(e.target.value == '1') {
+                                        }else if(parseInt(e.target.value) === 1) {
                                           this.getComments('/1')
                                         }else {
                                           this.getComments('/')

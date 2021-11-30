@@ -1,15 +1,14 @@
 import React, {useState} from 'react';
-// import './Login.js'
 import { Modal } from 'react-bootstrap';
-import { Link, Redirect } from "react-router-dom";
+import { Link } from "react-router-dom";
 import axios from 'axios';
 import Cookies from 'js-cookie'
 import {Select, MenuItem , InputLabel, FormControl, Checkbox, FormGroup, FormControlLabel} from '@material-ui/core';
-// import GoogleLogin from 'react-google-login';
 import { usePasswordValidation } from '../hooks/usePasswordValidation';
 import { backendHost } from '../../api-config';
 
 import './test.css'
+import ErrorBoundary from '../ErrorBoundary';
 
 const Test = (props) => {
   
@@ -30,13 +29,11 @@ const Test = (props) => {
     });
     const [terms, setTerms] = useState("");
     const [userType, setUserType] = useState("");
-    const [isError, setError] = useState(false);
     const [buttonSignUpClick, setSignUpClicked] = useState("");
     const [number, setMname]= useState("");
-     const [emailExists, setExists] = useState(false)
-    const [promo, setPromo] =useState(null)
     const [validEmail, setValidEmail] = useState()
-     const [success, setSuccess] = useState(false)
+     const [hasError, sethasError] = useState(false)
+     const [loginSuccess, setLoginSuccess] = useState(true)
   
     const [
       validLength,
@@ -102,39 +99,6 @@ const Test = (props) => {
     }
   }
 
-  const afterSignUp = () => {
-    console.log(emailExists, 'Email already exists')
-    console.log(success, 'Successfully signed up')
-    if(emailExists === true){
-      return(<div className="alert alert-secondary">Email already exists!</div>);
-    }
-    else if(success === true){
-      if(promo){
-        return(
-          <Redirect to={{
-            pathname: '/article',
-            state: { promoCode: '1' }
-          }}
-          />
-        )
-      } else {
-        setTimeout(() => {
-          window.location.reload();
-        }, 1000);
-        return(
-          <Redirect to={{
-            pathname: '#'
-          }}/>
-        ) 
-      }
-    }
-    else if(isError === true){
-      return(
-        <div className="alert alert-secondary">Some error occured!</div>
-      );
-    }
-  }
-
   const handleClick =() => {
         if(click === true){
             document.getElementById('container').classList.add("right-panel-active")
@@ -160,16 +124,27 @@ const Test = (props) => {
       console.log(response.data)
     })
     .catch(err => {
+      setLoginSuccess(false)
+      if(err.response){
       if(err.response.data.includes('Incorrect email')){
         document.getElementById('login-msg').innerText="Incorrect email or password"
       } else {
         document.getElementById('login-msg').innerText="Some error occured!"
       }
-      console.log(err.response.data)
+    }else{
+      console.log(err)
+
+    }
     })
   }
 
-    return(
+  return(
+      <>
+      {hasError && <ErrorBoundary></ErrorBoundary>}
+
+      {!hasError && (
+
+      
         <div className="sign">
         <Modal
         {...props}
@@ -193,7 +168,7 @@ const Test = (props) => {
         className="text-dark"
       /> */}
       { 
-        buttonSignUpClick == 1? 
+        parseInt(buttonSignUpClick) === 1? 
           <div id="signup-msg" className="alert alert-danger mt-2 py-1 px-3 border border-dark"></div>
           : null
       }
@@ -242,33 +217,28 @@ const Test = (props) => {
           buttonSignUpClick === 1?
           <div className="rounded alert-danger">
             <div className="alert-msg">
-            {
-          !validEmail ?
-          <div>◼ Enter Valid Email! </div>
-            : null
-        }
-        {
-          !validLength?
-            <div>◼ Password should contain at least 8 characters! </div>          
-            : null
-        }
-        {
-          !upperCase?
-            <div>◼ Password should contain at least 1 uppercase character! </div>          
-            : null
-        }
-        {
-          !lowerCase?
-            <div>◼ Password should contain at least 1 lowercase character! </div>          
-            : null
-        }
-        {
-          !match?
-          <div>◼ Passwords don't match! </div>
-          : null
-        }
-        </div>
-        </div>
+              {
+                !validEmail &&
+                <div>◼ Enter Valid Email! </div>
+              }
+              {
+                !validLength &&
+                  <div>◼ Password should contain at least 8 characters! </div>          
+              }
+              {
+                !upperCase &&
+                  <div>◼ Password should contain at least 1 uppercase character! </div>          
+              }
+              {
+                !lowerCase &&
+                  <div>◼ Password should contain at least 1 lowercase character! </div>          
+              }
+              {
+                !match &&
+                <div>◼ Passwords don't match! </div>
+              }
+            </div>
+          </div>
         : null
         }
         <input 
@@ -304,9 +274,8 @@ const Test = (props) => {
         <span>or use your account</span>
         
         {
-          buttonClick === 1?
-          <div id="login-msg" className="alert alert-danger mt-2 py-1 px-3 border border-dark"></div>
-          : null
+          buttonClick === 1 && !loginSuccess &&
+          <div id="login-msg" class = 'alert alert-danger mt-2 py-1 px-3 border border-dark'>Some Error Occured</div>
         }
         
         <input 
@@ -360,6 +329,8 @@ const Test = (props) => {
         
       </Modal>
       </div>
+      )}
+      </>
     );
 }
 
