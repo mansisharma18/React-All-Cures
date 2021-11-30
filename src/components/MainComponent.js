@@ -27,9 +27,9 @@ import EditSubscribe from './Dashboard/EditSubscribe'
 import DeleteSubscribe from './Dashboard/DeleteSubscribe'
 import List from '../List'
 import Userprofile from "./Profile/Userprofile";
-import history from "./history";
 import MyArticle from './Profile/MyArtcle'
 import ListArticle from './Profile/ListArticle'
+import NotFound from "./NotFound";
 
 function Main(props) {
 const history = useHistory()
@@ -95,6 +95,7 @@ const Routes = (props) => {
     <>
     <Switch>
       {/* Home Page */}
+
        <Route exact path="/" component={Home} />
        <Route exact path="/home" component={Home} />
 
@@ -147,6 +148,9 @@ const Routes = (props) => {
       
       <Route exact path="/loginForm/ResetPass" component={ResetPass} />
       <Route exact path="/loginForm/verify" component={Verify} />
+
+      <Route path="*" component={NotFound} />
+
     </Switch>
     </>
   )
@@ -168,38 +172,38 @@ const ProtectedRoute = ({auth, path, component:Component, ...rest}) => {
     )
 }
 
-const ProtectedLogin = ({auth, component:Component, ...rest}) => {
-    return(
-      <Route
-      {...rest}
-      render = {() =>!auth ? (
-        <Component/>
-      ):
-        (
-          <Redirect to="#"/>
-        )
-    }
-      />
-    )
-}
+// const ProtectedLogin = ({auth, component:Component, ...rest}) => {
+//     return(
+//       <Route
+//       {...rest}
+//       render = {() =>!auth ? (
+//         <Component/>
+//       ):
+//         (
+//           <Redirect to="#"/>
+//         )
+//     }
+//       />
+//     )
+// }
 
-const ProtectedArticle = ({auth, component:Component, ...rest}) => {
+// const ProtectedArticle = ({auth, component:Component, ...rest}) => {
   
-  return(
-    <Route
-      {...rest}
-        render = {() => auth?(
-          <Component/>
-          // console.log('Auth: Nope', auth)
-          ):
-        (
-          <Redirect to="/home"/>
+//   return(
+//     <Route
+//       {...rest}
+//         render = {() => auth?(
+//           <Component/>
+//           // console.log('Auth: Nope', auth)
+//           ):
+//         (
+//           <Redirect to="/home"/>
           
-          // console.log('AuthSuccess: ', auth)
-        )
-      }
-    />
-  )
-}
+//           // console.log('AuthSuccess: ', auth)
+//         )
+//       }
+//     />
+//   )
+// }
 
 export default Main;

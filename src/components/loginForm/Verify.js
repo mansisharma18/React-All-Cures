@@ -1,7 +1,6 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 
 import Cookies from 'js-cookie';
-import { usePasswordValidation } from "../hooks/usePasswordValidation";
 import { Alert,Form, Dropdown, DropdownButton } from 'react-bootstrap';
 import Footer from '../Footer/Footer';
 import Heart from"../../assets/img/heart.png";
@@ -11,20 +10,15 @@ import { backendHost } from '../../api-config';
 
 function LoginInfo(props) {  
     const[email,setEmail] = useState({ Mail: ""});
-    const [password, setPassword] = useState({
-          firstPassword: "",
-          secondPassword: "",
-         });
-    const [acPerm, setacPerm] = useState(Cookies.get('acPerm'))
-    const [states, setStates] = useState([])
+    const acPerm = Cookies.get('acPerm')
     const [submitAlert, setAlert] = useState(false)
     const [notAlert, noAlert] = useState(false)
     const [errAlert, erAlert] = useState(false)
-    const [
-        validLength
-    ] = usePasswordValidation({
-        Mail: email.Mail,
-    });
+    // const [
+    //     validLength
+    // ] = usePasswordValidation({
+    //     Mail: email.Mail,
+    // });
     
     const setMail = (event)=>{
         setEmail({ ...email,Mail: event.target.value})
@@ -39,7 +33,7 @@ function LoginInfo(props) {
                 "email": email.Mail
             })
             .then(res => {
-                if(res.data == 1){
+                if(parseInt(res.data) === 1){
                     setAlert(true)
                     setTimeout(()=>{
                         setAlert(false)
@@ -58,20 +52,10 @@ function LoginInfo(props) {
             )
             .catch(err => {
                 console.log(err);
-                console.log('error in Resetting')
             })
     
         }
     }
-    
-    useEffect(() => {
-        Promise.all([
-            fetch(`${backendHost}/article/all/table/states`).then(res => res.json()),
-        ]).then(([statesData]) => {
-            console.log('States Data: ',statesData)
-                setStates(statesData);
-            });
-        }, [])
 
     const logout = async e => {
         const res = await fetch(`${backendHost}/LogoutActionController`, {

@@ -2733,3 +2733,13 @@ div.MuiSelect-root.MuiSelect-select.MuiSelect-selectMenu.MuiInputBase-input.MuiI
 .ad-spac {
   height: 200px;
 }
+
+.error-404 {
+  font-size: 6.8rem;
+}
+
+.not-found-msg {
+  padding: 1.5rem 2rem;
+  border: 1px solid #444444;
+  border-radius: 1rem;
+}

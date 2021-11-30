@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 
-import Cookies from 'js-cookie';
-import { Form, Dropdown, DropdownButton } from 'react-bootstrap';
+import { Form } from 'react-bootstrap';
 import Footer from '../Footer/Footer';
 import Heart from"../../assets/img/heart.png";
 import { Link } from 'react-router-dom'
@@ -32,6 +31,7 @@ const[number,setNumber] = useState('');
             setNumber(res.data)
             })
         getDisease()
+        // eslint-disable-next-line
     }, [])
 
      const handleSelect = function(countries) {
@@ -168,26 +168,5 @@ const[number,setNumber] = useState('');
             </>
       );
     }
-    function ToggleButton(props) {
-        if(props.acPerm){
-            return(
-                <DropdownButton style={{background: 'white'}} title="Hi there!">
-                <Dropdown.Item >
-                <Link to="/dashboard">
-                   Dashboard
-               </Link>
-                </Dropdown.Item>
-                <Dropdown.Item onClick={props.logout}>Logout</Dropdown.Item>
-             </DropdownButton>
-            );
-        }
-        return(
-            <Link 
-             className="btn-white loginSignbtn color-blue-dark" 
-             to={{pathname: props.url, search: '?login=true', state: {open: true}}}
-            >
-                Sign Up
-            </Link>
-        )
-    }
+
     export default LoginInfo;       

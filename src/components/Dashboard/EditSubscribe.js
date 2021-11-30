@@ -1,19 +1,19 @@
-import React, { Component, useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 
-import { Alert,Form, Dropdown, DropdownButton } from 'react-bootstrap';
+import { Form } from 'react-bootstrap';
 import Footer from '../Footer/Footer';
 import Heart from"../../assets/img/heart.png";
-import { useHistory, Link, Redirect} from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import { backendHost } from '../../api-config';
 
 import axios from 'axios';
 
 import '../../assets/healthcare/css/main.css';
 import Input from '@material-ui/core/Input';
-import { Checkbox, FormGroup, FormControlLabel, Select, MenuItem , FormControl, InputLabel,TextField} from '@material-ui/core'
+import { Select, MenuItem } from '@material-ui/core'
 
 function LoginInfo(props) {  
-const[number,setNumber] = useState('');
+    const[number,setNumber] = useState('');
 
     const [type,setType] = useState([])
    
@@ -38,11 +38,6 @@ const[number,setNumber] = useState('');
   .catch(err => console.log(err))
    }
     
-
-       
-      
-        
-    
     useEffect(() => {
 
         // const params = new URLSearchParams(location.search);
@@ -62,7 +57,7 @@ const[number,setNumber] = useState('');
      
         getDisease()
 
-         
+         // eslint-disable-next-line
         }, [])
 
     // const logout = async e => {
@@ -81,7 +76,7 @@ const[number,setNumber] = useState('');
         setType(flavors);
     }
     const getDisease = () => {
-        axios.get('${backendHost}/article/all/table/disease_condition')
+        axios.get(`${backendHost}/article/all/table/disease_condition`)
         .then(res => {
             console.log(res.data);
             setDiseaseList(res.data)
@@ -212,26 +207,5 @@ const[number,setNumber] = useState('');
             </>
       );
     }
-    function ToggleButton(props) {
-        if(props.acPerm){
-            return(
-                <DropdownButton style={{background: 'white'}} title="Hi there!">
-                <Dropdown.Item >
-                <Link to="/dashboard">
-                   Dashboard
-               </Link>
-                </Dropdown.Item>
-                <Dropdown.Item onClick={props.logout}>Logout</Dropdown.Item>
-             </DropdownButton>
-            );
-        }
-        return(
-            <Link 
-             className="btn-white loginSignbtn color-blue-dark" 
-             to={{pathname: props.url, search: '?login=true', state: {open: true}}}
-            >
-                Sign Up
-            </Link>
-        )
-    }
-    export default LoginInfo;       
+
+export default LoginInfo;       

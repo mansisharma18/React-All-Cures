@@ -1,11 +1,8 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom'
 import Heart from"../../assets/img/heart.png";
 import Facebook from '../../assets/icon/facebook.svg'
 import Instagram from '../../assets/icon/instagram.svg'
 import Linkedin from '../../assets/icon/linkedin.svg'
-import Twitter from '../../assets/icon/twitter.svg'
-// import "@fortawesome/free-brands-svg-icons";
 class Footer extends Component {
     render() {
         return(
@@ -129,7 +126,7 @@ class Footer extends Component {
                            </a>
                         </li>
                         <li>
-                           <a href="https://www.instagram.com" target="_blank">
+                           <a href="https://www.instagram.com" target="_blank" rel="noreferrer">
                               <span>
                                  <img src={Instagram} alt="Instagram Link" height="30px" width="30px"></img>
                               </span> 
@@ -159,7 +156,7 @@ class Footer extends Component {
                   </div>
                </div>
                <div className="back-top">
-               <a href="#" id="scroll"style={{display: "block"}} >
+               <a href="/" id="scroll"style={{display: "block"}} >
                    <span></span>
                   
                 </a>

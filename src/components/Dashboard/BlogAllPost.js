@@ -2,8 +2,6 @@ import React, {Component} from 'react'
 import axios from 'axios'
 import ReactPaginate from 'react-paginate';
 import AllPost from './Allpost';
-import Header from '../Header/Header';
-import Footer from '../Footer/Footer'
 import { backendHost } from '../../api-config';
 
 export default class App extends Component {

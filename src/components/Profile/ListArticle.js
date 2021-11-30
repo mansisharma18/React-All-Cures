@@ -6,7 +6,7 @@ import { backendHost } from '../../api-config';
 
 const ListArticle = ({id, title, f_title, w_title, country, type, pubstatus_id, dis}) => {
 
-    if (dis==0) dis = true 
+    if (parseInt(dis)===0) dis = true 
     else dis = false
     const [disable, setDisable] = React.useState(dis);
     const [deleteAlert, setAlert] = useState(false)

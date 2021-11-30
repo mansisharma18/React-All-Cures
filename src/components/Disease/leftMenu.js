@@ -2,7 +2,6 @@ import React, {useState, useEffect} from "react";
 import {Nav} from "react-bootstrap";
 import { withRouter } from "react-router";
 import { Link } from "react-router-dom";
-import AllPost from "../BlogPage/Allpost";
 import './style.css'
 import { backendHost } from '../../api-config';
 import ArticleComment from '../ArticleComment';
@@ -30,6 +29,7 @@ const Side = props => {
       useEffect(() => {
           comments()
         allPosts()
+        // eslint-disable-next-line
     }, [])
 
     return (
@@ -60,7 +60,7 @@ const Side = props => {
                 </div>
                 <div className="related mt-5">
                 {   
-                    items.length != 0?
+                    items.length !== 0?
                         <>
                         <div className="h4 pl-2 font-weight-bold">Related to {props.name}</div>
                         {
@@ -88,7 +88,7 @@ const Side = props => {
             
             {   
                     commentItems?
-                    commentItems.map((i) => i.reviewed == 1?(
+                    commentItems.map((i) => i.reviewed === 1?(
                             <div className="pl-4">
                                 <div className="text-dark h5">{i.comments}</div>
                                 <i className="text-capitalize float-right">{i.first_name} {i.last_name}</i>

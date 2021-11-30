@@ -25,12 +25,12 @@ export default function Userprofile(props) {
             setEmail(res.data.email)
             setGender(res.data.gender)
             setLoaded(true)
-            console.log('Profile: ', res.data)
         })
         .catch(err => console.log(err))
     }
     useEffect(() => {
         getProfile()
+        // eslint-disable-next-line
     }, [])
     
     if(!isLoaded){
@@ -44,7 +44,6 @@ export default function Userprofile(props) {
       </>
       );
     } else {
-      // console.log(new URLSearchParams(this.props.location.search).get("edit"))
       return (
         <div>
           <Header history={history}/>

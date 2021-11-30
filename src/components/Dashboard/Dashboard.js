@@ -170,6 +170,7 @@ export default function Dashboard(props) {
             isOnline={isOnline}
           />
       });
+      // eslint-disable-next-line
     }, []);
 
   const fixedHeightPaper = clsx(classes.paper, classes.fixedHeight);
@@ -262,22 +263,22 @@ function RenderComponent(props){
   // console.log("aaaaaaa"+props.key)
   // console.log(props.ajaxItems["draft_article"])
   // this.ajaxItems['draft_article']
-  // if(props.key == "Draft"){
+  // if(props.key === "Draft"){
     // if (props.key)
     // return(<RenderComponentArticle value={props.ajaxItems[props.key]} key={props.key}/>);
   // }
 // }
-  if(props.search == '?article'){
+  if(props.search === '?article'){
     return(<EditModal search={props.search} />);
   }
  
  
-  if(props.search == '?blogs'){
+  if(props.search === '?blogs'){
     return(<BlogAllPost/>);
   }
-  if(props.search == '?create_promo'){
+  if(props.search === '?create_promo'){
     return(<Promo/>);
-  } else if(props.search == '?stats'){
+  } else if(props.search === '?stats'){
     
     return(<Container maxWidth="lg" className={props.container}>
     <Grid container spacing={3}>
@@ -316,18 +317,18 @@ function RenderComponent(props){
     </Box>
   </Container>
   );
-  } else if(props.search == '?promotions'){
+  } else if(props.search === '?promotions'){
     return(
       <GetPromo/>
     )
     
-  } else if(props.search.split('=')[0] == '?edit'){
+  } else if(props.search.split('=')[0] === '?edit'){
     return(
       <UpdatePromo search={props.search}/>
     )
 
        
-  } else if(props.search.split('=')[0] == '?editarticle'){
+  } else if(props.search.split('=')[0] === '?editarticle'){
     return(
       <EditModal search={props.search}/>
     )
@@ -388,21 +389,14 @@ function RenderComponent(props){
      <p id="Review" style={{ width:'100%',  color: props.isOnline ? 'green' : 'black' }} onClick={(e) => props.handleCountClick("Review",props.ajaxItems["review_article"])}> review_article: {JSON.stringify(props.ajaxItems["review_article"])}</p>
      <p id="Approval" style={{ width:'100%',  color: props.isOnline ? 'green' : 'black' }} onClick={(e) => props.handleCountClick("Approval",props.ajaxItems["approval_article"])}> approval_article: {JSON.stringify(props.ajaxItems["approval_article"])}</p>
      <p id="Publish" style={{ width:'100%',  color: props.isOnline ? 'green' : 'black' }} onClick={(e) => props.handleCountClick("Publish",props.ajaxItems["published_article"])}> publish_article: {JSON.stringify(props.ajaxItems["published_article"])}</p>
-      {/* <Grid item xs={12} md={4} lg={3}>
-        <Paper className={props.fixedHeightPaper}>
-          <Draft/>
-        </Paper>
-      </Grid>
-      <Grid item xs={12} md={4} lg={3}>
-        <Paper className={props.fixedHeightPaper}>
-          <Approval />
-        </Paper>
-      </Grid>
-      <Grid item xs={12} md={4} lg={3}>
-        <Paper className={props.fixedHeightPaper}>
-          <Review />
-        </Paper>
-      </Grid> */}
+
+      <Paper className={props.fixedHeightPaper}>Published Articles
+        {props.ajaxItems["published_article"].map((i) => (
+          <>
+          <Link to={`${/cure/i}`}>{i}</Link>
+          </>
+        ))}
+      </Paper>
     </Grid>
     <Box pt={4}>
       <Copyright />
