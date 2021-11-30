@@ -29,12 +29,13 @@ class SearchName extends Component {
 
   fetchDoctors(name) {
     document.title = `All Cures | Search | ${name}`
-      fetch(`${backendHost}/SearchActionController?cmd=getResults&city=&doctors=${name}&Latitude=32.7266&Longitude=74.8570`)
+      fetch(`${backendHost}/SearchActionController?cmd=getResults&city=&doctors=${name}&Latitude=${Cookies.get('latitude')}&Longitude=${Cookies.get('longitude')}`)
       .then(res => res.json())
       .then(json => {
         this.setState({
           isLoaded: true,
           items: json.map.DoctorDetails.myArrayList,
+          acPerm: Cookies.get('acPerm'),
         })            
       });
   }
