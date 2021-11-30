@@ -22,7 +22,8 @@ import Test from './test'
 import { env } from 'process';
 import { userId } from '../UserId'
 import { userAccess } from '../UserAccess'
-
+import ArticlePreview from './ArticlePreview'
+import TrendingArticles from './TrendingArticles';
 console.log('UserIDDDDDDDDDDDD: ', userId,userAccess)
 env.REACT_APP = 'http://117.241.171.115:8080/cures';
 
@@ -393,7 +394,7 @@ class Home extends Component {
             <div className="row">
                 <div className="tab-nav">
                   <div className="comman-heading">
-                     <h2>Choose by Category</h2>
+                     <div className="h4 mt-4">Choose by Category</div>
                   </div>
                   {/* <!-- Nav tabs --> */}
                   <ul>
@@ -411,11 +412,49 @@ class Home extends Component {
           </div>
         </div>
       </section> 
-      <section className="specialists">
+
+
+
+
+      <section className="mb-5 mt-2">
+      <div className="container">
+            <div className="row">
+               <div className="comman-heading">
+                  <div className="h4">Trending Articles</div>
+               </div>
+            </div>
+            <div className="row">
+         <TrendingArticles/>
+         </div>
+           
+         </div>
+      </section>
+
+
+
+
+      <section>
+      <div className="container">
+            <div className="row">
+               <div className="comman-heading">
+                  <div className="h4 float-left mr-4">Recent Articles</div>
+                {/* <span><Link className="btn btn-article-search color-white" to="/cures">All Articles</Link></span> */}
+
+               </div>
+            </div>
+            <div className="row">
+         <ArticlePreview/>
+         </div>
+           
+         </div>
+      </section>
+
+
+      <section className="specialists mt-3">
          <div className="container">
             <div className="row">
                <div className="comman-heading">
-                  <h2>Choose by Specialists</h2>
+               <div className="h4 mt-4">Choose by Specialists</div>
                </div>
             </div>
             <div className="row">
@@ -440,11 +479,11 @@ class Home extends Component {
             </div>
          </div>
       </section> */}
-      <section className="doctor">
+      {/* <section className="doctor">
          <div className="container">
             <div className="row">
                <div className="comman-heading">
-                  <h2>Our Top Doctors</h2>
+               <div className="h4">Our Top Doctors</div>
                </div>
             </div>
             
@@ -454,7 +493,7 @@ class Home extends Component {
         
          </div>
          
-      </section><br/><br/>
+      </section><br/><br/> */}
       {/* <section className="partner">
          <div className="container">
             <div className="row">

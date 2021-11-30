@@ -438,6 +438,10 @@
 
     height: max-content;
   }
+  .col-4 {
+    max-width: 100%;
+    flex: 1;
+  }
 }
 @media screen and (min-width: 500px) {
   #search {
