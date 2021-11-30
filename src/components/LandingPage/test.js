@@ -1,11 +1,9 @@
 import React, {useState} from 'react';
-// import './Login.js'
 import { Modal } from 'react-bootstrap';
-import { Link, Redirect } from "react-router-dom";
+import { Link } from "react-router-dom";
 import axios from 'axios';
 import Cookies from 'js-cookie'
 import {Select, MenuItem , InputLabel, FormControl, Checkbox, FormGroup, FormControlLabel} from '@material-ui/core';
-// import GoogleLogin from 'react-google-login';
 import { usePasswordValidation } from '../hooks/usePasswordValidation';
 import { backendHost } from '../../api-config';
 
@@ -31,13 +29,9 @@ const Test = (props) => {
     });
     const [terms, setTerms] = useState("");
     const [userType, setUserType] = useState("");
-    const [isError, setError] = useState(false);
     const [buttonSignUpClick, setSignUpClicked] = useState("");
     const [number, setMname]= useState("");
-     const [emailExists, setExists] = useState(false)
-    const [promo, setPromo] =useState(null)
     const [validEmail, setValidEmail] = useState()
-     const [success, setSuccess] = useState(false)
      const [hasError, sethasError] = useState(false)
      const [loginSuccess, setLoginSuccess] = useState(true)
   
@@ -102,39 +96,6 @@ const Test = (props) => {
       setEmail(e.target.value)
       setValidEmail(true)
       console.log('validEmail')
-    }
-  }
-
-  const afterSignUp = () => {
-    console.log(emailExists, 'Email already exists')
-    console.log(success, 'Successfully signed up')
-    if(emailExists === true){
-      return(<div className="alert alert-secondary">Email already exists!</div>);
-    }
-    else if(success === true){
-      if(promo){
-        return(
-          <Redirect to={{
-            pathname: '/article',
-            state: { promoCode: '1' }
-          }}
-          />
-        )
-      } else {
-        setTimeout(() => {
-          window.location.reload();
-        }, 1000);
-        return(
-          <Redirect to={{
-            pathname: '#'
-          }}/>
-        ) 
-      }
-    }
-    else if(isError === true){
-      return(
-        <div className="alert alert-secondary">Some error occured!</div>
-      );
     }
   }
 
@@ -207,7 +168,7 @@ const Test = (props) => {
         className="text-dark"
       /> */}
       { 
-        buttonSignUpClick == 1? 
+        parseInt(buttonSignUpClick) === 1? 
           <div id="signup-msg" className="alert alert-danger mt-2 py-1 px-3 border border-dark"></div>
           : null
       }

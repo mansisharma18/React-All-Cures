@@ -98,7 +98,6 @@ const Routes = (props) => {
 
        <Route exact path="/" component={Home} />
        <Route exact path="/home" component={Home} />
-       <Route exact path="/geolocation" component={GeoLocation} />
 
       {/* Doctor search page */}
       <Route exact path="/search/:city" component={Search} /> 
