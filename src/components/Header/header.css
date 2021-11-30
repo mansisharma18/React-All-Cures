@@ -38,6 +38,18 @@
   font-weight: 500;
 }
 
+#createArticle{
+  text-align: center;
+  display: inline-block;
+  border-radius: 15px;
+  height: 30px;
+  width: 150px;
+  padding-top: 6px;
+  padding-bottom: 1.8rem;
+  font-size: 15px;
+  font-weight: 400;
+}
+
 .loginSignbtn {
   text-align: center;
   display: inline-block;

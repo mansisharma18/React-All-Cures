@@ -221,11 +221,11 @@ class Home extends Component {
                               {/* <Link to="/profile">Go to Profile</Link> */}
                            {
                               this.state.acPerm?
-                              <Link className="btn border mr-2 btn-white loginSignbtn color-blue-dark"  to="/article">
+                              <Link className="btn border mr-2 btn-white loginSignbtn color-blue-dark" id="createArticle1" to="/article">
                               Create Article
                             </Link>
                               : <button 
-                              className="btn border mr-2 btn-white loginSignbtn color-blue-dark" 
+                              className="btn border mr-2 btn-white loginSignbtn color-blue-dark" id="createArticle"
                               onClick={() => this.setModalShow(true)}
                             >
                              Create Article
@@ -247,7 +247,7 @@ class Home extends Component {
                               <Autocomplete value={this.state.temp} suggestions={this.state.spec1}/>
                               : null
                            }     */}
-                           <form onSubmit={(e) => this.articleSearch(e)} className="article-search">
+                           <form onSubmit={(e) => this.articleSearch(e)} className="article-search" id="article">
                               <div className="col-md-12 row">
                <div className="col-md-10 p-0">    
                <Autocomplete className="bg-white color-black"
@@ -365,7 +365,7 @@ class Home extends Component {
                                  : []
                                  :[]
                               }
-                              renderInput={(params) => <TextField {...params} label="Search Doctors (City or Pincode)" />}
+                              renderInput={(params) => <TextField {...params} label="Search Doctors (City or Pin)" />}
                            />
                                  </div>
                                  
@@ -595,6 +595,7 @@ function ToggleButton(props) {
       <>
       <button 
          className="btn btn-dark text-light border loginSignbtn color-blue-dark" 
+         id="signIn"
          variant="dark" 
          style={{width: '10rem'}}
          onClick={() => props.setModalShow(true)}

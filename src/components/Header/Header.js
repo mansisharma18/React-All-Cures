@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import './header.css';
+import '../../assets/healthcare/css/mobile.css'
 import Cookies from 'js-cookie';
 import axios from 'axios';
 import { Dropdown, Nav } from 'react-bootstrap';
@@ -298,11 +299,11 @@ import Autocomplete from '@mui/material/Autocomplete';
                         <div className="loginSign">
                         {
                               this.state.acPerm?
-                              <Link className="btn border mr-2 btn-white loginSignbtn color-blue-dark"  to="/article">
+                              <Link className="btn border mr-2 btn-white loginSignbtn color-blue-dark" id="createArticle" to="/article">
                               Create Article
                             </Link>
                               : <button 
-                              className="btn border mr-2 btn-white loginSignbtn color-blue-dark" 
+                              className="btn border mr-2 btn-white loginSignbtn color-blue-dark" id="createArticle" 
                               onClick={() => this.setModalShow(true)}
                             >
                              Create Article
@@ -438,6 +439,7 @@ function ToggleButton(props) {
       <>
       <button 
          className="btn btn-dark text-light border loginSignbtn color-blue-dark" 
+         id="signIn"
          variant="dark" 
          style={{width: '10rem'}}
          onClick={() => props.setModalShow(true)}
