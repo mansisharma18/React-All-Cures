@@ -6,6 +6,7 @@ import Footer from '../Footer/Footer';
 import { backendHost } from '../../api-config';
 import { useHistory } from 'react-router-dom';
 
+
 export default function Userprofile(props) {
     const [profileId, setProfile] = useState(Cookies.get('acPerm').split('|')[0])
     const [firstName, setFirstName] = useState('')
@@ -48,7 +49,7 @@ export default function Userprofile(props) {
         <div>
           <Header history={history}/>
           
-          <section className="Profileleft mb-5">
+          <section className="Profileleft" id="sectionMain">
             <div className="container">
               <div className="row">
                 <div className="col-md-8 pd-0">
