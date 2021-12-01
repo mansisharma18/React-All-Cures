@@ -446,7 +446,11 @@
     flex: 1;
   }
   .main-hero .col-4 {
-    display: block ruby;
+    display: contents;
+  }
+
+  .main-hero .col-4 .card {
+    margin: 0 0.9rem;
   }
 }
 @media screen and (min-width: 500px) {
