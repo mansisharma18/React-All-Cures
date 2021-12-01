@@ -21,7 +21,7 @@ import Autocomplete from '@mui/material/Autocomplete';
 import Test from './test'
 import { env } from 'process';
 
-env.REACT_APP = 'http://117.241.171.115:8080/cures';
+// env.REACT_APP = 'http://117.241.171.115:8080/cures';
 
 class Home extends Component {
    constructor(props){
@@ -425,19 +425,7 @@ class Home extends Component {
       </section>
       
 
-      {/* <section className="consultunt">
-         <div className="container">
-            <div className="row">
-               <div className="consultunt-inner">
-                  <h1>Meet Our Consultants Online</h1>
-                  <p>Video visits can address immediate medical issues or routine healthcare needs. Doctors are ready to treat a variety of issues or help you with prescriptions or referrals.</p>
-                  <div className="startVideo">
-                     <Link to="#" className="btn-bg startVideoBtn allBtn">Start Video Consultation</Link>
-                  </div>
-               </div>
-            </div>
-         </div>
-      </section> */}
+     
       <section className="doctor">
          <div className="container">
             <div className="row">

@@ -10,6 +10,7 @@ import Cookies from 'js-cookie';
 
 
 export default function ArticleRating(props) {
+  console.log(props)
   const acPerm = Cookies.get("acPerm")
 
   const [ratingValue, setRatingValue] = React.useState([])
@@ -31,20 +32,7 @@ export default function ArticleRating(props) {
     
   }
 
-  // const getRating = () => {
-
-  //   axios.get(`${backendHost}/rating/target/23/targettype/1/avg`)
-  //   .then(res => {
-  //     console.log(res.data[0].ratingVal)
-  //     setRatingValue(res.data)
-  //   })
-  //   .catch(err => console.log(err))
-  // }
-
-  // React.useEffect(() => {
-  //   getRating()
   
-  // },[])
 
   
 const thirdExample = {

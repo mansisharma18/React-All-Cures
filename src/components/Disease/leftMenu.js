@@ -7,6 +7,7 @@ import './style.css'
 import { backendHost } from '../../api-config';
 import ArticleComment from '../ArticleComment';
 import Cookies from 'js-cookie';
+import ArticleRating from "../ArticleRating";
 
 
 const Side = props => {
@@ -79,7 +80,9 @@ const Side = props => {
             {
                               acPerm?
                               <>
+                              
                               <ArticleComment refreshComments={comments} article_id={props.match.params.id}/>
+                              {/* <ArticleRating article_id={props.match.params.id} /> */}
                               {/* <h3>Comments </h3> */}
                               </>
                               : null

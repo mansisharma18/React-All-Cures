@@ -29,6 +29,7 @@ class Profile extends Component {
       isLoaded: false,
       param: params,
       edit: false,
+      
       modalShow: false,
       show: false,
       acPerm: Cookies.get('acPerm').split('|')
@@ -253,6 +254,8 @@ class Profile extends Component {
         items={items}
         fetchDoctor = {this.fetchDoctorData}
         id={this.state.param.id}
+
+
       />
                           </div>
                         </div>

@@ -4,12 +4,19 @@ import Cookies from 'js-cookie';
 import axios from 'axios';
 import { Dropdown, Button, DropdownButton, Nav, Modal, Alert} from 'react-bootstrap';
 import { backendHost } from '../api-config';
-
+import ArticleRating from "./ArticleRating";
  
-const Comment = ({refreshComments,article_id}) => {
+const Comment = ({refreshComments,article_id,}, props) => {
+    console.log(props+"arnav")
     const acPerm = Cookies.get("acPerm")
     const [cmtText,setCmtText] = React.useState('')
     const [succAlert, setAlert] = useState('')
+    const [show, setShow] = useState(false);
+   
+
+    const handleClose = () => setShow(false);
+    const handleShow = () => setShow(true);
+  
     
    
 
@@ -45,7 +52,22 @@ const Comment = ({refreshComments,article_id}) => {
 
     return (
         <>
-            <div className="pl-4">
+        <Button variant="primary" onClick={handleShow}>
+        Write A review For This Cure
+      </Button>
+
+      <Modal show={show} onHide={handleClose}>
+        <Modal.Header closeButton>
+          <Modal.Title className="pl-4"> Create Review For This Cure</Modal.Title>
+        </Modal.Header><hr/>
+        
+        <Modal.Body>
+        <h3 className="pl-4">Overall Rating</h3>
+        <div  className="pl-4">
+        <ArticleRating article_id={props.article_id}/><hr/> 
+        </div>
+        
+        <div className="pl-4">
                 <form action="" onSubmit={(e) => postComment(e)} className="form-group">
                     <label htmlFor="" className="h4 font-weight-bold">Comments</label>
                     <textarea name="" 
@@ -64,6 +86,17 @@ const Comment = ({refreshComments,article_id}) => {
                     </div>
                 </form>
             </div>
+        </Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={handleClose}>
+            Close
+          </Button>
+          {/* <Button variant="primary" onClick={handleClose}>
+            Save Changes
+          </Button> */}
+        </Modal.Footer>
+      </Modal>
+           
         </>
     )
 }
