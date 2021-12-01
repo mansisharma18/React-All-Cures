@@ -2,11 +2,11 @@ import React, { useState } from 'react';
 import Cookies from 'js-cookie';
 // import CommentBox from 'react-commentbox';
 import axios from 'axios';
-import { Alert} from 'react-bootstrap';
+import { Alert, Modal, Button} from 'react-bootstrap';
 import { backendHost } from '../api-config';
 import ArticleRating from "./ArticleRating";
  
-const Comment = ({refreshComments,article_id}) => {
+const Comment = ({refreshComments,article_id}, props) => {
     const [cmtText,setCmtText] = React.useState('')
     const [succAlert, setAlert] = useState('')
     const [show, setShow] = useState(false);

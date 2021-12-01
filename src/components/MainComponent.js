@@ -30,6 +30,8 @@ import Userprofile from "./Profile/Userprofile";
 import MyArticle from './Profile/MyArtcle'
 import ListArticle from './Profile/ListArticle'
 import NotFound from "./NotFound";
+import { userAccess } from "./UserAccess";
+import NotAuthorizedPage from "./NotAuthorizedPage";
 
 function Main(props) {
 const history = useHistory()
@@ -80,7 +82,7 @@ const history = useHistory()
       <div>
         <AuthApi.Provider value={{auth, setAuth}}>
           <HashRouter history={history} basename={''}>
-            <Routes authLoaded={authLoaded} url = {url}/>
+            <Routes authLoaded={authLoaded} url = {url} userAccess = {userAccess}/>
           </HashRouter>
         </AuthApi.Provider>
       </div>
@@ -111,14 +113,14 @@ const Routes = (props) => {
       <ProtectedRoute auth={Auth.auth} path="/article" component={EditPost}/>
 
       {/* Dashboard pages */}
-      <ProtectedRoute auth={Auth.auth} exact path="/dashboard" component={Dashboard} />
-      <ProtectedRoute auth={Auth.auth} exact path="/dashboard/blogs" component={BlogAllPost} />
-      <ProtectedRoute auth={Auth.auth} exact path="/dashboard/commentsrev" component={CommentsRev} />
-      <ProtectedRoute auth={Auth.auth} exact path="/dashboard/reviewcomments" component={ReviewComments} />
-      <ProtectedRoute auth={Auth.auth} exact path="/dashboard/results" component={Results} />
-      <ProtectedRoute auth={Auth.auth} exact path="/dashboard/promopaid" component={PromoPaid} />
-      <ProtectedRoute auth={Auth.auth} exact path="/dashboard/promoadmin" component={PromoAdmin} />
-      <ProtectedRoute auth={Auth.auth} exact path="/dashboard/promoadmin" component={PromoAdmin} />
+      <ProtectedRouteDashboard userAccess={props.userAccess} auth={Auth.auth} exact path="/dashboard" component={Dashboard} />
+      <ProtectedRouteDashboard userAccess={props.userAccess} auth={Auth.auth} exact path="/dashboard/blogs" component={BlogAllPost} />
+      <ProtectedRouteDashboard userAccess={props.userAccess} auth={Auth.auth} exact path="/dashboard/commentsrev" component={CommentsRev} />
+      <ProtectedRouteDashboard userAccess={props.userAccess} auth={Auth.auth} exact path="/dashboard/reviewcomments" component={ReviewComments} />
+      <ProtectedRouteDashboard userAccess={props.userAccess} auth={Auth.auth} exact path="/dashboard/results" component={Results} />
+      <ProtectedRouteDashboard userAccess={props.userAccess} auth={Auth.auth} exact path="/dashboard/promopaid" component={PromoPaid} />
+      <ProtectedRouteDashboard userAccess={props.userAccess} auth={Auth.auth} exact path="/dashboard/promoadmin" component={PromoAdmin} />
+      <ProtectedRouteDashboard userAccess={props.userAccess} auth={Auth.auth} exact path="/dashboard/promoadmin" component={PromoAdmin} />
 
       {/* Cures list page */}
       <Route exact path="/cures" component={Blogpage}/>
@@ -149,6 +151,9 @@ const Routes = (props) => {
       <Route exact path="/loginForm/ResetPass" component={ResetPass} />
       <Route exact path="/loginForm/verify" component={Verify} />
 
+      {/* For not authorized users trying to access Dashboard */}
+      <Route exact path="/forbidden" component={NotAuthorizedPage}/>
+      {/* When the requested page is not available */}
       <Route path="*" component={NotFound} />
 
     </Switch>
@@ -166,6 +171,22 @@ const ProtectedRoute = ({auth, path, component:Component, ...rest}) => {
         (
           // <Redirect to="/login"/>
           <Redirect to={{pathname: '/home', search: '', state: {modalShow: true}}}/>
+        )
+    }
+      />
+    )
+}
+const ProtectedRouteDashboard = ({auth, path, component:Component, userAccess, ...rest}) => {
+    return(
+      <Route
+      {...rest}
+      render = {() =>auth !== 'not-logged-in' && userAccess > 4? (
+        <Route exact path={path} component={Component} />        
+      ):
+        (
+          // <Redirect to="/login"/>
+          
+          <Redirect to={{pathname: '/forbidden', search: ''}}/>
         )
     }
       />

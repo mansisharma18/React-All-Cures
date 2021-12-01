@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { backendHost } from '../../api-config';
 import { Link } from 'react-router-dom'
-const ArticlePreview = () => {
+const ArticlePreview = (props) => {
     const [items, setItems] = useState([])
     const [isLoaded, setLoaded] = useState(false)
     
@@ -29,7 +29,7 @@ const ArticlePreview = () => {
         return(
         <>
             <div className="main-hero">
-                {items.map((i, index) => index<9 && (
+                {items.map((i, index) => i.pubstatus_id === 3 && index<12 && (
                     <div className="col-4">
                     <div className="card my-2 ">
                         <div className="card-body">
@@ -39,7 +39,7 @@ const ArticlePreview = () => {
                                     {i.window_title}
                                 </h6>
                                 <p className="card-text">
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse in scelerisque magna,  sed rutrum urna tincidunt.<Link to={`/cure/${i.article_id}`}>...read more</Link>
+                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse in scelerisque magna,  sed rutrum urna tincidunt.<Link to={`/cure/${i.article_id}`}>...read more</Link>
                                     {/* ${p.body.substr(0, 200)}<a href="#">...read more</a> */}
                                 </p>
                             </div>

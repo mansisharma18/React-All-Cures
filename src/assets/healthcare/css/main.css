@@ -577,10 +577,12 @@ h6 {
 } */
 
 .banner {
-  background: url(../img/images/o6rbxh0.jpg);
-  background-size: cover;
-  height: 616px;
+  background: url(https://cdn.pixabay.com/photo/2020/12/18/00/43/doctor-5840874_960_720.png)
+    center center no-repeat;
+  background-color: rgba(0, 0, 0, 0);
+  height: 675px;
   position: relative;
+  background-color: #c6dffe;
 }
 
 .serchlabel h1 {
@@ -706,7 +708,7 @@ h6 {
 }
 
 .tab-nav ul {
-  margin: 30px 0 0 31px;
+  margin: 20px 0 0 31px;
 }
 
 .tab-nav ul li a {
@@ -717,6 +719,17 @@ h6 {
 }
 
 .tab-nav ul .active a {
+  background: #c8f5ff;
+  color: #0092c0;
+}
+.tab-nav ul li button {
+  color: #8c8c8c;
+  background: #e3e3e3;
+  border-radius: 15px;
+  padding: 5px 16px;
+}
+
+.tab-nav ul .active button {
   background: #c8f5ff;
   color: #0092c0;
 }
@@ -2255,7 +2268,7 @@ input {
 .item-img .fas {
   display: flex;
   justify-content: center;
-  background-color: rgb(104, 214, 218);
+  background-color: #c6dffe;
   padding: 3.2rem 0;
 }
 
@@ -2792,3 +2805,7 @@ div.main-hero .col-4:nth-of-type(even) .card {
 div.main-hero:first-child .card {
   background-color: #ffeeee;
 }
+
+/* div.main-hero:nth-of-type() .card {
+  display: none;
+} */

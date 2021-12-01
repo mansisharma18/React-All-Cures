@@ -19,7 +19,7 @@ const TrendingArticles = () => {
                 </div>
                 <div className="col-4 my-3">
                     <div className="card d-flex justify-content-between">
-                        <div className="h5">Chinese</div>
+                        <div className="h5 text-center">Chinese<br/> Medicine</div>
                         <div id="trending-articles-2">
                         <Link to="/cures/Ayurveda">
                             <img className="rounded-right" src="https://images.unsplash.com/photo-1577344718665-3e7c0c1ecf6b?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8OXx8bWVkaXRhdGlvbnxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=500&q=60"></img>

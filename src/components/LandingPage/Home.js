@@ -32,6 +32,7 @@ class Home extends Component {
       super(props);
       const params = props.match.params
       this.state = {
+         articleFilter: '',
          article: '',
          users: [],
          city: '',
@@ -64,6 +65,7 @@ class Home extends Component {
         }
         
     };
+    this.articlesFilterButton = this.articlesFilterButton.bind()
       
   }
  
@@ -204,6 +206,7 @@ class Home extends Component {
       }
    }
    
+   articlesFilterButton = (e)=> { }
    render() {
       return(
          <div>
@@ -436,14 +439,38 @@ class Home extends Component {
       <section>
       <div className="container">
             <div className="row">
-               <div className="comman-heading">
-                  <div className="h4 float-left mr-4">Recent Articles</div>
+            <div class="tab-nav">
+               <div class="comman-heading">
+                  <div class="h4 mt-4">
+                     Recent Articles
+                  </div>
+               </div>
+               {/* <ul>
+                  <li role="presentation" class="active">
+                     <button className="btn" 
+                        onClick={(e) => this.setState({
+                           articleFilter: 'recent'
+                        })}
+                        // role="tab" 
+                        // data-toggle="tab"
+                     >Recent</button>
+                  </li>
+                  <li role="presentation">
+                     <button className="btn" onClick={this.articlesFilterButton('oldest')}>Oldest</button>
+                  </li>
+                  <li role="presentation">
+                     <button className="btn">Most Rated</button>
+                  </li>
+               </ul> */}
+            </div>
+               {/* <div className="comman-heading">
+                  <div className="h4 float-left mr-4">Recent Articles</div> */}
                 {/* <span><Link className="btn btn-article-search color-white" to="/cures">All Articles</Link></span> */}
 
-               </div>
+               {/* </div> */}
             </div>
             <div className="row">
-         <ArticlePreview/>
+         <ArticlePreview articleFilter = {this.state.articleFilter}/>
          </div>
            
          </div>
