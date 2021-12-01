@@ -69,7 +69,6 @@
     "use-state-with-callback": "^2.0.3",
     "web-vitals": "^1.1.1"
   },
-  "proxy": "http://192.168.29.228:8080/cures",
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
