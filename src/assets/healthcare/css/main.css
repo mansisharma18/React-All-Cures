@@ -2733,3 +2733,62 @@ div.MuiSelect-root.MuiSelect-select.MuiSelect-selectMenu.MuiInputBase-input.MuiI
 .ad-spac {
   height: 200px;
 }
+
+.error-404 {
+  font-size: 6.8rem;
+}
+
+.not-found-msg {
+  padding: 1.5rem 2rem;
+  border: 1px solid #444444;
+  border-radius: 1rem;
+}
+
+.main-hero {
+  display: contents;
+}
+
+.bg-main-hero {
+  background-color: #ecf4f7;
+}
+
+.trending-articles {
+  display: contents;
+}
+
+.trending-articles .card {
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+div.trending-articles:nth-child(odd) .card {
+  background-color: #e4faff;
+}
+
+div.trending-articles .col-4:nth-last-child(even) .card {
+  background-color: #ffeeee;
+}
+
+/* .trending-articles:nth-child(even) .card {
+  background-color: #ffeeee;
+} */
+
+.trending-articles .card .h5 {
+  display: flex;
+  align-items: center;
+  margin: auto;
+}
+.trending-articles .card img {
+  height: 125px;
+}
+
+/* div.main-hero:nth-of-type(odd) .card {
+  background-color: #ffeeee;
+} */
+
+div.main-hero .col-4:nth-of-type(even) .card {
+  background-color: #e4faff;
+}
+div.main-hero:first-child .card {
+  background-color: #ffeeee;
+}

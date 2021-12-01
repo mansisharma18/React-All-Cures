@@ -20,8 +20,12 @@ import TextField from '@mui/material/TextField';
 import Autocomplete from '@mui/material/Autocomplete';
 import Test from './test'
 import { env } from 'process';
-
-// env.REACT_APP = 'http://117.241.171.115:8080/cures';
+import { userId } from '../UserId'
+import { userAccess } from '../UserAccess'
+import ArticlePreview from './ArticlePreview'
+import TrendingArticles from './TrendingArticles';
+console.log('UserIDDDDDDDDDDDD: ', userId,userAccess)
+env.REACT_APP = 'http://117.241.171.115:8080/cures';
 
 class Home extends Component {
    constructor(props){
@@ -90,10 +94,28 @@ class Home extends Component {
       .catch(res =>  console.log(res))
     }
     loaddoctor();
+
+    Promise.all([
+      fetch(`${backendHost}/article/all/table/disease_condition`)
+      .then(res => res.json()),
+    ]).then(([diseaseData]) => {
+      this.setState({
+          isLoaded: true,
+          speciality: diseaseData,
+      });
+
+    }).then(() => {
+      this.state.speciality.map((i) => (
+        this.state.spec1.push(i[3])
+      ))
+    })
+    .catch(res => {
+       console.error(res)
+    })
  }
 
  componentDidUpdate(prevProps, prevState){
-   if(prevState.article != this.state.article && this.state.article){
+   if(prevState.article !== this.state.article && this.state.article){
       axios.get(`${backendHost}/isearch/combo/${this.state.article}`)
       .then(res => {
          this.setState({
@@ -141,25 +163,6 @@ class Home extends Component {
             searchParams: { ...this.state.searchParams, [e.target.name]: e.target.value }
         });
 
-        componentWillMount(){
-         Promise.all([
-            fetch(`${backendHost}/article/all/table/disease_condition`)
-            .then(res => res.json()),
-          ]).then(([diseaseData]) => {
-            this.setState({
-                isLoaded: true,
-                speciality: diseaseData,
-            });
-
-          }).then(() => {
-            this.state.speciality.map((i) => (
-              this.state.spec1.push(i[3])
-            ))
-          })
-          .catch(res => {
-             console.error(res)
-          })
-         }
    logout = async e => {
       const res = await fetch(`${backendHost}/LogoutActionController`, {
          method: "POST"
@@ -221,11 +224,11 @@ class Home extends Component {
                               {/* <Link to="/profile">Go to Profile</Link> */}
                            {
                               this.state.acPerm?
-                              <Link className="btn border mr-2 btn-white loginSignbtn color-blue-dark"  to="/article">
+                              <Link className="btn border mr-2 btn-white loginSignbtn color-blue-dark" id="createArticle1" to="/article">
                               Create Article
                             </Link>
                               : <button 
-                              className="btn border mr-2 btn-white loginSignbtn color-blue-dark" 
+                              className="btn border mr-2 btn-white loginSignbtn color-blue-dark" id="createArticle"
                               onClick={() => this.setModalShow(true)}
                             >
                              Create Article
@@ -247,7 +250,7 @@ class Home extends Component {
                               <Autocomplete value={this.state.temp} suggestions={this.state.spec1}/>
                               : null
                            }     */}
-                           <form onSubmit={(e) => this.articleSearch(e)} className="article-search">
+                           <form onSubmit={(e) => this.articleSearch(e)} className="article-search" id="article">
                               <div className="col-md-12 row">
                <div className="col-md-10 p-0">    
                <Autocomplete className="bg-white color-black"
@@ -365,7 +368,7 @@ class Home extends Component {
                                  : []
                                  :[]
                               }
-                              renderInput={(params) => <TextField {...params} label="Search Doctors (City or Pincode)" />}
+                              renderInput={(params) => <TextField {...params} label="Search Doctors (City or Pin)" />}
                            />
                                  </div>
                                  
@@ -391,7 +394,7 @@ class Home extends Component {
             <div className="row">
                 <div className="tab-nav">
                   <div className="comman-heading">
-                     <h2>Choose by Category</h2>
+                     <div className="h4 mt-4">Choose by Category</div>
                   </div>
                   {/* <!-- Nav tabs --> */}
                   <ul>
@@ -409,11 +412,49 @@ class Home extends Component {
           </div>
         </div>
       </section> 
-      <section className="specialists">
+
+
+
+
+      <section className="mb-5 mt-2">
+      <div className="container">
+            <div className="row">
+               <div className="comman-heading">
+                  <div className="h4">Trending Articles</div>
+               </div>
+            </div>
+            <div className="row">
+         <TrendingArticles/>
+         </div>
+           
+         </div>
+      </section>
+
+
+
+
+      <section>
+      <div className="container">
+            <div className="row">
+               <div className="comman-heading">
+                  <div className="h4 float-left mr-4">Recent Articles</div>
+                {/* <span><Link className="btn btn-article-search color-white" to="/cures">All Articles</Link></span> */}
+
+               </div>
+            </div>
+            <div className="row">
+         <ArticlePreview/>
+         </div>
+           
+         </div>
+      </section>
+
+
+      <section className="specialists mt-3">
          <div className="container">
             <div className="row">
                <div className="comman-heading">
-                  <h2>Choose by Specialists</h2>
+               <div className="h4 mt-4">Choose by Specialists</div>
                </div>
             </div>
             <div className="row">
@@ -425,12 +466,24 @@ class Home extends Component {
       </section>
       
 
-     
-      <section className="doctor">
+      {/* <section className="consultunt">
+         <div className="container">
+            <div className="row">
+               <div className="consultunt-inner">
+                  <h1>Meet Our Consultants Online</h1>
+                  <p>Video visits can address immediate medical issues or routine healthcare needs. Doctors are ready to treat a variety of issues or help you with prescriptions or referrals.</p>
+                  <div className="startVideo">
+                     <Link to="#" className="btn-bg startVideoBtn allBtn">Start Video Consultation</Link>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </section> */}
+      {/* <section className="doctor">
          <div className="container">
             <div className="row">
                <div className="comman-heading">
-                  <h2>Our Top Doctors</h2>
+               <div className="h4">Our Top Doctors</div>
                </div>
             </div>
             
@@ -440,7 +493,7 @@ class Home extends Component {
         
          </div>
          
-      </section><br/><br/>
+      </section><br/><br/> */}
       {/* <section className="partner">
          <div className="container">
             <div className="row">
@@ -583,6 +636,7 @@ function ToggleButton(props) {
       <>
       <button 
          className="btn btn-dark text-light border loginSignbtn color-blue-dark" 
+         id="signIn"
          variant="dark" 
          style={{width: '10rem'}}
          onClick={() => props.setModalShow(true)}

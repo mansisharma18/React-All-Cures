@@ -38,9 +38,6 @@ class Profile extends Component {
   }
   postSubscribtion() {
     
-    // console.log(selected.join())
-    // console.log(rejected.join())
-    
     axios.post(`${backendHost}/users/subscribe/7889761896`, {
     //   "articles_ids": selected.join(),
     //   "articles_ids_rejected": rejected.join()
@@ -49,30 +46,23 @@ class Profile extends Component {
     "nl_subscription_cures_id":0,
     })
       .then(res => {
-        console.log(res)
        
       })
-      .catch(err => console.log(err))
- 
-    
+      .catch(err => console.log(err))  
   }
+  
   getComments = (id) => {
-    console.log('fired');
     axios.get(`${backendHost}/rating/target/${id}/targettype/1`)
     .then(res => {
-      console.log(res)
       this.setState({
         commentItems:res.data
       })
     })
     .catch(err => console.log(err))
-    console.log('closed');
   }
   getRating = (ratingId) => {
-    console.log('fired');
     axios.get(`${backendHost}/rating/target/${ratingId}/targettype/1/avg`)
     .then(res => {
-      console.log(res)
       this.setState({
         ratingValue:res.data,
         size: 40,
@@ -80,28 +70,23 @@ class Profile extends Component {
       })
     }) 
     .catch(err => console.log(err))
-    console.log('closed');
   }
   
   getProfileComments = (profileId) => {
-    console.log('fired');
     axios.get(`${backendHost}/profile/${profileId}`)
     .then(res => {
-      console.log(res)
       this.setState({
         firstName:res.data,
         lastName:res.data
       })
     })
     .catch(err => console.log(err))
-    console.log('closed');
   }
   fetchDoctorData = (id) => {
     fetch(`${backendHost}/DoctorsActionController?rowno=${id}&cmd=getProfile`)
       // .then(res => JSON.parse(res))
       .then((res) => res.json())
       .then((json) => {
-        console.log(json);
         this.setState({
           isLoaded: true,
           items: json,
@@ -116,13 +101,10 @@ class Profile extends Component {
       this.setState({
         edit: true
       })
-      console.log(this.state.edit)
     } else{
       this.setState({
         edit: false
       })
-      console.log(this.state.edit)
-
     }
   }
 
@@ -153,6 +135,7 @@ class Profile extends Component {
   
   render() {
     var { isLoaded, items, acPerm } = this.state;
+    console.log(this.props.params)
     if (!isLoaded) {
 
       return(
@@ -179,7 +162,6 @@ class Profile extends Component {
         </>
       )
     }else if (isLoaded) {
-      // console.log(new URLSearchParams(this.props.location.search).get("edit"))
       return (
         <div>
           <Header history={this.props.history} />
@@ -242,7 +224,7 @@ class Profile extends Component {
                           <div className="reviews" >
                             
                             {
-                              acPerm[1] == 9 || acPerm[0] == items.docid?
+                              acPerm[1] === '9' || parseInt(acPerm[0]) === parseInt(this.state.param.id)?
                               <Button variant="dark" onClick={() => this.setModalShow(true)}>
                                 Edit Profile
                               </Button>

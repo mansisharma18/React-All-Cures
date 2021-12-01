@@ -2,12 +2,9 @@ import React, { Component } from "react";
 
 import axios from 'axios';
 import Results from './Results'
-import { Dropdown, Button, DropdownButton, Nav, Modal, Alert} from 'react-bootstrap';
+import { Alert } from 'react-bootstrap';
 import { backendHost } from '../../api-config';
 import Cookies from 'js-cookie';
-
-
-
 
 class CommentsRev extends Component {
   constructor(props) {
@@ -33,10 +30,6 @@ class CommentsRev extends Component {
     
     axios.get(`${backendHost}/rating/comments${val}`)
       .then(res => {
-        console.log(res.data)
-        
-        // rate_id: 8
-        // reviewed: 1
         const approvedIds = res.data.filter(item => {
           if(item.reviewed) return true
           return false
@@ -45,9 +38,9 @@ class CommentsRev extends Component {
         this.setState({ approvedIds })
 
         var s = [];
-        res.data.map(i => {
-          s.push(i.rate_id);
-        })
+        res.data.map(i => (
+          s.push(i.rate_id)
+        ))
         console.log(s)
         this.setState({
           commentItems:res.data,
@@ -174,9 +167,9 @@ render(){
                                         // this.setState({
                                         //   getComments: e.target.value
                                         // })
-                                        if(e.target.value == '0') {
+                                        if(parseInt(e.target.value) === 0) {
                                           this.getComments('/0')
-                                        }else if(e.target.value == '1') {
+                                        }else if(parseInt(e.target.value) === 1) {
                                           this.getComments('/1')
                                         }else {
                                           this.getComments('/')
@@ -255,11 +248,11 @@ render(){
                                <h2><b>(3): Commented on </b></h2>
                                 {
                                   
-                               item.target_type_id == '1'?
+                               parseInt(item.target_type_id) === 1?
                               
                                     <div className="chip overview mr-2">Doctor id {item.target_id}</div>
                                     
-                                : item.target_type_id== '2'?
+                                : parseInt(item.target_type_id)=== 2?
                                     <div className="chip cure mr-2">Article id {item.target_id}</div>
                                
                                 : null

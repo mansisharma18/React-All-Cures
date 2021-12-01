@@ -8,7 +8,7 @@ import { backendHost } from '../../api-config';
 
 const AllPost = ({ id, title, w_title, dis }) => {
 
-    if (dis==0) dis = true 
+    if (parseInt(dis) === 0) dis = true 
     else dis = false
     const [disable, setDisable] = React.useState(dis);
     const [deleteAlert, setAlert] = useState(false)

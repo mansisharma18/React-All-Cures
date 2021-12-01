@@ -6,7 +6,6 @@ import { Alert} from 'react-bootstrap';
 import { backendHost } from '../api-config';
 
 const Comment = ({refreshComments, docid}) => {
-    const acPerm = Cookies.get("acPerm")
 
     const [cmtText,setCmtText] = React.useState('')
     const [succAlert, setAlert] = useState('')
@@ -16,7 +15,7 @@ const Comment = ({refreshComments, docid}) => {
     const postComment = (e) => {
         e.preventDefault()
 
-        if(cmtText != '') {
+        if(cmtText !== '') {
             axios.post(`${backendHost}/DoctorRatingActionController?comments='${cmtText}'&ratedbyid=${Cookies.get("acPerm").split('|')[0]}&ratedbytype=${Cookies.get("acPerm").split('|')[1]}&targetid=${docid}&targetTypeid=1&cmd=rateAsset`)
             .then(res => {
                

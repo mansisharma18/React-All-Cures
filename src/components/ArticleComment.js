@@ -2,13 +2,11 @@ import React, { useState } from 'react';
 import Cookies from 'js-cookie';
 // import CommentBox from 'react-commentbox';
 import axios from 'axios';
-import { Dropdown, Button, DropdownButton, Nav, Modal, Alert} from 'react-bootstrap';
+import { Alert} from 'react-bootstrap';
 import { backendHost } from '../api-config';
 import ArticleRating from "./ArticleRating";
  
-const Comment = ({refreshComments,article_id,}, props) => {
-    console.log(props+"arnav")
-    const acPerm = Cookies.get("acPerm")
+const Comment = ({refreshComments,article_id}) => {
     const [cmtText,setCmtText] = React.useState('')
     const [succAlert, setAlert] = useState('')
     const [show, setShow] = useState(false);
@@ -18,16 +16,12 @@ const Comment = ({refreshComments,article_id,}, props) => {
     const handleShow = () => setShow(true);
   
     
-   
-
-
     const postComment = (e) => {
         e.preventDefault()
 
-        if(cmtText != '') {
+        if(cmtText !== '') {
             axios.post(`${backendHost}/DoctorRatingActionController?comments=${cmtText}&ratedbyid=${Cookies.get("acPerm").split('|')[0]}&ratedbytype=${Cookies.get("acPerm").split('|')[1]}&targetid=${article_id}&targetTypeid=2&cmd=rateAsset`)
             .then(res => {
-               
                 setAlert(true)
                 setTimeout(() => {
                     setAlert(false)
@@ -39,9 +33,7 @@ const Comment = ({refreshComments,article_id,}, props) => {
             .then(err => {
                 console.log(err);
             })
-            
-            
-             refreshComments()
+            refreshComments()
             
         }else {
             alert('Enter comment')

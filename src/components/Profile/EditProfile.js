@@ -18,7 +18,6 @@ const EditProfile = (props) => {
 
   const handleChange = (event) => {
     setPersonName(event.target.value);
-    console.log(personName)
   };
     const item = props.items
     const [firstName, setFirst] = useState(item.docname_first)
@@ -38,7 +37,6 @@ const EditProfile = (props) => {
 
     const formSubmit = (e) => {
         e.preventDefault()
-        console.log(firstName, lastName, primarySpl, secondarySpl, otherSpl, education, num, hospital, acceptInsurance, gender)
         axios.post(`${backendHost}/doctors/updateprofile`, {
             "docid": item.docid,
             "docname_first" : firstName,
@@ -54,7 +52,6 @@ const EditProfile = (props) => {
             "about": about
         })
         .then(res => {
-            console.log(res)
             setSubmitAlert(true)
             setTimeout(() => {
               setSubmitAlert(false)
@@ -72,8 +69,6 @@ const EditProfile = (props) => {
             fetch(`${backendHost}/article/all/table/hospital`).then(res => res.json()),
             // fetch('/article/all/table/countries').then(res => res.json()),
         ]).then(([diseaseData, hospitalData]) => {
-            console.log('Speciality Data: ', diseaseData)
-            console.log('Hospital Data: ', hospitalData)
             setDiseaseList(diseaseData)
             setHospitalList(hospitalData)
         })
@@ -82,10 +77,6 @@ const EditProfile = (props) => {
     useEffect(() => {
         fetchTables()
     }, [])
-    if(item.insurance_accept == 0){
-
-    console.log(acceptInsurance, 'Insurance')
-  }
     
     return (
       <>
@@ -116,7 +107,7 @@ const EditProfile = (props) => {
           <Form.Group className="col-md-12 float-left" >
           <FormControl component="fieldset">
       <FormLabel component="legend" className="text-dark">Gender</FormLabel>
-      <RadioGroup value={gender.toString()} onChange={(e) => {setGender(e.target.value); console.log(e.target.value)}}
+      <RadioGroup value={gender.toString()} onChange={(e) => {setGender(e.target.value)}}
       style={{display: 'flex', flexDirection:'row'}}>
         <FormControlLabel value="1" control={<Radio />} label="Female" />
         <FormControlLabel value="2" control={<Radio />} label="Male" />
