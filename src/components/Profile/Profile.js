@@ -13,6 +13,7 @@ import { Container, Button } from "react-bootstrap"
 import axios from 'axios';
 import EditProfile from "./EditProfile";
 import { backendHost } from '../../api-config';
+import '../../assets/healthcare/css/mobile.css'
 
 class Profile extends Component {
   constructor(props) {

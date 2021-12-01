@@ -5,6 +5,7 @@ import axios from 'axios';
 import { Alert, Modal, Button} from 'react-bootstrap';
 import { backendHost } from '../api-config';
 import ArticleRating from "./ArticleRating";
+import { Button, Modal, Form } from "react-bootstrap";
  
 const Comment = ({refreshComments,article_id}, props) => {
     const [cmtText,setCmtText] = React.useState('')
