@@ -1,12 +1,47 @@
-import React, { Component } from 'react';
+import React, { useEffect, useState } from 'react';
+import { backendHost } from '../../api-config';
+import axios from 'axios';
 import Heart from"../../assets/img/heart.png";
 import Facebook from '../../assets/icon/facebook.svg'
 import Instagram from '../../assets/icon/instagram.svg'
 import Linkedin from '../../assets/icon/linkedin.svg'
-class Footer extends Component {
-    render() {
+const Footer = () => {
+   const [showAlert, setShowAlert] = useState(false)
+   const [alertMsg, setAlertMsg] = useState(true)
+   const [mobile, setMobile] = useState('')
+
+   function Alert(msg){
+      setShowAlert(true)
+      setAlertMsg(msg)
+      setTimeout(() => {
+         setShowAlert(false)
+      }, 20000);
+   }
+
+   function postSubscribtion() {
+      axios.post(`${backendHost}/users/subscribe/${mobile}`, {
+      "nl_subscription_disease_id": 1,
+      "nl_sub_type":1,
+      "nl_subscription_cures_id":0,
+      })
+        .then(res => {
+           res===1 &&
+         Alert('You have successfully subscribed to our Newsletter.')
+         setMobile('')
+        })
+        .catch(err => {
+           Alert('Some Error Occurred. Please try again later.')
+      })   
+   }
+
         return(
             <div>
+               {
+                  showAlert &&
+                  <div className="alert pop-up border-bottom">
+                     <div className="h5 mb-0 text-center">{alertMsg}</div>
+                  </div>
+               }
             <section className="footer">
          <div className="container">
             <div className="row">
@@ -54,6 +89,7 @@ class Footer extends Component {
                      </ul>
                   </div>
                </div>
+               
                <div className="col-md-3 col-sm-3 col-sx-12">
                   <div className="footer-inner">
                      <h1>Discover</h1>
@@ -86,11 +122,14 @@ class Footer extends Component {
                   <div className="footer-inner">
                      {/* <h1>Our Mission</h1>
                      <p> We are a new age healthcare technology firm who are trying make it simple and convenient for the users to get information on Cures from anywhere in the world.</p> */}
-                     <div className="helth-app">
-                        <h2>Get the Digi Healthcare App</h2>
-                        <a href="/#" className="appBtn">App Store</a>
-                        <a href="/#" className="appBtn">Google Play</a>
-                     </div>
+                     <h1 className="helth-app">
+                        <div className="h6">Subscribe to our Newsletter</div>
+                        <form onSubmit={(e) => postSubscribtion()}>
+                        <input className="rounded form-input" placeholder="Enter you number" value={mobile} onChange={(e) => setMobile(e.target.value)} required/>
+                        <button className="btn appBtn rounded" type="submit" >Subscribe</button>
+                        {/* <a href="/#" className="appBtn">Google Play</a> */}
+                        </form>
+                     </h1>
                   </div>
                </div>
             </div>
@@ -166,7 +205,6 @@ class Footer extends Component {
         </div>
     </div>
     </div>
-        );
-    }
+   );
 }
 export default Footer;
