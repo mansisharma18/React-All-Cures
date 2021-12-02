@@ -32,6 +32,7 @@ class Home extends Component {
       super(props);
       const params = props.match.params
       this.state = {
+         articleFilter: '',
          article: '',
          users: [],
          city: '',
@@ -64,6 +65,7 @@ class Home extends Component {
         }
         
     };
+    this.articlesFilterButton = this.articlesFilterButton.bind()
       
   }
  
@@ -204,6 +206,7 @@ class Home extends Component {
       }
    }
    
+   articlesFilterButton = (e)=> { }
    render() {
       return(
          <div>
@@ -433,20 +436,10 @@ class Home extends Component {
 
 
 
-      <section>
-      <div className="container">
-            <div className="row">
-               <div className="comman-heading">
-                  <div className="h4 float-left mr-4">Recent Articles</div>
-                {/* <span><Link className="btn btn-article-search color-white" to="/cures">All Articles</Link></span> */}
-
-               </div>
-            </div>
-            <div className="row">
-         <ArticlePreview/>
-         </div>
-           
-         </div>
+      <section className="trending-section">
+      
+         <ArticlePreview articleFilter = {this.state.articleFilter}/>
+         
       </section>
 
 
@@ -522,7 +515,7 @@ class Home extends Component {
       </section> */}
       <div>
          
-         <button i className=" newsletter-icon btn  newsletter_float" data-toggle="modal"data-target=".bd-example-modal-lg">
+         <button className="btn newsletter-icon rounded btn-article-search  newsletter_float" data-toggle="modal"data-target=".bd-example-modal-lg">
       Subscribe
      
             </button>

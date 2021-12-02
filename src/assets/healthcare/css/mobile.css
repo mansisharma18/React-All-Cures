@@ -4,6 +4,33 @@
   and (min-device-width: 320px) 
   and (max-device-width: 480px)
   and (-webkit-min-device-pixel-ratio: 2) {
+   
+
+
+  
+#searchBtn{
+    margin-right: -5px;
+}
+ 
+    #searchDoc{
+        margin-top: 10px;
+        width: 97%;
+        padding: 0;
+        position: relative;
+        left: 15px;
+    }
+#searchArticle {
+    margin: 60px 0 0 10px;
+}
+
+    #Article {
+        font-size: 13px;
+        padding: 4px;
+        position: relative;
+        left: 20px;
+    } */
+
+
     .newsletter_float {
         width: 160px;
         height: 40px;
@@ -76,8 +103,8 @@
 }
 .btn-article-search {
     background-color: #00415e;
-    margin-right: 23px;
-    height: 56px;
+    margin-right: 26px;
+    height: 52px;
 }
 
 .city-name.col-md-5 {
@@ -687,7 +714,43 @@
   and (min-device-width: 768px) 
   and (max-device-width: 1024px) 
   and (-webkit-min-device-pixel-ratio: 1) {
-  
+
+    #searchBtn{
+        margin-right: -34px;
+        margin-bottom: 38px;
+    }
+     #searchCity{
+         position: relative;
+         bottom: 34px;
+         left: 30px;
+     }
+        #searchDoc{
+            margin-bottom: 4px;
+            margin-left: 10px;
+            width: 97%;
+            padding: 0;
+            position: relative;
+            left: 15px;
+            bottom: 34px;
+        }
+    #searchArticle {
+        margin: 60px 0 0 10px;
+    }
+    
+        #Article {
+            font-size: 15px;
+            padding: 6px;
+            position: relative;
+            left: 0px;
+            height: 38px;
+        } 
+  #searchMain{
+      margin-bottom: 5rem;
+  }
+  #sectionMain{
+      margin-bottom: 16rem;
+  }
+
     .loginSignbtn {
         text-align: center;
         display: inline-block;
@@ -765,6 +828,35 @@
   and (min-device-width: 1024px) 
   and (max-device-width: 1366px) 
   and (-webkit-min-device-pixel-ratio: 2) {
+    #searchBtn{
+        margin-right: -34px;
+       margin-top: 185px;
+       position: relative;
+       bottom: 40px;
+    }
+     #searchCity{
+       margin-top: 180px;
+     }
+        #searchDoc{
+           margin-top: 180px;
+        }
+    #searchArticle {
+        margin: 110px 0 0 0px;
+        position: relative;
+        right: 273px;
+    }
+    
+        #Article {
+            font-size: 15px;
+            padding: 6px;
+            position: relative;
+            left: 0px;
+            height: 38px;
+        } 
+
+
+
+
           .loginSignbtn {
         text-align: center;
         display: inline-block;

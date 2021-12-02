@@ -316,6 +316,12 @@
     right: 0;
   }
 }
+
+@media screen and (max-width: 782px) {
+  #sidebar-wrapper {
+    display: none;
+  }
+}
 @media screen and (max-width: 768px) {
   /* html{
         font-size: 1rem;
@@ -390,9 +396,6 @@
     margin: 0 1rem;
     z-index: 0;
   }
-  #sidebar-wrapper {
-    display: none;
-  }
 }
 
 @media only screen and (max-width: 768px) {
@@ -441,6 +444,13 @@
   .col-4 {
     max-width: 100%;
     flex: 1;
+  }
+  .main-hero .col-4 {
+    display: contents;
+  }
+
+  .main-hero .col-4 .card {
+    margin: 0 0.9rem;
   }
 }
 @media screen and (min-width: 500px) {

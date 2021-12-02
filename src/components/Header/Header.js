@@ -157,7 +157,7 @@ import Autocomplete from '@mui/material/Autocomplete';
         return(
             <div className="profilePage">
                 <div className="comman-pg-header">
-                <section className="pageHeader zIndex-2">
+                <section className="pageHeader zIndex-2" >
                     <div className="container">
                     <div className="row">
                         <div className="header" style={{width:"100%"}}>
@@ -204,7 +204,7 @@ import Autocomplete from '@mui/material/Autocomplete';
   
 </div>
     </Nav>
-            <form onSubmit={(e) => this.articleSearch(e)} className="article-search">
+            <form onSubmit={(e) => this.articleSearch(e)} className="article-search" id="searchArticle">
                               <div className="col-md-12 row">
                <div className="col-md-10 p-0">    
                <Autocomplete className="bg-white color-black"
@@ -233,7 +233,7 @@ import Autocomplete from '@mui/material/Autocomplete';
             </div>
             <div className="col-md-2 p-0 mainBtn">
             <button className="btn btn-article-search color-white" type="submit">
-               <i className="fas fa-search"></i>
+               <i className="fas fa-search" id="iconSearch"></i>
             </button>
             </div>
             </div>
@@ -241,11 +241,11 @@ import Autocomplete from '@mui/material/Autocomplete';
                         <div className="loginSign">
                         {
                               this.state.acPerm?
-                              <Link className="btn border mr-2 btn-white loginSignbtn color-blue-dark" id="createArticle" to="/article">
+                              <Link className="btn border mr-2 btn-white loginSignbtn color-blue-dark" id="Article" to="/article">
                               Create Article
                             </Link>
                               : <button 
-                              className="btn border mr-2 btn-white loginSignbtn color-blue-dark" id="createArticle" 
+                              className="btn border mr-2 btn-white loginSignbtn color-blue-dark" id="Article" 
                               onClick={() => this.setModalShow(true)}
                             >
                              Create Article
@@ -261,12 +261,12 @@ import Autocomplete from '@mui/material/Autocomplete';
          <div className="container">
             <div className="row">
                <div className="search-wrap-inner clearfix">
-               <form onSubmit={(e) => this.onSearch(e)} className="mainSearch" >
+               <form onSubmit={(e) => this.onSearch(e)} className="mainSearch" id="searchMain">
                      	  {/* <div className="col-md-6 pd-0 col-sx-12 col-sm-4">
                    			<div className="form-group search"> */}
                             <div className="col-md-12 p-0">
                             <div className="row">
-                            <div className="doc-name col-md-6 col-sm-12">
+                            <div className="doc-name col-md-6 col-sm-12" id="searchDoc">
                             <Autocomplete className="bg-white color-black"
                               freeSolo
                               value={this.state.name}
@@ -293,7 +293,7 @@ import Autocomplete from '@mui/material/Autocomplete';
                               renderInput={(params) => <TextField {...params} label="Search Doctors (Name)" />}
                            />
                             </div>
-                                 <div className="city-name col-md-5">
+                                 <div className="city-name col-md-5"id="searchCity">
                                  <Autocomplete className="bg-white p-0 color-black"
                               freeSolo
                               value={this.state.city}
@@ -314,13 +314,13 @@ import Autocomplete from '@mui/material/Autocomplete';
                                  this.state.cityList 
                                  : []
                                  :[] }
-                              renderInput={(params) => <TextField {...params} label="Search Doctors (City or Pincode)" />}
+                              renderInput={(params) => <TextField {...params} label="Search Doctors (City or Pin)" />}
                            />
                                  </div>
                                  
                                  <div className="mainBtn col-md-1">
-                           <button type="submit" className=" btn btn-article-search color-white float-right" >
-                                 <i className="fas fa-search"></i>
+                           <button type="submit" className=" btn btn-article-search color-white float-right" id="searchBtn" >
+                                 <i className="fas fa-search" id="iconSearch"></i>
                               </button>
                               </div>
                               </div>
