@@ -156,7 +156,7 @@ class Footer extends Component {
                   </div>
                </div>
                <div className="back-top">
-               <a href="/" id="scroll"style={{display: "block"}} >
+               <a href="/" id="scroll" className="d-none" >
                    <span></span>
                   
                 </a>

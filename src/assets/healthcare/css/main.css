@@ -2312,7 +2312,6 @@ body {
 .App {
   width: 100%;
   max-width: 700px;
-  margin: 2em auto;
 }
 p.lorem-text {
   text-align: justify;
@@ -2662,8 +2661,8 @@ a.text-underline:hover {
 .newsletter_float {
   position: fixed;
 
-  bottom: 40px;
-  right: 40px;
+  bottom: 0px;
+  right: 0px;
   background-color: #3ad0ff;
   color: #fff;
   border-radius: 50px;
@@ -2720,6 +2719,14 @@ div.MuiSelect-root.MuiSelect-select.MuiSelect-selectMenu.MuiInputBase-input.MuiI
   border-radius: 25px;
   background-color: #f1f1f1;
 }
+.bg-review{
+  background-color: rgb(185,218,241);
+
+}
+#comment{
+  width:450px;
+}
+
 
 .overview {
   background-color: #00415e;
@@ -2814,6 +2821,8 @@ div.main-hero:first-child .card {
   background-color: #ffeeee;
 }
 
-/* div.main-hero:nth-of-type() .card {
-  display: none;
-} */
+.trending-section .btn:focus {
+  background-color: #00415e;
+  color: white;
+  box-shadow: none;
+}

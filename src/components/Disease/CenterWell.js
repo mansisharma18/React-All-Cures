@@ -1,7 +1,15 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import parse from 'html-react-parser';
+import { backendHost } from '../../api-config';
+import axios from 'axios';
+import ArticleComment from '../ArticleComment';
 
-const CenterWell = ({pageTitle, imageUrl, content, type, text, title, message, source, embed, caption, alignment, url, item}) =>{
+const CenterWell = ({pageTitle, imageUrl, content, type, text, title, message, source, embed, caption, alignment, url, item, props}) =>{
+
+    const [commentItems, setCommentItems] = useState([])
+
+    
+
     var list;
     var rows;
     var textContent;
@@ -16,8 +24,12 @@ const CenterWell = ({pageTitle, imageUrl, content, type, text, title, message, s
             )}</tr>`;
         });
     }
+   
+     
+     
     
     return(
+        <>
         <div>
             {
                 {
@@ -111,9 +123,12 @@ const CenterWell = ({pageTitle, imageUrl, content, type, text, title, message, s
                     </div>
                 </div>,
                 }[type]
-            }
+            }             
+
         </div>
+        </>
     )
+    
 } 
 
 export default CenterWell; 

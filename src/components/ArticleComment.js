@@ -25,8 +25,8 @@ const Comment = ({refreshComments,article_id}, props) => {
                 setAlert(true)
                 setTimeout(() => {
                     setAlert(false)
-                }, 4000);
-                window.location.reload(false);
+                }, 8000);
+                // window.location.reload(false);
                  
             })
             
@@ -49,9 +49,9 @@ const Comment = ({refreshComments,article_id}, props) => {
       </Button>
 
       <Modal show={show} onHide={handleClose}>
-        <Modal.Header closeButton>
-          <Modal.Title className="pl-4"> Create Review For This Cure</Modal.Title>
-        </Modal.Header><hr/>
+        <Modal.Header className="bg-review py-3" closeButton>
+          <Modal.Title className="pl-4">Review</Modal.Title>
+        </Modal.Header>
         
         <Modal.Body>
         <h3 className="pl-4">Overall Rating</h3>
@@ -66,7 +66,7 @@ const Comment = ({refreshComments,article_id}, props) => {
                     onChange={(e) => {
                         setCmtText(e.target.value)
                     }}
-                    className="form-control" id="" cols="40" rows="4"></textarea>
+                    className="form-control" id="comment" cols="40" rows="4"></textarea>
                     
                     {
                             succAlert?
@@ -80,9 +80,9 @@ const Comment = ({refreshComments,article_id}, props) => {
             </div>
         </Modal.Body>
         <Modal.Footer>
-          <Button variant="secondary" onClick={handleClose}>
+          {/* <Button variant="secondary" onClick={handleClose}>
             Close
-          </Button>
+          </Button> */}
           {/* <Button variant="primary" onClick={handleClose}>
             Save Changes
           </Button> */}

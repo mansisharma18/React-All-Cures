@@ -4,19 +4,25 @@ import { Link } from 'react-router-dom'
 const ArticlePreview = (props) => {
     const [items, setItems] = useState([])
     const [isLoaded, setLoaded] = useState(false)
+    const [articleFilter, setArticleFilter]= useState('recent')
     
     function allPosts() {                        // For all available blogs "/blogs"
         fetch(`${backendHost}/article/allkv`)
           .then((res) => res.json())
           .then((json) => {
-            setItems(json.reverse())
+              if(articleFilter === 'recent'){
+                setItems(json.reverse())
+              } else if(articleFilter === 'oldest'){
+                  setItems(json)
+              }
             setLoaded(true)
           });
     }
 
     useEffect(() => {
+        console.log(props.articleFilter)
         allPosts()
-    }, [])
+    }, [articleFilter])
 
     if(!isLoaded){
         return (
@@ -28,6 +34,35 @@ const ArticlePreview = (props) => {
     else {
         return(
         <>
+        <div className="container">
+            <div className="row">
+            <div class="tab-nav">
+               <div class="comman-heading">
+                  <div class="h4 mt-4">
+                     Recent Articles
+                  </div>
+               </div>
+               <ul>
+                  <li role="presentation" class="active ">
+                     <button className="btn mr-2" 
+                        onClick={(e) => setArticleFilter('recent')}
+                     >Recent</button>
+                  </li>
+                  <li role="presentation">
+                     <button className="btn mr-2" onClick={(e) => setArticleFilter('oldest')}>Oldest</button>
+                  </li>
+                  <li role="presentation">
+                     <button className="btn">Most Rated</button>
+                  </li>
+               </ul>
+            </div>
+               {/* <div className="comman-heading">
+                  <div className="h4 float-left mr-4">Recent Articles</div> */}
+                {/* <span><Link className="btn btn-article-search color-white" to="/cures">All Articles</Link></span> */}
+
+               {/* </div> */}
+            </div>
+            <div className="row">
             <div className="main-hero">
                 {items.map((i, index) => i.pubstatus_id === 3 && index<12 && (
                     <div className="col-4">
@@ -49,6 +84,8 @@ const ArticlePreview = (props) => {
                     </div>
                 </div>
                 )) }
+            </div>
+            </div>
             </div>
         </>
     )
