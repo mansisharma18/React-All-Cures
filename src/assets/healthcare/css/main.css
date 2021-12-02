@@ -2724,14 +2724,12 @@ div.MuiSelect-root.MuiSelect-select.MuiSelect-selectMenu.MuiInputBase-input.MuiI
   border-radius: 25px;
   background-color: #f1f1f1;
 }
-.bg-review{
-  background-color: rgb(185,218,241);
-
+.bg-review {
+  background-color: rgb(185, 218, 241);
 }
-#comment{
-  width:450px;
+#comment {
+  width: 450px;
 }
-
 
 .overview {
   background-color: #00415e;
@@ -2857,4 +2855,13 @@ div.main-hero:first-child .card {
 .subscribe-btn:hover {
   background-color: rgb(41, 39, 39);
   color: #fff;
+}
+
+#mobile-subscribe-fixed-btn {
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  left: auto;
+  font-size: 1rem;
+  display: none;
 }
