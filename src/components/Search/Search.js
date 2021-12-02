@@ -176,15 +176,15 @@ class Search extends Component {
                           <h2>All Physicians</h2>
                         </div>
                         {/* Nav tabs */}
-                        <ul className="nav">
+                        {/* <ul className="nav">
                           <li className="active"><a data-toggle="pill" href="#men">Men</a></li>
                           <li><a data-toggle="pill" href="#women">Women</a></li>
                           <li><a data-toggle="pill" href="#children">Children</a></li>
                           <li><a data-toggle="pill" href="#date">16 Sep, 2020</a></li>
-                        </ul>
-                        <a href="javascriptvoid(0)" className="moreFilters color-white btn-bg">
+                        </ul> */}
+                        {/* <a href="javascriptvoid(0)" className="moreFilters color-white btn-bg">
                           More Filters
-                        </a> 
+                        </a>  */}
                       </div>
                         {items.map((i) => ( 
                           <ProfileTab
@@ -213,10 +213,10 @@ class Search extends Component {
 
 
               <div>
-         <button i className=" newsletter-icon btn  newsletter_float" data-toggle="modal"data-target=".bd-example-modal-lg">
+         {/* <button i className=" newsletter-icon btn  newsletter_float" data-toggle="modal"data-target=".bd-example-modal-lg">
       Subscribe
      
-            </button>
+            </button> */}
  
          </div>
 <div className="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
