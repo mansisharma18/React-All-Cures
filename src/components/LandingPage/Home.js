@@ -514,7 +514,7 @@ class Home extends Component {
       </section> */}
       <div>
          
-         <button className="btn newsletter-icon rounded subscribe-btn newsletter_float" data-toggle="modal"data-target=".bd-example-modal-lg">
+         <button id="mobile-subscribe-fixed-btn" className="btn newsletter-icon rounded subscribe-btn newsletter_float" data-toggle="modal"data-target=".bd-example-modal-lg">
       Subscribe
      
             </button>
