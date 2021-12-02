@@ -24,6 +24,14 @@ body {
   text-align: left;
   background-color: #ffe !important;
 }
+#textBtn {
+  color: white;
+  position: relative;
+  right: 10px;
+  font-size: 15px;
+
+  bottom: 0px;
+}
 
 a:focus,
 a:hover {
@@ -1301,7 +1309,20 @@ a.appBtn {
   width: 200px;
   padding: 15px 0;
 }
+button.appBtn {
+  background: #000000;
+  border-radius: 25px;
+  color: #fff;
+  display: inline-block;
+  margin-bottom: 20px;
+  text-align: center;
+  width: 100%;
+  padding: 15px 0;
+}
 
+button.appBtn:hover {
+  color: #f4f4f4;
+}
 .footer-bootm {
   background: #c4c4c4;
 }
@@ -2711,14 +2732,12 @@ div.MuiSelect-root.MuiSelect-select.MuiSelect-selectMenu.MuiInputBase-input.MuiI
   border-radius: 25px;
   background-color: #f1f1f1;
 }
-.bg-review{
-  background-color: rgb(185,218,241);
-
+.bg-review {
+  background-color: rgb(185, 218, 241);
 }
-#comment{
-  width:450px;
+#comment {
+  width: 450px;
 }
-
 
 .overview {
   background-color: #00415e;
@@ -2817,4 +2836,40 @@ div.main-hero:first-child .card {
   background-color: #00415e;
   color: white;
   box-shadow: none;
+}
+
+.alert.pop-up {
+  top: 5%;
+  background: aqua;
+  padding: 1rem 5rem;
+  position: fixed;
+  color: #00414a;
+  left: 0;
+  right: 0;
+  margin-left: auto;
+  margin-right: auto;
+  width: 30%;
+}
+
+.alert.pop-up .timer {
+  height: 10px;
+  background-color: #00415e;
+}
+
+.subscribe-btn {
+  background-color: #000;
+}
+
+.subscribe-btn:hover {
+  background-color: rgb(41, 39, 39);
+  color: #fff;
+}
+
+#mobile-subscribe-fixed-btn {
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  left: auto;
+  font-size: 1rem;
+  display: none;
 }

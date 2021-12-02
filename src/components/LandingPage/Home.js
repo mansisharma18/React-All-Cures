@@ -145,9 +145,7 @@ class Home extends Component {
    "nl_subscription_cures_id":0,
    })
      .then(res => {
-       this.setState({ShowSubmitAlert: true});
-       window.location.reload(true);
-      
+       this.setState({ShowSubmitAlert: true});      
      })
      .catch(err => {
         this.setState({ShowErrorAlert: true});
@@ -442,6 +440,7 @@ class Home extends Component {
          
       </section>
 
+      
 
       <section className="specialists mt-3">
          <div className="container">
@@ -515,11 +514,10 @@ class Home extends Component {
       </section> */}
       <div>
          
-         <button className="btn newsletter-icon rounded btn-article-search  newsletter_float" data-toggle="modal"data-target=".bd-example-modal-lg">
+         <button id="mobile-subscribe-fixed-btn" className="btn newsletter-icon rounded subscribe-btn newsletter_float" data-toggle="modal"data-target=".bd-example-modal-lg">
       Subscribe
      
             </button>
-            
            
          </div>
 <div className="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
@@ -553,24 +551,22 @@ class Home extends Component {
                         <div className="h5">Get <span>doctor-approved</span> health tips, news, and more</div>
                         <div className="form-group relative">
                            <div className="aaa">
-                              <input type="number" name="" onChange={this.setMobile} className="form-control border" placeholder="Please Share Your Mobile Number"/>
+                              <input type="number" name="" onChange={this.setMobile} className="form-control border rounded" placeholder="Please Share Your Mobile Number"/>
                               
                            </div>
                            <div>
                               {/* <a href="/#" className="subscribeBtn">Subscribe</a> */}
                               
                               {
-                                        this.state.ShowSubmitAlert
-                                            ? <SubmitAlert ShowSubmitAlert={this.state.ShowSubmitAlert}/>
-                                            : null
+                                        this.state.ShowSubmitAlert &&
+                                        <Alert className="bg-green border">Subscribe has been saved successfully!</Alert>
                                     }
 
                                     {
-                                        this.state.ShowErrorAlert
-                                            ? <SubmitError ShowErrorAlert={this.state.ShowErrorAlert}/>
-                                            : null
+                                        this.state.ShowErrorAlert &&
+                                        <Alert className="bg-red border">Please Provide Your Mobile Number!</Alert>
                                     }
-                                <button className="bcolor"onClick={( ) => {this.postSubscribtion()}}>
+                                <button className="bcolor rounded py-2" onClick={( ) => {this.postSubscribtion()}}>
                                    Submit
                                 </button>
                            </div>
@@ -597,8 +593,8 @@ function ToggleButton(props) {
        return(
          <>
          <Dropdown>
-           <Dropdown.Toggle  className="header-drop text-capitalize">
-           Hi {props.userName}
+           <Dropdown.Toggle  className="header-drop text-capitalize" id="drop-down">
+        Hi {props.userName} 
            </Dropdown.Toggle>
            <Dropdown.Menu>
              <Dropdown.Item>
