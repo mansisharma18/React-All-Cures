@@ -16,6 +16,7 @@ class Disease extends Component {
     // const params = props.match.params
     this.state = { 
       items: [],
+      comment: [],
       isLoaded: false,
       param : this.props.match.params,
       disease: '',
@@ -61,9 +62,18 @@ class Disease extends Component {
       });
     })
   }
-
+  comments() {                        // For all available blogs "/blogs"
+    fetch(`${backendHost}/rating/target/${this.props.match.params.id}/targettype/2`)
+      .then((res) => res.json())
+      .then((json) => {
+        this.setState({
+          comment: json
+        })
+      });
+  }
   componentDidMount() {
     this.fetchBlog()
+    this.comments()
     // this.regionalPosts()
     // if(this.state.items){
     //   this.fetchCountriesCures(this.state.items)
@@ -198,8 +208,39 @@ class Disease extends Component {
 
                     url = {i.data.url}
                     item = {i.data.items}
+                    props = {this.props}
                   />
                 ))}
+               
+                            <div className="main-hero">
+                            {this.state.comment.map((item,i) => {
+                            return (
+                              <>
+                               {/* <h4 className="card-title">Top Reviews From Globe</h4> */}
+                    <div className="col-4">
+                     
+                    <div className="card my-4 ">
+                   
+                        <div className="card-body">
+                       
+
+                            <h5 className="card-title"> {item.comments}</h5>
+                            <div className="card-info">
+                                <h6 className="card-subtitle mb-2 text-muted">
+                                {item.first_name} {item.last_name}
+                                </h6>
+                               
+                            </div>
+                            <a href="#" className="card-link" id="comment-link">Edit</a>
+                            <a href="#" className="card-link">Delete</a>
+                        </div>
+                    </div>
+                </div>
+                </>
+                )
+              })}
+            </div>
+      
             </div>
           </Col> 
           <Col id="sidebar-wrapper">      

@@ -2317,7 +2317,6 @@ body {
 .App {
   width: 100%;
   max-width: 700px;
-  margin: 2em auto;
 }
 p.lorem-text {
   text-align: justify;
@@ -2725,6 +2724,14 @@ div.MuiSelect-root.MuiSelect-select.MuiSelect-selectMenu.MuiInputBase-input.MuiI
   border-radius: 25px;
   background-color: #f1f1f1;
 }
+.bg-review{
+  background-color: rgb(185,218,241);
+
+}
+#comment{
+  width:450px;
+}
+
 
 .overview {
   background-color: #00415e;
