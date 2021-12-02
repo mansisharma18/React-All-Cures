@@ -631,8 +631,8 @@ function ToggleButton(props) {
        return(
          <>
          <Dropdown>
-           <Dropdown.Toggle  className="header-drop text-capitalize">
-           Hi {props.userName}
+           <Dropdown.Toggle  className="header-drop text-capitalize" id="drop-down">
+        Hi {props.userName} 
            </Dropdown.Toggle>
            <Dropdown.Menu>
              <Dropdown.Item>
