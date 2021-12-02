@@ -21,17 +21,17 @@ const NotAuthorizedPage = (props) => {
     }, [count])
     return(
         <>  
-            <Header/>
+            <Header history={history}/>
             <div className='not-found-page'>
                 <div className="container mt-3 mb-5">
                     <div className="text-center error-404">403</div>
                     <div className="d-flex text-center justify-content-center">
                         {/* <div className="error-404">404</div> */}
-                        <div className="h3 not-found-msg">
+                        <div className="h3 not-found-msg text-center">
                             Oops...
                             <div>You don't have</div> 
                             the authorization 
-                            <div>for that page.</div>
+                            <div>for that Web Page.</div>
                         </div>
                     </div>
                     <div className="h4 text-center">Redirecting to Cures in {count}....</div>

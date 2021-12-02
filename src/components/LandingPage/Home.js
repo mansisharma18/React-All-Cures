@@ -436,44 +436,10 @@ class Home extends Component {
 
 
 
-      <section>
-      <div className="container">
-            <div className="row">
-            <div class="tab-nav">
-               <div class="comman-heading">
-                  <div class="h4 mt-4">
-                     Recent Articles
-                  </div>
-               </div>
-               {/* <ul>
-                  <li role="presentation" class="active">
-                     <button className="btn" 
-                        onClick={(e) => this.setState({
-                           articleFilter: 'recent'
-                        })}
-                        // role="tab" 
-                        // data-toggle="tab"
-                     >Recent</button>
-                  </li>
-                  <li role="presentation">
-                     <button className="btn" onClick={this.articlesFilterButton('oldest')}>Oldest</button>
-                  </li>
-                  <li role="presentation">
-                     <button className="btn">Most Rated</button>
-                  </li>
-               </ul> */}
-            </div>
-               {/* <div className="comman-heading">
-                  <div className="h4 float-left mr-4">Recent Articles</div> */}
-                {/* <span><Link className="btn btn-article-search color-white" to="/cures">All Articles</Link></span> */}
-
-               {/* </div> */}
-            </div>
-            <div className="row">
+      <section className="trending-section">
+      
          <ArticlePreview articleFilter = {this.state.articleFilter}/>
-         </div>
-           
-         </div>
+         
       </section>
 
 
@@ -549,7 +515,7 @@ class Home extends Component {
       </section> */}
       <div>
          
-         <button i className=" newsletter-icon btn  newsletter_float" data-toggle="modal"data-target=".bd-example-modal-lg">
+         <button className="btn newsletter-icon rounded btn-article-search  newsletter_float" data-toggle="modal"data-target=".bd-example-modal-lg">
       Subscribe
      
             </button>

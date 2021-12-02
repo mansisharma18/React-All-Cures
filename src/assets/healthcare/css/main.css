@@ -2654,8 +2654,8 @@ a.text-underline:hover {
 .newsletter_float {
   position: fixed;
 
-  bottom: 40px;
-  right: 40px;
+  bottom: 0px;
+  right: 0px;
   background-color: #3ad0ff;
   color: #fff;
   border-radius: 50px;
@@ -2806,6 +2806,8 @@ div.main-hero:first-child .card {
   background-color: #ffeeee;
 }
 
-/* div.main-hero:nth-of-type() .card {
-  display: none;
-} */
+.trending-section .btn:focus {
+  background-color: #00415e;
+  color: white;
+  box-shadow: none;
+}
