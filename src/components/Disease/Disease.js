@@ -78,6 +78,12 @@ class Disease extends Component {
     // if(this.state.items){
     //   this.fetchCountriesCures(this.state.items)
     // }
+    // var rating = 4
+
+    // console.log(document.getElementById('avg-rating'))
+    // for(var i =0 ; i<a; i++){
+    //   document.getElementById('avg-rating').children[i].classList.add('checked')  
+    //   }
   }
 
   componentDidUpdate(prevProps){
@@ -211,7 +217,14 @@ class Disease extends Component {
                     props = {this.props}
                   />
                 ))}
-               
+              
+              <div className="average-rating m-auto" id="avg-rating">
+                <span class="fa fa-star fa-2x"></span>
+                <span class="fa fa-star fa-2x"></span>
+                <span class="fa fa-star fa-2x"></span>
+                <span class="fa fa-star fa-2x"></span>
+                <span class="fa fa-star fa-2x"></span>
+              </div>
                             <div className="main-hero">
                             {this.state.comment.map((item,i) => {
                             return (

@@ -68,7 +68,7 @@ const Test = (props) => {
       }
       else if(response.data.registration_id){
         // setSuccess(true);
-        Cookies.set('uName', response.data.first_name)
+        Cookies.set('uName', response.data.first_name, {expires: 365})
         setTimeout(() => {
           window.location.reload()
         }, 500);
@@ -113,7 +113,7 @@ const Test = (props) => {
     axios.post(`${backendHost}/login?cmd=login&email=${email}&psw=${signInpassword}&rempwd=on`)
     .then(response => {
       if(response.data.registration_id){
-        Cookies.set('uName', response.data.first_name)
+        Cookies.set('uName', response.data.first_name, { expires: 365 })
         console.log(response.data)
         setTimeout(() => {
           window.location.reload()

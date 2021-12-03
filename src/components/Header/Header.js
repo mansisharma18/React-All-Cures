@@ -112,12 +112,17 @@ import Autocomplete from '@mui/material/Autocomplete';
             });
     
          logout = async e => {
-            const res = await fetch(`${backendHost}/LogoutActionController`, {
+            await fetch(`${backendHost}/LogoutActionController`, {
                method: "POST"
-            });
-            setTimeout(() => {
-               window.location.reload()
-            }, 1000);
+            }).then(res => {
+               Cookies.remove('uName')
+               setTimeout(() => {
+                  window.location.reload()
+               }, 500);
+            }).catch(res => {
+               console.log(res.data)
+            })
+            
          }
 
    onSearch = (e) => {

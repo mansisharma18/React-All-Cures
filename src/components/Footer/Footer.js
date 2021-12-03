@@ -20,6 +20,7 @@ const Footer = () => {
    }
 
    function postSubscribtion() {
+      if(mobile.length === 10){
       setafterSubmitLoad(true)
       axios.post(`${backendHost}/users/subscribe/${mobile}`, {
          "nl_subscription_disease_id": 1,
@@ -37,7 +38,10 @@ const Footer = () => {
         .catch(err => {
          setafterSubmitLoad(false)
             Alert('Some Error Occurred. Please try again later.')
-      })   
+      })  
+   } else{
+      Alert('Please enter a valid number.')
+   } 
    }
 
         return(
@@ -138,7 +142,7 @@ const Footer = () => {
                      <h1 className="helth-app">
                         <div className="h6">Subscribe to our Newsletter</div>
                         <form onSubmit={(e) => postSubscribtion()}>
-                        <input className="rounded form-input" placeholder="Enter you number" value={mobile} onChange={(e) => setMobile(e.target.value)} required/>
+                        <input className="rounded form-input" placeholder="Enter you number" type="number" value={mobile} onChange={(e) => setMobile(e.target.value)} required/>
                         <button className="btn appBtn rounded" type="submit" >Subscribe</button>
                         {/* <a href="/#" className="appBtn">Google Play</a> */}
                         </form>
