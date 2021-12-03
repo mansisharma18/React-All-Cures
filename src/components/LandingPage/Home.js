@@ -180,17 +180,19 @@ class Home extends Component {
       await fetch(`${backendHost}/LogoutActionController`, {
          method: "POST"
       }).then(res => {
-         if(res.data === '/cures/Login.html?msg=You have successfully logged out.'){
-            Cookies.remove('uName')
-            setTimeout(() => {
-               window.location.reload()
-            }, 1000);
-         }
-         else {
-            console.log('Not able to logout')
-         }
+         // if(res.data === '/cures/Login.html?msg=You have successfully logged out.'){
+         //    Cookies.remove('uName')
+         //    // setTimeout(() => {
+         //       window.location.reload()
+         //    // }, 1000);
+         // }
+         console.log(res)
+      // }
+      //    else {
+      //       console.log('Not able to logout')
+      //    }
       }).catch(res => {
-         console.log(res.data)
+         console.log('Not able to logout')
       })
    }
 
