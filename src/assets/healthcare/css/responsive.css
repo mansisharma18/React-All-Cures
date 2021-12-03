@@ -399,6 +399,14 @@
 }
 
 @media only screen and (max-width: 768px) {
+  #mobile-subscribe-fixed-btn {
+    display: none;
+  }
+
+  .alert.pop-up {
+    width: 90%;
+    padding: 0.6rem;
+  }
   .nav {
     display: none;
   }

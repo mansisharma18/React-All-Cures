@@ -2769,6 +2769,17 @@ div.MuiSelect-root.MuiSelect-select.MuiSelect-selectMenu.MuiInputBase-input.MuiI
   height: 100vh;
 }
 
+.loader.main.on-submit-loading {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 1111;
+  background-color: antiquewhite;
+  opacity: 0.5;
+}
+
 .ad-spac {
   height: 200px;
 }
@@ -2833,27 +2844,37 @@ div.main-hero:first-child .card {
 }
 
 .trending-section .btn:focus {
-  background-color: #00415e;
-  color: white;
   box-shadow: none;
 }
 
 .alert.pop-up {
-  top: 5%;
-  background: aqua;
+  top: 3%;
   padding: 1rem 5rem;
   position: fixed;
-  color: #00414a;
   left: 0;
   right: 0;
   margin-left: auto;
   margin-right: auto;
   width: 30%;
+  z-index: 1100;
 }
 
 .alert.pop-up .timer {
-  height: 10px;
-  background-color: #00415e;
+  border-bottom: 5px solid black;
+  width: 100%;
+  bottom: 0;
+  position: absolute;
+  left: 0;
+  animation: time 5s linear;
+}
+
+@keyframes time {
+  0% {
+    width: 100%;
+  }
+  100% {
+    width: 0%;
+  }
 }
 
 .subscribe-btn {
@@ -2871,5 +2892,4 @@ div.main-hero:first-child .card {
   right: 0;
   left: auto;
   font-size: 1rem;
-  display: none;
 }

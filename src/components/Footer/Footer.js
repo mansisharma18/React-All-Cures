@@ -9,28 +9,34 @@ const Footer = () => {
    const [showAlert, setShowAlert] = useState(false)
    const [alertMsg, setAlertMsg] = useState(true)
    const [mobile, setMobile] = useState('')
+   const [afterSubmitLoad, setafterSubmitLoad] = useState(false)
 
    function Alert(msg){
       setShowAlert(true)
       setAlertMsg(msg)
       setTimeout(() => {
          setShowAlert(false)
-      }, 20000);
+      }, 5000);
    }
 
    function postSubscribtion() {
+      setafterSubmitLoad(true)
       axios.post(`${backendHost}/users/subscribe/${mobile}`, {
-      "nl_subscription_disease_id": 1,
-      "nl_sub_type":1,
-      "nl_subscription_cures_id":0,
-      })
-        .then(res => {
-           res===1 &&
-         Alert('You have successfully subscribed to our Newsletter.')
-         setMobile('')
+         "nl_subscription_disease_id": 1,
+         "nl_sub_type":1,
+         "nl_subscription_cures_id":0,
+      }).then(res => {
+         setafterSubmitLoad(false)
+            if(res.data === 1){
+               Alert('You have successfully subscribed to our Newsletter.')
+            } else {
+               Alert('Some Error Occurred. Please try again later.')
+            }
+            setMobile('')
         })
         .catch(err => {
-           Alert('Some Error Occurred. Please try again later.')
+         setafterSubmitLoad(false)
+            Alert('Some Error Occurred. Please try again later.')
       })   
    }
 
@@ -38,10 +44,17 @@ const Footer = () => {
             <div>
                {
                   showAlert &&
-                  <div className="alert pop-up border-bottom">
+                  <div className="alert alert-success pop-up border-bottom">
                      <div className="h5 mb-0 text-center">{alertMsg}</div>
+                     <div className="timer"></div>
                   </div>
                }
+               {
+                afterSubmitLoad &&
+                <div className="loader main on-submit-loading">
+                    <i className="fa fa-spinner fa-spin fa-10x" />
+                </div>
+            }
             <section className="footer">
          <div className="container">
             <div className="row">

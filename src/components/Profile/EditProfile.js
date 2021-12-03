@@ -35,7 +35,21 @@ const EditProfile = (props) => {
     const [hospitalList, setHospitalList] = useState([])
     const [submitAlert, setSubmitAlert] = useState(false)
 
+    const [showAlert, setShowAlert] = useState(false)
+    const [alertMsg, setAlertMsg] = useState(true)
+
+    const [afterSubmitLoad, setafterSubmitLoad] = useState(false)
+
+    function Alert(msg){
+      setShowAlert(true)
+      setAlertMsg(msg)
+      setTimeout(() => {
+         setShowAlert(false)
+      }, 5000);
+    }
+
     const formSubmit = (e) => {
+      setafterSubmitLoad(true)
         e.preventDefault()
         axios.post(`${backendHost}/doctors/updateprofile`, {
             "docid": item.docid,
@@ -52,14 +66,17 @@ const EditProfile = (props) => {
             "about": about
         })
         .then(res => {
-            setSubmitAlert(true)
-            setTimeout(() => {
-              setSubmitAlert(false)
-            }, 5000);            
+          setafterSubmitLoad(false)
+          if(res.data === 1){
+            Alert('Updated your profile successfully.')   
+          } else {
+            Alert('Some error occured. Try again later')
+          }
             props.fetchDoctor(props.id)
         })
         .catch(res => {
-            console.error(res)
+          setafterSubmitLoad(false)
+          Alert(`Some error occured. Try again later ${res}`)
         })
     }
 
@@ -80,12 +97,27 @@ const EditProfile = (props) => {
     
     return (
       <>
+      {/* Alert Pop Up */}
+        {
+          showAlert &&
+            <div className="alert alert-success pop-up border-bottom">
+              <div className="h5 mb-0 text-center">{alertMsg}</div>
+              <div className="timer"></div>
+            </div>
+        }
+        {
+                afterSubmitLoad &&
+                <div className="loader main on-submit-loading">
+                    <i className="fa fa-spinner fa-spin fa-10x" />
+                </div>
+            }
       <Modal
         {...props}
         size="lg"
         aria-labelledby="contained-modal-title-vcenter"
         centered
       >
+
           <form onSubmit={formSubmit}>
         <Modal.Header className="p-4 mb-4" closeButton style={{backgroundColor: '#b9daf1'}}>
           <Modal.Title id="contained-modal-title-vcenter">
