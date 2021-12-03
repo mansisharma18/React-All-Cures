@@ -136,7 +136,10 @@ class Home extends Component {
          isLoaded: true,
          items: json,
        });
-     });
+     })
+     .catch(err => 
+      console.log(err)
+  )
  }
    
  postSubscribtion() {

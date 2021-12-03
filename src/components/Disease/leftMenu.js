@@ -18,14 +18,20 @@ const Side = props => {
           .then((res) => res.json())
           .then((json) => {
             setItems(json)
-          });
+          })
+          .catch(err => 
+            console.log(err)
+        )
       }
       function  comments() {                        // For all available blogs "/blogs"
         fetch(`${backendHost}/rating/target/${props.id}/targettype/2`)
           .then((res) => res.json())
           .then((json) => {
             setCommentItems(json)
-          });
+          })
+          .catch(err => 
+            console.log(err)
+        )
       }
       useEffect(() => {
           comments()

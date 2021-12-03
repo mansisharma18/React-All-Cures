@@ -29,6 +29,9 @@ const Comment = ({refreshComments, docid}) => {
             .then(err => {
                 console.log(err);
             })
+            .catch(err => 
+                console.log(err)
+            )
             
              refreshComments()
         }else {

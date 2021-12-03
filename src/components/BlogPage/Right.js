@@ -17,7 +17,10 @@ const Side = (props) => {
               setisLoaded(true)
               setItems(json)
             
-          });
+          })
+          .catch(err => 
+            console.log(err)
+        )
       }
       function allPosts() {                        // For all available blogs "/blogs"
         fetch(`${backendHost}/article/allkv`)
@@ -26,7 +29,9 @@ const Side = (props) => {
             console.log(json);
             setisLoaded(true)
             setItems(json.reverse())
-          });
+          })
+          .catch(res => console.log(res))
+          
       }
       useEffect(() => {
           allPosts()

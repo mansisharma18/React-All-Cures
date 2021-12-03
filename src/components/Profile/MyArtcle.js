@@ -34,7 +34,10 @@ export default class Blogpage extends Component{
               isLoaded: true,
               items: json,
             });
-          });
+          })
+          .catch(err => 
+            console.log(err)
+        )
       }
       
       diseasePosts(type){                     // For specific blogs like "/blogs/diabetes"
@@ -46,7 +49,10 @@ export default class Blogpage extends Component{
               isLoaded: true,
               items: json,
             });
-          });
+          })
+          .catch(err => 
+            console.log(err)
+        )
         }
         else {
           fetch(`${backendHost}/isearch/${this.props.match.params.type}`)
@@ -55,7 +61,10 @@ export default class Blogpage extends Component{
             this.setState({
               isLoaded: true,
               items: json,
-            });
+            })
+            .catch(err => 
+              console.log(err)
+          )
           });
         }
       }
@@ -67,7 +76,10 @@ export default class Blogpage extends Component{
           this.setState({
             regionPostsLoaded: true,
             items: json,
-          });
+          })
+          .catch(err => 
+            console.log(err)
+        )
         })
       }
 

@@ -52,6 +52,9 @@ class Disease extends Component {
           regions: json
         })
       })
+      .catch(err => 
+        console.log(err)
+    )
   }
 
   getRating = (ratingId) => {
@@ -75,6 +78,9 @@ class Disease extends Component {
         regionalPost: json,
       });
     })
+    .catch(err => 
+      console.log(err)
+  )
   }
   comments() {                        // For all available blogs "/blogs"
     fetch(`${backendHost}/rating/target/${this.props.match.params.id}/targettype/2`)
@@ -83,7 +89,10 @@ class Disease extends Component {
         this.setState({
           comment: json
         })
-      });
+      })
+      .catch(err => 
+        console.log(err)
+    )
   }
   componentDidMount() {
     this.fetchBlog()
