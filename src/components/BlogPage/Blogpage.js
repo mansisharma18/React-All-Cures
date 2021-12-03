@@ -29,8 +29,13 @@ export default class Blogpage extends Component{
             this.setState({
               isLoaded: true,
               items: json.reverse(),
+              
             });
+            
+            
           });
+          
+          
       }
       
       diseasePosts(type){                     // For specific blogs like "/blogs/diabetes"
@@ -43,6 +48,7 @@ export default class Blogpage extends Component{
               items: json.reverse(),
             });
           });
+          
         }
         else {
         // if(type !== undefined){
@@ -53,8 +59,12 @@ export default class Blogpage extends Component{
               isLoaded: true,
               items: json.reverse(),
             });
+            
           });
+        
+          
         } 
+        
         // else {
         //   this.allPosts()
         // }
@@ -69,6 +79,7 @@ export default class Blogpage extends Component{
             items: json.reverse(),
           });
         })
+        .catch(err => console.log(err))
       }
 
       componentDidMount() {

@@ -1010,7 +1010,7 @@ a.appointmentBtn {
   text-align: center;
   position: absolute;
   width: 100%;
-  bottom: -187px;
+  bottom: -240px;
   transition: all 0.4s ease-in-out;
   -webkit-transition: all 0.4s ease-in-out;
 }
@@ -2249,10 +2249,6 @@ input {
 
 .outer.right-panel-active .overlay-right {
   transform: translateX(20%);
-}
-
-.modal-content {
-  border-radius: 17px;
 }
 
 .ads {

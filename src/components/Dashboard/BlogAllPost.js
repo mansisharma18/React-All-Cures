@@ -52,7 +52,10 @@ export default class App extends Component {
                    
                     postData
                 })
-            });
+            })
+            .catch(err => 
+                console.log(err)
+            )
     }
     handlePageClick = (e) => {
         const selectedPage = e.selected;

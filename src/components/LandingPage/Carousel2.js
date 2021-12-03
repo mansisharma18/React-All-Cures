@@ -58,7 +58,10 @@ export default class Carousel2 extends Component {
             isLoaded: true,
             items: json.map.DoctorDetails.myArrayList,
           })            
-        });
+        })
+        .catch(err => 
+          console.log(err)
+      )
     }
     
     render() {

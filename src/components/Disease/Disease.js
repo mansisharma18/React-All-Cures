@@ -9,6 +9,7 @@ import Sidebar from "./leftMenu";
 import SidebarRight from "./RightMenu";
 import { backendHost } from '../../api-config';
 import Dropdown from 'react-bootstrap/Dropdown';
+import axios from 'axios';
 // import CenterWell from './CenterWell'
 class Disease extends Component {
   constructor(props) {
@@ -18,6 +19,7 @@ class Disease extends Component {
       items: [],
       comment: [],
       isLoaded: false,
+      ratingValue: '',
       param : this.props.match.params,
       disease: '',
       regions: '',
@@ -50,6 +52,21 @@ class Disease extends Component {
           regions: json
         })
       })
+      .catch(err => 
+        console.log(err)
+    )
+  }
+
+  
+
+  getRating = (ratingId) => {
+    axios.get(`${backendHost}/rating/target/${ratingId}/targettype/2/avg`)
+    .then(res => {
+      this.setState({
+        ratingValue: res.data
+      })
+    }) 
+    .catch(err => console.log(err))
   }
 
   regionalPosts(){
@@ -61,6 +78,9 @@ class Disease extends Component {
         regionalPost: json,
       });
     })
+    .catch(err => 
+      console.log(err)
+  )
   }
   comments() {                        // For all available blogs "/blogs"
     fetch(`${backendHost}/rating/target/${this.props.match.params.id}/targettype/2`)
@@ -69,11 +89,25 @@ class Disease extends Component {
         this.setState({
           comment: json
         })
-      });
+      })
+      .catch(err => 
+        console.log(err)
+    )
+  }
+
+  showRating = (val) => {
+    console.log(document.getElementById('avg-rating'), val)
+    if(document.getElementById('avg-rating')){
+      
+    for(let i=0 ; i<val; i++){
+      document.getElementById('avg-rating').children[i].classList.add('checked')  
+    }
+    }
   }
   componentDidMount() {
     this.fetchBlog()
     this.comments()
+    this.getRating(this.props.match.params.id)
     // this.regionalPosts()
     // if(this.state.items){
     //   this.fetchCountriesCures(this.state.items)
@@ -81,9 +115,6 @@ class Disease extends Component {
     // var rating = 4
 
     // console.log(document.getElementById('avg-rating'))
-    // for(var i =0 ; i<a; i++){
-    //   document.getElementById('avg-rating').children[i].classList.add('checked')  
-    //   }
   }
 
   componentDidUpdate(prevProps){
@@ -100,6 +131,7 @@ class Disease extends Component {
 
   render() { 
     var { isLoaded,items } = this.state;
+    
     if(!isLoaded) {
     return (
       <>
@@ -143,6 +175,13 @@ class Disease extends Component {
                 {/* <Breadcrumb.Item active>{items.title}</Breadcrumb.Item> */}
               </Breadcrumb>
               <div className="d-flex justify-content-end mb-2">
+              <div className="average-rating mr-3 mt-2" id="avg-rating">
+                <span class="fa fa-star "></span>
+                <span class="fa fa-star "></span>
+                <span class="fa fa-star "></span>
+                <span class="fa fa-star "></span>
+                <span class="fa fa-star "></span>
+              </div>
               { this.state.regions?
                 this.state.regions.map(i => (
                   <Dropdown>
@@ -218,13 +257,11 @@ class Disease extends Component {
                   />
                 ))}
               
-              <div className="average-rating m-auto" id="avg-rating">
-                <span class="fa fa-star fa-2x"></span>
-                <span class="fa fa-star fa-2x"></span>
-                <span class="fa fa-star fa-2x"></span>
-                <span class="fa fa-star fa-2x"></span>
-                <span class="fa fa-star fa-2x"></span>
-              </div>
+              
+              {
+                this.state.ratingValue?
+                this.showRating(this.state.ratingValue): null
+              }
                             <div className="main-hero">
                             {this.state.comment.map((item,i) => {
                             return (
@@ -256,6 +293,7 @@ class Disease extends Component {
             </div>
           </Col> 
           <Col id="sidebar-wrapper">      
+            <SidebarRight title={items.title} history={this.props.history} />
           </Col>
         </Row>
       <Footer/>

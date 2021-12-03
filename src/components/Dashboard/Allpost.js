@@ -26,6 +26,9 @@ const AllPost = ({ id, title, w_title, dis }) => {
         .then(err => {
             console.log(err);
         })
+        .catch(err => 
+            console.log(err)
+        )
     }
 
     return (

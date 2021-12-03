@@ -37,7 +37,10 @@ class SearchName extends Component {
           items: json.map.DoctorDetails.myArrayList,
           acPerm: Cookies.get('acPerm'),
         })            
-      });
+      })
+      .catch(err => 
+        console.log(err)
+    )
   }
 
   fetchDiseaseList(){
@@ -49,6 +52,9 @@ class SearchName extends Component {
           speciality: diseaseData
       });
       })
+      .catch(err => 
+        console.log(err)
+    )
   }
 
     componentDidMount() {

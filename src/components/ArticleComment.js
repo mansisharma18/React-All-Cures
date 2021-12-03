@@ -9,9 +9,21 @@ import ReactStars from "react-rating-stars-component";
  
 const Comment = ({refreshComments,article_id}, props) => {
     const [cmtText,setCmtText] = React.useState('')
-    const [succAlert, setAlert] = useState('')
     const [show, setShow] = useState(false);
     const [ratingValue, setRatingValue] = React.useState([]);
+    const [showAlert, setShowAlert] = useState(false)
+    const [alertMsg, setAlertMsg] = useState(true)
+
+    const [afterSubmitLoad, setafterSubmitLoad] = useState(false)
+
+    function Alert(msg){
+      setShowAlert(true)
+      setAlertMsg(msg)
+      setTimeout(() => {
+         setShowAlert(false)
+      }, 5000);
+    }
+    
     // const [submitAlert, setAlert] = useState(false)
    
 
@@ -20,45 +32,48 @@ const Comment = ({refreshComments,article_id}, props) => {
   
     
     const postComment = (e) => {
+      setafterSubmitLoad(true)
+
         e.preventDefault()
 
         if(cmtText !== '') {
             axios.post(`${backendHost}/DoctorRatingActionController?comments=${cmtText}&ratedbyid=${Cookies.get("acPerm").split('|')[0]}&ratedbytype=${Cookies.get("acPerm").split('|')[1]}&targetid=${article_id}&targetTypeid=2&cmd=rateAsset`)
             .then(res => {
-                setAlert(true)
-                setTimeout(() => {
-                    setAlert(false)
-                }, 8000);
-                // window.location.reload(false);
-                 
-            })
-            
-            .then(err => {
-                console.log(err);
+                setafterSubmitLoad(false)
+                Alert('You have added your comment successfully!')
             })
             .catch(err =>{
+              setafterSubmitLoad(false)
+              Alert('Some error occured! Please try again later')
                 console.log(err);
             })
             refreshComments()
             
         }else {
-            alert('Enter comment')
+          setafterSubmitLoad(false)
+            Alert('Enter comment')
         }
         
         
     }
     const postRating = (rating) => {
-
+        setafterSubmitLoad(true)
         axios.post(`${backendHost}/DoctorRatingActionController?ratingVal=${rating}&ratedbyid=${Cookies.get("acPerm").split('|')[0]}&ratedbytype=${Cookies.get("acPerm").split('|')[1]}&targetid=${article_id}&targetTypeid=2&cmd=rateAsset`)
         // .then(res => console.log(res)
         .then(res => {
-          setAlert(true)
-        
-          setTimeout(() => {
-              setAlert(false)
-          }, 4000);
+          if(res.data === 1){
+          setafterSubmitLoad(false)
+          Alert('You have added your comment successfully!')
+          } else {
+            
+          setafterSubmitLoad(false)
+          Alert('Some error occured! Please try again later.')
+          }
       })
-      .catch(res => console.log(res))
+      .catch(res => {
+        setafterSubmitLoad(false)
+        Alert('Some error occured! Please try again later.')
+      })
         
         
       }
@@ -79,25 +94,33 @@ const Comment = ({refreshComments,article_id}, props) => {
     // console.log('chekeing: ', props.article_id)
     return (
         <>
-        <Button variant="primary" onClick={handleShow}>
-        Write A review For This Cure
+        {
+          showAlert &&
+            <div className="alert alert-success pop-up border-bottom">
+              <div className="h5 mb-0 text-center">{alertMsg}</div>
+              <div className="timer"></div>
+            </div>
+        }
+        {
+                afterSubmitLoad &&
+                <div className="loader main on-submit-loading">
+                    <i className="fa fa-spinner fa-spin fa-10x" />
+                </div>
+            }
+        <Button className="ml-4 btn-article-search" onClick={handleShow}>
+        Review This Cure
       </Button>
 
-      <Modal show={show} onHide={handleClose}>
+      <Modal show={show} onHide={handleClose} className="rounded mt-5" >
         <Modal.Header className="bg-review py-3" closeButton>
           <Modal.Title className="pl-4">Review</Modal.Title>
         </Modal.Header>
         
-        <Modal.Body>
+        <Modal.Body className="rounded">
         <h3 className="pl-4">Overall Rating</h3>
         <div  className="pl-4">
         {/* <ArticleRating article_id={props.article_id}/><hr/>  */}
         <ReactStars {...thirdExample} />
-        {
-      succAlert?
-          <Alert variant="success" className="h6 mx-3">You rate this cure successfully!!</Alert>
-          : null
-  }
         </div>
         
         <div className="pl-4">
@@ -109,11 +132,6 @@ const Comment = ({refreshComments,article_id}, props) => {
                     }}
                     className="form-control" id="comment" cols="40" rows="4"></textarea>
                     
-                    {
-                            succAlert?
-                                <Alert variant="success" className="h6 mx-3">comment  successfully,,,Comment gone for Approval Stage ..!!</Alert>
-                                : null
-                        }
                     <div className="my-4">
                         <button type="submit" className="btn btn-primary">Submit</button>
                     </div>

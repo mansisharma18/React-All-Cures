@@ -28,7 +28,10 @@ const Side = (props) => {
           .then((json) => {
             setisLoaded(true)
             setItems(json.reverse())
-          });
+          })
+          .catch(err => 
+            console.log(err)
+        )
       }
       useEffect(() => {
           allPosts()

@@ -136,39 +136,44 @@ class Home extends Component {
          isLoaded: true,
          items: json,
        });
-     });
+     })
+     .catch(err => 
+      console.log(err)
+  )
  }
    
  postSubscribtion() {
-    this.setState({
-       afterSubmitLoad: true
-    })
-   axios.post(`${backendHost}/users/subscribe/${this.state.mobile}`, {
-   "nl_subscription_disease_id": 1,
-   "nl_sub_type":1,
-   "nl_subscription_cures_id":0,
-   })
-     .then(res => {
+    if(this.state.mobile.length === 10){
       this.setState({
-         afterSubmitLoad: false
+         afterSubmitLoad: true
       })
-      if(res.data === 1){
-         this.Alert('You have successfully subscribed to our Newsletter')
-      }
-      else {
-         this.Alert('Some error occured! Please try again later.')
-      }
+     axios.post(`${backendHost}/users/subscribe/${this.state.mobile}`, {
+     "nl_subscription_disease_id": 1,
+     "nl_sub_type":1,
+     "nl_subscription_cures_id":0,
      })
-     .catch(err => {
-      this.setState({
-         afterSubmitLoad: false
-      })
-      this.Alert('Some error occured! Please try again later.')
-      
-
-   })
-
-   
+       .then(res => {
+        this.setState({
+           afterSubmitLoad: false
+        })
+        if(res.data === 1){
+           this.Alert('You have successfully subscribed to our Newsletter')
+        }
+        else {
+           this.Alert('Some error occured! Please try again later.')
+        }
+       })
+       .catch(err => {
+        this.setState({
+           afterSubmitLoad: false
+        })
+        this.Alert('Some error occured! Please try again later.')
+        
+  
+     })
+    } else {
+       this.Alert('Please enter a valid number!')
+    }
  }
 
   handleChange = e => 
@@ -440,7 +445,7 @@ class Home extends Component {
                      <div className="h4 mt-4">Choose by Category</div>
                   </div>
                   {/* <!-- Nav tabs --> */}
-                  <ul>
+                  {/* <ul>
                      <li role="presentation" className="active"><a href="#Men" aria-controls="Men" role="tab" data-toggle="tab">Men</a>
                      </li>
                      <li role="presentation"><a href="#Women" aria-controls="Women" role="tab" data-toggle="tab">Women</a>
@@ -449,7 +454,7 @@ class Home extends Component {
                      </li>
                      
                      
-                  </ul>
+                  </ul> */}
                </div>
                   <Carousel1 city={this.state.searchParams.city}/>
           </div>
