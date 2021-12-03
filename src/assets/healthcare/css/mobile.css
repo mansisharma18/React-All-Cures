@@ -456,7 +456,7 @@
   }
 
   .article-search {
-    margin: 20px 0px 0px -5px;
+    margin: -5px 0px 0px -5px;
   }
   .btn-article-search {
     background-color: #00415e;
@@ -493,7 +493,7 @@
     text-align: left;
   }
   #Article {
-    font-size: 13px;
+    font-size: 11px;
     padding: 3px;
   }
 
