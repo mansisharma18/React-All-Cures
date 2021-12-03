@@ -11,16 +11,17 @@ const ProfileTab = ({ setModalShow, docid, rowno, name, pSpl, hospital, state, c
                   {/* <img src={Special1} alt="special-1"/>  */}
                   <i className="fas fa-user-md fa-6x"></i>
                   </div>
-              <div className="col-md-6 col-sm-12">
+              <div className="col-md-12 col-sm-12">
                 <div className="detail-l">
-                  <div className="rating"> <span className="icon-star-1" id="iconStar"></span>
-                    <p id="rate">4.2</p>
+                  <div className="rating"> <span className="icon-star-1"></span>
+                    <p>4.2</p>
                   </div>
-                  <div className="name" id="nameDoc">
+                  <div className="name">
                   <h2>{name}</h2>
                   <h3>{pSpl}</h3>           {/* Primary Specialization */}
-                  <h4 id="head4">{hospital} {state} {country}</h4>
-                    {/* <p>“Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc sodales dolor in ante fermentum, vitae varius turpis imperdiet.”</p> */}
+                  <h4>{hospital} {state} {country}</h4>
+                  <h2>About {name}</h2>
+                    <p>“Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc sodales dolor in ante fermentum, vitae varius turpis imperdiet.”“Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc sodales dolor in ante fermentum, vitae varius turpis imperdiet.”</p>
                   </div>
                   <div className="btn-group"> 
                     {
@@ -28,42 +29,37 @@ const ProfileTab = ({ setModalShow, docid, rowno, name, pSpl, hospital, state, c
                         <Link to={ `/profile/${rowno}` } className="btn-bg profile-btn color-white" id="profile">
                          Visit Profile
                         </Link>
-                      : <button 
-                          className="btn btn-bg profile-btn color-white text-capitalize font-weight-normal" id="profile"
+                      : <button id="profile"
+                          className="btn btn-bg profile-btn color-white text-capitalize font-weight-normal" 
                           onClick={() => setModalShow(true)}
                         >
-                         Profile
+                         Visit Profile
                         </button>
                     }
                     {/* <Link to={ `/profile/${docid}` } className="btn-bg profile-btn color-white">
                         Profile
                     </Link>  */}
-                    {/* <Link to="#" className="bg-gray video-btn color-light-gray">Video Consult</Link> */}
-                     </div>
+                    {/* <Link to="#" className="bg-gray video-btn color-light-gray">Video Consult</Link>  */}
+                    </div>
                 </div>
               </div>
-              <div className="col-md-6 col-sm-12">
-                <div className="detail-r"id="about">
-                <div className="name" >
-                <h2> About {name}</h2>
-                </div>
-                <p id="aboutDoc">“Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc sodales dolor in ante fermentum, vitae varius turpis imperdiet.”</p>
-
-                  {/* <ul className="mon coman-ul">
+              {/* <div className="col-md-6 col-sm-12">
+                <div className="detail-r">
+                  <ul className="mon coman-ul">
                     <p>Mon</p>
                     <li><Link to="#" className="active">9.00 am</Link></li>
                     <li><Link to="#">10.00 am</Link></li>
                     <li><Link to="#">1.00 pm</Link></li>
                     <li><Link to="#">2.00 pm</Link></li>
-                  </ul> */}
-                  {/* <ul className="tue coman-ul">
+                  </ul>
+                  <ul className="tue coman-ul">
                     <p>Tue</p>
                     <li><Link to="#">9.00 am</Link></li>
                     <li><Link to="#">10.00 am</Link></li>
                     <li><Link to="#">1.00 pm</Link></li>
                     <li><Link to="#">2.00 pm</Link></li>
-                  </ul> */}
-                  {/* <ul className="wed coman-ul">
+                  </ul>
+                  <ul className="wed coman-ul">
                     <p>Wed</p>
                     <li><Link to="#">9.00 am</Link></li>
                     <li><Link to="#">10.00 am</Link></li>
@@ -83,9 +79,9 @@ const ProfileTab = ({ setModalShow, docid, rowno, name, pSpl, hospital, state, c
                     <li><Link to="#">10.00 am</Link></li>
                     <li><Link to="#">1.00 pm</Link></li>
                     <li><Link to="#">2.00 pm</Link></li>
-                  </ul> */}
+                  </ul>
                  </div>
-                </div>
+                </div> */}
               </div>
             </div>
           </div>

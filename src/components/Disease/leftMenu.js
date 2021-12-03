@@ -82,14 +82,14 @@ const Side = props => {
                               <>
                               
                               <ArticleComment refreshComments={comments} article_id={props.match.params.id}/>
-                              {/* <ArticleRating article_id={props.match.params.id} /> */}
+                            
                               {/* <h3>Comments </h3> */}
                               </>
                               : null
                             }
             
             
-            {   
+            {/* {   
                     commentItems?
                     commentItems.map((i) => i.reviewed === 1?(
                             <div className="pl-4">
@@ -100,7 +100,7 @@ const Side = props => {
                         :null
                         )
                     : null
-                }
+                } */}
             </Nav>
           
         </>

@@ -75,12 +75,12 @@ const Side = (props) => {
                     : null
                 }
             </Nav.Item>
-            {
-                              acPerm?
+            {/* {
+                              acPerm? */}
 
-            <ArticleRating article_id={props.match.params.id} />
-            : null
-        }
+            {/* <ArticleRating article_id={props.match.params.id} /> */}
+            {/* : null
+        } */}
           
             </Nav>
          

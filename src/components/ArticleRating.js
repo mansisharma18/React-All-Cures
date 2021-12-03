@@ -11,9 +11,9 @@ export default function ArticleRating(props) {
 
   const [ratingValue, setRatingValue] = React.useState([])
   const [submitAlert, setAlert] = useState(false)
-  const postRating = (rating, docid) => {
+  const postRating = (rating, article_id) => {
 
-    axios.post(`${backendHost}/DoctorRatingActionController?ratingVal=${rating}&ratedbyid=${Cookies.get("acPerm").split('|')[0]}&ratedbytype=${Cookies.get("acPerm").split('|')[1]}&targetid=${props.article_id}&targetTypeid=2&cmd=rateAsset`)
+    axios.post(`${backendHost}/DoctorRatingActionController?ratingVal=${rating}&ratedbyid=${Cookies.get("acPerm").split('|')[0]}&ratedbytype=${Cookies.get("acPerm").split('|')[1]}&targetid=${article_id}&targetTypeid=2&cmd=rateAsset`)
     // .then(res => console.log(res)
     .then(res => {
       setAlert(true)
