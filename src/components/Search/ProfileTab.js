@@ -19,8 +19,8 @@ const ProfileTab = ({ setModalShow, docid, rowno, name, pSpl, hospital, state, c
                   <div className="name">
                   <h2>{name}</h2>
                   <h3>{pSpl}</h3>           {/* Primary Specialization */}
-                  <h4>{hospital} {state} {country}</h4>
-                  <h2>About {name}</h2>
+                  <h4 id="head4">{hospital} {state} {country}</h4>
+                  <h2 id="about">About {name}</h2>
                     <p>“Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc sodales dolor in ante fermentum, vitae varius turpis imperdiet.”“Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc sodales dolor in ante fermentum, vitae varius turpis imperdiet.”</p>
                   </div>
                   <div className="btn-group"> 
