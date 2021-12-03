@@ -11,7 +11,7 @@ const AllPost = ({id, title, f_title, w_title, country, type}) => {
                             <div className="d-flex justify-content-between align-items-center mb-2">
                                 <div>
                                     <Link to={ `/cure/${id}` }  className="d-flex justify-content-between align-items-center">
-                                        <div className="card-title">{title}</div>
+                                        <div className="card-title h5 text-capitalize">{title.toLowerCase()}</div>
                                     </Link>
                                 </div>
                                 <div>
@@ -47,8 +47,14 @@ const AllPost = ({id, title, f_title, w_title, country, type}) => {
                             </div>
                         
                         <div className="card-info">
-                            <h4>{w_title}</h4><hr/>
+                            <div className="card-subtitle mb-2 text-muted text-capitalize">{w_title.toLowerCase()}</div>
+                            <div>
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse in scelerisque magna,  sed rutrum urna tincidunt.
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse in scelerisque magna,  sed rutrum urna tincidunt.
+                        Lorem ipsum dolor sit
+                        </div><hr/>
                         </div>
+                        
                     {/* </div> */}
                 </div>
             </div>

@@ -460,6 +460,23 @@
   .main-hero .col-4 .card {
     margin: 0 0.9rem;
   }
+
+  #posts-container {
+    margin: auto;
+  }
+
+  #posts-container .chip {
+    display: inline-block;
+    padding: 0 14px;
+    height: 26px;
+    font-size: 13px;
+    line-height: 26px;
+    border-radius: 20px;
+  }
+
+  #posts-container .chip.country {
+    display: none !important;
+  }
 }
 @media screen and (min-width: 500px) {
   #search {

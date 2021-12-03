@@ -2896,3 +2896,12 @@ div.main-hero:first-child .card {
   left: auto;
   font-size: 1rem;
 }
+
+.checked {
+  color: orange;
+}
+
+.average-rating {
+  display: flex;
+  justify-content: center;
+}
