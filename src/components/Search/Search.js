@@ -105,10 +105,10 @@ class Search extends Component {
       .then(diseaseData => {
         this.setState({
           speciality: diseaseData
-      })
-      .catch(err => 
-        console.log(err)
-    )
+      });
+    //   .catch(err => 
+    //     console.log(err)
+    // )
       })
   }
     // USE if statement

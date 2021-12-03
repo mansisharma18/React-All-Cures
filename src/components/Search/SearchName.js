@@ -27,9 +27,9 @@ class SearchName extends Component {
     }
   }
 
-  fetchDoctors(name) {
+  fetchDoctors(name,lat,lon) {
     document.title = `All Cures | Search | ${name}`
-      fetch(`${backendHost}/SearchActionController?cmd=getResults&city=&doctors=${name}&Latitude=${Cookies.get('latitude')}&Longitude=${Cookies.get('longitude')}`)
+      fetch(`${backendHost}/SearchActionController?cmd=getResults&city=&doctors=${this.state.param.name}&Latitude=${Cookies.get('latitude')}&Longitude=${Cookies.get('longitude')}`)
       .then(res => res.json())
       .then(json => {
         this.setState({
