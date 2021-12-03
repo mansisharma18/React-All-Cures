@@ -38,22 +38,6 @@ class Search extends Component {
         articleValues: { ...this.state.articleValues, [e.target.name]: e.target.value }
     });
 }
-  postSubscribtion() {
-    
-    axios.post(`${backendHost}/users/subscribe/7889761896`, {
-    //   "articles_ids": selected.join(),
-    //   "articles_ids_rejected": rejected.join()
-    "nl_subscription_disease_id": 1,
-    "nl_sub_type":1,
-    "nl_subscription_cures_id":0,
-    })
-      .then(res => {
-       
-      })
-      .catch(err => console.log(err))
- 
-    
-  }
 
   fetchDoctors(city,lat,lon){
     if((city) && (this.state.param.name)) {
@@ -65,7 +49,7 @@ class Search extends Component {
           isLoaded: true,
           items: json.map.DoctorDetails.myArrayList,
         })            
-      });
+      }).catch(err => console.log(err))
     } else if((this.state.param.name) && (!city)) {
 
       document.title = `All Cures | ${this.state.param.name}`
@@ -77,9 +61,7 @@ class Search extends Component {
           items: json.map.DoctorDetails.myArrayList,
         })            
       })
-      .catch(err => 
-        console.log(err)
-    )
+      .catch(err => console.log(err))
     } else if((city) && (!this.state.param.name)) {
 
       document.title = `All Cures | ${city}`
@@ -92,9 +74,7 @@ class Search extends Component {
           acPerm: Cookies.get('acPerm'),
         })            
       })
-      .catch(err => 
-        console.log(err)
-    )
+      .catch(err => console.log(err))
     }
   }
 
@@ -105,11 +85,8 @@ class Search extends Component {
       .then(diseaseData => {
         this.setState({
           speciality: diseaseData
-      });
-    //   .catch(err => 
-    //     console.log(err)
-    // )
-      })
+        })
+      }).catch(err => console.log(err))
   }
     // USE if statement
   componentDidMount() {
