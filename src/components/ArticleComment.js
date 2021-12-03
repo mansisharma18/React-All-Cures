@@ -5,11 +5,14 @@ import axios from 'axios';
 import { backendHost } from '../api-config';
 import ArticleRating from "./ArticleRating";
 import { Button, Modal, Alert } from "react-bootstrap";
+import ReactStars from "react-rating-stars-component";
  
 const Comment = ({refreshComments,article_id}, props) => {
     const [cmtText,setCmtText] = React.useState('')
     const [succAlert, setAlert] = useState('')
     const [show, setShow] = useState(false);
+    const [ratingValue, setRatingValue] = React.useState([]);
+    // const [submitAlert, setAlert] = useState(false)
    
 
     const handleClose = () => setShow(false);
@@ -33,6 +36,9 @@ const Comment = ({refreshComments,article_id}, props) => {
             .then(err => {
                 console.log(err);
             })
+            .catch(err =>{
+                console.log(err);
+            })
             refreshComments()
             
         }else {
@@ -41,7 +47,36 @@ const Comment = ({refreshComments,article_id}, props) => {
         
         
     }
+    const postRating = (rating) => {
 
+        axios.post(`${backendHost}/DoctorRatingActionController?ratingVal=${rating}&ratedbyid=${Cookies.get("acPerm").split('|')[0]}&ratedbytype=${Cookies.get("acPerm").split('|')[1]}&targetid=${article_id}&targetTypeid=2&cmd=rateAsset`)
+        // .then(res => console.log(res)
+        .then(res => {
+          setAlert(true)
+        
+          setTimeout(() => {
+              setAlert(false)
+          }, 4000);
+      })
+      .catch(res => console.log(res))
+        
+        
+      }
+      const thirdExample = {
+        size: 40,
+        count: 5,
+        isHalf: false,
+        value: 0,
+        color: "yellow",
+        activeColor: "orange",
+        // filledIcon:"orange",
+        onChange: newValue => {
+          setRatingValue(newValue)
+          
+          postRating(newValue)
+        }
+      };
+    // console.log('chekeing: ', props.article_id)
     return (
         <>
         <Button variant="primary" onClick={handleShow}>
@@ -56,7 +91,13 @@ const Comment = ({refreshComments,article_id}, props) => {
         <Modal.Body>
         <h3 className="pl-4">Overall Rating</h3>
         <div  className="pl-4">
-        <ArticleRating article_id={props.article_id}/><hr/> 
+        {/* <ArticleRating article_id={props.article_id}/><hr/>  */}
+        <ReactStars {...thirdExample} />
+        {
+      succAlert?
+          <Alert variant="success" className="h6 mx-3">You rate this cure successfully!!</Alert>
+          : null
+  }
         </div>
         
         <div className="pl-4">

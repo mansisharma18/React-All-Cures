@@ -217,22 +217,21 @@ class Disease extends Component {
                             return (
                               <>
                                {/* <h4 className="card-title">Top Reviews From Globe</h4> */}
-                    <div className="col-4">
+                    <div className="col-12">
                      
                     <div className="card my-4 ">
                    
                         <div className="card-body">
                        
 
-                            <h5 className="card-title"> {item.comments}</h5>
+                            <h5 className="h6"> {item.comments}</h5>
                             <div className="card-info">
                                 <h6 className="card-subtitle mb-2 text-muted">
-                                {item.first_name} {item.last_name}
+                              <b>By :  </b>  {item.first_name} {item.last_name}
                                 </h6>
                                
                             </div>
-                            <a href="#" className="card-link" id="comment-link">Edit</a>
-                            <a href="#" className="card-link">Delete</a>
+                           
                         </div>
                     </div>
                 </div>
@@ -244,7 +243,6 @@ class Disease extends Component {
             </div>
           </Col> 
           <Col id="sidebar-wrapper">      
-            <SidebarRight title={items.title} history={this.props.history} />
           </Col>
         </Row>
       <Footer/>
