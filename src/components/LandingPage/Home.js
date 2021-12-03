@@ -360,7 +360,7 @@ class Home extends Component {
                      	  {/* <div className="col-md-6 pd-0 col-sx-12 col-sm-4">
                    			<div className="form-group search"> */}
                             <div className="col-md-12 p-0">
-                            <div className="row">
+                            <div className="row mt-4">
                             <div className="doc-name col-md-6 col-sm-12">
                             <Autocomplete className="bg-white color-black"
                               freeSolo
