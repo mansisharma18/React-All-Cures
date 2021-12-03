@@ -181,16 +181,11 @@ class Home extends Component {
          method: "POST"
       }).then(res => {
          // if(res.data === '/cures/Login.html?msg=You have successfully logged out.'){
-         //    Cookies.remove('uName')
-         //    // setTimeout(() => {
-         //       window.location.reload()
-         //    // }, 1000);
+            Cookies.remove('uName')
+            setTimeout(() => {
+               window.location.reload()
+            }, 1000);
          // }
-         console.log(res)
-      // }
-      //    else {
-      //       console.log('Not able to logout')
-      //    }
       }).catch(res => {
          console.log('Not able to logout')
       })
