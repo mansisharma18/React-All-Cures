@@ -307,10 +307,12 @@
   }
 }
 
-@media screen and (max-width: 782px) {
+@media screen and (max-width: 767px) {
   #sidebar-wrapper {
     display: none;
+    
   }
+
 }
 @media screen and (max-width: 768px) {
   /* html{
