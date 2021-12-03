@@ -115,15 +115,10 @@ import Autocomplete from '@mui/material/Autocomplete';
             await fetch(`${backendHost}/LogoutActionController`, {
                method: "POST"
             }).then(res => {
-               if(res.data === '/cures/Login.html?msg=You have successfully logged out.'){
-                  Cookies.remove('uName')
-                  setTimeout(() => {
-                     window.location.reload()
-                  }, 1000);
-               }
-               else {
-                  console.log('Not able to logout')
-               }
+               Cookies.remove('uName')
+               setTimeout(() => {
+                  window.location.reload()
+               }, 500);
             }).catch(res => {
                console.log(res.data)
             })

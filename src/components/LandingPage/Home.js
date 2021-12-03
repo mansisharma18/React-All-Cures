@@ -184,7 +184,7 @@ class Home extends Component {
             Cookies.remove('uName')
             setTimeout(() => {
                window.location.reload()
-            }, 1000);
+            }, 500);
          // }
       }).catch(res => {
          console.log('Not able to logout')
