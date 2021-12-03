@@ -9,6 +9,7 @@ import Sidebar from "./leftMenu";
 import SidebarRight from "./RightMenu";
 import { backendHost } from '../../api-config';
 import Dropdown from 'react-bootstrap/Dropdown';
+import axios from 'axios';
 // import CenterWell from './CenterWell'
 class Disease extends Component {
   constructor(props) {
@@ -18,6 +19,7 @@ class Disease extends Component {
       items: [],
       comment: [],
       isLoaded: false,
+      ratingValue: [],
       param : this.props.match.params,
       disease: '',
       regions: '',
@@ -52,6 +54,18 @@ class Disease extends Component {
       })
   }
 
+  getRating = (ratingId) => {
+    axios.get(`${backendHost}/rating/target/${ratingId}/targettype/2/avg`)
+    .then(res => {
+      this.setState({
+        ratingValue:res.data,
+        size: 40,
+        count: 5,
+      })
+    }) 
+    .catch(err => console.log(err))
+  }
+
   regionalPosts(){
     fetch(`${backendHost}/isearch/treatmentregions/${this.state.items.disease_condition_id}`)       // /isearch/treatmentregions/${this.state.diseaseCondition}
     .then((res) => res.json())
@@ -74,6 +88,7 @@ class Disease extends Component {
   componentDidMount() {
     this.fetchBlog()
     this.comments()
+    this.getRating()
     // this.regionalPosts()
     // if(this.state.items){
     //   this.fetchCountriesCures(this.state.items)
@@ -244,6 +259,15 @@ class Disease extends Component {
                                 </h6>
                                
                             </div>
+                             <div className="rating">
+                              
+                           
+                            <p>{this.state.ratingValue}</p>
+                  <span className="fa fa-star"></span>
+
+                  
+                 
+               </div>
                            
                         </div>
                     </div>
