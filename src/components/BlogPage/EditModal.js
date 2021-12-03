@@ -1,5 +1,5 @@
 import React, {useEffect,useState, useRef} from 'react';
-import {useParams} from 'react-router-dom';
+import {useParams, useHistory} from 'react-router-dom';
 import axios from 'axios';
 import { Select, MenuItem } from '@material-ui/core'
 import EditorJs from 'react-editor-js';
@@ -35,10 +35,23 @@ const EditModal = (props) => {
     const [lanList,setLanList] = useState([])
     const [authList,setAuthList] = useState([])
     const [countriesList,setCountriesList] = useState([])
-    const [succMsg,setSuccMsg] = useState('')
     const [disclaimerId,setDisclaimerId] = useState([]) 
     const [comment, setComment] = useState('')
     const [keywords, setKeywords] = useState('')
+
+    const history = useHistory()
+    const [showAlert, setShowAlert] = useState(false)
+    const [alertMsg, setAlertMsg] = useState('')
+
+    const [afterSubmitLoad, setafterSubmitLoad] = useState(false)
+    
+    function Alert(msg){
+      setShowAlert(true)
+      setAlertMsg(msg)
+      setTimeout(() => {
+         setShowAlert(false)
+      }, 5000);
+    }
 
     const getPosts = () =>{
         axios.get(`${backendHost}/article/${editId.id}`)
@@ -67,6 +80,7 @@ const EditModal = (props) => {
     
     const singlePostEdit = (e) => {
         e.preventDefault()
+        setafterSubmitLoad(true)
         if(parseInt(articleStatus) === 3){
             axios.post(`${backendHost}/article/${editId.id}`, {
                 "title":title,
@@ -93,11 +107,20 @@ const EditModal = (props) => {
                 "disease_condition_id": disease
             })
             .then(res => {
-                setSuccMsg('Updated Successfully')
+                setafterSubmitLoad(false)
+                if(res.data === 1){
+                    Alert('Updated article successfully.') 
+                    setTimeout(() => {
+                        history.replace(`/cure/${editId.id}`)
+                    }, 5000);  
+                  } else {
+                    Alert('Some error occured. Try again later')
+                  }
+                // setSuccMsg('Updated Successfully')
             })
-            .catch(err => {
-                console.log(err);
-                setSuccMsg('error in updating')
+            .catch(res => {
+                setafterSubmitLoad(false)
+                Alert('Some error occured. Try again later')
             })
         } else {
             axios.post(`${backendHost}/article/${editId.id}`, {
@@ -124,13 +147,19 @@ const EditModal = (props) => {
                 "country_id": parseInt(country),
             })
             .then(res => {
-                setSuccMsg('Updated Successfully')
-                // history.incognito(`/blogs`)
-                // window.location.reload(`false`)    
+                setafterSubmitLoad(false)
+                if(res.data === 1){
+                    Alert('Updated article successfully.')
+                    setTimeout(() => {
+                        history.replace(`/cure/${editId.id}`)
+                    }, 5000);
+                  } else {
+                    Alert('Some error occured. Try again later')
+                  }
             })
             .catch(err => {
-                console.log(err);
-                setSuccMsg('error in updating')
+                setafterSubmitLoad(false)
+                Alert('Some error occured. Try again later')
             })
         }
         
@@ -235,12 +264,13 @@ const EditModal = (props) => {
     const handleSelect = function(e, c) {
         const ctype = [];
         for (let i=0; i<c.length; i++) {
-            ctype.push(c[i].value);
+            ctype.replace(c[i].value);
         }
         setType(ctype);
     }
 
     const submitArticleForm = async e => {
+        setafterSubmitLoad(true)
         e.preventDefault();
         console.log('author: ', author)
         axios.post(`${backendHost}/content?cmd=createArticle`, {
@@ -266,14 +296,16 @@ const EditModal = (props) => {
                 "countryId": country,
         })
         .then(res => {
+            setafterSubmitLoad(false)
             if(parseInt(res.data) === 1){
-                setSuccMsg('Article Created Successfully!')
+                Alert('Article created successfully! Wait for approval 😄')
             } else{
-                setSuccMsg('Some error occured!')
+                Alert('Some error occured! Please try again later.')
             }
         })
         .catch(err => {
-            setSuccMsg('Error in updating!')
+            setafterSubmitLoad(false)
+            Alert('Some error occured! Please try again later.')
         })
     }
     
@@ -288,7 +320,20 @@ const EditModal = (props) => {
                 props.search === '?article'?
                     null
                 : <Header/>
-            } 
+            }
+            {
+                showAlert &&
+                    <div className="alert alert-success pop-up border-bottom">
+                        <div className="h5 mb-0 text-center">{alertMsg}</div>
+                        <div className="timer"></div>
+                    </div>
+            }
+            {
+                afterSubmitLoad &&
+                <div className="loader main on-submit-loading">
+                    <i className="fa fa-spinner fa-spin fa-10x" />
+                </div>
+            }
             <div className="transparent_bg">
             <div className="container">
                 <div className="card">
@@ -517,7 +562,7 @@ const EditModal = (props) => {
                             </div>
                         </div>
                     </div>
-                    {succMsg ? <h4 className="mt-3 alert alert-success">{succMsg}</h4> : null}
+                    {/* {succMsg ? <h4 className="mt-3 alert alert-success">{succMsg}</h4> : null} */}
                     <FormControlLabel
                                         control={<Checkbox name="Terms" value="on" required/>}
                                         label="Accept Terms & Conditions"

@@ -32,6 +32,9 @@ class Home extends Component {
       super(props);
       const params = props.match.params
       this.state = {
+         afterSubmitLoad: false,
+         showAlert: false,
+         alertMsg: '',
          articleFilter: '',
          article: '',
          users: [],
@@ -64,9 +67,7 @@ class Home extends Component {
           
         }
         
-    };
-    this.articlesFilterButton = this.articlesFilterButton.bind()
-      
+    };      
   }
  
 
@@ -139,19 +140,31 @@ class Home extends Component {
  }
    
  postSubscribtion() {
+    this.setState({
+       afterSubmitLoad: true
+    })
    axios.post(`${backendHost}/users/subscribe/${this.state.mobile}`, {
    "nl_subscription_disease_id": 1,
    "nl_sub_type":1,
    "nl_subscription_cures_id":0,
    })
      .then(res => {
-       this.setState({ShowSubmitAlert: true});      
+      this.setState({
+         afterSubmitLoad: false
+      })
+      if(res.data === 1){
+         this.Alert('You have successfully subscribed to our Newsletter')
+      }
+      else {
+         this.Alert('Some error occured! Please try again later.')
+      }
      })
      .catch(err => {
-        this.setState({ShowErrorAlert: true});
-        setTimeout(()=>{
-        this.setState({ShowErrorAlert: false});
-        },4000)
+      this.setState({
+         afterSubmitLoad: false
+      })
+      this.Alert('Some error occured! Please try again later.')
+      
 
    })
 
@@ -172,6 +185,17 @@ class Home extends Component {
         }, 1000);
    }
 
+   Alert = (msg) => {
+      this.setState({
+         showAlert:true,
+         alertMsg: msg
+      })
+      setTimeout(() => {
+         this.setState({
+            showAlert: false
+         })
+      }, 5000);
+    }
    setModalShow =(action) => {
       this.setState({
         modalShow: action
@@ -204,10 +228,22 @@ class Home extends Component {
       }
    }
    
-   articlesFilterButton = (e)=> { }
    render() {
       return(
          <div>
+            {
+                this.state.afterSubmitLoad &&
+                <div className="loader main on-submit-loading">
+                    <i className="fa fa-spinner fa-spin fa-10x" />
+                </div>
+            }
+            {
+                this.state.showAlert &&
+                    <div className="alert alert-success pop-up border-bottom">
+                        <div className="h5 mb-0 text-center">{this.state.alertMsg}</div>
+                        <div className="timer"></div>
+                    </div>
+            }
             <div className="homeHeader">
                <section className="banner" >
                   <div className="container">

@@ -168,7 +168,7 @@ import Autocomplete from '@mui/material/Autocomplete';
                             </Link>
                         </div>
                         
-                        <Nav className="me-auto">
+                        {/* <Nav className="me-auto">
                             <Dropdown>
                             <Dropdown.Toggle className="nav-dropdown-link">
                             <span className="text-dark fs-6">Health</span>
@@ -198,12 +198,11 @@ import Autocomplete from '@mui/material/Autocomplete';
                                 <Dropdown.Item >Coronavirus(Covid-19)</Dropdown.Item>
                                 </div>
                             </Dropdown.Menu>
-                            {/* </div> */}
                             </Dropdown>
                             <div >
   
 </div>
-    </Nav>
+    </Nav> */}
             <form onSubmit={(e) => this.articleSearch(e)} className="article-search" id="searchArticle">
                               <div className="col-md-12 row">
                <div className="col-md-10 p-0">    

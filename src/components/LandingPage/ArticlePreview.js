@@ -19,8 +19,25 @@ const ArticlePreview = (props) => {
           });
     }
 
+    function articleFilterClick(e, filter) {
+        setArticleFilter(filter)
+        e.target.parentElement.classList.add('active')
+        if(e.target.parentElement.previousSibling){
+            e.target.parentElement.previousSibling.classList.remove('active')
+            if(e.target.parentElement.previousSibling.previousSibling){
+                e.target.parentElement.previousSibling.previousSibling.classList.remove('active')
+            }
+        }
+        
+        if(e.target.parentElement.nextSibling){
+            e.target.parentElement.nextSibling.classList.remove('active')
+            if(e.target.parentElement.nextSibling.nextSibling){
+                e.target.parentElement.nextSibling.nextSibling.classList.remove('active')
+            }
+        }
+    }
+
     useEffect(() => {
-        console.log(props.articleFilter)
         allPosts()
     }, [articleFilter])
 
@@ -45,14 +62,14 @@ const ArticlePreview = (props) => {
                <ul>
                   <li role="presentation" class="active ">
                      <button className="btn mr-2" 
-                        onClick={(e) => setArticleFilter('recent')}
+                        onClick={(e) => articleFilterClick(e, 'recent')}
                      >Recent</button>
                   </li>
                   <li role="presentation">
-                     <button className="btn mr-2" onClick={(e) => setArticleFilter('oldest')}>Oldest</button>
+                     <button className="btn mr-2" onClick={(e) => articleFilterClick(e, 'oldest')}>Oldest</button>
                   </li>
                   <li role="presentation">
-                     <button className="btn">Most Rated</button>
+                     <button className="btn" onClick={(e) => articleFilterClick(e, 'recent')}>Most Rated</button>
                   </li>
                </ul>
             </div>
@@ -78,8 +95,8 @@ const ArticlePreview = (props) => {
                                     {/* ${p.body.substr(0, 200)}<a href="#">...read more</a> */}
                                 </p>
                             </div>
-                            <a href="#" className="card-link" id="comment-link">Comment</a>
-                            <a href="#" className="card-link">Like</a>
+                            {/* <a href="#" className="card-link" id="comment-link">Comment</a> */}
+                            {/* <a href="#" className="card-link">Like</a> */}
                         </div>
                     </div>
                 </div>
