@@ -1,13 +1,3 @@
-@media screen and (min-width: 1400px) {
-  .name p {
-    width: 335px !important;
-  }
-}
-@media screen and (min-device-width: 1200px) and (max-device-width: 1600px) and (-webkit-min-device-pixel-ratio: 1) {
-  .name p {
-    width: 335px !important;
-  }
-}
 @media screen and (min-width: 1200px) {
 }
 /* Large devices (laptops/desktops, 992px and up) */

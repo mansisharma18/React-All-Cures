@@ -1447,7 +1447,6 @@ button.appBtn:hover {
 .name p {
   font-size: 14px;
   padding-top: 20px;
-  width: 343px;
   font-weight: 300;
 }
 
@@ -2135,7 +2134,7 @@ input {
   transition: all 0.6s ease-in-out;
 }
 
-.sign-in-container {
+/* .sign-in-container {
   left: 0;
   width: 50%;
   z-index: 2;
@@ -2143,7 +2142,7 @@ input {
 
 .outer.right-panel-active .sign-in-container {
   transform: translateX(100%);
-}
+} */
 
 .sign-up-container {
   left: 0;

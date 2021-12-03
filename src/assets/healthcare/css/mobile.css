@@ -1,1023 +1,821 @@
 /* ----------- iPhone 4 and 4S ----------- */
 
-@media only screen 
-  and (min-device-width: 320px) 
-  and (max-device-width: 480px)
- {
-   
-#about{
-    
+@media only screen and (min-device-width: 320px) and (max-device-width: 480px) {
+  #about {
     position: relative;
     bottom: 100px;
+  }
 
-}
-
-  #profile{
+  #head4 {
     position: relative;
-    top: 161px;
-    left: 0px;
-
+    top: 2px;
   }
 
-  #head4{
-      position: relative;
-      top: 2px;
-  }
- 
-  
-#searchBtn{
+  #searchBtn {
     margin-right: -5px;
-}
- 
-    #searchDoc{
-        margin-top: 10px;
-        width: 97%;
-        padding: 0;
-        position: relative;
-        left: 15px;
-    }
-#searchArticle {
+  }
+
+  #searchDoc {
+    margin-top: 10px;
+    width: 97%;
+    padding: 0;
+    position: relative;
+    left: 15px;
+  }
+  #searchArticle {
     margin: 60px 0 0 10px;
-}
+  }
 
-    #Article {
-        font-size: 11px;
-        padding: 4px;
-        position: relative;
-        left: 10px;
-    } */
+  #Article {
+    font-size: 11px;
+    padding: 4px;
+    position: relative;
+    left: 10px;
+  }
+  */ .newsletter_float {
+    position: fixed;
+    width: 45%;
+    height: 40px;
+    bottom: 20px;
+    right: 10px;
+    font-size: 22px;
+  }
 
-
-    .newsletter_float {
-        position: fixed;
-        width: 45%;
-        height: 40px;
-        bottom: 20px;
-        right: 10px;
-        font-size: 22px;
-    }
-
-    #createArticle {
-
-        position: relative;
-        left: 10px;
-        padding-top: 0px;
-        font-size: 10px;
-    }
-    #createArticle1{
-        text-align: center;
+  #createArticle {
+    position: relative;
+    left: 10px;
+    padding-top: 0px;
+    font-size: 10px;
+  }
+  #createArticle1 {
+    text-align: center;
     font-size: 13px;
-        position: relative;
-        left: 10px;
-        padding: 5px;
-        
-      
-    }
-    .header-drop {
-        background-color: #00415e;
-        color: white;
-      
-        padding: 5px 17px 5px 17px;
-        position: relative;
-        border-radius: 10px;
-        left: 22px;
-        width: 100%;
-        bottom: 5px;
-        height: 32px;
-        text-align: left;
-    }
-    .loginSignbtn {
-        text-align: center;
-        display: inline-block;
-        border-radius: 15px;
-        height: 30px;
-        width: 130px;
-        padding-top: 0px;
-        padding-bottom: 1.8rem;
-        font-size: 10px;
-        font-weight: 400;
-    }
-  
-    #signIn {
-        position: relative;
-        left: 130px;
-        width: 132px;
-        bottom: 31px;
-    }
-    .serchlabel {
-        margin-bottom: 20px;
-    }
-    .doc-name {
-        margin-right: 26px;
-        margin-top: 55px;
-        margin-left: -5px;
-        margin-bottom: 0px;
-    }
+    position: relative;
+    left: 10px;
+    padding: 5px;
+  }
+  .header-drop {
+    background-color: #00415e;
+    color: white;
 
-.article-search {
+    padding: 5px 17px 5px 17px;
+    position: relative;
+    border-radius: 10px;
+    left: 22px;
+    width: 100%;
+    bottom: 5px;
+    height: 32px;
+    text-align: left;
+  }
+  .loginSignbtn {
+    text-align: center;
+    display: inline-block;
+    border-radius: 15px;
+    height: 30px;
+    width: 130px;
+    padding-top: 0px;
+    padding-bottom: 1.8rem;
+    font-size: 10px;
+    font-weight: 400;
+  }
 
+  #signIn {
+    position: relative;
+    left: 130px;
+    width: 132px;
+    bottom: 31px;
+  }
+  .serchlabel {
+    margin-bottom: 20px;
+  }
+  .doc-name {
+    margin-right: 26px;
+    margin-top: 55px;
+    margin-left: -5px;
+    margin-bottom: 0px;
+  }
+
+  .article-search {
     margin: 20px 0px 0px -5px;
-
-}
-.btn-article-search {
+  }
+  .btn-article-search {
     background-color: #00415e;
     margin-right: 26px;
     height: 52px;
-}
+  }
 
-.city-name.col-md-5 {
+  .city-name.col-md-5 {
     margin-left: -5px;
     margin-right: 60px;
-}
-
-
+  }
 }
 
 /* Portrait */
-@media only screen 
-  and (min-device-width: 320px) 
-  and (max-device-width: 480px)
-  and (-webkit-min-device-pixel-ratio: 2)
-  and (orientation: portrait) {
+@media only screen and (min-device-width: 320px) and (max-device-width: 480px) and (-webkit-min-device-pixel-ratio: 2) and (orientation: portrait) {
 }
 
 /* Landscape */
-@media only screen 
-  and (min-device-width: 320px) 
-  and (max-device-width: 480px)
-  and (-webkit-min-device-pixel-ratio: 2)
-  and (orientation: landscape) {
-
+@media only screen and (min-device-width: 320px) and (max-device-width: 480px) and (-webkit-min-device-pixel-ratio: 2) and (orientation: landscape) {
 }
 
 /* ----------- iPhone 5, 5S, 5C and 5SE ----------- */
 
 /* Portrait and Landscape */
-@media only screen 
-  and (min-device-width: 320px) 
-  and (max-device-width: 568px)
-  and (-webkit-min-device-pixel-ratio: 2) {
-  
-
-
-    #createArticle1{
-        text-align: center;
+@media only screen and (min-device-width: 320px) and (max-device-width: 568px) and (-webkit-min-device-pixel-ratio: 2) {
+  #createArticle1 {
+    text-align: center;
     font-size: 13px;
-        position: relative;
-   
-        padding: 5px;
-        
-      
-    }
-    .header-drop {
-        background-color: #00415e;
-        color: white;
-      
-        padding: 5px 17px 5px 17px;
-        position: relative;
-        border-radius: 10px;
-        left: 20px;
-        width: 100%;
-        bottom: 30px;
-        height: 32px;
-        text-align: left;
-    }
-    #createArticle {
+    position: relative;
 
-        position: relative;
-        left: 20px;
-        padding-top: 0px;
-        font-size: 10px;
-    }
-    .loginSignbtn {
-        text-align: center;
-        display: inline-block;
-        border-radius: 15px;
-        height: 30px;
-        width: 130px;
-        padding-top: 0px;
-        padding-bottom: 1.8rem;
-        font-size: 10px;
-        font-weight: 400;
-    }
-  
-    #signIn {
-        position: relative;
-        left: 130px;
-        width: 132px;
-        bottom: 31px;
-    }
-    .serchlabel {
-        margin-bottom: 20px;
-    }
-    .doc-name {
-        margin-right: 26px;
-        margin-top: 55px;
-        margin-left: -5px;
-        margin-bottom: 0px;
-    }
+    padding: 5px;
+  }
+  .header-drop {
+    background-color: #00415e;
+    color: white;
 
-.article-search {
+    padding: 5px 17px 5px 17px;
+    position: relative;
+    border-radius: 10px;
+    left: 20px;
+    width: 100%;
+    bottom: 30px;
+    height: 32px;
+    text-align: left;
+  }
+  #createArticle {
+    position: relative;
+    left: 20px;
+    padding-top: 0px;
+    font-size: 10px;
+  }
+  .loginSignbtn {
+    text-align: center;
+    display: inline-block;
+    border-radius: 15px;
+    height: 30px;
+    width: 130px;
+    padding-top: 0px;
+    padding-bottom: 1.8rem;
+    font-size: 10px;
+    font-weight: 400;
+  }
 
+  #signIn {
+    position: relative;
+    left: 130px;
+    width: 132px;
+    bottom: 31px;
+  }
+  .serchlabel {
+    margin-bottom: 20px;
+  }
+  .doc-name {
+    margin-right: 26px;
+    margin-top: 55px;
+    margin-left: -5px;
+    margin-bottom: 0px;
+  }
+
+  .article-search {
     margin: 20px 0px 0px -5px;
-
-}
-.btn-article-search {
+  }
+  .btn-article-search {
     background-color: #00415e;
     margin-right: 23px;
     height: 56px;
-}
+  }
 
-.city-name.col-md-5 {
+  .city-name.col-md-5 {
     margin-left: -5px;
     margin-right: 60px;
-}
-
-
+  }
 }
 
 /* Portrait */
-@media only screen 
-  and (min-device-width: 320px) 
-  and (max-device-width: 568px)
-  and (-webkit-min-device-pixel-ratio: 2)
-  and (orientation: portrait) {
+@media only screen and (min-device-width: 320px) and (max-device-width: 568px) and (-webkit-min-device-pixel-ratio: 2) and (orientation: portrait) {
 }
 
 /* Landscape */
-@media only screen 
-  and (min-device-width: 320px) 
-  and (max-device-width: 568px)
-  and (-webkit-min-device-pixel-ratio: 2)
-  and (orientation: landscape) {
-
+@media only screen and (min-device-width: 320px) and (max-device-width: 568px) and (-webkit-min-device-pixel-ratio: 2) and (orientation: landscape) {
 }
 
 /* ----------- iPhone 6, 6S, 7 and 8 ----------- */
 
 /* Portrait and Landscape */
-@media only screen 
-  and (min-device-width: 375px) 
-  and (max-device-width: 667px) 
-  and (-webkit-min-device-pixel-ratio: 2) { 
-
-    #createArticle1{
-        text-align: center;
+@media only screen and (min-device-width: 375px) and (max-device-width: 667px) and (-webkit-min-device-pixel-ratio: 2) {
+  #createArticle1 {
+    text-align: center;
     font-size: 13px;
-        position: relative;
-        left: 20px;
-        padding: 5px;
-        
-      
-    }
-    .header-drop {
-        background-color: #00415e;
-        color: white;
-      
-        padding: 5px 17px 5px 17px;
-        position: relative;
-        border-radius: 10px;
-        left: 20px;
-        width: 100%;
-        bottom: 1px;
-        height: 32px;
-        text-align: left;
-    }
+    position: relative;
+    left: 20px;
+    padding: 5px;
+  }
+  .header-drop {
+    background-color: #00415e;
+    color: white;
 
-    #createArticle {
+    padding: 5px 17px 5px 17px;
+    position: relative;
+    border-radius: 10px;
+    left: 20px;
+    width: 100%;
+    bottom: 1px;
+    height: 32px;
+    text-align: left;
+  }
 
-        position: relative;
-        left: 20px;
-        padding-top: 0px;
-        font-size: 10px;
-    }
-    .loginSignbtn {
-        text-align: center;
-        display: inline-block;
-        border-radius: 15px;
-        height: 30px;
-        width: 130px;
-        padding-top: 0px;
-        padding-bottom: 1.8rem;
-        font-size: 10px;
-        font-weight: 400;
-    }
-  
-    #signIn {
-        position: relative;
-        left: 20px;
-        top: 0px;
-    }
-    .serchlabel {
-        margin-bottom: 20px;
-    }
-    .doc-name {
-        margin-right: 26px;
-        margin-top: 55px;
-        margin-left: -5px;
-        margin-bottom: 0px;
-    }
+  #createArticle {
+    position: relative;
+    left: 20px;
+    padding-top: 0px;
+    font-size: 10px;
+  }
+  .loginSignbtn {
+    text-align: center;
+    display: inline-block;
+    border-radius: 15px;
+    height: 30px;
+    width: 130px;
+    padding-top: 0px;
+    padding-bottom: 1.8rem;
+    font-size: 10px;
+    font-weight: 400;
+  }
 
-.article-search {
+  #signIn {
+    position: relative;
+    left: 20px;
+    top: 0px;
+  }
+  .serchlabel {
+    margin-bottom: 20px;
+  }
+  .doc-name {
+    margin-right: 26px;
+    margin-top: 55px;
+    margin-left: -5px;
+    margin-bottom: 0px;
+  }
 
+  .article-search {
     margin: 20px 0px 0px -5px;
-
-}
-.btn-article-search {
+  }
+  .btn-article-search {
     background-color: #00415e;
     margin-right: 23px;
     height: 56px;
-}
+  }
 
-.city-name.col-md-5 {
+  .city-name.col-md-5 {
     margin-left: -5px;
     margin-right: 60px;
-}
-
-
+  }
 }
 
 /* Portrait */
-@media only screen 
-  and (min-device-width: 375px) 
-  and (max-device-width: 667px) 
-  and (-webkit-min-device-pixel-ratio: 2)
-  and (orientation: portrait) { 
-
+@media only screen and (min-device-width: 375px) and (max-device-width: 667px) and (-webkit-min-device-pixel-ratio: 2) and (orientation: portrait) {
 }
 
 /* Landscape */
-@media only screen 
-  and (min-device-width: 375px) 
-  and (max-device-width: 667px) 
-  and (-webkit-min-device-pixel-ratio: 2)
-  and (orientation: landscape) { 
-
+@media only screen and (min-device-width: 375px) and (max-device-width: 667px) and (-webkit-min-device-pixel-ratio: 2) and (orientation: landscape) {
 }
 
 /* ----------- iPhone 6+, 7+ and 8+ ----------- */
 
 /* Portrait and Landscape */
-@media only screen 
-  and (min-device-width: 414px) 
-  and (max-device-width: 736px) 
-  and (-webkit-min-device-pixel-ratio: 3) { 
-
- 
-    #createArticle1{
-        text-align: center;
+@media only screen and (min-device-width: 414px) and (max-device-width: 736px) and (-webkit-min-device-pixel-ratio: 3) {
+  #createArticle1 {
+    text-align: center;
     font-size: 13px;
-        position: relative;
-        left: 20px;
-        padding: 5px;
-        
-      
-    }
-    .header-drop {
-        background-color: #00415e;
-        color: white;
-      
-        padding: 5px 17px 5px 17px;
-        position: relative;
-        border-radius: 10px;
-        left: 20px;
-        width: 100%;
-        bottom: 1px;
-        height: 32px;
-        text-align: left;
-    }
+    position: relative;
+    left: 20px;
+    padding: 5px;
+  }
+  .header-drop {
+    background-color: #00415e;
+    color: white;
 
-     
-   
-    #createArticle {
+    padding: 5px 17px 5px 17px;
+    position: relative;
+    border-radius: 10px;
+    left: 20px;
+    width: 100%;
+    bottom: 1px;
+    height: 32px;
+    text-align: left;
+  }
 
-        position: relative;
-        left: 20px;
-        padding-top: 0px;
-        font-size: 10px;
-    }
-    .loginSignbtn {
-        text-align: center;
-        display: inline-block;
-        border-radius: 15px;
-        height: 30px;
-        width: 130px;
-        padding-top: 0px;
-        padding-bottom: 1.8rem;
-        font-size: 10px;
-        font-weight: 400;
-    }
-  
-    #signIn {
-        position: relative;
-        left: 15px;
-    }
-    .serchlabel {
-        margin-bottom: 20px;
-    }
-    .doc-name {
-        margin-right: 26px;
-        margin-top: 55px;
-        margin-left: -5px;
-        margin-bottom: 0px;
-    }
+  #createArticle {
+    position: relative;
+    left: 20px;
+    padding-top: 0px;
+    font-size: 10px;
+  }
+  .loginSignbtn {
+    text-align: center;
+    display: inline-block;
+    border-radius: 15px;
+    height: 30px;
+    width: 130px;
+    padding-top: 0px;
+    padding-bottom: 1.8rem;
+    font-size: 10px;
+    font-weight: 400;
+  }
 
-.article-search {
+  #signIn {
+    position: relative;
+    left: 15px;
+  }
+  .serchlabel {
+    margin-bottom: 20px;
+  }
+  .doc-name {
+    margin-right: 26px;
+    margin-top: 55px;
+    margin-left: -5px;
+    margin-bottom: 0px;
+  }
 
+  .article-search {
     margin: 20px 0px 0px -5px;
-
-}
-.btn-article-search {
+  }
+  .btn-article-search {
     background-color: #00415e;
     margin-right: 23px;
     height: 56px;
-}
+  }
 
-.city-name.col-md-5 {
+  .city-name.col-md-5 {
     margin-left: -5px;
     margin-right: 60px;
-}
-
-
+  }
 }
 
 /* Portrait */
-@media only screen 
-  and (min-device-width: 414px) 
-  and (max-device-width: 736px) 
-  and (-webkit-min-device-pixel-ratio: 3)
-  and (orientation: portrait) { 
-
+@media only screen and (min-device-width: 414px) and (max-device-width: 736px) and (-webkit-min-device-pixel-ratio: 3) and (orientation: portrait) {
 }
 
 /* Landscape */
-@media only screen 
-  and (min-device-width: 414px) 
-  and (max-device-width: 736px) 
-  and (-webkit-min-device-pixel-ratio: 3)
-  and (orientation: landscape) { 
-
+@media only screen and (min-device-width: 414px) and (max-device-width: 736px) and (-webkit-min-device-pixel-ratio: 3) and (orientation: landscape) {
 }
 
 /* ----------- iPhone X ----------- */
 
 /* Portrait and Landscape */
-@media only screen 
-  and (min-device-width: 375px) 
-  and (max-device-width: 812px) 
-  and (-webkit-min-device-pixel-ratio: 3) { 
-
-   #iconStar{
-       position: relative;
-       bottom: 137px;
-       left: 150px;
-   }
-#rate{
+@media only screen and (min-device-width: 375px) and (max-device-width: 812px) and (-webkit-min-device-pixel-ratio: 3) {
+  #iconStar {
+    position: relative;
+    bottom: 137px;
+    left: 150px;
+  }
+  #rate {
     position: relative;
     left: 147px;
     bottom: 139px;
-}
-#nameDoc{
+  }
+  #nameDoc {
     position: relative;
     left: 152px;
     bottom: 152px;
+  }
 
-}
-#profile{
-    left: 12px;
+  #profile {
     position: relative;
-    top: 40px;
-}
-
-#about{
+    left: 0;
+    padding: 0.2rem 0.7rem;
+  }
+  #about {
     position: relative;
     bottom: 224px;
     left: 13px;
-
-}
-    #createArticle1{
-        text-align: center;
+  }
+  #createArticle1 {
+    text-align: center;
     font-size: 13px;
-        position: relative;
-        left: 20px;
-        padding: 5px;
-        
-      
-    }
-    .header-drop {
-        background-color: #00415e;
-        color: white;
-      
-        padding: 5px 17px 5px 17px;
-        position: relative;
-        border-radius: 10px;
-        left: 20px;
-        width: 100%;
-        bottom: 1px;
-        height: 32px;
-        text-align: left;
-    }
-    .newsletter_float {
-        position: fixed;
-        width: 40%;
-        height: 40px;
-        bottom: 20px;
-        left: 190px;
-        font-size: 22px;
-    }
-   
-    #createArticle {
-
-        position: relative;
-        left: 20px;
-        padding-top: 0px;
-        font-size: 10px;
-    }
-    .loginSignbtn {
-        text-align: center;
-        display: inline-block;
-        border-radius: 15px;
-        height: 30px;
-        width: 130px;
-        padding-top: 0px;
-        padding-bottom: 1.8rem;
-        font-size: 10px;
-        font-weight: 400;
-    }
-  
-   
-    .serchlabel {
-        margin-bottom: 20px;
-    }
-    .doc-name {
-        margin-right: 26px;
-        margin-top: 55px;
-        margin-left: -5px;
-        margin-bottom: 0px;
-    }
-
-.article-search {
-
-    margin: 20px 0px 0px -5px;
-
-}
-.btn-article-search {
+    position: relative;
+    left: 20px;
+    padding: 5px;
+  }
+  .header-drop {
     background-color: #00415e;
-    margin-right: 23px;
-    height: 56px;
-}
+    color: white;
 
-.city-name.col-md-5 {
-    margin-left: -5px;
-    margin-right: 60px;
-}
-
-
-}
-
-/* Portrait */
-@media only screen 
-  and (min-device-width: 375px) 
-  and (max-device-width: 812px) 
-  and (-webkit-min-device-pixel-ratio: 3)
-  and (orientation: portrait) { 
-
-}
-
-/* Landscape */
-@media only screen 
-  and (min-device-width: 375px) 
-  and (max-device-width: 812px) 
-  and (-webkit-min-device-pixel-ratio: 3)
-  and (orientation: landscape) { 
-
-}
-
-
-@media screen 
-  and (min-device-width: 360px) 
-  and (max-device-height: 740px) 
-  {
-
-
-    .header-drop {
-        background-color: #00415e;
-        color: white;
-      
-        padding: 5px 17px 5px 17px;
-        position: relative;
-        border-radius: 10px;
-        left: 20px;
-        width: 100%;
-        bottom: 1px;
-        height: 32px;
-        text-align: left;
-    }
-  #Article{
-      font-size: 11px;
-      padding: 3px;
+    padding: 5px 17px 5px 17px;
+    position: relative;
+    border-radius: 10px;
+    left: 20px;
+    width: 100%;
+    bottom: 1px;
+    height: 32px;
+    text-align: left;
+  }
+  .newsletter_float {
+    position: fixed;
+    width: 40%;
+    height: 40px;
+    bottom: 20px;
+    left: 190px;
+    font-size: 22px;
   }
 
-    #createArticle {
+  #createArticle {
+    position: relative;
+    left: 20px;
+    padding-top: 0px;
+    font-size: 10px;
+  }
+  .loginSignbtn {
+    text-align: center;
+    display: inline-block;
+    border-radius: 15px;
+    height: 30px;
+    width: 130px;
+    padding-top: 0px;
+    padding-bottom: 1.8rem;
+    font-size: 10px;
+    font-weight: 400;
+  }
 
-        position: relative;
-        left: 20px;
-        padding-top: 0px;
-        font-size: 10px;
-    }
-    .loginSignbtn {
-        text-align: center;
-        display: inline-block;
-        border-radius: 15px;
-        height: 30px;
-        width: 130px;
-        padding-top: 0px;
-        padding-bottom: 1.8rem;
-        font-size: 10px;
-        font-weight: 400;
-    }
-  
-    #signIn {
-        position: relative;
-        left: 15px;
-    
-        bottom: 0px;
-    }
-    .serchlabel {
-        margin-bottom: 110px;
-    }
-    .doc-name {
-        margin-right: 26px;
-        margin-top: 0px;
-        margin-left: -5px;
-        margin-bottom: 0px;
-    }
+  .serchlabel {
+    margin-bottom: 20px;
+  }
+  .doc-name {
+    margin-right: 26px;
+    margin-top: 55px;
+    margin-left: -5px;
+    margin-bottom: 0px;
+  }
 
-#searchArticle{
-    margin: 35px 0px 0px 12px;
-}
-    #article{
-        margin-right: 12px;
-    }
-.article-search {
-
-    margin: 35px 0px 0px 0px;
-
-}
-.btn-article-search {
+  .article-search {
+    margin: 20px 0px 0px -5px;
+  }
+  .btn-article-search {
     background-color: #00415e;
     margin-right: 23px;
     height: 56px;
-}
+  }
 
-.city-name.col-md-5 {
+  .city-name.col-md-5 {
     margin-left: -5px;
     margin-right: 60px;
-}
-
-
+  }
 }
 
 /* Portrait */
-@media screen 
-  and (device-width: 320px) 
-  and (device-height: 640px) 
-  and (-webkit-device-pixel-ratio: 2) 
-  and (orientation: portrait) {
-
+@media only screen and (min-device-width: 375px) and (max-device-width: 812px) and (-webkit-min-device-pixel-ratio: 3) and (orientation: portrait) {
 }
 
 /* Landscape */
-@media screen 
-  and (device-width: 320px) 
-  and (device-height: 640px) 
-  and (-webkit-device-pixel-ratio: 2) 
-  and (orientation: landscape) {
+@media only screen and (min-device-width: 375px) and (max-device-width: 812px) and (-webkit-min-device-pixel-ratio: 3) and (orientation: landscape) {
+}
 
+@media screen and (min-device-width: 360px) and (max-device-height: 740px) {
+  .header-drop {
+    background-color: #00415e;
+    color: white;
+
+    padding: 5px 17px 5px 17px;
+    position: relative;
+    border-radius: 10px;
+    left: 20px;
+    width: 100%;
+    bottom: 1px;
+    height: 32px;
+    text-align: left;
+  }
+  #Article {
+    font-size: 11px;
+    padding: 3px;
+  }
+
+  #createArticle {
+    position: relative;
+    left: 20px;
+    padding-top: 0px;
+    font-size: 10px;
+  }
+  .loginSignbtn {
+    text-align: center;
+    display: inline-block;
+    border-radius: 15px;
+    height: 30px;
+    width: 130px;
+    padding-top: 0px;
+    padding-bottom: 1.8rem;
+    font-size: 10px;
+    font-weight: 400;
+  }
+
+  #signIn {
+    position: relative;
+    left: 15px;
+
+    bottom: 0px;
+  }
+  .serchlabel {
+    margin-bottom: 110px;
+  }
+  .doc-name {
+    margin-right: 26px;
+    margin-top: 0px;
+    margin-left: -5px;
+    margin-bottom: 0px;
+  }
+
+  #searchArticle {
+    margin: 35px 0px 0px 12px;
+  }
+  #article {
+    margin-right: 12px;
+  }
+  .article-search {
+    margin: 35px 0px 0px 0px;
+  }
+  .btn-article-search {
+    background-color: #00415e;
+    margin-right: 23px;
+    height: 56px;
+  }
+
+  .city-name.col-md-5 {
+    margin-left: -5px;
+    margin-right: 60px;
+  }
+}
+
+/* Portrait */
+@media screen and (device-width: 320px) and (device-height: 640px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait) {
+}
+
+/* Landscape */
+@media screen and (device-width: 320px) and (device-height: 640px) and (-webkit-device-pixel-ratio: 2) and (orientation: landscape) {
 }
 
 /* ----------- Galaxy S4, S5 and Note 3 ----------- */
 
 /* Portrait and Landscape */
-@media screen 
-  and (min-device-width: 320px) 
-  and (max-device-height: 640px) 
-  and (-webkit-device-pixel-ratio: 3) {
-  
-    #createArticle {
-
-        position: relative;
-        left: 20px;
-        padding-top: 0px;
-        font-size: 10px;
-    }
-    .loginSignbtn {
-        text-align: center;
-        display: inline-block;
-        border-radius: 15px;
-        height: 30px;
-        width: 130px;
-        padding-top: 0px;
-        padding-bottom: 1.8rem;
-        font-size: 10px;
-        font-weight: 400;
-    }
-  
-#signIn{
+@media screen and (min-device-width: 320px) and (max-device-height: 640px) and (-webkit-device-pixel-ratio: 3) {
+  #createArticle {
     position: relative;
-    left:15px;
-    bottom:0px
-}
+    left: 20px;
+    padding-top: 0px;
+    font-size: 10px;
+  }
+  .loginSignbtn {
+    text-align: center;
+    display: inline-block;
+    border-radius: 15px;
+    height: 30px;
+    width: 130px;
+    padding-top: 0px;
+    padding-bottom: 1.8rem;
+    font-size: 10px;
+    font-weight: 400;
+  }
 
-    .serchlabel {
-        margin-bottom: 110px;
-    }
-    .doc-name {
-        margin-right: 26px;
-        margin-top: -20px;
-        margin-left: -5px;
-        margin-bottom: 0px;
-    }
+  #signIn {
+    position: relative;
+    left: 15px;
+    bottom: 0px;
+  }
 
-.article-search {
+  .serchlabel {
+    margin-bottom: 110px;
+  }
+  .doc-name {
+    margin-right: 26px;
+    margin-top: -20px;
+    margin-left: -5px;
+    margin-bottom: 0px;
+  }
 
+  .article-search {
     margin: 20px 0px 0px -5px;
-
-}
-.btn-article-search {
+  }
+  .btn-article-search {
     background-color: #00415e;
     margin-right: 23px;
     height: 56px;
-}
+  }
 
-.city-name.col-md-5 {
+  .city-name.col-md-5 {
     margin-left: -5px;
     margin-right: 60px;
-}
+  }
 }
 
 /* Portrait */
-@media screen 
-  and (device-width: 320px) 
-  and (device-height: 640px) 
-  and (-webkit-device-pixel-ratio: 3) 
-  and (orientation: portrait) {
-
+@media screen and (device-width: 320px) and (device-height: 640px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait) {
 }
 
 /* Landscape */
-@media screen 
-  and (device-width: 320px) 
-  and (device-height: 640px) 
-  and (-webkit-device-pixel-ratio: 3) 
-  and (orientation: landscape) {
-
+@media screen and (device-width: 320px) and (device-height: 640px) and (-webkit-device-pixel-ratio: 3) and (orientation: landscape) {
 }
 
-
-@media only screen 
-  and (min-device-width: 768px) 
-  and (max-device-width: 1024px) 
- {
-    .newsletter_float {
-        position: fixed;
-        width: 20%;
-        height: 40px;
-        bottom: 20px;
-        left: 560px;
-        font-size: 22px;
-    }
-
-    #searchBtn{
-        margin-right: -34px;
-        margin-bottom: -25px;
-    }
-     #searchCity{
-         position: relative;
-         top: 30px;
-         left: 30px;
-     }
-        #searchDoc{
-            margin-bottom: 4px;
-            margin-left: 10px;
-            width: 97%;
-            padding: 0;
-            position: relative;
-            left: 15px;
-            top: 30px;
-        }
-    #searchArticle {
-        margin: 140px 0 0 10px;
-    }
-    
-        #Article {
-            font-size: 15px;
-            padding: 6px;
-            position: relative;
-            left: 0px;
-            height: 38px;
-        } 
-  #searchMain{
-      margin-bottom: 5rem;
-  }
-  #sectionMain{
-      margin-bottom: 16rem;
+@media only screen and (min-device-width: 768px) and (max-device-width: 1024px) {
+  .newsletter_float {
+    position: fixed;
+    width: 20%;
+    height: 40px;
+    bottom: 20px;
+    left: 560px;
+    font-size: 22px;
   }
 
-    .loginSignbtn {
-        text-align: center;
-        display: inline-block;
-        border-radius: 15px;
-        height: 30px;
-        width: 150px;
-        padding-top: 6px;
-        padding-bottom: 1.8rem;
-        font-size: 15px;
-        font-weight: 400;
-    }
-  
+  #searchBtn {
+    margin-right: -34px;
+    margin-bottom: -25px;
+  }
+  #searchCity {
+    position: relative;
+    top: 30px;
+    left: 30px;
+  }
+  #searchDoc {
+    margin-bottom: 4px;
+    margin-left: 10px;
+    width: 97%;
+    padding: 0;
+    position: relative;
+    left: 15px;
+    top: 30px;
+  }
+  #searchArticle {
+    margin: 140px 0 0 10px;
+  }
 
+  #Article {
+    font-size: 15px;
+    padding: 6px;
+    position: relative;
+    left: 0px;
+    height: 38px;
+  }
+  #searchMain {
+    margin-bottom: 5rem;
+  }
+  #sectionMain {
+    margin-bottom: 16rem;
+  }
 
-    .serchlabel {
-        margin-bottom: 160px;
-    }
-    .doc-name {
-    
-        margin-top: 110px;
-        margin-left: -20px;
-        
-   
-    }
+  .loginSignbtn {
+    text-align: center;
+    display: inline-block;
+    border-radius: 15px;
+    height: 30px;
+    width: 150px;
+    padding-top: 6px;
+    padding-bottom: 1.8rem;
+    font-size: 15px;
+    font-weight: 400;
+  }
 
-.article-search {
+  .serchlabel {
+    margin-bottom: 160px;
+  }
+  .doc-name {
+    margin-top: 110px;
+    margin-left: -20px;
+  }
 
+  .article-search {
     margin: 20px 0px 0px -5px;
-
-}
-.btn-article-search {
+  }
+  .btn-article-search {
     background-color: #00415e;
     margin-right: 25px;
     height: 56px;
-    width:74px
-}
+    width: 74px;
+  }
 
-.city-name.col-md-5 {
-   margin-top: 110px;
-   margin-left: -30px;
-}
-.btn.btn-article-search.color-white {
+  .city-name.col-md-5 {
+    margin-top: 110px;
+    margin-left: -30px;
+  }
+  .btn.btn-article-search.color-white {
     position: relative;
     right: 20px;
-}
-.btn.btn-article-search.color-white.float-right {
+  }
+  .btn.btn-article-search.color-white.float-right {
     position: relative;
     left: -20px;
     bottom: 0px;
-}
+  }
 }
 
 /* Portrait */
-@media only screen 
-  and (min-device-width: 768px) 
-  and (max-device-width: 1024px) 
-  and (orientation: portrait) 
-  and (-webkit-min-device-pixel-ratio: 1) {
-
+@media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (orientation: portrait) and (-webkit-min-device-pixel-ratio: 1) {
 }
 
 /* Landscape */
-@media only screen 
-  and (min-device-width: 768px) 
-  and (max-device-width: 1024px) 
-  and (orientation: landscape) 
-  and (-webkit-min-device-pixel-ratio: 1) {
-
+@media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (orientation: landscape) and (-webkit-min-device-pixel-ratio: 1) {
 }
 
 /* ----------- iPad 3, 4 and Pro 9.7" ----------- */
 
 /* Portrait and Landscape */
-@media only screen 
-  and (min-device-width: 1024px) 
-  and (max-device-width: 1366px) 
-  and (-webkit-min-device-pixel-ratio: 2) {
-   
-    #searchBtn{
-        margin-right: -34px;
-       margin-top: 185px;
-       position: relative;
-       top: 35px;
-    }
-     #searchCity{
-        margin-top: 180px;
-        position: relative;
-        top: 40px;
-     }
-        #searchDoc{
-           margin-top: 180px;
-           position: relative;
-           top: 40px;
-        }
-    #searchArticle {
-        margin: 200px 0 0 0px;
-        position: absolute;
-        right: 583px;
-    }
-    
-        #Article {
-            font-size: 15px;
-            padding: 6px;
-            position: relative;
-            left: 0px;
-            height: 38px;
-        } 
+@media only screen and (min-device-width: 1024px) and (max-device-width: 1366px) and (-webkit-min-device-pixel-ratio: 2) {
+  #searchBtn {
+    margin-right: -34px;
+    margin-top: 185px;
+    position: relative;
+    top: 35px;
+  }
+  #searchCity {
+    margin-top: 180px;
+    position: relative;
+    top: 40px;
+  }
+  #searchDoc {
+    margin-top: 180px;
+    position: relative;
+    top: 40px;
+  }
+  #searchArticle {
+    margin: 200px 0 0 0px;
+    position: absolute;
+    right: 583px;
+  }
 
+  #Article {
+    font-size: 15px;
+    padding: 6px;
+    position: relative;
+    left: 0px;
+    height: 38px;
+  }
 
+  .loginSignbtn {
+    text-align: center;
+    display: inline-block;
+    border-radius: 15px;
+    height: 30px;
+    width: 150px;
+    padding-top: 6px;
+    padding-bottom: 1.8rem;
+    font-size: 15px;
+    font-weight: 400;
+  }
 
+  .serchlabel {
+    margin-bottom: 160px;
+  }
+  .doc-name {
+    margin-top: 110px;
+    margin-left: -20px;
+  }
 
-          .loginSignbtn {
-        text-align: center;
-        display: inline-block;
-        border-radius: 15px;
-        height: 30px;
-        width: 150px;
-        padding-top: 6px;
-        padding-bottom: 1.8rem;
-        font-size: 15px;
-        font-weight: 400;
-    }
-  
-
-
-    .serchlabel {
-        margin-bottom: 160px;
-    }
-    .doc-name {
-    
-        margin-top: 110px;
-        margin-left: -20px;
-   
-    }
-
-.article-search {
-
+  .article-search {
     margin: 20px 0px 0px -5px;
-
-}
-.btn-article-search {
+  }
+  .btn-article-search {
     background-color: #00415e;
     margin-right: 25px;
     height: 56px;
-    width:74px
-}
+    width: 74px;
+  }
 
-.city-name.col-md-5 {
-   margin-top: 110px;
-}
-.btn.btn-article-search.color-white {
+  .city-name.col-md-5 {
+    margin-top: 110px;
+  }
+  .btn.btn-article-search.color-white {
     position: relative;
     right: 20px;
-}
-.btn.btn-article-search.color-white.float-right {
+  }
+  .btn.btn-article-search.color-white.float-right {
     position: relative;
     left: -20px;
     bottom: 90px;
-}
-    .loginSignbtn {
-        text-align: center;
-        display: inline-block;
-        border-radius: 15px;
-        height: 30px;
-        width: 150px;
-        padding-top: 6px;
-        padding-bottom: 1.8rem;
-        font-size: 15px;
-        font-weight: 400;
-    }
-  
+  }
+  .loginSignbtn {
+    text-align: center;
+    display: inline-block;
+    border-radius: 15px;
+    height: 30px;
+    width: 150px;
+    padding-top: 6px;
+    padding-bottom: 1.8rem;
+    font-size: 15px;
+    font-weight: 400;
+  }
 
-
-    .serchlabel {
-        margin-bottom: 70px;
-    }
-    .doc-name {
+  .serchlabel {
+    margin-bottom: 70px;
+  }
+  .doc-name {
     width: 250px;
-        margin-top: -90px;
-     margin-left: -5px;
-   
-    }
+    margin-top: -90px;
+    margin-left: -5px;
+  }
 
-.article-search {
-
+  .article-search {
     margin: 20px 0px 0px -5px;
-   
+  }
 
-}
-
-
-.city-name.col-md-5 {
-     margin-top: -90px;
-}
+  .city-name.col-md-5 {
+    margin-top: -90px;
+  }
 
   /* .loginSignbtn {
         text-align: center;
@@ -1067,89 +865,48 @@
     left: 900px;
     bottom: 91px;
 } */
-
-
 }
 
 /* Portrait */
-@media only screen 
-  and (min-device-width: 768px) 
-  and (max-device-width: 1024px) 
-  and (orientation: portrait) 
-  and (-webkit-min-device-pixel-ratio: 2) {
-
+@media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (orientation: portrait) and (-webkit-min-device-pixel-ratio: 2) {
 }
 
 /* Landscape */
-@media only screen 
-  and (min-device-width: 768px) 
-  and (max-device-width: 1024px) 
-  and (orientation: landscape) 
-  and (-webkit-min-device-pixel-ratio: 2) {
-
+@media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (orientation: landscape) and (-webkit-min-device-pixel-ratio: 2) {
 }
 
 /* ----------- iPad Pro 10.5" ----------- */
 
 /* Portrait and Landscape */
-@media only screen 
-  and (min-device-width: 834px) 
-  and (max-device-width: 1112px)
-  and (-webkit-min-device-pixel-ratio: 2) {
-
+@media only screen and (min-device-width: 834px) and (max-device-width: 1112px) and (-webkit-min-device-pixel-ratio: 2) {
 }
 
 /* Portrait */
 /* Declare the same value for min- and max-width to avoid colliding with desktops */
 /* Source: https://medium.com/connect-the-dots/css-media-queries-for-ipad-pro-8cad10e17106*/
-@media only screen 
-  and (min-device-width: 834px) 
-  and (max-device-width: 834px) 
-  and (orientation: portrait) 
-  and (-webkit-min-device-pixel-ratio: 2) {
-
+@media only screen and (min-device-width: 834px) and (max-device-width: 834px) and (orientation: portrait) and (-webkit-min-device-pixel-ratio: 2) {
 }
 
 /* Landscape */
 /* Declare the same value for min- and max-width to avoid colliding with desktops */
 /* Source: https://medium.com/connect-the-dots/css-media-queries-for-ipad-pro-8cad10e17106*/
-@media only screen 
-  and (min-device-width: 1112px) 
-  and (max-device-width: 1112px) 
-  and (orientation: landscape) 
-  and (-webkit-min-device-pixel-ratio: 2) {
-
+@media only screen and (min-device-width: 1112px) and (max-device-width: 1112px) and (orientation: landscape) and (-webkit-min-device-pixel-ratio: 2) {
 }
 
 /* ----------- iPad Pro 12.9" ----------- */
 
 /* Portrait and Landscape */
-@media only screen 
-  and (min-device-width: 1024px) 
-  and (max-device-width: 1366px)
-  and (-webkit-min-device-pixel-ratio: 2) {
-
+@media only screen and (min-device-width: 1024px) and (max-device-width: 1366px) and (-webkit-min-device-pixel-ratio: 2) {
 }
 
 /* Portrait */
 /* Declare the same value for min- and max-width to avoid colliding with desktops */
 /* Source: https://medium.com/connect-the-dots/css-media-queries-for-ipad-pro-8cad10e17106*/
-@media only screen 
-  and (min-device-width: 1024px) 
-  and (max-device-width: 1024px) 
-  and (orientation: portrait) 
-  and (-webkit-min-device-pixel-ratio: 2) {
-
+@media only screen and (min-device-width: 1024px) and (max-device-width: 1024px) and (orientation: portrait) and (-webkit-min-device-pixel-ratio: 2) {
 }
 
 /* Landscape */
 /* Declare the same value for min- and max-width to avoid colliding with desktops */
 /* Source: https://medium.com/connect-the-dots/css-media-queries-for-ipad-pro-8cad10e17106*/
-@media only screen 
-  and (min-device-width: 1366px) 
-  and (max-device-width: 1366px) 
-  and (orientation: landscape) 
-  and (-webkit-min-device-pixel-ratio: 2) {
-
+@media only screen and (min-device-width: 1366px) and (max-device-width: 1366px) and (orientation: landscape) and (-webkit-min-device-pixel-ratio: 2) {
 }
-
