@@ -773,6 +773,25 @@
   and (min-device-width: 768px) 
   and (max-device-width: 1024px) 
  {
+    #about{
+    
+        position: relative;
+        bottom: 256px;
+        left: 230px;
+    
+    }
+    
+      #profile{
+        position: relative;
+        top: 121px;
+        left: 0px;
+    
+      }
+    
+      #head4{
+          position: relative;
+          top: 2px;
+      }
     .newsletter_float {
         position: fixed;
         width: 20%;
