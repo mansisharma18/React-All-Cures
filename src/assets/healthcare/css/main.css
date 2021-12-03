@@ -1251,6 +1251,9 @@ span.icon-chatbot {
   font-size: 50px;
   float: right;
 }
+#sectionMain {
+  margin-bottom: 15rem;
+}
 
 /**************************************************************
 -------- Footer ---------

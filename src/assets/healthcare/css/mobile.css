@@ -3,8 +3,27 @@
 @media only screen 
   and (min-device-width: 320px) 
   and (max-device-width: 480px)
-  and (-webkit-min-device-pixel-ratio: 2) {
-  
+ {
+   
+#about{
+    
+    position: relative;
+    bottom: 100px;
+
+}
+
+  #profile{
+    position: relative;
+    top: 161px;
+    left: 0px;
+
+  }
+
+  #head4{
+      position: relative;
+      top: 2px;
+  }
+ 
   
 #searchBtn{
     margin-right: -5px;
@@ -22,7 +41,7 @@
 }
 
     #Article {
-        font-size: 13px;
+        font-size: 11px;
         padding: 4px;
         position: relative;
         left: 10px;
@@ -138,14 +157,7 @@
   and (min-device-width: 320px) 
   and (max-device-width: 568px)
   and (-webkit-min-device-pixel-ratio: 2) {
-    .newsletter_float {
-        position: fixed;
-        width: 43%;
-        height: 40px;
-        bottom: 20px;
-        left: 125px;
-        font-size: 22px;
-    }
+  
 
 
     #createArticle1{
@@ -248,15 +260,7 @@
   and (min-device-width: 375px) 
   and (max-device-width: 667px) 
   and (-webkit-min-device-pixel-ratio: 2) { 
-    .newsletter_float {
-        position: fixed;
-        width: 43%;
-        height: 40px;
-        bottom: 20px;
-        left: 160px;
-        font-size: 22px;
-    }
-   
+
     #createArticle1{
         text-align: center;
     font-size: 13px;
@@ -383,14 +387,7 @@
         text-align: left;
     }
 
-      .newsletter_float {
-        position: fixed;
-        width: 43%;
-        height: 40px;
-        bottom: 20px;
-        left: 160px;
-        font-size: 22px;
-    }
+     
    
     #createArticle {
 
@@ -469,6 +466,35 @@
   and (min-device-width: 375px) 
   and (max-device-width: 812px) 
   and (-webkit-min-device-pixel-ratio: 3) { 
+
+   #iconStar{
+       position: relative;
+       bottom: 137px;
+       left: 150px;
+   }
+#rate{
+    position: relative;
+    left: 147px;
+    bottom: 139px;
+}
+#nameDoc{
+    position: relative;
+    left: 152px;
+    bottom: 152px;
+
+}
+#profile{
+    left: 12px;
+    position: relative;
+    top: 40px;
+}
+
+#about{
+    position: relative;
+    bottom: 224px;
+    left: 13px;
+
+}
     #createArticle1{
         text-align: center;
     font-size: 13px;
@@ -570,8 +596,28 @@
 
 @media screen 
   and (min-device-width: 360px) 
-  and (max-device-height: 640px) 
-  and (-webkit-device-pixel-ratio: 2) {
+  and (max-device-height: 740px) 
+  {
+
+
+    .header-drop {
+        background-color: #00415e;
+        color: white;
+      
+        padding: 5px 17px 5px 17px;
+        position: relative;
+        border-radius: 10px;
+        left: 20px;
+        width: 100%;
+        bottom: 1px;
+        height: 32px;
+        text-align: left;
+    }
+  #Article{
+      font-size: 11px;
+      padding: 3px;
+  }
+
     #createArticle {
 
         position: relative;
@@ -602,14 +648,20 @@
     }
     .doc-name {
         margin-right: 26px;
-        margin-top: -20px;
+        margin-top: 0px;
         margin-left: -5px;
         margin-bottom: 0px;
     }
 
+#searchArticle{
+    margin: 35px 0px 0px 12px;
+}
+    #article{
+        margin-right: 12px;
+    }
 .article-search {
 
-    margin: 20px 0px 0px -5px;
+    margin: 35px 0px 0px 0px;
 
 }
 .btn-article-search {
@@ -651,14 +703,7 @@
   and (min-device-width: 320px) 
   and (max-device-height: 640px) 
   and (-webkit-device-pixel-ratio: 3) {
-    .newsletter_float {
-        position: fixed;
-        width: 40%;
-        height: 40px;
-        bottom: 20px;
-        left: 160px;
-        font-size: 22px;
-    }
+  
     #createArticle {
 
         position: relative;
@@ -733,7 +778,7 @@
 @media only screen 
   and (min-device-width: 768px) 
   and (max-device-width: 1024px) 
-  and (-webkit-min-device-pixel-ratio: 1) {
+ {
     .newsletter_float {
         position: fixed;
         width: 20%;
@@ -856,14 +901,7 @@
   and (min-device-width: 1024px) 
   and (max-device-width: 1366px) 
   and (-webkit-min-device-pixel-ratio: 2) {
-    .newsletter_float {
-        position: fixed;
-        width: 15%;
-        height: 40px;
-        bottom: 20px;
-        left: 810px;
-        font-size: 22px;
-    }
+   
     #searchBtn{
         margin-right: -34px;
        margin-top: 185px;

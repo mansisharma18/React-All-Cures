@@ -13,13 +13,13 @@ const ProfileTab = ({ setModalShow, docid, rowno, name, pSpl, hospital, state, c
                   </div>
               <div className="col-md-6 col-sm-12">
                 <div className="detail-l">
-                  <div className="rating"> <span className="icon-star-1"></span>
-                    <p>4.2</p>
+                  <div className="rating"> <span className="icon-star-1" id="iconStar"></span>
+                    <p id="rate">4.2</p>
                   </div>
-                  <div className="name">
+                  <div className="name" id="nameDoc">
                   <h2>{name}</h2>
                   <h3>{pSpl}</h3>           {/* Primary Specialization */}
-                  <h4>{hospital} {state} {country}</h4>
+                  <h4 id="head4">{hospital} {state} {country}</h4>
                     {/* <p>“Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc sodales dolor in ante fermentum, vitae varius turpis imperdiet.”</p> */}
                   </div>
                   <div className="btn-group"> 
@@ -29,7 +29,7 @@ const ProfileTab = ({ setModalShow, docid, rowno, name, pSpl, hospital, state, c
                          Visit Profile
                         </Link>
                       : <button 
-                          className="btn btn-bg profile-btn color-white text-capitalize font-weight-normal" 
+                          className="btn btn-bg profile-btn color-white text-capitalize font-weight-normal" id="profile"
                           onClick={() => setModalShow(true)}
                         >
                          Profile
@@ -43,11 +43,11 @@ const ProfileTab = ({ setModalShow, docid, rowno, name, pSpl, hospital, state, c
                 </div>
               </div>
               <div className="col-md-6 col-sm-12">
-                <div className="detail-r">
-                <div className="name">
+                <div className="detail-r"id="about">
+                <div className="name" >
                 <h2> About {name}</h2>
                 </div>
-                <p>“Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc sodales dolor in ante fermentum, vitae varius turpis imperdiet.”</p>
+                <p id="aboutDoc">“Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc sodales dolor in ante fermentum, vitae varius turpis imperdiet.”</p>
 
                   {/* <ul className="mon coman-ul">
                     <p>Mon</p>
