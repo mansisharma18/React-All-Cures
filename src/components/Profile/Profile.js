@@ -13,6 +13,7 @@ import { Container, Button } from "react-bootstrap"
 import axios from 'axios';
 import EditProfile from "./EditProfile";
 import { backendHost } from '../../api-config';
+import Comment from '../Comment'
 import '../../assets/healthcare/css/mobile.css'
 
 class Profile extends Component {
@@ -187,9 +188,9 @@ class Profile extends Component {
                               {items.prefix}. {items.docname_first} {items.docname_middle}{" "}
                               {items.docname_last}{" "}
                             </div>
-                            <div className="h5 ">{items.primary_spl}</div>
+                            <div className="h5 "> {items.primary_spl}</div>
                             <div className="h5 ">{items.experience}</div>
-                            <div className="h5 ">
+                            <div className="h5 "> 
                               {items.hospital_affliated}{" "}
                               {items.country_code}
                             </div>
@@ -198,7 +199,7 @@ class Profile extends Component {
                             
 
                             </div>
-                            <div className="rating">
+                            {/* <div className="rating">
                               
                            
                             <p>{this.state.ratingValue}</p>
@@ -206,7 +207,7 @@ class Profile extends Component {
 
                   
                  
-               </div>
+               </div> */}
                            
                           </div>
                           
@@ -308,24 +309,13 @@ class Profile extends Component {
                     <div className="tab-nav">
                       <div className="rating-heading">
                         <div className="profile-info-rating">
-                        <Rating  docid={this.state.param.id} />
+                        {/* <Rating  docid={this.state.param.id} /> */}
                           
                        
                         </div>
                       </div>
                       {/* <!-- Nav tabs --> */}
-                      <ul className="nav">
-                        <li className="active">
-                          <a data-toggle="pill" href="/#patient">
-                            Patient Reviews (123)
-                          </a>
-                        </li>
-                        <li>
-                          <a data-toggle="pill" href="/#recomended">
-                            Recommendations
-                          </a>
-                        </li>
-                      </ul>
+                    
                     </div>
                     <div className="tab-content">
                       <div id="patient" className="tab-pane active">
@@ -390,26 +380,7 @@ class Profile extends Component {
                         
 
                           
-                          <div className="rating-footer">
-                            <div className="back-top">
-                              {" "}
-                              <a href="/#">
-                                <p>
-                                  <i
-                                    className="fa fa-angle-up"
-                                    aria-hidden="true"
-                                  ></i>{" "}
-                                  Back to Top
-                                </p>
-                              </a>{" "}
-                            </div>
-                            <a
-                              href="//#"
-                              className="read-more-rating"
-                            >
-                              Read more Reviews
-                            </a>{" "}
-                          </div>
+                        
                           
                           <div className="rating-footer">
                             <div className="back-top">
@@ -593,10 +564,7 @@ class Profile extends Component {
             </div>
           </section>
           <div>
-         <button i className=" newsletter-icon btn  newsletter_float" data-toggle="modal"data-target=".bd-example-modal-lg">
-      Subscribe
      
-            </button>
  
          </div>
 <div className="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
@@ -623,25 +591,7 @@ class Profile extends Component {
                         </div>
                      </div>
                   </div>
-                  <div className="col-md-6 col-sm-6 col-sx-12">
-                     <div className="subscribe">
-                        <h1>Get along with us on</h1>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec congue  turpis sollicitudin nulla finibus dignissim.</p>
-                        <div className="form-group relative">
-                           <div className="aaa">
-                              <input type="text" name="" className="form-control"/>
-                           </div>
-                           <div>
-                              {/* <a href="/#" className="subscribeBtn">Subscribe</a> */}
-                              
-                                
-                                <button onClick={() => {this.postSubscribtion()}}>Submit</button>
-                              
-                             
-                           </div>
-                        </div>
-                     </div>
-                  </div>
+                 
                </div>
             </div>
          </div>
