@@ -6,6 +6,12 @@
     bottom: 100px;
   }
 
+  #profile {
+    position: relative;
+    top: 121px;
+    left: 0px;
+  }
+
   #head4 {
     position: relative;
     top: 2px;
@@ -23,7 +29,7 @@
     left: 15px;
   }
   #searchArticle {
-    margin: 60px 0 0 10px;
+    margin: 45px 0 0 10px;
   }
 
   #Article {
@@ -60,7 +66,7 @@
 
     padding: 5px 17px 5px 17px;
     position: relative;
-    border-radius: 10px;
+    border-radius: 20px;
     left: 22px;
     width: 100%;
     bottom: 5px;
@@ -135,7 +141,7 @@
 
     padding: 5px 17px 5px 17px;
     position: relative;
-    border-radius: 10px;
+    border-radius: 20px;
     left: 20px;
     width: 100%;
     bottom: 30px;
@@ -216,7 +222,7 @@
 
     padding: 5px 17px 5px 17px;
     position: relative;
-    border-radius: 10px;
+    border-radius: 20px;
     left: 20px;
     width: 100%;
     bottom: 1px;
@@ -297,7 +303,7 @@
 
     padding: 5px 17px 5px 17px;
     position: relative;
-    border-radius: 10px;
+    border-radius: 20px;
     left: 20px;
     width: 100%;
     bottom: 1px;
@@ -364,32 +370,22 @@
 
 /* Portrait and Landscape */
 @media only screen and (min-device-width: 375px) and (max-device-width: 812px) and (-webkit-min-device-pixel-ratio: 3) {
-  #iconStar {
+  #about {
     position: relative;
-    bottom: 137px;
-    left: 150px;
-  }
-  #rate {
-    position: relative;
-    left: 147px;
-    bottom: 139px;
-  }
-  #nameDoc {
-    position: relative;
-    left: 152px;
-    bottom: 152px;
+    bottom: 100px;
   }
 
   #profile {
     position: relative;
-    left: 0;
-    padding: 0.2rem 0.7rem;
+    top: 121px;
+    left: 0px;
   }
-  #about {
+
+  #head4 {
     position: relative;
-    bottom: 224px;
-    left: 13px;
+    top: 2px;
   }
+
   #createArticle1 {
     text-align: center;
     font-size: 13px;
@@ -403,7 +399,7 @@
 
     padding: 5px 17px 5px 17px;
     position: relative;
-    border-radius: 10px;
+    border-radius: 20px;
     left: 20px;
     width: 100%;
     bottom: 1px;
@@ -477,7 +473,7 @@
 
     padding: 5px 17px 5px 17px;
     position: relative;
-    border-radius: 10px;
+    border-radius: 20px;
     left: 20px;
     width: 100%;
     bottom: 1px;
