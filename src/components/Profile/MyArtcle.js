@@ -31,7 +31,10 @@ export default class Blogpage extends Component{
               isLoaded: true,
               items: json,
             });
-          });
+          })
+          .catch(err => 
+            console.log(err)
+        )
       }
 
       componentDidMount() {

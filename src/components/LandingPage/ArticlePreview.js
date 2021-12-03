@@ -16,7 +16,10 @@ const ArticlePreview = (props) => {
                   setItems(json)
               }
             setLoaded(true)
-          });
+          })
+          .catch(err => 
+            console.log(err)
+        )
     }
 
     function articleFilterClick(e, filter) {

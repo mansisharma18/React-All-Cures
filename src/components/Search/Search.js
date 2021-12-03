@@ -76,7 +76,10 @@ class Search extends Component {
           isLoaded: true,
           items: json.map.DoctorDetails.myArrayList,
         })            
-      });
+      })
+      .catch(err => 
+        console.log(err)
+    )
     } else if((city) && (!this.state.param.name)) {
 
       document.title = `All Cures | ${city}`
@@ -88,7 +91,10 @@ class Search extends Component {
           items: json.map.DoctorDetails.myArrayList,
           acPerm: Cookies.get('acPerm'),
         })            
-      });
+      })
+      .catch(err => 
+        console.log(err)
+    )
     }
   }
 
@@ -99,7 +105,10 @@ class Search extends Component {
       .then(diseaseData => {
         this.setState({
           speciality: diseaseData
-      });
+      })
+      .catch(err => 
+        console.log(err)
+    )
       })
   }
     // USE if statement
