@@ -33,7 +33,7 @@
   }
 
   #Article {
-    font-size: 11px;
+    font-size: 13px;
     padding: 4px;
     position: relative;
     left: 10px;
@@ -492,7 +492,7 @@
     text-align: left;
   }
   #Article {
-    font-size: 11px;
+    font-size: 13px;
     padding: 3px;
   }
 
@@ -621,6 +621,10 @@
 }
 
 @media only screen and (min-device-width: 768px) and (max-device-width: 1024px) {
+  #textComment{
+    font-size: 10px;
+    }
+  
   .newsletter_float {
     position: fixed;
     width: 20%;
@@ -677,30 +681,14 @@
         margin: 140px 0 0 10px;
     }
     
-        #Article {
-            font-size: 15px;
-            padding: 6px;
-            position: relative;
-            left: 0px;
-            height: 38px;
-        } 
-  #searchMain{
-      margin-bottom: 5rem;
-  }
+   
+
   #searchCity {
     position: relative;
     top: 30px;
     left: 30px;
   }
-  #searchDoc {
-    margin-bottom: 4px;
-    margin-left: 10px;
-    width: 97%;
-    padding: 0;
-    position: relative;
-    left: 15px;
-    top: 30px;
-  }
+
   #searchArticle {
     margin: 140px 0 0 10px;
   }
@@ -732,10 +720,10 @@
   }
 
   .serchlabel {
-    margin-bottom: 160px;
+    margin-bottom: 210px;
   }
   .doc-name {
-    margin-top: 110px;
+    margin-top: 80px;
     margin-left: -20px;
   }
 
@@ -750,7 +738,7 @@
   }
 
   .city-name.col-md-5 {
-    margin-top: 110px;
+    margin-top: 80px;
     margin-left: -30px;
   }
   .btn.btn-article-search.color-white {
@@ -762,6 +750,12 @@
     left: -20px;
     bottom: 0px;
   }
+  #avg-rating {
+
+    position: relative;
+    left: 14px;
+    font-size: 14px;
+}
 }
 
 /* Portrait */
@@ -776,24 +770,29 @@
 
 /* Portrait and Landscape */
 @media only screen and (min-device-width: 1024px) and (max-device-width: 1366px) and (-webkit-min-device-pixel-ratio: 2) {
+  #textComment{
+    font-size: 10px;
+    }
+  
+  
   #searchBtn {
     margin-right: -34px;
-    margin-top: 185px;
+    margin-top: 110px;
     position: relative;
     top: 35px;
   }
   #searchCity {
-    margin-top: 180px;
+    margin-top: 105px;
     position: relative;
     top: 40px;
   }
   #searchDoc {
-    margin-top: 180px;
+    margin-top: 105px;
     position: relative;
     top: 40px;
   }
   #searchArticle {
-    margin: 200px 0 0 0px;
+    margin: 0px -225px 0 0px;
     position: absolute;
     right: 583px;
   }
@@ -969,4 +968,109 @@
 /* Declare the same value for min- and max-width to avoid colliding with desktops */
 /* Source: https://medium.com/connect-the-dots/css-media-queries-for-ipad-pro-8cad10e17106*/
 @media only screen and (min-device-width: 1366px) and (max-device-width: 1366px) and (orientation: landscape) and (-webkit-min-device-pixel-ratio: 2) {
+  #textComment{
+    font-size: 10px;
+    }
+  
+  
+  #searchBtn {
+    margin-right: -34px;
+    margin-top: 85px;
+    margin-bottom: 105px;
+    position: relative;
+    top: 35px;
+  }
+  #searchCity {
+    margin-top: 80px;
+    position: relative;
+    top: 40px;
+  }
+  #searchDoc {
+    margin-top: 80px;
+    position: relative;
+    top: 40px;
+  }
+  #searchArticle {
+    margin: 0px 0 0 0px;
+    position: absolute;
+    right: 583px;
+  }
+
+  #Article {
+    font-size: 15px;
+    padding: 6px;
+    position: relative;
+    left: 0px;
+    height: 38px;
+  }
+
+  .loginSignbtn {
+    text-align: center;
+    display: inline-block;
+    border-radius: 15px;
+    height: 30px;
+    width: 150px;
+    padding-top: 6px;
+    padding-bottom: 1.8rem;
+    font-size: 15px;
+    font-weight: 400;
+  }
+
+  .serchlabel {
+    margin-bottom: 160px;
+  }
+  .doc-name {
+    margin-top: 110px;
+    margin-left: -20px;
+  }
+
+
+  .btn-article-search {
+    background-color: #00415e;
+    margin-right: 25px;
+    height: 56px;
+    width: 74px;
+  }
+
+  .city-name.col-md-5 {
+    margin-top: 110px;
+  }
+  .btn.btn-article-search.color-white {
+    position: relative;
+    right: 20px;
+  }
+  .btn.btn-article-search.color-white.float-right {
+    position: relative;
+    left: -20px;
+    bottom: 90px;
+  }
+  .loginSignbtn {
+    text-align: center;
+    display: inline-block;
+    border-radius: 15px;
+    height: 30px;
+    width: 150px;
+    padding-top: 6px;
+    padding-bottom: 1.8rem;
+    font-size: 15px;
+    font-weight: 400;
+  }
+
+  .serchlabel {
+    margin-bottom: 70px;
+  }
+  .doc-name {
+    width: 250px;
+    margin-top: -90px;
+    margin-left: -5px;
+  }
+
+  .article-search {
+    margin: 20px 0px 0px -5px;
+  }
+
+  .city-name.col-md-5 {
+    margin-top: -90px;
+  }
+
 }

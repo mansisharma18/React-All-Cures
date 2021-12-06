@@ -52,7 +52,7 @@ const TrendingArticles = () => {
                     <div className="card d-flex justify-content-between">
                         <div className="h5">Naturopathy</div>
                         <div id="trending-articles-3">
-                        <Link to="/cures/Natiropathy">
+                        <Link to="/cures/Naturopathy">
                             <img className="rounded-right" src="https://images.pexels.com/photos/161599/scent-sticks-fragrance-aromatic-161599.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"></img>
                         </Link>
                         </div>
