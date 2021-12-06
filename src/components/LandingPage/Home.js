@@ -273,13 +273,13 @@ class Home extends Component {
                            {
                               this.state.acPerm?
                               <Link className="btn border mr-2 btn-white loginSignbtn color-blue-dark" id="createArticle1" to="/article">
-                              Create Article
+                              Create Cures
                             </Link>
                               : <button 
                               className="btn border mr-2 btn-white loginSignbtn color-blue-dark" id="createArticle"
                               onClick={() => this.setModalShow(true)}
                             >
-                             Create Article
+                             Create Cures
                             </button>
                            }   
       
@@ -325,7 +325,7 @@ class Home extends Component {
                   }
                   sx={{ width: 300 }}
                   
-                  renderInput={(params) => <TextField {...params} label="Search Articles" />}
+                  renderInput={(params) => <TextField {...params} label="Search Cures" />}
                />
             </div>
             <div className="col-md-2 p-0 mainBtn">
@@ -468,7 +468,7 @@ class Home extends Component {
       <div className="container">
             <div className="row">
                <div className="comman-heading">
-                  <div className="h4">Trending Articles</div>
+                  <div className="h4">Trending Cures</div>
                </div>
             </div>
             <div className="row">

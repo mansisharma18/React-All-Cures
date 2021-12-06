@@ -454,16 +454,15 @@
     margin-left: -5px;
     margin-bottom: 0px;
   }
-
-  .article-search {
-    margin: -5px 0px 0px -5px;
-  }
+  
   .btn-article-search {
     background-color: #00415e;
     margin-right: 23px;
     height: 56px;
   }
-
+  .article-search {
+    margin: -20px 0px 0px -5px;
+  }
   .city-name.col-md-5 {
     margin-left: -5px;
     margin-right: 60px;
