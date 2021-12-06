@@ -38,20 +38,7 @@ class Profile extends Component {
     }; 
     // this.editToggle = this.editToggle.bind()
   }
-  postSubscribtion() {
-    
-    axios.post(`${backendHost}/users/subscribe/7889761896`, {
-    //   "articles_ids": selected.join(),
-    //   "articles_ids_rejected": rejected.join()
-    "nl_subscription_disease_id": 1,
-    "nl_sub_type":1,
-    "nl_subscription_cures_id":0,
-    })
-      .then(res => {
-       
-      })
-      .catch(err => console.log(err))  
-  }
+ 
   
   getComments = (id) => {
     axios.get(`${backendHost}/rating/target/${id}/targettype/1`)
@@ -303,12 +290,13 @@ class Profile extends Component {
                     
                   </div>
                   <div className="profile-info-rating">
+                    <h3>Overall Rating</h3>
                         <Rating  docid={this.state.param.id} />
                           
                        
                         </div>
                   <div className="comment-box">
-                    <Comment refreshComments={this.getComments(this.state.param.id)} docid={this.state.param.id}/>
+                    {/* <Comment refreshComments={this.getComments(this.state.param.id)} docid={this.state.param.id}/> */}
                   </div>
                   <div className="profile-rating">
                     <div className="tab-nav">
