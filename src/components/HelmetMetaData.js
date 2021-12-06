@@ -1,6 +1,7 @@
 import React from "react";
 import { Helmet } from "react-helmet";
 import { useLocation } from "react-router-dom";
+
 export default function HelmetMetaData(props) {   
    let location = useLocation();
    let currentUrl = "https://all-cures.com" + location.pathname;
@@ -35,6 +36,7 @@ export default function HelmetMetaData(props) {
      <meta content="image/*" property="og:image:type" />
      <meta property="og:url" content={currentUrl} />
      <meta property="og:site_name" content="AllCures" />
-     <meta property="og:description" content={description} />    </Helmet>
-);
+     <meta property="og:description" content={description} />    
+    </Helmet>
+    );
 }

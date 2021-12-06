@@ -34,9 +34,11 @@ import ListArticle from './Profile/ListArticle'
 import NotFound from "./NotFound";
 import { userAccess } from "./UserAccess";
 import NotAuthorizedPage from "./NotAuthorizedPage";
+import {FacebookShareButton, FacebookIcon, TwitterIcon, TwitterShareButton, WhatsappIcon, WhatsappShareButton} from "react-share";
+import Popper from '@mui/material/Popper';
 
 function Main(props) {
-const history = useHistory()
+  const history = useHistory()
 
   // render() {
   const [auth, setAuth] = React.useState('not-logged-in');
@@ -85,6 +87,33 @@ const history = useHistory()
         <AuthApi.Provider value={{auth, setAuth}}>
           <HashRouter history={history} basename={''}>
             <HelmetMetaData></HelmetMetaData>
+            
+  <Popper className="socialMediaPopper" open={true} transition>
+   <FacebookShareButton
+     url={"https://all-cures.com"}
+     quote={"All-Cures - All in one Health App"}
+     hashtag="#allCures"
+     className="socialMediaButton"
+   >
+     <FacebookIcon size={36} />
+   </FacebookShareButton>
+   <TwitterShareButton
+     url={"https://all-cures.com"}
+     title={"All-Cures - All in one Health App"}
+     hashtag="#allCures"
+     className="socialMediaButton"
+   >
+     <TwitterIcon size={36} />
+   </TwitterShareButton>
+   <WhatsappShareButton
+     url={"https://all-cures.com"}
+     title={"All-Cures - All in one Health App"}
+     separator=": "
+     className="socialMediaButton"
+   >
+     <WhatsappIcon size={36} />
+   </WhatsappShareButton>
+  </Popper>
             <Routes authLoaded={authLoaded} url = {url} userAccess = {userAccess}/>
           </HashRouter>
         </AuthApi.Provider>
