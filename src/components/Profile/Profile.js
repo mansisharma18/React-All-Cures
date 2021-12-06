@@ -302,17 +302,18 @@ class Profile extends Component {
                       </div>
                     
                   </div>
+                  <div className="profile-info-rating">
+                        <Rating  docid={this.state.param.id} />
+                          
+                       
+                        </div>
                   <div className="comment-box">
-                    {/* <Comment refreshComments={this.getComments(this.state.param.id)} docid={this.state.param.id}/> */}
+                    <Comment refreshComments={this.getComments(this.state.param.id)} docid={this.state.param.id}/>
                   </div>
                   <div className="profile-rating">
                     <div className="tab-nav">
                       <div className="rating-heading">
-                        <div className="profile-info-rating">
-                        {/* <Rating  docid={this.state.param.id} /> */}
-                          
-                       
-                        </div>
+                      
                       </div>
                       {/* <!-- Nav tabs --> */}
                     
