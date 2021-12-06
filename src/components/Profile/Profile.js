@@ -302,17 +302,18 @@ class Profile extends Component {
                       </div>
                     
                   </div>
+                  <div className="profile-info-rating">
+                        <Rating  docid={this.state.param.id} />
+                          
+                       
+                        </div>
                   <div className="comment-box">
-                    {/* <Comment refreshComments={this.getComments(this.state.param.id)} docid={this.state.param.id}/> */}
+                    <Comment refreshComments={this.getComments(this.state.param.id)} docid={this.state.param.id}/>
                   </div>
                   <div className="profile-rating">
                     <div className="tab-nav">
                       <div className="rating-heading">
-                        <div className="profile-info-rating">
-                        {/* <Rating  docid={this.state.param.id} /> */}
-                          
-                       
-                        </div>
+                      
                       </div>
                       {/* <!-- Nav tabs --> */}
                     
@@ -397,136 +398,7 @@ class Profile extends Component {
                     </div>
                   </div>
                 </div>
-                <div className="col-md-4 pdr-0">
-                  
-                  <div className="bookAnAppoinment">
-                    <h1>Book an appointment</h1>
-                    
-                    <div className="form-group">
-                      <label>Reason to Visit</label>
-                      <select className="form-control">
-                        <option>Condition</option>
-                        <option>Regular Health Check-Up</option>
-                        <option>Viral Infection</option>
-                      </select>
-                    </div>
-                    <div className="togleBtn">
-                      <p>Has the patient seen this doctor before?</p>
-                      <label className="switch">
-                        <input type="checkbox" />
-                        <span className="slider round"></span>{" "}
-                      </label>
-                    </div>
-                    <div className="form-group">
-                      <label>Please select an office location</label>
-                      <select className="form-control">
-                        <option>
-                          110 West 14th Street, New York, NY, 10011
-                        </option>
-                        <option>
-                          110 West 14th Street, New York, NY, 10011
-                        </option>
-                        <option>
-                          110 West 14th Street, New York, NY, 10011
-                        </option>
-                      </select>
-                    </div>
-                    <div className="detail-r">
-                      <h3>Please select an available day and time</h3>
-                      <ul className="mon coman-ul">
-                        <p>Mon</p>
-                        <li>
-                          <a href="//#" className="active">
-                            9.00 am
-                          </a>
-                        </li>
-                        <li>
-                          <a href="//#">10.00 am</a>
-                        </li>
-                        <li>
-                          <a href="//#">1.00 pm</a>
-                        </li>
-                        <li>
-                          <a href="//#">2.00 pm</a>
-                        </li>
-                      </ul>
-                      <ul className="tue coman-ul">
-                        <p>Tue</p>
-                        <li>
-                          <a href="//#">9.00 am</a>
-                        </li>
-                        <li>
-                          <a href="//#">10.00 am</a>
-                        </li>
-                        <li>
-                          <a href="//#">1.00 pm</a>
-                        </li>
-                        <li>
-                          <a href="//#">2.00 pm</a>
-                        </li>
-                      </ul>
-                      <ul className="wed coman-ul">
-                        <p>Wed</p>
-                        <li>
-                          <a href="//#">9.00 am</a>
-                        </li>
-                        <li>
-                          <a href="//#">10.00 am</a>
-                        </li>
-                        <li>
-                          <a href="//#">1.00 pm</a>
-                        </li>
-                        <li>
-                          <a href="//#">2.00 pm</a>
-                        </li>
-                      </ul>
-                      <ul className="ted coman-ul">
-                        <p>Thu</p>
-                        <li>
-                          <a href="//#">9.00 am</a>
-                        </li>
-                        <li>
-                          <a href="//#">10.00 am</a>
-                        </li>
-                        <li>
-                          <a href="//#">1.00 pm</a>
-                        </li>
-                        <li>
-                          <a href="//#">2.00 pm</a>
-                        </li>
-                      </ul>
-                      <ul className="fri coman-ul">
-                        <p>Fri</p>
-                        <li>
-                          <a href="//#">9.00 am</a>
-                        </li>
-                        <li>
-                          <a href="//#">10.00 am</a>
-                        </li>
-                        <li>
-                          <a href="//#">1.00 pm</a>
-                        </li>
-                        <li>
-                          <a href="//#">2.00 pm</a>
-                        </li>
-                      </ul>
-                    </div>
-                    <div className="btn-group">
-                      <a
-                        href="//#"
-                        className="btn-bg profile-btn color-white"
-                      >
-                        Appointment
-                      </a>
-                      <a
-                        href="//#"
-                        className="bg-gray video-btn color-light-gray"
-                      >
-                        Video Consult
-                      </a>{" "}
-                    </div>
-                  </div>
-                </div>
+              
               </div>
             </div>
           </section>
