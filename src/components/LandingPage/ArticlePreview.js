@@ -12,7 +12,7 @@ const ArticlePreview = (props) => {
           .then((json) => {
               if(articleFilter === 'recent'){
                 setItems(json.reverse())
-              } else if(articleFilter === 'oldest'){
+              } else if(articleFilter === 'earliest'){
                   setItems(json)
               }
             setLoaded(true)
@@ -58,8 +58,8 @@ const ArticlePreview = (props) => {
             <div className="row">
             <div class="tab-nav">
                <div class="comman-heading">
-                  <div class="h4 mt-4">
-                     Recent Articles
+                  <div class="h4 mt-4 text-capitalize">
+                     {articleFilter} Cures
                   </div>
                </div>
                <ul>
@@ -69,11 +69,11 @@ const ArticlePreview = (props) => {
                      >Recent</button>
                   </li>
                   <li role="presentation">
-                     <button className="btn mr-2" onClick={(e) => articleFilterClick(e, 'oldest')}>Oldest</button>
+                     <button className="btn mr-2" onClick={(e) => articleFilterClick(e, 'earliest')}>Earliest</button>
                   </li>
-                  <li role="presentation">
+                  {/* <li role="presentation">
                      <button className="btn" onClick={(e) => articleFilterClick(e, 'recent')}>Most Rated</button>
-                  </li>
+                  </li> */}
                </ul>
             </div>
                {/* <div className="comman-heading">

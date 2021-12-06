@@ -118,8 +118,8 @@ export default class Blogpage extends Component{
                 <div className="container my-4">
                   {
                     this.state.param.type?
-                    <h1 className="h2 text-center">Articles related to "{this.props.match.params.type}"</h1>
-                    :<h1 className="h2 text-center">Articles</h1>
+                    <div className="h3 text-capitalize text-center font-weight-bold mb-4">Cures Related to "{this.props.match.params.type.toLowerCase()}"</div>
+                    :null
                   }
                     <div className="row" id="posts-container">
                     {items.map((i) => (
@@ -149,8 +149,8 @@ export default class Blogpage extends Component{
                 <div className="container my-4">
                   {
                     this.state.param.type?
-                    <h1 className="h2 text-center">Blogs related to "{this.state.param.type}"</h1>
-                    :<h1 className="h2 text-center">All Blogs</h1>
+                    <h1 className="h2 text-center">Cures related to "{this.state.param.type}"</h1>
+                    :<h1 className="h2 text-center">All Cures</h1>
                   }
                     <div className="row" id="posts-container">
                     {items.map((i) => (

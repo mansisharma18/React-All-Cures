@@ -273,13 +273,13 @@ class Home extends Component {
                            {
                               this.state.acPerm?
                               <Link className="btn border mr-2 btn-white loginSignbtn color-blue-dark" id="createArticle1" to="/article">
-                              Create Article
+                              Create Cures
                             </Link>
                               : <button 
                               className="btn border mr-2 btn-white loginSignbtn color-blue-dark" id="createArticle"
                               onClick={() => this.setModalShow(true)}
                             >
-                             Create Article
+                             Create Cures
                             </button>
                            }   
       
@@ -325,7 +325,7 @@ class Home extends Component {
                   }
                   sx={{ width: 300 }}
                   
-                  renderInput={(params) => <TextField {...params} label="Search Articles" />}
+                  renderInput={(params) => <TextField {...params} label="Search Cures" />}
                />
             </div>
             <div className="col-md-2 p-0 mainBtn">
@@ -360,7 +360,7 @@ class Home extends Component {
                      	  {/* <div className="col-md-6 pd-0 col-sx-12 col-sm-4">
                    			<div className="form-group search"> */}
                             <div className="col-md-12 p-0">
-                            <div className="row mt-4">
+                            <div className="row">
                             <div className="doc-name col-md-6 col-sm-12">
                             <Autocomplete className="bg-white color-black"
                               freeSolo
@@ -468,7 +468,7 @@ class Home extends Component {
       <div className="container">
             <div className="row">
                <div className="comman-heading">
-                  <div className="h4">Trending Articles</div>
+                  <div className="h4">Trending Cures</div>
                </div>
             </div>
             <div className="row">
