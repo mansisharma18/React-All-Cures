@@ -10,6 +10,9 @@ import SidebarRight from "./RightMenu";
 import { backendHost } from '../../api-config';
 import Dropdown from 'react-bootstrap/Dropdown';
 import axios from 'axios';
+
+import HelmetMetaData from '../HelmetMetaData';
+
 // import CenterWell from './CenterWell'
 class Disease extends Component {
   constructor(props) {
@@ -151,6 +154,7 @@ class Disease extends Component {
     return (
     <div>
       <Header history={this.props.history}/>
+        <HelmetMetaData title={items.title} description={items.title} ></HelmetMetaData>
         <div className="ad-spac">
           {/* <img src={Wall} height="200px" width="1900px"/> */}
         </div>

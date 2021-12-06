@@ -12,6 +12,8 @@ import AuthApi from './AuthApi'
 import Disease from "./Disease/Disease";
 import Dashboard from "./Dashboard/Dashboard.js";
 
+import HelmetMetaData from "./HelmetMetaData";
+
 import Blogpage from "./BlogPage/Blogpage";
 import EditPost from './BlogPage/EditModal';
 import BlogAllPost from './Dashboard/BlogAllPost'
@@ -82,6 +84,7 @@ const history = useHistory()
       <div>
         <AuthApi.Provider value={{auth, setAuth}}>
           <HashRouter history={history} basename={''}>
+            <HelmetMetaData></HelmetMetaData>
             <Routes authLoaded={authLoaded} url = {url} userAccess = {userAccess}/>
           </HashRouter>
         </AuthApi.Provider>
