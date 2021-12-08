@@ -98,13 +98,13 @@ class Disease extends Component {
     )
   }
 
+
   showRating = (val) => {
-    console.log(document.getElementById('avg-rating'), val)
     if(document.getElementById('avg-rating')){
-      
-    for(let i=0 ; i<val; i++){
-      document.getElementById('avg-rating').children[i].classList.add('checked')  
-    }
+
+      for (let i=0 ; i<val;i++){
+        document.getElementById('avg-rating').children[i].classList.add('checked')
+      }
     }
   }
   componentDidMount() {
@@ -236,10 +236,7 @@ class Disease extends Component {
                 : null
               }
               </div>
-                {/* <Link to={`/cures?c=9&dc=${items.disease_condition_id}`} className="mr-2 btn btn-info" >Indian</Link>
-                <Link to={``} className="mr-2 btn btn-success" >Chinese</Link>
-                <Link to={`/cures?c=10&dc=${items.disease_condition_id}`} className="btn btn-primary">Iranian</Link>
-              </div> */}
+              
               <div className="ml-5 h1 text-uppercase text-decoration-underline">{items.title}</div>
                 {b.map((i) => (
                   <CenterWell
