@@ -2779,7 +2779,7 @@ div.MuiSelect-root.MuiSelect-select.MuiSelect-selectMenu.MuiInputBase-input.MuiI
 }
 
 .ad-spac {
-  height: 200px;
+  height: 150px;
 }
 
 .error-404 {
@@ -2915,6 +2915,8 @@ div.main-hero:first-child .card {
 .article-title-container {
   width: 96%;
   margin: auto;
+  display: flex;
+  justify-content: space-between;
 }
 
 .article-title-container .h2 {

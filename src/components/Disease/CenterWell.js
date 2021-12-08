@@ -1,8 +1,6 @@
-import React, {useState} from 'react';
+import React from 'react';
 import parse from 'html-react-parser';
 
-import {FacebookShareButton, FacebookIcon, TwitterIcon, TwitterShareButton, WhatsappIcon, WhatsappShareButton} from "react-share";
-import Popper from '@mui/material/Popper';
 const CenterWell = ({pageTitle, imageUrl, content, type, text, title, message, source, embed, caption, alignment, url, item, level, props}) =>{
 
     var list;

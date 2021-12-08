@@ -10,9 +10,11 @@ import SidebarRight from "./RightMenu";
 import { backendHost } from '../../api-config';
 import Dropdown from 'react-bootstrap/Dropdown';
 import axios from 'axios';
+import ArticleComment from '../ArticleComment';
 
 import HelmetMetaData from '../HelmetMetaData';
 import {FacebookShareButton, FacebookIcon, TwitterIcon, TwitterShareButton, WhatsappIcon, WhatsappShareButton} from "react-share";
+import Cookies from 'js-cookie'
 import Popper from '@mui/material/Popper';
 
 // import CenterWell from './CenterWell'
@@ -20,6 +22,7 @@ class Disease extends Component {
   constructor(props) {
     super(props);
     // const params = props.match.params
+    const acPerm = Cookies.get("acPerm")
     this.state = { 
       items: [],
       comment: [],
@@ -62,14 +65,12 @@ class Disease extends Component {
     )
   }
 
-  
-
   getRating = (ratingId) => {
     axios.get(`${backendHost}/rating/target/${ratingId}/targettype/2/avg`)
     .then(res => {
       this.setState({
         ratingValue: res.data
-      })
+      }, () => console.log(this.state.ratingValue))
     }) 
     .catch(err => console.log(err))
   }
@@ -102,6 +103,7 @@ class Disease extends Component {
 
 
   showRating = (val) => {
+    console.log(val)
     if(document.getElementById('avg-rating')){
 
       for (let i=0 ; i<val;i++){
@@ -125,6 +127,8 @@ class Disease extends Component {
   componentDidUpdate(prevProps){
     if ( prevProps.match.params.id !== this.props.match.params.id){
       this.fetchBlog()
+      this.comments()
+      this.getRating(this.props.match.params.id)
     }
   }
 
@@ -152,7 +156,6 @@ class Disease extends Component {
     var artContent = items.content;
     var a = JSON.parse(decodeURIComponent(artContent))
     var b = a.blocks
-    console.log('bbbbbb', b)
     return (
     <div>
       <Header history={this.props.history}/>
@@ -180,14 +183,43 @@ class Disease extends Component {
                 </Breadcrumb.Item>
                 {/* <Breadcrumb.Item active>{items.title}</Breadcrumb.Item> */}
               </Breadcrumb>
-              <div className="d-flex justify-content-end mb-2">
-              <div className="average-rating mr-3 mt-2" id="avg-rating">
-                <span class="fa fa-star "></span>
-                <span class="fa fa-star "></span>
-                <span class="fa fa-star "></span>
-                <span class="fa fa-star "></span>
-                <span class="fa fa-star "></span>
-              </div>
+              
+                {/* <Link to={`/cures?c=9&dc=${items.disease_condition_id}`} className="mr-2 btn btn-info" >Indian</Link>
+                <Link to={``} className="mr-2 btn btn-success" >Chinese</Link>
+                <Link to={`/cures?c=10&dc=${items.disease_condition_id}`} className="btn btn-primary">Iranian</Link>
+              </div> */}
+              <div className="article-title-container">
+              <div className="h2 text-capitalize text-decoration-underline">{items.title.toLowerCase()}</div>
+              <div className="">
+              <FacebookShareButton
+                url={"https://all-cures.com"}
+                quote={"All-Cures - All in one Health App"}
+                hashtag="#allCures"
+                className="socialMediaButton"
+              >
+                <FacebookIcon size={36} />
+              </FacebookShareButton>
+              <TwitterShareButton
+                url={"https://all-cures.com"}
+                title={"All-Cures - All in one Health App"}
+                hashtag="#allCures"
+                className="socialMediaButton"
+              >
+                <TwitterIcon size={36} />
+              </TwitterShareButton>
+              <WhatsappShareButton
+                url={`https://all-cures.com/#${this.props.location.pathname}`}
+                title={`*All Cures -* ${items.title}`}
+                separator=": "
+                className="socialMediaButton"
+              >
+                <WhatsappIcon size={36} />
+              </WhatsappShareButton>
+            </div>
+            
+            </div>
+            <div className="d-flex justify-content-between margin-auto mb-2 mr-2" id="article-acc-to-regions">
+              
               { this.state.regions?
                 this.state.regions.map(i => (
                   <Dropdown>
@@ -238,39 +270,6 @@ class Disease extends Component {
                 : null
               }
               </div>
-                {/* <Link to={`/cures?c=9&dc=${items.disease_condition_id}`} className="mr-2 btn btn-info" >Indian</Link>
-                <Link to={``} className="mr-2 btn btn-success" >Chinese</Link>
-                <Link to={`/cures?c=10&dc=${items.disease_condition_id}`} className="btn btn-primary">Iranian</Link>
-              </div> */}
-              <div className="d-flex article-title-container">
-              <div className="h2 text-capitalize text-decoration-underline">{items.title.toLowerCase()}</div>
-              <div className="">
-              <FacebookShareButton
-                url={"https://all-cures.com"}
-                quote={"All-Cures - All in one Health App"}
-                hashtag="#allCures"
-                className="socialMediaButton"
-              >
-                <FacebookIcon size={36} />
-              </FacebookShareButton>
-              <TwitterShareButton
-                url={"https://all-cures.com"}
-                title={"All-Cures - All in one Health App"}
-                hashtag="#allCures"
-                className="socialMediaButton"
-              >
-                <TwitterIcon size={36} />
-              </TwitterShareButton>
-              <WhatsappShareButton
-                url={`https://all-cures.com/#${this.props.location.pathname}`}
-                title={`*All Cures -* ${items.title}`}
-                separator=": "
-                className="socialMediaButton"
-              >
-                <WhatsappIcon size={36} />
-              </WhatsappShareButton>
-            </div>
-            </div>
                 {b.map((i) => (
                   <CenterWell
                     pageTitle = {items.title}
@@ -292,16 +291,32 @@ class Disease extends Component {
                   />
                 ))}
               
-              
+              <div className="average-rating mt-2 mb-4 ml-3" id="avg-rating">
+                <span class="fa fa-star fa-2x"></span>
+                <span class="fa fa-star fa-2x "></span>
+                <span class="fa fa-star fa-2x "></span>
+                <span class="fa fa-star fa-2x "></span>
+                <span class="fa fa-star fa-2x "></span>
+              </div>
+
               {
                 this.state.ratingValue?
                 this.showRating(this.state.ratingValue): null
               }
-                            <div className="main-hero">
-                            {this.state.comment.map((item,i) => {
-                            return (
-                              <>
-                               {/* <h4 className="card-title">Top Reviews From Globe</h4> */}
+
+              {
+                Cookies.get('acPerm')?
+                  <>              
+                    <ArticleComment refreshComments={this.comments} article_id={this.props.match.params.id}/>
+                  </>
+                : null
+              }
+              
+              <div className="main-hero">
+                {this.state.comment.map((item,i) => {
+                  return (
+                    <>
+                     {/* <h4 className="card-title">Top Reviews From Globe</h4> */}
                     <div className="col-12">
                      
                     <div className="card my-4 ">

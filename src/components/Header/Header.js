@@ -347,7 +347,7 @@ import Autocomplete from '@mui/material/Autocomplete';
             </div>
         </div>
         );
-    }
+   }
 }
 function ToggleButton(props) {
    if(props.acPerm){
@@ -369,8 +369,8 @@ function ToggleButton(props) {
                   Dashboard</Link>
                </Dropdown.Item>
                :  <Dropdown.Item >
-               <Link to="/myarticle" className="text-dark btn">
-                  MyCures</Link>
+               <Link to="/my-cures" className="text-dark btn">
+                  My Cures</Link>
                </Dropdown.Item>
             }
              <Dropdown.Item >

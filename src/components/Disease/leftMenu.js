@@ -83,30 +83,6 @@ const Side = props => {
                 </div>
                 {/* </ul> */}
             </Nav.Item>
-            {
-                              acPerm?
-                              <>
-                              
-                              <ArticleComment refreshComments={comments} article_id={props.match.params.id}/>
-                            
-                              {/* <h3>Comments </h3> */}
-                              </>
-                              : null
-                            }
-            
-            
-            {/* {   
-                    commentItems?
-                    commentItems.map((i) => i.reviewed === 1?(
-                            <div className="pl-4">
-                                <div className="text-dark h5">{i.comments}</div>
-                                <i className="text-capitalize float-right">{i.first_name} {i.last_name}</i>
-                            </div>
-                        )
-                        :null
-                        )
-                    : null
-                } */}
             </Nav>
           
         </>
