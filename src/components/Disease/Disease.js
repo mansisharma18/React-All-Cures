@@ -12,6 +12,8 @@ import Dropdown from 'react-bootstrap/Dropdown';
 import axios from 'axios';
 
 import HelmetMetaData from '../HelmetMetaData';
+import {FacebookShareButton, FacebookIcon, TwitterIcon, TwitterShareButton, WhatsappIcon, WhatsappShareButton} from "react-share";
+import Popper from '@mui/material/Popper';
 
 // import CenterWell from './CenterWell'
 class Disease extends Component {
@@ -30,7 +32,7 @@ class Disease extends Component {
       regionalPost: []
     };
   }
-  
+
   fetchBlog = () => {
     fetch(`${backendHost}/article/${this.props.match.params.id}`)
       .then((res) => res.json())
@@ -134,7 +136,6 @@ class Disease extends Component {
 
   render() { 
     var { isLoaded,items } = this.state;
-    
     if(!isLoaded) {
     return (
       <>
@@ -151,6 +152,7 @@ class Disease extends Component {
     var artContent = items.content;
     var a = JSON.parse(decodeURIComponent(artContent))
     var b = a.blocks
+    console.log('bbbbbb', b)
     return (
     <div>
       <Header history={this.props.history}/>
@@ -240,10 +242,39 @@ class Disease extends Component {
                 <Link to={``} className="mr-2 btn btn-success" >Chinese</Link>
                 <Link to={`/cures?c=10&dc=${items.disease_condition_id}`} className="btn btn-primary">Iranian</Link>
               </div> */}
-              <div className="ml-5 h1 text-uppercase text-decoration-underline">{items.title}</div>
+              <div className="d-flex article-title-container">
+              <div className="h2 text-capitalize text-decoration-underline">{items.title.toLowerCase()}</div>
+              <div className="">
+              <FacebookShareButton
+                url={"https://all-cures.com"}
+                quote={"All-Cures - All in one Health App"}
+                hashtag="#allCures"
+                className="socialMediaButton"
+              >
+                <FacebookIcon size={36} />
+              </FacebookShareButton>
+              <TwitterShareButton
+                url={"https://all-cures.com"}
+                title={"All-Cures - All in one Health App"}
+                hashtag="#allCures"
+                className="socialMediaButton"
+              >
+                <TwitterIcon size={36} />
+              </TwitterShareButton>
+              <WhatsappShareButton
+                url={`https://all-cures.com/#${this.props.location.pathname}`}
+                title={`*All Cures -* ${items.title}`}
+                separator=": "
+                className="socialMediaButton"
+              >
+                <WhatsappIcon size={36} />
+              </WhatsappShareButton>
+            </div>
+            </div>
                 {b.map((i) => (
                   <CenterWell
                     pageTitle = {items.title}
+                    level = {i.data.level}
                     content = {i.data.content}
                     type = {i.type}
                     text = {i.data.text}

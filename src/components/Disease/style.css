@@ -977,7 +977,7 @@ dragHandle {
 }
 .ce-block__content {
   position: relative;
-  width: 90%;
+  width: 96%;
   margin: 0 auto;
   -webkit-transition: background-color 0.15s ease;
   transition: background-color 0.15s ease;
