@@ -5,6 +5,8 @@ import Heart from"../../assets/img/heart.png";
 import Facebook from '../../assets/icon/facebook.svg'
 import Instagram from '../../assets/icon/instagram.svg'
 import Linkedin from '../../assets/icon/linkedin.svg'
+import { Link } from 'react-router-dom';
+
 const Footer = () => {
    const [showAlert, setShowAlert] = useState(false)
    const [alertMsg, setAlertMsg] = useState(true)
@@ -73,36 +75,53 @@ const Footer = () => {
                </div>
                <div className="col-md-2 col-sm-2 col-sx-12">
                   <div className="footer-inner">
-                     <h1>Top Specialties</h1>
+                     <h1>Top Cures</h1>
                      <ul>
+                        {/* <li>
+                           <a href="#"></a>
+                        </li> */}
+                         <Link to={ `/cures/Cough And Cold` }>
+                          
+                           
+                              <li>
+                                 <a href="#">Cough Cold</a></li>
+                           
+                        </Link>
+                        <Link to={ `/cures/Diabetes` }>
                         <li>
-                           <a href="/#"> Primary Care Doctor</a>
+                           <a href="#">Diabetes Care</a>
                         </li>
+                        </Link>
+                        <Link to={ `/cures/Cardiology` }>
                         <li>
-                           <a href="/#">Dermatologist</a>
+                           <a href="#">Heart Care </a>
                         </li>
+                        </Link>
+                        <Link to={ `/cures/Dental` }>
                         <li>
-                           <a href="/#">OB-GYN Dentist </a>
+                           <a href="#">Dental Care</a>
                         </li>
+                        </Link>
+                        <Link to={ `/cures/Dermatology` }>
                         <li>
-                           <a href="/#">Psychiatrist</a>
+                           <a href="#">Skin Care</a>
                         </li>
+                        </Link>
+                        <Link to={ `/cures/ENT` }>
                         <li>
-                           <a href="/#">Ear, Nose & Throat Doctor</a>
+                           <a href="#">Eye Care</a>
                         </li>
-                        <li>
-                           <a href="/#">Podiatrist</a>
-                        </li>
-                        <li>
+                        </Link>
+                        {/* <li>
                            <a href="/#">Urologist</a>
-                        </li>
-                        <li>
+                        </li> */}
+                        {/* <li>
                            <a href="/#">Gastroenterologist</a>
-                        </li>
+                        </li> */}
                         
-                        <li>
+                        {/* <li>
                            <a href="/#"> View all</a>
-                        </li>
+                        </li> */}
                      </ul>
                   </div>
                </div>
@@ -111,27 +130,14 @@ const Footer = () => {
                   <div className="footer-inner">
                      <h1>Discover</h1>
                      <ul>
+                     <Link  to="/article">
+
                         <li>
-                           <a href="/#">The Paper Gown</a>
+                           <a href="#">Create A Cure</a>
                         </li>
-                        <li>
-                           <a href="/#">Stories for and about patients</a>
-                        </li>
-                        <li>
-                           <a href="/#">The Script</a>
-                        </li>
-                        <li>
-                           <a href="/#">Insights for doctors</a>
-                        </li>
-                        <li>
-                           <a href="/#">Community Standards </a>
-                        </li>
-                        <li>
-                           <a href="/#">Data and privacy </a>
-                        </li>
-                        <li>
-                           <a href="/#">Verified reviews</a>
-                        </li>
+                        </Link>
+                       
+                       
                      </ul>
                   </div>
                </div>

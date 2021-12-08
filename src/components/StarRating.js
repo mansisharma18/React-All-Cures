@@ -28,20 +28,7 @@ export default function Rating(props) {
   }
 
 
-  // const getRating = () => {
-
-  //   axios.get(`${backendHost}/rating/target/24/targettype/1/avg`)
-  //   .then(res => {
-  //     console.log(res.data[1].ratingVal)
-  //     setRatingValue(res.data)
-  //   })
-  //   .catch(err => console.log(err))
-  // }
-
-  // React.useEffect(() => {
-  //   getRating()
-  
-  // },[])
+ 
 const thirdExample = {
   size: 40,
   count: 5,

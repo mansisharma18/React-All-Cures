@@ -24,7 +24,6 @@ const Comment = ({refreshComments,article_id}, props) => {
       }, 5000);
     }
     
-    // const [submitAlert, setAlert] = useState(false)
    
 
     const handleClose = () => setShow(false);
@@ -59,7 +58,6 @@ const Comment = ({refreshComments,article_id}, props) => {
     const postRating = (rating) => {
         setafterSubmitLoad(true)
         axios.post(`${backendHost}/DoctorRatingActionController?ratingVal=${rating}&ratedbyid=${Cookies.get("acPerm").split('|')[0]}&ratedbytype=${Cookies.get("acPerm").split('|')[1]}&targetid=${article_id}&targetTypeid=2&cmd=rateAsset`)
-        // .then(res => console.log(res)
         .then(res => {
           if(res.data === 1){
           setafterSubmitLoad(false)
@@ -84,14 +82,12 @@ const Comment = ({refreshComments,article_id}, props) => {
         value: 0,
         color: "yellow",
         activeColor: "orange",
-        // filledIcon:"orange",
         onChange: newValue => {
           setRatingValue(newValue)
           
           postRating(newValue)
         }
       };
-    // console.log('chekeing: ', props.article_id)
     return (
         <>
         {
@@ -119,7 +115,6 @@ const Comment = ({refreshComments,article_id}, props) => {
         <Modal.Body className="rounded">
         <h3 className="pl-4">Overall Rating</h3>
         <div  className="pl-4">
-        {/* <ArticleRating article_id={props.article_id}/><hr/>  */}
         <ReactStars {...thirdExample} />
         </div>
         
@@ -139,12 +134,7 @@ const Comment = ({refreshComments,article_id}, props) => {
             </div>
         </Modal.Body>
         <Modal.Footer>
-          {/* <Button variant="secondary" onClick={handleClose}>
-            Close
-          </Button> */}
-          {/* <Button variant="primary" onClick={handleClose}>
-            Save Changes
-          </Button> */}
+       
         </Modal.Footer>
       </Modal>
            
