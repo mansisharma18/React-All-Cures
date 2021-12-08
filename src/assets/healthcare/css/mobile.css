@@ -1,6 +1,6 @@
 /* ----------- iPhone 4 and 4S ----------- */
 
-@media only screen and (min-device-width: 320px) and (max-device-width: 480px) {
+@media only screen and (min-device-width: 220px) and (max-device-width: 480px) {
   #about {
     position: relative;
     top: 15px;
@@ -127,7 +127,7 @@
 /* ----------- iPhone 5, 5S, 5C and 5SE ----------- */
 
 /* Portrait and Landscape */
-@media only screen and (min-device-width: 320px) and (max-device-width: 568px) and (-webkit-min-device-pixel-ratio: 2) {
+@media only screen and (min-device-width: 320px) and (max-device-width: 568px) {
     #about {
         position: relative;
         top: 15px;
@@ -156,7 +156,7 @@
     position: relative;
     left: 20px;
     padding: 0px;
-    font-size: 10px;
+    font-size: 11px;
   }
   .loginSignbtn {
     text-align: center;
@@ -212,7 +212,7 @@
 /* ----------- iPhone 6, 6S, 7 and 8 ----------- */
 
 /* Portrait and Landscape */
-@media only screen and (min-device-width: 375px) and (max-device-width: 857px) and (-webkit-min-device-pixel-ratio: 2) {
+@media only screen and (min-device-width: 375px) and (max-device-width: 914px)   {
     #about {
         position: relative;
         top: 15px;
@@ -241,8 +241,8 @@
   #createArticle {
     position: relative;
     left: 20px;
-    padding-top: 0px;
-    font-size: 10px;
+    padding: 3px;
+    font-size: 13px;
   }
   .loginSignbtn {
     text-align: center;
@@ -272,7 +272,7 @@
   }
 
   .article-search {
-    margin: 20px 0px 0px -5px;
+    margin: 0px 0px 0px -5px;
   }
   .btn-article-search {
     background-color: #00415e;
@@ -430,8 +430,8 @@
   #createArticle {
     position: relative;
     left: 20px;
-    padding-top: 0px;
-    font-size: 10px;
+    padding: 2px;
+    font-size: 11px;
   }
   .loginSignbtn {
     text-align: center;
@@ -499,8 +499,8 @@
   #createArticle {
     position: relative;
     left: 20px;
-    padding-top: 0px;
-    font-size: 10px;
+    padding: 2px;
+    font-size: 12px;
   }
   .loginSignbtn {
     text-align: center;
@@ -537,7 +537,7 @@
     margin-right: 12px;
   }
   .article-search {
-    margin: 35px 0px 0px 0px;
+    margin: 35px 0px 0px -5px;
   }
   .btn-article-search {
     background-color: #00415e;
@@ -566,8 +566,8 @@
   #createArticle {
     position: relative;
     left: 20px;
-    padding-top: 0px;
-    font-size: 10px;
+    padding:2px;
+    font-size: 12px;
   }
   .loginSignbtn {
     text-align: center;
@@ -739,7 +739,7 @@
 
   .city-name.col-md-5 {
     margin-top: 80px;
-    margin-left: -30px;
+    margin-left: -60px;
   }
   .btn.btn-article-search.color-white {
     position: relative;
