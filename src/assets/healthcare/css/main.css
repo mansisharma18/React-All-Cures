@@ -2901,7 +2901,7 @@ div.main-hero:first-child .card {
   justify-content: center;
 }
 
-.socialMediaPopper {
+/* .socialMediaPopper {
   top: "300px  !important";
   left: "unset !important";
   right: "0px !important";
@@ -2910,4 +2910,13 @@ div.main-hero:first-child .card {
 .socialMediaButton:hover > svg {
   height: "50px !important";
   width: "50px !important";
+} */
+
+.article-title-container {
+  width: 96%;
+  margin: auto;
+}
+
+.article-title-container .h2 {
+  margin-right: 4rem;
 }

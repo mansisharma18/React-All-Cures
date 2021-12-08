@@ -1,14 +1,9 @@
-import React, {useEffect, useState} from 'react';
+import React, {useState} from 'react';
 import parse from 'html-react-parser';
-import { backendHost } from '../../api-config';
-import axios from 'axios';
-import ArticleComment from '../ArticleComment';
 
-const CenterWell = ({pageTitle, imageUrl, content, type, text, title, message, source, embed, caption, alignment, url, item, props}) =>{
-
-    const [commentItems, setCommentItems] = useState([])
-
-    
+import {FacebookShareButton, FacebookIcon, TwitterIcon, TwitterShareButton, WhatsappIcon, WhatsappShareButton} from "react-share";
+import Popper from '@mui/material/Popper';
+const CenterWell = ({pageTitle, imageUrl, content, type, text, title, message, source, embed, caption, alignment, url, item, level, props}) =>{
 
     var list;
     var rows;
@@ -30,13 +25,16 @@ const CenterWell = ({pageTitle, imageUrl, content, type, text, title, message, s
     
     return(
         <>
+        {/* <Popper className="socialMediaPopper" open={true} transition> */}
+   
+  {/* </Popper> */}
         <div>
             {
                 {
                     'header': <div className="ce-block py-2">
                                 <div className="ce-block__content">
                                     <div className="ce-paragraph cdx-block">
-                                        <h3 style={{fontSize: "2rem"}}>{textContent}</h3>
+                                        <div className={`h${level}`}>{textContent}</div>
                                     </div>
                                 </div>
                             </div>,
