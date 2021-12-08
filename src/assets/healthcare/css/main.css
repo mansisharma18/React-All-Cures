@@ -2896,10 +2896,10 @@ div.main-hero:first-child .card {
   color: orange;
 }
 
-.average-rating {
+/* .average-rating {
   display: flex;
   justify-content: center;
-}
+} */
 
 /* .socialMediaPopper {
   top: "300px  !important";
@@ -2921,4 +2921,8 @@ div.main-hero:first-child .card {
 
 .article-title-container .h2 {
   margin-right: 4rem;
+}
+
+.opacity-7 {
+  opacity: 0.7;
 }

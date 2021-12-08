@@ -70,7 +70,7 @@ class Disease extends Component {
     .then(res => {
       this.setState({
         ratingValue: res.data
-      }, () => console.log(this.state.ratingValue))
+      })
     }) 
     .catch(err => console.log(err))
   }
@@ -102,12 +102,10 @@ class Disease extends Component {
   }
 
   showRating = (val) => {
-   
     if(document.getElementById('avg-rating')){
-      
-    for(let i=0 ; i<val; i++){
-      document.getElementById('avg-rating').children[i].classList.add('checked')  
-    }
+      for(let i=0 ; i<val; i++){
+        document.getElementById('avg-rating').children[i].classList.add('checked')  
+      }
     }
   }
  
@@ -115,13 +113,6 @@ class Disease extends Component {
     this.fetchBlog()
     this.comments()
     this.getRating(this.props.match.params.id)
-    // this.regionalPosts()
-    // if(this.state.items){
-    //   this.fetchCountriesCures(this.state.items)
-    // }
-    // var rating = 4
-
-    // console.log(document.getElementById('avg-rating'))
   }
 
   componentDidUpdate(prevProps){
@@ -291,17 +282,20 @@ class Disease extends Component {
                   />
                 ))}
               
-              <div className="average-rating mt-2 mb-4 ml-3" id="avg-rating">
-                <span class="fa fa-star fa-2x"></span>
-                <span class="fa fa-star fa-2x "></span>
-                <span class="fa fa-star fa-2x "></span>
-                <span class="fa fa-star fa-2x "></span>
-                <span class="fa fa-star fa-2x "></span>
-              </div>
-
               {
                 this.state.ratingValue?
-                this.showRating(this.state.ratingValue): null
+                <div className="average-rating mt-2 mb-4 ml-3" id="avg-rating">
+                <span class="fa fa-star fa-2x opacity-7"></span>
+                <span class="fa fa-star fa-2x opacity-7"></span>
+                <span class="fa fa-star fa-2x opacity-7"></span>
+                <span class="fa fa-star fa-2x opacity-7"></span>
+                <span class="fa fa-star fa-2x opacity-7"></span>
+                </div>
+                : null
+              }
+
+              {
+                this.state.ratingValue? this.showRating(this.state.ratingValue) : null
               }
 
               {
