@@ -98,15 +98,16 @@ class Disease extends Component {
     )
   }
 
-
   showRating = (val) => {
+   
     if(document.getElementById('avg-rating')){
-
-      for (let i=0 ; i<val;i++){
-        document.getElementById('avg-rating').children[i].classList.add('checked')
-      }
+      
+    for(let i=0 ; i<val; i++){
+      document.getElementById('avg-rating').children[i].classList.add('checked')  
+    }
     }
   }
+ 
   componentDidMount() {
     this.fetchBlog()
     this.comments()

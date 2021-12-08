@@ -246,13 +246,13 @@ import Autocomplete from '@mui/material/Autocomplete';
                         {
                               this.state.acPerm?
                               <Link className="btn border mr-2 btn-white loginSignbtn color-blue-dark" id="Article" to="/article">
-                              Create Article
+                              Create Cures
                             </Link>
                               : <button 
                               className="btn border mr-2 btn-white loginSignbtn color-blue-dark" id="Article" 
                               onClick={() => this.setModalShow(true)}
                             >
-                             Create Article
+                             Create Cures
                             </button>
                            }   
                             <ToggleButton userName={Cookies.get('uName')} setModalShow={this.setModalShow} acPerm={this.state.acPerm} logout={this.logout}/> 
