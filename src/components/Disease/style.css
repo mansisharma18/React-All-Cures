@@ -145,3 +145,17 @@ dragHandle {
   margin: auto;
   width: 96%;
 }
+
+.white-button-shadow {
+  box-shadow: 3px 6px 20px 1px #888;
+}
+
+.article-title-container .h2 {
+  width: 70%;
+}
+
+@media only screen and (max-width: 968px) {
+  .article-title-container .h2 {
+    width: 100%;
+  }
+}

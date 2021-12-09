@@ -32,7 +32,8 @@ class Disease extends Component {
       disease: '',
       regions: '',
       regionPostsLoaded: false,
-      regionalPost: []
+      regionalPost: [],
+      showMore: false,
     };
   }
 
@@ -62,7 +63,7 @@ class Disease extends Component {
       })
       .catch(err => 
         console.log(err)
-    )
+      )
   }
 
   getRating = (ratingId) => {
@@ -144,6 +145,19 @@ class Disease extends Component {
       </>  
     );
   } else if(isLoaded){
+
+    // FInding distinct regions from fetchCountriesData()
+    const finalRegions = [];
+    const map = new Map();
+    for (const item of this.state.regions) {
+        if(!map.has(item.countryname)){
+            map.set(item.countryname, true);    // set any value to Map
+            finalRegions.push({
+              countryname: item.countryname
+            });
+        }
+    }
+
     var artContent = items.content;
     var a = JSON.parse(decodeURIComponent(artContent))
     var b = a.blocks
@@ -185,8 +199,9 @@ class Disease extends Component {
               
             <div className="d-flex justify-content-between margin-auto mb-2 mr-2" id="article-acc-to-regions">
               
-              { this.state.regions?
-                this.state.regions.map(i => (
+            { finalRegions?
+                finalRegions.map(i => (
+                  // console.log(this.state.regions.find(i.countryname === countryname))
                   <Dropdown>
                     <Dropdown.Toggle className="mr-2 btn btn-info color-white">
                       <span className="color-white">{i.countryname}</span>
@@ -220,10 +235,11 @@ class Disease extends Component {
                   }
                 </Dropdown.Menu>
               </Dropdown>
-              ))
+                ))
               : null
             }
               </div>
+              {/* Sharing icons */}
               <div className="">
               <FacebookShareButton
                 url={"https://all-cures.com"}
@@ -252,7 +268,7 @@ class Disease extends Component {
             </div>
               </div>
             </div>
-            
+            {/* Center Well article main content */}
                 {b.map((i) => (
                   <CenterWell
                     pageTitle = {items.title}
@@ -274,6 +290,7 @@ class Disease extends Component {
                   />
                 ))}
               
+              {/* Show average rating */}
               {
                 this.state.ratingValue?
                 <div className="average-rating mt-2 mb-4 ml-3" id="avg-rating">
@@ -286,10 +303,12 @@ class Disease extends Component {
                 : null
               }
 
+              {/* Call average rating fetch function */}
               {
                 this.state.ratingValue? this.showRating(this.state.ratingValue) : null
               }
 
+              {/* Review Button (Rating + Comment) */}
               {
                 Cookies.get('acPerm')?
                   <>              
@@ -298,33 +317,67 @@ class Disease extends Component {
                 : null
               }
               
+
+              {/* SHOW ALL COMMENTS */}
               <div className="main-hero">
-                {this.state.comment.map((item,i) => {
+                {!this.state.showMore?
+                this.state.comment.slice(0, 3).map((item,i) => {
                   return (
                     <>
-                     {/* <h4 className="card-title">Top Reviews From Globe</h4> */}
                     <div className="col-12">
-                     
-                    <div className="card my-4 ">
-                   
+                      <div className="card my-4 ">
                         <div className="card-body">
-                       
-
                             <h5 className="h6"> {item.comments}</h5>
                             <div className="card-info">
                                 <h6 className="card-subtitle mb-2 text-muted">
-                              <b>By :  </b>  {item.first_name} {item.last_name}
+                                  <b>By :  </b>  {item.first_name} {item.last_name}
                                 </h6>
-                               
                             </div>
-                           
                         </div>
+                      </div>
                     </div>
-                </div>
-                </>
+                  </>
                 )
-              })}
+                }):
+                this.state.comment.map((item,i) => {
+                  return (
+                    <>
+                    <div className="col-12">
+                      <div className="card my-4 ">
+                        <div className="card-body">
+                            <h5 className="h6"> {item.comments}</h5>
+                            <div className="card-info">
+                                <h6 className="card-subtitle mb-2 text-muted">
+                                  <b>By :  </b>  {item.first_name} {item.last_name}
+                                </h6>
+                            </div>
+                        </div>
+                      </div>
+                    </div>
+                  </>
+                )
+                })
+                }
             </div>
+            {
+              this.state.comment.length > 3 &&
+              <button className="white-button-shadow btn w-100" 
+              onClick={() => {
+                this.state.showMore?
+                this.setState({
+                showMore: false
+                }): 
+                this.setState({
+                  showMore: true
+                  })
+              }}>
+                {
+                  !this.state.showMore?
+                  'Show more'
+                  : 'Hide'
+                }</button>
+            }
+            
       
             </div>
           </Col> 
