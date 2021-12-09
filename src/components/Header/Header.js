@@ -243,6 +243,7 @@ import Autocomplete from '@mui/material/Autocomplete';
             </div>
             </form>
                         <div className="loginSign">
+
                         {
                               this.state.acPerm?
                               <Link className="btn border mr-2 btn-white loginSignbtn color-blue-dark" id="Article" to="/article">
@@ -252,6 +253,7 @@ import Autocomplete from '@mui/material/Autocomplete';
                               className="btn border mr-2 btn-white loginSignbtn color-blue-dark" id="Article" 
                               onClick={() => this.setModalShow(true)}
                             >
+
                              Create Cures
                             </button>
                            }   
