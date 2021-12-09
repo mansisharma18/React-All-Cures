@@ -4,8 +4,8 @@ import { Link } from 'react-router-dom';
 const AllPost = ({id, title, f_title, w_title, country, type}) => {
         return (
             <>
-            <div style={{width:"100%"}} key={id.toString()}>
-                <div  >
+            <div key={id.toString()} className="py-3">
+                <div >
                     {/* <div className="card-body"> */}
                             
                             <div className="d-flex justify-content-between align-items-center mb-2">
@@ -52,13 +52,13 @@ const AllPost = ({id, title, f_title, w_title, country, type}) => {
                         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse in scelerisque magna,  sed rutrum urna tincidunt.
                         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse in scelerisque magna,  sed rutrum urna tincidunt.
                         Lorem ipsum dolor sit
-                        </div><hr/>
+                        </div>
+        <hr/>
                         </div>
                         
                     {/* </div> */}
                 </div>
             </div>
-        
             </>
         )    
 
