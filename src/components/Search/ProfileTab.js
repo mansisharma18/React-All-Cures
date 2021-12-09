@@ -36,52 +36,11 @@ const ProfileTab = ({ setModalShow, docid, rowno, name, pSpl, hospital, state, c
                          Visit Profile
                         </button>
                     }
-                    {/* <Link to={ `/profile/${docid}` } className="btn-bg profile-btn color-white">
-                        Profile
-                    </Link>  */}
-                    {/* <Link to="#" className="bg-gray video-btn color-light-gray">Video Consult</Link>  */}
+                  
                     </div>
                 </div>
               </div>
-              {/* <div className="col-md-6 col-sm-12">
-                <div className="detail-r">
-                  <ul className="mon coman-ul">
-                    <p>Mon</p>
-                    <li><Link to="#" className="active">9.00 am</Link></li>
-                    <li><Link to="#">10.00 am</Link></li>
-                    <li><Link to="#">1.00 pm</Link></li>
-                    <li><Link to="#">2.00 pm</Link></li>
-                  </ul>
-                  <ul className="tue coman-ul">
-                    <p>Tue</p>
-                    <li><Link to="#">9.00 am</Link></li>
-                    <li><Link to="#">10.00 am</Link></li>
-                    <li><Link to="#">1.00 pm</Link></li>
-                    <li><Link to="#">2.00 pm</Link></li>
-                  </ul>
-                  <ul className="wed coman-ul">
-                    <p>Wed</p>
-                    <li><Link to="#">9.00 am</Link></li>
-                    <li><Link to="#">10.00 am</Link></li>
-                    <li><Link to="#">1.00 pm</Link></li>
-                    <li><Link to="#">2.00 pm</Link></li>
-                  </ul>
-                  <ul className="ted coman-ul">
-                    <p>Thu</p>
-                    <li><Link to="#">9.00 am</Link></li>
-                    <li><Link to="#">10.00 am</Link></li>
-                    <li><Link to="#">1.00 pm</Link></li>
-                    <li><Link to="#">2.00 pm</Link></li>
-                  </ul>
-                  <ul className="fri coman-ul">
-                    <p>Fri</p>
-                    <li><Link to="#">9.00 am</Link></li>
-                    <li><Link to="#">10.00 am</Link></li>
-                    <li><Link to="#">1.00 pm</Link></li>
-                    <li><Link to="#">2.00 pm</Link></li>
-                  </ul>
-                 </div>
-                </div> */}
+          
               </div>
             </div>
           </div>
