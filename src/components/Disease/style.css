@@ -1608,3 +1608,7 @@ dragHandle {
 .menu-item:hover {
   text-decoration: underline;
 }
+
+#article-acc-to-regions {
+  display: none !important;
+}

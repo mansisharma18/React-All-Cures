@@ -143,7 +143,7 @@ const Routes = (props) => {
       <ProtectedRoute auth={Auth.auth} exact path="/user/profile" component={Userprofile} />
       
       {/* My articles */}
-      <ProtectedRoute auth={Auth.auth} exact path="/myarticle" component={MyArticle} />
+      <ProtectedRoute auth={Auth.auth} exact path="/my-cures" component={MyArticle} />
       <Route exact path="/ListArticle" component={ListArticle} />
 
       <Route exact path="/editsubscribe" component={EditSubscribe} />

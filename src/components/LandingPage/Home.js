@@ -291,7 +291,7 @@ class Home extends Component {
                      </div>
                      <div className="row">
                         <div className="serchlabel">
-                           <h1>Find Doctors <br/>near by your location</h1>
+                           {/* <h1>Find Cures<br/></h1> */}
                            <br/>
                            {/* {
                               this.state.spec1?
@@ -655,8 +655,8 @@ function ToggleButton(props) {
                   Dashboard</Link>
                </Dropdown.Item>
                :  <Dropdown.Item >
-               <Link to="/myarticle" className="text-dark btn">
-                  MyCures</Link>
+               <Link to="/my-cures" className="text-dark btn">
+                  My Cures</Link>
                </Dropdown.Item>
             }
              
