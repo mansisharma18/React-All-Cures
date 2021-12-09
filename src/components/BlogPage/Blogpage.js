@@ -33,7 +33,8 @@ export default class Blogpage extends Component{
             });
             
             
-          });
+          })
+          .catch(err => console.log(err))
           
           
       }
@@ -47,7 +48,8 @@ export default class Blogpage extends Component{
               isLoaded: true,
               items: json.reverse(),
             });
-          });
+          })
+          .catch(err => console.log(err))
           
         }
         else {

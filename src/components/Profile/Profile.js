@@ -102,7 +102,7 @@ class Profile extends Component {
   componentDidMount() {
     document.title = "All Cures | Profile"
     this.fetchDoctorData(this.state.param.id)
-    this.getComments()
+    this.getComments(this.state.param.id)
     this.getRating()
     this.getProfileComments(this.state.param.profileId)
   }
@@ -183,7 +183,6 @@ class Profile extends Component {
                               {items.hospital_affliated}{" "}
                               {items.country_code}
                             </div>
-                            <ArticleComment refreshComments={this.getComments(this.state.param.id)}docid={this.state.param.id}/>
 
                             <div>
 
@@ -300,7 +299,8 @@ class Profile extends Component {
                        
                         </div>
                   <div className="comment-box">
-                    {/* <Comment refreshComments={this.getComments(this.state.param.id)} docid={this.state.param.id}/> */}
+                    
+                    <Comment refreshComments={this.getComments(this.state.param.id)} docid={this.state.param.id}/>
                   
                             
 
