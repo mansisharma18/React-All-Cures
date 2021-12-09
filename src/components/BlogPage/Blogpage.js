@@ -117,7 +117,7 @@ export default class Blogpage extends Component{
             
                 <div className="container my-4">
                   {
-                    this.state.param.type?
+                    this.props.match.params.type?
                     <div className="h3 text-capitalize text-center font-weight-bold mb-4">Cures Related to "{this.props.match.params.type.toLowerCase()}"</div>
                     :null
                   }

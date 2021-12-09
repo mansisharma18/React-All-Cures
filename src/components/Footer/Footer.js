@@ -78,38 +78,38 @@ const Footer = () => {
                      <h1>Top Cures</h1>
                      <ul>
                         {/* <li>
-                           <a href="#"></a>
+                           <a className="text-light"></a>
                         </li> */}
                          <Link to={ `/cures/Cough And Cold` }>
                           
                            
                               <li>
-                                 <a href="#">Cough Cold</a></li>
+                                 <a className="text-light">Cough Cold</a></li>
                            
                         </Link>
                         <Link to={ `/cures/Diabetes` }>
                         <li>
-                           <a href="#">Diabetes Care</a>
+                           <a className="text-light">Diabetes Care</a>
                         </li>
                         </Link>
                         <Link to={ `/cures/Cardiology` }>
                         <li>
-                           <a href="#">Heart Care </a>
+                           <a className="text-light">Heart Care </a>
                         </li>
                         </Link>
                         <Link to={ `/cures/Dental` }>
                         <li>
-                           <a href="#">Dental Care</a>
+                           <a className="text-light">Dental Care</a>
                         </li>
                         </Link>
                         <Link to={ `/cures/Dermatology` }>
                         <li>
-                           <a href="#">Skin Care</a>
+                           <a className="text-light">Skin Care</a>
                         </li>
                         </Link>
                         <Link to={ `/cures/ENT` }>
                         <li>
-                           <a href="#">Eye Care</a>
+                           <a className="text-light">Eye Care</a>
                         </li>
                         </Link>
                         {/* <li>
@@ -133,7 +133,7 @@ const Footer = () => {
                      <Link  to="/article">
 
                         <li>
-                           <a href="#">Create A Cure</a>
+                           <a className="text-light">Create A Cure</a>
                         </li>
                         </Link>
                        

@@ -103,17 +103,17 @@ const Comment = ({refreshComments,article_id}, props) => {
                     <i className="fa fa-spinner fa-spin fa-10x" />
                 </div>
             }
-        <Button className="ml-3 btn-article-search" id="textComment" onClick={handleShow}>
+        <Button className="ml-3 h-75 btn-article-search" id="textComment" onClick={handleShow}>
         Review This Cure
       </Button>
 
       <Modal show={show} onHide={handleClose} className="rounded mt-5" >
         <Modal.Header className="bg-review py-3" closeButton>
-          <Modal.Title className="pl-4">Review</Modal.Title>
+          <Modal.Title className="pl-4">Review here...</Modal.Title>
         </Modal.Header>
         
         <Modal.Body className="rounded">
-        <h3 className="pl-4">Overall Rating</h3>
+        <h3 className="pl-4"></h3>
         <div  className="pl-4">
         <ReactStars {...thirdExample} />
         </div>
@@ -125,7 +125,7 @@ const Comment = ({refreshComments,article_id}, props) => {
                     onChange={(e) => {
                         setCmtText(e.target.value)
                     }}
-                    className="form-control" id="comment" cols="40" rows="4"></textarea>
+                    className="form-control" id="comment" cols="30" rows="4"></textarea>
                     
                     <div className="my-4">
                         <button type="submit" className="btn btn-primary">Submit</button>

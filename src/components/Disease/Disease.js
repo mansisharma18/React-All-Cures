@@ -181,6 +181,49 @@ class Disease extends Component {
               </div> */}
               <div className="article-title-container">
               <div className="h2 text-capitalize text-decoration-underline">{items.title.toLowerCase()}</div>
+              <div className="share-buttons-region">
+              
+            <div className="d-flex justify-content-between margin-auto mb-2 mr-2" id="article-acc-to-regions">
+              
+              { this.state.regions?
+                this.state.regions.map(i => (
+                  <Dropdown>
+                    <Dropdown.Toggle className="mr-2 btn btn-info color-white">
+                      <span className="color-white">{i.countryname}</span>
+                    </Dropdown.Toggle>
+                  <Dropdown.Menu>
+                  {
+                    this.state.regionalPost.map(j => (
+                      <>
+                      <Dropdown.Item href="#" className="pt-2">
+                      <Link to={ `/cure/${j.article_id}` }  className="d-flex justify-content-between align-items-center mr-2">
+                        <div className="d-flex justify-content-between align-items-center mb-2">
+                          <div>                  
+                            <div className="card-title mr-5">{j.title}</div>
+                          </div>
+                          <div>
+                            {
+                              j.type === '1'?
+                                <div className="chip overview">Overview</div>
+                              : j.type === '2'?
+                                <div className="chip cure">Cures</div>
+                              : j.type === '3'?
+                                <div className="chip symptoms">Symptoms</div>
+                              : null
+                            }
+                          </div>
+                        </div>
+                      </Link>
+                      </Dropdown.Item>
+                      </>
+                    ))
+                  }
+                </Dropdown.Menu>
+              </Dropdown>
+              ))
+              : null
+            }
+              </div>
               <div className="">
               <FacebookShareButton
                 url={"https://all-cures.com"}
@@ -207,60 +250,9 @@ class Disease extends Component {
                 <WhatsappIcon size={36} />
               </WhatsappShareButton>
             </div>
-            
-            </div>
-            <div className="d-flex justify-content-between margin-auto mb-2 mr-2" id="article-acc-to-regions">
-              
-              { this.state.regions?
-                this.state.regions.map(i => (
-                  <Dropdown>
-        <Dropdown.Toggle className="mr-2 btn btn-info color-white">
-          <span className="color-white">{i.countryname}</span>
-        </Dropdown.Toggle>
-        <Dropdown.Menu>
-          {
-            this.state.regionalPost.map(j => (
-              <>
-              <Dropdown.Item href="#" className="border-bottom pt-2">
-              <Link to={ `/cure/${j.article_id}` }  className="d-flex justify-content-between align-items-center mr-2">
-                <div className="d-flex justify-content-between align-items-center mb-2">
-                                <div>
-                                    
-                                        <div className="card-title mr-5">{j.title}</div>
-                                </div>
-                                <div>
-                                {
-                                  j.type === '1'?
-                                      <div className="chip overview">Overview</div>
-                                  : j.type === '2'?
-                                      <div className="chip cure">Cures</div>
-                                  : j.type === '3'?
-                                      <div className="chip symptoms">Symptoms</div>
-                                  : null
-                                }
-                            {/* {   
-                                j.country_id !== 0?
-                                    j.country_id === 9?
-                                        <div className ="chip country">India</div>
-                                        : j.country_id === 10?
-                                            <div className="chip country">Iran</div>
-                                            :null
-                                        : null
-                            } */}
-                            </div>
-                            </div>
-                            </Link>
-
-              </Dropdown.Item>
-              </>
-            ))
-          }
-        </Dropdown.Menu>
-      </Dropdown>
-                ))
-                : null
-              }
               </div>
+            </div>
+            
                 {b.map((i) => (
                   <CenterWell
                     pageTitle = {items.title}

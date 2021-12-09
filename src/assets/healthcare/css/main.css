@@ -12,8 +12,8 @@
   padding: 0px;
   margin: 0px;
   text-align: left;
-  /* font-family: "Raleway", sans-serif; */
-  font-family: "PT Sans", sans-serif;
+  font-family: "Raleway", sans-serif;
+  /* font-family: "PT Sans", sans-serif; */
 }
 
 body {
@@ -2082,7 +2082,6 @@ button {
   font-weight: bold;
   padding: 12px 45px;
   letter-spacing: 1px;
-  text-transform: uppercase;
   transition: transform 80ms ease-in;
 }
 
@@ -2926,3 +2925,17 @@ div.main-hero:first-child .card {
 .opacity-7 {
   opacity: 0.7;
 }
+
+/* #searchArticle.article-search {
+  position: relative;
+}
+
+#searchArticle.article-search .mainBtn {
+  position: absolute;
+  right: -20px;
+}
+
+#searchArticle.article-search #article-input {
+  position: relative;
+  float: left;
+} */
