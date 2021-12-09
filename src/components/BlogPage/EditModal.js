@@ -263,10 +263,10 @@ const EditModal = (props) => {
 
     const handleSelect = function(e, c) {
         const ctype = [];
-        for (let i=0; i<c.length; i++) {
-            ctype.replace(c[i].value);
+        for (let i = 0; i < c.length; i++) {
+            ctype.push(c[i].value);
         }
-        setType(ctype);
+        setType(ctype, ()=> console.log(type));
     }
 
     const submitArticleForm = async e => {

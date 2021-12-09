@@ -29,14 +29,9 @@ export default class Blogpage extends Component{
             this.setState({
               isLoaded: true,
               items: json.reverse(),
-              
             });
-            
-            
           })
           .catch(err => console.log(err))
-          
-          
       }
       
       diseasePosts(type){                     // For specific blogs like "/blogs/diabetes"
@@ -50,7 +45,6 @@ export default class Blogpage extends Component{
             });
           })
           .catch(err => console.log(err))
-          
         }
         else {
         // if(type !== undefined){
@@ -61,15 +55,8 @@ export default class Blogpage extends Component{
               isLoaded: true,
               items: json.reverse(),
             });
-            
           });
-        
-          
         } 
-        
-        // else {
-        //   this.allPosts()
-        // }
       }
 
       regionalPosts(){
