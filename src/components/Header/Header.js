@@ -217,6 +217,7 @@ import Autocomplete from '@mui/material/Autocomplete';
                               className="btn border mr-2 btn-white loginSignbtn color-blue-dark" id="Article" 
                               onClick={() => this.setModalShow(true)}
                             >
+
                              Create Cures
                             </button>
                            }   
