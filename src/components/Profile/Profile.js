@@ -125,12 +125,8 @@ class Profile extends Component {
     this.getProfileComments(this.state.param.profileId)
     this.getRating(this.props.match.params.id)
   }
-  componentDidUpdate(prevProps){
-    if ( prevProps.match.params.id !== this.props.match.params.id){
-     
-      this.getRating(this.props.match.params.id)
-    }
-  }
+
+
 
   setModalShow =(action) => {
     this.setState({
