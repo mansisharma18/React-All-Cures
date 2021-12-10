@@ -15,6 +15,8 @@ import EditProfile from "./EditProfile";
 import { backendHost } from '../../api-config';
 import Comment from '../Comment'
 import '../../assets/healthcare/css/mobile.css'
+import ArticleComment from '../ArticleComment';
+
 
 class Profile extends Component {
   constructor(props) {
@@ -100,7 +102,7 @@ class Profile extends Component {
   componentDidMount() {
     document.title = "All Cures | Profile"
     this.fetchDoctorData(this.state.param.id)
-    this.getComments()
+    this.getComments(this.state.param.id)
     this.getRating()
     this.getProfileComments(this.state.param.profileId)
   }
@@ -181,6 +183,7 @@ class Profile extends Component {
                               {items.hospital_affliated}{" "}
                               {items.country_code}
                             </div>
+
                             <div>
 
                             
@@ -296,7 +299,11 @@ class Profile extends Component {
                        
                         </div>
                   <div className="comment-box">
-                    {/* <Comment refreshComments={this.getComments(this.state.param.id)} docid={this.state.param.id}/> */}
+                    
+                    <Comment refreshComments={this.getComments(this.state.param.id)} docid={this.state.param.id}/>
+                  
+                            
+
                   </div>
                   <div className="profile-rating">
                     <div className="tab-nav">

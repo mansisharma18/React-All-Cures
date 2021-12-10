@@ -10,14 +10,19 @@ import SidebarRight from "./RightMenu";
 import { backendHost } from '../../api-config';
 import Dropdown from 'react-bootstrap/Dropdown';
 import axios from 'axios';
+import ArticleComment from '../ArticleComment';
 
 import HelmetMetaData from '../HelmetMetaData';
+import {FacebookShareButton, FacebookIcon, TwitterIcon, TwitterShareButton, WhatsappIcon, WhatsappShareButton} from "react-share";
+import Cookies from 'js-cookie'
+import Popper from '@mui/material/Popper';
 
 // import CenterWell from './CenterWell'
 class Disease extends Component {
   constructor(props) {
     super(props);
     // const params = props.match.params
+    const acPerm = Cookies.get("acPerm")
     this.state = { 
       items: [],
       comment: [],
@@ -27,10 +32,11 @@ class Disease extends Component {
       disease: '',
       regions: '',
       regionPostsLoaded: false,
-      regionalPost: []
+      regionalPost: [],
+      showMore: false,
     };
   }
-  
+
   fetchBlog = () => {
     fetch(`${backendHost}/article/${this.props.match.params.id}`)
       .then((res) => res.json())
@@ -57,10 +63,8 @@ class Disease extends Component {
       })
       .catch(err => 
         console.log(err)
-    )
+      )
   }
-
-  
 
   getRating = (ratingId) => {
     axios.get(`${backendHost}/rating/target/${ratingId}/targettype/2/avg`)
@@ -99,30 +103,24 @@ class Disease extends Component {
   }
 
   showRating = (val) => {
-    console.log(document.getElementById('avg-rating'), val)
     if(document.getElementById('avg-rating')){
-      
-    for(let i=0 ; i<val; i++){
-      document.getElementById('avg-rating').children[i].classList.add('checked')  
-    }
+      for(let i=0 ; i<val; i++){
+        document.getElementById('avg-rating').children[i].classList.add('checked')  
+      }
     }
   }
+ 
   componentDidMount() {
     this.fetchBlog()
     this.comments()
     this.getRating(this.props.match.params.id)
-    // this.regionalPosts()
-    // if(this.state.items){
-    //   this.fetchCountriesCures(this.state.items)
-    // }
-    // var rating = 4
-
-    // console.log(document.getElementById('avg-rating'))
   }
 
   componentDidUpdate(prevProps){
     if ( prevProps.match.params.id !== this.props.match.params.id){
       this.fetchBlog()
+      this.comments()
+      this.getRating(this.props.match.params.id)
     }
   }
 
@@ -134,7 +132,6 @@ class Disease extends Component {
 
   render() { 
     var { isLoaded,items } = this.state;
-    
     if(!isLoaded) {
     return (
       <>
@@ -148,6 +145,19 @@ class Disease extends Component {
       </>  
     );
   } else if(isLoaded){
+
+    // FInding distinct regions from fetchCountriesData()
+    const finalRegions = [];
+    const map = new Map();
+    for (const item of this.state.regions) {
+        if(!map.has(item.countryname)){
+            map.set(item.countryname, true);    // set any value to Map
+            finalRegions.push({
+              countryname: item.countryname
+            });
+        }
+    }
+
     var artContent = items.content;
     var a = JSON.parse(decodeURIComponent(artContent))
     var b = a.blocks
@@ -178,72 +188,91 @@ class Disease extends Component {
                 </Breadcrumb.Item>
                 {/* <Breadcrumb.Item active>{items.title}</Breadcrumb.Item> */}
               </Breadcrumb>
-              <div className="d-flex justify-content-end mb-2">
-              <div className="average-rating mr-3 mt-2" id="avg-rating">
-                <span class="fa fa-star "></span>
-                <span class="fa fa-star "></span>
-                <span class="fa fa-star "></span>
-                <span class="fa fa-star "></span>
-                <span class="fa fa-star "></span>
-              </div>
-              { this.state.regions?
-                this.state.regions.map(i => (
-                  <Dropdown>
-        <Dropdown.Toggle className="mr-2 btn btn-info color-white">
-          <span className="color-white">{i.countryname}</span>
-        </Dropdown.Toggle>
-        <Dropdown.Menu>
-          {
-            this.state.regionalPost.map(j => (
-              <>
-              <Dropdown.Item href="#" className="border-bottom pt-2">
-              <Link to={ `/cure/${j.article_id}` }  className="d-flex justify-content-between align-items-center mr-2">
-                <div className="d-flex justify-content-between align-items-center mb-2">
-                                <div>
-                                    
-                                        <div className="card-title mr-5">{j.title}</div>
-                                </div>
-                                <div>
-                                {
-                                  j.type === '1'?
-                                      <div className="chip overview">Overview</div>
-                                  : j.type === '2'?
-                                      <div className="chip cure">Cures</div>
-                                  : j.type === '3'?
-                                      <div className="chip symptoms">Symptoms</div>
-                                  : null
-                                }
-                            {/* {   
-                                j.country_id !== 0?
-                                    j.country_id === 9?
-                                        <div className ="chip country">India</div>
-                                        : j.country_id === 10?
-                                            <div className="chip country">Iran</div>
-                                            :null
-                                        : null
-                            } */}
-                            </div>
-                            </div>
-                            </Link>
-
-              </Dropdown.Item>
-              </>
-            ))
-          }
-        </Dropdown.Menu>
-      </Dropdown>
-                ))
-                : null
-              }
-              </div>
+              
                 {/* <Link to={`/cures?c=9&dc=${items.disease_condition_id}`} className="mr-2 btn btn-info" >Indian</Link>
                 <Link to={``} className="mr-2 btn btn-success" >Chinese</Link>
                 <Link to={`/cures?c=10&dc=${items.disease_condition_id}`} className="btn btn-primary">Iranian</Link>
               </div> */}
-              <div className="ml-5 h1 text-uppercase text-decoration-underline">{items.title}</div>
+              <div className="article-title-container">
+              <div className="h2 text-capitalize text-decoration-underline">{items.title.toLowerCase()}</div>
+              <div className="share-buttons-region">
+              
+            <div className="d-flex justify-content-between margin-auto mb-2 mr-2" id="article-acc-to-regions">
+              
+            { finalRegions?
+                finalRegions.map(i => (
+                  // console.log(this.state.regions.find(i.countryname === countryname))
+                  <Dropdown>
+                    <Dropdown.Toggle className="mr-2 btn btn-info color-white">
+                      <span className="color-white">{i.countryname}</span>
+                    </Dropdown.Toggle>
+                  <Dropdown.Menu>
+                  {
+                    this.state.regionalPost.map(j => (
+                      <>
+                      <Dropdown.Item href="#" className="pt-2">
+                      <Link to={ `/cure/${j.article_id}` }  className="d-flex justify-content-between align-items-center mr-2">
+                        <div className="d-flex justify-content-between align-items-center mb-2"id="artBtn">
+                          <div>                  
+                            <div className="card-title mr-5">{j.title}</div>
+                          </div>
+                          <div>
+                            {
+                              j.type === '1'?
+                                <div className="chip overview">Overview</div>
+                              : j.type === '2'?
+                                <div className="chip cure">Cures</div>
+                              : j.type === '3'?
+                                <div className="chip symptoms">Symptoms</div>
+                              : null
+                            }
+                          </div>
+                        </div>
+                      </Link>
+                      </Dropdown.Item>
+                      </>
+                    ))
+                  }
+                </Dropdown.Menu>
+              </Dropdown>
+                ))
+              : null
+            }
+              </div>
+              {/* Sharing icons */}
+              <div className="">
+              <FacebookShareButton
+                url={"https://all-cures.com"}
+                quote={"All-Cures - All in one Health App"}
+                hashtag="#allCures"
+                className="socialMediaButton"
+              >
+                <FacebookIcon size={36} />
+              </FacebookShareButton>
+              <TwitterShareButton
+                url={"https://all-cures.com"}
+                title={"All-Cures - All in one Health App"}
+                hashtag="#allCures"
+                className="socialMediaButton"
+              >
+                <TwitterIcon size={36} />
+              </TwitterShareButton>
+              <WhatsappShareButton
+                url={`https://all-cures.com/#${this.props.location.pathname}`}
+                title={`*All Cures -* ${items.title}`}
+                separator=": "
+                className="socialMediaButton"
+              >
+                <WhatsappIcon size={36} />
+              </WhatsappShareButton>
+            </div>
+              </div>
+            </div>
+            {/* Center Well article main content */}
                 {b.map((i) => (
                   <CenterWell
                     pageTitle = {items.title}
+                    level = {i.data.level}
                     content = {i.data.content}
                     type = {i.type}
                     text = {i.data.text}
@@ -261,38 +290,94 @@ class Disease extends Component {
                   />
                 ))}
               
-              
+              {/* Show average rating */}
               {
                 this.state.ratingValue?
-                this.showRating(this.state.ratingValue): null
+                <div className="average-rating mt-2 mb-4 ml-3" id="avg-rating">
+                <span class="fa fa-star fa-2x opacity-7"></span>
+                <span class="fa fa-star fa-2x opacity-7"></span>
+                <span class="fa fa-star fa-2x opacity-7"></span>
+                <span class="fa fa-star fa-2x opacity-7"></span>
+                <span class="fa fa-star fa-2x opacity-7"></span>
+                </div>
+                : null
               }
-                            <div className="main-hero">
-                            {this.state.comment.map((item,i) => {
-                            return (
-                              <>
-                               {/* <h4 className="card-title">Top Reviews From Globe</h4> */}
-                    <div className="col-12">
-                     
-                    <div className="card my-4 ">
-                   
-                        <div className="card-body">
-                       
 
+              {/* Call average rating fetch function */}
+              {
+                this.state.ratingValue? this.showRating(this.state.ratingValue) : null
+              }
+
+              {/* Review Button (Rating + Comment) */}
+              {
+                Cookies.get('acPerm')?
+                  <>              
+                    <ArticleComment refreshComments={this.comments} article_id={this.props.match.params.id}/>
+                  </>
+                : null
+              }
+              
+
+              {/* SHOW ALL COMMENTS */}
+              <div className="main-hero">
+                {!this.state.showMore?
+                this.state.comment.slice(0, 3).map((item,i) => {
+                  return (
+                    <>
+                    <div className="col-12">
+                      <div className="card my-4 ">
+                        <div className="card-body">
                             <h5 className="h6"> {item.comments}</h5>
                             <div className="card-info">
                                 <h6 className="card-subtitle mb-2 text-muted">
-                              <b>By :  </b>  {item.first_name} {item.last_name}
+                                  <b>By :  </b>  {item.first_name} {item.last_name}
                                 </h6>
-                               
                             </div>
-                           
                         </div>
+                      </div>
                     </div>
-                </div>
-                </>
+                  </>
                 )
-              })}
+                }):
+                this.state.comment.map((item,i) => {
+                  return (
+                    <>
+                    <div className="col-12">
+                      <div className="card my-4 ">
+                        <div className="card-body">
+                            <h5 className="h6"> {item.comments}</h5>
+                            <div className="card-info">
+                                <h6 className="card-subtitle mb-2 text-muted">
+                                  <b>By :  </b>  {item.first_name} {item.last_name}
+                                </h6>
+                            </div>
+                        </div>
+                      </div>
+                    </div>
+                  </>
+                )
+                })
+                }
             </div>
+            {
+              this.state.comment.length > 3 &&
+              <button className="white-button-shadow btn w-100" 
+              onClick={() => {
+                this.state.showMore?
+                this.setState({
+                showMore: false
+                }): 
+                this.setState({
+                  showMore: true
+                  })
+              }}>
+                {
+                  !this.state.showMore?
+                  'Show more'
+                  : 'Hide'
+                }</button>
+            }
+            
       
             </div>
           </Col> 

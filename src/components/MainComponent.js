@@ -34,8 +34,6 @@ import ListArticle from './Profile/ListArticle'
 import NotFound from "./NotFound";
 import { userAccess } from "./UserAccess";
 import NotAuthorizedPage from "./NotAuthorizedPage";
-import {FacebookShareButton, FacebookIcon, TwitterIcon, TwitterShareButton, WhatsappIcon, WhatsappShareButton} from "react-share";
-import Popper from '@mui/material/Popper';
 
 function Main(props) {
   const history = useHistory()
@@ -87,33 +85,6 @@ function Main(props) {
         <AuthApi.Provider value={{auth, setAuth}}>
           <HashRouter history={history} basename={''}>
             <HelmetMetaData></HelmetMetaData>
-            
-  <Popper className="socialMediaPopper" open={true} transition>
-   <FacebookShareButton
-     url={"https://all-cures.com"}
-     quote={"All-Cures - All in one Health App"}
-     hashtag="#allCures"
-     className="socialMediaButton"
-   >
-     <FacebookIcon size={36} />
-   </FacebookShareButton>
-   <TwitterShareButton
-     url={"https://all-cures.com"}
-     title={"All-Cures - All in one Health App"}
-     hashtag="#allCures"
-     className="socialMediaButton"
-   >
-     <TwitterIcon size={36} />
-   </TwitterShareButton>
-   <WhatsappShareButton
-     url={"https://all-cures.com"}
-     title={"All-Cures - All in one Health App"}
-     separator=": "
-     className="socialMediaButton"
-   >
-     <WhatsappIcon size={36} />
-   </WhatsappShareButton>
-  </Popper>
             <Routes authLoaded={authLoaded} url = {url} userAccess = {userAccess}/>
           </HashRouter>
         </AuthApi.Provider>
@@ -172,7 +143,7 @@ const Routes = (props) => {
       <ProtectedRoute auth={Auth.auth} exact path="/user/profile" component={Userprofile} />
       
       {/* My articles */}
-      <ProtectedRoute auth={Auth.auth} exact path="/myarticle" component={MyArticle} />
+      <ProtectedRoute auth={Auth.auth} exact path="/my-cures" component={MyArticle} />
       <Route exact path="/ListArticle" component={ListArticle} />
 
       <Route exact path="/editsubscribe" component={EditSubscribe} />

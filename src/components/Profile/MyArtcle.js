@@ -65,12 +65,12 @@ export default class Blogpage extends Component{
             <>
             <Header history={this.props.history}/>
             
-                <div className="container my-4">
-                    :<h1 className="h2 text-center">My Cures</h1>
+                <div className="container">
+                    <h1 className="h2 text-center font-weight-bold my-4">My Cures</h1>
                     <div className="row" id="posts-container">
                       
                     {items.map((i) => (
-                      parseInt(this.state.acPerm[0]) === parseInt(i.published_by)?
+                      parseInt(Cookies.get('acPerm').split('|')[0]) === parseInt(i.published_by)?
                                 // Selects articles with publish status = 3 (Published)
                       <ListArticle
                         id = {i.article_id}

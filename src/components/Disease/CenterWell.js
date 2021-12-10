@@ -1,14 +1,7 @@
-import React, {useEffect, useState} from 'react';
+import React from 'react';
 import parse from 'html-react-parser';
-import { backendHost } from '../../api-config';
-import axios from 'axios';
-import ArticleComment from '../ArticleComment';
 
-const CenterWell = ({pageTitle, imageUrl, content, type, text, title, message, source, embed, caption, alignment, url, item, props}) =>{
-
-    const [commentItems, setCommentItems] = useState([])
-
-    
+const CenterWell = ({pageTitle, imageUrl, content, type, text, title, message, source, embed, caption, alignment, url, item, level, props}) =>{
 
     var list;
     var rows;
@@ -30,17 +23,20 @@ const CenterWell = ({pageTitle, imageUrl, content, type, text, title, message, s
     
     return(
         <>
+        {/* <Popper className="socialMediaPopper" open={true} transition> */}
+   
+  {/* </Popper> */}
         <div>
             {
                 {
                     'header': <div className="ce-block py-2">
                                 <div className="ce-block__content">
                                     <div className="ce-paragraph cdx-block">
-                                        <h3 style={{fontSize: "2rem"}}>{textContent}</h3>
+                                        <div className={`h${level}`}>{textContent}</div>
                                     </div>
                                 </div>
                             </div>,
-                    'paragraph': <div className="ce-block">
+                    'paragraph': <div className="ce-block py-2">
                                     <div className="ce-block__content">
                                         <div className="ce-paragraph cdx-block">
                                             <p>{textContent}</p>
@@ -53,7 +49,7 @@ const CenterWell = ({pageTitle, imageUrl, content, type, text, title, message, s
                                     </div>
                                 </div>,
                     'delimiter': <h1 className="text-center fw-bold pt-3" id="delimiter">* * *</h1>,
-                    'embed':  <div className="ce-block ce-block--focused">
+                    'embed':  <div className="ce-block ce-block--focused py-2">
                                     <div className="ce-block__content">
                                         <div className="cdx-block embed-tool">
                                             <preloader className="embed-tool__preloader"><div className="embed-tool__url">{source}</div></preloader>
@@ -64,14 +60,14 @@ const CenterWell = ({pageTitle, imageUrl, content, type, text, title, message, s
                                         </div>
                                     </div>
                                 </div>,
-                    'quote': <div style={{textAlign: {alignment}}} className="ce-block ce-block--focused my-3">
+                    'quote': <div style={{textAlign: {alignment}}} className="ce-block ce-block--focused my-3 py-2">
                                 <div className="ce-block__content">
                                     <h3 style={{fontStyle: 'italic', fontSize: '1.2rem'}} className="cdx-block">"{textContent}"</h3></div>
                                 <div className="text-center">
                                     <i>- {caption}</i>    
                                 </div>
                             </div>,
-                    'image': <div className="ce-block">
+                    'image': <div className="ce-block py-2">
                                 <div className="ce-block__content">
                                     <div className="cdx-block cdx-simple-image">
                                         <div className="cdx-simple-image__picture">
@@ -84,7 +80,7 @@ const CenterWell = ({pageTitle, imageUrl, content, type, text, title, message, s
                                 </div>
                             </div>,
                     // 'image' : 
-                    'list': <div className="ce-block">
+                    'list': <div className="ce-block py-2">
                                 <div className="ce-block__content">
                                     <div className="ce-paragraph cdx-block">
                                         {/* <ul className="cdx-list--unordered"> */}
@@ -110,7 +106,7 @@ const CenterWell = ({pageTitle, imageUrl, content, type, text, title, message, s
                                         }
                                     </tbody>
                                 </table>,
-                    'simpleImage':  <div className="ce-block">
+                    'simpleImage':  <div className="ce-block py-2">
                     <div className="ce-block__content">
                         <div className="cdx-block cdx-simple-image">
                             <div className="cdx-simple-image__picture">

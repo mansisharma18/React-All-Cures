@@ -128,10 +128,10 @@
 
 /* Portrait and Landscape */
 @media only screen and (min-device-width: 320px) and (max-device-width: 568px) {
-    #about {
-        position: relative;
-        top: 15px;
-      }
+  #about {
+    position: relative;
+    top: 15px;
+  }
   #createArticle1 {
     text-align: center;
     font-size: 13px;
@@ -212,11 +212,11 @@
 /* ----------- iPhone 6, 6S, 7 and 8 ----------- */
 
 /* Portrait and Landscape */
-@media only screen and (min-device-width: 375px) and (max-device-width: 914px)   {
-    #about {
-        position: relative;
-        top: 15px;
-      }
+@media only screen and (min-device-width: 375px) and (max-device-width: 914px) {
+  #about {
+    position: relative;
+    top: 15px;
+  }
   #createArticle1 {
     text-align: center;
     font-size: 13px;
@@ -298,10 +298,10 @@
 
 /* Portrait and Landscape */
 @media only screen and (min-device-width: 414px) and (max-device-width: 736px) and (-webkit-min-device-pixel-ratio: 3) {
-  .average-rating {
-    display: none;
- 
-}
+  #artBtn{
+    font-size: 10px;
+  }
+
     #about {
         position: relative;
         top: 15px;
@@ -386,14 +386,14 @@
 
 /* Portrait and Landscape */
 @media only screen and (min-device-width: 375px) and (max-device-width: 812px) and (-webkit-min-device-pixel-ratio: 3) {
-    #about {
-        position: relative;
-        top: 15px;
-      }
+  #about {
+    position: relative;
+    top: 15px;
+  }
 
   #profile {
     position: relative;
-  
+
     left: 0px;
   }
 
@@ -458,7 +458,7 @@
     margin-left: -5px;
     margin-bottom: 0px;
   }
-  
+
   .btn-article-search {
     background-color: #00415e;
     margin-right: 23px;
@@ -570,7 +570,7 @@
   #createArticle {
     position: relative;
     left: 20px;
-    padding:2px;
+    padding: 2px;
     font-size: 12px;
   }
   .loginSignbtn {
@@ -625,10 +625,10 @@
 }
 
 @media only screen and (min-device-width: 768px) and (max-device-width: 1024px) {
-  #textComment{
+  #textComment {
     font-size: 10px;
-    }
-  
+  }
+
   .newsletter_float {
     position: fixed;
     width: 20%;
@@ -638,54 +638,51 @@
     font-size: 22px;
   }
 
- #about {
+  #about {
     position: relative;
     top: 15px;
   }
-    
-      #profile{
-        position: relative;
-  
-        left: 0px;
-    
-      }
-    
-      #head4{
-          position: relative;
-          top: 2px;
-      }
-    .newsletter_float {
-        position: fixed;
-        width: 20%;
-        height: 40px;
-        bottom: 20px;
-        left: 560px;
-        font-size: 22px;
-    }
 
-    #searchBtn{
-        margin-right: -34px;
-        margin-bottom: -25px;
-    }
-     #searchCity{
-         position: relative;
-         top: 30px;
-         left: 30px;
-     }
-        #searchDoc{
-            margin-bottom: 4px;
-            margin-left: 10px;
-            width: 97%;
-            padding: 0;
-            position: relative;
-            left: 15px;
-            top: 30px;
-        }
-    #searchArticle {
-        margin: 140px 0 0 10px;
-    }
-    
-   
+  #profile {
+    position: relative;
+
+    left: 0px;
+  }
+
+  #head4 {
+    position: relative;
+    top: 2px;
+  }
+  .newsletter_float {
+    position: fixed;
+    width: 20%;
+    height: 40px;
+    bottom: 20px;
+    left: 560px;
+    font-size: 22px;
+  }
+
+  #searchBtn {
+    margin-right: -34px;
+    margin-bottom: -25px;
+  }
+  #searchCity {
+    position: relative;
+    top: 30px;
+    left: 30px;
+  }
+  #searchDoc {
+    margin-bottom: 4px;
+    margin-left: 10px;
+    width: 97%;
+    padding: 0;
+    position: relative;
+    left: 15px;
+    top: 30px;
+  }
+  #searchArticle {
+    margin: 140px 0 0 10px;
+  }
 
   #searchCity {
     position: relative;
@@ -752,14 +749,14 @@
   .btn.btn-article-search.color-white.float-right {
     position: relative;
     left: -20px;
+
     bottom: 0px;
   }
   #avg-rating {
-
     position: relative;
     left: 14px;
     font-size: 14px;
-}
+  }
 }
 
 /* Portrait */
@@ -774,11 +771,10 @@
 
 /* Portrait and Landscape */
 @media only screen and (min-device-width: 1024px) and (max-device-width: 1366px) and (-webkit-min-device-pixel-ratio: 2) {
-  #textComment{
+  #textComment {
     font-size: 10px;
-    }
-  
-  
+  }
+
   #searchBtn {
     margin-right: -34px;
     margin-top: 110px;
@@ -972,11 +968,10 @@
 /* Declare the same value for min- and max-width to avoid colliding with desktops */
 /* Source: https://medium.com/connect-the-dots/css-media-queries-for-ipad-pro-8cad10e17106*/
 @media only screen and (min-device-width: 1366px) and (max-device-width: 1366px) and (orientation: landscape) and (-webkit-min-device-pixel-ratio: 2) {
-  #textComment{
+  #textComment {
     font-size: 10px;
-    }
-  
-  
+  }
+
   #searchBtn {
     margin-right: -34px;
     margin-top: 85px;
@@ -1028,7 +1023,6 @@
     margin-left: -20px;
   }
 
-
   .btn-article-search {
     background-color: #00415e;
     margin-right: 25px;
@@ -1076,5 +1070,4 @@
   .city-name.col-md-5 {
     margin-top: -90px;
   }
-
 }

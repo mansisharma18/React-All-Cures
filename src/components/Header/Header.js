@@ -159,104 +159,70 @@ import Autocomplete from '@mui/material/Autocomplete';
         gridTemplateColumns: 'repeat(2,1fr)',
         gridGap:'1rem' 
       }
-        return(
-            <div className="profilePage">
-                <div className="comman-pg-header">
-                <section className="pageHeader zIndex-2" >
-                    <div className="container">
-                    <div className="row">
+      return(
+         <div className="profilePage">
+            <div className="comman-pg-header">
+               <section className="pageHeader zIndex-2" >
+                  <div className="container">
+                     <div className="row">
                         <div className="header" style={{width:"100%"}}>
-                        <div className="logo"> 
-                            <Link to='/home'>
+                           <div className="logo"> 
+                              <Link to='/home'>
                                 <img src={Heart} alt="All Cures Logo"/>
                                 <span>All Cures</span>
-                            </Link>
-                        </div>
-                        
-                        {/* <Nav className="me-auto">
-                            <Dropdown>
-                            <Dropdown.Toggle className="nav-dropdown-link">
-                            <span className="text-dark fs-6">Health</span>
-
-                            </Dropdown.Toggle>
-                            <Dropdown.Menu className="disease-drop" style={userStyle}>
-                              <div>
-                              <Dropdown.Header className="col-8 col-md-6 h5 font-weight-bold border-dark">
-                                Common Conditions</Dropdown.Header>
-                                <span className="border-btm"></span>
-                                <Link to="/cures/arthritis" className="text-dark pl-4">Arthritis</Link>
-                                <Dropdown.Item >Alergies</Dropdown.Item>
-                                <Dropdown.Item >Cancer</Dropdown.Item>
-                                <Dropdown.Item >Cardiology</Dropdown.Item>
-                                <Dropdown.Item >Coronavirus(Covid-19)</Dropdown.Item>
-                                <Dropdown.Item >Coronavirus(Covid-19)</Dropdown.Item>
-                                 <Dropdown.Item >Coronavirus(Covid-19)</Dropdown.Item>
-                                <Dropdown.Item >Coronavirus(Covid-19)</Dropdown.Item>
-                                </div>
-                                <div>
-                                <Dropdown.Header className="col-4 col-md-6 h5 font-weight-bold ">
-                                Resources</Dropdown.Header>
-                                <span className="border-btm"></span>
-                                <Dropdown.Item >Alergies</Dropdown.Item>
-                                <Dropdown.Item >Cancer</Dropdown.Item>
-                                <Dropdown.Item >Cardiology</Dropdown.Item>
-                                <Dropdown.Item >Coronavirus(Covid-19)</Dropdown.Item>
-                                </div>
-                            </Dropdown.Menu>
-                            </Dropdown>
-                            <div >
-  
-</div>
-    </Nav> */}
-            <form onSubmit={(e) => this.articleSearch(e)} className="article-search" id="searchArticle">
+                              </Link>
+                           </div>
+                           <form onSubmit={(e) => this.articleSearch(e)} className="article-search" id="searchArticle">
                               <div className="col-md-12 row">
-               <div className="col-md-10 p-0">    
-               <Autocomplete className="bg-white color-black"
-                  freeSolo
-                  value={this.state.article}
-                  onChange={(event, newValue) => {
-                     this.setState({
-                        article: newValue
-                     })
-                  }}
-                  inputValue={this.state.article ? this.state.article : ''}
-                  onInputChange={(event, newInputValue) => {
-                     this.setState({
-                        article: newInputValue
-                     })
-                   }}
-                  id="combo-box-demo"
-                  options={this.state.article?
-                     this.state.article.length >=1 ? 
-                     this.state.diseaseTitle 
-                     : [] 
-                  : []}
-                  sx={{ width: 300 }}
-                  renderInput={(params) => <TextField {...params} label="Search Articles" />}
-               />
-            </div>
-            <div className="col-md-2 p-0 mainBtn">
-            <button className="btn btn-article-search color-white" type="submit">
-               <i className="fas fa-search" id="iconSearch"></i>
-            </button>
-            </div>
-            </div>
-            </form>
-                        <div className="loginSign">
-                        {
+                                 <div className="col-md-10 p-0">    
+                                    <Autocomplete className="bg-white color-black"
+                                       freeSolo
+                                       value={this.state.article}
+                                       onChange={(event, newValue) => {
+                                          this.setState({
+                                             article: newValue
+                                          })
+                                       }}
+                                       inputValue={this.state.article ? this.state.article : ''}
+                                       onInputChange={(event, newInputValue) => {
+                                          this.setState({
+                                             article: newInputValue
+                                          })
+                                       }}
+                                       id="combo-box-demo"
+                                       options={this.state.article?
+                                          this.state.article.length >=1 ? 
+                                          this.state.diseaseTitle 
+                                          : [] 
+                                       : []}
+                                       sx={{ width: 300 }}
+                                       renderInput={(params) => <TextField {...params} label="Search Articles" />}
+                                    />
+                                 </div>
+                                 <div className="col-md-2 p-0 mainBtn">
+                                    <button className="btn btn-article-search color-white" type="submit">
+                                       <i className="fas fa-search" id="iconSearch"></i>
+                                    </button>
+                                 </div>
+                              </div>
+                           </form>
+
+                           <div className="loginSign">
+                           {
                               this.state.acPerm?
                               <Link className="btn border mr-2 btn-white loginSignbtn color-blue-dark" id="Article" to="/article">
-                              Create Article
+                              Create Cures
                             </Link>
                               : <button 
                               className="btn border mr-2 btn-white loginSignbtn color-blue-dark" id="Article" 
                               onClick={() => this.setModalShow(true)}
                             >
-                             Create Article
+
+                             Create Cures
                             </button>
                            }   
                             <ToggleButton userName={Cookies.get('uName')} setModalShow={this.setModalShow} acPerm={this.state.acPerm} logout={this.logout}/> 
-                        </div>   	
+                           </div>   	
                         </div>
                     </div>
                     </div>
@@ -347,7 +313,7 @@ import Autocomplete from '@mui/material/Autocomplete';
             </div>
         </div>
         );
-    }
+   }
 }
 function ToggleButton(props) {
    if(props.acPerm){
@@ -369,8 +335,8 @@ function ToggleButton(props) {
                   Dashboard</Link>
                </Dropdown.Item>
                :  <Dropdown.Item >
-               <Link to="/myarticle" className="text-dark btn">
-                  MyCures</Link>
+               <Link to="/my-cures" className="text-dark btn">
+                  My Cures</Link>
                </Dropdown.Item>
             }
              <Dropdown.Item >

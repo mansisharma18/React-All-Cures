@@ -128,16 +128,7 @@ class SearchName extends Component {
                         <div className="comman-heading">
                           <h2>All Physicians</h2>
                         </div>
-                        {/* Nav tabs */}
-                        <ul className="nav">
-                          <li className="active"><a data-toggle="pill" href="#men">Men</a></li>
-                          <li><a data-toggle="pill" href="#women">Women</a></li>
-                          <li><a data-toggle="pill" href="#children">Children</a></li>
-                          <li><a data-toggle="pill" href="#date">16 Sep, 2020</a></li>
-                        </ul>
-                        <a href="javascriptvoid(0)" className="moreFilters color-white btn-bg">
-                          More Filters
-                        </a> 
+                     
                       </div>
                         {items.map((i) => (
                           <ProfileTab

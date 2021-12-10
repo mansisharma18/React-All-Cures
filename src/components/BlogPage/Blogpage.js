@@ -29,13 +29,9 @@ export default class Blogpage extends Component{
             this.setState({
               isLoaded: true,
               items: json.reverse(),
-              
             });
-            
-            
-          });
-          
-          
+          })
+          .catch(err => console.log(err))
       }
       
       diseasePosts(type){                     // For specific blogs like "/blogs/diabetes"
@@ -47,8 +43,8 @@ export default class Blogpage extends Component{
               isLoaded: true,
               items: json.reverse(),
             });
-          });
-          
+          })
+          .catch(err => console.log(err))
         }
         else {
         // if(type !== undefined){
@@ -59,15 +55,8 @@ export default class Blogpage extends Component{
               isLoaded: true,
               items: json.reverse(),
             });
-            
           });
-        
-          
         } 
-        
-        // else {
-        //   this.allPosts()
-        // }
       }
 
       regionalPosts(){
@@ -117,7 +106,7 @@ export default class Blogpage extends Component{
             
                 <div className="container my-4">
                   {
-                    this.state.param.type?
+                    this.props.match.params.type?
                     <div className="h3 text-capitalize text-center font-weight-bold mb-4">Cures Related to "{this.props.match.params.type.toLowerCase()}"</div>
                     :null
                   }

@@ -24,7 +24,6 @@ const Comment = ({refreshComments,article_id}, props) => {
       }, 5000);
     }
     
-    // const [submitAlert, setAlert] = useState(false)
    
 
     const handleClose = () => setShow(false);
@@ -59,7 +58,6 @@ const Comment = ({refreshComments,article_id}, props) => {
     const postRating = (rating) => {
         setafterSubmitLoad(true)
         axios.post(`${backendHost}/DoctorRatingActionController?ratingVal=${rating}&ratedbyid=${Cookies.get("acPerm").split('|')[0]}&ratedbytype=${Cookies.get("acPerm").split('|')[1]}&targetid=${article_id}&targetTypeid=2&cmd=rateAsset`)
-        // .then(res => console.log(res)
         .then(res => {
           if(res.data === 1){
           setafterSubmitLoad(false)
@@ -84,14 +82,12 @@ const Comment = ({refreshComments,article_id}, props) => {
         value: 0,
         color: "yellow",
         activeColor: "orange",
-        // filledIcon:"orange",
         onChange: newValue => {
           setRatingValue(newValue)
           
           postRating(newValue)
         }
       };
-    // console.log('chekeing: ', props.article_id)
     return (
         <>
         {
@@ -107,19 +103,18 @@ const Comment = ({refreshComments,article_id}, props) => {
                     <i className="fa fa-spinner fa-spin fa-10x" />
                 </div>
             }
-        <Button className="ml-4 btn-article-search" id="textComment" onClick={handleShow}>
+        <Button className="ml-3 h-75 btn-article-search" id="textComment" onClick={handleShow}>
         Review This Cure
       </Button>
 
       <Modal show={show} onHide={handleClose} className="rounded mt-5" >
         <Modal.Header className="bg-review py-3" closeButton>
-          <Modal.Title className="pl-4">Review</Modal.Title>
+          <Modal.Title className="pl-4">Review here...</Modal.Title>
         </Modal.Header>
         
         <Modal.Body className="rounded">
-        <h3 className="pl-4">Overall Rating</h3>
+        <h3 className="pl-4"></h3>
         <div  className="pl-4">
-        {/* <ArticleRating article_id={props.article_id}/><hr/>  */}
         <ReactStars {...thirdExample} />
         </div>
         
@@ -130,7 +125,7 @@ const Comment = ({refreshComments,article_id}, props) => {
                     onChange={(e) => {
                         setCmtText(e.target.value)
                     }}
-                    className="form-control" id="comment" cols="40" rows="4"></textarea>
+                    className="form-control" id="comment" cols="30" rows="4"></textarea>
                     
                     <div className="my-4">
                         <button type="submit" className="btn btn-primary">Submit</button>
@@ -139,12 +134,7 @@ const Comment = ({refreshComments,article_id}, props) => {
             </div>
         </Modal.Body>
         <Modal.Footer>
-          {/* <Button variant="secondary" onClick={handleClose}>
-            Close
-          </Button> */}
-          {/* <Button variant="primary" onClick={handleClose}>
-            Save Changes
-          </Button> */}
+       
         </Modal.Footer>
       </Modal>
            
