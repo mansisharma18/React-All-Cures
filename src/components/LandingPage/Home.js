@@ -24,7 +24,6 @@ import { userId } from '../UserId'
 import { userAccess } from '../UserAccess'
 import ArticlePreview from './ArticlePreview'
 import TrendingArticles from './TrendingArticles';
-console.log('UserIDDDDDDDDDDDD: ', userId,userAccess)
 env.REACT_APP = 'http://117.241.171.115:8080/cures';
 
 class Home extends Component {

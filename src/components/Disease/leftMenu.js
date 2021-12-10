@@ -50,7 +50,7 @@ const Side = props => {
             <Nav.Item className="set-width pl-3">
                 <div className="h3 pl-2 pb-1 pt-5 font-weight-bold"><u>Menu</u></div>
                 <div className="guide mt-4">
-                    <div className="h4 pl-2 font-weight-bold">{props.name} Guide</div>
+                    <div className="h5 pl-2 font-weight-bold">{props.name} Guide</div>
                     {/* <div className="card"> */}
                     <div className=" menu-item">
                         <Link className="text-dark h6">Overview & Facts</Link>

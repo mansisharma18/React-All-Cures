@@ -66,26 +66,20 @@ class Profile extends Component {
   //   .catch(err => console.log(err))
   // }
 
-  getRating = (ratingId) => {
-    axios.get(`${backendHost}/rating/target/${ratingId}/targettype/1/avg`)
+  getRating = (docId) => {
+    axios.get(`${backendHost}/rating/target/${docId}/targettype/1/avg`)
     .then(res => {
       this.setState({
         ratingValue: res.data
+      }, ()=> {
+        setTimeout(() => {
+          this.showRating(this.state.ratingValue)
+        }, 1000);
       })
     }) 
     .catch(err => console.log(err))
   }
-  
-  getProfileComments = (profileId) => {
-    axios.get(`${backendHost}/profile/${profileId}`)
-    .then(res => {
-      this.setState({
-        firstName:res.data,
-        lastName:res.data
-      })
-    })
-    .catch(err => console.log(err))
-  }
+
   fetchDoctorData = (id) => {
     fetch(`${backendHost}/DoctorsActionController?rowno=${id}&cmd=getProfile`)
       // .then(res => JSON.parse(res))
@@ -99,9 +93,11 @@ class Profile extends Component {
 
   }
   showRating = (val) => {
-    if(document.getElementById('avg-rating')){
+    console.log(val, document.getElementById('doctor-avg-rating'))
+    if(document.getElementById('doctor-avg-rating')){
       for(let i=0 ; i<val; i++){
-        document.getElementById('avg-rating').children[i].classList.add('checked')  
+        console.log('inside: ', val)
+        document.getElementById('doctor-avg-rating').children[i].classList.add('checked')  
       }
     }
   }
@@ -123,8 +119,6 @@ class Profile extends Component {
     document.title = "All Cures | Profile"
     this.fetchDoctorData(this.state.param.id)
     this.getComments(this.state.param.id)
-   
-    this.getProfileComments(this.state.param.profileId)
     this.getRating(this.props.match.params.id)
   }
 
@@ -150,7 +144,6 @@ class Profile extends Component {
   
   render() {
     var { isLoaded, items, acPerm } = this.state;
-    console.log(this.props.params)
     if (!isLoaded) {
 
       return(
@@ -207,7 +200,18 @@ class Profile extends Component {
                               {items.hospital_affliated}{" "}
                               {items.country_code}
                             </div>
-
+                                   {/* Show average rating */}
+              {
+                this.state.ratingValue?
+                  <div className="average-rating mt-2 mb-4" id="doctor-avg-rating">
+                    <span class="fa fa-star fa-2x opacity-7"></span>
+                    <span class="fa fa-star fa-2x opacity-7"></span>
+                    <span class="fa fa-star fa-2x opacity-7"></span>
+                    <span class="fa fa-star fa-2x opacity-7"></span>
+                    <span class="fa fa-star fa-2x opacity-7"></span>
+                  </div>
+                : null
+              }
                             <div>
 
                             
@@ -317,33 +321,14 @@ class Profile extends Component {
                     
                   </div>
                   <div className="profile-info-rating">
-                    <h3>Overall Rating</h3>
+                    <h3>Rate here</h3>
                         <Rating  docid={this.state.param.id} />
                           
                        
                         </div>
                   <div className="comment-box">
-                     {/* Show average rating */}
-              {
-                this.state.ratingValue?
-                <div className="average-rating mt-2 mb-4 ml-3" id="avg-rating">
-                <span class="fa fa-star fa-2x opacity-7"></span>
-                <span class="fa fa-star fa-2x opacity-7"></span>
-                <span class="fa fa-star fa-2x opacity-7"></span>
-                <span class="fa fa-star fa-2x opacity-7"></span>
-                <span class="fa fa-star fa-2x opacity-7"></span>
-                </div>
-                : null
-              }
+              
 
-              {/* Call average rating fetch function */}
-              {
-                this.state.ratingValue? this.showRating(this.state.ratingValue) : null
-              }
-                    
-                    {/* <Comment refreshComments={this.getComments(this.state.param.id)} docid={this.state.param.id}/> */}
-                  
-                            
 
                   </div>
                   <div className="profile-rating">
@@ -412,12 +397,7 @@ class Profile extends Component {
 
                               </>
                             )
-                          })}
-                          
-                        
-
-                          
-                        
+                          })}               
                           
                           <div className="rating-footer">
                             <div className="back-top">
