@@ -91,10 +91,8 @@ class Profile extends Component {
 
   }
   showRating = (val) => {
-    console.log(val, document.getElementById('doctor-avg-rating'))
     if(document.getElementById('doctor-avg-rating')){
       for(let i=0 ; i<val; i++){
-        console.log('inside: ', val)
         document.getElementById('doctor-avg-rating').children[i].classList.add('checked')  
       }
     }
