@@ -229,7 +229,9 @@ class Disease extends Component {
                     </Dropdown.Toggle>
                   <Dropdown.Menu>
                   {
-                    this.state.regionalPost.map(j => (
+                    this.state.regionalPost.map(j => j.countryname === i.countryname 
+                      // && j.type == 2 
+                      &&(
                       <>
                       <Dropdown.Item href="#" className="pt-2">
                       <Link to={ `/cure/${j.article_id}` }  className="d-flex justify-content-between align-items-center mr-2">
@@ -289,7 +291,9 @@ class Disease extends Component {
             </div>
               </div>
             </div>
+
             {/* Center Well article main content */}
+              <div id="article-main-content">
                 {b.map((i) => (
                   <CenterWell
                     pageTitle = {items.title}
@@ -310,7 +314,8 @@ class Disease extends Component {
                     props = {this.props}
                   />
                 ))}
-              
+              </div>
+
               {/* Show average rating */}
               {
                 this.state.ratingValue?

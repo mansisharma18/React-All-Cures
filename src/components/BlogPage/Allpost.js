@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-const AllPost = ({id, title, f_title, w_title, country, type}) => {
+const AllPost = ({id, title, f_title, w_title, country, type, published_date}) => {
         return (
             <>
             <div key={id.toString()} className="py-3">
@@ -53,6 +53,7 @@ const AllPost = ({id, title, f_title, w_title, country, type}) => {
                         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse in scelerisque magna,  sed rutrum urna tincidunt.
                         Lorem ipsum dolor sit
                         </div>
+                        <div className="text-left mt-2 text-muted">Published on: {published_date}</div>
         <hr/>
                         </div>
                         

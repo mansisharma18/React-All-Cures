@@ -11,6 +11,7 @@ export default class Blogpage extends Component{
         super(props);
         const params = props.match.params
         this.state = { 
+          limit: 10,
           dc: props.location.search.split('&')[1],
           param: params,
           items: [],
@@ -23,12 +24,12 @@ export default class Blogpage extends Component{
     
 
       allPosts() {                        // For all available blogs "/blogs"
-        fetch(`${backendHost}/article/allkv`)
+        fetch(`${backendHost}/article/allkv?limit=${this.state.limit}`)
           .then((res) => res.json())
           .then((json) => {
             this.setState({
               isLoaded: true,
-              items: json.reverse(),
+              items: json,
             });
           })
           .catch(err => console.log(err))
@@ -41,7 +42,7 @@ export default class Blogpage extends Component{
           .then((json) => {
             this.setState({
               isLoaded: true,
-              items: json.reverse(),
+              items: json,
             });
           })
           .catch(err => console.log(err))
@@ -120,11 +121,18 @@ export default class Blogpage extends Component{
                             w_title = {i.window_title}
                             country = {i.country_id}
                             type = {i.type}
+                            published_date = {i.published_date}
                             key = {i.article_id}
                             allPostsContent={() => this.allPosts()}
                         />
                         : null
                     ))}
+                    <button className="white-button-shadow btn w-100" 
+                    onClick={() => {
+                      this.setState({
+                        limit: this.state.limit+10
+                      }, () => this.allPosts())
+                    }}>Show more</button>
                     </div>
                 </div>
             <Footer/>
