@@ -2939,3 +2939,7 @@ div.main-hero:first-child .card {
   position: relative;
   float: left;
 } */
+
+#main-hero .card {
+  min-height: 16.55rem;
+}

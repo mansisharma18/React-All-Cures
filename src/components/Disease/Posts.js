@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Post = ({id, title, f_title, w_title, history, type, country}) => {
+const Post = ({id, title, f_title, w_title, history, type, country, published_date}) => {
         return (
             <>
             <div style={{width:"95%"}} >
@@ -11,8 +11,12 @@ const Post = ({id, title, f_title, w_title, history, type, country}) => {
                                 <div className="card">
                                     <button onClick={(e) => history.push(`/cure/${id}`)} className="btn d-flex justify-content-between align-items-center">
                                         <div>
-                                            <div className="card-title h6 mb-1 font-weight-bold">{title}</div>
-                                            <div className="h7">{w_title}</div>
+                                            <div className="card-title h6 mb-1 font-weight-bold text-capitalize">{title}</div>
+                                            <div className="h7 text-muted">{w_title}</div>
+                                            <div>
+                                                Lorem ipsum dolor sit amet, consec tetur adipiscing elit. Suspen disse in scele risque magna,  sed rutrum urna tincidunt.
+                                            </div>
+                                            <div className="h7 text-muted text-left">Published on: {published_date}</div>
                                         </div>
                                          {/* <div>
                                         {

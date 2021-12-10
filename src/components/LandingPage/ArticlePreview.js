@@ -11,9 +11,23 @@ const ArticlePreview = (props) => {
           .then((res) => res.json())
           .then((json) => {
               if(articleFilter === 'recent'){
-                setItems(json.reverse())
+                var temp = []
+                json.forEach(i => {
+                    if(i.pubstatus_id === 3){
+                        temp.push(i)
+                    }
+                });
+                setItems(temp)
               } else if(articleFilter === 'earliest'){
-                  setItems(json)
+                //   setItems(json)
+                  var temp = []
+                  json.forEach(i => {
+                      if(i.pubstatus_id === 3){
+                          temp.push(i)
+                      }
+                  });
+                  setItems(temp.reverse())
+                //   console.log(/json.reverse())
               }
             setLoaded(true)
           })
@@ -83,8 +97,8 @@ const ArticlePreview = (props) => {
                {/* </div> */}
             </div>
             <div className="row">
-            <div className="main-hero">
-                {items.map((i, index) => i.pubstatus_id === 3 && index<12 && (
+            <div className="main-hero" id="main-hero">
+                {items.map((i, index) => index<9 && (
                     <div className="col-4">
                     <div className="card my-2 ">
                         <div className="card-body">
