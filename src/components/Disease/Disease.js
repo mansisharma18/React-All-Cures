@@ -110,6 +110,27 @@ class Disease extends Component {
     }
   }
  
+  showComments = (item, i) => {
+    if(item.reviewed === 1 && item.comments !== "null"){
+      return (
+        <>
+        <div className="col-12">
+          <div className="card my-4 ">
+            <div className="card-body">
+                <h5 className="h6"> {item.comments}</h5>
+                <div className="card-info">
+                    <h6 className="card-subtitle mb-2 text-muted">
+                      <b>By :  </b>  {item.first_name} {item.last_name}
+                    </h6>
+                </div>
+            </div>
+          </div>
+        </div>
+      </>
+      )
+    }
+  }
+
   componentDidMount() {
     this.fetchBlog()
     this.comments()
@@ -321,61 +342,34 @@ class Disease extends Component {
               {/* SHOW ALL COMMENTS */}
               <div className="main-hero">
                 {!this.state.showMore?
-                this.state.comment.slice(0, 3).map((item,i) => {
-                  return (
-                    <>
-                    <div className="col-12">
-                      <div className="card my-4 ">
-                        <div className="card-body">
-                            <h5 className="h6"> {item.comments}</h5>
-                            <div className="card-info">
-                                <h6 className="card-subtitle mb-2 text-muted">
-                                  <b>By :  </b>  {item.first_name} {item.last_name}
-                                </h6>
-                            </div>
-                        </div>
-                      </div>
-                    </div>
-                  </>
-                )
-                }):
-                this.state.comment.map((item,i) => {
-                  return (
-                    <>
-                    <div className="col-12">
-                      <div className="card my-4 ">
-                        <div className="card-body">
-                            <h5 className="h6"> {item.comments}</h5>
-                            <div className="card-info">
-                                <h6 className="card-subtitle mb-2 text-muted">
-                                  <b>By :  </b>  {item.first_name} {item.last_name}
-                                </h6>
-                            </div>
-                        </div>
-                      </div>
-                    </div>
-                  </>
-                )
-                })
+                this.state.comment.slice(0, 3).map((item,i) => (
+                  this.showComments(item, i)
+                )):
+                this.state.comment.map((item,i) => (
+                  this.showComments(item, i)
+                ))
                 }
             </div>
             {
-              this.state.comment.length > 3 &&
-              <button className="white-button-shadow btn w-100" 
-              onClick={() => {
-                this.state.showMore?
-                this.setState({
-                showMore: false
-                }): 
-                this.setState({
-                  showMore: true
-                  })
-              }}>
-                {
-                  !this.state.showMore?
-                  'Show more'
-                  : 'Hide'
-                }</button>
+              this.state.comment?
+                this.state.comment.length > 3 &&
+                  <button id="show-hide-comments" className="white-button-shadow btn w-100" 
+                    onClick={() => {
+                      this.state.showMore?
+                      this.setState({
+                      showMore: false
+                      }): 
+                      this.setState({
+                        showMore: true
+                        })
+                    }}>
+                      {
+                        !this.state.showMore?
+                        'Show more'
+                        : 'Hide'
+                      }
+                  </button>
+                : null
             }
             
       
