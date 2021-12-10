@@ -51,6 +51,7 @@ class Profile extends Component {
     })
     .catch(err => console.log(err))
   }
+  
   // getRating = (ratingId) => {
   //   axios.get(`${backendHost}/rating/target/${ratingId}/targettype/1/avg`)
   //   .then(res => {
@@ -118,12 +119,8 @@ class Profile extends Component {
     this.getComments(this.state.param.id)
     this.getRating(this.props.match.params.id)
   }
-  componentDidUpdate(prevProps){
-    if ( prevProps.match.params.id !== this.props.match.params.id){
-     
-      this.getRating(this.props.match.params.id)
-    }
-  }
+
+
 
   setModalShow =(action) => {
     this.setState({
