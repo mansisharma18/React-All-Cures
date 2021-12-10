@@ -51,6 +51,7 @@ class Profile extends Component {
     })
     .catch(err => console.log(err))
   }
+  
   // getRating = (ratingId) => {
   //   axios.get(`${backendHost}/rating/target/${ratingId}/targettype/1/avg`)
   //   .then(res => {
