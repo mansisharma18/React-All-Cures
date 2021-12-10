@@ -26,7 +26,7 @@ class Profile extends Component {
     this.fetchDoctorData = this.fetchDoctorData.bind(this)
     this.state = { 
       items: [],
-      commentItems: [],
+      comment: [],
       ratingValue: '',
       firstName: [],
       lastName: [],
