@@ -27,7 +27,7 @@ class Profile extends Component {
     this.state = { 
       items: [],
       commentItems: [],
-      ratingValue: [],
+      ratingValue: '',
       firstName: [],
       lastName: [],
       isLoaded: false,
@@ -51,13 +51,23 @@ class Profile extends Component {
     })
     .catch(err => console.log(err))
   }
+  // getRating = (ratingId) => {
+  //   axios.get(`${backendHost}/rating/target/${ratingId}/targettype/1/avg`)
+  //   .then(res => {
+  //     this.setState({
+  //       ratingValue:res.data,
+  //       size: 40,
+  //       count: 5,
+  //     })
+  //   }) 
+  //   .catch(err => console.log(err))
+  // }
+
   getRating = (ratingId) => {
     axios.get(`${backendHost}/rating/target/${ratingId}/targettype/1/avg`)
     .then(res => {
       this.setState({
-        ratingValue:res.data,
-        size: 40,
-        count: 5,
+        ratingValue: res.data
       })
     }) 
     .catch(err => console.log(err))
@@ -85,6 +95,13 @@ class Profile extends Component {
       });
 
   }
+  showRating = (val) => {
+    if(document.getElementById('avg-rating')){
+      for(let i=0 ; i<val; i++){
+        document.getElementById('avg-rating').children[i].classList.add('checked')  
+      }
+    }
+  }
   
 
   editToggle = () => {
@@ -103,8 +120,15 @@ class Profile extends Component {
     document.title = "All Cures | Profile"
     this.fetchDoctorData(this.state.param.id)
     this.getComments(this.state.param.id)
-    this.getRating()
+   
     this.getProfileComments(this.state.param.profileId)
+    this.getRating(this.props.match.params.id)
+  }
+  componentDidUpdate(prevProps){
+    if ( prevProps.match.params.id !== this.props.match.params.id){
+     
+      this.getRating(this.props.match.params.id)
+    }
   }
 
   setModalShow =(action) => {
@@ -117,6 +141,7 @@ class Profile extends Component {
       show: false
     })
   }
+
 
   handleShow = () => {
     this.setState({
@@ -299,8 +324,25 @@ class Profile extends Component {
                        
                         </div>
                   <div className="comment-box">
+                     {/* Show average rating */}
+              {
+                this.state.ratingValue?
+                <div className="average-rating mt-2 mb-4 ml-3" id="avg-rating">
+                <span class="fa fa-star fa-2x opacity-7"></span>
+                <span class="fa fa-star fa-2x opacity-7"></span>
+                <span class="fa fa-star fa-2x opacity-7"></span>
+                <span class="fa fa-star fa-2x opacity-7"></span>
+                <span class="fa fa-star fa-2x opacity-7"></span>
+                </div>
+                : null
+              }
+
+              {/* Call average rating fetch function */}
+              {
+                this.state.ratingValue? this.showRating(this.state.ratingValue) : null
+              }
                     
-                    <Comment refreshComments={this.getComments(this.state.param.id)} docid={this.state.param.id}/>
+                    {/* <Comment refreshComments={this.getComments(this.state.param.id)} docid={this.state.param.id}/> */}
                   
                             
 
