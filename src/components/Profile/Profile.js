@@ -51,18 +51,29 @@ class Profile extends Component {
     })
     .catch(err => console.log(err))
   }
+
   
-  // getRating = (ratingId) => {
-  //   axios.get(`${backendHost}/rating/target/${ratingId}/targettype/1/avg`)
-  //   .then(res => {
-  //     this.setState({
-  //       ratingValue:res.data,
-  //       size: 40,
-  //       count: 5,
-  //     })
-  //   }) 
-  //   .catch(err => console.log(err))
-  // }
+  
+  showComments = (item, i) => {
+    if(item.reviewed === 1 && item.comments !== "null"){
+      return (
+        <>
+        <div className="col-12">
+          <div className="card my-4 ">
+            <div className="card-body">
+                <h5 className="h6"> {item.comments}</h5>
+                <div className="card-info">
+                    <h6 className="card-subtitle mb-2 text-muted">
+                      <b>By :  </b>  {item.first_name} {item.last_name}
+                    </h6>
+                </div>
+            </div>
+          </div>
+        </div>
+      </>
+      )
+    }
+  }
 
   getRating = (docId) => {
     axios.get(`${backendHost}/rating/target/${docId}/targettype/1/avg`)
@@ -324,91 +335,48 @@ class Profile extends Component {
                         </div>
                   <div className="comment-box">
               
-
+                  {
+                Cookies.get('acPerm')?
+                  <>              
+                    <Comment refreshComments={this.getComments} docid={this.props.match.params.id}/>
+                  </>
+                : null
+              }
 
                   </div>
-                  <div className="profile-rating">
-                    <div className="tab-nav">
-                      <div className="rating-heading">
-                      
-                      </div>
-                      {/* <!-- Nav tabs --> */}
-                    
-                    </div>
-                    <div className="tab-content">
-                      <div id="patient" className="tab-pane active">
-                        <div className="rating-outer" id="rating">
-                        {this.state.commentItems.map((item,i) => {
-                            return (
-                              <>
-                                <div className="rating-patient">
-                            <div className="rating-patient-grid clearfix">
-                              <div className="paitent-profile">
-                                {" "}
-                                <img src={ClientA} alt="ClientA" />{" "}
-                              </div>
-                              <div className="patient-msg">
-                              
-                                <p>{item.comments}</p>
-                              </div>
-                              <div className="patient-name-add">
-                              <div className="h4 text-capitalize"> {item.first_name} {item.last_name}</div>
-                                <div className="patient-rating">
-                                  <ul>
-                                    <li>
-                                      <i
-                                        className="fa fa-star"
-                                        aria-hidden="true"
-                                      ></i>
-                                    </li>
-                                    <li>
-                                      <i
-                                        className="fa fa-star"
-                                        aria-hidden="true"
-                                      ></i>
-                                    </li>
-                                    <li>
-                                      <i
-                                        className="fa fa-star"
-                                        aria-hidden="true"
-                                      ></i>
-                                    </li>
-                                    <li>
-                                      <i
-                                        className="fa fa-star"
-                                        aria-hidden="true"
-                                      ></i>
-                                    </li>
-                                    <li>
-                                      <i
-                                        className="fa fa-star-half"
-                                        aria-hidden="true"
-                                      ></i>
-                                    </li>
-                                  </ul>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
 
-                              </>
-                            )
-                          })}               
-                          
-                          <div className="rating-footer">
-                            <div className="back-top">
-                              {" "}
-                            
-                            </div>
-                          
-                          </div>
-                        </div>
-                      </div>
-                      <div id="recomended" className="tab-pane fade">
-                      
-                      </div>
-                    </div>
-                  </div>
+                   {/* SHOW ALL COMMENTS */}
+              <div className="main-hero">
+                {!this.state.showMore?
+                this.state.comment.slice(0, 3).map((item,i) => (
+                  this.showComments(item, i)
+                )):
+                this.state.comment.map((item,i) => (
+                  this.showComments(item, i)
+                ))
+                }
+            </div>
+            {
+              this.state.comment?
+                this.state.comment.length > 3 &&
+                  <button id="show-hide-comments" className="white-button-shadow btn w-100" 
+                    onClick={() => {
+                      this.state.showMore?
+                      this.setState({
+                      showMore: false
+                      }): 
+                      this.setState({
+                        showMore: true
+                        })
+                    }}>
+                      {
+                        !this.state.showMore?
+                        'Show more'
+                        : 'Hide'
+                      }
+                  </button>
+                : null
+            }
                 </div>
               
               </div>
