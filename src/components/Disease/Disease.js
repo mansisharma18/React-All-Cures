@@ -97,7 +97,7 @@ class Disease extends Component {
         })
         this.setState({
           comment: temp
-        }, ()=> console.log(this.state.comment))
+        })
       })
       .catch(err => 
         console.log(err)
