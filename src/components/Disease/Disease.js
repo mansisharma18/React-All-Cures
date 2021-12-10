@@ -49,7 +49,6 @@ class Disease extends Component {
           this.fetchCountriesCures()
           this.regionalPosts()
         });
-        // document.title = `All Cures | ${json.data.title}`
       });
   }
 
