@@ -46,7 +46,7 @@ class Profile extends Component {
     axios.get(`${backendHost}/rating/target/${id}/targettype/1`)
     .then(res => {
       this.setState({
-        commentItems:res.data
+        comment:res.data
       })
     })
     .catch(err => console.log(err))
@@ -226,15 +226,7 @@ class Profile extends Component {
                             
 
                             </div>
-                            {/* <div className="rating">
-                              
-                           
-                            <p>{this.state.ratingValue}</p>
-                  <span className="fa fa-star"></span>
-
-                  
-                 
-               </div> */}
+                          
                            
                           </div>
                           
@@ -246,7 +238,6 @@ class Profile extends Component {
                               
                                 className="rating"
                               >
-                                {/* <Rating /> */}
                               </form>
                             </h2>
                           </div>
