@@ -20,6 +20,7 @@ const EditProfile = (props) => {
     setPersonName(event.target.value);
   };
     const item = props.items
+    const [rowno, setRowno] = useState(item.rowno)
     const [firstName, setFirst] = useState(item.docname_first)
     const [lastName, setLast] = useState(item.docname_last)
     const [primarySpl, setPrimary] = useState(item.primary_spl_code)
@@ -53,6 +54,7 @@ const EditProfile = (props) => {
         e.preventDefault()
         axios.post(`${backendHost}/doctors/updateprofile`, {
             "docid": item.docid,
+            "rowno": item.rowno,
             "docname_first" : firstName,
             "docname_last" : lastName,
             "primary_spl" : primarySpl,
