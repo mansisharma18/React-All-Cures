@@ -40,6 +40,7 @@ export default class Carousel2 extends Component {
       super(props);
       this.state = {
         items: [],
+        rowno:[],
         ratingValue: [],
         isLoaded: false,
         responsive:{
@@ -111,7 +112,7 @@ export default class Carousel2 extends Component {
                      <p>{i.map.primary_spl}</p>
                      <h5 className="text-center">{i.map.hospital_affliated} {i.map.state} {i.map.country_code}</h5>
                   </div>
-                  <Link to="#" className="appointmentBtn allBtn">Appointment</Link>
+                  <Link to="{ `/profile/${rowno}` }" className="appointmentBtn allBtn">Visit Profile</Link>
                </div>
             </div>
          ))}
