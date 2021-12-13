@@ -15,7 +15,7 @@ const Post = ({id, title, content, f_title, w_title, history, type, country, pub
                                             <div className="h7 text-muted">{w_title}</div>
                                             <div id='right-menu-card-article-content-preview'>
                                             {
-                                    JSON.parse(content) ?
+                                    content && JSON.parse(content) ?
                                     JSON.parse(content).blocks.map((j) => (
                                         <CenterWell
                                             content = {j.data.content}

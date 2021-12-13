@@ -111,7 +111,7 @@ const ArticlePreview = (props) => {
                                 </h6>
                                 <p className="card-text" id='right-menu-card-article-content-preview'>
                                 {
-                                    JSON.parse(i.content) ?
+                                    i.content && JSON.parse(i.content) ?
                                     JSON.parse(i.content).blocks.map((j) => (
                                         <CenterWell
                                             content = {j.data.content}
