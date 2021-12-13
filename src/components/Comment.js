@@ -49,7 +49,7 @@ const Comment = ({refreshComments, docid}) => {
                     onChange={(e) => {
                         setCmtText(e.target.value)
                     }}
-                    className="form-control" id="" cols="30" rows="10"></textarea>
+                    className="form-control" id="" cols="30" rows="3"></textarea>
                     
                     {
                             succAlert?

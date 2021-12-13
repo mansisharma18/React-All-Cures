@@ -15,13 +15,10 @@ import ArticleComment from '../ArticleComment';
 import HelmetMetaData from '../HelmetMetaData';
 import {FacebookShareButton, FacebookIcon, TwitterIcon, TwitterShareButton, WhatsappIcon, WhatsappShareButton} from "react-share";
 import Cookies from 'js-cookie'
-import Popper from '@mui/material/Popper';
 
-// import CenterWell from './CenterWell'
 class Disease extends Component {
   constructor(props) {
     super(props);
-    // const params = props.match.params
     const acPerm = Cookies.get("acPerm")
     this.state = { 
       items: [],
@@ -92,8 +89,14 @@ class Disease extends Component {
     fetch(`${backendHost}/rating/target/${this.props.match.params.id}/targettype/2`)
       .then((res) => res.json())
       .then((json) => {
+        var temp = []
+        json.forEach(i => {
+          if(i.reviewed === 1 && i.comments !== "null"){
+            temp.push(i)
+          }
+        })
         this.setState({
-          comment: json
+          comment: temp
         })
       })
       .catch(err => 
@@ -110,7 +113,6 @@ class Disease extends Component {
   }
  
   showComments = (item, i) => {
-    if(item.reviewed === 1 && item.comments !== "null"){
       return (
         <>
         <div className="col-12">
@@ -127,7 +129,6 @@ class Disease extends Component {
         </div>
       </>
       )
-    }
   }
 
   componentDidMount() {
@@ -346,7 +347,7 @@ class Disease extends Component {
               {/* SHOW ALL COMMENTS */}
               <div className="main-hero">
                 {!this.state.showMore?
-                this.state.comment.slice(0, 3).map((item,i) => (
+                this.state.comment.slice(0, 1).map((item,i) => (
                   this.showComments(item, i)
                 )):
                 this.state.comment.map((item,i) => (
@@ -356,7 +357,7 @@ class Disease extends Component {
             </div>
             {
               this.state.comment?
-                this.state.comment.length > 3 &&
+                this.state.comment.length > 1 &&
                   <button id="show-hide-comments" className="white-button-shadow btn w-100" 
                     onClick={() => {
                       this.state.showMore?

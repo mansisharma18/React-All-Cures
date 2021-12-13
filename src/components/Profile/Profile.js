@@ -33,7 +33,7 @@ class Profile extends Component {
       isLoaded: false,
       param: params,
       edit: false,
-      
+      showMore: false,
       modalShow: false,
       show: false,
       acPerm: Cookies.get('acPerm').split('|')
@@ -45,9 +45,15 @@ class Profile extends Component {
   getComments = (id) => {
     axios.get(`${backendHost}/rating/target/${id}/targettype/1`)
     .then(res => {
-      this.setState({
-        comment:res.data
-      })
+      var temp = []
+        res.data.forEach(i => {
+          if(i.reviewed === 1 && i.comments !== "null"){
+            temp.push(i)
+          }
+        })
+        this.setState({
+          comment: temp
+        })
     })
     .catch(err => console.log(err))
   }
@@ -55,7 +61,6 @@ class Profile extends Component {
   
   
   showComments = (item, i) => {
-    if(item.reviewed === 1 && item.comments !== "null"){
       return (
         <>
         <div className="col-12">
@@ -72,7 +77,6 @@ class Profile extends Component {
         </div>
       </>
       )
-    }
   }
 
   getRating = (docId) => {
@@ -102,10 +106,8 @@ class Profile extends Component {
 
   }
   showRating = (val) => {
-    console.log(val, document.getElementById('doctor-avg-rating'))
     if(document.getElementById('doctor-avg-rating')){
       for(let i=0 ; i<val; i++){
-        console.log('inside: ', val)
         document.getElementById('doctor-avg-rating').children[i].classList.add('checked')  
       }
     }

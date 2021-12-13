@@ -4,14 +4,11 @@ import { withRouter } from "react-router";
 import { Link } from "react-router-dom";
 import './style.css'
 import { backendHost } from '../../api-config';
-import ArticleComment from '../ArticleComment';
 import Cookies from 'js-cookie';
-import ArticleRating from "../ArticleRating";
 
 
 const Side = props => {
     const [items, setItems] = useState([])
-    const acPerm = Cookies.get("acPerm")
     const [commentItems, setCommentItems] = useState([])
     function  allPosts() {                        // For all available blogs "/blogs"
         fetch(`${backendHost}/isearch/hierarchy/${props.diseaseId}`)
