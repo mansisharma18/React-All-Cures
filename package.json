@@ -67,6 +67,7 @@
     "react-select": "^5.1.0",
     "react-share": "^4.4.0",
     "react-sidebar": "^3.0.2",
+    "react-telephone-input": "^5.0.0",
     "recharts": "^2.0.9",
     "save": "^2.4.0",
     "simple-video-editorjs": "^1.4.9",

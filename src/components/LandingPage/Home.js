@@ -148,12 +148,17 @@ class Home extends Component {
    
  postSubscribtion() {
    //  var mobileNumber = this.state.mobile.split('+')
-    console.log(this.state.value)
-    if(this.state.value){
+   var phoneNumber = this.state.value.split('+')[1]
+   console.log(phoneNumber)
+   var countryCodeLength = phoneNumber.length % 10
+    console.log('Country COde:', countryCodeLength)
+   var StringValue = (phoneNumber.slice(0,countryCodeLength)+ '-'+phoneNumber.slice(countryCodeLength)).replace(/,/g, '')
+   console.log(StringValue)
+    if(phoneNumber){
       this.setState({
          afterSubmitLoad: true
       })
-     axios.post(`${backendHost}/users/subscribe/${this.state.value.split('+')[1]}`, {
+     axios.post(`${backendHost}/users/subscribe/${StringValue}`, {
      "nl_subscription_disease_id": 1,
      "nl_sub_type":1,
      "nl_subscription_cures_id":0,
