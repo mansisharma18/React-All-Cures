@@ -14,6 +14,10 @@ import Carousel1 from './Caousel1';
 import Carousel2 from './Carousel2';
 // import CarouselReview from './CarouselReview';
 import { Dropdown, Alert } from 'react-bootstrap';
+import PhoneInput from 'react-phone-number-input';
+import 'react-phone-number-input/style.css';
+
+
 
 import { backendHost } from '../../api-config';
 import TextField from '@mui/material/TextField';
@@ -39,6 +43,7 @@ class Home extends Component {
          users: [],
          city: '',
          name: '',
+         value:'',
          texts: '',
          cityList: [],
          pinList: [],
@@ -142,11 +147,13 @@ class Home extends Component {
  }
    
  postSubscribtion() {
-    if(this.state.mobile.length === 10){
+   //  var mobileNumber = this.state.mobile.split('+')
+    console.log(this.state.value)
+    if(this.state.value){
       this.setState({
          afterSubmitLoad: true
       })
-     axios.post(`${backendHost}/users/subscribe/${this.state.mobile}`, {
+     axios.post(`${backendHost}/users/subscribe/${this.state.value.split('+')[1]}`, {
      "nl_subscription_disease_id": 1,
      "nl_sub_type":1,
      "nl_subscription_cures_id":0,
@@ -195,6 +202,8 @@ class Home extends Component {
       })
    }
 
+  
+
    Alert = (msg) => {
       this.setState({
          showAlert:true,
@@ -212,6 +221,11 @@ class Home extends Component {
       })
     }
     setMobile= e => {
+       this.setState({
+         mobile: e.target.value
+       })
+    }
+    setCountryCode= e => {
        this.setState({
          mobile: e.target.value
        })
@@ -597,21 +611,22 @@ class Home extends Component {
                         <div className="h5">Get <span>doctor-approved</span> health tips, news, and more</div>
                         <div className="form-group relative">
                            <div className="aaa">
-                              <input type="number" name="" onChange={this.setMobile} className="form-control border rounded" placeholder="Please Share Your Mobile Number"/>
+                           <PhoneInput
+      placeholder="Enter phone number"
+      value={this.state.value}
+    
+       onChange={(newValue) => {
+                                 this.setState({
+                                    value: newValue
+                                 })
+                              }}
+                              />
+
+                          {/* <input type="number" name="" onChange={this.setMobile}    className="form-control border rounded" placeholder="Please Share Your Mobile Number"/> */}
                               
                            </div>
                            <div>
                               {/* <a href="/#" className="subscribeBtn">Subscribe</a> */}
-                              
-                              {
-                                        this.state.ShowSubmitAlert &&
-                                        <Alert className="bg-green border">Subscribe has been saved successfully!</Alert>
-                                    }
-
-                                    {
-                                        this.state.ShowErrorAlert &&
-                                        <Alert className="bg-red border">Please Provide Your Mobile Number!</Alert>
-                                    }
                                 <button className="bcolor rounded py-2" onClick={( ) => {this.postSubscribtion()}}>
                                    Submit
                                 </button>
