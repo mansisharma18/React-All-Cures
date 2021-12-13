@@ -148,11 +148,14 @@ class Home extends Component {
    
  postSubscribtion() {
    //  var mobileNumber = this.state.mobile.split('+')
+   console.log('value: ', this.state.value)
    var phoneNumber = this.state.value.split('+')[1]
    console.log(phoneNumber)
    var countryCodeLength = phoneNumber.length % 10
     console.log('Country COde:', countryCodeLength)
-   var StringValue = (phoneNumber.slice(0,countryCodeLength)+ '-'+phoneNumber.slice(countryCodeLength)).replace(/,/g, '')
+   var countryCode = phoneNumber.slice(0, countryCodeLength)
+   console.log(countryCode)
+   var StringValue = phoneNumber.slice(countryCodeLength).replace(/,/g, '')
    console.log(StringValue)
     if(phoneNumber){
       this.setState({
@@ -162,6 +165,7 @@ class Home extends Component {
      "nl_subscription_disease_id": 1,
      "nl_sub_type":1,
      "nl_subscription_cures_id":0,
+     "country_code": countryCode,
      })
        .then(res => {
         this.setState({
