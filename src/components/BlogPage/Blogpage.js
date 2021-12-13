@@ -24,7 +24,7 @@ export default class Blogpage extends Component{
     
 
       allPosts() {                        // For all available blogs "/blogs"
-        fetch(`${backendHost}/article/allkv?limit=${this.state.limit}`)
+        fetch(`${backendHost}/article/allkv`)
           .then((res) => res.json())
           .then((json) => {
             this.setState({
@@ -120,6 +120,7 @@ export default class Blogpage extends Component{
                             f_title = {i.friendly_name}
                             w_title = {i.window_title}
                             country = {i.country_id}
+                            content = {i.content}
                             type = {i.type}
                             published_date = {i.published_date}
                             key = {i.article_id}
@@ -127,12 +128,12 @@ export default class Blogpage extends Component{
                         />
                         : null
                     ))}
-                    <button className="white-button-shadow btn w-100" 
+                    {/* <button className="white-button-shadow btn w-100" 
                     onClick={() => {
                       this.setState({
                         limit: this.state.limit+10
                       }, () => this.allPosts())
-                    }}>Show more</button>
+                    }}>Show more</button> */}
                     </div>
                 </div>
             <Footer/>

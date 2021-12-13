@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { backendHost } from '../../api-config';
 import { Link } from 'react-router-dom'
+import CenterWell from '../Disease/CenterWell'
+
 const ArticlePreview = (props) => {
     const [items, setItems] = useState([])
     const [isLoaded, setLoaded] = useState(false)
@@ -107,10 +109,29 @@ const ArticlePreview = (props) => {
                                 <h6 className="card-subtitle mb-2 text-muted">
                                     {i.window_title}
                                 </h6>
-                                <p className="card-text">
-                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse in scelerisque magna,  sed rutrum urna tincidunt.<Link to={`/cure/${i.article_id}`}>...read more</Link>
+                                <p className="card-text" id='right-menu-card-article-content-preview'>
+                                {
+                                    i.content && JSON.parse(i.content) ?
+                                    JSON.parse(i.content).blocks.map((j) => (
+                                        <CenterWell
+                                            content = {j.data.content}
+                                            type = {j.type}
+                                            text = {j.data.text}
+                                            title = {j.data.title}
+                                            message = {j.data.message}
+                                            source = {j.data.source}
+                                            embed = {j.data.embed}
+                                            caption = {j.data.caption}
+                                            alignment = {j.data.alignment}
+                                            imageUrl = {j.data.file? j.data.file.url: null}
+                                            url = {j.data.url}
+                                        />
+                                    ))
+                                    : null
+                                }
                                     {/* ${p.body.substr(0, 200)}<a href="#">...read more</a> */}
                                 </p>
+                                <span><Link to={`/cure/${i.article_id}`}>...read more</Link></span>
                             </div>
                             {/* <a href="#" className="card-link" id="comment-link">Comment</a> */}
                             {/* <a href="#" className="card-link">Like</a> */}

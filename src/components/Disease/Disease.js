@@ -215,7 +215,7 @@ class Disease extends Component {
                 <Link to={`/cures?c=10&dc=${items.disease_condition_id}`} className="btn btn-primary">Iranian</Link>
               </div> */}
               <div className="article-title-container">
-              <div className="h2 text-capitalize text-decoration-underline">{items.title.toLowerCase()}</div>
+              <div className="h1 font-weight-bold text-capitalize text-decoration-underline">{items.title.toLowerCase()}</div>
               <div className="share-buttons-region">
               
             <div className="d-flex justify-content-between margin-auto mb-2 mr-2" id="article-acc-to-regions">

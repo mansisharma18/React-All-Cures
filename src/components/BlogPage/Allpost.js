@@ -1,10 +1,10 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-
-const AllPost = ({id, title, f_title, w_title, country, type, published_date}) => {
+import CenterWell from '../Disease/CenterWell';
+const AllPost = ({id, title, content, f_title, w_title, country, type, published_date}) => {
         return (
             <>
-            <div key={id.toString()} className="py-3">
+            <div key={id.toString()} className="py-3 w-100">
                 <div >
                     {/* <div className="card-body"> */}
                             
@@ -48,10 +48,26 @@ const AllPost = ({id, title, f_title, w_title, country, type, published_date}) =
                         
                         <div className="card-info">
                             <div className="card-subtitle mb-2 text-muted text-capitalize">{w_title.toLowerCase()}</div>
-                            <div>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse in scelerisque magna,  sed rutrum urna tincidunt.
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse in scelerisque magna,  sed rutrum urna tincidunt.
-                        Lorem ipsum dolor sit
+                            <div className='card-article-content-preview'>
+                            {
+                                    content && JSON.parse(content) ?
+                                    JSON.parse(content).blocks.map((j) => (
+                                        <CenterWell
+                                            content = {j.data.content}
+                                            type = {j.type}
+                                            text = {j.data.text}
+                                            title = {j.data.title}
+                                            message = {j.data.message}
+                                            source = {j.data.source}
+                                            embed = {j.data.embed}
+                                            caption = {j.data.caption}
+                                            alignment = {j.data.alignment}
+                                            imageUrl = {j.data.file? j.data.file.url: null}
+                                            url = {j.data.url}
+                                        />
+                                    ))
+                                    : null
+                                }
                         </div>
                         <div className="text-left mt-2 text-muted">Published on: {published_date}</div>
         <hr/>
