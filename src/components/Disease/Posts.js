@@ -1,6 +1,6 @@
 import React from 'react';
-
-const Post = ({id, title, f_title, w_title, history, type, country, published_date}) => {
+import CenterWell from './CenterWell'
+const Post = ({id, title, content, f_title, w_title, history, type, country, published_date}) => {
         return (
             <>
             <div style={{width:"95%"}} >
@@ -13,8 +13,26 @@ const Post = ({id, title, f_title, w_title, history, type, country, published_da
                                         <div>
                                             <div className="card-title h6 mb-1 font-weight-bold text-capitalize">{title}</div>
                                             <div className="h7 text-muted">{w_title}</div>
-                                            <div>
-                                                Lorem ipsum dolor sit amet, consec tetur adipiscing elit. Suspen disse in scele risque magna,  sed rutrum urna tincidunt.
+                                            <div id='right-menu-card-article-content-preview'>
+                                            {
+                                    JSON.parse(content) ?
+                                    JSON.parse(content).blocks.map((j) => (
+                                        <CenterWell
+                                            content = {j.data.content}
+                                            type = {j.type}
+                                            text = {j.data.text}
+                                            title = {j.data.title}
+                                            message = {j.data.message}
+                                            source = {j.data.source}
+                                            embed = {j.data.embed}
+                                            caption = {j.data.caption}
+                                            alignment = {j.data.alignment}
+                                            imageUrl = {j.data.file? j.data.file.url: null}
+                                            url = {j.data.url}
+                                        />
+                                    ))
+                                    : null
+                                }
                                             </div>
                                             <div className="h7 text-muted text-left">Published on: {published_date}</div>
                                         </div>
