@@ -26,14 +26,14 @@ class Profile extends Component {
     this.fetchDoctorData = this.fetchDoctorData.bind(this)
     this.state = { 
       items: [],
-      commentItems: [],
-      ratingValue: [],
+      comment: [],
+      ratingValue: '',
       firstName: [],
       lastName: [],
       isLoaded: false,
       param: params,
       edit: false,
-      
+      showMore: false,
       modalShow: false,
       show: false,
       acPerm: Cookies.get('acPerm').split('|')
@@ -45,34 +45,54 @@ class Profile extends Component {
   getComments = (id) => {
     axios.get(`${backendHost}/rating/target/${id}/targettype/1`)
     .then(res => {
-      this.setState({
-        commentItems:res.data
-      })
+      var temp = []
+        res.data.forEach(i => {
+          if(i.reviewed === 1 && i.comments !== "null"){
+            temp.push(i)
+          }
+        })
+        this.setState({
+          comment: temp
+        })
     })
     .catch(err => console.log(err))
   }
-  getRating = (ratingId) => {
-    axios.get(`${backendHost}/rating/target/${ratingId}/targettype/1/avg`)
+
+  
+  
+  showComments = (item, i) => {
+      return (
+        <>
+        <div className="col-12">
+          <div className="card my-4 ">
+            <div className="card-body">
+                <h5 className="h6"> {item.comments}</h5>
+                <div className="card-info">
+                    <h6 className="card-subtitle mb-2 text-muted">
+                      <b>By :  </b>  {item.first_name} {item.last_name}
+                    </h6>
+                </div>
+            </div>
+          </div>
+        </div>
+      </>
+      )
+  }
+
+  getRating = (docId) => {
+    axios.get(`${backendHost}/rating/target/${docId}/targettype/1/avg`)
     .then(res => {
       this.setState({
-        ratingValue:res.data,
-        size: 40,
-        count: 5,
+        ratingValue: res.data
+      }, ()=> {
+        setTimeout(() => {
+          this.showRating(this.state.ratingValue)
+        }, 1000);
       })
     }) 
     .catch(err => console.log(err))
   }
-  
-  getProfileComments = (profileId) => {
-    axios.get(`${backendHost}/profile/${profileId}`)
-    .then(res => {
-      this.setState({
-        firstName:res.data,
-        lastName:res.data
-      })
-    })
-    .catch(err => console.log(err))
-  }
+
   fetchDoctorData = (id) => {
     fetch(`${backendHost}/DoctorsActionController?rowno=${id}&cmd=getProfile`)
       // .then(res => JSON.parse(res))
@@ -84,6 +104,13 @@ class Profile extends Component {
         });
       });
 
+  }
+  showRating = (val) => {
+    if(document.getElementById('doctor-avg-rating')){
+      for(let i=0 ; i<val; i++){
+        document.getElementById('doctor-avg-rating').children[i].classList.add('checked')  
+      }
+    }
   }
   
 
@@ -103,9 +130,10 @@ class Profile extends Component {
     document.title = "All Cures | Profile"
     this.fetchDoctorData(this.state.param.id)
     this.getComments(this.state.param.id)
-    this.getRating()
-    this.getProfileComments(this.state.param.profileId)
+    this.getRating(this.props.match.params.id)
   }
+
+
 
   setModalShow =(action) => {
     this.setState({
@@ -118,6 +146,7 @@ class Profile extends Component {
     })
   }
 
+
   handleShow = () => {
     this.setState({
       show: true
@@ -126,7 +155,6 @@ class Profile extends Component {
   
   render() {
     var { isLoaded, items, acPerm } = this.state;
-    console.log(this.props.params)
     if (!isLoaded) {
 
       return(
@@ -183,21 +211,24 @@ class Profile extends Component {
                               {items.hospital_affliated}{" "}
                               {items.country_code}
                             </div>
-
+                                   {/* Show average rating */}
+              {
+                this.state.ratingValue?
+                  <div className="average-rating mt-2 mb-4" id="doctor-avg-rating">
+                    <span class="fa fa-star fa-2x opacity-7"></span>
+                    <span class="fa fa-star fa-2x opacity-7"></span>
+                    <span class="fa fa-star fa-2x opacity-7"></span>
+                    <span class="fa fa-star fa-2x opacity-7"></span>
+                    <span class="fa fa-star fa-2x opacity-7"></span>
+                  </div>
+                : null
+              }
                             <div>
 
                             
 
                             </div>
-                            {/* <div className="rating">
-                              
-                           
-                            <p>{this.state.ratingValue}</p>
-                  <span className="fa fa-star"></span>
-
-                  
-                 
-               </div> */}
+                          
                            
                           </div>
                           
@@ -209,7 +240,6 @@ class Profile extends Component {
                               
                                 className="rating"
                               >
-                                {/* <Rating /> */}
                               </form>
                             </h2>
                           </div>
@@ -293,105 +323,55 @@ class Profile extends Component {
                     
                   </div>
                   <div className="profile-info-rating">
-                    <h3>Overall Rating</h3>
+                    <h3>Rate here</h3>
                         <Rating  docid={this.state.param.id} />
                           
                        
                         </div>
                   <div className="comment-box">
-                    
-                    <Comment refreshComments={this.getComments(this.state.param.id)} docid={this.state.param.id}/>
-                  
-                            
+              
+                  {
+                Cookies.get('acPerm')?
+                  <>              
+                    <Comment refreshComments={this.getComments} docid={this.props.match.params.id}/>
+                  </>
+                : null
+              }
 
                   </div>
-                  <div className="profile-rating">
-                    <div className="tab-nav">
-                      <div className="rating-heading">
-                      
-                      </div>
-                      {/* <!-- Nav tabs --> */}
-                    
-                    </div>
-                    <div className="tab-content">
-                      <div id="patient" className="tab-pane active">
-                        <div className="rating-outer" id="rating">
-                        {this.state.commentItems.map((item,i) => {
-                            return (
-                              <>
-                                <div className="rating-patient">
-                            <div className="rating-patient-grid clearfix">
-                              <div className="paitent-profile">
-                                {" "}
-                                <img src={ClientA} alt="ClientA" />{" "}
-                              </div>
-                              <div className="patient-msg">
-                              
-                                <p>{item.comments}</p>
-                              </div>
-                              <div className="patient-name-add">
-                              <div className="h4 text-capitalize"> {item.first_name} {item.last_name}</div>
-                                <div className="patient-rating">
-                                  <ul>
-                                    <li>
-                                      <i
-                                        className="fa fa-star"
-                                        aria-hidden="true"
-                                      ></i>
-                                    </li>
-                                    <li>
-                                      <i
-                                        className="fa fa-star"
-                                        aria-hidden="true"
-                                      ></i>
-                                    </li>
-                                    <li>
-                                      <i
-                                        className="fa fa-star"
-                                        aria-hidden="true"
-                                      ></i>
-                                    </li>
-                                    <li>
-                                      <i
-                                        className="fa fa-star"
-                                        aria-hidden="true"
-                                      ></i>
-                                    </li>
-                                    <li>
-                                      <i
-                                        className="fa fa-star-half"
-                                        aria-hidden="true"
-                                      ></i>
-                                    </li>
-                                  </ul>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
 
-                              </>
-                            )
-                          })}
-                          
-                        
-
-                          
-                        
-                          
-                          <div className="rating-footer">
-                            <div className="back-top">
-                              {" "}
-                            
-                            </div>
-                          
-                          </div>
-                        </div>
-                      </div>
-                      <div id="recomended" className="tab-pane fade">
-                      
-                      </div>
-                    </div>
-                  </div>
+                   {/* SHOW ALL COMMENTS */}
+              <div className="main-hero">
+                {!this.state.showMore?
+                this.state.comment.slice(0, 3).map((item,i) => (
+                  this.showComments(item, i)
+                )):
+                this.state.comment.map((item,i) => (
+                  this.showComments(item, i)
+                ))
+                }
+            </div>
+            {
+              this.state.comment?
+                this.state.comment.length > 3 &&
+                  <button id="show-hide-comments" className="white-button-shadow btn w-100" 
+                    onClick={() => {
+                      this.state.showMore?
+                      this.setState({
+                      showMore: false
+                      }): 
+                      this.setState({
+                        showMore: true
+                        })
+                    }}>
+                      {
+                        !this.state.showMore?
+                        'Show more'
+                        : 'Hide'
+                      }
+                  </button>
+                : null
+            }
                 </div>
               
               </div>

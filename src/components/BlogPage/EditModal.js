@@ -85,7 +85,7 @@ const EditModal = (props) => {
             axios.post(`${backendHost}/article/${editId.id}`, {
                 "title":title,
                 "friendly_name": articleDisplay,
-                // "subheading": "1",
+                // "subheading": "1",,                
                 "content_type": contentType,
                 "type": type,
                 // "keywords": "1",
@@ -299,7 +299,9 @@ const EditModal = (props) => {
             setafterSubmitLoad(false)
             if(parseInt(res.data) === 1){
                 Alert('Article created successfully! Wait for approval 😄')
-            } else{
+            } else if(res.data === -2){
+                Alert('Overview of this disease already exists.')
+            } else {
                 Alert('Some error occured! Please try again later.')
             }
         })

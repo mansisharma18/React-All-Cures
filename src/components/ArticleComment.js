@@ -61,7 +61,7 @@ const Comment = ({refreshComments,article_id}, props) => {
         .then(res => {
           if(res.data === 1){
           setafterSubmitLoad(false)
-          Alert('You have added your comment successfully!')
+          Alert('You have rated this cure! Thanks')
           } else {
             
           setafterSubmitLoad(false)
@@ -103,7 +103,7 @@ const Comment = ({refreshComments,article_id}, props) => {
                     <i className="fa fa-spinner fa-spin fa-10x" />
                 </div>
             }
-        <Button className="ml-3 h-75 btn-article-search" id="textComment" onClick={handleShow}>
+        <Button className="ml-3 h-75 btn-article-search mb-4" id="textComment" onClick={handleShow}>
         Review This Cure
       </Button>
 

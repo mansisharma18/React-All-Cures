@@ -148,7 +148,7 @@ const Footer = () => {
                      <h1 className="helth-app">
                         <div className="h6">Subscribe to our Newsletter</div>
                         <form onSubmit={(e) => postSubscribtion()}>
-                        <input className="rounded form-input" placeholder="Enter you number" type="number" value={mobile} onChange={(e) => setMobile(e.target.value)} required/>
+                        <input className="rounded form-input" placeholder="Enter your number" type="number" value={mobile} onChange={(e) => setMobile(e.target.value)} required/>
                         <button className="btn appBtn rounded" type="submit" >Subscribe</button>
                         {/* <a href="/#" className="appBtn">Google Play</a> */}
                         </form>

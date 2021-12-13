@@ -26,8 +26,14 @@ const Side = (props) => {
         fetch(`${backendHost}/article/allkv`)
           .then((res) => res.json())
           .then((json) => {
+            var temp = []
+            json.forEach(i => {
+              if(i.pubstatus_id === 3){
+                temp.push(i)
+              }
+            });
+            setItems(temp)
             setisLoaded(true)
-            setItems(json.reverse())
           })
           .catch(err => 
             console.log(err)
@@ -60,20 +66,20 @@ const Side = (props) => {
                 <div className="sidebar-sticky"></div>
                 
             <Nav.Item className="set-width">
-                <div className="h3 pl-4 pb-3 font-weight-bold"><u>Recent Articles</u></div>
+                <div className="h3 pl-4 pb-3 font-weight-bold"><u>Recent Cures</u></div>
             {   items?
                     items.map((i, index) => index<10 && (
-                        i.pubstatus_id === 3?                // Selects articles with publish status = 3 (Published)
                         <Post
                             id = {i.article_id}
                             title = {i.title}
                             f_title = {i.friendly_name}
                             w_title = {i.window_title}
                             type = {i.type}
+                            content = {i.content}
+                            published_date = {i.published_date}
                             country = {i.country_id}
                             history = {props.history}
                         />
-                        : null
                     ))
                     : null
                 }

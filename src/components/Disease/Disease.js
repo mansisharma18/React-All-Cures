@@ -15,13 +15,10 @@ import ArticleComment from '../ArticleComment';
 import HelmetMetaData from '../HelmetMetaData';
 import {FacebookShareButton, FacebookIcon, TwitterIcon, TwitterShareButton, WhatsappIcon, WhatsappShareButton} from "react-share";
 import Cookies from 'js-cookie'
-import Popper from '@mui/material/Popper';
 
-// import CenterWell from './CenterWell'
 class Disease extends Component {
   constructor(props) {
     super(props);
-    // const params = props.match.params
     const acPerm = Cookies.get("acPerm")
     this.state = { 
       items: [],
@@ -49,7 +46,6 @@ class Disease extends Component {
           this.fetchCountriesCures()
           this.regionalPosts()
         });
-        // document.title = `All Cures | ${json.data.title}`
       });
   }
 
@@ -93,8 +89,14 @@ class Disease extends Component {
     fetch(`${backendHost}/rating/target/${this.props.match.params.id}/targettype/2`)
       .then((res) => res.json())
       .then((json) => {
+        var temp = []
+        json.forEach(i => {
+          if(i.reviewed === 1 && i.comments !== "null"){
+            temp.push(i)
+          }
+        })
         this.setState({
-          comment: json
+          comment: temp
         })
       })
       .catch(err => 
@@ -110,6 +112,25 @@ class Disease extends Component {
     }
   }
  
+  showComments = (item, i) => {
+      return (
+        <>
+        <div className="col-12">
+          <div className="card my-4 ">
+            <div className="card-body">
+                <h5 className="h6"> {item.comments}</h5>
+                <div className="card-info">
+                    <h6 className="card-subtitle mb-2 text-muted">
+                      <b>By :  </b>  {item.first_name} {item.last_name}
+                    </h6>
+                </div>
+            </div>
+          </div>
+        </div>
+      </>
+      )
+  }
+
   componentDidMount() {
     this.fetchBlog()
     this.comments()
@@ -194,7 +215,7 @@ class Disease extends Component {
                 <Link to={`/cures?c=10&dc=${items.disease_condition_id}`} className="btn btn-primary">Iranian</Link>
               </div> */}
               <div className="article-title-container">
-              <div className="h2 text-capitalize text-decoration-underline">{items.title.toLowerCase()}</div>
+              <div className="h1 font-weight-bold text-capitalize text-decoration-underline">{items.title.toLowerCase()}</div>
               <div className="share-buttons-region">
               
             <div className="d-flex justify-content-between margin-auto mb-2 mr-2" id="article-acc-to-regions">
@@ -208,7 +229,9 @@ class Disease extends Component {
                     </Dropdown.Toggle>
                   <Dropdown.Menu>
                   {
-                    this.state.regionalPost.map(j => (
+                    this.state.regionalPost.map(j => j.countryname === i.countryname 
+                      // && j.type == 2 
+                      &&(
                       <>
                       <Dropdown.Item href="#" className="pt-2">
                       <Link to={ `/cure/${j.article_id}` }  className="d-flex justify-content-between align-items-center mr-2">
@@ -268,7 +291,9 @@ class Disease extends Component {
             </div>
               </div>
             </div>
+
             {/* Center Well article main content */}
+              <div id="article-main-content">
                 {b.map((i) => (
                   <CenterWell
                     pageTitle = {items.title}
@@ -289,7 +314,8 @@ class Disease extends Component {
                     props = {this.props}
                   />
                 ))}
-              
+              </div>
+
               {/* Show average rating */}
               {
                 this.state.ratingValue?
@@ -321,61 +347,34 @@ class Disease extends Component {
               {/* SHOW ALL COMMENTS */}
               <div className="main-hero">
                 {!this.state.showMore?
-                this.state.comment.slice(0, 3).map((item,i) => {
-                  return (
-                    <>
-                    <div className="col-12">
-                      <div className="card my-4 ">
-                        <div className="card-body">
-                            <h5 className="h6"> {item.comments}</h5>
-                            <div className="card-info">
-                                <h6 className="card-subtitle mb-2 text-muted">
-                                  <b>By :  </b>  {item.first_name} {item.last_name}
-                                </h6>
-                            </div>
-                        </div>
-                      </div>
-                    </div>
-                  </>
-                )
-                }):
-                this.state.comment.map((item,i) => {
-                  return (
-                    <>
-                    <div className="col-12">
-                      <div className="card my-4 ">
-                        <div className="card-body">
-                            <h5 className="h6"> {item.comments}</h5>
-                            <div className="card-info">
-                                <h6 className="card-subtitle mb-2 text-muted">
-                                  <b>By :  </b>  {item.first_name} {item.last_name}
-                                </h6>
-                            </div>
-                        </div>
-                      </div>
-                    </div>
-                  </>
-                )
-                })
+                this.state.comment.slice(0, 1).map((item,i) => (
+                  this.showComments(item, i)
+                )):
+                this.state.comment.map((item,i) => (
+                  this.showComments(item, i)
+                ))
                 }
             </div>
             {
-              this.state.comment.length > 3 &&
-              <button className="white-button-shadow btn w-100" 
-              onClick={() => {
-                this.state.showMore?
-                this.setState({
-                showMore: false
-                }): 
-                this.setState({
-                  showMore: true
-                  })
-              }}>
-                {
-                  !this.state.showMore?
-                  'Show more'
-                  : 'Hide'
-                }</button>
+              this.state.comment?
+                this.state.comment.length > 1 &&
+                  <button id="show-hide-comments" className="white-button-shadow btn w-100" 
+                    onClick={() => {
+                      this.state.showMore?
+                      this.setState({
+                      showMore: false
+                      }): 
+                      this.setState({
+                        showMore: true
+                        })
+                    }}>
+                      {
+                        !this.state.showMore?
+                        'Show more'
+                        : 'Hide'
+                      }
+                  </button>
+                : null
             }
             
       

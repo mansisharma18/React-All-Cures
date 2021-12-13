@@ -1,6 +1,6 @@
 import React from 'react';
-
-const Post = ({id, title, f_title, w_title, history, type, country}) => {
+import CenterWell from './CenterWell'
+const Post = ({id, title, content, f_title, w_title, history, type, country, published_date}) => {
         return (
             <>
             <div style={{width:"95%"}} >
@@ -11,8 +11,30 @@ const Post = ({id, title, f_title, w_title, history, type, country}) => {
                                 <div className="card">
                                     <button onClick={(e) => history.push(`/cure/${id}`)} className="btn d-flex justify-content-between align-items-center">
                                         <div>
-                                            <div className="card-title h6 mb-1 font-weight-bold">{title}</div>
-                                            <div className="h7">{w_title}</div>
+                                            <div className="card-title h6 mb-1 font-weight-bold text-capitalize">{title}</div>
+                                            <div className="h7 text-muted">{w_title}</div>
+                                            <div id='right-menu-card-article-content-preview'>
+                                            {
+                                    content && JSON.parse(content) ?
+                                    JSON.parse(content).blocks.map((j) => (
+                                        <CenterWell
+                                            content = {j.data.content}
+                                            type = {j.type}
+                                            text = {j.data.text}
+                                            title = {j.data.title}
+                                            message = {j.data.message}
+                                            source = {j.data.source}
+                                            embed = {j.data.embed}
+                                            caption = {j.data.caption}
+                                            alignment = {j.data.alignment}
+                                            imageUrl = {j.data.file? j.data.file.url: null}
+                                            url = {j.data.url}
+                                        />
+                                    ))
+                                    : null
+                                }
+                                            </div>
+                                            <div className="h7 text-muted text-left">Published on: {published_date}</div>
                                         </div>
                                          {/* <div>
                                         {

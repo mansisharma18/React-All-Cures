@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom'
 // import Special1 from '../../assets/img/special-1.jpg'
 
 const ProfileTab = ({ setModalShow, docid, rowno, name, pSpl, hospital, state, country, acPerm, url, reload}) => (
+  
     <div>
       <div className="tab-content">
         <div id="men" className="tab-pane fade in active">
@@ -21,7 +22,7 @@ const ProfileTab = ({ setModalShow, docid, rowno, name, pSpl, hospital, state, c
                   <h3>{pSpl}</h3>           {/* Primary Specialization */}
                   <h4 id="head4">{hospital} {state} {country}</h4>
                   <h2 id="about">About {name}</h2>
-                    <p>“Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc sodales dolor in ante fermentum, vitae varius turpis imperdiet.”“Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc sodales dolor in ante fermentum, vitae varius turpis imperdiet.”</p>
+                    <p></p>
                   </div>
                   <div className="btn-group"> 
                     {

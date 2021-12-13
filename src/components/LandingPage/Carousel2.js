@@ -6,6 +6,8 @@ import { Link } from 'react-router-dom';
 import "@fortawesome/free-solid-svg-icons";
 import "@fortawesome/fontawesome-svg-core"
 import { backendHost } from '../../api-config';
+import axios from 'axios'; 
+
 
 const options = {
    margin: 30,
@@ -38,6 +40,8 @@ export default class Carousel2 extends Component {
       super(props);
       this.state = {
         items: [],
+        rowno:[],
+        ratingValue: [],
         isLoaded: false,
         responsive:{
          0: {
@@ -63,6 +67,20 @@ export default class Carousel2 extends Component {
           console.log(err)
       )
     }
+    // getRating = (ratingId) => {
+    //   axios.get(`${backendHost}/rating/target/${ratingId}/targettype/1/avg`)
+    //   .then(res => {
+    //     this.setState({
+    //       ratingValue: res.data
+    //     })
+    //   }) 
+    //   .catch(err => console.log(err))
+    // }
+    // componentDidMount() {
+    
+    //   this.getRating(this.props.id)
+    // }
+  
     
     render() {
       var { isLoaded,items } = this.state;
@@ -86,7 +104,7 @@ export default class Carousel2 extends Component {
                </div>
                <div className="rating">
                   <span className="icon-star-1"></span>
-                  <p>4.2</p>
+                  <p>4</p>
                </div>
                <div className="sider-contain">
                   <div className="slider-heading">
@@ -94,7 +112,7 @@ export default class Carousel2 extends Component {
                      <p>{i.map.primary_spl}</p>
                      <h5 className="text-center">{i.map.hospital_affliated} {i.map.state} {i.map.country_code}</h5>
                   </div>
-                  <Link to="#" className="appointmentBtn allBtn">Appointment</Link>
+                  <Link to="{ `/profile/${rowno}` }" className="appointmentBtn allBtn">Visit Profile</Link>
                </div>
             </div>
          ))}

@@ -4,14 +4,11 @@ import { withRouter } from "react-router";
 import { Link } from "react-router-dom";
 import './style.css'
 import { backendHost } from '../../api-config';
-import ArticleComment from '../ArticleComment';
 import Cookies from 'js-cookie';
-import ArticleRating from "../ArticleRating";
 
 
 const Side = props => {
     const [items, setItems] = useState([])
-    const acPerm = Cookies.get("acPerm")
     const [commentItems, setCommentItems] = useState([])
     function  allPosts() {                        // For all available blogs "/blogs"
         fetch(`${backendHost}/isearch/hierarchy/${props.diseaseId}`)
@@ -50,7 +47,7 @@ const Side = props => {
             <Nav.Item className="set-width pl-3">
                 <div className="h3 pl-2 pb-1 pt-5 font-weight-bold"><u>Menu</u></div>
                 <div className="guide mt-4">
-                    <div className="h4 pl-2 font-weight-bold">{props.name} Guide</div>
+                    <div className="h5 pl-2 font-weight-bold">{props.name} Guide</div>
                     {/* <div className="card"> */}
                     <div className=" menu-item">
                         <Link className="text-dark h6">Overview & Facts</Link>

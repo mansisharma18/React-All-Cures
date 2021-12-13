@@ -151,11 +151,15 @@ dragHandle {
 }
 
 .article-title-container .h2 {
-  width: 70%;
+  width: 62%;
 }
 
 @media only screen and (max-width: 968px) {
   .article-title-container .h2 {
     width: 100%;
   }
+}
+
+#article-main-content {
+  min-height: 65vh;
 }
