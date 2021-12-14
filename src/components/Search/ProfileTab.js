@@ -14,9 +14,9 @@ const ProfileTab = ({ setModalShow, docid, rowno, name, pSpl, hospital, state, c
                   </div>
               <div className="col-md-12 col-sm-12">
                 <div className="detail-l">
-                  <div className="rating"> <span className="icon-star-1"></span>
+                  {/* <div className="rating"> <span className="icon-star-1"></span>
                     <p>4.2</p>
-                  </div>
+                  </div> */}
                   <div className="name">
                   <h2>{name}</h2>
                   <h3>{pSpl}</h3>           {/* Primary Specialization */}
