@@ -4,12 +4,10 @@ import { withRouter } from "react-router";
 import { Link } from "react-router-dom";
 import './style.css'
 import { backendHost } from '../../api-config';
-import Cookies from 'js-cookie';
-
 
 const Side = props => {
     const [items, setItems] = useState([])
-    const [commentItems, setCommentItems] = useState([])
+    const [overviewArticle, setOverviewArticle] = useState('')
     function  allPosts() {                        // For all available blogs "/blogs"
         fetch(`${backendHost}/isearch/hierarchy/${props.diseaseId}`)
           .then((res) => res.json())
@@ -20,19 +18,16 @@ const Side = props => {
             console.log(err)
         )
       }
-      function  comments() {                        // For all available blogs "/blogs"
-        fetch(`${backendHost}/rating/target/${props.id}/targettype/2`)
-          .then((res) => res.json())
-          .then((json) => {
-            setCommentItems(json)
-          })
-          .catch(err => 
-            console.log(err)
-        )
-      }
+
       useEffect(() => {
-          comments()
         allPosts()
+        if(props.regionalPosts){
+        props.regionalPosts.forEach(i => {
+            if(i.type === "1") setOverviewArticle(i.article_id)
+            // if(i.type === "3") setCureArticle(i.article_id)
+        });
+    }
+        console.log(props.regionalPosts)
         // eslint-disable-next-line
     }, [])
 
@@ -50,7 +45,7 @@ const Side = props => {
                     <div className="h5 pl-2 font-weight-bold">{props.name} Guide</div>
                     {/* <div className="card"> */}
                     <div className=" menu-item">
-                        <Link className="text-dark h6">Overview & Facts</Link>
+                        <Link className="text-dark h6" to={`/cure/${overviewArticle}`}>Overview & Facts</Link>
                     </div>
                     <div className=" menu-item">
                         <Link className="text-dark h6">Symptoms & Diagnosis</Link>

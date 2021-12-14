@@ -11,7 +11,7 @@ export default class Blogpage extends Component{
         super(props);
         const params = props.match.params
         this.state = { 
-          limit: 10,
+          limit: 250,
           dc: props.location.search.split('&')[1],
           param: params,
           items: [],
@@ -24,12 +24,14 @@ export default class Blogpage extends Component{
     
 
       allPosts() {                        // For all available blogs "/blogs"
+        console.log('All posts called', this.state.limit)
         fetch(`${backendHost}/article/allkv`)
           .then((res) => res.json())
           .then((json) => {
             this.setState({
               isLoaded: true,
               items: json,
+              maxLimit: json.length
             });
           })
           .catch(err => console.log(err))
@@ -72,6 +74,18 @@ export default class Blogpage extends Component{
         .catch(err => console.log(err))
       }
 
+      // handleScroll = () => {
+      //   const bottom = Math.ceil(window.innerHeight + window.scrollY) >= document.documentElement.scrollHeight
+      //   if (bottom) {
+      //     console.log('inside', bottom)
+      //     this.setState({
+      //       limit: this.state.limit + 25
+      //     }, () => this.allPosts());
+      //   }
+      // };
+      // React.useEffect(() => {
+        
+      // }, []);
       componentDidMount() {
         if(this.state.param.type){
           this.diseasePosts()
@@ -86,6 +100,13 @@ export default class Blogpage extends Component{
         if ( prevProps.match.params.type !== this.props.match.params.type){
           this.diseasePosts(this.props.match.params.type)
         }
+        // window.addEventListener('scroll', this.handleScroll, {
+        //   passive: true
+        // });
+    
+        // return () => {
+        //   window.removeEventListener('scroll', this.handleScroll);
+        // };
       }
       
     render(){
@@ -131,7 +152,7 @@ export default class Blogpage extends Component{
                     {/* <button className="white-button-shadow btn w-100" 
                     onClick={() => {
                       this.setState({
-                        limit: this.state.limit+10
+                        limit: this.state.limit+25
                       }, () => this.allPosts())
                     }}>Show more</button> */}
                     </div>

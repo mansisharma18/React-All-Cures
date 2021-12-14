@@ -23,7 +23,6 @@ import Cookies from 'js-cookie'
 class Disease extends Component {
   constructor(props) {
     super(props);
-    const acPerm = Cookies.get("acPerm")
     this.state = { 
       items: [],
       comment: [],
@@ -54,7 +53,7 @@ class Disease extends Component {
           items: json,
         }, 
         () => {
-          this.fetchCountriesCures()
+          // this.fetchCountriesCures()
           this.regionalPosts()
         });
       });
@@ -259,7 +258,7 @@ class Disease extends Component {
     // FInding distinct regions from fetchCountriesData()
     const finalRegions = [];
     const map = new Map();
-    for (const item of this.state.regions) {
+    for (const item of this.state.regionalPost) {
         if(!map.has(item.countryname)){
             map.set(item.countryname, true);    // set any value to Map
             finalRegions.push({
@@ -280,7 +279,7 @@ class Disease extends Component {
         </div>
         <Row>
           <Col md={2} id="sidebar-wrapper">      
-            <Sidebar diseaseId={items.disease_condition_id} id={this.props.match.params.id}  name={items.dc_name} />
+            <Sidebar regionalPosts = {this.state.regionalPost.length ? this.state.regionalPost: null} diseaseId={items.disease_condition_id} id={this.props.match.params.id}  name={items.dc_name} />
           </Col>
           <Col  md={7} id="page-content-wrapper" className="col-xs-12 pb-5">
             <div id="center-well" className="">
@@ -311,7 +310,6 @@ class Disease extends Component {
               
             { finalRegions?
                 finalRegions.map(i => (
-                  // console.log(this.state.regions.find(i.countryname === countryname))
                   <Dropdown>
                     <Dropdown.Toggle className="mr-2 btn btn-info color-white">
                       <span className="color-white">{i.countryname}</span>

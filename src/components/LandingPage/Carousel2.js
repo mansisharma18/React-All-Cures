@@ -102,10 +102,10 @@ export default class Carousel2 extends Component {
                   <i className="fas fa-user-md fa-10x"></i>
 
                </div>
-               <div className="rating">
+               {/* <div className="rating">
                   <span className="icon-star-1"></span>
                   <p>4</p>
-               </div>
+               </div> */}
                <div className="sider-contain">
                   <div className="slider-heading">
                      <h2>Dr. {i.map.docname_first} {i.map.docname_last}</h2>
