@@ -133,7 +133,7 @@ dragHandle {
 .share-buttons-region {
   display: flex;
   /* gap: 1.5rem; */
-  /* justify-content: space-between; */
+  justify-content: end;
 }
 @media only screen and (max-width: 600px) {
   .article-title-container {

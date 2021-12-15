@@ -192,6 +192,7 @@ class Search extends Component {
                             reload = {this.state.reload}
                             setModalShow = {this.setModalShow}
                             key = {i.map.doctorid}
+                            ratingVal={this.state.ratingvalue}
                           />
                         ))}
                         <Test

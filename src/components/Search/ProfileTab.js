@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom'
 // import Special1 from '../../assets/img/special-1.jpg'
 
-const ProfileTab = ({ setModalShow, docid, rowno, name, pSpl, hospital, state, country, acPerm, url, reload}) => (
+const ProfileTab = ({ setModalShow, docid, rowno, name, pSpl, hospital, state, country, acPerm, url, reload,ratingVal}) => (
   
     <div>
       <div className="tab-content">
@@ -15,7 +15,7 @@ const ProfileTab = ({ setModalShow, docid, rowno, name, pSpl, hospital, state, c
               <div className="col-md-12 col-sm-12">
                 <div className="detail-l">
                   {/* <div className="rating"> <span className="icon-star-1"></span>
-                    <p>4.2</p>
+                    <p>{ratingVal}</p>
                   </div> */}
                   <div className="name">
                   <h2>{name}</h2>
