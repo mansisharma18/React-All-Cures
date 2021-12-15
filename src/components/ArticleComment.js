@@ -38,8 +38,15 @@ const Comment = ({refreshComments,article_id}, props) => {
         if(cmtText !== '') {
             axios.post(`${backendHost}/DoctorRatingActionController?comments=${cmtText}&ratedbyid=${Cookies.get("acPerm").split('|')[0]}&ratedbytype=${Cookies.get("acPerm").split('|')[1]}&targetid=${article_id}&targetTypeid=2&cmd=rateAsset`)
             .then(res => {
+              if(res.data === 1){
                 setafterSubmitLoad(false)
+                setShow(false)
                 Alert('You have added your comment successfully!')
+              } else {
+                setafterSubmitLoad(false)
+                
+              Alert('Some error occured! Please try again later')
+              }
             })
             .catch(err =>{
               setafterSubmitLoad(false)
@@ -61,15 +68,18 @@ const Comment = ({refreshComments,article_id}, props) => {
         .then(res => {
           if(res.data === 1){
           setafterSubmitLoad(false)
+          // setShow(false)
           Alert('You have rated this cure! Thanks')
           } else {
             
           setafterSubmitLoad(false)
+          // setShow(false)
           Alert('Some error occured! Please try again later.')
           }
       })
       .catch(res => {
         setafterSubmitLoad(false)
+        // setShow(false)
         Alert('Some error occured! Please try again later.')
       })
         

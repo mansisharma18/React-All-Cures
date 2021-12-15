@@ -12,8 +12,9 @@ const ArticlePreview = (props) => {
         fetch(`${backendHost}/article/allkv`)
           .then((res) => res.json())
           .then((json) => {
+            var temp = []
               if(articleFilter === 'recent'){
-                var temp = []
+                
                 json.forEach(i => {
                     if(i.pubstatus_id === 3){
                         temp.push(i)
@@ -21,15 +22,40 @@ const ArticlePreview = (props) => {
                 });
                 setItems(temp)
               } else if(articleFilter === 'earliest'){
-                //   setItems(json)
-                  var temp = []
                   json.forEach(i => {
                       if(i.pubstatus_id === 3){
                           temp.push(i)
                       }
                   });
                   setItems(temp.reverse())
-                //   console.log(/json.reverse())
+              } else if(articleFilter === 'diabetes'){
+                  json.forEach(i => {
+                      if(i.dc_name === 'Diabetes' && i.pubstatus_id === 3){
+                          temp.push(i)
+                      }
+                  });
+                  setItems(temp)
+              } else if(articleFilter === 'neurology'){
+                  json.forEach(i => {
+                      if(i.dc_name === 'Neurology' && i.pubstatus_id === 3){
+                          temp.push(i)
+                      }
+                  });
+                  setItems(temp)
+              } else if(articleFilter === 'arthritis'){
+                  json.forEach(i => {
+                      if(i.dc_name === 'Arthritis' && i.pubstatus_id === 3){
+                          temp.push(i)
+                      }
+                  });
+                  setItems(temp)
+              } else if(articleFilter === 'anemia'){
+                  json.forEach(i => {
+                      if(i.dc_name === 'Anemia' && i.pubstatus_id === 3){
+                          temp.push(i)
+                      }
+                  });
+                  setItems(temp)
               }
             setLoaded(true)
           })
@@ -40,19 +66,16 @@ const ArticlePreview = (props) => {
 
     function articleFilterClick(e, filter) {
         setArticleFilter(filter)
-        e.target.parentElement.classList.add('active')
-        if(e.target.parentElement.previousSibling){
-            e.target.parentElement.previousSibling.classList.remove('active')
-            if(e.target.parentElement.previousSibling.previousSibling){
-                e.target.parentElement.previousSibling.previousSibling.classList.remove('active')
-            }
-        }
-        
-        if(e.target.parentElement.nextSibling){
-            e.target.parentElement.nextSibling.classList.remove('active')
-            if(e.target.parentElement.nextSibling.nextSibling){
-                e.target.parentElement.nextSibling.nextSibling.classList.remove('active')
-            }
+        console.log(e.target.parentNode.parentElement.children)
+        var siblings = e.target.parentNode.parentElement.children
+        if(siblings){
+            for(var i=0;i<siblings.length; i++){
+                if(siblings[i].className =='active'){
+                    siblings[i].classList.remove('active')
+                }
+              }
+            e.target.parentElement.classList.add('active')
+
         }
     }
 
@@ -80,12 +103,22 @@ const ArticlePreview = (props) => {
                </div>
                <ul>
                   <li role="presentation" class="active ">
-                     <button className="btn mr-2" 
-                        onClick={(e) => articleFilterClick(e, 'recent')}
-                     >Recent</button>
+                     <button className="btn mr-2" onClick={(e) => articleFilterClick(e, 'recent')}>Recent</button>
                   </li>
                   <li role="presentation">
                      <button className="btn mr-2" onClick={(e) => articleFilterClick(e, 'earliest')}>Earliest</button>
+                  </li>
+                  <li role="presentation">
+                     <button className="btn mr-2" onClick={(e) => articleFilterClick(e, 'diabetes')}>Diabetes</button>
+                  </li>
+                  <li role="presentation">
+                     <button className="btn mr-2" onClick={(e) => articleFilterClick(e, 'neurology')}>Neurology</button>
+                  </li>
+                  <li role="presentation">
+                     <button className="btn mr-2" onClick={(e) => articleFilterClick(e, 'arthritis')}>Arthritis</button>
+                  </li>
+                  <li role="presentation">
+                     <button className="btn mr-2" onClick={(e) => articleFilterClick(e, 'anemia')}>Anemia</button>
                   </li>
                   {/* <li role="presentation">
                      <button className="btn" onClick={(e) => articleFilterClick(e, 'recent')}>Most Rated</button>
@@ -102,14 +135,15 @@ const ArticlePreview = (props) => {
             <div className="main-hero" id="main-hero">
                 {items.map((i, index) => index<9 && (
                     <div className="col-4">
-                    <div className="card my-2 ">
+                    {/* <Link to={`/cure/${i.article_id}`} className='color-gray'> */}
+                    <div className="card my-2 w-100">
                         <div className="card-body">
                             <h5 className="card-title">{i.title}</h5>
                             <div className="card-info">
                                 <h6 className="card-subtitle mb-2 text-muted">
                                     {i.window_title}
                                 </h6>
-                                <p className="card-text" id='right-menu-card-article-content-preview'>
+                                <p className="card-text card-article-content-preview">
                                 {
                                     i.content && JSON.parse(i.content) ?
                                     JSON.parse(i.content).blocks.map((j) => (
@@ -137,6 +171,7 @@ const ArticlePreview = (props) => {
                             {/* <a href="#" className="card-link">Like</a> */}
                         </div>
                     </div>
+                    {/* </Link> */}
                 </div>
                 )) }
             </div>

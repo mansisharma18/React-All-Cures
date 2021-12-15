@@ -53,32 +53,13 @@ const ListArticle = ({id, title, f_title, w_title, country, type, pubstatus_id, 
                                     <div className="chip symptoms mr-2">Under Review
                                      </div>
                                 : pubstatus_id === 3? 
-                                    <div className="chip cure mr-2">Publish </div>
+                                    <div className="chip cure mr-2">Published </div>
                                 : null
                             }
 
-                        {
-                            deleteAlert?
-                                <Alert variant="success" className="h6 mx-3">Deleted  successfully!!</Alert>
-                                : null
-                        }
-                            {
-                                pubstatus_id === 1 || pubstatus_id === 2 || pubstatus_id === 3  ?
-                            <button className="btn btn-danger btn-sm mr-2" disabled={disable}  
-                            onClick={() => {
-                                
-                                const confirmBox = window.confirm(
-                                  "Do you really want to delete this Crumb?"
-                                )
-                                if (confirmBox === true) {
-                                    singlePostDelete(id)     }
-                                    setDisable(true)
-                              }}> Delete</button>
-                              
-                              : <button className="btn btn-danger btn-sm mr-2" disabled>Delete</button>
-                            }
+                      
+                          
                              
-                            <Link className="btn btn-info btn-sm" to={ `/article/${id}`}>Edit</Link>
                             
                         </div>
                         </div>                    

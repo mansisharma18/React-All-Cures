@@ -939,6 +939,10 @@ h6 {
   object-fit: cover;
 }
 
+.color-gray {
+  color: #353535;
+}
+
 .rating {
   display: flex;
   position: absolute;
@@ -2944,10 +2948,22 @@ div.main-hero:first-child .card {
   min-height: 16.55rem;
 }
 
-.card-article-content-preview {
-  margin-left: -1.4rem;
+.card-article-content-preview .ce-block {
+  width: 100%;
 }
 
-#right-menu-card-article-content-preview {
-  margin-left: -0.3rem;
+#right-menu-card-article-content-preview .ce-block {
+  width: 100%;
 }
+
+.main-hero .color-gray:hover {
+  color: #000;
+}
+
+/* .ce-block__content {
+  max-width: 100%;
+} */
+
+/* .cdx-block {
+  padding: 0;
+} */

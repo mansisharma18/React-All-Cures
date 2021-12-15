@@ -8,7 +8,7 @@ export default function HelmetMetaData(props) {
    let quote = props.quote !== undefined ? props.quote : "";
    let title = props.title !== undefined ? "All-Cures - "+props.title : "All-Cures - All in one Health App";
    let image = props.image !== undefined ? props.image : "https://all-cures.com/cures_articleimages/20211121_134401.jpg";
-   let description = props.description !== undefined ? props.description  : "We are a new age healthcare technology firm who are trying make it simple and convenient for the users to get information on Cures from anywhere in the world." +"With over 20 years of experience building technology products in the healthcare segment, our team is developing an integrated platform for all your health needs." +"We are passionate about giving our users the unique experience that is both fulfilling and wholesome.";   
+   let description = props.description !== undefined ? props.description  : "We are a new age healthcare technology firm who are trying make it simple and convenient for the users to get information on Cures from anywhere in the world. With over 20 years of experience building technology products in the healthcare segment, our team is developing an integrated platform for all your health needs. We are passionate about giving our users the unique experience that is both fulfilling and wholesome.";   
    let hashtag = props.hashtag !== undefined ? props.hashtag : "#allcures";
    return ( <Helmet>
      <title>{title}</title>
