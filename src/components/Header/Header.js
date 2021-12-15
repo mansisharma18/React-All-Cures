@@ -196,7 +196,7 @@ import Autocomplete from '@mui/material/Autocomplete';
                                           : [] 
                                        : []}
                                        sx={{ width: 300 }}
-                                       renderInput={(params) => <TextField {...params} label="Search Articles" />}
+                                       renderInput={(params) => <TextField {...params} label="Search Cures" />}
                                     />
                                  </div>
                                  <div className="col-md-2 p-0 mainBtn">

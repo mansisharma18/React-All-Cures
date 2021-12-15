@@ -285,7 +285,7 @@ function RenderComponent(props){
      
       <Grid item xs={12} md={4}>
         <Paper className={props.fixedHeightPaper}>
-          <div className="h4">Article Statistics</div>
+          <div className="h4">Cure Statistics</div>
           <div className="h6">Published : <TestAjax name="published_article"/></div>
           {/* <Deposits /> */}
           <div className="h6">Draft: <TestAjax name="draft_article"/></div>
@@ -346,7 +346,7 @@ function RenderComponent(props){
       <Grid item xs={12} md={4} lg={3}>
        <Paper className={props.fixedHeightPaper}>
         <React.Fragment>
-          <Title>Draft Articles</Title>   
+          <Title>Draft Cures</Title>   
           <div onClick={(e) => props.handleCountClick("Draft",props.ajaxItems["draft_article"],e)}>{props.ajaxItems["draft_article"].length}</div>
           {/* <div style={{ color: props.isOnline ? 'green' : 'black' }} onClick={(e) => props.handleCountClick("Draft",props.ajaxItems["draft_article"])}>Test</div> */}
 
@@ -358,7 +358,7 @@ function RenderComponent(props){
      <Grid item xs={12} md={4} lg={3}>
        <Paper className={props.fixedHeightPaper}>
         <React.Fragment>
-          <Title>Approval Articles</Title>   
+          <Title>Approval Cures</Title>   
           <div onClick={() => props.handleCountClick("Approval",props.ajaxItems["approval_article"])}>{props.ajaxItems["approval_article"].length}</div>
           <Typography color="textSecondary">
           </Typography>
@@ -368,7 +368,7 @@ function RenderComponent(props){
      <Grid item xs={12} md={4} lg={3}>
        <Paper className={props.fixedHeightPaper}>
         <React.Fragment>
-          <Title>Review Articles</Title>   
+          <Title>Review Cures</Title>   
           <div onClick={() => props.handleCountClick("Review",props.ajaxItems["review_article"])}>{props.ajaxItems["review_article"].length}</div>
           <Typography color="textSecondary">
           </Typography>
@@ -378,7 +378,7 @@ function RenderComponent(props){
      <Grid item xs={12} md={4} lg={3}>
        <Paper className={props.fixedHeightPaper}>
         <React.Fragment>
-          <Title>Publish Articles</Title>   
+          <Title>Publish Cures</Title>   
           <div onClick={() => props.handleCountClick("Publish",props.ajaxItems["published_article"])}>{props.ajaxItems["published_article"].length}</div>  
           <Typography color="textSecondary">
           </Typography>
@@ -390,7 +390,7 @@ function RenderComponent(props){
      <p id="Approval" style={{ width:'100%',  color: props.isOnline ? 'green' : 'black' }} onClick={(e) => props.handleCountClick("Approval",props.ajaxItems["approval_article"])}> approval_article: {JSON.stringify(props.ajaxItems["approval_article"])}</p>
      <p id="Publish" style={{ width:'100%',  color: props.isOnline ? 'green' : 'black' }} onClick={(e) => props.handleCountClick("Publish",props.ajaxItems["published_article"])}> publish_article: {JSON.stringify(props.ajaxItems["published_article"])}</p>
 
-      <Paper className={props.fixedHeightPaper}>Published Articles
+      <Paper className={props.fixedHeightPaper}>Published Cures
         {props.ajaxItems["published_article"].map((i) => (
           <>
           <Link to={`${/cure/i}`}>{i}</Link>

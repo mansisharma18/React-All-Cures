@@ -51,7 +51,7 @@ const Side = (props) => {
                 <div className="sidebar-sticky"></div>
                 
             <Nav.Item className="set-width">
-                <div className="h3 pl-4 pb-3 font-weight-bold"><u>Recent Articles</u></div>
+                <div className="h3 pl-4 pb-3 font-weight-bold"><u>Recent Cures</u></div>
             {   items?
                     items.map((i, index) => index<10 && (
                         i.pubstatus_id === 3?                // Selects articles with publish status = 3 (Published)

@@ -1,6 +1,6 @@
 import React from "react";
 import Cookies from 'js-cookie';
-import { HashRouter, Switch, Route, Redirect, useHistory } from "react-router-dom";
+import { HashRouter, Switch, Route, Redirect, useHistory, BrowserRouter } from "react-router-dom";
 
 import Home from "./LandingPage/Home";
 import Profile from "./Profile/Profile";
@@ -79,10 +79,10 @@ function Main(props) {
   return (
       <div>
         <AuthApi.Provider value={{auth, setAuth}}>
-          <HashRouter history={history} basename={''}>
+          <BrowserRouter history={history}>
             <HelmetMetaData></HelmetMetaData>
             <Routes authLoaded={authLoaded} url = {url} userAccess = {userAccess}/>
-          </HashRouter>
+          </BrowserRouter>
         </AuthApi.Provider>
       </div>
     );

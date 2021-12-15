@@ -12,8 +12,9 @@ const ArticlePreview = (props) => {
         fetch(`${backendHost}/article/allkv`)
           .then((res) => res.json())
           .then((json) => {
+            var temp = []
               if(articleFilter === 'recent'){
-                var temp = []
+                
                 json.forEach(i => {
                     if(i.pubstatus_id === 3){
                         temp.push(i)
@@ -21,7 +22,6 @@ const ArticlePreview = (props) => {
                 });
                 setItems(temp)
               } else if(articleFilter === 'earliest'){
-                  var temp = []
                   json.forEach(i => {
                       if(i.pubstatus_id === 3){
                           temp.push(i)
@@ -29,7 +29,6 @@ const ArticlePreview = (props) => {
                   });
                   setItems(temp.reverse())
               } else if(articleFilter === 'diabetes'){
-                  var temp = []
                   json.forEach(i => {
                       if(i.dc_name === 'Diabetes' && i.pubstatus_id === 3){
                           temp.push(i)
@@ -37,7 +36,6 @@ const ArticlePreview = (props) => {
                   });
                   setItems(temp)
               } else if(articleFilter === 'neurology'){
-                  var temp = []
                   json.forEach(i => {
                       if(i.dc_name === 'Neurology' && i.pubstatus_id === 3){
                           temp.push(i)
@@ -45,7 +43,6 @@ const ArticlePreview = (props) => {
                   });
                   setItems(temp)
               } else if(articleFilter === 'arthritis'){
-                  var temp = []
                   json.forEach(i => {
                       if(i.dc_name === 'Arthritis' && i.pubstatus_id === 3){
                           temp.push(i)
@@ -53,7 +50,6 @@ const ArticlePreview = (props) => {
                   });
                   setItems(temp)
               } else if(articleFilter === 'anemia'){
-                  var temp = []
                   json.forEach(i => {
                       if(i.dc_name === 'Anemia' && i.pubstatus_id === 3){
                           temp.push(i)
