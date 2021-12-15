@@ -23,6 +23,7 @@ import Cookies from 'js-cookie'
 class Disease extends Component {
   constructor(props) {
     super(props);
+    const acPerm = Cookies.get("acPerm")
     this.state = { 
       items: [],
       comment: [],
@@ -53,7 +54,7 @@ class Disease extends Component {
           items: json,
         }, 
         () => {
-          // this.fetchCountriesCures()
+          this.fetchCountriesCures()
           this.regionalPosts()
         });
       });
@@ -258,7 +259,7 @@ class Disease extends Component {
     // FInding distinct regions from fetchCountriesData()
     const finalRegions = [];
     const map = new Map();
-    for (const item of this.state.regionalPost) {
+    for (const item of this.state.regions) {
         if(!map.has(item.countryname)){
             map.set(item.countryname, true);    // set any value to Map
             finalRegions.push({
@@ -279,7 +280,7 @@ class Disease extends Component {
         </div>
         <Row>
           <Col md={2} id="sidebar-wrapper">      
-            <Sidebar regionalPosts = {this.state.regionalPost.length ? this.state.regionalPost: null} diseaseId={items.disease_condition_id} id={this.props.match.params.id}  name={items.dc_name} />
+            <Sidebar diseaseId={items.disease_condition_id} id={this.props.match.params.id}  name={items.dc_name} />
           </Col>
           <Col  md={7} id="page-content-wrapper" className="col-xs-12 pb-5">
             <div id="center-well" className="">
@@ -310,6 +311,7 @@ class Disease extends Component {
               
             { finalRegions?
                 finalRegions.map(i => (
+                  // console.log(this.state.regions.find(i.countryname === countryname))
                   <Dropdown>
                     <Dropdown.Toggle className="mr-2 btn btn-info color-white">
                       <span className="color-white">{i.countryname}</span>
@@ -497,7 +499,8 @@ class Disease extends Component {
                         <div className="doc-img">
                            {/* <img src={Doct} alt="doct"/> */}
                            <div className="aaa">
-                    <label htmlFor="">Type</label>
+                             <div className='container'>
+                    <h3 className="text-dark">Subscribe Your Disease/Cures Type</h3></div><br/>
                     <select 
                     multiple
                
@@ -572,7 +575,7 @@ class Disease extends Component {
                   <div className="col-md-6 col-sm-6 col-sx-12 bg-white subs-hero-2">
                      <div className="subscribe">                    
                         <h1 className="text-dark">All Cures</h1>
-                        <div className="h5">Sign up for our free <span>All Cures</span> Daily Newsletter</div><br/>
+                        <div className="h5">Sign up for our free <span>Disease/Cures</span> Weekly Newsletter</div><br/>
                         <div className="h5">Get <span>doctor-approved</span> health tips, news, and more</div>
                         <div className="form-group relative">
                            <div className="aaa">

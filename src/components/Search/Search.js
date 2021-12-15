@@ -21,6 +21,7 @@ class Search extends Component {
     this.state = {
       url: props.url,
       items: [],
+      ratingValue: '',
       isLoaded: false,
       param: params,
       acPerm: Cookies.get('acPerm'),
@@ -88,10 +89,24 @@ class Search extends Component {
         })
       }).catch(err => console.log(err))
   }
+  getRating = (docId) => {
+    axios.get(`${backendHost}/rating/target/${docId}/targettype/1/avg`)
+    .then(res => {
+      this.setState({
+        ratingValue: res.data
+      }, ()=> {
+        setTimeout(() => {
+          this.showRating(this.state.ratingValue)
+        }, 1000);
+      })
+    }) 
+    .catch(err => console.log(err))
+  } 
     // USE if statement
   componentDidMount() {
     this.fetchDoctors(this.props.match.params.city);
     this.fetchDiseaseList();  
+    this.getRating(this.props.match.params.id);
   }
 
   componentDidUpdate(prevProps){
