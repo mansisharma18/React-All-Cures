@@ -21,7 +21,7 @@ const Comment = ({refreshComments,article_id}, props) => {
       setAlertMsg(msg)
       setTimeout(() => {
          setShowAlert(false)
-      }, 5000);
+      }, 1000);
     }
     
    
