@@ -11,9 +11,8 @@ export default function Userprofile(props) {
     const [profileId, setProfile] = useState(Cookies.get('acPerm').split('|')[0])
     const [firstName, setFirstName] = useState('')
     const [lastName, setLastName] = useState('')
-    const [age, setAge] = useState('')
+    const [regType, setRegType] = useState('')
     const [email, setEmail] = useState('')
-    const [gender, setGender] = useState('')
     const [isLoaded, setLoaded] = useState(false)
     const history = useHistory()
 
@@ -22,9 +21,8 @@ export default function Userprofile(props) {
         .then(res => {
             setFirstName(res.data.first_name)
             setLastName(res.data.last_name)
-            setAge(res.data.age)
-            setEmail(res.data.email)
-            setGender(res.data.gender)
+            setEmail(res.data.email_address)
+            // setRegType(res.data.registration_type)
             setLoaded(true)
         })
         .catch(err => console.log(err))
@@ -68,9 +66,8 @@ export default function Userprofile(props) {
                           <div className="h4 font-weight-bold">
                           <div>
             <div className="h4 text-capitalize">Name: {firstName} {lastName}</div>
-            <div className="h6">Age: {age}</div>
-            <div className="h6">Email: {email}</div>
-            <div className="h6">Gender: {gender}</div>
+            <div className="h5"><span className=''>Email:</span> {email}</div>
+            {/* <div className="h5"><span className=''>Registration Type:</span> {regType}</div> */}
         </div>
                             </div>
                             {/* <!--  <button onclick="loadUsers()">Click</button> --> */}

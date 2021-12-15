@@ -17,6 +17,7 @@ import { userAccess } from '../UserAccess'
 const EditModal = (props) => {
 
     const editId = useParams()
+    const history = useHistory()
     const [title, setTitle] = useState('')
     const [articleDisplay, setArticleDisplay] = useState('')
     const [contentType,setContentType] = useState('')
@@ -39,7 +40,6 @@ const EditModal = (props) => {
     const [comment, setComment] = useState('')
     const [keywords, setKeywords] = useState('')
 
-    const history = useHistory()
     const [showAlert, setShowAlert] = useState(false)
     const [alertMsg, setAlertMsg] = useState('')
 
@@ -298,7 +298,7 @@ const EditModal = (props) => {
         .then(res => {
             setafterSubmitLoad(false)
             if(parseInt(res.data) === 1){
-                Alert('Article created successfully! Wait for approval 😄')
+                Alert('Cure created successfully! Wait for approval 😄')
             } else if(res.data === -2){
                 Alert('Overview of this disease already exists.')
             } else {
@@ -321,7 +321,7 @@ const EditModal = (props) => {
             {   
                 props.search === '?article'?
                     null
-                : <Header/>
+                : <Header history={history} />
             }
             {
                 showAlert &&
@@ -339,7 +339,7 @@ const EditModal = (props) => {
             <div className="transparent_bg">
             <div className="container">
                 <div className="card">
-                <h2 className="mainTitle text-center h3 py-3 card-header">Article</h2>
+                <h2 className="mainTitle text-center h3 py-3 card-header">Cure</h2>
                     <div className="card-body">
                     <form action="" onSubmit={(e) => {
                         editId.id?
@@ -351,7 +351,7 @@ const EditModal = (props) => {
                         <div className="card">
                             <div className="card-header" id="headingOne"  data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
                             <h5 className="mb-0">
-                                Article Details
+                                Cure Details
                             </h5>
                             </div>
 
@@ -366,7 +366,7 @@ const EditModal = (props) => {
                     parseInt(userAccess) === 7 || parseInt(userAccess) === 9?
                     <>
                     <div className="col-lg-6 form-group">
-                    <label htmlFor="">Article Display Name</label>
+                    <label htmlFor="">Cure Display Name</label>
                     <input type="text" value={articleDisplay}  onChange={(e) => setArticleDisplay(e.target.value)} placeholder="Enter title" className="form-control" />
                 </div>
                 
@@ -424,7 +424,7 @@ const EditModal = (props) => {
                     
                 </div> */}
                 <div className="col-lg-6 form-group">
-                    <label htmlFor="">Article Status</label>
+                    <label htmlFor="">Cure Status</label>
                     <select name="" value={articleStatus}  onChange={(e) => setArticleStatus(e.target.value)} className="form-control" id="">
                     <option>Open this select menu</option>
                         <option value="1">Work in Progress</option>
@@ -535,7 +535,7 @@ const EditModal = (props) => {
                         <div className="card">
                             <div className="card-header" id="headingTwo" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
                             <h5 className="mb-0">
-                                Write Article Here
+                                Write Cure Here
                             </h5>
                             </div>
                             <div id="collapseTwo" className="collapse" aria-labelledby="headingTwo" data-parent="#accordion">

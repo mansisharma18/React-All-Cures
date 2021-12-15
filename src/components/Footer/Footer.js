@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { backendHost } from '../../api-config';
 import axios from 'axios';
 import Heart from"../../assets/img/heart.png";

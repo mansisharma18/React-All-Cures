@@ -8,7 +8,7 @@ const AllPost = ({id, title, content, f_title, w_title, country, type, published
                 <div >
                     {/* <div className="card-body"> */}
                             
-                            <div className="d-flex justify-content-between align-items-center mb-2">
+                            <div className="d-flex justify-content-between align-items-center">
                                 <div>
                                     <Link to={ `/cure/${id}` }  className="d-flex justify-content-between align-items-center">
                                         <div className="card-title h5 text-capitalize">{title.toLowerCase()}</div>
@@ -47,7 +47,7 @@ const AllPost = ({id, title, content, f_title, w_title, country, type, published
                             </div>
                         
                         <div className="card-info">
-                            <div className="card-subtitle mb-2 text-muted text-capitalize">{w_title.toLowerCase()}</div>
+                            <div className="card-subtitle text-muted text-capitalize">{w_title.toLowerCase()}</div>
                             <div className='card-article-content-preview'>
                             {
                                     content && JSON.parse(content) ?
