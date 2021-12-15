@@ -21,7 +21,7 @@ const Comment = ({refreshComments,article_id}, props) => {
       setAlertMsg(msg)
       setTimeout(() => {
          setShowAlert(false)
-      }, 5000);
+      }, 1000);
     }
     
    
@@ -44,6 +44,7 @@ const Comment = ({refreshComments,article_id}, props) => {
                 Alert('You have added your comment successfully!')
               } else {
                 setafterSubmitLoad(false)
+                
               Alert('Some error occured! Please try again later')
               }
             })
@@ -67,18 +68,18 @@ const Comment = ({refreshComments,article_id}, props) => {
         .then(res => {
           if(res.data === 1){
           setafterSubmitLoad(false)
-          setShow(false)
+          // setShow(false)
           Alert('You have rated this cure! Thanks')
           } else {
             
           setafterSubmitLoad(false)
-          setShow(false)
+          // setShow(false)
           Alert('Some error occured! Please try again later.')
           }
       })
       .catch(res => {
         setafterSubmitLoad(false)
-        setShow(false)
+        // setShow(false)
         Alert('Some error occured! Please try again later.')
       })
         

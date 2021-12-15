@@ -567,12 +567,12 @@ const EditModal = (props) => {
                     {/* {succMsg ? <h4 className="mt-3 alert alert-success">{succMsg}</h4> : null} */}
                     <FormControlLabel
                                         control={<Checkbox name="Terms" value="on" required/>}
-                                        label="Accept Terms & Conditions"
+                                        label="Accept Terms & Conditions"checked
                                         required
                                     />
                                     <FormControlLabel
                                         control={<Checkbox name="Policy" value="on" required/>}
-                                        label="Privacy Policy"
+                                        label="Privacy Policy"checked
                                         required
                                     />
                     <div className="form-group">

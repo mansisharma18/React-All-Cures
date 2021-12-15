@@ -296,91 +296,105 @@ class Disease extends Component {
                     {items.dc_name}
                   </Link>
                 </Breadcrumb.Item>
-                {/* <Breadcrumb.Item active>{items.title}</Breadcrumb.Item> */}
+                
+              
               </Breadcrumb>
               
-                {/* <Link to={`/cures?c=9&dc=${items.disease_condition_id}`} className="mr-2 btn btn-info" >Indian</Link>
-                <Link to={``} className="mr-2 btn btn-success" >Chinese</Link>
-                <Link to={`/cures?c=10&dc=${items.disease_condition_id}`} className="btn btn-primary">Iranian</Link>
-              </div> */}
+            
               <div className="article-title-container">
               <div className="h1 font-weight-bold text-capitalize text-decoration-underline">{items.title.toLowerCase()}</div>
-              <div className="share-buttons-region">
               
-            <div className="d-flex justify-content-between margin-auto mb-2 mr-2" id="article-acc-to-regions">
-              
-            { finalRegions?
-                finalRegions.map(i => (
-                  // console.log(this.state.regions.find(i.countryname === countryname))
-                  <Dropdown>
-                    <Dropdown.Toggle className="mr-2 btn btn-info color-white">
-                      <span className="color-white">{i.countryname}</span>
-                    </Dropdown.Toggle>
-                  <Dropdown.Menu>
-                  {
-                    this.state.regionalPost.map(j => j.countryname === i.countryname 
-                      // && j.type == 2 
-                      &&(
-                      <>
-                      <Dropdown.Item href="#" className="pt-2">
-                      <Link to={ `/cure/${j.article_id}` }  className="d-flex justify-content-between align-items-center mr-2">
-                        <div className="d-flex justify-content-between align-items-center mb-2"id="artBtn">
-                          <div>                  
-                            <div className="card-title mr-5">{j.title}</div>
-                          </div>
-                          <div>
-                            {
-                              j.type === '1'?
-                                <div className="chip overview">Overview</div>
-                              : j.type === '2'?
-                                <div className="chip cure">Cures</div>
-                              : j.type === '3'?
-                                <div className="chip symptoms">Symptoms</div>
-                              : null
-                            }
-                          </div>
-                        </div>
-                      </Link>
-                      </Dropdown.Item>
-                      </>
-                    ))
-                  }
-                </Dropdown.Menu>
-              </Dropdown>
-                ))
-              : null
-            }
-              </div>
-              {/* Sharing icons */}
-              <div className="">
-              <FacebookShareButton
-                url={"https://all-cures.com"}
-                quote={"All-Cures - All in one Health App"}
-                hashtag="#allCures"
-                className="socialMediaButton"
-              >
-                <FacebookIcon size={36} />
-              </FacebookShareButton>
-              <TwitterShareButton
-                url={"https://all-cures.com"}
-                title={"All-Cures - All in one Health App"}
-                hashtag="#allCures"
-                className="socialMediaButton"
-              >
-                <TwitterIcon size={36} />
-              </TwitterShareButton>
-              <WhatsappShareButton
-                url={`https://all-cures.com/#${this.props.location.pathname}`}
-                title={`*All Cures -* ${items.title}`}
-                separator=": "
-                className="socialMediaButton"
-              >
-                <WhatsappIcon size={36} />
-              </WhatsappShareButton>
-            </div>
-              </div>
+ {/* Show average rating */}
+ {
+                this.state.ratingValue?
+                <div className="average-rating mt-2 mb-4 ml-3" id="avg-rating">
+                <span class="fa fa-star fa-2x  opacity-7"></span>
+                <span class="fa fa-star fa-2x  opacity-7"></span>
+                <span class="fa fa-star fa-2x  opacity-7"></span>
+                <span class="fa fa-star fa-2x  opacity-7"></span>
+                <span class="fa fa-star fa-2x  opacity-7"></span>
+                </div>
+                : null
+              }
             </div>
 
+<div className="share-buttons-region">
+              
+              <div className="d-flex justify-content-end margin-auto" id="article-acc-to-regions">
+                
+              { finalRegions?
+                  finalRegions.map(i => (
+                    <Dropdown>
+                      <Dropdown.Toggle className="mr-2 btn btn-info color-white">
+                        <span className="color-white">{i.countryname}</span>
+                      </Dropdown.Toggle>
+                    <Dropdown.Menu>
+                    {
+                      this.state.regionalPost.map(j => j.countryname === i.countryname 
+                        // && j.type == 2 
+                        &&(
+                        <>
+                        <Dropdown.Item href="#" className="pt-2">
+                        <Link to={ `/cure/${j.article_id}` }  className="d-flex justify-content-between align-items-center mr-2">
+                          <div className="d-flex justify-content-between align-items-center mb-2"id="artBtn">
+                            <div>                  
+                              <div className="card-title mr-5">{j.title}</div>
+                            </div>
+                            <div>
+                              {
+                                j.type === '1'?
+                                  <div className="chip overview">Overview</div>
+                                : j.type === '2'?
+                                  <div className="chip cure">Cures</div>
+                                : j.type === '3'?
+                                  <div className="chip symptoms">Symptoms</div>
+                                : null
+                              }
+                            </div>
+                          </div>
+                        </Link>
+                        </Dropdown.Item>
+                        </>
+                      ))
+                    }
+                  </Dropdown.Menu>
+                </Dropdown>
+                  ))
+                : null
+              }
+                </div>
+                {/* Sharing icons */}
+                <div className="">
+                <FacebookShareButton
+                  url={"https://all-cures.com"}
+                  quote={"All-Cures - All in one Health App"}
+                  hashtag="#allCures"
+                  className="socialMediaButton"
+                >
+                  <FacebookIcon size={36} />
+                </FacebookShareButton>
+                <TwitterShareButton
+                  url={"https://all-cures.com"}
+                  title={"All-Cures - All in one Health App"}
+                  hashtag="#allCures"
+                  className="socialMediaButton"
+                >
+                  <TwitterIcon size={36} />
+                </TwitterShareButton>
+                <WhatsappShareButton
+                  url={`https://all-cures.com/#${this.props.location.pathname}`}
+                  title={`*All Cures -* ${items.title}`}
+                  separator=": "
+                  className="socialMediaButton"
+                >
+                  <WhatsappIcon size={36} />
+                </WhatsappShareButton>
+              </div>
+                </div>
+              {/* Call average rating fetch function */}
+              {
+                this.state.ratingValue? this.showRating(this.state.ratingValue) : null
+              }
             {/* Center Well article main content */}
               <div id="article-main-content">
                 {b.map((i) => (
@@ -406,17 +420,7 @@ class Disease extends Component {
               </div>
 
               {/* Show average rating */}
-              {
-                this.state.ratingValue?
-                <div className="average-rating mt-2 mb-4 ml-3" id="avg-rating">
-                <span class="fa fa-star fa-2x opacity-7"></span>
-                <span class="fa fa-star fa-2x opacity-7"></span>
-                <span class="fa fa-star fa-2x opacity-7"></span>
-                <span class="fa fa-star fa-2x opacity-7"></span>
-                <span class="fa fa-star fa-2x opacity-7"></span>
-                </div>
-                : null
-              }
+             
 
               {/* Call average rating fetch function */}
               {
