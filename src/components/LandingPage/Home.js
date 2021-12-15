@@ -61,6 +61,8 @@ class Home extends Component {
          docname : '',
          spec1: [],
          param: params,
+         cures:[],
+         disease:[],
    
           acPerm: Cookies.get('acPerm'),
           searchParams: {
@@ -68,6 +70,7 @@ class Home extends Component {
             Pincode: '',
             name: '',
             subscription: '',
+           
           
         }
         
@@ -148,15 +151,24 @@ class Home extends Component {
    
  postSubscribtion() {
    //  var mobileNumber = this.state.mobile.split('+')
-    console.log(this.state.value)
-    if(this.state.value){
+   console.log('value: ', this.state.value)
+   var phoneNumber = this.state.value.split('+')[1]
+   console.log(phoneNumber)
+   var countryCodeLength = phoneNumber.length % 10
+    console.log('Country COde:', countryCodeLength)
+   var countryCode = phoneNumber.slice(0, countryCodeLength)
+   console.log(countryCode)
+   var StringValue = phoneNumber.slice(countryCodeLength).replace(/,/g, '')
+   console.log(StringValue)
+    if(phoneNumber){
       this.setState({
          afterSubmitLoad: true
       })
-     axios.post(`${backendHost}/users/subscribe/${this.state.value.split('+')[1]}`, {
-     "nl_subscription_disease_id": 1,
+     axios.post(`${backendHost}/users/subscribe/${StringValue}`, {
+     "nl_subscription_disease_id": this.state.disease.join(','),
      "nl_sub_type":1,
-     "nl_subscription_cures_id":0,
+     "nl_subscription_cures_id":this.state.cures.join(','),
+     "country_code": countryCode,
      })
        .then(res => {
         this.setState({
@@ -598,10 +610,7 @@ class Home extends Component {
                         <div className="doc-img">
                            <img src={Doct} alt="doct"/>
                         </div>
-                        <div className="btn-Gropu">
-                           <a href="/#" className="appBTN">App Store</a>
-                           <a href="/#" className="appBTN">App Store</a>
-                        </div>
+                       
                      </div>
                   </div>
                   <div className="col-md-6 col-sm-6 col-sx-12 bg-white subs-hero-2">
@@ -614,6 +623,7 @@ class Home extends Component {
                            <PhoneInput
       placeholder="Enter phone number"
       value={this.state.value}
+      defaultCountry='in'
     
        onChange={(newValue) => {
                                  this.setState({
@@ -701,26 +711,6 @@ function ToggleButton(props) {
       </Link> */}
       </>
    )
-}
-
-// SHOW ALERT
-
-function SubmitAlert(props) {
-   if(props.ShowSubmitAlert) {
-       return(
-           <Alert className="bg-green">Subscribe has been saved successfully!</Alert>
-       );
-   }
-}
-
-// Show Error Alert
-
-function SubmitError(props) {
-   if(props.ShowErrorAlert) {
-       return(
-           <Alert className="bg-red">Please Provide Your Mobile Number!</Alert>
-       );
-   }
 }
 
 export default Home;
