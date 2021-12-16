@@ -24,7 +24,6 @@ export default class Blogpage extends Component{
     
 
       allPosts() {                        // For all available blogs "/blogs"
-        console.log('All posts called', this.state.limit)
         fetch(`${backendHost}/article/allkv`)
           .then((res) => res.json())
           .then((json) => {

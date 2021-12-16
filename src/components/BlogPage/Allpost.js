@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import CenterWell from '../Disease/CenterWell';
 const AllPost = ({id, title, content, f_title, w_title, country, type, published_date}) => {
+    var contentBlocks
         return (
             <>
             <div key={id.toString()} className="py-3 w-100">
@@ -50,7 +51,8 @@ const AllPost = ({id, title, content, f_title, w_title, country, type, published
                             <div className="card-subtitle text-muted text-capitalize">{w_title.toLowerCase()}</div>
                             <div className='card-article-content-preview'>
                             {
-                                    content && JSON.parse(content) ?
+                                    content !== undefined ?
+                                        JSON.parse(content)?
                                     JSON.parse(content).blocks.map((j, idx) => idx<1 && (
                                         <CenterWell
                                             content = {j.data.content}
@@ -66,6 +68,7 @@ const AllPost = ({id, title, content, f_title, w_title, country, type, published
                                             url = {j.data.url}
                                         />
                                     ))
+                                    :null
                                     : null
                                 }
                         </div>

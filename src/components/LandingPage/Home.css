@@ -1,0 +1,31 @@
+@media only screen and (max-device-width: 768px) {
+  .article-search#article-search {
+    margin-top: 4rem;
+    margin-bottom: 2rem;
+  }
+  .banner {
+    margin-top: 4.5rem;
+    height: 40vh;
+  }
+}
+
+.banner {
+  height: 49vh;
+  position: relative;
+  background: url("C:\Users\HP\Desktop\latest-cures\React-All-Cures\src\assets\healthcare\img\images\banner.png")
+    center;
+  opacity: 0.8;
+}
+
+.banner .banner-title {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  flex-direction: column;
+}
+
+.banner .banner-title h1 {
+  display: block;
+}

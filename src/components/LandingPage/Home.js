@@ -16,7 +16,7 @@ import Carousel2 from './Carousel2';
 import { Dropdown, Alert } from 'react-bootstrap';
 import PhoneInput from 'react-phone-number-input';
 import 'react-phone-number-input/style.css';
-
+import './Home.css'
 
 
 import { backendHost } from '../../api-config';
@@ -280,95 +280,84 @@ class Home extends Component {
                         <div className="timer"></div>
                     </div>
             }
-            <div className="homeHeader">
-               <section className="banner" >
-                  <div className="container">
-                     <div className="banner-inner clearfix">
-                        <div className="row">
-                           <div className="header" style={{width:"100%"}}>
-                              <div className="logo">
-                                 <Link to='/home'>
-                                    <img src={Heart} alt="All Cures logo"/>
-                                    <span>All Cures</span>
-                                 </Link>    
-                                 
-                              </div>
-                              <div className="loginSign"> 
-                              {/* <Link to="/profile">Go to Profile</Link> */}
-                           {
-                              this.state.acPerm?
-                              <Link className="btn border mr-2 btn-white loginSignbtn color-blue-dark" id="createArticle1" to="/article">
-                              Create Cures
-                            </Link>
-                              : <button 
-                              className="btn border mr-2 btn-white loginSignbtn color-blue-dark" id="createArticle"
-                              onClick={() => this.setModalShow(true)}
-                            >
-                             Create Cures
-                            </button>
-                           }   
-      
-                                 <ToggleButton userName={Cookies.get('uName')} setModalShow={this.setModalShow} acPerm={this.state.acPerm} match={this.props.match.url} logout={this.logout}/> 
-                                 {/* <button onClick={this.logout}></button> */}
-                              </div>  
-                           </div>   
+            <div className="homeHeader my-3">
+                  <div className='container d-flex justify-content-between'>
+
+                  {/* LOGO */}
+
+                  <div className="logo mt-2">
+                     <Link to='/home'>
+                        <img src={Heart} alt="All Cures logo"/>
+                        <span>All Cures</span>
+                     </Link>               
+                  </div>
+
+                  {/* Search for Cures */}
+
+                  <form onSubmit={(e) => this.articleSearch(e)} className="article-search" id="article-search">
+                     <div className="col-md-12 row">
+                        <div className="col-md-10 p-0">    
+                           <Autocomplete className="bg-white color-black" freeSolo
+                              value={this.state.article}
+                              onChange={(event, newValue) => {
+                                 this.setState({
+                                    article: newValue
+                                 })
+                              }}
+                              inputValue={this.state.article ? this.state.article : ''}
+                              onInputChange={(event, newInputValue) => {
+                                 this.setState({
+                                    article: newInputValue
+                                 })
+                              }}
+                              id="combo-box-demo"
+                              options={
+                                 this.state.article?
+                                    this.state.article.length >=1 ? 
+                                    this.state.diseaseTitle 
+                                    : [] 
+                                 : []
+                              }
+                              sx={{ width: 400 }}
+                              
+                              renderInput={(params) => <TextField {...params} label="Search Cures" />}
+                           />
+                        </div>
+                        <div className="col-md-2 p-0 mainBtn">
+                           <button className="btn btn-article-search color-white" type="submit">
+                              <i className="fas fa-search"></i>
+                           </button>
                         </div>
                      </div>
-                     <div className="row">
-                        <div className="serchlabel">
-                           {/* <h1>Find Cures<br/></h1> */}
-                           <br/>
-                           {/* {
-                              this.state.spec1?
-                              <Autocomplete value={this.state.temp} suggestions={this.state.spec1}/>
-                              : null
-                           }     */}
-                           <form onSubmit={(e) => this.articleSearch(e)} className="article-search" id="article">
-                              <div className="col-md-12 row">
-               <div className="col-md-10 p-0">    
-               <Autocomplete className="bg-white color-black"
-               freeSolo
-                  value={this.state.article}
-                  onChange={(event, newValue) => {
-                     this.setState({
-                        article: newValue
-                     })
-                  }}
-                  inputValue={this.state.article ? this.state.article : ''}
-                  onInputChange={(event, newInputValue) => {
-                     this.setState({
-                        article: newInputValue
-                     })
-                   }}
-                  id="combo-box-demo"
-                  options={
-                     this.state.article?
-                        this.state.article.length >=1 ? 
-                        this.state.diseaseTitle 
-                        : [] 
-                     : []
-                  }
-                  sx={{ width: 300 }}
+                  </form>
+
+                  {/* Create Cures, Sign Up || Hi ${name} Button */}
+
+                  <div className="loginSign mt-2"> 
+                     {
+                        this.state.acPerm?
+                           <Link className="btn border mr-2 btn-white loginSignbtn color-blue-dark" id="createArticle1" to="/article">
+                              Create Cures
+                           </Link>
+                        : <button className="btn border mr-2 btn-white loginSignbtn color-blue-dark" id="createArticle" onClick={() => this.setModalShow(true)}>
+                             Create Cures
+                           </button>
+                     }   
                   
-                  renderInput={(params) => <TextField {...params} label="Search Cures" />}
-               />
+                  {/* Toggle Sign up & Hi there dropdown */}
+
+                  <ToggleButton userName={Cookies.get('uName')} setModalShow={this.setModalShow} acPerm={this.state.acPerm} match={this.props.match.url} logout={this.logout}/> 
+               </div>  
             </div>
-            <div className="col-md-2 p-0 mainBtn">
-            <button className="btn btn-article-search color-white" type="submit">
-               <i className="fas fa-search"></i>
-            </button>
+
+               {/* </section> */}
             </div>
-            </div>
-            </form>
-                        </div>
-                     </div>   
-                     
+               <section className="banner">
+                  <div className='banner-title h1 d-flex justify-content-center align-items-center'>
+                     <h1 className='color-white font-weight-bold'>All Cures</h1>
+                     <br/>
+                     <div className='h2 color-white font-weight-bold'>Getting you Close To Cures Of World</div>
                   </div>
-                  {/* <SearchField 
-  placeholder='Search articles'
-  
-/> */}
-                  
                </section>
                
                <section className="megaSearch">
@@ -461,7 +450,6 @@ class Home extends Component {
                      </div>   
                   </div>
                </section>
-            </div>
       <section className="tabslider clerfix">
           <div className="container">
             <div className="row">
