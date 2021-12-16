@@ -356,8 +356,15 @@ class Home extends Component {
                   <div className='banner-title h1 d-flex justify-content-center align-items-center'>
                      <h1 className='color-white font-weight-bold'>All Cures</h1>
                      <br/>
-                     <div className='h2 color-white font-weight-bold'>Getting you Close To Cures Of World</div>
+                     <div className='h2 color-white text-center'>Getting you Close To Cures From Around The World</div>
                   </div>
+                  <ul className="slideshow">
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+        </ul>
                </section>
                
                <section className="megaSearch">

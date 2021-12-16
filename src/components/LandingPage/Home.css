@@ -24,8 +24,10 @@
   right: 0;
   left: 0;
   flex-direction: column;
+  font-weight: bold;
+  opacity: 1;
 }
 
 .banner .banner-title h1 {
-  display: block;
+  font-weight: bold;
 }

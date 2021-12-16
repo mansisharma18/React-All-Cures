@@ -50,7 +50,7 @@ const AllPost = ({id, title, content, f_title, w_title, country, type, published
                         <div className="card-info">
                             <div className="card-subtitle text-muted text-capitalize">{w_title.toLowerCase()}</div>
                             <div className='card-article-content-preview'>
-                            {
+                            {/* {
                                     content !== undefined ?
                                         JSON.parse(content)?
                                     JSON.parse(content).blocks.map((j, idx) => idx<1 && (
@@ -70,7 +70,7 @@ const AllPost = ({id, title, content, f_title, w_title, country, type, published
                                     ))
                                     :null
                                     : null
-                                }
+                                } */}
                         </div>
                         <div className="text-left mt-2 text-muted">Published on: {published_date}</div>
         <hr/>
