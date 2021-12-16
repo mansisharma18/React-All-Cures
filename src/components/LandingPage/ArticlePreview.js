@@ -104,7 +104,7 @@ const ArticlePreview = (props) => {
                </div>
                <ul>
                   <li role="presentation" class="active ">
-                     <button className="btn mr-2" onClick={(e) => articleFilterClick(e, 'recent')}>Recent</button>
+                     <button className="btn mr-2 my-2" onClick={(e) => articleFilterClick(e, 'recent')}>Recent</button>
                   </li>
                   <li role="presentation">
                      <button className="btn mr-2" onClick={(e) => articleFilterClick(e, 'earliest')}>Earliest</button>
@@ -119,7 +119,7 @@ const ArticlePreview = (props) => {
                      <button className="btn mr-2" onClick={(e) => articleFilterClick(e, 'arthritis')}>Arthritis</button>
                   </li>
                   <li role="presentation">
-                     <button className="btn mr-2" onClick={(e) => articleFilterClick(e, 'anemia')}>Anemia</button>
+                     <button className="btn mr-2 my-2" onClick={(e) => articleFilterClick(e, 'anemia')}>Anemia</button>
                   </li>
                   {/* <li role="presentation">
                      <button className="btn" onClick={(e) => articleFilterClick(e, 'recent')}>Most Rated</button>
