@@ -51,7 +51,7 @@ const AllPost = ({id, title, content, f_title, w_title, country, type, published
                             <div className='card-article-content-preview'>
                             {
                                     content && JSON.parse(content) ?
-                                    JSON.parse(content).blocks.map((j) => (
+                                    JSON.parse(content).blocks.map((j, idx) => idx<1 && (
                                         <CenterWell
                                             content = {j.data.content}
                                             type = {j.type}

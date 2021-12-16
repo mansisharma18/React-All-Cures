@@ -141,7 +141,7 @@ export default class Blogpage extends Component{
                             f_title = {i.friendly_name}
                             w_title = {i.window_title}
                             country = {i.country_id}
-                            content = {i.content}
+                            content = {decodeURIComponent(i.content)}
                             type = {i.type}
                             published_date = {i.published_date}
                             key = {i.article_id}

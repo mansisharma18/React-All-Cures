@@ -75,7 +75,7 @@ const Side = (props) => {
                             f_title = {i.friendly_name}
                             w_title = {i.window_title}
                             type = {i.type}
-                            content = {i.content}
+                            content = {decodeURIComponent(i.content)}
                             published_date = {i.published_date}
                             country = {i.country_id}
                             history = {props.history}

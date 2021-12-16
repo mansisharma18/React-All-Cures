@@ -14,9 +14,9 @@ const Post = ({id, title, content, f_title, w_title, history, type, country, pub
                                             <div className="card-title h6 mb-1 font-weight-bold text-capitalize">{title}</div>
                                             <div className="h7 text-muted">{w_title}</div>
                                             <div id='right-menu-card-article-content-preview'>
-                                            {
+                                            {/* {
                                     content && JSON.parse(content) ?
-                                    JSON.parse(content).blocks.map((j) => (
+                                    JSON.parse(content).blocks.map((j, idx) => idx<1 && (
                                         <CenterWell
                                             content = {j.data.content}
                                             type = {j.type}
@@ -32,7 +32,7 @@ const Post = ({id, title, content, f_title, w_title, history, type, country, pub
                                         />
                                     ))
                                     : null
-                                }
+                                } */}
                                             </div>
                                             <div className="h7 text-muted text-left">Published on: {published_date}</div>
                                         </div>

@@ -39,7 +39,7 @@ const CenterWell = ({pageTitle, imageUrl, content, type, text, title, message, s
                     'paragraph': <div className="ce-block py-2">
                                     <div className="ce-block__content">
                                         <div className="ce-paragraph cdx-block">
-                                            <p>{textContent}</p>
+                                            <p>{textContent.replaceAll('+', ' ')}</p>
                                         </div>
                                     </div>
                                 </div>,
