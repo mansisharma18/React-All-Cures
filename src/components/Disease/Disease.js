@@ -316,6 +316,10 @@ class Disease extends Component {
                 </div>
                 : null
               }
+               {/* Call average rating fetch function */}
+              {
+                this.state.ratingValue? this.showRating(this.state.ratingValue) : null
+              }
             </div>
 
 <div className="share-buttons-region">
@@ -419,13 +423,10 @@ class Disease extends Component {
                 ))}
               </div>
 
-              {/* Show average rating */}
+            
              
 
-              {/* Call average rating fetch function */}
-              {
-                this.state.ratingValue? this.showRating(this.state.ratingValue) : null
-              }
+             
 
               {/* Review Button (Rating + Comment) */}
               {
