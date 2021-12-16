@@ -91,6 +91,7 @@ const ArticlePreview = (props) => {
         );
     }
     else {
+        // console.log(i.content)
         return(
         <>
         <div className="container">
@@ -144,9 +145,13 @@ const ArticlePreview = (props) => {
                                     {i.window_title}
                                 </h6>
                                 <p className="card-text card-article-content-preview">
-                                {
-                                    i.content && JSON.parse(i.content) ?
-                                    JSON.parse(i.content).blocks.map((j) => (
+                                    {
+                                        i.content?
+                                        decodeURIComponent(i.content): null
+                                    }
+                                {/* {
+                                    i.content ?
+                                    decodeURIComponent(i.content).blocks.map((j) => (
                                         <CenterWell
                                             content = {j.data.content}
                                             type = {j.type}
@@ -162,7 +167,7 @@ const ArticlePreview = (props) => {
                                         />
                                     ))
                                     : null
-                                }
+                                } */}
                                     {/* ${p.body.substr(0, 200)}<a href="#">...read more</a> */}
                                 </p>
                                 <span><Link to={`/cure/${i.article_id}`}>...read more</Link></span>
