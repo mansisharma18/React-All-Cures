@@ -324,8 +324,9 @@ class Profile extends Component {
                   </div>
                   <div className="profile-info-rating">
                     <h3>Rate here</h3>
+                    <div id="docRate">
                         <Rating  docid={this.state.param.id} />
-                          
+                        </div>
                        
                         </div>
                   <div className="comment-box">

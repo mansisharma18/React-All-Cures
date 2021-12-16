@@ -1,6 +1,46 @@
 /* ----------- iPhone 4 and 4S ----------- */
 
 @media only screen and (min-device-width: 220px) and (max-device-width: 480px) {
+ form.sign{
+   padding: 0px 5px;
+ }
+
+ #accText{
+   display: none;
+ }
+ #headSign{
+   font-size:2rem ;
+ }
+ #forgetPass{
+   font-size: 10px;
+ }
+
+ #btn1{
+   padding: 6px 20px;
+ }
+ #rightPanel{
+   padding: 0px 5px;
+ }
+#signUp{
+  padding: 6x 20px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+  #docRate{
+    position: relative;
+    top: 40px;
+    right:6px
+  }
   #about {
     position: relative;
     top: 15px;
@@ -624,6 +664,11 @@
 }
 
 @media only screen and (min-device-width: 768px) and (max-device-width: 1024px) {
+  #docRate{
+    position: relative;
+    top: 40px;
+    right:6px
+  }
   #mt{
     margin-top: 3rem;
   }
@@ -770,6 +815,12 @@
 
 /* Portrait and Landscape */
 @media only screen and (min-device-width: 1024px) and (max-device-width: 1366px) and (-webkit-min-device-pixel-ratio: 2) {
+  #docRate{
+    position: relative;
+   top:0px
+  
+  }
+
   #textComment {
     font-size: 10px;
   }

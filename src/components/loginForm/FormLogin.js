@@ -88,7 +88,7 @@ function AfterLogin() {
   <SlidingForm className="text-center">
     <h1 id='he4' className="text-center">Sign in</h1>
     
-    <p className="text-center">or use your account</p>
+    <p  className="text-center">or use your account</p>
     <GoogleLogin
         clientId="529398297055-37e0rfns77ig0nih2moffq1pdp533329.apps.googleusercontent.com"
         buttonText="Login"
