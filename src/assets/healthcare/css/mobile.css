@@ -1,6 +1,30 @@
 /* ----------- iPhone 4 and 4S ----------- */
 
 @media only screen and (min-device-width: 220px) and (max-device-width: 480px) {
+  #mainSearch{
+    margin-right: -25px;
+  }
+  #head1{
+    position: relative;
+    bottom: 30px;
+  }
+
+#homeDoc{
+  position: relative;
+  bottom: 105px;
+  left: 15px;
+}
+#homeCity{
+  position: relative;
+  bottom: 105px;
+  left: 15px;
+}
+#btnDoc{
+  position: relative;
+  bottom: 105px;
+  left: 13px;
+}
+
   form.sign {
     padding: 0px 5px;
   }
@@ -133,6 +157,29 @@
 
 /* Portrait and Landscape */
 @media only screen and (min-device-width: 320px) and (max-device-width: 568px) {
+  #mainSearch{
+    margin-right: -13px;
+  }
+  #head1{
+    position: relative;
+    bottom: 30px;
+  }
+
+#homeDoc{
+  position: relative;
+  bottom: 105px;
+  left: 15px;
+}
+#homeCity{
+  position: relative;
+  bottom: 105px;
+  left: 15px;
+}
+#btnDoc{
+  position: relative;
+  bottom: 105px;
+  left: 13px;
+}
   #about {
     position: relative;
     top: 15px;
@@ -195,6 +242,29 @@
 
 /* Portrait and Landscape */
 @media only screen and (min-device-width: 375px) and (max-device-width: 914px) {
+  #mainSearch{
+    margin-right: -25px;
+  }
+  #head1{
+    position: relative;
+    bottom: 30px;
+    font-size: 26px;
+  }
+#homeDoc{
+  position: relative;
+  bottom: 190px;
+  left: 15px;
+}
+#homeCity{
+  position: relative;
+  bottom: 190px;
+  left: 15px;
+}
+#btnDoc{
+  position: relative;
+  bottom: 190px;
+  left: 13px;
+}
   #about {
     position: relative;
     top: 15px;
@@ -216,7 +286,7 @@
 
   #signIn {
     position: relative;
-    left: 20px;
+    left: 5px;
     top: 0px;
   }
   .serchlabel {
@@ -256,6 +326,26 @@
 
 /* Portrait and Landscape */
 @media only screen and (min-device-width: 414px) and (max-device-width: 736px) and (-webkit-min-device-pixel-ratio: 3) {
+  #head1{
+    position: relative;
+    bottom: 30px;
+    font-size: 26px;
+  }
+#homeDoc{
+  position: relative;
+  bottom: 105px;
+  left: 15px;
+}
+#homeCity{
+  position: relative;
+  bottom: 105px;
+  left: 15px;
+}
+#btnDoc{
+  position: relative;
+  bottom: 105px;
+  left: 13px;
+}
   #artBtn {
     font-size: 10px;
   }
@@ -319,7 +409,28 @@
 /* ----------- iPhone X ----------- */
 
 /* Portrait and Landscape */
-@media only screen and (min-device-width: 375px) and (max-device-width: 812px) and (-webkit-min-device-pixel-ratio: 3) {
+/* @media only screen and (min-device-width: 375px) and (max-device-width: 812px) and (-webkit-min-device-pixel-ratio: 3) {
+  #head1{
+    position: relative;
+    bottom: 30px;
+    font-size: 26px;
+  }
+
+#homeDoc{
+  position: relative;
+  bottom: 105px;
+  left: 15px;
+}
+#homeCity{
+  position: relative;
+  bottom: 105px;
+  left: 15px;
+}
+#btnDoc{
+  position: relative;
+  bottom: 105px;
+  left: 13px;
+}
   #about {
     position: relative;
     top: 15px;
@@ -382,7 +493,7 @@
     margin-left: -5px;
     margin-right: 60px;
   }
-}
+} */
 
 /* Portrait */
 @media only screen and (min-device-width: 375px) and (max-device-width: 812px) and (-webkit-min-device-pixel-ratio: 3) and (orientation: portrait) {
@@ -393,6 +504,27 @@
 }
 
 @media screen and (min-device-width: 360px) and (max-device-height: 740px) {
+  #head1{
+    position: relative;
+    bottom: 30px;
+    font-size: 26px;
+  }
+
+#homeDoc{
+  position: relative;
+  bottom: 105px;
+  left: 15px;
+}
+#homeCity{
+  position: relative;
+  bottom: 105px;
+  left: 15px;
+}
+#btnDoc{
+  position: relative;
+  bottom: 105px;
+  left: 13px;
+}
   #Article {
     font-size: 13px;
     padding: 5px;
@@ -407,7 +539,7 @@
 
   #signIn {
     position: relative;
-    left: 15px;
+    left: 5px;
 
     bottom: 0px;
   }
@@ -442,18 +574,32 @@
   }
 }
 
-/* Portrait */
-@media screen and (device-width: 320px) and (device-height: 640px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait) {
-}
-
-/* Landscape */
-@media screen and (device-width: 320px) and (device-height: 640px) and (-webkit-device-pixel-ratio: 2) and (orientation: landscape) {
-}
 
 /* ----------- Galaxy S4, S5 and Note 3 ----------- */
 
 /* Portrait and Landscape */
-@media screen and (min-device-width: 320px) and (max-device-height: 640px) and (-webkit-device-pixel-ratio: 3) {
+@media screen and (min-device-width: 320px) and (max-device-height: 640px)  {
+  #head1{
+    position: relative;
+    bottom: 30px;
+    font-size: 26px;
+  }
+
+#homeDoc{
+  position: relative;
+  bottom: 90px;
+  left: 15px;
+}
+#homeCity{
+  position: relative;
+  bottom: 90px;
+  left: 15px;
+}
+#btnDoc{
+  position: relative;
+  bottom: 90px;
+  left: 13px;
+}
   #createArticle {
     position: relative;
     left: 20px;
@@ -463,7 +609,7 @@
 
   #signIn {
     position: relative;
-    left: 15px;
+    left: 5px;
     bottom: 0px;
   }
 
@@ -492,15 +638,22 @@
   }
 }
 
-/* Portrait */
-@media screen and (device-width: 320px) and (device-height: 640px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait) {
-}
 
-/* Landscape */
-@media screen and (device-width: 320px) and (device-height: 640px) and (-webkit-device-pixel-ratio: 3) and (orientation: landscape) {
-}
 
+  
 @media only screen and (min-device-width: 768px) and (max-device-width: 1024px) {
+  #head1{
+    position: relative;
+    bottom: 30px;
+    font-size:2rem ;
+  }
+
+  #homeDoc{
+    margin-left: 5px;
+  }
+  #homeCity{
+    left: 18px;
+  }
   #docRate {
     position: relative;
     top: 40px;
@@ -574,15 +727,21 @@
   }
 
   #searchArticle {
-    margin: 90px 0 0 10px;
+    margin: 90px 0 0 145px;
   }
 
+  #btnDoc{
+    left:-40px
+  }
+#mainSearch{
+  margin-left: 76px;
+}
   #Article {
     font-size: 15px;
     padding: 6px;
     position: relative;
-    left: 20px;
-    height: 38px;
+    left: 5px;
+    
   }
   #searchMain {
     margin-bottom: 5rem;
@@ -600,11 +759,11 @@
   }
 
   .article-search {
-    margin: 20px 0px 0px -5px;
+    margin: 20px 0px 0px 145px;
   }
   .btn-article-search {
     background-color: #00415e;
-    margin-right: 25px;
+    margin-right: -25px;
     height: 56px;
     width: 74px;
   }
@@ -639,6 +798,16 @@
 
 /* Portrait and Landscape */
 @media only screen and (min-device-width: 1024px) and (max-device-width: 1366px) and (-webkit-min-device-pixel-ratio: 2) {
+
+  #head1{
+    position: relative;
+    bottom: 30px;
+    font-size:2.5rem ;
+  }
+
+  #mainSearch{
+    margin-left: 0px;
+  }
   #docRate {
     position: relative;
     top: 0px;
@@ -715,11 +884,11 @@
   .doc-name {
     width: 250px;
     margin-top: -90px;
-    margin-left: -5px;
+    margin-left: 40px;
   }
 
   .article-search {
-    margin: 20px 0px 0px -5px;
+    margin: 20px 0px 0px 70px;
   }
 
   .city-name.col-md-5 {

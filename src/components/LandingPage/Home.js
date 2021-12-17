@@ -380,7 +380,7 @@ class Home extends Component {
                    			<div className="form-group search"> */}
                             <div className="col-md-12 p-0">
                             <div className="row">
-                            <div className="doc-name col-md-6 col-sm-12">
+                            <div className="doc-name col-md-6 col-sm-12"id="homeDoc">
                             <Autocomplete className="bg-white color-black"
                               freeSolo
                               value={this.state.name}
@@ -413,7 +413,7 @@ class Home extends Component {
                               </div> */}
                               {/* <div className="col-md-5 pd-0 col-sx-12 col-sm-4">
                                  <div className="form-group city zipcode"> */}
-                                 <div className="city-name col-md-5">
+                                 <div className="city-name col-md-5" id="homeCity">
                                  <Autocomplete className="bg-white p-0 color-black"
                               freeSolo
                               value={this.state.city}
