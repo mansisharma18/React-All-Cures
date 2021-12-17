@@ -322,7 +322,7 @@ class Home extends Component {
                                     : [] 
                                  : []
                               }
-                              sx={{ width: 400 }}
+                              sx={{ width: 300 }}
                               
                               renderInput={(params) => <TextField {...params} label="Search Cures" />}
                            />
