@@ -12,6 +12,11 @@ import { backendHost } from '../../api-config';
 import TextField from '@mui/material/TextField';
 import Autocomplete from '@mui/material/Autocomplete';
 
+// ICONS
+import Account from '../../assets/icon/icons-AllCures/account_circle_black_48dp.svg'
+import CreateCures from '../../assets/icon/icons-AllCures/edit_black_48dp.svg'
+import List from '../../assets/icon/icons-AllCures/list_black_48dp.svg'
+
    class Header extends Component {
        
         constructor(props){
@@ -195,12 +200,12 @@ import Autocomplete from '@mui/material/Autocomplete';
                                           this.state.diseaseTitle 
                                           : [] 
                                        : []}
-                                       sx={{ width: 300 }}
+                                       sx={{ width: 403 }}
                                        renderInput={(params) => <TextField {...params} label="Search Cures" />}
                                     />
                                  </div>
                                  <div className="col-md-2 p-0 mainBtn">
-                                    <button className="btn btn-article-search color-white" type="submit">
+                                    <button className="btn btn-article-search search-main-btns color-white" type="submit">
                                        <i className="fas fa-search" id="iconSearch"></i>
                                     </button>
                                  </div>
@@ -210,15 +215,14 @@ import Autocomplete from '@mui/material/Autocomplete';
                            <div className="loginSign">
                            {
                               this.state.acPerm?
-                              <Link className="btn border mr-2 btn-white loginSignbtn color-blue-dark" id="Article" to="/article">
-                              Create Cures
+                              <Link className="btn mr-2 primary-btn-color loginSignbtn color-blue-dark" id="Article" to="/article">
+                              <img src={CreateCures} className='filter-white' height="30px"/>
                             </Link>
                               : <button 
-                              className="btn border mr-2 btn-white loginSignbtn color-blue-dark" id="Article" 
+                              className="btn mr-2 primary-btn-color loginSignbtn color-blue-dark" id="Article" 
                               onClick={() => this.setModalShow(true)}
                             >
-
-                             Create Cures
+                              <img src={CreateCures} className='filter-white' height="30px"/>
                             </button>
                            }   
                             <ToggleButton userName={Cookies.get('uName')} setModalShow={this.setModalShow} acPerm={this.state.acPerm} logout={this.logout}/> 
@@ -289,7 +293,7 @@ import Autocomplete from '@mui/material/Autocomplete';
                                  </div>
                                  
                                  <div className="mainBtn col-md-1">
-                           <button type="submit" className=" btn btn-article-search color-white float-right" id="searchBtn" >
+                           <button type="submit" className=" btn search-main-btns btn-article-search color-white float-right" id="searchBtn" >
                                  <i className="fas fa-search" id="iconSearch"></i>
                               </button>
                               </div>
@@ -321,7 +325,8 @@ function ToggleButton(props) {
          <>
          <Dropdown>
            <Dropdown.Toggle  className="header-drop text-capitalize">
-            Hi {props.userName}
+           <img className='filter-white mr-1' src={List} height="30px" />
+           <img className='filter-white' src={Account} height="30px" />
            </Dropdown.Toggle>
            <Dropdown.Menu>
              <Dropdown.Item>
@@ -350,7 +355,7 @@ function ToggleButton(props) {
    return(
       <>
       <button 
-         className="btn btn-dark text-light border loginSignbtn color-blue-dark" 
+         className="btn primary-btn-color text-light loginSignbtn color-blue-dark" 
          id="signIn"
          variant="dark" 
          style={{width: '10rem'}}

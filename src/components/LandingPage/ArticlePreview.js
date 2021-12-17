@@ -104,7 +104,7 @@ const ArticlePreview = (props) => {
                </div>
                <ul>
                   <li role="presentation" class="active ">
-                     <button className="btn mr-2" onClick={(e) => articleFilterClick(e, 'recent')}>Recent</button>
+                     <button className="btn mr-2 my-2" onClick={(e) => articleFilterClick(e, 'recent')}>Recent</button>
                   </li>
                   <li role="presentation">
                      <button className="btn mr-2" onClick={(e) => articleFilterClick(e, 'earliest')}>Earliest</button>
@@ -119,7 +119,7 @@ const ArticlePreview = (props) => {
                      <button className="btn mr-2" onClick={(e) => articleFilterClick(e, 'arthritis')}>Arthritis</button>
                   </li>
                   <li role="presentation">
-                     <button className="btn mr-2" onClick={(e) => articleFilterClick(e, 'anemia')}>Anemia</button>
+                     <button className="btn mr-2 my-2" onClick={(e) => articleFilterClick(e, 'anemia')}>Anemia</button>
                   </li>
                   {/* <li role="presentation">
                      <button className="btn" onClick={(e) => articleFilterClick(e, 'recent')}>Most Rated</button>
@@ -134,7 +134,16 @@ const ArticlePreview = (props) => {
             </div>
             <div className="row">
             <div className="main-hero" id="main-hero">
-                {items.map((i, index) => index<9 && (
+                {items.filter((i, idx) => idx < 9).map((i) => {
+                    var content = []
+                    var contentBlocks = []
+                    // if(i.content){
+                    //     content = JSON.parse(decodeURIComponent(i.content))
+                    //     contentBlocks = content.blocks
+                    //     console.log(contentBlocks)
+                    // }
+                    // console.log('blocks: ',contentBlocks)
+                    return(
                     <div className="col-4">
                     {/* <Link to={`/cure/${i.article_id}`} className='color-gray'> */}
                     <div className="card my-2 w-100">
@@ -146,8 +155,23 @@ const ArticlePreview = (props) => {
                                 </h6>
                                 <p className="card-text card-article-content-preview">
                                     {
-                                        i.content?
-                                        decodeURIComponent(i.content): null
+                                        contentBlocks?
+                                            contentBlocks.map((j, idx) => idx<1 && (
+                                                <CenterWell
+                                                    content = {j.data.content}
+                                                    type = {j.type}
+                                                    text = {j.data.text.substr(0, 200)}
+                                                    title = {j.data.title}
+                                                    message = {j.data.message}
+                                                    source = {j.data.source}
+                                                    embed = {j.data.embed}
+                                                    caption = {j.data.caption}
+                                                    alignment = {j.data.alignment}
+                                                    imageUrl = {j.data.file? j.data.file.url: null}
+                                                    url = {j.data.url}
+                                                />
+                                            ))
+                                            : null
                                     }
                                 {/* {
                                     i.content ?
@@ -178,7 +202,7 @@ const ArticlePreview = (props) => {
                     </div>
                     {/* </Link> */}
                 </div>
-                )) }
+                )}) }
             </div>
             </div>
             </div>

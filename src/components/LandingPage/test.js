@@ -265,13 +265,13 @@ const Test = (props) => {
             <MenuItem value="other">Other</MenuItem>
           </Select>
         </FormControl>
-        <button type="submit" className="ghost">Sign Up</button>
+        <button type="submit" className="ghost" >Sign Up</button>
       </form>
     </div>
     <div className="form-container sign-in-container">
       <form className="sign" onSubmit={loginForm}>
-        <h1>Sign in</h1>
-        <span>or use your account</span>
+        <h1 id="headSign">Sign in</h1>
+        <span id="accText">or use your account</span>
         
         {
           buttonClick === 1 && !loginSuccess &&
@@ -295,14 +295,15 @@ const Test = (props) => {
             e => setPass(e.target.value)
           }
         />
-        <Link className="text-dark" to="/loginForm/verify">Forgot your password?</Link>
+        <Link className="text-dark" to="/loginForm/verify" id="forgetPass">Forgot your password?</Link>
         <FormGroup>
         <FormControlLabel
           control={<Checkbox name="Terms" value="on"/>}
           label="Remember Me"
+        
         />
       </FormGroup>
-        <button className="ghost">Sign In</button>
+        <button className="ghost"id="btn1">Sign In</button>
       </form>
     </div>
     <div className="overlay-container">
@@ -314,8 +315,8 @@ const Test = (props) => {
             Sign In
           </button>
         </div>
-        <div className="overlay-panel overlay-right">
-          <h1>Hello, Friend!</h1>
+        <div className="overlay-panel overlay-right" id="rightPanel">
+          <h1 id="headSign">Hello, Friend!</h1>
           <p>Enter your personal details and start journey with us</p>
           <button onClick={(e) => handleClick(setClick(false))} className="ghost" id="signUp">
             Sign Up
