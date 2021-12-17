@@ -17,7 +17,7 @@ import { Dropdown, Alert } from 'react-bootstrap';
 import PhoneInput from 'react-phone-number-input';
 import 'react-phone-number-input/style.css';
 import './Home.css'
-
+import Carousel from 'react-bootstrap/Carousel'
 
 import { backendHost } from '../../api-config';
 import TextField from '@mui/material/TextField';
@@ -355,16 +355,8 @@ class Home extends Component {
                <section className="banner">
                   <div className='banner-title h1 d-flex justify-content-center align-items-center'>
                      <h1 className='color-white font-weight-bold'>All Cures</h1>
-                     <br/>
-                     <div className='h2 color-white text-center'>Getting you Close To Cures From Around The World</div>
+                     <div className='h2 color-white text-center'>Getting You Closer To Cures From Around The World</div>
                   </div>
-                  <ul className="slideshow">
-          <li></li>
-          <li></li>
-          <li></li>
-          <li></li>
-          <li></li>
-        </ul>
                </section>
                
                <section className="megaSearch">

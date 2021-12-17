@@ -584,14 +584,14 @@ h6 {
   font-weight: 400;
 } */
 
-.banner {
+/* .banner {
   background: url(https://cdn.pixabay.com/photo/2020/12/18/00/43/doctor-5840874_960_720.png)
     center center no-repeat;
   background-color: rgba(0, 0, 0, 0);
   height: 675px;
   position: relative;
   background-color: #c6dffe;
-}
+} */
 
 .serchlabel h1 {
   font-weight: 700;
@@ -896,10 +896,10 @@ h6 {
     position: relative;
   }
 
-  .banner {
+  /* .banner {
     background-position: 80% 100%;
     background-repeat: no-repeat;
-  }
+  } */
   .appStoreBg {
     margin-top: 130px !important;
   }
@@ -2825,8 +2825,8 @@ div.trending-articles .col-4:nth-last-child(even) .card {
 } */
 
 .trending-articles .card .h5 {
-  display: flex;
-  align-items: center;
+  /* display: flex;
+  align-items: center; */
   margin: auto;
 }
 .trending-articles .card img {

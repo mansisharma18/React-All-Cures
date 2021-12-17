@@ -12,11 +12,30 @@
 .banner {
   height: 49vh;
   position: relative;
-  background: url("C:\Users\HP\Desktop\latest-cures\React-All-Cures\src\assets\healthcare\img\images\banner.png")
-    center;
+  background: url("../../assets/healthcare/img/images/Banner1-Full.jpg") center;
+  animation: carousel 30s ease-in-out infinite;
   opacity: 0.8;
 }
 
+@keyframes carousel {
+  0% {
+    background: url("../../assets/healthcare/img/images/Banner1-Full.jpg")
+      center;
+  }
+  25% {
+    background: url("../../assets/healthcare/img/images/Banner2.jpg") center
+      center no-repeat;
+    background-size: cover;
+  }
+  50% {
+    background: url("../../assets/healthcare/img/images/Banner3.jpg") center;
+  }
+  100% {
+    background: url("../../assets/healthcare/img/images/Banner41.jpg") center
+      center no-repeat;
+    background-size: cover;
+  }
+}
 .banner .banner-title {
   position: absolute;
   top: 0;
@@ -26,8 +45,45 @@
   flex-direction: column;
   font-weight: bold;
   opacity: 1;
+  text-shadow: 2px 5px 5px black;
 }
 
 .banner .banner-title h1 {
   font-weight: bold;
+}
+
+.trending-articles .card {
+  min-height: 8.5rem;
+}
+
+.trending-articles #yoga {
+  background: url("../../assets/healthcare/img/images/Trending-Cures/yoga.jpg")
+    center center no-repeat;
+  background-size: cover;
+}
+.trending-articles #chinese {
+  background: url("../../assets/healthcare/img/images/Trending-Cures/chinese.jpg")
+    center center no-repeat;
+  background-size: cover;
+}
+.trending-articles #ayurveda {
+  background: url("../../assets/healthcare/img/images/Trending-Cures/ayurvedic.jpg")
+    center center no-repeat;
+  background-size: cover;
+}
+.trending-articles #homeopathy {
+  background: url("../../assets/healthcare/img/images/Trending-Cures/homeopathy.jpg")
+    center center no-repeat;
+  background-size: cover;
+}
+.trending-articles #naturopathy {
+  background: url("../../assets/healthcare/img/images/Trending-Cures/herbal-naturopathic-medicine.jpg")
+    center center no-repeat;
+  background-size: cover;
+}
+
+.trending-articles #unani {
+  background: url("../../assets/healthcare/img/images/Trending-Cures/unani.jpg")
+    center center no-repeat;
+  background-size: cover;
 }
