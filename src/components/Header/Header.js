@@ -200,7 +200,7 @@ import List from '../../assets/icon/icons-AllCures/list_black_48dp.svg'
                                           this.state.diseaseTitle 
                                           : [] 
                                        : []}
-                                       sx={{ width: 403 }}
+                                       sx={{ width: 300 }}
                                        renderInput={(params) => <TextField {...params} label="Search Cures" />}
                                     />
                                  </div>
