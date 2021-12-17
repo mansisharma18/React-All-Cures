@@ -304,7 +304,7 @@ class Disease extends Component {
               <div className="article-title-container">
               <div className="h1 font-weight-bold text-capitalize text-decoration-underline">{items.title.toLowerCase()}</div>
               
- {/* Show average rating */}
+ {/* Show average rating */}    
  {
                 this.state.ratingValue?
                 <div className="average-rating mt-2 mb-4 ml-3" id="avg-rating">
