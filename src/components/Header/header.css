@@ -51,15 +51,17 @@
 }
 
 .loginSignbtn {
+  position: relative;
   text-align: center;
-  display: inline-block;
-  border-radius: 15px;
-  height: 30px;
-  width: 150px;
-  padding-top: 6px;
-  padding-bottom: 1.8rem;
-  font-size: 15px;
-  font-weight: 400;
+  border-radius: 2rem;
+  height: 50px;
+  width: 50px;
+}
+
+.loginSignbtn img {
+  position: absolute;
+  right: 0.5rem;
+  top: 0.5rem;
 }
 
 .serchlabel h1 {
@@ -343,8 +345,9 @@
 .header-drop {
   background-color: #00415e;
   color: white;
-  border-radius: 0.9rem;
-  padding: 0.4rem 1.7rem;
+  border-radius: 2rem;
+  height: 50px;
+  position: relative;
 }
 
 .header-drop i {

@@ -17,7 +17,11 @@ import { Dropdown, Alert } from 'react-bootstrap';
 import PhoneInput from 'react-phone-number-input';
 import 'react-phone-number-input/style.css';
 import './Home.css'
-import Carousel from 'react-bootstrap/Carousel'
+
+// ICONS
+import Account from '../../assets/icon/icons-AllCures/account_circle_black_48dp.svg'
+import CreateCures from '../../assets/icon/icons-AllCures/edit_black_48dp.svg'
+import List from '../../assets/icon/icons-AllCures/list_black_48dp.svg'
 
 import { backendHost } from '../../api-config';
 import TextField from '@mui/material/TextField';
@@ -333,14 +337,16 @@ class Home extends Component {
 
                   {/* Create Cures, Sign Up || Hi ${name} Button */}
 
-                  <div className="loginSign mt-2"> 
+                  <div className="loginSign mt-1"> 
                      {
                         this.state.acPerm?
-                           <Link className="btn border mr-2 btn-white loginSignbtn color-blue-dark" id="createArticle1" to="/article">
-                              Create Cures
+                           <Link className="btn mr-2 primary-btn-color
+                            loginSignbtn color-blue-dark" to="/article">
+                              <img src={CreateCures} className='filter-white' height="30px"/>
                            </Link>
-                        : <button className="btn border mr-2 btn-white loginSignbtn color-blue-dark" id="createArticle" onClick={() => this.setModalShow(true)}>
-                             Create Cures
+                        : <button className="btn mr-2 primary-btn-color
+                         loginSignbtn color-blue-dark" onClick={() => this.setModalShow(true)}>
+                             <img src={CreateCures} className='filter-white' height="30px"/>
                            </button>
                      }   
                   
@@ -652,7 +658,8 @@ function ToggleButton(props) {
          <>
          <Dropdown>
            <Dropdown.Toggle  className="header-drop text-capitalize" id="drop-down">
-        Hi {props.userName} 
+            <img className='filter-white mr-1' src={List} height="30px" />
+           <img className='filter-white' src={Account} height="30px" />
            </Dropdown.Toggle>
            <Dropdown.Menu>
              <Dropdown.Item>
@@ -682,7 +689,7 @@ function ToggleButton(props) {
    return(
       <>
       <button 
-         className="btn btn-dark text-light border loginSignbtn color-blue-dark" 
+         className="btn primary-btn-color text-light loginSignbtn color-blue-darks" 
          id="signIn"
          variant="dark" 
          style={{width: '10rem'}}

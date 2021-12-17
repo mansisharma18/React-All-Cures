@@ -205,10 +205,6 @@
     margin-top: 20px;
   }
 
-  .loginSignbtn {
-    width: 105px !important;
-  }
-
   .startVideoBtn {
     padding: 6px 30px;
     display: inline-block;
@@ -350,9 +346,6 @@
   }
   .footer-bootm .logo {
     float: left;
-  }
-  .loginSign {
-    margin: -1.2rem 2rem 2rem 0;
   }
   .socia-media-footer ul {
     display: flex;

@@ -1,45 +1,34 @@
 /* ----------- iPhone 4 and 4S ----------- */
 
 @media only screen and (min-device-width: 220px) and (max-device-width: 480px) {
- form.sign{
-   padding: 0px 5px;
- }
+  form.sign {
+    padding: 0px 5px;
+  }
 
- #accText{
-   display: none;
- }
- #headSign{
-   font-size:2rem ;
- }
- #forgetPass{
-   font-size: 10px;
- }
+  #accText {
+    display: none;
+  }
+  #headSign {
+    font-size: 2rem;
+  }
+  #forgetPass {
+    font-size: 10px;
+  }
 
- #btn1{
-   padding: 6px 20px;
- }
- #rightPanel{
-   padding: 0px 5px;
- }
-#signUp{
-  padding: 6x 20px;
-}
+  #btn1 {
+    padding: 6px 20px;
+  }
+  #rightPanel {
+    padding: 0px 5px;
+  }
+  #signUp {
+    padding: 6x 20px;
+  }
 
-
-
-
-
-
-
-
-
-
-
-
-  #docRate{
+  #docRate {
     position: relative;
     top: 40px;
-    right:6px
+    right: 6px;
   }
   #about {
     position: relative;
@@ -100,30 +89,6 @@
     left: 10px;
     padding: 5px;
   }
-  .header-drop {
-    background-color: #00415e;
-    color: white;
-
-    padding: 5px 17px 5px 17px;
-    position: relative;
-    border-radius: 20px;
-    left: 22px;
-    width: 100%;
-    bottom: 5px;
-    height: 32px;
-    text-align: left;
-  }
-  .loginSignbtn {
-    text-align: center;
-    display: inline-block;
-    border-radius: 15px;
-    height: 30px;
-    width: 130px;
-    padding-top: 0px;
-    padding-bottom: 1.8rem;
-    font-size: 10px;
-    font-weight: 400;
-  }
 
   #signIn {
     position: relative;
@@ -179,35 +144,12 @@
 
     padding: 5px;
   }
-  .header-drop {
-    background-color: #00415e;
-    color: white;
 
-    padding: 5px 17px 5px 17px;
-    position: relative;
-    border-radius: 20px;
-    left: 20px;
-    width: 100%;
-    bottom: 30px;
-    height: 32px;
-    text-align: left;
-  }
   #createArticle {
     position: relative;
     left: 20px;
     padding: 0px;
     font-size: 11px;
-  }
-  .loginSignbtn {
-    text-align: center;
-    display: inline-block;
-    border-radius: 15px;
-    height: 30px;
-    width: 130px;
-    padding-top: 0px;
-    padding-bottom: 1.8rem;
-    font-size: 10px;
-    font-weight: 400;
   }
 
   #signIn {
@@ -264,35 +206,12 @@
     left: 20px;
     padding: 5px;
   }
-  .header-drop {
-    background-color: #00415e;
-    color: white;
-    padding: .4rem 1.7rem;
-    position: relative;
-    border-radius: 20px;
-    left: 20px;
-    width: 100%;
-    bottom: 1px;
- 
-    text-align: left;
-  }
 
   #createArticle {
     position: relative;
     left: 20px;
     padding: 3px;
     font-size: 13px;
-  }
-  .loginSignbtn {
-    text-align: center;
-    display: inline-block;
-    border-radius: 15px;
-    height: 30px;
-    width: 130px;
-    padding-top: 0px;
-    padding-bottom: 1.8rem;
-    font-size: 10px;
-    font-weight: 400;
   }
 
   #signIn {
@@ -337,14 +256,14 @@
 
 /* Portrait and Landscape */
 @media only screen and (min-device-width: 414px) and (max-device-width: 736px) and (-webkit-min-device-pixel-ratio: 3) {
-  #artBtn{
+  #artBtn {
     font-size: 10px;
   }
 
-    #about {
-        position: relative;
-        top: 15px;
-      }
+  #about {
+    position: relative;
+    top: 15px;
+  }
   #createArticle1 {
     text-align: center;
     font-size: 13px;
@@ -352,36 +271,12 @@
     left: 20px;
     padding: 5px;
   }
-  .header-drop {
-    background-color: #00415e;
-    color: white;
-
-    padding: 5px 17px 5px 17px;
-    position: relative;
-    border-radius: 20px;
-    left: 20px;
-    width: 100%;
-    bottom: 1px;
-    height: 32px;
-    text-align: left;
-  }
 
   #createArticle {
     position: relative;
     left: 20px;
     padding-top: 0px;
     font-size: 10px;
-  }
-  .loginSignbtn {
-    text-align: center;
-    display: inline-block;
-    border-radius: 15px;
-    height: 30px;
-    width: 130px;
-    padding-top: 0px;
-    padding-bottom: 1.8rem;
-    font-size: 10px;
-    font-weight: 400;
   }
 
   #signIn {
@@ -448,19 +343,7 @@
     left: 20px;
     padding: 5px;
   }
-  .header-drop {
-    background-color: #00415e;
-    color: white;
 
-    padding: 5px 17px 5px 17px;
-    position: relative;
-    border-radius: 20px;
-    left: 20px;
-    width: 100%;
-    bottom: 1px;
-    height: 32px;
-    text-align: left;
-  }
   .newsletter_float {
     position: fixed;
     width: 40%;
@@ -475,17 +358,6 @@
     left: 20px;
     padding: 2px;
     font-size: 11px;
-  }
-  .loginSignbtn {
-    text-align: center;
-    display: inline-block;
-    border-radius: 15px;
-    height: 30px;
-    width: 130px;
-    padding-top: 0px;
-    padding-bottom: 1.8rem;
-    font-size: 10px;
-    font-weight: 400;
   }
 
   .serchlabel {
@@ -521,19 +393,6 @@
 }
 
 @media screen and (min-device-width: 360px) and (max-device-height: 740px) {
-  .header-drop {
-    background-color: #00415e;
-    color: white;
-
-    padding: 5px 17px 5px 17px;
-    position: relative;
-    border-radius: 20px;
-    left: 20px;
-    width: 100%;
-    bottom: 1px;
-    height: 32px;
-    text-align: left;
-  }
   #Article {
     font-size: 13px;
     padding: 5px;
@@ -544,17 +403,6 @@
     left: 20px;
     padding: 2px;
     font-size: 12px;
-  }
-  .loginSignbtn {
-    text-align: center;
-    display: inline-block;
-    border-radius: 15px;
-    height: 30px;
-    width: 130px;
-    padding-top: 0px;
-    padding-bottom: 1.8rem;
-    font-size: 10px;
-    font-weight: 400;
   }
 
   #signIn {
@@ -612,17 +460,6 @@
     padding: 2px;
     font-size: 12px;
   }
-  .loginSignbtn {
-    text-align: center;
-    display: inline-block;
-    border-radius: 15px;
-    height: 30px;
-    width: 130px;
-    padding-top: 0px;
-    padding-bottom: 1.8rem;
-    font-size: 10px;
-    font-weight: 400;
-  }
 
   #signIn {
     position: relative;
@@ -664,12 +501,12 @@
 }
 
 @media only screen and (min-device-width: 768px) and (max-device-width: 1024px) {
-  #docRate{
+  #docRate {
     position: relative;
     top: 40px;
-    right:6px
+    right: 6px;
   }
-  #mt{
+  #mt {
     margin-top: 3rem;
   }
   #textComment {
@@ -725,7 +562,6 @@
     padding: 0;
     position: relative;
     left: 15px;
-
   }
   #searchArticle {
     margin: 140px 0 0 10px;
@@ -755,18 +591,6 @@
     margin-bottom: 16rem;
   }
 
-  .loginSignbtn {
-    text-align: center;
-    display: inline-block;
-    border-radius: 15px;
-    height: 30px;
-    width: 150px;
-    padding-top: 6px;
-    padding-bottom: 1.8rem;
-    font-size: 15px;
-    font-weight: 400;
-  }
-
   .serchlabel {
     margin-bottom: 210px;
   }
@@ -789,7 +613,7 @@
     margin-top: 80px;
     margin-left: -60px;
   }
- 
+
   .btn.btn-article-search.color-white.float-right {
     position: relative;
     left: -20px;
@@ -815,10 +639,9 @@
 
 /* Portrait and Landscape */
 @media only screen and (min-device-width: 1024px) and (max-device-width: 1366px) and (-webkit-min-device-pixel-ratio: 2) {
-  #docRate{
+  #docRate {
     position: relative;
-   top:0px
-  
+    top: 0px;
   }
 
   #textComment {
@@ -855,18 +678,6 @@
     height: 38px;
   }
 
-  .loginSignbtn {
-    text-align: center;
-    display: inline-block;
-    border-radius: 15px;
-    height: 30px;
-    width: 150px;
-    padding-top: 6px;
-    padding-bottom: 1.8rem;
-    font-size: 15px;
-    font-weight: 400;
-  }
-
   .serchlabel {
     margin-bottom: 160px;
   }
@@ -897,17 +708,6 @@
     left: -20px;
     bottom: 90px;
   }
-  .loginSignbtn {
-    text-align: center;
-    display: inline-block;
-    border-radius: 15px;
-    height: 30px;
-    width: 150px;
-    padding-top: 6px;
-    padding-bottom: 1.8rem;
-    font-size: 15px;
-    font-weight: 400;
-  }
 
   .serchlabel {
     margin-bottom: 70px;
@@ -926,17 +726,7 @@
     margin-top: -90px;
   }
 
-  /* .loginSignbtn {
-        text-align: center;
-        display: inline-block;
-        border-radius: 15px;
-        height: 30px;
-        width: 150px;
-        padding-top: 6px;
-        padding-bottom: 1.8rem;
-        font-size: 15px;
-        font-weight: 400;
-    }
+  /* 
   
 
 
@@ -1053,18 +843,6 @@
     height: 38px;
   }
 
-  .loginSignbtn {
-    text-align: center;
-    display: inline-block;
-    border-radius: 15px;
-    height: 30px;
-    width: 150px;
-    padding-top: 6px;
-    padding-bottom: 1.8rem;
-    font-size: 15px;
-    font-weight: 400;
-  }
-
   .serchlabel {
     margin-bottom: 160px;
   }
@@ -1091,17 +869,6 @@
     position: relative;
     left: -20px;
     bottom: 90px;
-  }
-  .loginSignbtn {
-    text-align: center;
-    display: inline-block;
-    border-radius: 15px;
-    height: 30px;
-    width: 150px;
-    padding-top: 6px;
-    padding-bottom: 1.8rem;
-    font-size: 15px;
-    font-weight: 400;
   }
 
   .serchlabel {
