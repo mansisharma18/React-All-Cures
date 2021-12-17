@@ -12,9 +12,9 @@
 .banner {
   height: 49vh;
   position: relative;
-  background: url("../../assets/healthcare/img/images/Banner1-Full.jpg") center;
-  animation: carousel 30s ease-in-out infinite;
-  opacity: 0.8;
+  /* background: url("../../assets/healthcare/img/images/Banner1-Full.jpg") center; */
+  animation: carousel 30s infinite;
+  opacity: 1;
 }
 
 .primary-btn-color {
@@ -106,4 +106,8 @@
 .filter-white {
   filter: invert(99%) sepia(60%) saturate(1%) hue-rotate(291deg)
     brightness(119%) contrast(91%);
+}
+
+.search-main-btns {
+  height: 56px;
 }
