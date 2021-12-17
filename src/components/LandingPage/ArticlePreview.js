@@ -137,11 +137,11 @@ const ArticlePreview = (props) => {
                 {items.filter((i, idx) => idx < 9).map((i) => {
                     var content = []
                     var contentBlocks = []
-                    if(i.content){
-                        content = JSON.parse(decodeURIComponent(i.content))
-                        contentBlocks = content.blocks
-                        console.log(contentBlocks)
-                    }
+                    // if(i.content){
+                    //     content = JSON.parse(decodeURIComponent(i.content))
+                    //     contentBlocks = content.blocks
+                    //     console.log(contentBlocks)
+                    // }
                     // console.log('blocks: ',contentBlocks)
                     return(
                     <div className="col-4">

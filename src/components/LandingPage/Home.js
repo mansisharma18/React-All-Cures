@@ -328,7 +328,7 @@ class Home extends Component {
                            />
                         </div>
                         <div className="col-md-2 p-0 mainBtn">
-                           <button className="btn btn-article-search color-white" type="submit">
+                           <button className="btn btn-article-search color-white search-main-btns" type="submit">
                               <i className="fas fa-search"></i>
                            </button>
                         </div>
@@ -340,11 +340,11 @@ class Home extends Component {
                   <div className="loginSign mt-1"> 
                      {
                         this.state.acPerm?
-                           <Link className="btn mr-2 primary-btn-color
+                           <Link className="btn mr-1 primary-btn-color
                             loginSignbtn color-blue-dark" to="/article">
                               <img src={CreateCures} className='filter-white' height="30px"/>
                            </Link>
-                        : <button className="btn mr-2 primary-btn-color
+                        : <button className="btn mr-1 primary-btn-color
                          loginSignbtn color-blue-dark" onClick={() => this.setModalShow(true)}>
                              <img src={CreateCures} className='filter-white' height="30px"/>
                            </button>
