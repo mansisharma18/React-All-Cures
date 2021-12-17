@@ -144,6 +144,7 @@ export default class Blogpage extends Component{
                             content = {i.content}
                             type = {i.type}
                             published_date = {i.published_date}
+                            over_allrating = {i.over_allrating}
                             key = {i.article_id}
                             allPostsContent={() => this.allPosts()}
                         />

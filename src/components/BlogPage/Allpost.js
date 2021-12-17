@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import CenterWell from '../Disease/CenterWell';
-const AllPost = ({id, title, content, f_title, w_title, country, type, published_date}) => {
+const AllPost = ({id, title, content, f_title, w_title, country, type, published_date,over_allrating}) => {
         return (
             <>
             <div key={id.toString()} className="py-3 w-100">
@@ -70,6 +70,7 @@ const AllPost = ({id, title, content, f_title, w_title, country, type, published
                                 }
                         </div>
                         <div className="text-left mt-2 text-muted">Published on: {published_date}</div>
+                        <div className="text-left mt-2 text-muted">avg: {over_allrating}</div>
         <hr/>
                         </div>
                         
