@@ -328,7 +328,7 @@ class Home extends Component {
                            />
                         </div>
                         <div className="col-md-2 p-0 mainBtn">
-                           <button className="btn btn-article-search color-white search-main-btns" type="submit">
+                           <button className="btn btn-article-search color-white search-main-btns" id="mainSearch" type="submit">
                               <i className="fas fa-search"></i>
                            </button>
                         </div>
@@ -360,8 +360,8 @@ class Home extends Component {
             </div>
                <section className="banner">
                   <div className='banner-title h1 d-flex justify-content-center align-items-center'>
-                     <h1 className='color-white font-weight-bold'>All Cures</h1>
-                     <div className='h2 color-white text-center'>Getting You Closer To Cures From Around The World</div>
+                     <h1 className='color-white font-weight-bold 'id="head1">All Cures</h1>
+                     <div className='h2 color-white text-center' id="head1">Getting You Closer To Cures From Around The World</div>
                   </div>
                </section>
                
@@ -440,7 +440,7 @@ class Home extends Component {
                                  </div>
                                  
                                  <div className="mainBtn col-md-1">
-                           <button type="submit" className=" btn btn-article-search color-white float-right" >
+                           <button type="submit" className=" btn btn-article-search color-white float-right" id="btnDoc">
                                  <i className="fas fa-search"></i>
                               </button>
                               </div>
