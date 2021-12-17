@@ -2868,7 +2868,11 @@ div.main-hero:first-child .card {
   left: 0;
   animation: time 5s linear;
 }
-
+.p1{
+  font-size: 2rem;
+  
+  
+}
 @keyframes time {
   0% {
     width: 100%;
