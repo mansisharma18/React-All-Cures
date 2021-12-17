@@ -1,6 +1,9 @@
 /* ----------- iPhone 4 and 4S ----------- */
 
 @media only screen and (min-device-width: 220px) and (max-device-width: 480px) {
+  #root{
+    width: 100%;
+  }
   form.sign {
     padding: 0px 5px;
   }
