@@ -1,37 +1,6 @@
 /* ----------- iPhone 4 and 4S ----------- */
 
 @media only screen and (min-device-width: 220px) and (max-device-width: 480px) {
-  #root{
-    width: 135%;
-  }
-  .doc-name {
-    margin-right: 26px;
-    margin-top: -15px;
-    margin-left: -5px;
-    margin-bottom: 0px;
-  }
-  .doc-name{
-    position: relative;
-    bottom: 90px;
-    left: 15px;
-  
-  }
-  .city-name{
-    position: relative;
-    bottom: 90px;
-    left: 15px;
-    
-  }
-  #head1{
-    position: relative;
-    bottom: 30px;
-  }
-  button#btnDoc {
-    position: relative;
-    bottom: 90px;
-    left: 15px
-  }
-
   form.sign {
     padding: 0px 5px;
   }
@@ -121,15 +90,30 @@
     padding: 5px;
   }
 
+  #signIn {
+    position: relative;
+    left: 130px;
+    width: 132px;
+    bottom: 31px;
+  }
   .serchlabel {
     margin-bottom: 50px;
   }
-  
+  .doc-name {
+    margin-right: 26px;
+    margin-top: 55px;
+    margin-left: -5px;
+    margin-bottom: 0px;
+  }
 
   .article-search {
     margin: 20px 0px 0px -5px;
   }
- 
+  .btn-article-search {
+    background-color: #00415e;
+    margin-right: 26px;
+    height: 52px;
+  }
 
   .city-name.col-md-5 {
     margin-left: -5px;
@@ -149,31 +133,6 @@
 
 /* Portrait and Landscape */
 @media only screen and (min-device-width: 320px) and (max-device-width: 568px) {
-
-  #root{
-    width: 135%;
-  }
-  .doc-name{
-    position: relative;
-    bottom: 90px;
-    left: 15px;
-  
-  }
-  .city-name{
-    position: relative;
-    bottom: 90px;
-    left: 15px;
-    
-  }
-  #head1{
-    position: relative;
-    bottom: 30px;
-  }
-  button#btnDoc {
-    position: relative;
-    bottom: 90px;
-    left: 15px
-  }
   #about {
     position: relative;
     top: 15px;
@@ -193,11 +152,21 @@
     font-size: 11px;
   }
 
- 
+  #signIn {
+    position: relative;
+    left: 130px;
+    width: 132px;
+    bottom: 31px;
+  }
   .serchlabel {
     margin-bottom: 50px;
   }
-
+  .doc-name {
+    margin-right: 26px;
+    margin-top: 55px;
+    margin-left: -5px;
+    margin-bottom: 0px;
+  }
 
   .article-search {
     margin: 20px 0px 0px -5px;
@@ -226,26 +195,6 @@
 
 /* Portrait and Landscape */
 @media only screen and (min-device-width: 375px) and (max-device-width: 914px) {
-  #root{
-    width: 135%;
-  }
-  .doc-name{
-    position: relative;
-    bottom: 90px;
-    left: 15px;
-  
-  }
-  .city-name{
-    position: relative;
-    bottom: 90px;
-    left: 15px;
-    
-  }
-  #head1{
-    position: relative;
-    bottom: 30px;
-  }
-
   #about {
     position: relative;
     top: 15px;
@@ -275,7 +224,7 @@
   }
   .doc-name {
     margin-right: 26px;
-    margin-top: -30px;
+    margin-top: 55px;
     margin-left: -5px;
     margin-bottom: 0px;
   }
@@ -283,7 +232,11 @@
   .article-search {
     margin: 0px 0px 0px -5px;
   }
-
+  .btn-article-search {
+    background-color: #00415e;
+    margin-right: 23px;
+    height: 56px;
+  }
 
   .city-name.col-md-5 {
     margin-left: -5px;
@@ -303,30 +256,6 @@
 
 /* Portrait and Landscape */
 @media only screen and (min-device-width: 414px) and (max-device-width: 736px) and (-webkit-min-device-pixel-ratio: 3) {
-  #root{
-    width: 135%;
-  }
-  .doc-name{
-    position: relative;
-    bottom: 90px;
-    left: 15px;
-  
-  }
-  .city-name{
-    position: relative;
-    bottom: 90px;
-    left: 15px;
-    
-  }
-  #head1{
-    position: relative;
-    bottom: 30px;
-  }
-  button#btnDoc {
-    position: relative;
-    bottom: 90px;
-    left: 15px
-  }
   #artBtn {
     font-size: 10px;
   }
@@ -359,7 +288,7 @@
   }
   .doc-name {
     margin-right: 26px;
-    margin-top: -30px;
+    margin-top: 55px;
     margin-left: -5px;
     margin-bottom: 0px;
   }
@@ -367,7 +296,11 @@
   .article-search {
     margin: 20px 0px 0px -5px;
   }
-
+  .btn-article-search {
+    background-color: #00415e;
+    margin-right: 23px;
+    height: 56px;
+  }
 
   .city-name.col-md-5 {
     margin-left: -5px;
@@ -387,30 +320,6 @@
 
 /* Portrait and Landscape */
 @media only screen and (min-device-width: 375px) and (max-device-width: 812px) and (-webkit-min-device-pixel-ratio: 3) {
-  #root{
-    width: 135%;
-  }
-  .doc-name{
-    position: relative;
-    bottom: 90px;
-    left: 15px;
-  
-  }
-  .city-name{
-    position: relative;
-    bottom: 90px;
-    left: 15px;
-    
-  }
-  #head1{
-    position: relative;
-    bottom: 30px;
-  }
-  button#btnDoc {
-    position: relative;
-    bottom: 90px;
-    left: 15px
-  }
   #about {
     position: relative;
     top: 15px;
@@ -456,11 +365,16 @@
   }
   .doc-name {
     margin-right: 26px;
-    margin-top: -30px;
+    margin-top: 55px;
     margin-left: -5px;
     margin-bottom: 0px;
   }
 
+  .btn-article-search {
+    background-color: #00415e;
+    margin-right: 23px;
+    height: 56px;
+  }
   .article-search {
     margin: -20px 0px 0px -5px;
   }
@@ -479,30 +393,6 @@
 }
 
 @media screen and (min-device-width: 360px) and (max-device-height: 740px) {
-  #root{
-    width: 135%;
-  }
-  .doc-name{
-    position: relative;
-    bottom: 90px;
-    left: 15px;
-  
-  }
-  .city-name{
-    position: relative;
-    bottom: 90px;
-    left: 15px;
-    
-  }
-  #head1{
-    position: relative;
-    bottom: 30px;
-  }
-  button#btnDoc {
-    position: relative;
-    bottom: 90px;
-    left: 15px
-  }
   #Article {
     font-size: 13px;
     padding: 5px;
@@ -526,7 +416,7 @@
   }
   .doc-name {
     margin-right: 26px;
-    margin-top: -20px;
+    margin-top: 0px;
     margin-left: -5px;
     margin-bottom: 0px;
   }
@@ -540,7 +430,11 @@
   .article-search {
     margin: 35px 0px 0px -5px;
   }
-
+  .btn-article-search {
+    background-color: #00415e;
+    margin-right: 23px;
+    height: 56px;
+  }
 
   .city-name.col-md-5 {
     margin-left: -5px;
@@ -560,9 +454,6 @@
 
 /* Portrait and Landscape */
 @media screen and (min-device-width: 320px) and (max-device-height: 640px) and (-webkit-device-pixel-ratio: 3) {
-
-
-
   #createArticle {
     position: relative;
     left: 20px;
@@ -589,6 +480,11 @@
   .article-search {
     margin: 20px 0px 0px -5px;
   }
+  .btn-article-search {
+    background-color: #00415e;
+    margin-right: 23px;
+    height: 56px;
+  }
 
   .city-name.col-md-5 {
     margin-left: -5px;
@@ -605,16 +501,6 @@
 }
 
 @media only screen and (min-device-width: 768px) and (max-device-width: 1024px) {
-
-  button#mainSearch {
-    margin-left: 90px;
-}
-
-  button#btnDoc {
-    margin-bottom: 90px;
-    margin-right: 15px;
-    height: 56px;
-}
   #docRate {
     position: relative;
     top: 40px;
@@ -716,7 +602,12 @@
   .article-search {
     margin: 20px 0px 0px -5px;
   }
-
+  .btn-article-search {
+    background-color: #00415e;
+    margin-right: 25px;
+    height: 56px;
+    width: 74px;
+  }
 
   .city-name.col-md-5 {
     margin-top: 80px;
@@ -798,7 +689,12 @@
   .article-search {
     margin: 20px 0px 0px -5px;
   }
-
+  .btn-article-search {
+    background-color: #00415e;
+    margin-right: 25px;
+    height: 56px;
+    width: 74px;
+  }
 
   .city-name.col-md-5 {
     margin-top: 110px;
@@ -819,7 +715,7 @@
   .doc-name {
     width: 250px;
     margin-top: -90px;
-    margin-left: 40px;
+    margin-left: -5px;
   }
 
   .article-search {
@@ -955,7 +851,12 @@
     margin-left: -20px;
   }
 
-
+  .btn-article-search {
+    background-color: #00415e;
+    margin-right: 25px;
+    height: 56px;
+    width: 74px;
+  }
 
   .city-name.col-md-5 {
     margin-top: 110px;
