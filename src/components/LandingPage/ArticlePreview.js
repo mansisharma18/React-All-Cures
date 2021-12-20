@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { backendHost } from '../../api-config';
 import { Link } from 'react-router-dom'
 import CenterWell from '../Disease/CenterWell'
-
+import PreviewImg from '../../assets/healthcare/img/images/Trending-Cures/yoga.jpg'
 const ArticlePreview = (props) => {
     const [items, setItems] = useState([])
     const [isLoaded, setLoaded] = useState(false)
@@ -75,7 +75,6 @@ const ArticlePreview = (props) => {
                 }
               }
             e.target.parentElement.classList.add('active')
-
         }
     }
 
@@ -104,7 +103,7 @@ const ArticlePreview = (props) => {
                </div>
                <ul>
                   <li role="presentation" class="active ">
-                     <button className="btn mr-2 my-2" onClick={(e) => articleFilterClick(e, 'recent')}>Recent</button>
+                     <button className="btn mr-2" onClick={(e) => articleFilterClick(e, 'recent')}>Recent</button>
                   </li>
                   <li role="presentation">
                      <button className="btn mr-2" onClick={(e) => articleFilterClick(e, 'earliest')}>Earliest</button>
@@ -119,7 +118,7 @@ const ArticlePreview = (props) => {
                      <button className="btn mr-2" onClick={(e) => articleFilterClick(e, 'arthritis')}>Arthritis</button>
                   </li>
                   <li role="presentation">
-                     <button className="btn mr-2 my-2" onClick={(e) => articleFilterClick(e, 'anemia')}>Anemia</button>
+                     <button className="btn mr-2" onClick={(e) => articleFilterClick(e, 'anemia')}>Anemia</button>
                   </li>
                   {/* <li role="presentation">
                      <button className="btn" onClick={(e) => articleFilterClick(e, 'recent')}>Most Rated</button>
@@ -137,21 +136,20 @@ const ArticlePreview = (props) => {
                 {items.filter((i, idx) => idx < 9).map((i) => {
                     var content = []
                     var contentBlocks = []
-                    // if(i.content){
-                    //     content = JSON.parse(decodeURIComponent(i.content))
-                    //     contentBlocks = content.blocks
-                    //     console.log(contentBlocks)
-                    // }
-                    // console.log('blocks: ',contentBlocks)
+                    if(i.content){
+                        console.log(i.content)
+                        content = JSON.parse(decodeURIComponent(i.content.includes('%22%7D%7D%5D%7D')?i.content: i.content.replaceAll('%7D', '%22%7D%7D%5D%7D')))
+                        contentBlocks = content.blocks
+                    }
                     return(
                     <div className="col-4">
-                    {/* <Link to={`/cure/${i.article_id}`} className='color-gray'> */}
                     <div className="card my-2 w-100">
+                        <div className='card-img'><img src={PreviewImg} width="250px"/></div>
                         <div className="card-body">
-                            <h5 className="card-title">{i.title}</h5>
+                            <h5 className="card-title text-capitalize">{i.title.toLowerCase()}</h5>
                             <div className="card-info">
-                                <h6 className="card-subtitle mb-2 text-muted">
-                                    {i.window_title}
+                                <h6 className="card-subtitle mb-2 text-muted text-capitalize">
+                                    {i.window_title.toLowerCase()}
                                 </h6>
                                 <p className="card-text card-article-content-preview">
                                     {
