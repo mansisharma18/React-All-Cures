@@ -19,6 +19,7 @@ import 'react-phone-number-input/style.css';
 import HelmetMetaData from '../HelmetMetaData';
 import {FacebookShareButton, FacebookIcon, TwitterIcon, TwitterShareButton, WhatsappIcon, WhatsappShareButton} from "react-share";
 import Cookies from 'js-cookie'
+import WriterImg from '../../assets/healthcare/img/images/special-1.jpg'
 
 class Disease extends Component {
   constructor(props) {
@@ -184,13 +185,19 @@ class Disease extends Component {
         <>
         <div className="col-12">
           <div className="card my-4 ">
-            <div className="card-body">
-                <h5 className="h6"> {item.comments}</h5>
-                <div className="card-info">
-                    <h6 className="card-subtitle mb-2 text-muted">
-                      <b>By :  </b>  {item.first_name} {item.last_name}
-                    </h6>
-                </div>
+            <div className="card-body d-flex">
+              <div className='comment-img'>
+                <i className="fas fa-user-md fa-4x pl-3 mb-2"></i>
+                <h6 className="card-subtitle mb-2 text-muted">
+                        <b>By :  </b>  {item.first_name} {item.last_name}
+                      </h6>
+              </div>
+              <div>
+                <h5 className="h5 mt-3"> {item.comments}</h5>
+                  <div className="card-info">
+                  </div>
+              </div>
+                
             </div>
           </div>
         </div>
@@ -279,7 +286,7 @@ class Disease extends Component {
           {/* <img src={Wall} height="200px" width="1900px"/> */}
         </div>
         <Row>
-          <Col md={2} id="sidebar-wrapper" className=' pb-3'>      
+          <Col md={2} id="sidebar-wrapper" className='left-menu pb-3'>      
             <Sidebar diseaseId={items.disease_condition_id} id={this.props.match.params.id}  name={items.dc_name} />
           </Col>
           <Col  md={7} id="page-content-wrapper" className="col-xs-12 pb-5">
@@ -426,8 +433,25 @@ class Disease extends Component {
                   />
                 ))}
               </div>
+                  <div className='text-muted text-left ml-3 mb-4'>Published on: {items.published_date}</div>
+              {/* Author */}
 
-              {/* Review Button (Rating + Comment) */}
+              <div className='about-writer d-flex mb-4'>
+                <div id="writer-img ml-3">
+                  <img src={WriterImg} width='200px' height="150px" />
+                </div>
+                <div className="writer-info ml-3">
+                  <div className='h5 mt-4 rounded'></div>
+                  <div>Dr. John Doe</div>
+                  <div>Anatomy Specialist</div>
+                </div>
+              </div>
+              
+              
+            
+            </div>
+            <div id="comments-column">
+                  {/* Review Button (Rating + Comment) */}
               {
                 Cookies.get('acPerm')?
                   <>              
@@ -451,7 +475,7 @@ class Disease extends Component {
             {
               this.state.comment?
                 this.state.comment.length > 1 &&
-                  <button id="show-hide-comments" className="white-button-shadow btn w-100" 
+                  <button id="show-hide-comments" className="white-button-shadow btn w-75 mb-4 ml-3" 
                     onClick={() => {
                       this.state.showMore?
                       this.setState({
@@ -469,8 +493,6 @@ class Disease extends Component {
                   </button>
                 : null
             }
-            
-      
             </div>
           </Col> 
           <Col id="sidebar-wrapper">      

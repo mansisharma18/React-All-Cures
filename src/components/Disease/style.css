@@ -71,7 +71,6 @@ dragHandle {
 #sidebar-wrapper {
   border: 0.1rem solid #b9daf1;
   height: fit-content;
-  min-height: 60vh !important;
   /*width: 100vw;
 margin-left: -1rem;
 padding-left: 2rem;
@@ -159,6 +158,9 @@ background-color: #b9daf1; */
   width: 62%;
 }
 
+#sidebar-wrapper.left-menu {
+  background: #c8f5ff;
+}
 @media only screen and (max-width: 968px) {
   .article-title-container .h2 {
     width: 100%;
@@ -204,4 +206,14 @@ background-color: #b9daf1; */
 
 .socialMediaButton {
   margin-right: 4px;
+}
+
+.about-writer #writer-img {
+  border-radius: 10rem;
+}
+
+#comments-column {
+  margin-top: 2rem;
+  border: 0.1rem solid #b9daf1;
+  border-radius: 0.8rem;
 }
