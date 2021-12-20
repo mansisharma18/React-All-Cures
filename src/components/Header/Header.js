@@ -324,7 +324,7 @@ function ToggleButton(props) {
        return(
          <>
          <Dropdown>
-           <Dropdown.Toggle  className="header-drop text-capitalize">
+           <Dropdown.Toggle  className="header-drop text-capitalize" id="dropHead">
            <img className='filter-white mr-1' src={List} height="30px" />
            <img className='filter-white' src={Account} height="30px" />
            </Dropdown.Toggle>

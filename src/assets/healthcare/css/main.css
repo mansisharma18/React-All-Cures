@@ -985,7 +985,7 @@ a.appointmentBtn {
 
 #specialists .slider-heading h5,
 #doctor .slider-heading h5 {
-  padding: 28px 0px 28px 37px;
+
   color: #fff;
   font-size: 16px;
   text-transform: capitalize;
@@ -2951,7 +2951,7 @@ div.main-hero:first-child .card {
 } */
 
 #main-hero .card {
-  min-height: 16.55rem;
+  min-height: 36.5rem;
 }
 
 .card-article-content-preview .ce-block {
@@ -2990,6 +2990,34 @@ div.main-hero:first-child .card {
 
 .cures-tab-chips {
   position: absolute;
-  right: 1rem;
-  bottom: 1rem;
+  right: 0.5rem;
+  bottom: 0;
+}
+
+@media only screen and (max-width: 768px) {
+  #main-hero .card {
+    min-height: fit-content;
+  }
+  .cures-search-tab {
+    flex-direction: column;
+  }
+
+  .cures-tab-chips {
+    position: absolute;
+    right: 0.5rem;
+    bottom: 0;
+  }
+
+  #posts-container .chip {
+    display: inline-block;
+    padding: 0px 12px;
+    height: 28px;
+    font-size: 12px;
+    line-height: 26px;
+    border-radius: 2px;
+  }
+}
+
+.btn:focus {
+  box-shadow: 0 0 0 0;
 }

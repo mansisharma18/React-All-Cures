@@ -110,9 +110,9 @@ export default class Carousel2 extends Component {
                   <div className="slider-heading">
                      <h2>Dr. {i.map.docname_first} {i.map.docname_last}</h2>
                      <p>{i.map.primary_spl}</p>
-                     <h5 className="text-center">{i.map.hospital_affliated} {i.map.state} {i.map.country_code}</h5>
+                     <h5 className="text-center"id="head5">{i.map.hospital_affliated} {i.map.state} {i.map.country_code}</h5>
                   </div>
-                  <Link to="{ `/profile/${rowno}` }" className="appointmentBtn allBtn">Visit Profile</Link>
+                  <Link to="{ `/profile/${rowno}` }" className="appointmentBtn allBtn" id="visitDoc">Visit Profile</Link>
                </div>
             </div>
          ))}
