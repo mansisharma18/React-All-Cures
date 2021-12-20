@@ -200,12 +200,12 @@ import List from '../../assets/icon/icons-AllCures/list_black_48dp.svg'
                                           this.state.diseaseTitle 
                                           : [] 
                                        : []}
-                                       sx={{ width: 403 }}
+                                       sx={{ width: 300 }}
                                        renderInput={(params) => <TextField {...params} label="Search Cures" />}
                                     />
                                  </div>
                                  <div className="col-md-2 p-0 mainBtn">
-                                    <button className="btn btn-article-search search-main-btns color-white" type="submit">
+                                    <button className="btn btn-article-search search-main-btns color-white" id="searchHead"type="submit">
                                        <i className="fas fa-search" id="iconSearch"></i>
                                     </button>
                                  </div>

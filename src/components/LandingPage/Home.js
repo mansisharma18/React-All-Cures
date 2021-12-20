@@ -322,13 +322,13 @@ class Home extends Component {
                                     : [] 
                                  : []
                               }
-                              sx={{ width: 400 }}
+                              sx={{ width: 300 }}
                               
                               renderInput={(params) => <TextField {...params} label="Search Cures" />}
                            />
                         </div>
                         <div className="col-md-2 p-0 mainBtn">
-                           <button className="btn btn-article-search color-white search-main-btns" type="submit">
+                           <button className="btn btn-article-search color-white search-main-btns" id="mainSearch" type="submit">
                               <i className="fas fa-search"></i>
                            </button>
                         </div>
@@ -360,8 +360,8 @@ class Home extends Component {
             </div>
                <section className="banner">
                   <div className='banner-title h1 d-flex justify-content-center align-items-center'>
-                     <h1 className='color-white font-weight-bold'>All Cures</h1>
-                     <div className='h2 color-white text-center'>Getting You Closer To Cures From Around The World</div>
+                     <h1 className='color-white font-weight-bold 'id="head1">All Cures</h1>
+                     <div className='h2 color-white text-center' id="head1">Getting You Closer To Cures From Around The World</div>
                   </div>
                </section>
                
@@ -380,7 +380,7 @@ class Home extends Component {
                    			<div className="form-group search"> */}
                             <div className="col-md-12 p-0">
                             <div className="row">
-                            <div className="doc-name col-md-6 col-sm-12">
+                            <div className="doc-name col-md-6 col-sm-12"id="homeDoc">
                             <Autocomplete className="bg-white color-black"
                               freeSolo
                               value={this.state.name}
@@ -413,7 +413,7 @@ class Home extends Component {
                               </div> */}
                               {/* <div className="col-md-5 pd-0 col-sx-12 col-sm-4">
                                  <div className="form-group city zipcode"> */}
-                                 <div className="city-name col-md-5">
+                                 <div className="city-name col-md-5" id="homeCity">
                                  <Autocomplete className="bg-white p-0 color-black"
                               freeSolo
                               value={this.state.city}
@@ -440,7 +440,7 @@ class Home extends Component {
                                  </div>
                                  
                                  <div className="mainBtn col-md-1">
-                           <button type="submit" className=" btn btn-article-search color-white float-right" >
+                           <button type="submit" className=" btn btn-article-search color-white float-right" id="btnDoc">
                                  <i className="fas fa-search"></i>
                               </button>
                               </div>
@@ -690,7 +690,7 @@ function ToggleButton(props) {
       <>
       <button 
          className="btn primary-btn-color text-light loginSignbtn color-blue-darks" 
-         id="signIn"
+       
          variant="dark" 
          style={{width: '10rem'}}
          onClick={() => props.setModalShow(true)}

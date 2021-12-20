@@ -719,6 +719,10 @@ h6 {
   margin: 20px 0 0 31px;
 }
 
+.cures-search .tab-nav ul {
+  margin: 0;
+}
+
 .tab-nav ul li a {
   color: #8c8c8c;
   background: #e3e3e3;
@@ -2730,7 +2734,7 @@ div.MuiSelect-root.MuiSelect-select.MuiSelect-selectMenu.MuiInputBase-input.MuiI
   height: 38px;
   font-size: 16px;
   line-height: 38px;
-  border-radius: 25px;
+  border-radius: 2px;
   background-color: #f1f1f1;
 }
 .bg-review {
@@ -2868,10 +2872,8 @@ div.main-hero:first-child .card {
   left: 0;
   animation: time 5s linear;
 }
-.p1{
+.p1 {
   font-size: 2rem;
-  
-  
 }
 @keyframes time {
   0% {
@@ -2971,3 +2973,23 @@ div.main-hero:first-child .card {
 /* .cdx-block {
   padding: 0;
 } */
+.article-title {
+  color: #000;
+}
+
+.cures-search-tab {
+  flex-direction: row;
+}
+
+.cures-tab-img {
+  background: url("../../healthcare/img/images/Trending-Cures/yoga.jpg") center
+    center no-repeat;
+  background-size: cover;
+  height: 13.5rem;
+}
+
+.cures-tab-chips {
+  position: absolute;
+  right: 1rem;
+  bottom: 1rem;
+}

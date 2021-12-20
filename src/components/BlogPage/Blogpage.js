@@ -18,7 +18,8 @@ export default class Blogpage extends Component{
           isLoaded: false,
           regionPostsLoaded: false,
           country: new URLSearchParams(this.props.location.search).get('c'),
-          diseaseCondition: new URLSearchParams(this.props.location.search).get('dc')
+          diseaseCondition: new URLSearchParams(this.props.location.search).get('dc'),
+          articleFilter: 'recent'
         };
       }
     
@@ -28,6 +29,51 @@ export default class Blogpage extends Component{
         fetch(`${backendHost}/article/allkv`)
           .then((res) => res.json())
           .then((json) => {
+            var temp = []
+              if(this.state.articleFilter === 'recent'){
+                
+                json.forEach(i => {
+                    if(i.pubstatus_id === 3){
+                        temp.push(i)
+                    }
+                });
+                this.setState({isLoaded: true, items: temp})
+              } else if(this.state.articleFilter === 'earliest'){
+                  json.forEach(i => {
+                      if(i.pubstatus_id === 3){
+                          temp.push(i)
+                      }
+                  });
+                  this.setState({isLoaded: true, items: temp.reverse()})
+              } else if(this.state.articleFilter === 'diabetes'){
+                  json.forEach(i => {
+                      if(i.dc_name === 'Diabetes' && i.pubstatus_id === 3){
+                          temp.push(i)
+                      }
+                  });
+                  this.setState({isLoaded: true, items: temp})
+              } else if(this.state.articleFilter === 'neurology'){
+                  json.forEach(i => {
+                      if(i.dc_name === 'Neurology' && i.pubstatus_id === 3){
+                          temp.push(i)
+                      }
+                  });
+                  this.setState({isLoaded: true, items: temp})
+              } else if(this.state.articleFilter === 'arthritis'){
+                  json.forEach(i => {
+                      if(i.dc_name === 'Arthritis' && i.pubstatus_id === 3){
+                          temp.push(i)
+                      }
+                  });
+                  this.setState({isLoaded: true, items: temp})
+              } else if(this.state.articleFilter === 'anemia'){
+                  json.forEach(i => {
+                      if(i.dc_name === 'Anemia' && i.pubstatus_id === 3){
+                          temp.push(i)
+                      }
+                  });
+                  this.setState({isLoaded: true, items: temp})
+              }
             this.setState({
               isLoaded: true,
               items: json,
@@ -100,6 +146,7 @@ export default class Blogpage extends Component{
         if ( prevProps.match.params.type !== this.props.match.params.type){
           this.diseasePosts(this.props.match.params.type)
         }
+        console.log(prevProps)
         // window.addEventListener('scroll', this.handleScroll, {
         //   passive: true
         // });
@@ -126,11 +173,40 @@ export default class Blogpage extends Component{
             <>
             <Header history={this.props.history}/>
             
-                <div className="container my-4">
+                <div className="container cures-search my-4">
                   {
                     this.props.match.params.type?
                     <div className="h3 text-capitalize text-center font-weight-bold mb-4">Cures Related to "{this.props.match.params.type.toLowerCase()}"</div>
-                    :null
+                    :<div class="tab-nav">
+                    <div class="comman-heading">
+                       <div class="h3 mb-4 text-capitalize mr-5">
+                          Recent Cures
+                       </div>
+                    </div>
+                    <ul>
+                       <li role="presentation" class="active ">
+                          <button className="btn mr-2" onClick={(e) => this.setState({ articleFilter: 'recent'}, () => this.allPosts())}>Recent</button>
+                       </li>
+                       <li role="presentation">
+                          <button className="btn mr-2" onClick={(e) => this.setState({ articleFilter: 'earliest'}, () => this.allPosts())}>Earliest</button>
+                       </li>
+                       <li role="presentation">
+                          <button className="btn mr-2" onClick={(e) => this.setState({ articleFilter: 'diabetes'}, () => this.allPosts())}>Diabetes</button>
+                       </li>
+                       <li role="presentation">
+                          <button className="btn mr-2" onClick={(e) => this.setState({ articleFilter: 'neurology'}, () => this.allPosts())}>Neurology</button>
+                       </li>
+                       <li role="presentation">
+                          <button className="btn mr-2" onClick={(e) => this.setState({ articleFilter: 'arthritis'}, () => this.allPosts())}>Arthritis</button>
+                       </li>
+                       <li role="presentation">
+                          <button className="btn mr-2" onClick={(e) => this.setState({ articleFilter: 'anemia'}, () => this.allPosts())}>Anemia</button>
+                       </li>
+                       {/* <li role="presentation">
+                          <button className="btn" onClick={(e) => articleFilterClick(e, 'recent')}>Most Rated</button>
+                       </li> */}
+                    </ul>
+                 </div>
                   }
                     <div className="row" id="posts-container">
                     {items.map((i) => (

@@ -206,7 +206,7 @@ class Footer extends Component {
                         {/* <PhoneInput className="rounded form-input" placeholder="Enter your number" type="number" value={mobile} onChange={(e) => setMobile(e.target.value)} required/> */}
                         {/* <button className="btn appBtn rounded" type="submit" >Subscribe</button> */}
                         <button className="btn appBtn rounded" onClick={( ) => {this.postSubscribtion()}}>
-                                   Submit
+                                   Subscribe
                                 </button>
                         {/* <a href="/#" className="appBtn">Google Play</a> */}
                         {/* </form> */}
