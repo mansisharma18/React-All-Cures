@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import CenterWell from '../Disease/CenterWell'
+import CenterWell from '../Disease/CenterWell';
 const AllPost = ({id, title, content, f_title, w_title, country, type, published_date,over_allrating}) => {
     console.log(content)
         return (
@@ -45,7 +45,7 @@ const AllPost = ({id, title, content, f_title, w_title, country, type, published
                                             url = {j.data.url}
                                         />
                                     ))
-                                    :null
+                                    : null
                                     : null
                                 }
                         </div>

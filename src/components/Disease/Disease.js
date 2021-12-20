@@ -426,11 +426,6 @@ class Disease extends Component {
                 ))}
               </div>
 
-            
-             
-
-             
-
               {/* Review Button (Rating + Comment) */}
               {
                 Cookies.get('acPerm')?

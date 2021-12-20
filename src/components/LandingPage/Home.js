@@ -690,7 +690,7 @@ function ToggleButton(props) {
       <>
       <button 
          className="btn primary-btn-color text-light loginSignbtn color-blue-darks" 
-         id="signIn"
+       
          variant="dark" 
          style={{width: '10rem'}}
          onClick={() => props.setModalShow(true)}

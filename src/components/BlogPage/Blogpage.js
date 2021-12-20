@@ -26,6 +26,7 @@ export default class Blogpage extends Component{
     
 
       allPosts() {                        // For all available blogs "/blogs"
+        console.log('All posts called', this.state.limit)
         fetch(`${backendHost}/article/allkv`)
           .then((res) => res.json())
           .then((json) => {
@@ -259,8 +260,8 @@ export default class Blogpage extends Component{
                             : null)}
                             type = {i.type}
                             published_date = {i.published_date}
-                            over_allrating = {i.over_allrating}
                             key = {i.article_id}
+                            over_allrating={i.over_allrating}
                             allPostsContent={() => this.allPosts()}
                         />
                         : null

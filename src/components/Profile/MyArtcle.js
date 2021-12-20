@@ -27,9 +27,15 @@ export default class Blogpage extends Component{
         fetch(`${backendHost}/article/allkv`)
           .then((res) => res.json())
           .then((json) => {
+            var temp = []
+            json.forEach(i => {
+              if(parseInt(Cookies.get('acPerm').split('|')[0]) === parseInt(i.published_by)){
+                temp.push(i)
+              }
+            });
             this.setState({
               isLoaded: true,
-              items: json,
+              items: temp,
             });
           })
           .catch(err => 
@@ -60,7 +66,24 @@ export default class Blogpage extends Component{
           <Footer/>
         </>  
       );
+    } else if(isLoaded && items.length === 0) {
+     
+        return(
+          <>
+          <Header history={this.props.history} url={this.props.match.url}/>
+            <Container className="mt-5 my-5 loading">
+            {/* <h3 className="pt-5 text-center"><span className="icon-loupe "></span></h3> */}
+            <h3 className="mt-3 text-center">You Have Not Create Any Cures Yet </h3>
+            <h3 className="mt-3 text-center">Create A Cure  <a href='/article'>"Here"</a><hr/> </h3>
+
+           
+            </Container>
+          <Footer/>
+          </>
+        );
+      
     } else if(isLoaded){
+      console.log(items)
         return(
             <>
             <Header history={this.props.history}/>
