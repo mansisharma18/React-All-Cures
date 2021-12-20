@@ -1,6 +1,18 @@
 /* ----------- iPhone 4 and 4S ----------- */
 
 @media only screen and (min-device-width: 220px) and (max-device-width: 480px) {
+  .breadcrumb{
+    padding: 2rem 1rem;
+  }
+  #share-icons-regions{
+     position: relative;
+     top: 60px;
+  }
+  #s1{
+    font-size: 20px;
+    position: relative;
+    bottom: 10px;
+  }
   #starMob
   {
     font-size: 20px;
@@ -188,6 +200,18 @@
 
 /* Portrait and Landscape */
 @media only screen and (min-device-width: 320px) and (max-device-width: 568px) {
+  .breadcrumb{
+    padding: 2rem 1rem;
+  }
+  #share-icons-regions{
+     position: relative;
+     top: 60px;
+  }
+  #s1{
+    font-size: 20px;
+    position: relative;
+    bottom: 10px;
+  }
   #starMob
   {
     font-size: 20px;
@@ -304,6 +328,18 @@
 
 /* Portrait and Landscape */
 @media only screen and (min-device-width: 375px) and (max-device-width: 914px) {
+  .breadcrumb{
+    padding: 2rem 1rem;
+  }
+  #share-icons-regions{
+     position: relative;
+     top: 60px;
+  }
+  #s1{
+    font-size: 20px;
+    position: relative;
+    bottom: 10px;
+  }
   #starMob
   {
     font-size: 20px;
@@ -427,6 +463,18 @@
 
 /* Portrait and Landscape */
 @media only screen and (min-device-width: 411px) and (max-device-width: 732px)  {
+  .breadcrumb{
+    padding: 2rem 1rem;
+  }
+  #share-icons-regions{
+     position: relative;
+     top: 60px;
+  }
+  #s1{
+    font-size: 20px;
+    position: relative;
+    bottom: 10px;
+  }
   #starMob
   {
     font-size: 20px;
@@ -548,6 +596,18 @@
 }
 
 @media screen and (min-device-width: 360px) and (max-device-height: 740px) {
+  .breadcrumb{
+    padding: 2rem 1rem;
+  }
+  #share-icons-regions{
+     position: relative;
+     top: 60px;
+  }
+  #s1{
+    font-size: 20px;
+    position: relative;
+    bottom: 10px;
+  }
   #starMob
   {
     font-size: 20px;
@@ -657,6 +717,18 @@
 
 /* Portrait and Landscape */
 @media screen and (min-device-width: 320px) and (max-device-height: 640px)  {
+  .breadcrumb{
+    padding: 2rem 1rem;
+  }
+  #share-icons-regions{
+     position: relative;
+     top: 60px;
+  }
+  #s1{
+    font-size: 20px;
+    position: relative;
+    bottom: 10px;
+  }
   #starMob
   {
     font-size: 20px;

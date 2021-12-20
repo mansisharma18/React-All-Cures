@@ -284,14 +284,15 @@ class Disease extends Component {
           </Col>
           <Col  md={7} id="page-content-wrapper" className="col-xs-12 pb-5">
             <div id="center-well" className="">
-              <Breadcrumb>
-                <Breadcrumb.Item className='mt-1 pb-2' href="/">Home</Breadcrumb.Item>                                     
-                <Breadcrumb.Item className='mt-1'>
+              <Breadcrumb >
+                   
+                <Breadcrumb.Item className='mt-1 pb-2' href="/"id="s1">Home</Breadcrumb.Item>                                     
+                <Breadcrumb.Item className='mt-1'id="s1">
                   <Link to="/cures">
                     Cures
                   </Link>
                 </Breadcrumb.Item>
-                <Breadcrumb.Item className='mt-1'>
+                <Breadcrumb.Item className='mt-1'id="s1">
                   <Link to={`/cures/${items.dc_name}`}>
                     {items.dc_name}
                   </Link>
