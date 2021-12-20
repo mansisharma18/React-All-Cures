@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import CenterWell from '../Disease/CenterWell'
+import CenterWell from '../Disease/CenterWell';
 const AllPost = ({id, title, content, f_title, w_title, country, type, published_date,over_allrating}) => {
         return (
             <>
@@ -27,9 +27,8 @@ const AllPost = ({id, title, content, f_title, w_title, country, type, published
                             <div className="card-subtitle text-muted text-capitalize">{w_title.toLowerCase()}</div>
                             <div className='card-article-content-preview'>
                             {
-                                    content !== undefined ?
-                                        JSON.parse(content)?
-                                    JSON.parse(content).blocks.map((j, idx) => idx<1 && (
+                                    content && JSON.parse(content) ?
+                                    JSON.parse(content).blocks.map((j) => (
                                         <CenterWell
                                             content = {j.data.content}
                                             type = {j.type}
@@ -44,11 +43,11 @@ const AllPost = ({id, title, content, f_title, w_title, country, type, published
                                             url = {j.data.url}
                                         />
                                     ))
-                                    :null
                                     : null
                                 }
                         </div>
                         <div className="text-left mt-2 text-muted">Published on: {published_date}</div>
+        <hr/>
                         </div>
                         <div className='cures-tab-chips'>
                                 {
