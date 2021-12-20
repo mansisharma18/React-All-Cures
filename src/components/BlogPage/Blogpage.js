@@ -17,6 +17,7 @@ export default class Blogpage extends Component{
           items: [],
           isLoaded: false,
           regionPostsLoaded: false,
+          articleFilter: 'Recent',
           country: new URLSearchParams(this.props.location.search).get('c'),
           diseaseCondition: new URLSearchParams(this.props.location.search).get('dc'),
           articleFilter: 'recent'
@@ -73,11 +74,6 @@ export default class Blogpage extends Component{
                   });
                   this.setState({isLoaded: true, items: temp})
               }
-            this.setState({
-              isLoaded: true,
-              items: json,
-              maxLimit: json.length
-            });
           })
           .catch(err => console.log(err))
       }
@@ -131,6 +127,21 @@ export default class Blogpage extends Component{
       // React.useEffect(() => {
         
       // }, []);
+
+      articleFilterClick(e, filter) {
+        this.setState({articleFilter: filter})
+        console.log(e.target.parentNode.parentElement.children)
+        var siblings = e.target.parentNode.parentElement.children
+        if(siblings){
+            for(var i=0;i<siblings.length; i++){
+                if(siblings[i].className =='active'){
+                    siblings[i].classList.remove('active')
+                }
+              }
+            e.target.parentElement.classList.add('active')
+        }
+    }
+
       componentDidMount() {
         if(this.state.param.type){
           this.diseasePosts()
@@ -141,11 +152,14 @@ export default class Blogpage extends Component{
         }
       }
 
-      componentDidUpdate(prevProps){
-        if ( prevProps.match.params.type !== this.props.match.params.type){
+      componentDidUpdate(prevProps, prevState){
+        if ( prevProps.match.params.type !== this.props.match.params.type ){
           this.diseasePosts(this.props.match.params.type)
         }
-        console.log(prevProps)
+        console.log(prevState)
+        if( prevState.items !== this.state.items ){
+          console.log('items changed')
+        }
         // window.addEventListener('scroll', this.handleScroll, {
         //   passive: true
         // });
@@ -179,27 +193,51 @@ export default class Blogpage extends Component{
                     :<div class="tab-nav">
                     <div class="comman-heading">
                        <div class="h3 mb-4 text-capitalize mr-5">
-                          Recent Cures
+                          {this.state.articleFilter} Cures
                        </div>
                     </div>
                     <ul>
-                       <li role="presentation" class="active ">
-                          <button className="btn mr-2" onClick={(e) => this.setState({ articleFilter: 'recent'}, () => this.allPosts())}>Recent</button>
+                       <li role="presentation" >
+                          <button className="btn mr-2" 
+                          onClick={(e) => this.setState({ articleFilter: 'recent'}, () => {
+                            this.allPosts()
+                            this.articleFilterClick(e, 'recent')
+                            })}>Recent</button>
                        </li>
                        <li role="presentation">
-                          <button className="btn mr-2" onClick={(e) => this.setState({ articleFilter: 'earliest'}, () => this.allPosts())}>Earliest</button>
+                          <button className="btn mr-2" 
+                          onClick={(e) => this.setState({ articleFilter: 'earliest'}, () => {
+                            this.allPosts()
+                            this.articleFilterClick(e, 'earliest')
+                            })}>Earliest</button>
                        </li>
                        <li role="presentation">
-                          <button className="btn mr-2" onClick={(e) => this.setState({ articleFilter: 'diabetes'}, () => this.allPosts())}>Diabetes</button>
+                          <button className="btn mr-2" 
+                          onClick={(e) => this.setState({ articleFilter: 'diabetes'}, () => {
+                            this.allPosts()
+                            this.articleFilterClick(e, 'diabetes')
+                            })}>Diabetes</button>
                        </li>
                        <li role="presentation">
-                          <button className="btn mr-2" onClick={(e) => this.setState({ articleFilter: 'neurology'}, () => this.allPosts())}>Neurology</button>
+                          <button className="btn mr-2" 
+                          onClick={(e) => this.setState({ articleFilter: 'neurology'}, () => {
+                            this.allPosts()
+                            this.articleFilterClick(e, 'neurology')
+                            })}>Neurology</button>
                        </li>
                        <li role="presentation">
-                          <button className="btn mr-2" onClick={(e) => this.setState({ articleFilter: 'arthritis'}, () => this.allPosts())}>Arthritis</button>
+                          <button className="btn mr-2" 
+                          onClick={(e) => this.setState({ articleFilter: 'arthritis'}, () => {
+                            this.allPosts()
+                            this.articleFilterClick(e, 'arthritis')
+                            })}>Arthritis</button>
                        </li>
                        <li role="presentation">
-                          <button className="btn mr-2" onClick={(e) => this.setState({ articleFilter: 'anemia'}, () => this.allPosts())}>Anemia</button>
+                          <button className="btn mr-2" 
+                          onClick={(e) => this.setState({ articleFilter: 'anemia'}, () => {
+                            this.allPosts()
+                            this.articleFilterClick(e, 'anemia')
+                            })}>Anemia</button>
                        </li>
                        {/* <li role="presentation">
                           <button className="btn" onClick={(e) => articleFilterClick(e, 'recent')}>Most Rated</button>
@@ -216,7 +254,9 @@ export default class Blogpage extends Component{
                             f_title = {i.friendly_name}
                             w_title = {i.window_title}
                             country = {i.country_id}
-                            content = {decodeURIComponent(i.content)}
+                            content = {decodeURIComponent(i.content? i.content.includes('%22%7D%7D%5D%7D')?
+                            i.content: i.content.replaceAll('%7D', '%22%7D%7D%5D%7D')
+                            : null)}
                             type = {i.type}
                             published_date = {i.published_date}
                             over_allrating = {i.over_allrating}

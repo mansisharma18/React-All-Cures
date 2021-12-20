@@ -150,6 +150,7 @@
 
   .tab-nav ul li {
     margin-right: 9px !important;
+    margin-bottom: 0.6rem;
   }
 
   .comman-heading {
@@ -454,15 +455,6 @@
 
   #posts-container {
     margin: auto;
-  }
-
-  #posts-container .chip {
-    display: inline-block;
-    padding: 0 14px;
-    height: 26px;
-    font-size: 13px;
-    line-height: 26px;
-    border-radius: 20px;
   }
 
   #posts-container .chip.country {

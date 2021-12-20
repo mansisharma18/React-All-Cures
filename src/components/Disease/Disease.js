@@ -285,44 +285,48 @@ class Disease extends Component {
           <Col  md={7} id="page-content-wrapper" className="col-xs-12 pb-5">
             <div id="center-well" className="">
               <Breadcrumb>
-                <Breadcrumb.Item href="/">Home</Breadcrumb.Item>                                     
-                <Breadcrumb.Item>
+                <Breadcrumb.Item className='mt-1 pb-2' href="/">Home</Breadcrumb.Item>                                     
+                <Breadcrumb.Item className='mt-1'>
                   <Link to="/cures">
                     Cures
                   </Link>
                 </Breadcrumb.Item>
-                <Breadcrumb.Item>
+                <Breadcrumb.Item className='mt-1'>
                   <Link to={`/cures/${items.dc_name}`}>
                     {items.dc_name}
                   </Link>
                 </Breadcrumb.Item>
                 
+                <div id="share-icons-regions">
+                {/* Sharing icons */}
+                <div>
+                <FacebookShareButton
+                  url={"https://all-cures.com"}
+                  quote={"All-Cures - All in one Health App"}
+                  hashtag="#allCures"
+                  className="socialMediaButton"
+                >
+                  <FacebookIcon size={36} />
+                </FacebookShareButton>
+                <TwitterShareButton
+                  url={"https://all-cures.com"}
+                  title={"All-Cures - All in one Health App"}
+                  hashtag="#allCures"
+                  className="socialMediaButton"
+                >
+                  <TwitterIcon size={36} />
+                </TwitterShareButton>
+                <WhatsappShareButton
+                  url={`https://all-cures.com/#${this.props.location.pathname}`}
+                  title={`*All Cures -* ${items.title}`}
+                  separator=": "
+                  className="socialMediaButton"
+                >
+                  <WhatsappIcon size={36} />
+                </WhatsappShareButton>
+              </div>
               
-              </Breadcrumb>
-              
-            
-              <div className="article-title-container">
-              <div className="h1 font-weight-bold text-capitalize text-decoration-underline">{items.title.toLowerCase()}</div>
-              
- {/* Show average rating */}
- {
-                this.state.ratingValue?
-                <div className="average-rating mt-2 mb-4 ml-3" id="avg-rating">
-                <span class="fa fa-star fa-2x  opacity-7"></span>
-                <span class="fa fa-star fa-2x  opacity-7"></span>
-                <span class="fa fa-star fa-2x  opacity-7"></span>
-                <span class="fa fa-star fa-2x  opacity-7"></span>
-                <span class="fa fa-star fa-2x  opacity-7"></span>
-                </div>
-                : null
-              }
-               {/* Call average rating fetch function */}
-              {
-                this.state.ratingValue? this.showRating(this.state.ratingValue) : null
-              }
-            </div>
-
-<div className="share-buttons-region">
+              <div className="share-buttons-region ml-5">
               
               <div className="d-flex justify-content-end margin-auto" id="article-acc-to-regions">
                 
@@ -367,34 +371,33 @@ class Disease extends Component {
                 : null
               }
                 </div>
-                {/* Sharing icons */}
-                <div className="">
-                <FacebookShareButton
-                  url={"https://all-cures.com"}
-                  quote={"All-Cures - All in one Health App"}
-                  hashtag="#allCures"
-                  className="socialMediaButton"
-                >
-                  <FacebookIcon size={36} />
-                </FacebookShareButton>
-                <TwitterShareButton
-                  url={"https://all-cures.com"}
-                  title={"All-Cures - All in one Health App"}
-                  hashtag="#allCures"
-                  className="socialMediaButton"
-                >
-                  <TwitterIcon size={36} />
-                </TwitterShareButton>
-                <WhatsappShareButton
-                  url={`https://all-cures.com/#${this.props.location.pathname}`}
-                  title={`*All Cures -* ${items.title}`}
-                  separator=": "
-                  className="socialMediaButton"
-                >
-                  <WhatsappIcon size={36} />
-                </WhatsappShareButton>
-              </div>
                 </div>
+                </div>
+              </Breadcrumb>
+              
+            
+              <div className="article-title-container">
+              <div className="h1 font-weight-bold text-capitalize text-decoration-underline">{items.title.toLowerCase()}</div>
+              
+ {/* Show average rating */}
+ {
+                this.state.ratingValue?
+                <div className="average-rating mt-2 mb-4 ml-3" id="avg-rating">
+                <span class="fa fa-star fa-2x  opacity-7"></span>
+                <span class="fa fa-star fa-2x  opacity-7"></span>
+                <span class="fa fa-star fa-2x  opacity-7"></span>
+                <span class="fa fa-star fa-2x  opacity-7"></span>
+                <span class="fa fa-star fa-2x  opacity-7"></span>
+                </div>
+                : null
+              }
+               {/* Call average rating fetch function */}
+              {
+                this.state.ratingValue? this.showRating(this.state.ratingValue) : null
+              }
+            </div>
+
+
               {/* Call average rating fetch function */}
               {
                 this.state.ratingValue? this.showRating(this.state.ratingValue) : null

@@ -2,11 +2,12 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import CenterWell from '../Disease/CenterWell'
 const AllPost = ({id, title, content, f_title, w_title, country, type, published_date,over_allrating}) => {
+    console.log(content)
         return (
             <>
             <div key={id.toString()} className="d-flex cures-search-tab w-100 card mb-5">
                 <div className='col-md-3 cures-tab-img rounded'></div>
-                <div className='col-md-9'>
+                <div className='col-md-9 mb-2'>
                     {/* <div className="card-body"> */}
                             {/* <div className='col-md-3'></div> */}
                             <div className="d-flex justify-content-between align-items-center mt-3">
@@ -27,13 +28,13 @@ const AllPost = ({id, title, content, f_title, w_title, country, type, published
                             <div className="card-subtitle text-muted text-capitalize">{w_title.toLowerCase()}</div>
                             <div className='card-article-content-preview'>
                             {
-                                    content !== undefined ?
+                                    content !== undefined && content?
                                         JSON.parse(content)?
                                     JSON.parse(content).blocks.map((j, idx) => idx<1 && (
                                         <CenterWell
                                             content = {j.data.content}
                                             type = {j.type}
-                                            text = {j.data.text}
+                                            text = {j.data.text.substr(0, 250)+'...'}
                                             title = {j.data.title}
                                             message = {j.data.message}
                                             source = {j.data.source}
@@ -53,29 +54,29 @@ const AllPost = ({id, title, content, f_title, w_title, country, type, published
                         <div className='cures-tab-chips'>
                                 {
                                 type.includes('1') || type === '1'?
-                                    <div className="chip overview mr-2">Overview</div>
+                                    <div className="chip overview">Overview</div>
                                 : null
-                                //     <div className="chip cure mr-2">Cures</div>
+                                //     <div className="chip cure">Cures</div>
                                 // : type === '3'?
-                                //     <div className="chip symptoms mr-2">Symptoms</div>
+                                //     <div className="chip symptoms">Symptoms</div>
                                 // : null
                             }
                             {
                                 type.includes('2') || type === '2'?
-                                    <div className="chip cure mr-2">Cure</div>
+                                    <div className="chip cure">Cure</div>
                                     : null
                             }
                             {
                                 type.includes('3') || type === '3'?
-                                <div className="chip symptoms mr-2">Symptoms</div>
+                                <div className="chip symptoms">Symptoms</div>
                                     : null
                             }
                             {   
                                 country !== 0?
                                     country === 9?
-                                        <div className ="chip country">India</div>
+                                        <div className ="chip country ml-2">India</div>
                                         : country === 10?
-                                            <div className="chip country">Iran</div>
+                                            <div className="chip country ml-2">Iran</div>
                                             :null
                                         : null
                             }
