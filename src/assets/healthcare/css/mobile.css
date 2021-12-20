@@ -1,6 +1,11 @@
 /* ----------- iPhone 4 and 4S ----------- */
 
 @media only screen and (min-device-width: 220px) and (max-device-width: 480px) {
+  .loginSign{
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+  }
   #visitDoc{
     padding: 5px 20px;
   }
@@ -13,7 +18,7 @@
   }
   button#dropHead {
     position: relative;
-    bottom: 20px;
+  
     left: -5px;
 }
   #mainSearch{
@@ -172,6 +177,11 @@
 
 /* Portrait and Landscape */
 @media only screen and (min-device-width: 320px) and (max-device-width: 568px) {
+  .loginSign{
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+  }
   #visitDoc{
     padding: 5px 20px;
   }
@@ -184,7 +194,7 @@
   }
   button#dropHead {
     position: relative;
-    bottom: 20px;
+
     left: -5px;
 }
   #mainSearch{
@@ -272,6 +282,11 @@
 
 /* Portrait and Landscape */
 @media only screen and (min-device-width: 375px) and (max-device-width: 914px) {
+  .loginSign{
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+  }
   #visitDoc{
     padding: 5px 20px;
   }
@@ -284,7 +299,7 @@
   }
   button#dropHead {
     position: relative;
-    bottom: 20px;
+ 
     left: -5px;
 }
   #searchHead{
@@ -292,7 +307,7 @@
   }
   #Article{
     position: relative;
-    bottom: 20px;
+  
     left: 0px
   }
   #mainSearch{
@@ -379,6 +394,11 @@
 
 /* Portrait and Landscape */
 @media only screen and (min-device-width: 411px) and (max-device-width: 732px)  {
+  .loginSign{
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+  }
   #visitDoc{
     padding: 5px 20px;
   }
@@ -391,7 +411,6 @@
   }
   button#dropHead {
     position: relative;
-    bottom: 20px;
     left: -5px;
 }
   #head1{
@@ -485,6 +504,11 @@
 }
 
 @media screen and (min-device-width: 360px) and (max-device-height: 740px) {
+  .loginSign{
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+  }
   #visitDoc{
     padding: 5px 20px;
   }
@@ -494,7 +518,7 @@
   }
   button#dropHead {
     position: relative;
-    bottom: 20px;
+
     left: -5px;
 }
   #head1{
@@ -522,7 +546,7 @@
     font-size: 13px;
     padding: 5px;
     position: relative;
-    bottom: 20px;
+
     left: 0px;
   }
   #searchHead{
@@ -578,6 +602,11 @@
 
 /* Portrait and Landscape */
 @media screen and (min-device-width: 320px) and (max-device-height: 640px)  {
+  .loginSign{
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+  }
   #visitDoc{
     padding: 5px 20px;
   }
@@ -590,12 +619,12 @@
   }
   button#dropHead {
     position: relative;
-    bottom: 20px;
+
     left: -5px;
 }
   #Article{
     position: relative;
-    bottom: 20px;
+ 
     left: 0px
   }
   #head1{
@@ -663,6 +692,11 @@ margin-right: -12px;
 
   
 @media only screen and (min-device-width: 768px) and (max-device-width: 1024px) {
+  .loginSign{
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+  }
   #head5{
     padding-left: 0;
     padding-right: 0;
@@ -822,6 +856,11 @@ margin-right: -12px;
 
 /* Portrait and Landscape */
 @media only screen and (min-device-width: 1024px) and (max-device-width: 1366px) and (-webkit-min-device-pixel-ratio: 2) {
+  .loginSign{
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+  }
 
   #searchHead{
     margin-left: 0;
@@ -1005,6 +1044,11 @@ margin-right: -12px;
 /* Declare the same value for min- and max-width to avoid colliding with desktops */
 /* Source: https://medium.com/connect-the-dots/css-media-queries-for-ipad-pro-8cad10e17106*/
 @media only screen and (min-device-width: 1366px) and (max-device-width: 1366px) and (orientation: landscape) and (-webkit-min-device-pixel-ratio: 2) {
+  .loginSign{
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+  }
   #textComment {
     font-size: 10px;
   }
