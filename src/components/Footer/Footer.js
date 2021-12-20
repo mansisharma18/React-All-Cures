@@ -74,7 +74,7 @@ const Footer = () => {
                   </div>
                </div>
                <div className="col-md-2 col-sm-2 col-sx-12">
-                  <div className="footer-inner">
+                  <div className="footer-inner" id="none">
                      <h1>Top Cures</h1>
                      <ul>
                         {/* <li>
@@ -127,7 +127,7 @@ const Footer = () => {
                </div>
                
                <div className="col-md-3 col-sm-3 col-sx-12">
-                  <div className="footer-inner">
+                  <div className="footer-inner" id="none">
                      <h1>Discover</h1>
                      <ul>
                      <Link  to="/article">
