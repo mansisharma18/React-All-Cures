@@ -118,7 +118,7 @@ class Footer extends Component {
                   </div>
                </div>
                <div className="col-md-2 col-sm-2 col-sx-12">
-                  <div className="footer-inner">
+                  <div className="footer-inner" id="none">
                      <h1>Top Cures</h1>
                      <ul>
                         {/* <li>
@@ -171,7 +171,7 @@ class Footer extends Component {
                </div>
                
                <div className="col-md-3 col-sm-3 col-sx-12">
-                  <div className="footer-inner">
+                  <div className="footer-inner" id="none">
                      <h1>Discover</h1>
                      <ul>
                      <Link  to="/article">
@@ -217,6 +217,73 @@ class Footer extends Component {
          </div>
         
       </section>
+      <div class="footer-bootm">
+         <div class="container">
+            <div class="row">
+               <div class="col-md-4 col-sm-4 col-sx-12">
+                  <div class="logo">
+                     <a href="/#">
+                        <img src={Heart} alt="All Cures Logo" /><span>All Cures</span>
+                    </a>
+                  </div>
+               </div>
+               <div class="col-md-4 col-sm-4 col-sx-12">
+                  <div class="copyRight">
+                     <p>All rights Reserved. Copyright @ 2020</p>
+                  </div>
+               </div>
+               <div class="col-md-4 col-sm-4 col-sx-12">
+                  <div class="socia-media-footer">
+                     <ul>
+                        <li>
+                           <a href="https://www.facebook.com/Etherium-Technologies-100724305715107/">
+                              <span>
+                                 <img src={Facebook} alt="Facebook Link" height="30px" width="30px"></img>
+                              </span> 
+                              <span class="path1"></span>
+                              <span class="path2"></span>
+                           </a>
+                        </li>
+                        <li>
+                           <a href="https://www.instagram.com" target="_blank">
+                              <span>
+                                 <img src={Instagram} alt="Instagram Link" height="30px" width="30px"></img>
+                              </span> 
+                              <span class="path1"></span>
+                              <span class="path2"></span>
+                           </a>
+                        </li>
+                        <li>
+                           <a href="https://www.linkedin.com/company/etherium-technologies/">
+                              <span>
+                                 <img src={Linkedin} alt="LinkedIn Link" height="30px" width="30px"></img>
+                              </span> 
+                              <span class="path1"></span>
+                              <span class="path2"></span>
+                           </a>
+                        </li>
+                        {/* <li>
+                        <a href="/#">
+                              <span>
+                                 <img src={Twitter} alt="Twitter Link" height="30px" width="30px"></img>
+                              </span> 
+                              <span class="path1"></span>
+                              <span class="path2"></span>
+                           </a>
+                        </li> */}
+                     </ul>
+                  </div>
+               </div>
+               <div className="back-top">
+               <a href="#" id="scroll"style={{display: "block"}} >
+                   <span></span>
+                  
+                </a>
+                </div>
+             
+            </div>
+        </div>
+    </div>
 
             </div>
      

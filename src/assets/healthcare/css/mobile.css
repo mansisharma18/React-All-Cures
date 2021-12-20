@@ -1,6 +1,26 @@
 /* ----------- iPhone 4 and 4S ----------- */
 
 @media only screen and (min-device-width: 220px) and (max-device-width: 480px) {
+  .loginSign{
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+  }
+  #visitDoc{
+    padding: 5px 20px;
+  }
+  #head5{
+    padding-right: 80px;
+    padding-left: 0;
+  }
+  #none{
+    display: none;
+  }
+  button#dropHead {
+    position: relative;
+  
+    left: -5px;
+}
   #mainSearch{
     margin-right: -25px;
   }
@@ -157,6 +177,26 @@
 
 /* Portrait and Landscape */
 @media only screen and (min-device-width: 320px) and (max-device-width: 568px) {
+  .loginSign{
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+  }
+  #visitDoc{
+    padding: 5px 20px;
+  }
+  #head5{
+    padding-right: 80px;
+    padding-left: 0;
+  }
+  #none{
+    display: none;
+  }
+  button#dropHead {
+    position: relative;
+
+    left: -5px;
+}
   #mainSearch{
     margin-right: -13px;
   }
@@ -242,12 +282,32 @@
 
 /* Portrait and Landscape */
 @media only screen and (min-device-width: 375px) and (max-device-width: 914px) {
+  .loginSign{
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+  }
+  #visitDoc{
+    padding: 5px 20px;
+  }
+  #head5{
+    padding-right: 80px;
+    padding-left: 0;
+  }
+  #none{
+    display: none;
+  }
+  button#dropHead {
+    position: relative;
+ 
+    left: -5px;
+}
   #searchHead{
     margin-right: -27px;
   }
   #Article{
     position: relative;
-    bottom: 20px;
+  
     left: 0px
   }
   #mainSearch{
@@ -333,7 +393,26 @@
 /* ----------- iPhone 6+, 7+ and 8+ ----------- */
 
 /* Portrait and Landscape */
-@media only screen and (min-device-width: 414px) and (max-device-width: 736px) and (-webkit-min-device-pixel-ratio: 3) {
+@media only screen and (min-device-width: 411px) and (max-device-width: 732px)  {
+  .loginSign{
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+  }
+  #visitDoc{
+    padding: 5px 20px;
+  }
+  #head5{
+    padding-right: 60px;
+    padding-left: 0;
+  }
+  #none{
+    display: none;
+  }
+  button#dropHead {
+    position: relative;
+    left: -5px;
+}
   #head1{
     position: relative;
     bottom: 30px;
@@ -414,94 +493,7 @@
 @media only screen and (min-device-width: 414px) and (max-device-width: 736px) and (-webkit-min-device-pixel-ratio: 3) and (orientation: landscape) {
 }
 
-/* ----------- iPhone X ----------- */
 
-/* Portrait and Landscape */
-/* @media only screen and (min-device-width: 375px) and (max-device-width: 812px) and (-webkit-min-device-pixel-ratio: 3) {
-  #head1{
-    position: relative;
-    bottom: 30px;
-    font-size: 26px;
-  }
-
-#homeDoc{
-  position: relative;
-  bottom: 105px;
-  left: 15px;
-}
-#homeCity{
-  position: relative;
-  bottom: 105px;
-  left: 15px;
-}
-#btnDoc{
-  position: relative;
-  bottom: 105px;
-  left: 13px;
-}
-  #about {
-    position: relative;
-    top: 15px;
-  }
-
-  #profile {
-    position: relative;
-
-    left: 0px;
-  }
-
-  #head4 {
-    position: relative;
-    top: 2px;
-  }
-
-  #createArticle1 {
-    text-align: center;
-    font-size: 13px;
-    position: relative;
-    left: 20px;
-    padding: 5px;
-  }
-
-  .newsletter_float {
-    position: fixed;
-    width: 40%;
-    height: 40px;
-    bottom: 20px;
-    left: 190px;
-    font-size: 22px;
-  }
-
-  #createArticle {
-    position: relative;
-    left: 20px;
-    padding: 2px;
-    font-size: 11px;
-  }
-
-  .serchlabel {
-    margin-bottom: 20px;
-  }
-  .doc-name {
-    margin-right: 26px;
-    margin-top: 55px;
-    margin-left: -5px;
-    margin-bottom: 0px;
-  }
-
-  .btn-article-search {
-    background-color: #00415e;
-    margin-right: 23px;
-    height: 56px;
-  }
-  .article-search {
-    margin: -20px 0px 0px -5px;
-  }
-  .city-name.col-md-5 {
-    margin-left: -5px;
-    margin-right: 60px;
-  }
-} */
 
 /* Portrait */
 @media only screen and (min-device-width: 375px) and (max-device-width: 812px) and (-webkit-min-device-pixel-ratio: 3) and (orientation: portrait) {
@@ -512,6 +504,23 @@
 }
 
 @media screen and (min-device-width: 360px) and (max-device-height: 740px) {
+  .loginSign{
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+  }
+  #visitDoc{
+    padding: 5px 20px;
+  }
+
+  #none{
+    display: none;
+  }
+  button#dropHead {
+    position: relative;
+
+    left: -5px;
+}
   #head1{
     position: relative;
     bottom: 30px;
@@ -537,7 +546,7 @@
     font-size: 13px;
     padding: 5px;
     position: relative;
-    bottom: 20px;
+
     left: 0px;
   }
   #searchHead{
@@ -593,9 +602,29 @@
 
 /* Portrait and Landscape */
 @media screen and (min-device-width: 320px) and (max-device-height: 640px)  {
+  .loginSign{
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+  }
+  #visitDoc{
+    padding: 5px 20px;
+  }
+  #head5{
+    padding-right: 80px;
+    padding-left: 0;
+  }
+  #none{
+    display: none;
+  }
+  button#dropHead {
+    position: relative;
+
+    left: -5px;
+}
   #Article{
     position: relative;
-    bottom: 20px;
+ 
     left: 0px
   }
   #head1{
@@ -663,6 +692,15 @@ margin-right: -12px;
 
   
 @media only screen and (min-device-width: 768px) and (max-device-width: 1024px) {
+  .loginSign{
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+  }
+  #head5{
+    padding-left: 0;
+    padding-right: 0;
+  }
 
   .article-search#article-search {
     margin-top: 3px;
@@ -818,6 +856,11 @@ margin-right: -12px;
 
 /* Portrait and Landscape */
 @media only screen and (min-device-width: 1024px) and (max-device-width: 1366px) and (-webkit-min-device-pixel-ratio: 2) {
+  .loginSign{
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+  }
 
   #searchHead{
     margin-left: 0;
@@ -1001,6 +1044,11 @@ margin-right: -12px;
 /* Declare the same value for min- and max-width to avoid colliding with desktops */
 /* Source: https://medium.com/connect-the-dots/css-media-queries-for-ipad-pro-8cad10e17106*/
 @media only screen and (min-device-width: 1366px) and (max-device-width: 1366px) and (orientation: landscape) and (-webkit-min-device-pixel-ratio: 2) {
+  .loginSign{
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+  }
   #textComment {
     font-size: 10px;
   }
