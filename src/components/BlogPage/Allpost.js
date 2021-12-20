@@ -8,7 +8,7 @@ const AllPost = ({id, title, content, f_title, w_title, country, type, published
             <div key={id.toString()} className="d-flex cures-search-tab w-100 card mb-5">
                 <div className='col-md-3 cures-tab-img rounded'>         {
                                     over_allrating !== 0?
-                                    <div className='checked'><span class="fa fa-star checked mr-1"id="star"></span>{Math.round(over_allrating * 10) / 10}</div>
+                                    <div className='checked'id="starMob"><span class="fa fa-star checked mr-1"></span>{Math.round(over_allrating * 10) / 10}</div>
                                     : null
                                 }</div>
                 <div className='col-md-9 mb-2'>
@@ -22,7 +22,7 @@ const AllPost = ({id, title, content, f_title, w_title, country, type, published
                                 </div>
                                 {
                                     over_allrating !== 0?
-                                    <div className='checked'><span class="fa fa-star checked mr-1"></span>{Math.round(over_allrating * 10) / 10}</div>
+                                    <div className='checked'id="starWeb"><span class="fa fa-star checked mr-1"></span>{Math.round(over_allrating * 10) / 10}</div>
                                     : null
                                 }
                                 

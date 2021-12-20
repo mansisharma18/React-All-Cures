@@ -1,6 +1,17 @@
 /* ----------- iPhone 4 and 4S ----------- */
 
 @media only screen and (min-device-width: 220px) and (max-device-width: 480px) {
+  #starMob
+  {
+    font-size: 20px;
+    display: block;
+    position: absolute;
+    right: 10px;
+    top: 5px;
+  }
+  #starWeb{
+    display: none;
+  }
   .loginSign{
     position: absolute;
     top: 1rem;
@@ -177,6 +188,17 @@
 
 /* Portrait and Landscape */
 @media only screen and (min-device-width: 320px) and (max-device-width: 568px) {
+  #starMob
+  {
+    font-size: 20px;
+    display: block;
+    position: absolute;
+    right: 10px;
+    top: 5px;
+  }
+  #starWeb{
+    display: none;
+  }
   .loginSign{
     position: absolute;
     top: 1rem;
@@ -282,6 +304,17 @@
 
 /* Portrait and Landscape */
 @media only screen and (min-device-width: 375px) and (max-device-width: 914px) {
+  #starMob
+  {
+    font-size: 20px;
+    display: block;
+    position: absolute;
+    right: 10px;
+    top: 5px;
+  }
+  #starWeb{
+    display: none;
+  }
   .loginSign{
     position: absolute;
     top: 1rem;
@@ -394,6 +427,17 @@
 
 /* Portrait and Landscape */
 @media only screen and (min-device-width: 411px) and (max-device-width: 732px)  {
+  #starMob
+  {
+    font-size: 20px;
+    display: block;
+    position: absolute;
+    right: 10px;
+    top: 5px;
+  }
+  #starWeb{
+    display: none;
+  }
   .loginSign{
     position: absolute;
     top: 1rem;
@@ -504,6 +548,17 @@
 }
 
 @media screen and (min-device-width: 360px) and (max-device-height: 740px) {
+  #starMob
+  {
+    font-size: 20px;
+    display: block;
+    position: absolute;
+    right: 10px;
+    top: 5px;
+  }
+  #starWeb{
+    display: none;
+  }
   .loginSign{
     position: absolute;
     top: 1rem;
@@ -602,6 +657,17 @@
 
 /* Portrait and Landscape */
 @media screen and (min-device-width: 320px) and (max-device-height: 640px)  {
+  #starMob
+  {
+    font-size: 20px;
+    display: block;
+    position: absolute;
+    right: 10px;
+    top: 5px;
+  }
+  #starWeb{
+    display: none;
+  }
   .loginSign{
     position: absolute;
     top: 1rem;
@@ -817,7 +883,7 @@ margin-right: -12px;
   }
 
   .article-search {
-    margin: 20px 0px 0px 150px;
+    margin: 20px 0px 0px 185px;
   }
   .btn-article-search {
     background-color: #00415e;
@@ -955,7 +1021,7 @@ margin-right: -12px;
   }
 
   .article-search {
-    margin: 0px 0px 0px 70px;
+    margin: 0px 225px 0px 70px;
   }
 
   .city-name.col-md-5 {
