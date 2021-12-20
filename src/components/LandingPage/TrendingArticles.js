@@ -30,7 +30,7 @@ const TrendingArticles = () => {
                     <Link to="/cures/Persian">
                     <div className="card d-flex justify-content-between">
                         <div className="h5 text-dark col-md-6 text-center">Persian</div>
-                        <div className="col-md-6 rounded" id="Persian">
+                        <div className="col-md-6 rounded" id="persian">
                         </div>
                     </div>
                     </Link>
