@@ -83,6 +83,9 @@ class Home extends Component {
  
 
  componentDidMount(){
+    if(userId){
+       this.setState({modalShow: false})
+    }
    const loadUsers = async () => {
       await axios.get(`${backendHost}/city/all`)
       .then(res => {
