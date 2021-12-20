@@ -2994,7 +2994,7 @@ div.main-hero:first-child .card {
   bottom: 0;
 }
 
-@media only screen and (max-width: 768px) {
+@media only screen and (max-width: 765px) {
   #main-hero .card {
     min-height: fit-content;
   }
