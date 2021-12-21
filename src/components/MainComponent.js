@@ -80,7 +80,7 @@ function Main(props) {
       <div>
         <AuthApi.Provider value={{auth, setAuth}}>
           <BrowserRouter history={history}>
-            <HelmetMetaData></HelmetMetaData>
+            <HelmetMetaData/>
             <Routes authLoaded={authLoaded} url = {url} userAccess = {userAccess}/>
           </BrowserRouter>
         </AuthApi.Provider>

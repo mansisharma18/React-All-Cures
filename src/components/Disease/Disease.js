@@ -325,7 +325,7 @@ class Disease extends Component {
                   <TwitterIcon size={36} />
                 </TwitterShareButton>
                 <WhatsappShareButton
-                  url={`https://all-cures.com/#${this.props.location.pathname}`}
+                  url={`https://all-cures.com/${this.props.location.pathname}`}
                   title={`*All Cures -* ${items.title}`}
                   separator=": "
                   className="socialMediaButton"

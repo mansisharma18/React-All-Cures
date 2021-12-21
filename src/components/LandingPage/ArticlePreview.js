@@ -66,7 +66,6 @@ const ArticlePreview = (props) => {
 
     function articleFilterClick(e, filter) {
         setArticleFilter(filter)
-        console.log(e.target.parentNode.parentElement.children)
         var siblings = e.target.parentNode.parentElement.children
         if(siblings){
             for(var i=0;i<siblings.length; i++){
@@ -90,7 +89,6 @@ const ArticlePreview = (props) => {
         );
     }
     else {
-        // console.log(i.content)
         return(
         <>
         <div className="container">
@@ -137,7 +135,6 @@ const ArticlePreview = (props) => {
                     var content = []
                     var contentBlocks = []
                     var imgLocation = i.content_location
-                    console.log(imgLocation)
                     var imageLoc = '';
                     if(i.content){
                         content = JSON.parse(decodeURIComponent(i.content.includes('%22%7D%7D%5D%7D')?i.content: i.content.replaceAll('%7D', '%22%7D%7D%5D%7D')))
