@@ -71,7 +71,7 @@ export default class Blogpage extends Component{
         return(
           <>
           <Header history={this.props.history} url={this.props.match.url}/>
-            <Container className="mt-5 my-5 loading">
+            <Container className="mt-5 my-5 ">
             {/* <h3 className="pt-5 text-center"><span className="icon-loupe "></span></h3> */}
             <h3 className="mt-3 text-center">We do not have any cures for this condition yet but our editorial team is working on it. </h3>
             <h3 className="mt-3 text-center">In the meantime, if you have a cure, please   <a href='/article'>"Click Here"</a> to add the cure to our site. </h3><hr/>
