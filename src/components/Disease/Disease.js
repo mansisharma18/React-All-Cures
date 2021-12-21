@@ -188,8 +188,8 @@ class Disease extends Component {
             <div className="card-body d-flex">
               <div className='comment-img'>
                 <i className="fas fa-user-md fa-4x pl-3 mb-2"></i>
-                <h6 className="card-subtitle mb-2 text-muted">
-                        <b>By :  </b>  {item.first_name} {item.last_name}
+                <h6 className="card-subtitle my-2 text-muted">
+                        {item.first_name} {item.last_name}
                       </h6>
               </div>
               <div>
@@ -286,9 +286,9 @@ class Disease extends Component {
           {/* <img src={Wall} height="200px" width="1900px"/> */}
         </div>
         <Row>
-          <Col md={2} id="sidebar-wrapper" className='left-menu pb-3'>      
+          <div id="sidebar-wrapper" className='left-menu pb-3'>      
             <Sidebar diseaseId={items.disease_condition_id} id={this.props.match.params.id}  name={items.dc_name} />
-          </Col>
+          </div>
           <Col  md={7} id="page-content-wrapper" className="col-xs-12 pb-5">
             <div id="center-well" className="">
               <Breadcrumb >
@@ -450,16 +450,15 @@ class Disease extends Component {
               
             
             </div>
-            <div id="comments-column">
-                  {/* Review Button (Rating + Comment) */}
-              {
+               {/* Review Button (Rating + Comment) */}
+               {
                 Cookies.get('acPerm')?
                   <>              
                     <ArticleComment refreshComments={this.comments} article_id={this.props.match.params.id}/>
                   </>
                 : null
               }
-              
+            <div id="comments-column">              
 
               {/* SHOW ALL COMMENTS */}
               <div className="main-hero">

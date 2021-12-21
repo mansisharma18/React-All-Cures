@@ -77,7 +77,7 @@ padding-left: 2rem;
 -webkit-transition: margin 0.25s ease-out;
 -moz-transition: margin 0.25s ease-out;
 background-color: #b9daf1; */
-  padding-left: 8px;
+  /* padding-left: 8px; */
   border-radius: 0.8rem;
 }
 /* #sidebar-wrapper .sidebar-heading {
@@ -160,7 +160,9 @@ background-color: #b9daf1; */
 
 #sidebar-wrapper.left-menu {
   background: #c8f5ff;
+  width: 16rem;
 }
+
 @media only screen and (max-width: 968px) {
   .article-title-container .h2 {
     width: 100%;
@@ -196,6 +198,8 @@ background-color: #b9daf1; */
 
 #sidebar-wrapper #l-menu {
   padding-top: 1.3rem;
+  background: #b9daf1;
+  border-radius: 0 0.8rem 0 0;
 }
 
 #center-well #share-icons-regions {
@@ -222,3 +226,23 @@ background-color: #b9daf1; */
   padding: 5px 30px 5px 30px;
 }
 
+
+#dropHead .btn-primary:not(:disabled):not(.disabled).active,
+.btn-primary:not(:disabled):not(.disabled):active,
+.show > .btn-primary.dropdown-toggle {
+  color: #00415e;
+  background-color: #00415e;
+  border-color: #00415e;
+}
+/*
+#dropHead .btn-primary:not(:disabled):not(.disabled).active,
+.btn-primary:not(:disabled):not(.disabled):active,
+.show > .btn-primary.dropdown-toggle .filter-white {
+  filter: none;
+}
+*/
+.btn-primary:not(:disabled):not(.disabled).active:focus,
+.btn-primary:not(:disabled):not(.disabled):active:focus,
+.show > .btn-primary.dropdown-toggle:focus {
+  box-shadow: 0 0 0 0;
+}

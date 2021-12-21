@@ -48,7 +48,7 @@ const Side = props => {
                         <Link className="text-dark h6" to={`/cure/${overviewArticle}`}>Overview & Facts</Link>
                     </div>
                     <div className=" menu-item">
-                        <Link className="text-dark h6">Symptoms & Diagnosis</Link>
+                        <Link className="text-dark h6 pr-3">Symptoms & Diagnosis</Link>
                     </div>
                     <div className=" menu-item">
                         <Link className="text-dark h6">Treatment & Care</Link>
@@ -61,7 +61,7 @@ const Side = props => {
                 {   
                     items.length !== 0?
                         <>
-                        <div className="h4 pl-2">Related to {props.name}</div>
+                        <div className="h4 pl-2 pr-4">Related to {props.name}</div>
                         {
                             items.map((i) => (
                                 <div className=" menu-item" key={i.dc_id.toString()}>

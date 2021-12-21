@@ -136,15 +136,22 @@ const ArticlePreview = (props) => {
                 {items.filter((i, idx) => idx < 9).map((i) => {
                     var content = []
                     var contentBlocks = []
+                    var imgLocation = i.content_location
+                    console.log(imgLocation)
+                    var imageLoc = '';
                     if(i.content){
-                        console.log(i.content)
                         content = JSON.parse(decodeURIComponent(i.content.includes('%22%7D%7D%5D%7D')?i.content: i.content.replaceAll('%7D', '%22%7D%7D%5D%7D')))
                         contentBlocks = content.blocks
+                    }
+                    if(imgLocation && imgLocation.includes('cures_articleimages')){
+                        imageLoc = `https://all-cures.com/`+imgLocation.replaceAll('json', 'png').split('/webapps/')[1]
+                    } else {
+                        imageLoc = 'https://all-cures.com/cures_articleimages//299/default.png'
                     }
                     return(
                     <div className="col-4">
                     <div className="card my-2 w-100">
-                        <div className='card-img'><img src={PreviewImg} width="250px"/></div>
+                        <div className='card-img'><img src={imageLoc} /></div>
                         <div className="card-body">
                             <h5 className="card-title text-capitalize">{i.title.toLowerCase()}</h5>
                             <div className="card-info">
@@ -158,7 +165,7 @@ const ArticlePreview = (props) => {
                                                 <CenterWell
                                                     content = {j.data.content}
                                                     type = {j.type}
-                                                    text = {j.data.text.substr(0, 200)}
+                                                    text = {j.data.text.substr(0, 200) + '....'}
                                                     title = {j.data.title}
                                                     message = {j.data.message}
                                                     source = {j.data.source}
