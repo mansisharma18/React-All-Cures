@@ -112,8 +112,7 @@ class Footer extends Component {
                   <div className="footer-inner" >
                      <h1>About us</h1>
                      <p >We are a new age healthcare technology firm who are trying make it simple and convenient for the users to get information 
-                        on Cures from anywhere in the world.With over 20 years of experience building technology products in the healthcare segment, 
-                        our team is developing an integrated platform for all your health needs. 
+                        on Cures from anywhere in the world.
                         We are passionate about giving our users the unique experience that is both fulfilling and wholesome.</p>
                   </div>
                </div>
@@ -220,6 +219,9 @@ class Footer extends Component {
       <div class="footer-bootm">
          <div class="container">
             <div class="row">
+            <div className='col-xs-12 disclaimer'>
+               Disclaimer: Content available on All Cures website is not intended to be a substitute for professional medical advice, diagnosis, or treatment. It is strongly recommended to consult your physician or other qualified medical practitioner with any questions you may have regarding a medical condition. The website should not be used as a source for treatment of any medical condition.
+               </div>
                <div class="col-md-4 col-sm-4 col-sx-12">
                   <div class="logo">
                      <a href="/#">
@@ -227,12 +229,14 @@ class Footer extends Component {
                     </a>
                   </div>
                </div>
+               
                <div class="col-md-4 col-sm-4 col-sx-12">
                   <div class="copyRight">
-                     <p>All rights Reserved. Copyright @ 2020</p>
+                     <p>All rights Reserved. Copyright <i class="far fa-copyright fa-1x"></i>2020</p>
                   </div>
                </div>
-               <div class="col-md-4 col-sm-4 col-sx-12">
+
+               <div class="col-md-4 col-sm-4 col-sx-12" id="social">
                   <div class="socia-media-footer">
                      <ul>
                         <li>
@@ -282,7 +286,12 @@ class Footer extends Component {
                 </div>
              
             </div>
+            <div className='row'>
+            
         </div>
+      
+        </div>
+       
     </div>
 
             </div>

@@ -221,6 +221,11 @@ background-color: #b9daf1; */
   border: 0.1rem solid #b9daf1;
   border-radius: 0.8rem;
 }
+.disclaimer{
+  font-size: 14px;
+  padding: 5px 30px 5px 30px;
+}
+
 
 #dropHead .btn-primary:not(:disabled):not(.disabled).active,
 .btn-primary:not(:disabled):not(.disabled):active,

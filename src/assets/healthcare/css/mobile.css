@@ -1,6 +1,13 @@
 /* ----------- iPhone 4 and 4S ----------- */
 
 @media only screen and (min-device-width: 220px) and (max-device-width: 480px) {
+  .copyRight p {
+    padding-top: 16px;
+    position: relative;
+    left: 0px;
+    text-align: center;
+  }
+
   .breadcrumb{
     padding: 2rem 1rem;
   }
