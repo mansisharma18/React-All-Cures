@@ -1,16 +1,26 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import CenterWell from '../Disease/CenterWell';
-const AllPost = ({id, title, content, f_title, w_title, country, type, published_date,over_allrating}) => {
-    console.log(content)
+
+const AllPost = ({id, title, content, f_title, w_title, country, type, published_date, over_allrating, imgLocation}) => {
+    var imageLoc = '';
+    if(imgLocation && imgLocation.includes('cures_articleimages')){
+        imageLoc = `https://all-cures.com/`+imgLocation.replaceAll('json', 'png').split('/webapps/')[1]
+    } else {
+        imageLoc = 'https://all-cures.com/cures_articleimages//299/default.png'
+    }
+    console.log('imageLocation: ', imageLoc)
         return (
             <>
             <div key={id.toString()} className="d-flex cures-search-tab w-100 card mb-5">
-                <div className='col-md-3 cures-tab-img rounded'>         {
+                <div className='col-md-3 cures-tab-img rounded px-0'>
+                        <img src={`${imageLoc}`} />
+                                {/* {
                                     over_allrating !== 0?
                                     <div className='checked'id="starMob"><span class="fa fa-star checked mr-1"></span>{Math.round(over_allrating * 10) / 10}</div>
                                     : null
-                                }</div>
+                                } */}
+                                </div>
                 <div className='col-md-9 mb-2'>
                     {/* <div className="card-body"> */}
                             {/* <div className='col-md-3'></div> */}
@@ -53,7 +63,7 @@ const AllPost = ({id, title, content, f_title, w_title, country, type, published
                                     : null
                                 }
                         </div>
-                        <div className="text-left mt-2 text-muted">Published on: {published_date}</div>
+                        <div className="text-left mt-2 text-muted" id="publish-date">Published on: {published_date}</div>
                         </div>
                         <div className='cures-tab-chips'>
                                 {

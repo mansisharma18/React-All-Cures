@@ -69,8 +69,9 @@ const Side = (props) => {
                 
             <Nav.Item className="set-width"  id="dc-right-menu">
                 <div className="h3 pb-3"><u className="text-decoration-none">Recent Cures</u></div>
+                
             {   items?
-                    items.map((i, index) => index<10 && (
+                    items.map((i, index) => index<9 && (
                         <AllPost
                             id = {i.article_id}
                             title = {i.title}

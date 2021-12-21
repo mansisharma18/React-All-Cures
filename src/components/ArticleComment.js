@@ -113,7 +113,7 @@ const Comment = ({refreshComments,article_id}, props) => {
                     <i className="fa fa-spinner fa-spin fa-10x" />
                 </div>
             }
-        <Button className="ml-3 mt-3 btn-article-search mb-4" id="textComment" onClick={handleShow}>
+        <Button className="ml-3 mt-4 btn-article-search" id="textComment" onClick={handleShow}>
         Review This Cure
       </Button>
 

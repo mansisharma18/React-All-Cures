@@ -259,6 +259,7 @@ export default class Blogpage extends Component{
                             i.content: i.content.replaceAll('%7D', '%22%7D%7D%5D%7D')
                             : null)}
                             type = {i.type}
+                            imgLocation = {i.content_location}
                             published_date = {i.published_date}
                             key = {i.article_id}
                             over_allrating={i.over_allrating}
