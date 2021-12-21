@@ -246,7 +246,7 @@ class Profile extends Component {
                           <div className="reviews" >
                             
                             {
-                              userId === '9' || parseInt(userAccess) === parseInt(this.state.param.id)?
+                              userAccess === '9' || parseInt(userId) === parseInt(this.state.param.id)?
                               <Button variant="dark" onClick={() => this.setModalShow(true)}>
                                 Edit Profile
                               </Button>
