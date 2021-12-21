@@ -26,7 +26,6 @@ export default class Blogpage extends Component{
     
 
       allPosts() {                        // For all available blogs "/blogs"
-        console.log('All posts called', this.state.limit)
         fetch(`${backendHost}/article/allkv`)
           .then((res) => res.json())
           .then((json) => {
@@ -131,7 +130,6 @@ export default class Blogpage extends Component{
 
       articleFilterClick(e, filter) {
         this.setState({articleFilter: filter})
-        console.log(e.target.parentNode.parentElement.children)
         var siblings = e.target.parentNode.parentElement.children
         if(siblings){
             for(var i=0;i<siblings.length; i++){
@@ -156,10 +154,6 @@ export default class Blogpage extends Component{
       componentDidUpdate(prevProps, prevState){
         if ( prevProps.match.params.type !== this.props.match.params.type ){
           this.diseasePosts(this.props.match.params.type)
-        }
-        console.log(prevState)
-        if( prevState.items !== this.state.items ){
-          console.log('items changed')
         }
         // window.addEventListener('scroll', this.handleScroll, {
         //   passive: true

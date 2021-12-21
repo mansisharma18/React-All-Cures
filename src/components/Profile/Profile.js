@@ -16,8 +16,8 @@ import { backendHost } from '../../api-config';
 import Comment from '../Comment'
 import '../../assets/healthcare/css/mobile.css'
 import ArticleComment from '../ArticleComment';
-
-
+import { userId } from "../UserId";
+import { userAccess } from "../UserAccess";
 class Profile extends Component {
   constructor(props) {
     super(props);
@@ -36,7 +36,7 @@ class Profile extends Component {
       showMore: false,
       modalShow: false,
       show: false,
-      acPerm: Cookies.get('acPerm').split('|')
+      // acPerm: Cookies.get('acPerm').split('|')
     }; 
     // this.editToggle = this.editToggle.bind()
   }
@@ -154,7 +154,7 @@ class Profile extends Component {
   }
   
   render() {
-    var { isLoaded, items, acPerm } = this.state;
+    var { isLoaded, items } = this.state;
     if (!isLoaded) {
 
       return(
@@ -246,7 +246,7 @@ class Profile extends Component {
                           <div className="reviews" >
                             
                             {
-                              acPerm[1] === '9' || parseInt(acPerm[0]) === parseInt(this.state.param.id)?
+                              userId === '9' || parseInt(userAccess) === parseInt(this.state.param.id)?
                               <Button variant="dark" onClick={() => this.setModalShow(true)}>
                                 Edit Profile
                               </Button>

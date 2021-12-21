@@ -9,7 +9,7 @@ function App() {
   
   return (
     <div>
-      <HelmetMetaData/>
+      {/* <HelmetMetaData/> */}
       <Main/>
       <CookieConsent style={{ background: "#022a3c"}}>
         <div className="container m-3">
