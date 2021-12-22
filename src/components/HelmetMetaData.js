@@ -7,10 +7,9 @@ export default function HelmetMetaData(props) {
    let currentUrl = "https://all-cures.com" + location.pathname;
    let quote = props.quote !== undefined ? props.quote : "";
    let title = props.title !== undefined ? "All-Cures - "+props.title : "All-Cures - All in one Health App";
-   let image = props.image !== undefined ? props.image : "https://all-cures.com/cures_articleimages/20211121_134401.jpg";
+   let image = props.image !== undefined ? props.image : "https://all-cures.com/static/media/Banner1-Full.2bbf7fa6.jpg";
    let description = props.description !== undefined ? props.description  : "All-Cures provides a social, centralized, user powered platform for alternate cures from across the globe. All-Cures is an alternative medicine information hub with the mission to democratize information about cures from diverse geographies. It covers all alternate systems of medicine including Ayurveda, Unani, Chinese and Persian.";
    let hashtag = props.hashtag !== undefined ? props.hashtag : "#allcures";
-   console.log(props)
    return ( <Helmet>
      <title>{title}</title>
      <meta charset="utf-8" />
