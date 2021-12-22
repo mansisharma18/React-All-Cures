@@ -67,7 +67,7 @@ const EditProfile = (props) => {
             "insurance_accept": acceptInsurance,
             "gender": gender,
             "about": about,
-            "awards": awards
+            "membership": awards
         })
         .then(res => {
           setafterSubmitLoad(false)
