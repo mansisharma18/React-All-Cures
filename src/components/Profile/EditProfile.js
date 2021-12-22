@@ -27,6 +27,7 @@ const EditProfile = (props) => {
     const [secondarySpl, setSecondary] = useState(item.specialties)
     const [otherSpl, setOther] = useState(item.other_spls)
     const [education, setEducation] = useState(item.edu_training)
+    const [awards, setAwards] = useState(item.awards)
     const [num, setNum] = useState(item.telephone_nos)
     const [hospital, setHospital] = useState(item.hospital_affliated_code)
     const [acceptInsurance, setInsurance] = useState(item.insurance_accept)
@@ -65,7 +66,8 @@ const EditProfile = (props) => {
             "hospital_affliated": hospital,
             "insurance_accept": acceptInsurance,
             "gender": gender,
-            "about": about
+            "about": about,
+            "awards": awards
         })
         .then(res => {
           setafterSubmitLoad(false)
@@ -201,6 +203,12 @@ const EditProfile = (props) => {
           <Form.Group className="col-md-12 float-left" >
             <Form.Label>Education</Form.Label>
             <Form.Control value={education} onChange={(e) => setEducation(e.target.value)} style={{border: "1px solid #ced4da"}} type="text" name=""
+            placeholder="Enter education"/>
+          </Form.Group>
+          
+          <Form.Group className="col-md-12 float-left" >
+            <Form.Label>Awards or Accomplishments</Form.Label>
+            <Form.Control value={awards} onChange={(e) => setAwards(e.target.value)} style={{border: "1px solid #ced4da"}} type="text" name=""
             placeholder="Enter education"/>
           </Form.Group>
           

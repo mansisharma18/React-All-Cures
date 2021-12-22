@@ -317,9 +317,10 @@ class Profile extends Component {
                     <br/>
                     <div className="abt-eduction ">
                     <div className="h4 font-weight-bold">Education</div>
-                      <ul>
+                    {items.edu_training.split('•').map(i => <li>{i}</li>)}
+                      {/* <ul>
                         <li>{items.edu_training}</li>
-                      </ul>
+                      </ul> */}
                     </div>
                     <br />
                    
