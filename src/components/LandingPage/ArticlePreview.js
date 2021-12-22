@@ -150,7 +150,7 @@ const ArticlePreview = (props) => {
                     <div className="card my-2 w-100">
                         <div className='card-img'><img src={imageLoc} /></div>
                         <div className="card-body">
-                            <h5 className="card-title text-capitalize">{i.title.toLowerCase()}</h5>
+                            <h5 className="card-title text-capitalize"><Link className='text-dark' to={`/cure/${i.article_id}`}>{i.title.toLowerCase()}</Link></h5>
                             <div className="card-info">
                                 <h6 className="card-subtitle mb-2 text-muted text-capitalize">
                                     {i.window_title.toLowerCase()}
@@ -196,7 +196,7 @@ const ArticlePreview = (props) => {
                                 } */}
                                     {/* ${p.body.substr(0, 200)}<a href="#">...read more</a> */}
                                 </p>
-                                <span><Link to={`/cure/${i.article_id}`}>...read more</Link></span>
+                                {/* <span><Link to={`/cure/${i.article_id}`}>...read more</Link></span> */}
                             </div>
                             {/* <a href="#" className="card-link" id="comment-link">Comment</a> */}
                             {/* <a href="#" className="card-link">Like</a> */}

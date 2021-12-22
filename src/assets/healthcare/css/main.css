@@ -1356,8 +1356,6 @@ button.appBtn:hover {
 
 .copyRight p {
   padding-top: 16px;
- 
- 
 }
 
 .footer-bootm .logo {
@@ -1581,7 +1579,7 @@ h4 {
   border: 1px solid #c4c4c4;
   box-sizing: border-box;
   border-radius: 20px;
-  padding: 50px 30px 20px;
+  padding: 2rem 2rem 1.2rem 2rem;
   margin-top: 36px;
   display: flex;
 }

@@ -89,7 +89,7 @@ import List from '../../assets/icon/icons-AllCures/list_black_48dp.svg'
                   doctorLoaded: true
                })
             })
-            .catch(res =>  console.log(res))
+            .catch(res =>  null)
           }
           loaddoctor();
           }

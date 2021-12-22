@@ -1,9 +1,7 @@
 import React, { Component } from "react";
 import Header from "../Header/Header";
 import Footer from "../Footer/Footer";
-import Rating from "../StarRating";  
-import ClientA from "../../assets/img/client-a.jpg";
-import Cookies from 'js-cookie';
+import Rating from "../StarRating";
 import Doct from "../../assets/img/doct.png";
 import '../../assets/healthcare/css/main.css';
 import '../../assets/healthcare/css/responsive.css';
@@ -36,12 +34,10 @@ class Profile extends Component {
       showMore: false,
       modalShow: false,
       show: false,
-      // acPerm: Cookies.get('acPerm').split('|')
+      imageExists: false
     }; 
-    // this.editToggle = this.editToggle.bind()
   }
  
-  
   getComments = (id) => {
     axios.get(`${backendHost}/rating/target/${id}/targettype/1`)
     .then(res => {
@@ -101,7 +97,7 @@ class Profile extends Component {
         this.setState({
           isLoaded: true,
           items: json,
-        });
+        }, ()=> this.checkIfImageExits(`https://all-cures.com/cures_articleimages/doctors/${json.rowno}.png`));
       });
 
   }
@@ -125,15 +121,13 @@ class Profile extends Component {
       })
     }
   }
-
+  
   componentDidMount() {
     document.title = "All Cures | Profile"
     this.fetchDoctorData(this.state.param.id)
     this.getComments(this.state.param.id)
     this.getRating(this.props.match.params.id)
   }
-
-
 
   setModalShow =(action) => {
     this.setState({
@@ -146,13 +140,27 @@ class Profile extends Component {
     })
   }
 
-
   handleShow = () => {
     this.setState({
       show: true
     })
   }
   
+  checkIfImageExits = (imageUrl) => {
+    fetch(imageUrl, { method: 'HEAD' })
+    .then(res => {
+        if (res.ok) {
+            this.setState({
+              imageExists: true
+            })
+        } else {
+          this.setState({
+            imageExists: false
+          })
+        }
+    }).catch(err => console.log('Error:', err));
+  }
+
   render() {
     var { isLoaded, items } = this.state;
     if (!isLoaded) {
@@ -181,6 +189,11 @@ class Profile extends Component {
         </>
       )
     }else if (isLoaded) {
+      
+      
+      // Sample usage
+      var imageUrl = `https://all-cures.com/cures_articleimages/doctors/${items.rowno}.png`;
+      var finalUrlExists = false
       return (
         <div>
           <Header history={this.props.history} />
@@ -192,8 +205,18 @@ class Profile extends Component {
                   <div className="profile-card clearfix">
                     <div className="col-md-3">
                       <div className="profileImageBlok">
-                        <div className="profile-card-img text-center">
-                          <i className="fas fa-user-md fa-6x"></i>
+                        <div className="profile-card-img text-center" id="profile-card-img">
+                          {/* {
+                            finalUrlExists === false?
+                              <img src={imageUrl} />
+                            : <i className="fas fa-user-md fa-6x"></i>
+                          } */}
+                          {
+                            this.state.imageExists?
+                            <img src={`https://all-cures.com/cures_articleimages/doctors/${items.rowno}.png`} />
+                            :  <i className="fas fa-user-md fa-6x"></i>
+                          }
+                         
                         </div>
                       </div>
                     </div>
@@ -202,7 +225,7 @@ class Profile extends Component {
                         <div className="profile-infoL-card">
                           <div className="profile-info-name" id="DocDetails">
                           <div className="h4 font-weight-bold">
-                              {items.prefix}. {items.docname_first} {items.docname_middle}{" "}
+                              {items.prefix} {items.docname_first} {items.docname_middle}{" "}
                               {items.docname_last}{" "}
                             </div>
                             <div className="h5 "> {items.primary_spl}</div>
@@ -322,17 +345,20 @@ class Profile extends Component {
                       </div>
                     
                   </div>
-                  <div className="profile-info-rating">
+                  {
+                    userId && <div className="profile-info-rating">
                     <h3>Rate here</h3>
                     <div id="docRate">
                         <Rating  docid={this.state.param.id} />
                         </div>
                        
                         </div>
+                  }
+                  
                   <div className="comment-box">
               
                   {
-                Cookies.get('acPerm')?
+                userId?
                   <>              
                     <Comment refreshComments={this.getComments} docid={this.props.match.params.id}/>
                   </>
