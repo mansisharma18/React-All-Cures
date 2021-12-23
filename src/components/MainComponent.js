@@ -168,7 +168,7 @@ const ProtectedRoute = ({auth, path, component:Component, ...rest}) => {
       ):
         (
           // <Redirect to="/login"/>
-          <Redirect to={{pathname: '/home', search: '', state: {modalShow: true}}}/>
+          <Redirect to={{pathname: '/home', search: '', state: {modalShow: true, path: path}}}/>
         )
     }
       />

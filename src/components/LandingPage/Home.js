@@ -60,8 +60,9 @@ class Home extends Component {
          getCityName:null,
          edit: false,
          doctorLoaded: false,
-      modalShow: this.props.location.state? this.props.location.state.modalShow: false,
-      show: false,
+         modalShow: this.props.location.state? this.props.location.state.modalShow: false,
+         path: this.props.location.state? this.props.location.state.path: '',
+         show: false,
          docname : '',
          spec1: [],
          param: params,
@@ -83,6 +84,7 @@ class Home extends Component {
  
 
  componentDidMount(){
+    console.log('PAATH: ', this.state.path)
     if(userId){
        this.setState({modalShow: false})
     }
@@ -341,17 +343,17 @@ class Home extends Component {
                   {/* Create Cures, Sign Up || Hi ${name} Button */}
 
                   <div className="loginSign mt-1"> 
-                     {
-                        this.state.acPerm?
+                     {/* {
+                        this.state.acPerm? */}
                            <Link className="btn mr-1 primary-btn-color
                             loginSignbtn color-blue-dark" to="/article">
                               <img src={CreateCures} className='filter-white' height="30px"/>
                            </Link>
-                        : <button className="btn mr-1 primary-btn-color
+                        {/* : <button className="btn mr-1 primary-btn-color
                          loginSignbtn color-blue-dark" onClick={() => this.setModalShow(true)}>
                              <img src={CreateCures} className='filter-white' height="30px"/>
                            </button>
-                     }   
+                     }    */}
                   
                   {/* Toggle Sign up & Hi there dropdown */}
 
@@ -375,6 +377,7 @@ class Home extends Component {
                      <div className="row">
                      <Test
                         show={this.state.modalShow}
+                        path={this.state.path}
                         onHide={() => this.setModalShow(false)}
                      />
                         <div className="search-wrap-inner clearfix">
