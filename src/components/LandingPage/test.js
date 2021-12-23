@@ -107,7 +107,7 @@ const Test = (props) => {
         }
     }
 
-  const loginForm = async (e, props) => {
+  const loginForm = async (e) => {
     e.preventDefault();
     setClicked(1);
     axios.post(`${backendHost}/login?cmd=login&email=${email}&psw=${signInpassword}&rempwd=on`)
@@ -116,7 +116,11 @@ const Test = (props) => {
         Cookies.set('uName', response.data.first_name, { expires: 365 })
         console.log(response.data)
         setTimeout(() => {
-          window.location.reload()
+          if(props.path){
+            window.location = props.path
+          } else{
+            window.location.reload()
+          }
         }, 500);
       } else {
         document.getElementById('login-msg').innerText="Some error occured!"

@@ -47,11 +47,11 @@ const Side = props => {
                     <div className=" menu-item">
                         <Link className="text-dark h6" to={`/cure/${overviewArticle}`}>Overview & Facts</Link>
                     </div>
-                    <div className=" menu-item">
+                    {/* <div className=" menu-item">
                         <Link className="text-dark h6 pr-3">Symptoms & Diagnosis</Link>
-                    </div>
+                    </div> */}
                     <div className=" menu-item">
-                        <Link className="text-dark h6">Treatment & Care</Link>
+                        <Link className="text-dark h6">Cures</Link>
                     </div>
                     {/* <div className=" menu-item">
                         <Link className="text-dark h6">Living with</Link>

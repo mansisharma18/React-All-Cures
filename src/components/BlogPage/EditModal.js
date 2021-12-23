@@ -360,12 +360,10 @@ const EditModal = (props) => {
                     <div id="accordion">
                         <div className="card">
                             <div className="card-header" id="headingOne"  data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                            <h5 className="mb-0">
-                                Cure Details
-                            </h5>
+                                <h5 className="mb-0">Cure Details</h5>
                             </div>
 
-                            <div id="collapseOne" className="collapse" aria-labelledby="headingOne" data-parent="#accordion">
+                            <div id="collapseOne" className="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
                             <div className="card-body">
                 <div className="row">
                     <div className="col-lg-6 form-group">
@@ -543,7 +541,7 @@ const EditModal = (props) => {
                             </div>
                         </div>
                         <div className="card">
-                            <div className="card-header" id="headingTwo" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                            <div className="card-header collapsed" id="headingTwo" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
                             <h5 className="mb-0">
                                 Write Cure Here
                             </h5>

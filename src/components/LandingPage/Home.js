@@ -60,8 +60,9 @@ class Home extends Component {
          getCityName:null,
          edit: false,
          doctorLoaded: false,
-      modalShow: this.props.location.state? this.props.location.state.modalShow: false,
-      show: false,
+         modalShow: this.props.location.state? this.props.location.state.modalShow: false,
+         path: this.props.location.state? this.props.location.state.path: '',
+         show: false,
          docname : '',
          spec1: [],
          param: params,
@@ -341,17 +342,17 @@ class Home extends Component {
                   {/* Create Cures, Sign Up || Hi ${name} Button */}
 
                   <div className="loginSign mt-1"> 
-                     {
-                        this.state.acPerm?
+                     {/* {
+                        this.state.acPerm? */}
                            <Link className="btn mr-1 primary-btn-color
                             loginSignbtn color-blue-dark" to="/article">
                               <img src={CreateCures} className='filter-white' height="30px"/>
                            </Link>
-                        : <button className="btn mr-1 primary-btn-color
+                        {/* : <button className="btn mr-1 primary-btn-color
                          loginSignbtn color-blue-dark" onClick={() => this.setModalShow(true)}>
                              <img src={CreateCures} className='filter-white' height="30px"/>
                            </button>
-                     }   
+                     }    */}
                   
                   {/* Toggle Sign up & Hi there dropdown */}
 
@@ -375,6 +376,7 @@ class Home extends Component {
                      <div className="row">
                      <Test
                         show={this.state.modalShow}
+                        path={this.state.path}
                         onHide={() => this.setModalShow(false)}
                      />
                         <div className="search-wrap-inner clearfix">
@@ -616,26 +618,22 @@ class Home extends Component {
                         <div className="h5">Get <span>doctor-approved</span> health tips, news, and more</div>
                         <div className="form-group relative">
                            <div className="aaa">
-                           <PhoneInput
-      placeholder="Enter phone number"
-      value={this.state.value}
-      defaultCountry='in'
-    
-       onChange={(newValue) => {
-                                 this.setState({
-                                    value: newValue
-                                 })
-                              }}
-                              />
-
-                          {/* <input type="number" name="" onChange={this.setMobile}    className="form-control border rounded" placeholder="Please Share Your Mobile Number"/> */}
+                              <PhoneInput
+                                 placeholder="Enter phone number"
+                                 value={this.state.value}
+                                 defaultCountry='IN'
                               
+                                 onChange={(newValue) => {
+                                    this.setState({
+                                       value: newValue
+                                    })
+                                 }}
+                              />                              
                            </div>
                            <div>
-                              {/* <a href="/#" className="subscribeBtn">Subscribe</a> */}
-                                <button className="bcolor rounded py-2" onClick={( ) => {this.postSubscribtion()}}>
-                                   Submit
-                                </button>
+                              <button className="bcolor rounded py-2" onClick={( ) => {this.postSubscribtion()}}>
+                                 Submit
+                              </button>
                            </div>
                         </div>
                      </div>
