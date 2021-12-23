@@ -249,7 +249,7 @@ class Footer extends Component {
                            </a>
                         </li>
                         <li>
-                           <a href="https://www.instagram.com" target="_blank">
+                           <a href="https://instagram.com/etherium.technologies?utm_medium=copy_link" target="_blank">
                               <span>
                                  <img src={Instagram} alt="Instagram Link" height="30px" width="30px"></img>
                               </span> 
