@@ -1,7 +1,25 @@
+import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom'
 // import Special1 from '../../assets/img/special-1.jpg'
 
-const ProfileTab = ({ setModalShow, docid, rowno, name, pSpl, hospital, state, country, acPerm, url, reload,ratingVal}) => (
+const ProfileTab = ({ setModalShow, docid, rowno, name, pSpl, hospital, state, country, acPerm, url, reload,ratingVal}) => {
+  const [imageExists, setImageExists] = useState(false)
+  const checkIfImageExits = (imageUrl) => {
+    fetch(imageUrl, { method: 'HEAD' })
+    .then(res => {
+        if (res.ok) {
+            setImageExists(true)
+        } else {
+          setImageExists(false)
+        }
+    }).catch(err => console.log('Error:', err));
+  }
+
+  useEffect(() => {
+    checkIfImageExits(`https://all-cures.com/cures_articleimages/doctors/${rowno}.png`)
+  }, [])
+  
+  return (
   
     <div>
       <div className="tab-content">
@@ -10,7 +28,13 @@ const ProfileTab = ({ setModalShow, docid, rowno, name, pSpl, hospital, state, c
             <div className="dr-detail">
               <div className="tab-content-img">
                   {/* <img src={Special1} alt="special-1"/>  */}
-                  <i className="fas fa-user-md fa-6x"></i>
+                  {
+                    imageExists?
+                      <img src={`https://all-cures.com/cures_articleimages/doctors/${rowno}.png`} />
+                      :  <i className="fas fa-user-md fa-6x"></i>
+                  }
+                  {/* <img src={`https://all-cures.com/cures_articleimages/doctors/${rowno}.png`} alt={`Doctor's Photo`}/> */}
+                  {/* <i className="fas fa-user-md fa-6x"></i> */}
                   </div>
               <div className="col-md-12 col-sm-12">
                 <div className="detail-l">
@@ -50,6 +74,6 @@ const ProfileTab = ({ setModalShow, docid, rowno, name, pSpl, hospital, state, c
           </div>
       </div>
     </div>
-  );
+  )};
 
 export default ProfileTab;

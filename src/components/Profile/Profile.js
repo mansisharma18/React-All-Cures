@@ -213,10 +213,6 @@ class Profile extends Component {
       )
     }else if (isLoaded) {
       
-      
-      // Sample usage
-      var imageUrl = `https://all-cures.com/cures_articleimages/doctors/${items.rowno}.png`;
-      var finalUrlExists = false
       return (
         <div>
           <Header history={this.props.history} />
