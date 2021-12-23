@@ -385,7 +385,7 @@ class Disease extends Component {
               
             
               <div className="article-title-container">
-              <div className="h1 font-weight-bold text-capitalize text-decoration-underline">{items.title.toLowerCase()}</div>
+              <div className="h3 font-weight-bold text-capitalize text-decoration-underline">{items.title.toLowerCase()}</div>
               
  {/* Show average rating */}
  {
