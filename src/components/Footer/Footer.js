@@ -192,23 +192,19 @@ class Footer extends Component {
                         <div className="h6">Subscribe to our Newsletter</div>
                         {/* <form onSubmit={(e) => this.postSubscribtion(e)}> */}
                         <PhoneInput
-      placeholder="Enter phone number"
-      value={this.state.value}
-      defaultCountry='in'
-    
-       onChange={(newValue) => {
-                                 this.setState({
-                                    value: newValue
-                                 })
-                              }}
-                              />
-                        {/* <PhoneInput className="rounded form-input" placeholder="Enter your number" type="number" value={mobile} onChange={(e) => setMobile(e.target.value)} required/> */}
-                        {/* <button className="btn appBtn rounded" type="submit" >Subscribe</button> */}
+                           placeholder="Enter phone number"
+                           value={this.state.value}
+                           defaultCountry="IN"
+                        
+                           onChange={(newValue) => {
+                              this.setState({
+                                 value: newValue
+                              })
+                           }}
+                        />
                         <button className="btn appBtn rounded" onClick={( ) => {this.postSubscribtion()}}>
-                                   Subscribe
-                                </button>
-                        {/* <a href="/#" className="appBtn">Google Play</a> */}
-                        {/* </form> */}
+                           Subscribe
+                        </button>
                      </h1>
                   </div>
                </div>
@@ -232,7 +228,7 @@ class Footer extends Component {
                
                <div class="col-md-4 col-sm-4 col-sx-12">
                   <div class="copyRight">
-                     <p>All rights Reserved. Copyright <i class="far fa-copyright fa-1x"></i>2020</p>
+                     <p>All rights Reserved. Copyright <i class="far fa-copyright fa-1x"></i> 2021</p>
                   </div>
                </div>
 
@@ -281,31 +277,14 @@ class Footer extends Component {
                <div className="back-top">
                <a href="#" id="scroll"style={{display: "block"}} >
                    <span></span>
-                  
                 </a>
                 </div>
-             
+               </div>
+               <div className='row'></div>
             </div>
-            <div className='row'>
-            
-        </div>
-      
-        </div>
-       
-    </div>
-
-            </div>
-     
+         </div>
+      </div>
       );
    }
-
-
-
-
-
-
-
-
-
 }
 export default Footer;

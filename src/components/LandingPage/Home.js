@@ -616,26 +616,22 @@ class Home extends Component {
                         <div className="h5">Get <span>doctor-approved</span> health tips, news, and more</div>
                         <div className="form-group relative">
                            <div className="aaa">
-                           <PhoneInput
-      placeholder="Enter phone number"
-      value={this.state.value}
-      defaultCountry='in'
-    
-       onChange={(newValue) => {
-                                 this.setState({
-                                    value: newValue
-                                 })
-                              }}
-                              />
-
-                          {/* <input type="number" name="" onChange={this.setMobile}    className="form-control border rounded" placeholder="Please Share Your Mobile Number"/> */}
+                              <PhoneInput
+                                 placeholder="Enter phone number"
+                                 value={this.state.value}
+                                 defaultCountry='IN'
                               
+                                 onChange={(newValue) => {
+                                    this.setState({
+                                       value: newValue
+                                    })
+                                 }}
+                              />                              
                            </div>
                            <div>
-                              {/* <a href="/#" className="subscribeBtn">Subscribe</a> */}
-                                <button className="bcolor rounded py-2" onClick={( ) => {this.postSubscribtion()}}>
-                                   Submit
-                                </button>
+                              <button className="bcolor rounded py-2" onClick={( ) => {this.postSubscribtion()}}>
+                                 Submit
+                              </button>
                            </div>
                         </div>
                      </div>

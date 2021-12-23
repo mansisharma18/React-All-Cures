@@ -387,8 +387,9 @@ class Disease extends Component {
               <div className="article-title-container">
               <div className="h3 font-weight-bold text-capitalize text-decoration-underline">{items.title.toLowerCase()}</div>
               
- {/* Show average rating */}
- {
+              {/* Show average rating */}
+
+              {
                 this.state.ratingValue?
                 <div className="average-rating mt-2 mb-4 ml-3" id="avg-rating">
                 <span class="fa fa-star fa-2x  opacity-7"></span>
@@ -554,7 +555,6 @@ class Disease extends Component {
                         })
                           }
                         input={<Input id="select-multiple-chip" />}
-                        // MenuProps={MenuProps}
                         className="form-control">
                         {this.state.diseaseList.map((lan) => {
                             return (
@@ -579,7 +579,6 @@ class Disease extends Component {
                           cures:e.target.value
                         })}
                         input={<Input id="select-multiple-chip" />}
-                        // MenuProps={MenuProps}
                         className="form-control">
                         {this.state.diseaseList.map((lan) => {
 
@@ -605,22 +604,19 @@ class Disease extends Component {
                         <div className="form-group relative">
                            <div className="aaa">
                            <PhoneInput
-      placeholder="Enter phone number"
-      value={this.state.value}
-      defaultCountry='in'
-    
-       onChange={(newValue) => {
-                                 this.setState({
-                                    value: newValue
-                                 })
-                              }}
-                              />
-
-                          {/* <input type="number" name="" onChange={this.setMobile}    className="form-control border rounded" placeholder="Please Share Your Mobile Number"/> */}
+                            placeholder="Enter phone number"
+                            value={this.state.value}
+                            defaultCountry='IN'
+                          
+                            onChange={(newValue) => {
+                              this.setState({
+                                value: newValue
+                              })
+                            }}
+                            />
                               
                            </div>
                            <div>
-                              {/* <a href="/#" className="subscribeBtn">Subscribe</a> */}
                                 <button className="bcolor rounded py-2" onClick={( ) => {this.postSubscribtion()}}>
                                    Submit
                                 </button>
