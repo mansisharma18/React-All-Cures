@@ -1356,8 +1356,6 @@ button.appBtn:hover {
 
 .copyRight p {
   padding-top: 16px;
- 
- 
 }
 
 .footer-bootm .logo {
@@ -1581,7 +1579,7 @@ h4 {
   border: 1px solid #c4c4c4;
   box-sizing: border-box;
   border-radius: 20px;
-  padding: 50px 30px 20px;
+  padding: 2rem 2rem 1.2rem 2rem;
   margin-top: 36px;
   display: flex;
 }
@@ -3022,4 +3020,22 @@ div.main-hero:first-child .card {
 
 .btn:focus {
   box-shadow: 0 0 0 0;
+}
+
+.list-0 {
+  display: none;
+}
+
+.profile-card.doctors-article .col-md-3,
+.profile-card.doctors-article .col-md-9 {
+  max-width: 100%;
+  flex: 0 0 auto;
+}
+
+.profile-card.doctors-article .cures-search-tab {
+  flex-direction: column;
+}
+
+.profile-card.doctors-article {
+  padding: 1.2rem 0.7rem;
 }

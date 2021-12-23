@@ -265,9 +265,9 @@ class Home extends Component {
    articleSearch = (e) => {
       e.preventDefault()
       if(this.state.article){
-         this.props.history.push(`/cures/${this.state.article}`)
+         this.props.history.push(`/searchcures/${this.state.article}`)
       } else {
-         this.props.history.push(`/cures`)
+         this.props.history.push(`/searchcures`)
       }
    }
    

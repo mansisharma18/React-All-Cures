@@ -89,7 +89,7 @@ import List from '../../assets/icon/icons-AllCures/list_black_48dp.svg'
                   doctorLoaded: true
                })
             })
-            .catch(res =>  console.log(res))
+            .catch(res =>  null)
           }
           loaddoctor();
           }
@@ -151,11 +151,11 @@ import List from '../../assets/icon/icons-AllCures/list_black_48dp.svg'
    articleSearch = (e) => {
       e.preventDefault()
       if(this.state.article === ''){
-         this.props.history.push(`/cures`)
+         this.props.history.push(`/searchcures`)
       } else if(this.state.article){
-         this.props.history.push(`/cures/${this.state.article}`)
+         this.props.history.push(`/searchcures/${this.state.article}`)
       } else {
-         this.props.history.push(`/cures`)
+         this.props.history.push(`/searchcures`)
       }
    }
    render() {

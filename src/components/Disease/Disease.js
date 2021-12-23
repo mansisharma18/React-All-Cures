@@ -281,7 +281,7 @@ class Disease extends Component {
     return (
     <div>
       <Header history={this.props.history}/>
-        <HelmetMetaData title={items.title} description={items.title} ></HelmetMetaData>
+        <HelmetMetaData title={items.title} description={b[0].data.text} ></HelmetMetaData>
         <div className="ad-spac">
           {/* <img src={Wall} height="200px" width="1900px"/> */}
         </div>
@@ -325,7 +325,7 @@ class Disease extends Component {
                   <TwitterIcon size={36} />
                 </TwitterShareButton>
                 <WhatsappShareButton
-                  url={`https://all-cures.com/#${this.props.location.pathname}`}
+                  url={`https://all-cures.com/${this.props.location.pathname}`}
                   title={`*All Cures -* ${items.title}`}
                   separator=": "
                   className="socialMediaButton"

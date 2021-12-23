@@ -25,7 +25,10 @@ const ProfileTab = ({ setModalShow, docid, rowno, name, pSpl, hospital, state, c
                     <p></p>
                   </div>
                   <div className="btn-group"> 
-                    {
+                  <Link to={ `/profile/${rowno}` } className="btn-bg profile-btn color-white" id="profile">
+                         Visit Profile
+                        </Link>
+                    {/* {
                       acPerm ? 
                         <Link to={ `/profile/${rowno}` } className="btn-bg profile-btn color-white" id="profile">
                          Visit Profile
@@ -36,7 +39,7 @@ const ProfileTab = ({ setModalShow, docid, rowno, name, pSpl, hospital, state, c
                         >
                          Visit Profile
                         </button>
-                    }
+                    } */}
                   
                     </div>
                 </div>

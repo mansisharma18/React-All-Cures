@@ -87,6 +87,7 @@ const Side = (props) => {
                             published_date = {i.published_date}
                             over_allrating = {i.over_allrating}
                             // country = {i.country_id}
+                            imgLocation={i.content_location}
                             history = {props.history}
                         />
                     ))

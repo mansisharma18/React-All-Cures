@@ -1,9 +1,7 @@
 import React, { Component } from "react";
 import Header from "../Header/Header";
 import Footer from "../Footer/Footer";
-import Rating from "../StarRating";  
-import ClientA from "../../assets/img/client-a.jpg";
-import Cookies from 'js-cookie';
+import Rating from "../StarRating";
 import Doct from "../../assets/img/doct.png";
 import '../../assets/healthcare/css/main.css';
 import '../../assets/healthcare/css/responsive.css';
@@ -16,7 +14,9 @@ import { backendHost } from '../../api-config';
 import Comment from '../Comment'
 import '../../assets/healthcare/css/mobile.css'
 import ArticleComment from '../ArticleComment';
-
+import { userId } from "../UserId";
+import { userAccess } from "../UserAccess";
+import AllPost from "../BlogPage/Allpost";
 
 class Profile extends Component {
   constructor(props) {
@@ -26,6 +26,7 @@ class Profile extends Component {
     this.fetchDoctorData = this.fetchDoctorData.bind(this)
     this.state = { 
       items: [],
+      articleItems: [],
       comment: [],
       ratingValue: '',
       firstName: [],
@@ -36,12 +37,29 @@ class Profile extends Component {
       showMore: false,
       modalShow: false,
       show: false,
-      acPerm: Cookies.get('acPerm').split('|')
+      imageExists: false
     }; 
-    // this.editToggle = this.editToggle.bind()
   }
  
-  
+  allPosts() {                        // For all available blogs "/blogs"
+    fetch(`${backendHost}/article/allkv`)
+      .then((res) => res.json())
+      .then((json) => {
+        var temp = []
+        json.forEach(i => {
+          if(i.pubstatus_id === 3){
+            temp.push(i)
+          }
+        });
+        this.setState({
+          articleItems: temp
+        })
+      })
+      .catch(err => 
+        console.log(err)
+    )
+  }
+
   getComments = (id) => {
     axios.get(`${backendHost}/rating/target/${id}/targettype/1`)
     .then(res => {
@@ -101,7 +119,7 @@ class Profile extends Component {
         this.setState({
           isLoaded: true,
           items: json,
-        });
+        }, ()=> this.checkIfImageExits(`https://all-cures.com/cures_articleimages/doctors/${json.rowno}.png`));
       });
 
   }
@@ -125,15 +143,14 @@ class Profile extends Component {
       })
     }
   }
-
+  
   componentDidMount() {
     document.title = "All Cures | Profile"
     this.fetchDoctorData(this.state.param.id)
     this.getComments(this.state.param.id)
     this.getRating(this.props.match.params.id)
+    this.allPosts()
   }
-
-
 
   setModalShow =(action) => {
     this.setState({
@@ -146,15 +163,29 @@ class Profile extends Component {
     })
   }
 
-
   handleShow = () => {
     this.setState({
       show: true
     })
   }
   
+  checkIfImageExits = (imageUrl) => {
+    fetch(imageUrl, { method: 'HEAD' })
+    .then(res => {
+        if (res.ok) {
+            this.setState({
+              imageExists: true
+            })
+        } else {
+          this.setState({
+            imageExists: false
+          })
+        }
+    }).catch(err => console.log('Error:', err));
+  }
+
   render() {
-    var { isLoaded, items, acPerm } = this.state;
+    var { isLoaded, items } = this.state;
     if (!isLoaded) {
 
       return(
@@ -181,6 +212,11 @@ class Profile extends Component {
         </>
       )
     }else if (isLoaded) {
+      
+      
+      // Sample usage
+      var imageUrl = `https://all-cures.com/cures_articleimages/doctors/${items.rowno}.png`;
+      var finalUrlExists = false
       return (
         <div>
           <Header history={this.props.history} />
@@ -192,8 +228,18 @@ class Profile extends Component {
                   <div className="profile-card clearfix">
                     <div className="col-md-3">
                       <div className="profileImageBlok">
-                        <div className="profile-card-img text-center">
-                          <i className="fas fa-user-md fa-6x"></i>
+                        <div className="profile-card-img text-center" id="profile-card-img">
+                          {/* {
+                            finalUrlExists === false?
+                              <img src={imageUrl} />
+                            : <i className="fas fa-user-md fa-6x"></i>
+                          } */}
+                          {
+                            this.state.imageExists?
+                            <img src={`https://all-cures.com/cures_articleimages/doctors/${items.rowno}.png`} />
+                            :  <i className="fas fa-user-md fa-6x"></i>
+                          }
+                         
                         </div>
                       </div>
                     </div>
@@ -202,12 +248,12 @@ class Profile extends Component {
                         <div className="profile-infoL-card">
                           <div className="profile-info-name" id="DocDetails">
                           <div className="h4 font-weight-bold">
-                              {items.prefix}. {items.docname_first} {items.docname_middle}{" "}
+                              {items.prefix} {items.docname_first} {items.docname_middle}{" "}
                               {items.docname_last}{" "}
                             </div>
-                            <div className="h5 "> {items.primary_spl}</div>
+                            <div className="h5 text-capitalize"> {items.primary_spl}</div>
                             <div className="h5 ">{items.experience}</div>
-                            <div className="h5 "> 
+                            <div className="h5 text-capitalize"> 
                               {items.hospital_affliated}{" "}
                               {items.country_code}
                             </div>
@@ -246,7 +292,7 @@ class Profile extends Component {
                           <div className="reviews" >
                             
                             {
-                              acPerm[1] === '9' || parseInt(acPerm[0]) === parseInt(this.state.param.id)?
+                              userAccess === '9' || parseInt(userId) === parseInt(this.state.param.id)?
                               <Button variant="dark" onClick={() => this.setModalShow(true)}>
                                 Edit Profile
                               </Button>
@@ -279,6 +325,19 @@ class Profile extends Component {
                         {items.about}{" "}
                       </p>
                     </div>
+                    
+                    <br/>
+                    <div className="abt-eduction ">
+                    <div className="h4 font-weight-bold">Education</div>
+                    {items.edu_training.split('•').map((i,idx) => <li className={`list-${idx}`}>{i}</li>)}
+                      
+                    </div>
+                    <div className="mt-5">
+                    <div className="h4 font-weight-bold">Accomplishments</div>
+                    {items.membership.split('•').map((i,idx) => <li className={`list-${idx}`}>{i}</li>)}
+                      
+                    </div>
+
                     <br />
                     <div className="about-specialties">
                       <div className="h4 font-weight-bold">Specialties</div>
@@ -289,13 +348,6 @@ class Profile extends Component {
                       <ul>
                         <li>{items.other_spls}</li>
                        
-                      </ul>
-                    </div>
-                    <br/>
-                    <div className="abt-eduction ">
-                    <div className="h4 font-weight-bold">Education</div>
-                      <ul>
-                        <li>{items.edu_training}</li>
                       </ul>
                     </div>
                     <br />
@@ -322,17 +374,20 @@ class Profile extends Component {
                       </div>
                     
                   </div>
-                  <div className="profile-info-rating">
+                  {
+                    userId && <div className="profile-info-rating">
                     <h3>Rate here</h3>
                     <div id="docRate">
                         <Rating  docid={this.state.param.id} />
                         </div>
                        
                         </div>
+                  }
+                  
                   <div className="comment-box">
               
                   {
-                Cookies.get('acPerm')?
+                userId?
                   <>              
                     <Comment refreshComments={this.getComments} docid={this.props.match.params.id}/>
                   </>
@@ -374,7 +429,35 @@ class Profile extends Component {
                 : null
             }
                 </div>
-              
+              <div className="col-md-4">
+                <div className="profile-card doctors-article d-flex flex-column">
+                  <div className="h5 font-weight-bold mb-3">Cures By Dr. {items.docname_first} {items.docname_middle}
+                      {items.docname_last}</div>
+                {   this.state.articleItems?
+                    this.state.articleItems.map((i, index) => index<2 && (
+                        <AllPost
+                            id = {i.article_id}
+                            title = {i.title}
+                            f_title = {i.friendly_name}
+                            w_title = {i.window_title}
+                            type = {i.type}
+                            content = {decodeURIComponent(i.content? 
+                                        i.content.includes('%22%7D%7D%5D%7D')?
+                                          i.content
+                                          : i.content.replaceAll('%7D', '%22%7D%7D%5D%7D')
+                                        : null)}
+                            // type = {i.type}
+                            published_date = {i.published_date}
+                            over_allrating = {i.over_allrating}
+                            // country = {i.country_id}
+                            imgLocation={i.content_location}
+                            // history = {props.history}
+                        />
+                    ))
+                    : null
+                }
+                </div>
+              </div>
               </div>
             </div>
           </section>

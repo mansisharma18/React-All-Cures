@@ -3,13 +3,13 @@ import { Link } from 'react-router-dom';
 import CenterWell from '../Disease/CenterWell';
 
 const AllPost = ({id, title, content, f_title, w_title, country, type, published_date, over_allrating, imgLocation}) => {
+    console.log(content)
     var imageLoc = '';
     if(imgLocation && imgLocation.includes('cures_articleimages')){
         imageLoc = `https://all-cures.com/`+imgLocation.replaceAll('json', 'png').split('/webapps/')[1]
     } else {
         imageLoc = 'https://all-cures.com/cures_articleimages//299/default.png'
     }
-    console.log('imageLocation: ', imageLoc)
         return (
             <>
             <div key={id.toString()} className="d-flex cures-search-tab w-100 card mb-5">
