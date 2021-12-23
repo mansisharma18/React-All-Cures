@@ -84,7 +84,6 @@ class Home extends Component {
  
 
  componentDidMount(){
-    console.log('PAATH: ', this.state.path)
     if(userId){
        this.setState({modalShow: false})
     }
