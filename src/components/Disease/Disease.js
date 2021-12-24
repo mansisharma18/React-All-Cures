@@ -20,6 +20,7 @@ import HelmetMetaData from '../HelmetMetaData';
 import {FacebookShareButton, FacebookIcon, TwitterIcon, TwitterShareButton, WhatsappIcon, WhatsappShareButton} from "react-share";
 import Cookies from 'js-cookie'
 import WriterImg from '../../assets/healthcare/img/images/special-1.jpg'
+import ArticlePreview from '../LandingPage/ArticlePreview';
 
 class Disease extends Component {
   constructor(props) {
@@ -42,7 +43,8 @@ class Disease extends Component {
       disease:[],
       cures:[],
       showAlert: false,
-      alertMsg: ''
+      alertMsg: '',
+      showCuresCards: false
     };
   }
 
@@ -75,15 +77,10 @@ class Disease extends Component {
 
   postSubscribtion() {
     //  var mobileNumber = this.state.mobile.split('+')
-    console.log('value: ', this.state.value)
     var phoneNumber = this.state.value.split('+')[1]
-    console.log(phoneNumber)
     var countryCodeLength = phoneNumber.length % 10
-     console.log('Country COde:', countryCodeLength)
     var countryCode = phoneNumber.slice(0, countryCodeLength)
-    console.log(countryCode)
     var StringValue = phoneNumber.slice(countryCodeLength).replace(/,/g, '')
-    console.log(StringValue)
      if(phoneNumber){
        this.setState({
           afterSubmitLoad: true
@@ -126,7 +123,7 @@ class Disease extends Component {
         })
       })
       .catch(err => 
-        console.log(err)
+        null
       )
   }
 
@@ -137,7 +134,7 @@ class Disease extends Component {
         ratingValue: res.data
       })
     }) 
-    .catch(err => console.log(err))
+    .catch(err => null)
   }
 
   regionalPosts(){
@@ -150,7 +147,7 @@ class Disease extends Component {
       });
     })
     .catch(err => 
-      console.log(err)
+      null
   )
   }
   comments() {                        // For all available blogs "/blogs"
@@ -168,7 +165,7 @@ class Disease extends Component {
         })
       })
       .catch(err => 
-        console.log(err)
+        null
     )
   }
 
@@ -180,6 +177,10 @@ class Disease extends Component {
     }
   }
  
+  toggleShowCuresCards = (val) => {
+    this.setState({showCuresCards: val})
+  }
+  
   showComments = (item, i) => {
       return (
         <>
@@ -217,13 +218,12 @@ class Disease extends Component {
  getDisease = () => {
     axios.get(`${backendHost}/article/all/table/disease_condition`)
     .then(res => {
-        console.log(res.data);
         this.setState({
           diseaseList:res.data
         })
        
     })
-    .catch(err => console.log(err))
+    .catch(err => null)
 }
 
   componentDidMount() {
@@ -278,6 +278,7 @@ class Disease extends Component {
     var artContent = items.content;
     var a = JSON.parse(decodeURIComponent(artContent))
     var b = a.blocks
+    console.log(parseInt(this.props.match.params.id))
     return (
     <div>
       <Header history={this.props.history}/>
@@ -286,8 +287,16 @@ class Disease extends Component {
           {/* <img src={Wall} height="200px" width="1900px"/> */}
         </div>
         <Row>
-          <div id="sidebar-wrapper" className='left-menu pb-3'>      
-            <Sidebar diseaseId={items.disease_condition_id} id={this.props.match.params.id}  name={items.dc_name} />
+          <div id="sidebar-wrapper" className='left-menu pb-3'>  
+          {
+            this.state.regionalPost.length !== 0 &&
+              <Sidebar diseaseId={items.disease_condition_id} 
+              id={this.props.match.params.id} 
+              regionalPosts={this.state.regionPostsLoaded? this.state.regionalPost: null}
+              name={items.dc_name} 
+              />
+          }    
+            
           </div>
           <Col  md={7} id="page-content-wrapper" className="col-xs-12 pb-5">
             <div id="center-well" className="">
@@ -295,14 +304,21 @@ class Disease extends Component {
                    
                 <Breadcrumb.Item className='mt-1 pb-2' href="/"id="s1">Home</Breadcrumb.Item>                                     
                 <Breadcrumb.Item className='mt-1'id="s1">
-                  <Link to="/searchcures">
-                    Cures
-                  </Link>
-                </Breadcrumb.Item>
-                <Breadcrumb.Item className='mt-1'id="s1">
                   <Link to={`/searchcures/${items.dc_name}`}>
                     {items.dc_name}
                   </Link>
+                  {/* <Link to="/searchcures">
+                    Cures
+                  </Link> */}
+                </Breadcrumb.Item>
+                <Breadcrumb.Item className='mt-1'id="s1">
+                  {
+                    items.type.includes(1) && !this.props.match.params.cureType?
+                    <Link>Overview</Link>: <Link>Cures</Link>
+                  }
+                  {/* <Link to="/searchcures">
+                    Cures
+                  </Link> */}
                 </Breadcrumb.Item>
                 
                 <div id="share-icons-regions">
@@ -339,7 +355,7 @@ class Disease extends Component {
               <div className="d-flex justify-content-end margin-auto" id="article-acc-to-regions">
                 
               { finalRegions?
-                  finalRegions.map(i => (
+                  finalRegions.map(i => i.countryname!== null && (
                     <Dropdown>
                       <Dropdown.Toggle className="mr-2 btn btn-info color-white">
                         <span className="color-white">{i.countryname}</span>
@@ -347,7 +363,6 @@ class Disease extends Component {
                     <Dropdown.Menu>
                     {
                       this.state.regionalPost.map(j => j.countryname === i.countryname 
-                        // && j.type == 2 
                         &&(
                         <>
                         <Dropdown.Item href="#" className="pt-2">
@@ -358,11 +373,11 @@ class Disease extends Component {
                             </div>
                             <div>
                               {
-                                j.type === '1'?
+                                j.type.includes(1)?
                                   <div className="chip overview">Overview</div>
-                                : j.type === '2'?
+                                : j.type.includes(2)?
                                   <div className="chip cure">Cures</div>
-                                : j.type === '3'?
+                                : j.type.includes(3)?
                                   <div className="chip symptoms">Symptoms</div>
                                 : null
                               }
@@ -383,8 +398,11 @@ class Disease extends Component {
                 </div>
               </Breadcrumb>
               
-            
-              <div className="article-title-container">
+            {
+              this.props.match.params.cureType?
+                <ArticlePreview type="cures" dcName={`${items.dc_name}`}/>
+                : <>
+                   <div className="article-title-container">
               <div className="h3 font-weight-bold text-capitalize text-decoration-underline">{items.title.toLowerCase()}</div>
               
               {/* Show average rating */}
@@ -406,11 +424,6 @@ class Disease extends Component {
               }
             </div>
 
-
-              {/* Call average rating fetch function */}
-              {
-                this.state.ratingValue? this.showRating(this.state.ratingValue) : null
-              }
             {/* Center Well article main content */}
               <div id="article-main-content">
                 {b.map((i) => (
@@ -435,22 +448,19 @@ class Disease extends Component {
                 ))}
               </div>
                   <div className='text-muted text-left ml-3 mb-4'>Published on: {items.published_date}</div>
+              
               {/* Author */}
+              {
+                items.authors_name?
+                  <div className='text-muted text-left ml-3 mb-4'>Published by: {items.authors_name}</div>
+                  : null
+              }
+                
+              </>
+            }
 
-              <div className='about-writer d-flex mb-4'>
-                <div id="writer-img ml-3">
-                  <img src={WriterImg} width='200px' height="150px" />
-                </div>
-                <div className="writer-info ml-3">
-                  <div className='h5 mt-4 rounded'></div>
-                  <div>Dr. John Doe</div>
-                  <div>Anatomy Specialist</div>
-                </div>
-              </div>
-              
-              
-            
-            </div>
+          </div>
+          
                {/* Review Button (Rating + Comment) */}
                {
                 Cookies.get('acPerm')?
@@ -496,7 +506,7 @@ class Disease extends Component {
             </div>
           </Col> 
           <Col id="sidebar-wrapper">      
-            <SidebarRight title={items.title} history={this.props.history} />
+            <SidebarRight title={items.title} history={this.props.history} dcName={items.dc_name} />
           </Col>
         </Row>
         <div>

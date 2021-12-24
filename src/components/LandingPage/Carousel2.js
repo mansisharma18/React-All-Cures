@@ -112,7 +112,7 @@ export default class Carousel2 extends Component {
                      <p>{i.map.primary_spl}</p>
                      <h5 className="text-center"id="head5">{i.map.hospital_affliated} {i.map.state} {i.map.country_code}</h5>
                   </div>
-                  <Link to="{ `/profile/${rowno}` }" className="appointmentBtn allBtn" id="visitDoc">Visit Profile</Link>
+                  <Link to={ `/profile/${i.map.rowno}` } className="appointmentBtn allBtn" id="visitDoc">Visit Profile</Link>
                </div>
             </div>
          ))}

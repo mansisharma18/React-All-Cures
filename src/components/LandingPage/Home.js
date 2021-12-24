@@ -97,7 +97,7 @@ class Home extends Component {
             this.state.cityList.push(u.Cityname, u.Pincode)
          ))
       })
-      .catch(res => console.log(res))
+      .catch(res => null)
     }
     loadUsers();
 
@@ -109,7 +109,7 @@ class Home extends Component {
             doctorLoaded: true
          })
       })
-      .catch(res =>  console.log(res))
+      .catch(res =>  null)
     }
     loaddoctor();
 
@@ -127,9 +127,9 @@ class Home extends Component {
         this.state.spec1.push(i[3])
       ))
     })
-    .catch(res => {
-       console.error(res)
-    })
+    .catch(res => 
+       null
+    )
  }
 
  componentDidUpdate(prevProps, prevState){
@@ -153,21 +153,15 @@ class Home extends Component {
        });
      })
      .catch(err => 
-      console.log(err)
-  )
+      null
+      )
  }
    
  postSubscribtion() {
-   //  var mobileNumber = this.state.mobile.split('+')
-   console.log('value: ', this.state.value)
    var phoneNumber = this.state.value.split('+')[1]
-   console.log(phoneNumber)
    var countryCodeLength = phoneNumber.length % 10
-    console.log('Country COde:', countryCodeLength)
    var countryCode = phoneNumber.slice(0, countryCodeLength)
-   console.log(countryCode)
    var StringValue = phoneNumber.slice(countryCodeLength).replace(/,/g, '')
-   console.log(StringValue)
     if(phoneNumber){
       this.setState({
          afterSubmitLoad: true
@@ -217,12 +211,10 @@ class Home extends Component {
                window.location.reload()
             }, 500);
          // }
-      }).catch(res => {
-         console.log('Not able to logout')
-      })
-   }
-
-  
+      }).catch(res => 
+         null
+      )
+   }  
 
    Alert = (msg) => {
       this.setState({

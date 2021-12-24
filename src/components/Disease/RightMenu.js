@@ -1,16 +1,13 @@
 import React, { useEffect, useState } from "react";
 import {Nav} from "react-bootstrap";
 import { withRouter } from "react-router";
-import Post from './Posts'
 import AllPost from "../BlogPage/Allpost";
 import './style.css'
 import { Container } from 'react-bootstrap';
 import { backendHost } from '../../api-config';
 import ArticleRating from "../ArticleRating";
-import Cookies from 'js-cookie';
 
 const Side = (props) => {
-    const acPerm = Cookies.get("acPerm")
 
     const [isloaded, setisLoaded] = useState(false)
     const [items, setItems] = useState([])
@@ -24,12 +21,12 @@ const Side = (props) => {
     //       });
     //   }
       function allPosts() {                        // For all available blogs "/blogs"
-        fetch(`${backendHost}/article/allkv`)
+        fetch(`${backendHost}/article/allkv?limit=6`)
           .then((res) => res.json())
           .then((json) => {
             var temp = []
             json.forEach(i => {
-              if(i.pubstatus_id === 3){
+              if(i.pubstatus_id === 3 && props.dcName=== i.dc_name){
                 temp.push(i)
               }
             });
@@ -49,7 +46,7 @@ const Side = (props) => {
         return(
             <>
             <Container className="my-5 loading">
-            <div className="h3 pb-3"><u className="text-decoration-none">Recent Cures</u></div>
+            <div className="h3 pb-3"><u className="text-decoration-none">{props.dcName} Cures</u></div>
               <div className="loader ">
                 <i className="fa fa-spinner fa-spin fa-3x" />
               </div>
@@ -68,10 +65,10 @@ const Side = (props) => {
                 <div className="sidebar-sticky"></div>
                 
             <Nav.Item className="set-width"  id="dc-right-menu">
-                <div className="h3 pb-3"><u className="text-decoration-none">Recent Cures</u></div>
+                <div className="h3 pb-3"><u className="text-decoration-none">{props.dcName} Cures</u></div>
                 
             {   items?
-                    items.map((i, index) => index<9 && (
+                    items.map((i, index) => (
                         <AllPost
                             id = {i.article_id}
                             title = {i.title}

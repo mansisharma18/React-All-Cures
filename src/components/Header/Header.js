@@ -63,9 +63,7 @@ import List from '../../assets/icon/icons-AllCures/list_black_48dp.svg'
               this.state.spec1.push(i[3])
             ))
           })
-          .catch(res => {
-             console.error(res)
-          })
+          .catch(res => null)
 
           const loadUsers = async () => {
             await axios.get(`${backendHost}/city/all`)
@@ -77,7 +75,7 @@ import List from '../../assets/icon/icons-AllCures/list_black_48dp.svg'
                   this.state.cityList.push(u.Cityname, u.Pincode)
                ))
             })
-            .catch(res => console.log(res))
+            .catch(res => null)
           }
           loadUsers();
       
@@ -124,9 +122,7 @@ import List from '../../assets/icon/icons-AllCures/list_black_48dp.svg'
                setTimeout(() => {
                   window.location.reload()
                }, 500);
-            }).catch(res => {
-               console.log(res.data)
-            })
+            }).catch(res => null)
             
          }
 

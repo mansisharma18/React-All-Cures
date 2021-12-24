@@ -4,6 +4,7 @@ import Footer from '../Footer/Footer'
 // import EditModal from './EditModal'
 import AllPost from './Allpost.js';
 import { backendHost } from '../../api-config';
+import { Link } from 'react-router-dom';
 
 export default class Blogpage extends Component{
 
@@ -176,7 +177,19 @@ export default class Blogpage extends Component{
           <Footer/>
         </>  
       );
-    } else if(isLoaded){
+    } 
+    // else if(isLoaded && items.length === 0){
+    //   return(
+    //     <>
+    //       <Header history={this.props.history}/>
+    //         <div className="loader my-4">
+    //           <div>No articles</div>
+    //         </div>
+    //       <Footer/>
+    //     </> 
+    //   )
+    // }
+    else if(isLoaded){
         return(
             <>
             <Header history={this.props.history}/>
@@ -239,6 +252,10 @@ export default class Blogpage extends Component{
                        </li> */}
                     </ul>
                  </div>
+                  }
+                  {
+                    items.length === 0 && this.state.articleFilter !== 'recent'?
+                    <div className='my-5 py-4 h5 container text-center'>We do not have any cures for this condition yet but our editorial team is working on it. In the meantime, if you have a cure, Please <Link to="/article">Click Here</Link> to add the cure to our site.</div>: null
                   }
                     <div className="row" id="posts-container">
                     {items.map((i) => (
