@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom';
 import CenterWell from '../Disease/CenterWell';
 
 const AllPost = ({id, title, content, f_title, w_title, country, type, published_date, over_allrating, imgLocation}) => {
-    console.log(content)
     var imageLoc = '';
     if(imgLocation && imgLocation.includes('cures_articleimages')){
         imageLoc = `https://all-cures.com/`+imgLocation.replaceAll('json', 'png').split('/webapps/')[1]

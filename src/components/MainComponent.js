@@ -125,6 +125,8 @@ const Routes = (props) => {
       <Route path="/searchcures/:type" component={Blogpage}/>
 
       {/* Cure according to article_id*/}
+      <Route auth={Auth.auth} exact path="/cure/:cureType/:id" component={Disease}/>
+
       <Route auth={Auth.auth} exact path="/cure/:id" component={Disease}/>
       
       {/* Doctor profile page */}

@@ -8,6 +8,7 @@ import Slider3 from "../../assets/img/slider-3.png";
 import Slider4 from "../../assets/img/slider-4.png";
 import Slider5 from "../../assets/img/slider-5.png";
 import Slider6 from "../../assets/img/slider-6.png";
+import Slider7 from "../../assets/img/slider-7.png";
 import { Link } from 'react-router-dom';
 
 const options = {
@@ -72,12 +73,12 @@ export default function Carousel1(props){
                            </Link>
                         </div>
                         <div className="item bg-voilet">
-                        <Link to={ `/cures/Dental` }>
+                        <Link to={ `/cures/Insomnia` }>
                            <div className="item-img">
-                              <img src={Slider4} alt="slider-img"/>
+                              <img src={Slider7} alt="slider-img" className='pb-4'/>
                            </div>
                            <div className="slider-heading">
-                              <p><strong>Dental</strong><br/> Care</p>
+                              <p><strong>Insomnia</strong><br/></p>
                            </div>
                         </Link>
                         </div>
