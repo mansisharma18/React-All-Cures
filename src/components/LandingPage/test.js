@@ -28,7 +28,7 @@ const Test = (props) => {
       secondPassword: "",
     });
     const [terms, setTerms] = useState("");
-    const [userType, setUserType] = useState("");
+    const [userType, setUserType] = useState("other");
     const [buttonSignUpClick, setSignUpClicked] = useState("");
     const [number, setMname]= useState("");
     const [validEmail, setValidEmail] = useState()
