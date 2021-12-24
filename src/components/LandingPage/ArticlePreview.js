@@ -92,7 +92,7 @@ const ArticlePreview = (props) => {
         var siblings = e.target.parentNode.parentElement.children
         if(siblings){
             for(var i=0;i<siblings.length; i++){
-                if(siblings[i].className =='active'){
+                if(siblings[i].classList.contains('active')){
                     siblings[i].classList.remove('active')
                 }
               }
@@ -126,50 +126,81 @@ const ArticlePreview = (props) => {
                      {articleFilter} Cures
                   </div>
                </div>
-               
+                    <div>
                    <ul>
-                   <li role="presentation" class="active ">
+                   <li role="presentation" className='my-1'>
                       <button className="btn mr-2" 
                         onClick={(e) => { 
                             allPosts() 
                             articleFilterClick(e, 'recent')
                         }}>Recent</button>
                    </li>
-                   <li role="presentation">
+                   {/* <li role="presentation" className='my-1'>
                       <button className="btn mr-2" onClick={(e) => { 
                             allPosts() 
                             articleFilterClick(e, 'earliest')
                         }}>Earliest</button>
-                   </li>
-                   <li role="presentation">
+                   </li> */}
+                   <li role="presentation" className='my-1'>
                       <button className="btn mr-2" 
                         onClick={(e) => {
                             diseasePosts('diabetes')
                             articleFilterClick(e, 'diabetes')
                         }}>Diabetes</button>
                    </li>
-                   <li role="presentation">
+                   <li role="presentation" className='my-1'>
                       <button className="btn mr-2" onClick={(e) => {
                             diseasePosts('Thyroid')
                             articleFilterClick(e, 'Thyroid')
                         }}>Thyroid</button>
                    </li>
-                   <li role="presentation">
+                   <li role="presentation" className='my-1'>
                       <button className="btn mr-2" onClick={(e) => {
                             diseasePosts('arthritis')
                             articleFilterClick(e, 'arthritis')
                         }}>Arthritis</button>
                    </li>
-                   <li role="presentation">
+                   <li role="presentation" className='my-1'>
+                      <button className="btn mr-2" onClick={(e) => {
+                            diseasePosts('Insomnia')
+                            articleFilterClick(e, 'Insomnia')
+                        }}>Insomnia</button>
+                   </li>
+                   <li role="presentation" className='my-1'>
                       <button className="btn mr-2" onClick={(e) => {
                             diseasePosts('migraine')
                             articleFilterClick(e, 'migraine')
                         }}>Migraine</button>
                    </li>
-                   {/* <li role="presentation">
+                   {/* <li role="presentation" className='my-1'>
+                      <button className="btn mr-2" onClick={(e) => {
+                            diseasePosts('Hypertension')
+                            articleFilterClick(e, 'Hypertension')
+                        }}>Hypertension</button>
+                   </li> */}
+                   <li role="presentation" className='my-1'>
+                      <button className="btn mr-2" onClick={(e) => {
+                            diseasePosts('Skin Care')
+                            articleFilterClick(e, 'Skin Care')
+                        }}>Skin Care</button>
+                   </li>
+                   <li role="presentation" className='my-1'>
+                      <button className="btn mr-2" onClick={(e) => {
+                            diseasePosts('Psoriasis')
+                            articleFilterClick(e, 'Psoriasis')
+                        }}>Psoriasis</button>
+                   </li>
+                   {/* <li role="presentation" className='my-1'>
+                      <button className="btn mr-2" onClick={(e) => {
+                            diseasePosts('Healthy Living')
+                            articleFilterClick(e, 'Healthy Living')
+                        }}>Healthy Living</button>
+                   </li> */}
+                   {/* <li role="presentation" className='my-1'>
                       <button className="btn" onClick={(e) => articleFilterClick(e, 'recent')}>Most Rated</button>
                    </li> */}
                 </ul>
+                </div>
                </>
     }
                

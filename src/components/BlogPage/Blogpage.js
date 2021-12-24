@@ -123,10 +123,12 @@ export default class Blogpage extends Component{
       articleFilterClick(e, filter) {
         this.setState({articleFilter: filter})
         var siblings = e.target.parentNode.parentElement.children
+        console.log(siblings)
         if(siblings){
             for(var i=0;i<siblings.length; i++){
-                if(siblings[i].className =='active'){
+                if(siblings[i].classList.contains('active')){
                     siblings[i].classList.remove('active')
+                    console.log(siblings[i])
                 }
               }
             e.target.parentElement.classList.add('active')
@@ -199,62 +201,90 @@ export default class Blogpage extends Component{
                     this.props.match.params.type?
                     <div className="h3 text-capitalize text-center font-weight-bold mb-4">Cures Related to "{this.props.match.params.type.toLowerCase()}"</div>
                     :<div class="tab-nav">
-                    <div class="comman-heading">
+                    {/* <div class="comman-heading">
                        <div class="h3 mb-4 text-capitalize mr-5">
                           {this.state.articleFilter} Cures
                        </div>
-                    </div>
+                    </div> */}
                     <ul>
-                       <li role="presentation" >
+                       <li role="presentation" className='my-1' >
                           <button className="btn mr-2" 
                           onClick={(e) => this.setState({ articleFilter: 'recent'}, () => {
                             this.allPosts()
                             this.articleFilterClick(e, 'recent')
                             })}>Recent</button>
                        </li>
-                       <li role="presentation">
+                       <li role="presentation" className='my-1'>
                           <button className="btn mr-2" 
                           onClick={(e) => this.setState({ articleFilter: 'earliest'}, () => {
                             this.allPosts()
                             this.articleFilterClick(e, 'earliest')
                             })}>Earliest</button>
                        </li>
-                       <li role="presentation">
+                       <li role="presentation" className='my-1'>
                           <button className="btn mr-2" 
                           onClick={(e) => this.setState({ articleFilter: 'diabetes'}, () => {
                             this.diseasePosts('diabetes')
                             this.articleFilterClick(e, 'diabetes')
                             })}>Diabetes</button>
                        </li>
-                       <li role="presentation">
+                       <li role="presentation" className='my-1'>
                           <button className="btn mr-2" 
                           onClick={(e) => this.setState({ articleFilter: 'arthritis'}, () => {
                             this.diseasePosts('arthritis')
                             this.articleFilterClick(e, 'arthritis')
                             })}>Arthritis</button>
                        </li>
-                       <li role="presentation">
+                       <li role="presentation" className='my-1'>
                           <button className="btn mr-2" 
                           onClick={(e) => this.setState({ articleFilter: 'thyroid'}, () => {
                             this.diseasePosts('thyroid')
                             this.articleFilterClick(e, 'thyroid')
                             })}>Thyroid</button>
                        </li>
-                       <li role="presentation">
+                       <li role="presentation" className='my-1'>
                           <button className="btn mr-2" 
                           onClick={(e) => this.setState({ articleFilter: 'insomnia'}, () => {
                             this.diseasePosts('insomnia')
                             this.articleFilterClick(e, 'insomnia')
                             })}>Insomnia</button>
                        </li>
-                       <li role="presentation">
+                       <li role="presentation" className='my-1'>
                           <button className="btn mr-2" 
-                          onClick={(e) => this.setState({ articleFilter: 'Blood Pressure'}, () => {
-                            this.diseasePosts('Blood Pressure')
-                            this.articleFilterClick(e, 'Blood Pressure')
-                            })}>Blood Pressure</button>
+                          onClick={(e) => this.setState({ articleFilter: 'Hypertension'}, () => {
+                            this.diseasePosts('Hypertension')
+                            this.articleFilterClick(e, 'Hypertension')
+                            })}>Hypertension</button>
                        </li>
-                       {/* <li role="presentation">
+                       <li role="presentation" className='my-1'>
+                          <button className="btn mr-2" 
+                          onClick={(e) => this.setState({ articleFilter: 'Skin Care'}, () => {
+                            this.diseasePosts('Skin Care')
+                            this.articleFilterClick(e, 'Skin Care')
+                            })}>Skin Care</button>
+                       </li>
+                       <li role="presentation" className='my-1'>
+                          <button className="btn mr-2" 
+                          onClick={(e) => this.setState({ articleFilter: 'migraine'}, () => {
+                            this.diseasePosts('migraine')
+                            this.articleFilterClick(e, 'migraine')
+                            })}>Migraine</button>
+                       </li>
+                       <li role="presentation" className='my-1'>
+                          <button className="btn mr-2" 
+                          onClick={(e) => this.setState({ articleFilter: 'Psoriasis'}, () => {
+                            this.diseasePosts('Psoriasis')
+                            this.articleFilterClick(e, 'Psoriasis')
+                            })}>Psoriasis</button>
+                       </li>
+                       <li role="presentation" className='my-1'>
+                          <button className="btn mr-2" 
+                          onClick={(e) => this.setState({ articleFilter: 'Healthy Living'}, () => {
+                            this.diseasePosts('Healthy Living')
+                            this.articleFilterClick(e, 'Healthy Living')
+                            })}>Healthy Living</button>
+                       </li>
+                       {/* <li role="presentation" className='my-1'>
                           <button className="btn" onClick={(e) => articleFilterClick(e, 'recent')}>Most Rated</button>
                        </li> */}
                     </ul>
@@ -264,7 +294,7 @@ export default class Blogpage extends Component{
                     items.length === 0 && this.state.articleFilter !== 'recent'?
                     <div className='my-5 py-4 h5 container text-center'>We do not have any cures for this condition yet but our editorial team is working on it. In the meantime, if you have a cure, Please <Link to="/article">Click Here</Link> to add the cure to our site.</div>: null
                   }
-                    <div className="row" id="posts-container">
+                    <div className="row mt-4" id="posts-container">
                     {items.map((i) => (
                       i.pubstatus_id === 3 ?            // Selects articles with publish status = 3 (Published)
                         <AllPost
