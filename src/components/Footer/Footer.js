@@ -112,7 +112,7 @@ class Footer extends Component {
                   <div className="footer-inner" >
                      <h1>About us</h1>
                      <p >We are a new age healthcare technology firm who are trying make it simple and convenient for the users to get information 
-                        on Cures from anywhere in the world.With over 20 years of experience building technology products in the healthcare segment, 
+                        on Cures from anywhere in the world. With over 20 years of experience building technology products in the healthcare segment, 
                         our team is developing an integrated platform for all your health needs. 
                         We are passionate about giving our users the unique experience that is both fulfilling and wholesome.</p>
                   </div>

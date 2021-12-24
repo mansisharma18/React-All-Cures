@@ -63,7 +63,7 @@ export default class Blogpage extends Component{
             <Container className="mt-5 my-5 loading">
               <h3 className="text-left">Loading...</h3>
             </Container>
-          <Footer/>
+          <Footer/> 
         </>  
       );
     } else if(isLoaded && items.length === 0) {
