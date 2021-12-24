@@ -11,35 +11,38 @@ const Side = (props) => {
 
     const [isloaded, setisLoaded] = useState(false)
     const [items, setItems] = useState([])
-    // function diseasePosts(){                     // For specific blogs like "/blogs/diabetes"
-    //     fetch(`${backendHost}/isearch/${props.title}`)
-    //       .then((res) => res.json())
-    //       .then((json) => {                                  
-    //           setisLoaded(true)
-    //           setItems(json)
-            
-    //       });
-    //   }
-      function allPosts() {                        // For all available blogs "/blogs"
-        fetch(`${backendHost}/article/allkv?limit=6`)
+    function diseasePosts(){                     // For specific blogs like "/blogs/diabetes"
+        fetch(`${backendHost}/isearch/${props.dcName}`)
           .then((res) => res.json())
-          .then((json) => {
-            var temp = []
-            json.forEach(i => {
-              if(i.pubstatus_id === 3 && props.dcName=== i.dc_name){
-                temp.push(i)
-              }
-            });
-            setItems(temp)
-            setisLoaded(true)
+          .then((json) => {                                  
+              setisLoaded(true)
+              setItems(json)
+            
           })
           .catch(err => 
             console.log(err)
         )
       }
+      // function allPosts() {                        // For all available blogs "/blogs"
+      //   fetch(`${backendHost}/article/allkv?limit=6`)
+      //     .then((res) => res.json())
+      //     .then((json) => {
+      //       var temp = []
+      //       json.forEach(i => {
+      //         if(i.pubstatus_id === 3 && props.dcName=== i.dc_name){
+      //           temp.push(i)
+      //         }
+      //       });
+      //       setItems(temp)
+      //       setisLoaded(true)
+      //     })
+      //     .catch(err => 
+      //       console.log(err)
+      //   )
+      // }
       useEffect(() => {
-          allPosts()
-        // diseasePosts()
+          // allPosts()
+        diseasePosts()
     }, [])
     // diseasePosts()
     if(!isloaded){

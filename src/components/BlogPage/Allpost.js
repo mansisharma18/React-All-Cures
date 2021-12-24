@@ -26,7 +26,7 @@ const AllPost = ({id, title, content, f_title, w_title, country, type, published
                             <div className="d-flex justify-content-between align-items-center mt-3">
                                 <div>
                                     <Link to={ `/cure/${id}` }  className="d-flex justify-content-between align-items-center">
-                                        <div className="card-title h5 text-capitalize article-title">{title.toLowerCase()}</div>
+                                        <div className="card-title h5 text-capitalize">{title.toLowerCase()}</div>
                                     </Link>
                                 </div>
                                 {

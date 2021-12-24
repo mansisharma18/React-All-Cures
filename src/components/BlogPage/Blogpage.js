@@ -80,7 +80,7 @@ export default class Blogpage extends Component{
       }
       
       diseasePosts(type){                     // For specific blogs like "/blogs/diabetes"
-        if(type){
+        // if(type){
           fetch(`${backendHost}/isearch/${type}`)
           .then((res) => res.json())
           .then((json) => {
@@ -90,18 +90,7 @@ export default class Blogpage extends Component{
             });
           })
           .catch(err => console.log(err))
-        }
-        else {
-        // if(type !== undefined){
-          fetch(`${backendHost}/isearch/${this.props.match.params.type}`)
-          .then((res) => res.json())
-          .then((json) => {
-            this.setState({
-              isLoaded: true,
-              items: json.reverse(),
-            });
-          });
-        } 
+        // }
       }
 
       regionalPosts(){
@@ -143,8 +132,12 @@ export default class Blogpage extends Component{
     }
 
       componentDidMount() {
-        if(this.state.param.type){
-          this.diseasePosts()
+        // if(this.props.match.params.type === undefined){
+        //   this.allPosts()
+        // }
+        console.log(this.props.match.params.type)
+        if(this.props.match.params.type !== undefined){
+          this.diseasePosts(this.props.match.params.type)
         } else if(this.props.location.search){
           this.regionalPosts()
         } else {
@@ -154,7 +147,12 @@ export default class Blogpage extends Component{
 
       componentDidUpdate(prevProps, prevState){
         if ( prevProps.match.params.type !== this.props.match.params.type ){
-          this.diseasePosts(this.props.match.params.type)
+          if(this.props.match.params.type){
+            this.diseasePosts(this.props.match.params.type)
+          } else {
+            this.allPosts()
+          }
+          
         }
         // window.addEventListener('scroll', this.handleScroll, {
         //   passive: true
@@ -222,30 +220,37 @@ export default class Blogpage extends Component{
                        <li role="presentation">
                           <button className="btn mr-2" 
                           onClick={(e) => this.setState({ articleFilter: 'diabetes'}, () => {
-                            this.allPosts()
+                            this.diseasePosts('diabetes')
                             this.articleFilterClick(e, 'diabetes')
                             })}>Diabetes</button>
                        </li>
                        <li role="presentation">
                           <button className="btn mr-2" 
-                          onClick={(e) => this.setState({ articleFilter: 'neurology'}, () => {
-                            this.allPosts()
-                            this.articleFilterClick(e, 'neurology')
-                            })}>Neurology</button>
-                       </li>
-                       <li role="presentation">
-                          <button className="btn mr-2" 
                           onClick={(e) => this.setState({ articleFilter: 'arthritis'}, () => {
-                            this.allPosts()
+                            this.diseasePosts('arthritis')
                             this.articleFilterClick(e, 'arthritis')
                             })}>Arthritis</button>
                        </li>
                        <li role="presentation">
                           <button className="btn mr-2" 
-                          onClick={(e) => this.setState({ articleFilter: 'anemia'}, () => {
-                            this.allPosts()
-                            this.articleFilterClick(e, 'anemia')
-                            })}>Anemia</button>
+                          onClick={(e) => this.setState({ articleFilter: 'thyroid'}, () => {
+                            this.diseasePosts('thyroid')
+                            this.articleFilterClick(e, 'thyroid')
+                            })}>Thyroid</button>
+                       </li>
+                       <li role="presentation">
+                          <button className="btn mr-2" 
+                          onClick={(e) => this.setState({ articleFilter: 'insomnia'}, () => {
+                            this.diseasePosts('insomnia')
+                            this.articleFilterClick(e, 'insomnia')
+                            })}>Insomnia</button>
+                       </li>
+                       <li role="presentation">
+                          <button className="btn mr-2" 
+                          onClick={(e) => this.setState({ articleFilter: 'Blood Pressure'}, () => {
+                            this.diseasePosts('Blood Pressure')
+                            this.articleFilterClick(e, 'Blood Pressure')
+                            })}>Blood Pressure</button>
                        </li>
                        {/* <li role="presentation">
                           <button className="btn" onClick={(e) => articleFilterClick(e, 'recent')}>Most Rated</button>
