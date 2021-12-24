@@ -8,6 +8,22 @@ const ArticlePreview = (props) => {
     const [isLoaded, setLoaded] = useState(false)
     const [articleFilter, setArticleFilter]= useState(props.dcName? props.dcName: 'recent')
     
+    function diseasePosts(type){                     // For specific blogs like "/blogs/diabetes"
+        // if(type){
+          fetch(`${backendHost}/isearch/${type}`)
+          .then((res) => res.json())
+          .then((json) => {
+            // this.setState({
+            //   isLoaded: true,
+            //   items: json,
+            // });
+            setLoaded(true)
+            setItems(json)
+          })
+          .catch(err => null)
+        // }
+      }
+
     function allPosts() {                        // For all available blogs "/blogs"
         fetch(`${backendHost}/article/allkv`)
           .then((res) => res.json())
@@ -22,7 +38,6 @@ const ArticlePreview = (props) => {
                 setItems(temp)
             }
               else if(articleFilter === 'recent'){
-                
                 json.forEach(i => {
                     if(i.pubstatus_id === 3){
                         temp.push(i)
@@ -35,7 +50,7 @@ const ArticlePreview = (props) => {
                           temp.push(i)
                       }
                   });
-                  setItems(temp.reverse())
+                  setItems(temp)
               } else if(articleFilter === 'diabetes'){
                   json.forEach(i => {
                       if(i.dc_name === 'Diabetes' && i.pubstatus_id === 3){
@@ -68,7 +83,7 @@ const ArticlePreview = (props) => {
             setLoaded(true)
           })
           .catch(err => 
-            console.log(err)
+            null
         )
     }
 
@@ -87,7 +102,7 @@ const ArticlePreview = (props) => {
 
     useEffect(() => {
         allPosts()
-    }, [articleFilter])
+    }, [])
 
     if(!isLoaded){
         return (
@@ -114,22 +129,42 @@ const ArticlePreview = (props) => {
                
                    <ul>
                    <li role="presentation" class="active ">
-                      <button className="btn mr-2" onClick={(e) => articleFilterClick(e, 'recent')}>Recent</button>
+                      <button className="btn mr-2" 
+                        onClick={(e) => { 
+                            allPosts() 
+                            articleFilterClick(e, 'recent')
+                        }}>Recent</button>
                    </li>
                    <li role="presentation">
-                      <button className="btn mr-2" onClick={(e) => articleFilterClick(e, 'earliest')}>Earliest</button>
+                      <button className="btn mr-2" onClick={(e) => { 
+                            allPosts() 
+                            articleFilterClick(e, 'earliest')
+                        }}>Earliest</button>
                    </li>
                    <li role="presentation">
-                      <button className="btn mr-2" onClick={(e) => articleFilterClick(e, 'diabetes')}>Diabetes</button>
+                      <button className="btn mr-2" 
+                        onClick={(e) => {
+                            diseasePosts('diabetes')
+                            articleFilterClick(e, 'diabetes')
+                        }}>Diabetes</button>
                    </li>
                    <li role="presentation">
-                      <button className="btn mr-2" onClick={(e) => articleFilterClick(e, 'neurology')}>Neurology</button>
+                      <button className="btn mr-2" onClick={(e) => {
+                            diseasePosts('Thyroid')
+                            articleFilterClick(e, 'Thyroid')
+                        }}>Thyroid</button>
                    </li>
                    <li role="presentation">
-                      <button className="btn mr-2" onClick={(e) => articleFilterClick(e, 'arthritis')}>Arthritis</button>
+                      <button className="btn mr-2" onClick={(e) => {
+                            diseasePosts('arthritis')
+                            articleFilterClick(e, 'arthritis')
+                        }}>Arthritis</button>
                    </li>
                    <li role="presentation">
-                      <button className="btn mr-2" onClick={(e) => articleFilterClick(e, 'anemia')}>Anemia</button>
+                      <button className="btn mr-2" onClick={(e) => {
+                            diseasePosts('migraine')
+                            articleFilterClick(e, 'migraine')
+                        }}>Migraine</button>
                    </li>
                    {/* <li role="presentation">
                       <button className="btn" onClick={(e) => articleFilterClick(e, 'recent')}>Most Rated</button>
@@ -147,7 +182,9 @@ const ArticlePreview = (props) => {
             </div>
             <div className="row">
             <div className="main-hero" id="main-hero">
-                {items.filter((i, idx) => idx < 9).map((i) => {
+                {
+                    items.length !== 0?
+                    items.filter((i, idx) => idx < 9).map((i) => {
                     var content = []
                     var contentBlocks = []
                     var imgLocation = i.content_location
@@ -191,36 +228,18 @@ const ArticlePreview = (props) => {
                                             ))
                                             : null
                                     }
-                                {/* {
-                                    i.content ?
-                                    decodeURIComponent(i.content).blocks.map((j) => (
-                                        <CenterWell
-                                            content = {j.data.content}
-                                            type = {j.type}
-                                            text = {j.data.text}
-                                            title = {j.data.title}
-                                            message = {j.data.message}
-                                            source = {j.data.source}
-                                            embed = {j.data.embed}
-                                            caption = {j.data.caption}
-                                            alignment = {j.data.alignment}
-                                            imageUrl = {j.data.file? j.data.file.url: null}
-                                            url = {j.data.url}
-                                        />
-                                    ))
-                                    : null
-                                } */}
-                                    {/* ${p.body.substr(0, 200)}<a href="#">...read more</a> */}
                                 </p>
-                                {/* <span><Link to={`/cure/${i.article_id}`}>...read more</Link></span> */}
                             </div>
-                            {/* <a href="#" className="card-link" id="comment-link">Comment</a> */}
-                            {/* <a href="#" className="card-link">Like</a> */}
                         </div>
                     </div>
-                    {/* </Link> */}
                 </div>
-                )}) }
+                )}
+                
+                // : null
+                
+                ): 
+                <div className='my-5 py-4 h5 container text-center'>We do not have any cures for this condition yet but our editorial team is working on it. In the meantime, if you have a cure, Please <Link to="/article">Click Here</Link> to add the cure to our site.</div>
+            }
             </div>
             </div>
             </div>

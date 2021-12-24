@@ -5,6 +5,9 @@ import Footer from '../Footer/Footer'
 import AllPost from './Allpost.js';
 import { backendHost } from '../../api-config';
 import { Link } from 'react-router-dom';
+import OwlCarousel from "react-owl-carousel";
+import "owl.carousel/dist/assets/owl.carousel.css";
+import "owl.carousel/dist/assets/owl.theme.default.css";
 
 export default class Blogpage extends Component{
 
@@ -24,7 +27,6 @@ export default class Blogpage extends Component{
           articleFilter: 'recent'
         };
       }
-    
 
       allPosts() {                        // For all available blogs "/blogs"
         fetch(`${backendHost}/article/allkv`)

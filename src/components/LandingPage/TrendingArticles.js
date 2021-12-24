@@ -47,9 +47,9 @@ const TrendingArticles = () => {
                 </div>
 
                 <div className="col-md-4 my-3">
-                    <Link to="/searchcures/Homeopathy">
+                    <Link to="/searchcures/Japanese">
                     <div className="card d-flex justify-content-between">
-                        <div className="h5 text-dark col-md-6 text-center">Homeopathy</div>
+                        <div className="h5 text-dark col-md-6 text-center">Japanese</div>
                         <div className="col-md-6 rounded" id="homeopathy">
                         </div>
                     </div>
@@ -57,9 +57,9 @@ const TrendingArticles = () => {
                 </div>
 
                 <div className="col-md-4 my-3">
-                <Link to="/searchcures/yoga">
+                <Link to="/searchcures/Scandinavian">
                     <div className="card d-flex justify-content-between rounded">
-                        <div className="h5 text-dark col-md-6 text-center">Yoga</div>
+                        <div className="h5 text-dark col-md-6 text-center">Scandinavian</div>
                         <div className="col-md-6 rounded" id="yoga">                           
                         </div>
                     </div>
