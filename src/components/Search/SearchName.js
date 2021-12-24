@@ -27,9 +27,10 @@ class SearchName extends Component {
     }
   }
 
-  fetchDoctors(name,lat,lon) {
+  fetchDoctors(name) {
+    console.log('fetchDoctor: ', name)
     document.title = `All Cures | Search | ${name}`
-      fetch(`${backendHost}/SearchActionController?cmd=getResults&city=&doctors=${this.state.param.name}&Latitude=32.7266&Longitude=74.8570`)
+      fetch(`${backendHost}/SearchActionController?cmd=getResults&city=&doctors=${name}&Latitude=32.7266&Longitude=74.8570`)
       .then(res => res.json())
       .then(json => {
         this.setState({
@@ -89,25 +90,25 @@ class SearchName extends Component {
         </>  
       );
       } else if(isLoaded && items.length === 0) {
-          if(this.state.param.city){
+          if(this.props.match.params.city){
             return(
               <>
               <Header history={this.props.history} url={this.props.match.url}/>
                 <Container className="mt-5 my-5 loading">
                 <h3 className="pt-5 text-center"><span className="icon-loupe "></span></h3>
-                <h3 className="mt-3 text-center">We couldn't find any doctors matching '{this.state.param.city}'</h3>
+                <h3 className="mt-3 text-center">We couldn't find any doctors matching '{this.props.match.params.city}'</h3>
                 <p className="text-center">You could try again. </p>
                 </Container>
               <Footer/>
               </>
             );
-          } else if(this.state.param.name){
+          } else if(this.props.match.params.name){
             return(
               <>
               <Header history={this.props.history}/>
                 <Container className="mt-5 my-5">
                 <h3 className="pt-5 text-center"><span className="icon-loupe "></span></h3>
-                <h3 className="text-center">We couldn't find any doctors matching '{this.state.param.name}'</h3>
+                <h3 className="text-center">We couldn't find any doctors matching '{this.props.match.params.name}'</h3>
                 <p className="text-center">You could try again. </p>
                 </Container>
               <Footer/>

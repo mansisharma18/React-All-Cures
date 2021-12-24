@@ -41,9 +41,9 @@ class Search extends Component {
 }
 
   fetchDoctors(city,lat,lon){
-    if((city) && (this.state.param.name)) {
-      document.title = `All Cures | ${city} | ${this.state.param.name}`
-      fetch(`${backendHost}/SearchActionController?cmd=getResults&city=${city}&doctors=${this.state.param.name}&Latitude=${Cookies.get('latitude')}&Longitude=${Cookies.get('longitude')}`)
+    if((city) && (this.props.match.params.name)) {
+      document.title = `All Cures | ${city} | ${this.props.match.params.name}`
+      fetch(`${backendHost}/SearchActionController?cmd=getResults&city=${city}&doctors=${this.props.match.params.name}&Latitude=${Cookies.get('latitude')}&Longitude=${Cookies.get('longitude')}`)
       .then(res => res.json())
       .then(json => {
         this.setState({
@@ -51,10 +51,10 @@ class Search extends Component {
           items: json.map.DoctorDetails.myArrayList,
         })            
       }).catch(err => console.log(err))
-    } else if((this.state.param.name) && (!city)) {
+    } else if((this.props.match.params.name) && (!city)) {
 
-      document.title = `All Cures | ${this.state.param.name}`
-      fetch(`${backendHost}/SearchActionController?cmd=getResults&doctors=${this.state.param.name}&Latitude=${Cookies.get('latitude')}&Longitude=${Cookies.get('longitude')}`)
+      document.title = `All Cures | ${this.props.match.params.name}`
+      fetch(`${backendHost}/SearchActionController?cmd=getResults&doctors=${this.props.match.params.name}&Latitude=${Cookies.get('latitude')}&Longitude=${Cookies.get('longitude')}`)
       .then(res => res.json())
       .then(json => {
         this.setState({
@@ -63,7 +63,7 @@ class Search extends Component {
         })            
       })
       .catch(err => console.log(err))
-    } else if((city) && (!this.state.param.name)) {
+    } else if((city) && (!this.props.match.params.name)) {
 
       document.title = `All Cures | ${city}`
       fetch(`${backendHost}/SearchActionController?cmd=getResults&city=${city}&Latitude=${Cookies.get('latitude')}&Longitude=${Cookies.get('longitude')}`)
@@ -110,6 +110,7 @@ class Search extends Component {
   }
 
   componentDidUpdate(prevProps){
+    console.log(this.props.match.params.city)
     if ( prevProps.match.params.city !== this.props.match.params.city){
       this.fetchDoctors(this.props.match.params.city)
     }
@@ -143,8 +144,8 @@ class Search extends Component {
               <Header history={this.props.history} url={this.props.match.url}/>
                 <Container className="mt-5 my-5 loading">
                 <h3 className="pt-5 text-center"><span className="icon-loupe "></span></h3>
-                <h3 className="mt-3 text-center">We couldn't find any doctors matching '{this.state.param.city}'</h3>
-                <p className="text-center">You could try again. </p>
+                <h3 className="mt-3 text-center">We couldn't find any doctors matching '{this.props.match.params.city}'</h3>
+                <p className="text-center">You can try again. </p>
                 </Container>
               <Footer/>
               </>

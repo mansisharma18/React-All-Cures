@@ -19,6 +19,8 @@ import 'react-phone-number-input/style.css';
 import HelmetMetaData from '../HelmetMetaData';
 import {FacebookShareButton, FacebookIcon, TwitterIcon, TwitterShareButton, WhatsappIcon, WhatsappShareButton} from "react-share";
 import Cookies from 'js-cookie'
+import WriterImg from '../../assets/healthcare/img/images/special-1.jpg'
+import ArticlePreview from '../LandingPage/ArticlePreview';
 
 class Disease extends Component {
   constructor(props) {
@@ -41,7 +43,8 @@ class Disease extends Component {
       disease:[],
       cures:[],
       showAlert: false,
-      alertMsg: ''
+      alertMsg: '',
+      showCuresCards: false
     };
   }
 
@@ -74,15 +77,10 @@ class Disease extends Component {
 
   postSubscribtion() {
     //  var mobileNumber = this.state.mobile.split('+')
-    console.log('value: ', this.state.value)
     var phoneNumber = this.state.value.split('+')[1]
-    console.log(phoneNumber)
     var countryCodeLength = phoneNumber.length % 10
-     console.log('Country COde:', countryCodeLength)
     var countryCode = phoneNumber.slice(0, countryCodeLength)
-    console.log(countryCode)
     var StringValue = phoneNumber.slice(countryCodeLength).replace(/,/g, '')
-    console.log(StringValue)
      if(phoneNumber){
        this.setState({
           afterSubmitLoad: true
@@ -125,7 +123,7 @@ class Disease extends Component {
         })
       })
       .catch(err => 
-        console.log(err)
+        null
       )
   }
 
@@ -136,7 +134,7 @@ class Disease extends Component {
         ratingValue: res.data
       })
     }) 
-    .catch(err => console.log(err))
+    .catch(err => null)
   }
 
   regionalPosts(){
@@ -149,7 +147,7 @@ class Disease extends Component {
       });
     })
     .catch(err => 
-      console.log(err)
+      null
   )
   }
   comments() {                        // For all available blogs "/blogs"
@@ -167,7 +165,7 @@ class Disease extends Component {
         })
       })
       .catch(err => 
-        console.log(err)
+        null
     )
   }
 
@@ -179,18 +177,28 @@ class Disease extends Component {
     }
   }
  
+  toggleShowCuresCards = (val) => {
+    this.setState({showCuresCards: val})
+  }
+  
   showComments = (item, i) => {
       return (
         <>
         <div className="col-12">
           <div className="card my-4 ">
-            <div className="card-body">
-                <h5 className="h6"> {item.comments}</h5>
-                <div className="card-info">
-                    <h6 className="card-subtitle mb-2 text-muted">
-                      <b>By :  </b>  {item.first_name} {item.last_name}
-                    </h6>
-                </div>
+            <div className="card-body d-flex">
+              <div className='comment-img'>
+                <i className="fas fa-user-md fa-4x pl-3 mb-2"></i>
+                <h6 className="card-subtitle my-2 text-muted">
+                        {item.first_name} {item.last_name}
+                      </h6>
+              </div>
+              <div>
+                <h5 className="h5 mt-3"> {item.comments}</h5>
+                  <div className="card-info">
+                  </div>
+              </div>
+                
             </div>
           </div>
         </div>
@@ -210,13 +218,12 @@ class Disease extends Component {
  getDisease = () => {
     axios.get(`${backendHost}/article/all/table/disease_condition`)
     .then(res => {
-        console.log(res.data);
         this.setState({
           diseaseList:res.data
         })
        
     })
-    .catch(err => console.log(err))
+    .catch(err => null)
 }
 
   componentDidMount() {
@@ -271,30 +278,47 @@ class Disease extends Component {
     var artContent = items.content;
     var a = JSON.parse(decodeURIComponent(artContent))
     var b = a.blocks
+    console.log(parseInt(this.props.match.params.id))
     return (
     <div>
       <Header history={this.props.history}/>
-        <HelmetMetaData title={items.title} description={items.title} ></HelmetMetaData>
+        <HelmetMetaData title={items.title} description={b[0].data.text} ></HelmetMetaData>
         <div className="ad-spac">
           {/* <img src={Wall} height="200px" width="1900px"/> */}
         </div>
         <Row>
-          <Col md={2} id="sidebar-wrapper">      
-            <Sidebar diseaseId={items.disease_condition_id} id={this.props.match.params.id}  name={items.dc_name} />
-          </Col>
+          <div id="sidebar-wrapper" className='left-menu pb-3'>  
+          {
+            this.state.regionalPost.length !== 0 &&
+              <Sidebar diseaseId={items.disease_condition_id} 
+              id={this.props.match.params.id} 
+              regionalPosts={this.state.regionPostsLoaded? this.state.regionalPost: null}
+              name={items.dc_name} 
+              />
+          }    
+            
+          </div>
           <Col  md={7} id="page-content-wrapper" className="col-xs-12 pb-5">
             <div id="center-well" className="">
-              <Breadcrumb>
-                <Breadcrumb.Item className='mt-1 pb-2' href="/">Home</Breadcrumb.Item>                                     
-                <Breadcrumb.Item className='mt-1'>
-                  <Link to="/cures">
-                    Cures
-                  </Link>
-                </Breadcrumb.Item>
-                <Breadcrumb.Item className='mt-1'>
-                  <Link to={`/cures/${items.dc_name}`}>
+              <Breadcrumb >
+                   
+                <Breadcrumb.Item className='mt-1 pb-2' href="/"id="s1">Home</Breadcrumb.Item>                                     
+                <Breadcrumb.Item className='mt-1'id="s1">
+                  <Link to={`/searchcures/${items.dc_name}`}>
                     {items.dc_name}
                   </Link>
+                  {/* <Link to="/searchcures">
+                    Cures
+                  </Link> */}
+                </Breadcrumb.Item>
+                <Breadcrumb.Item className='mt-1'id="s1">
+                  {
+                    items.type.includes(1) && !this.props.match.params.cureType?
+                    <Link>Overview</Link>: <Link>Cures</Link>
+                  }
+                  {/* <Link to="/searchcures">
+                    Cures
+                  </Link> */}
                 </Breadcrumb.Item>
                 
                 <div id="share-icons-regions">
@@ -317,7 +341,7 @@ class Disease extends Component {
                   <TwitterIcon size={36} />
                 </TwitterShareButton>
                 <WhatsappShareButton
-                  url={`https://all-cures.com/#${this.props.location.pathname}`}
+                  url={`https://all-cures.com/${this.props.location.pathname}`}
                   title={`*All Cures -* ${items.title}`}
                   separator=": "
                   className="socialMediaButton"
@@ -331,7 +355,7 @@ class Disease extends Component {
               <div className="d-flex justify-content-end margin-auto" id="article-acc-to-regions">
                 
               { finalRegions?
-                  finalRegions.map(i => (
+                  finalRegions.map(i => i.countryname!== null && (
                     <Dropdown>
                       <Dropdown.Toggle className="mr-2 btn btn-info color-white">
                         <span className="color-white">{i.countryname}</span>
@@ -339,7 +363,6 @@ class Disease extends Component {
                     <Dropdown.Menu>
                     {
                       this.state.regionalPost.map(j => j.countryname === i.countryname 
-                        // && j.type == 2 
                         &&(
                         <>
                         <Dropdown.Item href="#" className="pt-2">
@@ -350,11 +373,11 @@ class Disease extends Component {
                             </div>
                             <div>
                               {
-                                j.type === '1'?
+                                j.type.includes(1)?
                                   <div className="chip overview">Overview</div>
-                                : j.type === '2'?
+                                : j.type.includes(2)?
                                   <div className="chip cure">Cures</div>
-                                : j.type === '3'?
+                                : j.type.includes(3)?
                                   <div className="chip symptoms">Symptoms</div>
                                 : null
                               }
@@ -375,12 +398,16 @@ class Disease extends Component {
                 </div>
               </Breadcrumb>
               
-            
-              <div className="article-title-container">
-              <div className="h1 font-weight-bold text-capitalize text-decoration-underline">{items.title.toLowerCase()}</div>
+            {
+              this.props.match.params.cureType?
+                <ArticlePreview type="cures" dcName={`${items.dc_name}`}/>
+                : <>
+                   <div className="article-title-container">
+              <div className="h3 font-weight-bold text-capitalize text-decoration-underline">{items.title.toLowerCase()}</div>
               
- {/* Show average rating */}
- {
+              {/* Show average rating */}
+
+              {
                 this.state.ratingValue?
                 <div className="average-rating mt-2 mb-4 ml-3" id="avg-rating">
                 <span class="fa fa-star fa-2x  opacity-7"></span>
@@ -397,11 +424,6 @@ class Disease extends Component {
               }
             </div>
 
-
-              {/* Call average rating fetch function */}
-              {
-                this.state.ratingValue? this.showRating(this.state.ratingValue) : null
-              }
             {/* Center Well article main content */}
               <div id="article-main-content">
                 {b.map((i) => (
@@ -425,16 +447,29 @@ class Disease extends Component {
                   />
                 ))}
               </div>
-
-              {/* Review Button (Rating + Comment) */}
+                  <div className='text-muted text-left ml-3 mb-4'>Published on: {items.published_date}</div>
+              
+              {/* Author */}
               {
+                items.authors_name?
+                  <div className='text-muted text-left ml-3 mb-4'>Published by: {items.authors_name}</div>
+                  : null
+              }
+                
+              </>
+            }
+
+          </div>
+          
+               {/* Review Button (Rating + Comment) */}
+               {
                 Cookies.get('acPerm')?
                   <>              
                     <ArticleComment refreshComments={this.comments} article_id={this.props.match.params.id}/>
                   </>
                 : null
               }
-              
+            <div id="comments-column">              
 
               {/* SHOW ALL COMMENTS */}
               <div className="main-hero">
@@ -450,7 +485,7 @@ class Disease extends Component {
             {
               this.state.comment?
                 this.state.comment.length > 1 &&
-                  <button id="show-hide-comments" className="white-button-shadow btn w-100" 
+                  <button id="show-hide-comments" className="white-button-shadow btn w-75 mb-4 ml-3" 
                     onClick={() => {
                       this.state.showMore?
                       this.setState({
@@ -468,12 +503,10 @@ class Disease extends Component {
                   </button>
                 : null
             }
-            
-      
             </div>
           </Col> 
           <Col id="sidebar-wrapper">      
-            <SidebarRight title={items.title} history={this.props.history} />
+            <SidebarRight title={items.title} history={this.props.history} dcName={items.dc_name} />
           </Col>
         </Row>
         <div>
@@ -532,7 +565,6 @@ class Disease extends Component {
                         })
                           }
                         input={<Input id="select-multiple-chip" />}
-                        // MenuProps={MenuProps}
                         className="form-control">
                         {this.state.diseaseList.map((lan) => {
                             return (
@@ -557,7 +589,6 @@ class Disease extends Component {
                           cures:e.target.value
                         })}
                         input={<Input id="select-multiple-chip" />}
-                        // MenuProps={MenuProps}
                         className="form-control">
                         {this.state.diseaseList.map((lan) => {
 
@@ -583,22 +614,19 @@ class Disease extends Component {
                         <div className="form-group relative">
                            <div className="aaa">
                            <PhoneInput
-      placeholder="Enter phone number"
-      value={this.state.value}
-      defaultCountry='in'
-    
-       onChange={(newValue) => {
-                                 this.setState({
-                                    value: newValue
-                                 })
-                              }}
-                              />
-
-                          {/* <input type="number" name="" onChange={this.setMobile}    className="form-control border rounded" placeholder="Please Share Your Mobile Number"/> */}
+                            placeholder="Enter phone number"
+                            value={this.state.value}
+                            defaultCountry='IN'
+                          
+                            onChange={(newValue) => {
+                              this.setState({
+                                value: newValue
+                              })
+                            }}
+                            />
                               
                            </div>
                            <div>
-                              {/* <a href="/#" className="subscribeBtn">Subscribe</a> */}
                                 <button className="bcolor rounded py-2" onClick={( ) => {this.postSubscribtion()}}>
                                    Submit
                                 </button>

@@ -1,6 +1,7 @@
 import React from 'react';
 import Main from './components/MainComponent';
 import CookieConsent from "react-cookie-consent";
+import HelmetMetaData from './components/HelmetMetaData';
 
 // import ReactGA from 'react-ga';
 
@@ -8,6 +9,7 @@ function App() {
   
   return (
     <div>
+      {/* <HelmetMetaData/> */}
       <Main/>
       <CookieConsent style={{ background: "#022a3c"}}>
         <div className="container m-3">

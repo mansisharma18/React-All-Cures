@@ -121,14 +121,16 @@ const Routes = (props) => {
       <ProtectedRouteDashboard userAccess={props.userAccess} auth={Auth.auth} exact path="/dashboard/promoadmin" component={PromoAdmin} />
 
       {/* Cures list page */}
-      <Route exact path="/cures" component={Blogpage}/>
-      <Route path="/cures/:type" component={Blogpage}/>
+      <Route exact path="/searchcures" component={Blogpage}/>
+      <Route path="/searchcures/:type" component={Blogpage}/>
 
       {/* Cure according to article_id*/}
-      <ProtectedRoute auth={Auth.auth} exact path="/cure/:id" component={Disease}/>
+      <Route auth={Auth.auth} exact path="/cure/:cureType/:id" component={Disease}/>
+
+      <Route auth={Auth.auth} exact path="/cure/:id" component={Disease}/>
       
       {/* Doctor profile page */}
-      <ProtectedRoute auth={Auth.auth} exact path="/profile/:id" component={Profile} />
+      <Route auth={Auth.auth} exact path="/profile/:id" component={Profile} />
       <Route exact path="/profile/:id/edit" component={LoginInfo} />
 
       {/* Doctor invitation page and ask for UPNR number */}
@@ -168,7 +170,7 @@ const ProtectedRoute = ({auth, path, component:Component, ...rest}) => {
       ):
         (
           // <Redirect to="/login"/>
-          <Redirect to={{pathname: '/home', search: '', state: {modalShow: true}}}/>
+          <Redirect to={{pathname: '/home', search: '', state: {modalShow: true, path: path}}}/>
         )
     }
       />

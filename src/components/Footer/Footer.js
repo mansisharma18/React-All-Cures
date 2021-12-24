@@ -5,6 +5,7 @@ import Heart from"../../assets/img/heart.png";
 import Facebook from '../../assets/icon/facebook.svg'
 import Instagram from '../../assets/icon/instagram.svg'
 import Linkedin from '../../assets/icon/linkedin.svg'
+import Twitter from '../../assets/icon/twitter.svg'
 import { Link } from 'react-router-dom';
 import PhoneInput from 'react-phone-number-input';
 import 'react-phone-number-input/style.css';
@@ -193,23 +194,19 @@ class Footer extends Component {
                         <div className="h6">Subscribe to our Newsletter</div>
                         {/* <form onSubmit={(e) => this.postSubscribtion(e)}> */}
                         <PhoneInput
-      placeholder="Enter phone number"
-      value={this.state.value}
-      defaultCountry='in'
-    
-       onChange={(newValue) => {
-                                 this.setState({
-                                    value: newValue
-                                 })
-                              }}
-                              />
-                        {/* <PhoneInput className="rounded form-input" placeholder="Enter your number" type="number" value={mobile} onChange={(e) => setMobile(e.target.value)} required/> */}
-                        {/* <button className="btn appBtn rounded" type="submit" >Subscribe</button> */}
+                           placeholder="Enter phone number"
+                           value={this.state.value}
+                           defaultCountry="IN"
+                        
+                           onChange={(newValue) => {
+                              this.setState({
+                                 value: newValue
+                              })
+                           }}
+                        />
                         <button className="btn appBtn rounded" onClick={( ) => {this.postSubscribtion()}}>
-                                   Subscribe
-                                </button>
-                        {/* <a href="/#" className="appBtn">Google Play</a> */}
-                        {/* </form> */}
+                           Subscribe
+                        </button>
                      </h1>
                   </div>
                </div>
@@ -220,6 +217,11 @@ class Footer extends Component {
       <div class="footer-bootm">
          <div class="container">
             <div class="row">
+            <div className='col-xs-12 disclaimer mb-3'>
+               Disclaimer: Content available on All Cures website is not intended to be a substitute for professional medical advice, diagnosis, or treatment. It is strongly recommended to consult your physician or other qualified medical practitioner with any questions you may have regarding a medical condition. The website should not be used as a source for treatment of any medical condition.
+               </div>
+             
+              
                <div class="col-md-4 col-sm-4 col-sx-12">
                   <div class="logo">
                      <a href="/#">
@@ -227,16 +229,18 @@ class Footer extends Component {
                     </a>
                   </div>
                </div>
+               
                <div class="col-md-4 col-sm-4 col-sx-12">
                   <div class="copyRight">
-                     <p>All rights Reserved. Copyright @ 2020</p>
+                     <p>All rights reserved. Copyright <i class="far fa-copyright fa-1x"></i>2020</p>
                   </div>
                </div>
-               <div class="col-md-4 col-sm-4 col-sx-12">
+
+               <div class="col-md-4 col-sm-4 col-sx-12" id="social">
                   <div class="socia-media-footer">
                      <ul>
                         <li>
-                           <a href="https://www.facebook.com/Etherium-Technologies-100724305715107/">
+                           <a href="https://www.facebook.com/All-Cures-100610265834385" target="_blank">
                               <span>
                                  <img src={Facebook} alt="Facebook Link" height="30px" width="30px"></img>
                               </span> 
@@ -245,7 +249,7 @@ class Footer extends Component {
                            </a>
                         </li>
                         <li>
-                           <a href="https://www.instagram.com" target="_blank">
+                           <a href="https://www.instagram.com/allcuresinfo/" target="_blank">
                               <span>
                                  <img src={Instagram} alt="Instagram Link" height="30px" width="30px"></img>
                               </span> 
@@ -254,7 +258,16 @@ class Footer extends Component {
                            </a>
                         </li>
                         <li>
-                           <a href="https://www.linkedin.com/company/etherium-technologies/">
+                           <a href="https://twitter.com/allcuresinfo" target="_blank">
+                              <span>
+                                 <img src={Twitter} alt="Twitter Link" height="30px" width="30px"></img>
+                              </span> 
+                              <span class="path1"></span>
+                              <span class="path2"></span>
+                           </a>
+                        </li>
+                        <li>
+                           <a href="https://www.linkedin.com/company/etherium-technologies/" target="_blank">
                               <span>
                                  <img src={Linkedin} alt="LinkedIn Link" height="30px" width="30px"></img>
                               </span> 
@@ -277,26 +290,14 @@ class Footer extends Component {
                <div className="back-top">
                <a href="#" id="scroll"style={{display: "block"}} >
                    <span></span>
-                  
                 </a>
                 </div>
-             
+               </div>
+               <div className='row'></div>
             </div>
-        </div>
-    </div>
-
-            </div>
-     
+         </div>
+      </div>
       );
    }
-
-
-
-
-
-
-
-
-
 }
 export default Footer;

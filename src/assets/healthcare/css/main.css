@@ -827,7 +827,7 @@ h6 {
 
 #choose-category .owl-next {
   padding: 2px 10px !important;
-  background-color: rgb(69, 86, 160);
+  background-color: #00415e;
   color: #fff;
   font-weight: bold;
   border-radius: 3rem;
@@ -846,7 +846,7 @@ h6 {
   left: 0;
   top: 127px;
   border-radius: 3rem;
-  background-color: rgb(69, 86, 160);
+  background-color: #00415e;
 }
 
 #choose-category .owl-prev span {
@@ -946,7 +946,9 @@ h6 {
 .color-gray {
   color: #353535;
 }
-
+#starMob {
+  display: none;
+}
 .rating {
   display: flex;
   position: absolute;
@@ -985,7 +987,6 @@ a.appointmentBtn {
 
 #specialists .slider-heading h5,
 #doctor .slider-heading h5 {
-
   color: #fff;
   font-size: 16px;
   text-transform: capitalize;
@@ -1386,9 +1387,7 @@ button.appBtn:hover {
   padding: 33px 0;
 }
 
-.tab-content {
-  overflow-x: hidden;
-}
+
 
 .tab-content-detail {
   border: 1px solid #c4c4c4;
@@ -1578,7 +1577,7 @@ h4 {
   border: 1px solid #c4c4c4;
   box-sizing: border-box;
   border-radius: 20px;
-  padding: 50px 30px 20px;
+  padding: 2rem 2rem 1.2rem 2rem;
   margin-top: 36px;
   display: flex;
 }
@@ -2974,18 +2973,17 @@ div.main-hero:first-child .card {
   padding: 0;
 } */
 .article-title {
-  color: #000;
+  color: #007bff;
 }
 
 .cures-search-tab {
   flex-direction: row;
 }
 
-.cures-tab-img {
-  background: url("../../healthcare/img/images/Trending-Cures/yoga.jpg") center
-    center no-repeat;
+.cures-tab-img img {
   background-size: cover;
-  height: 13.5rem;
+  width: 100%;
+  height: 100%;
 }
 
 .cures-tab-chips {
@@ -2994,7 +2992,7 @@ div.main-hero:first-child .card {
   bottom: 0;
 }
 
-@media only screen and (max-width: 768px) {
+@media only screen and (max-width: 765px) {
   #main-hero .card {
     min-height: fit-content;
   }
@@ -3020,4 +3018,52 @@ div.main-hero:first-child .card {
 
 .btn:focus {
   box-shadow: 0 0 0 0;
+}
+
+.list-0 {
+  display: none;
+}
+
+.profile-card.doctors-article .col-md-3,
+.profile-card.doctors-article .col-md-9 {
+  max-width: 100%;
+  flex: 0 0 auto;
+}
+
+.profile-card.doctors-article .cures-search-tab {
+  flex-direction: column;
+}
+
+.profile-card.doctors-article {
+  padding: 1.2rem 0.7rem;
+}
+
+#article-filter-carousel {
+  max-width: 1140px;
+  z-index: 0;
+  margin: 0 0 1rem 0;
+}
+
+/* @media only screen and (max-width: 768px) {
+  #article-filter-carousel {
+    max-width: 300px;
+  }
+} */
+#article-filter-carousel .owl-nav .owl-prev {
+  padding: 2px 10px !important;
+  position: absolute;
+  left: -40px;
+  top: -2px;
+  border-radius: 3rem;
+  background-color: #fff;
+  box-shadow: 5px 5px 25px;
+}
+#article-filter-carousel .owl-nav .owl-next {
+  padding: 2px 10px !important;
+  position: absolute;
+  right: -40px;
+  top: -2px;
+  border-radius: 3rem;
+  background-color: #fff;
+  box-shadow: 5px 5px 25px;
 }

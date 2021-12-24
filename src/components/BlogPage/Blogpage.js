@@ -4,6 +4,10 @@ import Footer from '../Footer/Footer'
 // import EditModal from './EditModal'
 import AllPost from './Allpost.js';
 import { backendHost } from '../../api-config';
+import { Link } from 'react-router-dom';
+import OwlCarousel from "react-owl-carousel";
+import "owl.carousel/dist/assets/owl.carousel.css";
+import "owl.carousel/dist/assets/owl.theme.default.css";
 
 export default class Blogpage extends Component{
 
@@ -23,10 +27,8 @@ export default class Blogpage extends Component{
           articleFilter: 'recent'
         };
       }
-    
 
       allPosts() {                        // For all available blogs "/blogs"
-        console.log('All posts called', this.state.limit)
         fetch(`${backendHost}/article/allkv`)
           .then((res) => res.json())
           .then((json) => {
@@ -80,7 +82,7 @@ export default class Blogpage extends Component{
       }
       
       diseasePosts(type){                     // For specific blogs like "/blogs/diabetes"
-        if(type){
+        // if(type){
           fetch(`${backendHost}/isearch/${type}`)
           .then((res) => res.json())
           .then((json) => {
@@ -90,18 +92,7 @@ export default class Blogpage extends Component{
             });
           })
           .catch(err => console.log(err))
-        }
-        else {
-        // if(type !== undefined){
-          fetch(`${backendHost}/isearch/${this.props.match.params.type}`)
-          .then((res) => res.json())
-          .then((json) => {
-            this.setState({
-              isLoaded: true,
-              items: json.reverse(),
-            });
-          });
-        } 
+        // }
       }
 
       regionalPosts(){
@@ -131,7 +122,6 @@ export default class Blogpage extends Component{
 
       articleFilterClick(e, filter) {
         this.setState({articleFilter: filter})
-        console.log(e.target.parentNode.parentElement.children)
         var siblings = e.target.parentNode.parentElement.children
         if(siblings){
             for(var i=0;i<siblings.length; i++){
@@ -144,8 +134,12 @@ export default class Blogpage extends Component{
     }
 
       componentDidMount() {
-        if(this.state.param.type){
-          this.diseasePosts()
+        // if(this.props.match.params.type === undefined){
+        //   this.allPosts()
+        // }
+        console.log(this.props.match.params.type)
+        if(this.props.match.params.type !== undefined){
+          this.diseasePosts(this.props.match.params.type)
         } else if(this.props.location.search){
           this.regionalPosts()
         } else {
@@ -155,11 +149,12 @@ export default class Blogpage extends Component{
 
       componentDidUpdate(prevProps, prevState){
         if ( prevProps.match.params.type !== this.props.match.params.type ){
-          this.diseasePosts(this.props.match.params.type)
-        }
-        console.log(prevState)
-        if( prevState.items !== this.state.items ){
-          console.log('items changed')
+          if(this.props.match.params.type){
+            this.diseasePosts(this.props.match.params.type)
+          } else {
+            this.allPosts()
+          }
+          
         }
         // window.addEventListener('scroll', this.handleScroll, {
         //   passive: true
@@ -182,7 +177,19 @@ export default class Blogpage extends Component{
           <Footer/>
         </>  
       );
-    } else if(isLoaded){
+    } 
+    // else if(isLoaded && items.length === 0){
+    //   return(
+    //     <>
+    //       <Header history={this.props.history}/>
+    //         <div className="loader my-4">
+    //           <div>No articles</div>
+    //         </div>
+    //       <Footer/>
+    //     </> 
+    //   )
+    // }
+    else if(isLoaded){
         return(
             <>
             <Header history={this.props.history}/>
@@ -215,36 +222,47 @@ export default class Blogpage extends Component{
                        <li role="presentation">
                           <button className="btn mr-2" 
                           onClick={(e) => this.setState({ articleFilter: 'diabetes'}, () => {
-                            this.allPosts()
+                            this.diseasePosts('diabetes')
                             this.articleFilterClick(e, 'diabetes')
                             })}>Diabetes</button>
                        </li>
                        <li role="presentation">
                           <button className="btn mr-2" 
-                          onClick={(e) => this.setState({ articleFilter: 'neurology'}, () => {
-                            this.allPosts()
-                            this.articleFilterClick(e, 'neurology')
-                            })}>Neurology</button>
-                       </li>
-                       <li role="presentation">
-                          <button className="btn mr-2" 
                           onClick={(e) => this.setState({ articleFilter: 'arthritis'}, () => {
-                            this.allPosts()
+                            this.diseasePosts('arthritis')
                             this.articleFilterClick(e, 'arthritis')
                             })}>Arthritis</button>
                        </li>
                        <li role="presentation">
                           <button className="btn mr-2" 
-                          onClick={(e) => this.setState({ articleFilter: 'anemia'}, () => {
-                            this.allPosts()
-                            this.articleFilterClick(e, 'anemia')
-                            })}>Anemia</button>
+                          onClick={(e) => this.setState({ articleFilter: 'thyroid'}, () => {
+                            this.diseasePosts('thyroid')
+                            this.articleFilterClick(e, 'thyroid')
+                            })}>Thyroid</button>
+                       </li>
+                       <li role="presentation">
+                          <button className="btn mr-2" 
+                          onClick={(e) => this.setState({ articleFilter: 'insomnia'}, () => {
+                            this.diseasePosts('insomnia')
+                            this.articleFilterClick(e, 'insomnia')
+                            })}>Insomnia</button>
+                       </li>
+                       <li role="presentation">
+                          <button className="btn mr-2" 
+                          onClick={(e) => this.setState({ articleFilter: 'Blood Pressure'}, () => {
+                            this.diseasePosts('Blood Pressure')
+                            this.articleFilterClick(e, 'Blood Pressure')
+                            })}>Blood Pressure</button>
                        </li>
                        {/* <li role="presentation">
                           <button className="btn" onClick={(e) => articleFilterClick(e, 'recent')}>Most Rated</button>
                        </li> */}
                     </ul>
                  </div>
+                  }
+                  {
+                    items.length === 0 && this.state.articleFilter !== 'recent'?
+                    <div className='my-5 py-4 h5 container text-center'>We do not have any cures for this condition yet but our editorial team is working on it. In the meantime, if you have a cure, Please <Link to="/article">Click Here</Link> to add the cure to our site.</div>: null
                   }
                     <div className="row" id="posts-container">
                     {items.map((i) => (
@@ -259,6 +277,7 @@ export default class Blogpage extends Component{
                             i.content: i.content.replaceAll('%7D', '%22%7D%7D%5D%7D')
                             : null)}
                             type = {i.type}
+                            imgLocation = {i.content_location}
                             published_date = {i.published_date}
                             key = {i.article_id}
                             over_allrating={i.over_allrating}

@@ -123,9 +123,7 @@ function LoginInfo(props) {
                             </Link>
                         </div>
     
-                        <div className="loginSign">
-                            <ToggleButton acPerm={acPerm} url={props.url} logout={logout}/> 
-                        </div>   	
+                       
                         </div>
                     </div>
                     </div>

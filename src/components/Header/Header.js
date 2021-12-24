@@ -63,9 +63,7 @@ import List from '../../assets/icon/icons-AllCures/list_black_48dp.svg'
               this.state.spec1.push(i[3])
             ))
           })
-          .catch(res => {
-             console.error(res)
-          })
+          .catch(res => null)
 
           const loadUsers = async () => {
             await axios.get(`${backendHost}/city/all`)
@@ -77,7 +75,7 @@ import List from '../../assets/icon/icons-AllCures/list_black_48dp.svg'
                   this.state.cityList.push(u.Cityname, u.Pincode)
                ))
             })
-            .catch(res => console.log(res))
+            .catch(res => null)
           }
           loadUsers();
       
@@ -89,7 +87,7 @@ import List from '../../assets/icon/icons-AllCures/list_black_48dp.svg'
                   doctorLoaded: true
                })
             })
-            .catch(res =>  console.log(res))
+            .catch(res =>  null)
           }
           loaddoctor();
           }
@@ -124,9 +122,7 @@ import List from '../../assets/icon/icons-AllCures/list_black_48dp.svg'
                setTimeout(() => {
                   window.location.reload()
                }, 500);
-            }).catch(res => {
-               console.log(res.data)
-            })
+            }).catch(res => null)
             
          }
 
@@ -151,11 +147,11 @@ import List from '../../assets/icon/icons-AllCures/list_black_48dp.svg'
    articleSearch = (e) => {
       e.preventDefault()
       if(this.state.article === ''){
-         this.props.history.push(`/cures`)
+         this.props.history.push(`/searchcures`)
       } else if(this.state.article){
-         this.props.history.push(`/cures/${this.state.article}`)
+         this.props.history.push(`/searchcures/${this.state.article}`)
       } else {
-         this.props.history.push(`/cures`)
+         this.props.history.push(`/searchcures`)
       }
    }
    render() {

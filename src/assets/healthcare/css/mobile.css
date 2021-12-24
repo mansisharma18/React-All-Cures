@@ -1,49 +1,79 @@
 /* ----------- iPhone 4 and 4S ----------- */
 
 @media only screen and (min-device-width: 220px) and (max-device-width: 480px) {
-  .loginSign{
+  .copyRight p {
+    padding-top: 16px;
+    position: relative;
+    left: 0px;
+    text-align: center;
+  }
+
+  .breadcrumb {
+    padding: 3rem 1rem;
+  }
+  #share-icons-regions {
+    position: relative;
+    flex-direction: column-reverse;
+    left: 70px;
+  }
+  #s1 {
+    font-size: 19px;
+    position: relative;
+    bottom: 30px;
+  }
+  #starMob {
+    font-size: 20px;
+    display: block;
+    position: absolute;
+    right: 10px;
+    top: 5px;
+  }
+  #starWeb {
+    display: none;
+  }
+  .loginSign {
     position: absolute;
     top: 1rem;
     right: 1rem;
   }
-  #visitDoc{
+  #visitDoc {
     padding: 5px 20px;
   }
-  #head5{
+  #head5 {
     padding-right: 80px;
     padding-left: 0;
   }
-  #none{
+  #none {
     display: none;
   }
   button#dropHead {
     position: relative;
-  
+
     left: -5px;
-}
-  #mainSearch{
+  }
+  #mainSearch {
     margin-right: -25px;
   }
-  #head1{
+  #head1 {
     position: relative;
     bottom: 30px;
   }
 
-#homeDoc{
-  position: relative;
-  bottom: 105px;
-  left: 15px;
-}
-#homeCity{
-  position: relative;
-  bottom: 105px;
-  left: 15px;
-}
-#btnDoc{
-  position: relative;
-  bottom: 105px;
-  left: 13px;
-}
+  #homeDoc {
+    position: relative;
+    bottom: 105px;
+    left: 15px;
+  }
+  #homeCity {
+    position: relative;
+    bottom: 105px;
+    left: 15px;
+  }
+  #btnDoc {
+    position: relative;
+    bottom: 105px;
+    left: 13px;
+  }
 
   form.sign {
     padding: 0px 5px;
@@ -136,9 +166,9 @@
 
   #signIn {
     position: relative;
-    left: 130px;
+   
     width: 132px;
-    bottom: 31px;
+    /* bottom: 31px; */
   }
   .serchlabel {
     margin-bottom: 50px;
@@ -177,49 +207,72 @@
 
 /* Portrait and Landscape */
 @media only screen and (min-device-width: 320px) and (max-device-width: 568px) {
-  .loginSign{
+  .breadcrumb {
+    padding: 3rem 1rem;
+  }
+  #share-icons-regions {
+    position: relative;
+    flex-direction: column-reverse;
+    left: 70px;
+  }
+  #s1 {
+    font-size: 19px;
+    position: relative;
+    bottom: 30px;
+  }
+  #starMob {
+    font-size: 20px;
+    display: block;
+    position: absolute;
+    right: 10px;
+    top: 5px;
+  }
+  #starWeb {
+    display: none;
+  }
+  .loginSign {
     position: absolute;
     top: 1rem;
     right: 1rem;
   }
-  #visitDoc{
+  #visitDoc {
     padding: 5px 20px;
   }
-  #head5{
+  #head5 {
     padding-right: 80px;
     padding-left: 0;
   }
-  #none{
+  #none {
     display: none;
   }
   button#dropHead {
     position: relative;
 
-    left: -5px;
-}
-  #mainSearch{
+    left: 5px;
+  }
+  #mainSearch {
     margin-right: -13px;
   }
-  #head1{
+  #head1 {
     position: relative;
     bottom: 30px;
   }
 
-#homeDoc{
-  position: relative;
-  bottom: 105px;
-  left: 15px;
-}
-#homeCity{
-  position: relative;
-  bottom: 105px;
-  left: 15px;
-}
-#btnDoc{
-  position: relative;
-  bottom: 105px;
-  left: 13px;
-}
+  #homeDoc {
+    position: relative;
+    bottom: 105px;
+    left: 15px;
+  }
+  #homeCity {
+    position: relative;
+    bottom: 105px;
+    left: 15px;
+  }
+  #btnDoc {
+    position: relative;
+    bottom: 105px;
+    left: 13px;
+  }
   #about {
     position: relative;
     top: 15px;
@@ -240,10 +293,10 @@
   }
 
   #signIn {
-    position: relative;
-    left: 130px;
-    width: 132px;
-    bottom: 31px;
+  position: relative;
+  left: 5px;
+  width: 132px;
+    /* bottom: 31px; */
   }
   .serchlabel {
     margin-bottom: 50px;
@@ -260,7 +313,7 @@
   }
   .btn-article-search {
     background-color: #00415e;
-    margin-right: 23px;
+    margin-right: -12px;
     height: 56px;
   }
 
@@ -282,57 +335,80 @@
 
 /* Portrait and Landscape */
 @media only screen and (min-device-width: 375px) and (max-device-width: 914px) {
-  .loginSign{
+  .breadcrumb {
+    padding: 3rem 1rem;
+  }
+  #share-icons-regions {
+    position: relative;
+    flex-direction: column-reverse;
+    left: 85px;
+  }
+  #s1 {
+    font-size: 19px;
+    position: relative;
+    bottom: 30px;
+  }
+  #starMob {
+    font-size: 20px;
+    display: block;
+    position: absolute;
+    right: 10px;
+    top: 5px;
+  }
+  #starWeb {
+    display: none;
+  }
+  .loginSign {
     position: absolute;
     top: 1rem;
     right: 1rem;
   }
-  #visitDoc{
+  #visitDoc {
     padding: 5px 20px;
   }
-  #head5{
+  #head5 {
     padding-right: 80px;
     padding-left: 0;
   }
-  #none{
+  #none {
     display: none;
   }
   button#dropHead {
     position: relative;
- 
+
     left: -5px;
-}
-  #searchHead{
+  }
+  #searchHead {
     margin-right: -27px;
   }
-  #Article{
+  #Article {
     position: relative;
-  
-    left: 0px
+
+    left: 0px;
   }
-  #mainSearch{
+  #mainSearch {
     margin-right: -25px;
   }
-  #head1{
+  #head1 {
     position: relative;
     bottom: 30px;
     font-size: 26px;
   }
-#homeDoc{
-  position: relative;
-  bottom: 190px;
-  left: 15px;
-}
-#homeCity{
-  position: relative;
-  bottom: 190px;
-  left: 15px;
-}
-#btnDoc{
-  position: relative;
-  bottom: 190px;
-  left: 13px;
-}
+  #homeDoc {
+    position: relative;
+    bottom: 190px;
+    left: 15px;
+  }
+  #homeCity {
+    position: relative;
+    bottom: 190px;
+    left: 15px;
+  }
+  #btnDoc {
+    position: relative;
+    bottom: 190px;
+    left: 13px;
+  }
   #about {
     position: relative;
     top: 15px;
@@ -355,7 +431,7 @@
   #signIn {
     position: relative;
     left: -5px;
-    bottom: 20px;
+    /* bottom: 20px; */
   }
   .serchlabel {
     margin-bottom: 20px;
@@ -393,46 +469,69 @@
 /* ----------- iPhone 6+, 7+ and 8+ ----------- */
 
 /* Portrait and Landscape */
-@media only screen and (min-device-width: 411px) and (max-device-width: 732px)  {
-  .loginSign{
+@media only screen and (min-device-width: 411px) and (max-device-width: 732px) {
+  .breadcrumb {
+    padding: 3rem 1rem;
+  }
+  #share-icons-regions {
+    position: relative;
+    flex-direction: column-reverse;
+    left: 125px;
+  }
+  #s1 {
+    font-size: 19px;
+    position: relative;
+    bottom: 30px;
+  }
+  #starMob {
+    font-size: 20px;
+    display: block;
+    position: absolute;
+    right: 10px;
+    top: 5px;
+  }
+  #starWeb {
+    display: none;
+  }
+  .loginSign {
     position: absolute;
     top: 1rem;
     right: 1rem;
   }
-  #visitDoc{
+  #visitDoc {
     padding: 5px 20px;
   }
-  #head5{
+  #head5 {
     padding-right: 60px;
     padding-left: 0;
   }
-  #none{
+  #none {
     display: none;
   }
   button#dropHead {
     position: relative;
     left: -5px;
-}
-  #head1{
+  }
+  #head1 {
     position: relative;
     bottom: 30px;
     font-size: 26px;
   }
-#homeDoc{
-  position: relative;
-  bottom: 105px;
-  left: 15px;
-}
-#homeCity{
-  position: relative;
-  bottom: 105px;
-  left: 15px;
-}
-#btnDoc{
-  position: relative;
-  bottom: 105px;
-  left: 13px;
-}
+  #homeDoc {
+    position: relative;
+    bottom: 105px;
+    left: 15px;
+  }
+  #homeCity {
+    position: relative;
+    bottom: 105px;
+    left: 15px;
+  }
+  #btnDoc {
+    position: relative;
+    bottom: 105px;
+    left: 13px;
+  }
   #artBtn {
     font-size: 10px;
   }
@@ -458,7 +557,7 @@
 
   #signIn {
     position: relative;
-    left: 15px;
+    /* left: 15px; */
   }
   .serchlabel {
     margin-bottom: 20px;
@@ -493,8 +592,6 @@
 @media only screen and (min-device-width: 414px) and (max-device-width: 736px) and (-webkit-min-device-pixel-ratio: 3) and (orientation: landscape) {
 }
 
-
-
 /* Portrait */
 @media only screen and (min-device-width: 375px) and (max-device-width: 812px) and (-webkit-min-device-pixel-ratio: 3) and (orientation: portrait) {
 }
@@ -504,44 +601,67 @@
 }
 
 @media screen and (min-device-width: 360px) and (max-device-height: 740px) {
-  .loginSign{
+  .breadcrumb {
+    padding: 3rem 1rem;
+  }
+  #share-icons-regions {
+    position: relative;
+    flex-direction: column-reverse;
+
+  }
+  #s1 {
+    font-size: 19px;
+    position: relative;
+    bottom: 30px;
+  }
+  #starMob {
+    font-size: 20px;
+    display: block;
+    position: absolute;
+    right: 10px;
+    top: 5px;
+  }
+  #starWeb {
+    display: none;
+  }
+  .loginSign {
     position: absolute;
     top: 1rem;
     right: 1rem;
   }
-  #visitDoc{
+  #visitDoc {
     padding: 5px 20px;
   }
 
-  #none{
+  #none {
     display: none;
   }
   button#dropHead {
     position: relative;
 
     left: -5px;
-}
-  #head1{
+  }
+  #head1 {
     position: relative;
     bottom: 30px;
     font-size: 26px;
   }
 
-#homeDoc{
-  position: relative;
-  bottom: 105px;
-  left: 15px;
-}
-#homeCity{
-  position: relative;
-  bottom: 105px;
-  left: 15px;
-}
-#btnDoc{
-  position: relative;
-  bottom: 105px;
-  left: 13px;
-}
+  #homeDoc {
+    position: relative;
+    bottom: 105px;
+    left: 15px;
+  }
+  #homeCity {
+    position: relative;
+    bottom: 105px;
+    left: 15px;
+  }
+  #btnDoc {
+    position: relative;
+    bottom: 105px;
+    left: 13px;
+  }
   #Article {
     font-size: 13px;
     padding: 5px;
@@ -549,7 +669,7 @@
 
     left: 0px;
   }
-  #searchHead{
+  #searchHead {
     margin-right: -12px;
   }
 
@@ -564,7 +684,7 @@
     position: relative;
     left: -5px;
 
-    bottom: 20px;
+    /* bottom: 20px; */
   }
   .serchlabel {
     margin-bottom: 110px;
@@ -597,70 +717,92 @@
   }
 }
 
-
 /* ----------- Galaxy S4, S5 and Note 3 ----------- */
 
 /* Portrait and Landscape */
-@media screen and (min-device-width: 320px) and (max-device-height: 640px)  {
-  .loginSign{
+@media screen and (min-device-width: 320px) and (max-device-height: 640px) {
+  .breadcrumb {
+    padding: 3rem 1rem;
+  }
+  #share-icons-regions {
+    position: relative;
+    flex-direction: column-reverse;
+    left: 70px;
+  }
+  #s1 {
+    font-size: 19px;
+    position: relative;
+    bottom: 30px;
+  }
+  #starMob {
+    font-size: 20px;
+    display: block;
+    position: absolute;
+    right: 10px;
+    top: 5px;
+  }
+  #starWeb {
+    display: none;
+  }
+  .loginSign {
     position: absolute;
     top: 1rem;
     right: 1rem;
   }
-  #visitDoc{
+  #visitDoc {
     padding: 5px 20px;
   }
-  #head5{
+  #head5 {
     padding-right: 80px;
     padding-left: 0;
   }
-  #none{
+  #none {
     display: none;
   }
   button#dropHead {
     position: relative;
 
     left: -5px;
-}
-  #Article{
-    position: relative;
- 
-    left: 0px
   }
-  #head1{
+  #Article {
+    position: relative;
+
+    left: 0px;
+  }
+  #head1 {
     position: relative;
     bottom: 30px;
     font-size: 26px;
   }
 
-#homeDoc{
-  position: relative;
-  bottom: 90px;
-  left: 15px;
-}
-#homeCity{
-  position: relative;
-  bottom: 90px;
-  left: 15px;
-}
-#btnDoc{
-  position: relative;
-  bottom: 90px;
-  left: 13px;
-}
+  #homeDoc {
+    position: relative;
+    bottom: 90px;
+    left: 15px;
+  }
+  #homeCity {
+    position: relative;
+    bottom: 90px;
+    left: 15px;
+  }
+  #btnDoc {
+    position: relative;
+    bottom: 90px;
+    left: 13px;
+  }
   #createArticle {
     position: relative;
     left: 20px;
     padding: 2px;
     font-size: 12px;
   }
-#searchHead{
-margin-right: -12px;
-}
+  #searchHead {
+    margin-right: -12px;
+  }
   #signIn {
     position: relative;
     left: -5px;
-    bottom: 20px;
+    /* bottom: 20px; */
   }
 
   .serchlabel {
@@ -688,16 +830,27 @@ margin-right: -12px;
   }
 }
 
-
-
-  
 @media only screen and (min-device-width: 768px) and (max-device-width: 1024px) {
-  .loginSign{
+  .breadcrumb {
+    padding: 2rem 1rem;
+  }
+  #share-icons-regions {
+    position: relative;
+    flex-direction: inherit;
+    top: 60px;
+ left: 310px;
+  }
+  #s1 {
+    font-size: 19px;
+    position: relative;
+   bottom: 10px;
+  }
+  .loginSign {
     position: absolute;
     top: 1rem;
     right: 1rem;
   }
-  #head5{
+  #head5 {
     padding-left: 0;
     padding-right: 0;
   }
@@ -706,19 +859,19 @@ margin-right: -12px;
     margin-top: 3px;
     margin-bottom: 0rem;
   }
-  #searchHead{
+  #searchHead {
     margin-left: 65px;
   }
-  #head1{
+  #head1 {
     position: relative;
     bottom: 30px;
-    font-size:2rem ;
+    font-size: 2rem;
   }
 
-  #homeDoc{
+  #homeDoc {
     margin-left: 5px;
   }
-  #homeCity{
+  #homeCity {
     left: 18px;
   }
   #docRate {
@@ -732,8 +885,6 @@ margin-right: -12px;
   #textComment {
     font-size: 10px;
   }
-
-
 
   #about {
     position: relative;
@@ -777,7 +928,6 @@ margin-right: -12px;
     left: 15px;
   }
 
-
   #searchCity {
     position: relative;
     top: 0px;
@@ -788,18 +938,17 @@ margin-right: -12px;
     margin: 75px 0 0 150px;
   }
 
-  #btnDoc{
-    left:-40px
+  #btnDoc {
+    left: -40px;
   }
-#mainSearch{
-  margin-left: 20px;
-}
+  #mainSearch {
+    margin-left: 20px;
+  }
   #Article {
     font-size: 15px;
     padding: 6px;
     position: relative;
     left: 0px;
-    
   }
   #searchMain {
     margin-bottom: 5rem;
@@ -817,7 +966,7 @@ margin-right: -12px;
   }
 
   .article-search {
-    margin: 20px 0px 0px 150px;
+    margin: 20px 0px 0px 185px;
   }
   .btn-article-search {
     background-color: #00415e;
@@ -856,23 +1005,29 @@ margin-right: -12px;
 
 /* Portrait and Landscape */
 @media only screen and (min-device-width: 1024px) and (max-device-width: 1366px) and (-webkit-min-device-pixel-ratio: 2) {
-  .loginSign{
+  #share-icons-regions {
+    position: relative;
+    flex-direction: inherit;
+    top: 60px;
+ left: 125px;
+  }
+  .loginSign {
     position: absolute;
     top: 1rem;
     right: 1rem;
   }
 
-  #searchHead{
+  #searchHead {
     margin-left: 0;
   }
 
-  #head1{
+  #head1 {
     position: relative;
     bottom: 30px;
-    font-size:2.5rem ;
+    font-size: 2.5rem;
   }
 
-  #mainSearch{
+  #mainSearch {
     margin-left: 5px;
   }
   #docRate {
@@ -911,7 +1066,6 @@ margin-right: -12px;
     padding: 6px;
     position: relative;
     left: 0px;
- 
   }
 
   .serchlabel {
@@ -955,7 +1109,7 @@ margin-right: -12px;
   }
 
   .article-search {
-    margin: 0px 0px 0px 70px;
+    margin: 0px 225px 0px 70px;
   }
 
   .city-name.col-md-5 {
@@ -1044,7 +1198,7 @@ margin-right: -12px;
 /* Declare the same value for min- and max-width to avoid colliding with desktops */
 /* Source: https://medium.com/connect-the-dots/css-media-queries-for-ipad-pro-8cad10e17106*/
 @media only screen and (min-device-width: 1366px) and (max-device-width: 1366px) and (orientation: landscape) and (-webkit-min-device-pixel-ratio: 2) {
-  .loginSign{
+  .loginSign {
     position: absolute;
     top: 1rem;
     right: 1rem;
@@ -1081,7 +1235,6 @@ margin-right: -12px;
     padding: 6px;
     position: relative;
     left: 0px;
-
   }
 
   .serchlabel {

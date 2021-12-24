@@ -1,55 +1,55 @@
 import React, { useEffect, useState } from "react";
 import {Nav} from "react-bootstrap";
 import { withRouter } from "react-router";
-import Post from './Posts'
 import AllPost from "../BlogPage/Allpost";
 import './style.css'
 import { Container } from 'react-bootstrap';
 import { backendHost } from '../../api-config';
 import ArticleRating from "../ArticleRating";
-import Cookies from 'js-cookie';
 
 const Side = (props) => {
-    const acPerm = Cookies.get("acPerm")
 
     const [isloaded, setisLoaded] = useState(false)
     const [items, setItems] = useState([])
-    // function diseasePosts(){                     // For specific blogs like "/blogs/diabetes"
-    //     fetch(`${backendHost}/isearch/${props.title}`)
-    //       .then((res) => res.json())
-    //       .then((json) => {                                  
-    //           setisLoaded(true)
-    //           setItems(json)
-            
-    //       });
-    //   }
-      function allPosts() {                        // For all available blogs "/blogs"
-        fetch(`${backendHost}/article/allkv`)
+    function diseasePosts(){                     // For specific blogs like "/blogs/diabetes"
+        fetch(`${backendHost}/isearch/${props.dcName}`)
           .then((res) => res.json())
-          .then((json) => {
-            var temp = []
-            json.forEach(i => {
-              if(i.pubstatus_id === 3){
-                temp.push(i)
-              }
-            });
-            setItems(temp)
-            setisLoaded(true)
+          .then((json) => {                                  
+              setisLoaded(true)
+              setItems(json)
+            
           })
           .catch(err => 
             console.log(err)
         )
       }
+      // function allPosts() {                        // For all available blogs "/blogs"
+      //   fetch(`${backendHost}/article/allkv?limit=6`)
+      //     .then((res) => res.json())
+      //     .then((json) => {
+      //       var temp = []
+      //       json.forEach(i => {
+      //         if(i.pubstatus_id === 3 && props.dcName=== i.dc_name){
+      //           temp.push(i)
+      //         }
+      //       });
+      //       setItems(temp)
+      //       setisLoaded(true)
+      //     })
+      //     .catch(err => 
+      //       console.log(err)
+      //   )
+      // }
       useEffect(() => {
-          allPosts()
-        // diseasePosts()
+          // allPosts()
+        diseasePosts()
     }, [])
     // diseasePosts()
     if(!isloaded){
         return(
             <>
             <Container className="my-5 loading">
-            <div className="h3 pb-3"><u className="text-decoration-none">Recent Cures</u></div>
+            <div className="h3 pb-3"><u className="text-decoration-none">{props.dcName} Cures</u></div>
               <div className="loader ">
                 <i className="fa fa-spinner fa-spin fa-3x" />
               </div>
@@ -68,9 +68,10 @@ const Side = (props) => {
                 <div className="sidebar-sticky"></div>
                 
             <Nav.Item className="set-width"  id="dc-right-menu">
-                <div className="h3 pb-3"><u className="text-decoration-none">Recent Cures</u></div>
+                <div className="h3 pb-3"><u className="text-decoration-none">{props.dcName} Cures</u></div>
+                
             {   items?
-                    items.map((i, index) => index<10 && (
+                    items.map((i, index) => (
                         <AllPost
                             id = {i.article_id}
                             title = {i.title}
@@ -86,6 +87,7 @@ const Side = (props) => {
                             published_date = {i.published_date}
                             over_allrating = {i.over_allrating}
                             // country = {i.country_id}
+                            imgLocation={i.content_location}
                             history = {props.history}
                         />
                     ))
