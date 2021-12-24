@@ -80,10 +80,7 @@ function LoginInfo(props) {
                                 <span>All Cures</span>
                             </Link>
                         </div>
-    
-                        <div className="loginSign">
-                            <ToggleButton acPerm={acPerm} url={props.url} logout={logout}/> 
-                        </div>   	
+    	
                         </div>
                     </div>
                     </div>
