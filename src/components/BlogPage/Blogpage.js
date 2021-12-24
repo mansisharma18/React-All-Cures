@@ -5,6 +5,9 @@ import Footer from '../Footer/Footer'
 import AllPost from './Allpost.js';
 import { backendHost } from '../../api-config';
 import { Link } from 'react-router-dom';
+import OwlCarousel from "react-owl-carousel";
+import "owl.carousel/dist/assets/owl.carousel.css";
+import "owl.carousel/dist/assets/owl.theme.default.css";
 
 export default class Blogpage extends Component{
 
@@ -23,8 +26,38 @@ export default class Blogpage extends Component{
           diseaseCondition: new URLSearchParams(this.props.location.search).get('dc'),
           articleFilter: 'recent'
         };
+        const options = {
+          margin: 1,
+          responsiveClass: true,
+          nav: true,
+          dots: false,
+          autoplay: false,
+          smartSpeed: 1000,
+          // responsive: {
+          //     0: {
+          //         items: 1,
+          //     },
+          //     150: {
+          //         items: 2,
+          //     },
+          //     300: {
+          //         items: 2,
+          //     },
+          //     450: {
+          //         items: 3,
+          //     },
+          //     600: {
+          //         items: 5,
+          //     },
+          //     750: {
+          //         items: 6,
+          //     },
+          //     900: {
+          //         items: 7,
+          //     }
+          // },
+       };
       }
-    
 
       allPosts() {                        // For all available blogs "/blogs"
         fetch(`${backendHost}/article/allkv`)
@@ -151,16 +184,8 @@ export default class Blogpage extends Component{
             this.diseasePosts(this.props.match.params.type)
           } else {
             this.allPosts()
-          }
-          
+          } 
         }
-        // window.addEventListener('scroll', this.handleScroll, {
-        //   passive: true
-        // });
-    
-        // return () => {
-        //   window.removeEventListener('scroll', this.handleScroll);
-        // };
       }
       
     render(){
@@ -175,19 +200,7 @@ export default class Blogpage extends Component{
           <Footer/>
         </>  
       );
-    } 
-    // else if(isLoaded && items.length === 0){
-    //   return(
-    //     <>
-    //       <Header history={this.props.history}/>
-    //         <div className="loader my-4">
-    //           <div>No articles</div>
-    //         </div>
-    //       <Footer/>
-    //     </> 
-    //   )
-    // }
-    else if(isLoaded){
+    } else if(isLoaded){
         return(
             <>
             <Header history={this.props.history}/>
@@ -203,6 +216,8 @@ export default class Blogpage extends Component{
                        </div>
                     </div>
                     <ul>
+                    <OwlCarousel className="owl-theme owl-loading" loop {...this.options}>
+                    
                        <li role="presentation" >
                           <button className="btn mr-2" 
                           onClick={(e) => this.setState({ articleFilter: 'recent'}, () => {
@@ -255,6 +270,8 @@ export default class Blogpage extends Component{
                        {/* <li role="presentation">
                           <button className="btn" onClick={(e) => articleFilterClick(e, 'recent')}>Most Rated</button>
                        </li> */}
+                    
+                    </OwlCarousel>
                     </ul>
                  </div>
                   }
