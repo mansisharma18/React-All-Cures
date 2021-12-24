@@ -225,7 +225,10 @@ background-color: #b9daf1; */
   font-size: 14px;
   padding: 5px 30px 5px 30px;
 }
-
+#image{
+  position: relative;
+  top: 20px;
+}
 
 #dropHead .btn-primary:not(:disabled):not(.disabled).active,
 .btn-primary:not(:disabled):not(.disabled):active,

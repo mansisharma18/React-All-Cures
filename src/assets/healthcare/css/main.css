@@ -1387,9 +1387,7 @@ button.appBtn:hover {
   padding: 33px 0;
 }
 
-.tab-content {
-  overflow-x: hidden;
-}
+
 
 .tab-content-detail {
   border: 1px solid #c4c4c4;
