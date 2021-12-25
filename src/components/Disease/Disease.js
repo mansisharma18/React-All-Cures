@@ -294,7 +294,7 @@ handleScroll = () => {
     <div>
       <Header history={this.props.history}/>
         <HelmetMetaData title={items.title} description={b[0].data.text} ></HelmetMetaData>
-        <div className="ad-spac">
+        <div className="ad-spac mb 2">
           <img src={Bg}/>
         </div>
         <Row>
