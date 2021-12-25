@@ -110,7 +110,7 @@ const Test = (props) => {
   const loginForm = async (e) => {
     e.preventDefault();
     setClicked(1);
-    axios.post(`${backendHost}/login?cmd=login&email=${email}&psw=${signInpassword}&rempwd=off`)
+    axios.post(`${backendHost}/login?cmd=login&email=${email}&psw=${signInpassword}&rempwd=on`)
     .then(response => {
       if(response.data.registration_id){
         Cookies.set('uName', response.data.first_name, { expires: 365 })
@@ -304,7 +304,7 @@ const Test = (props) => {
         <FormControlLabel
           control={<Checkbox name="Terms" value="on"/>}
           label="Remember Me"
-        
+          checked
         />
       </FormGroup>
         <button className="ghost"id="btn1">Sign In</button>
