@@ -2784,8 +2784,10 @@ div.MuiSelect-root.MuiSelect-select.MuiSelect-selectMenu.MuiInputBase-input.MuiI
   opacity: 0.5;
 }
 
-.ad-spac {
-  height: 150px;
+
+
+.ad-spac img{
+  width: 100%;
 }
 
 .error-404 {
