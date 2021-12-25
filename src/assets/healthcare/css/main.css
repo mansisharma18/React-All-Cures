@@ -1387,8 +1387,6 @@ button.appBtn:hover {
   padding: 33px 0;
 }
 
-
-
 .tab-content-detail {
   border: 1px solid #c4c4c4;
   box-sizing: border-box;
@@ -2784,10 +2782,8 @@ div.MuiSelect-root.MuiSelect-select.MuiSelect-selectMenu.MuiInputBase-input.MuiI
   opacity: 0.5;
 }
 
-
-
-.ad-spac img{
-  width: 100%;
+.ad-spac img {
+  height: 150px;
 }
 
 .error-404 {
