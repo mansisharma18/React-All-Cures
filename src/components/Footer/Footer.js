@@ -125,36 +125,41 @@ class Footer extends Component {
                         {/* <li>
                            <a className="text-light"></a>
                         </li> */}
-                         <Link to={ `/searchcures/Cough And Cold` }>
+                         <Link to={ `/searchcures/Arthritis` }>
                           
                            
                               <li>
-                                 <p className="text-light">Cough Cold</p></li>
+                                 <p className="text-light">Arthritis</p></li>
                            
                         </Link>
                         <Link to={ `/searchcures/Diabetes` }>
                         <li>
-                           <p className="text-light">Diabetes Care</p>
+                           <p className="text-light">Diabetes</p>
                         </li>
                         </Link>
-                        <Link to={ `/searchcures/Cardiology` }>
+                        <Link to={ `/searchcures/Hypertension` }>
                         <li>
-                           <p className="text-light">Heart Care </p>
+                           <p className="text-light">Hypertension</p>
                         </li>
                         </Link>
-                        <Link to={ `/searchcures/Dental` }>
+                        <Link to={ `/searchcures/Insomnia` }>
                         <li>
-                           <p className="text-light">Dental Care</p>
+                           <p className="text-light">Insomnia</p>
                         </li>
                         </Link>
-                        <Link to={ `/searchcures/Dermatology` }>
+                        <Link to={ `/searchcures/Skin Care` }>
                         <li>
                            <p className="text-light">Skin Care</p>
                         </li>
                         </Link>
-                        <Link to={ `/searchcures/ENT` }>
+                        <Link to={ `/searchcures/Thyroid` }>
                         <li>
-                           <p className="text-light">Eye Care</p>
+                           <p className="text-light">Thyroid</p>
+                        </li>
+                        </Link>
+                        <Link to={ `/searchcures/Psoriasis` }>
+                        <li>
+                           <p className="text-light">Psoriasis</p>
                         </li>
                         </Link>
                         {/* <li>
