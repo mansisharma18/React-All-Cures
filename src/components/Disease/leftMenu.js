@@ -21,7 +21,6 @@ const Side = props => {
 
       useEffect(() => {
         allPosts()
-        console.log(props)
         if(props.regionalPosts){
         props.regionalPosts.forEach(i => {
             if(i.type.includes(1)) setOverviewArticle(i.article_id)

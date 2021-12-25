@@ -125,36 +125,36 @@ class Footer extends Component {
                         {/* <li>
                            <a className="text-light"></a>
                         </li> */}
-                         <Link to={ `/cures/Cough And Cold` }>
+                         <Link to={ `/searchcures/Cough And Cold` }>
                           
                            
                               <li>
-                                 <a className="text-light">Cough Cold</a></li>
+                                 <p className="text-light">Cough Cold</p></li>
                            
                         </Link>
-                        <Link to={ `/cures/Diabetes` }>
+                        <Link to={ `/searchcures/Diabetes` }>
                         <li>
-                           <a className="text-light">Diabetes Care</a>
+                           <p className="text-light">Diabetes Care</p>
                         </li>
                         </Link>
-                        <Link to={ `/cures/Cardiology` }>
+                        <Link to={ `/searchcures/Cardiology` }>
                         <li>
-                           <a className="text-light">Heart Care </a>
+                           <p className="text-light">Heart Care </p>
                         </li>
                         </Link>
-                        <Link to={ `/cures/Dental` }>
+                        <Link to={ `/searchcures/Dental` }>
                         <li>
-                           <a className="text-light">Dental Care</a>
+                           <p className="text-light">Dental Care</p>
                         </li>
                         </Link>
-                        <Link to={ `/cures/Dermatology` }>
+                        <Link to={ `/searchcures/Dermatology` }>
                         <li>
-                           <a className="text-light">Skin Care</a>
+                           <p className="text-light">Skin Care</p>
                         </li>
                         </Link>
-                        <Link to={ `/cures/ENT` }>
+                        <Link to={ `/searchcures/ENT` }>
                         <li>
-                           <a className="text-light">Eye Care</a>
+                           <p className="text-light">Eye Care</p>
                         </li>
                         </Link>
                         {/* <li>
@@ -178,7 +178,7 @@ class Footer extends Component {
                      <Link  to="/article">
 
                         <li>
-                           <a className="text-light">Create A Cure</a>
+                           <p className="text-light">Create A Cure</p>
                         </li>
                         </Link>
                        

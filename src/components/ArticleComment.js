@@ -3,8 +3,7 @@ import Cookies from 'js-cookie';
 // import CommentBox from 'react-commentbox';
 import axios from 'axios';
 import { backendHost } from '../api-config';
-import ArticleRating from "./ArticleRating";
-import { Button, Modal, Alert } from "react-bootstrap";
+import { Button, Modal } from "react-bootstrap";
 import ReactStars from "react-rating-stars-component";
  
 const Comment = ({refreshComments,article_id}, props) => {
@@ -123,7 +122,6 @@ const Comment = ({refreshComments,article_id}, props) => {
         </Modal.Header>
         
         <Modal.Body className="rounded">
-        <h3 className="pl-4"></h3>
         <div  className="pl-4">
         <ReactStars {...thirdExample} />
         </div>

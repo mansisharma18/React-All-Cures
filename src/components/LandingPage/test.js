@@ -110,7 +110,7 @@ const Test = (props) => {
   const loginForm = async (e) => {
     e.preventDefault();
     setClicked(1);
-    axios.post(`${backendHost}/login?cmd=login&email=${email}&psw=${signInpassword}&rempwd=on`)
+    axios.post(`${backendHost}/login?cmd=login&email=${email}&psw=${signInpassword}&rempwd=off`)
     .then(response => {
       if(response.data.registration_id){
         Cookies.set('uName', response.data.first_name, { expires: 365 })
