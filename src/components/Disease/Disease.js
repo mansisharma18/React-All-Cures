@@ -323,7 +323,7 @@ class Disease extends Component {
                 
                 <div id="share-icons-regions">
                 {/* Sharing icons */}
-                <div>
+                <div id="socilaBtn">
                 <FacebookShareButton
                   url={"https://all-cures.com"}
                   quote={"All-Cures - All in one Health App"}
@@ -350,7 +350,7 @@ class Disease extends Component {
                 </WhatsappShareButton>
               </div>
               
-              <div className="share-buttons-region ml-5">
+              <div className="share-buttons-region ml-5" id="filter">
               
               <div className="d-flex justify-content-end margin-auto" id="article-acc-to-regions">
                 

@@ -1,6 +1,16 @@
 /* ----------- iPhone 4 and 4S ----------- */
 
 @media only screen and (min-device-width: 220px) and (max-device-width: 480px) {
+  div#socilaBtn {
+    position: relative;
+    top: 15px;
+    right: 69px;
+}
+div#filter {
+  position: relative;
+  left: 14px;
+  top: 5px;
+}
   .copyRight p {
     padding-top: 16px;
     position: relative;
@@ -207,6 +217,16 @@
 
 /* Portrait and Landscape */
 @media only screen and (min-device-width: 320px) and (max-device-width: 568px) {
+  div#socilaBtn {
+    position: relative;
+    top: 15px;
+    right: 55px;
+}
+div#filter {
+  position: relative;
+  left: 14px;
+  top: 5px;
+}
   .breadcrumb {
     padding: 3rem 1rem;
   }
@@ -335,6 +355,16 @@
 
 /* Portrait and Landscape */
 @media only screen and (min-device-width: 375px) and (max-device-width: 914px) {
+  div#socilaBtn {
+    position: relative;
+    top: 15px;
+    right: 69px;
+}
+div#filter {
+  position: relative;
+  left: 14px;
+  top: 5px;
+}
   .breadcrumb {
     padding: 3rem 1rem;
   }
@@ -470,6 +500,16 @@
 
 /* Portrait and Landscape */
 @media only screen and (min-device-width: 411px) and (max-device-width: 732px) {
+  div#socilaBtn {
+    position: relative;
+    top: 15px;
+    right: 110px;
+}
+div#filter {
+  position: relative;
+  left: 14px;
+  top: 5px;
+}
   .breadcrumb {
     padding: 3rem 1rem;
   }
@@ -601,6 +641,12 @@
 }
 
 @media screen and (min-device-width: 360px) and (max-device-height: 740px) {
+
+div#filter {
+  position: relative;
+  left: 14px;
+  top: 5px;
+}
   .breadcrumb {
     padding: 3rem 1rem;
   }
@@ -721,6 +767,16 @@
 
 /* Portrait and Landscape */
 @media screen and (min-device-width: 320px) and (max-device-height: 640px) {
+  div#socilaBtn {
+    position: relative;
+    top: 15px;
+    right: 55px;
+}
+div#filter {
+  position: relative;
+  left: 14px;
+  top: 5px;
+}
   .breadcrumb {
     padding: 3rem 1rem;
   }
@@ -831,6 +887,17 @@
 }
 
 @media only screen and (min-device-width: 768px) and (max-device-width: 1024px) {
+  div#socilaBtn {
+    position: relative;
+    top: 32px;
+    right: 293px;
+}
+div#filter {
+  position: relative;
+  left: 14px;
+  top: -20px;
+}
+
   .breadcrumb {
     padding: 2rem 1rem;
   }
@@ -841,7 +908,7 @@
  left: 310px;
   }
   #s1 {
-    font-size: 19px;
+    font-size: 35px;
     position: relative;
    bottom: 10px;
   }
@@ -1005,6 +1072,16 @@
 
 /* Portrait and Landscape */
 @media only screen and (min-device-width: 1024px) and (max-device-width: 1366px) and (-webkit-min-device-pixel-ratio: 2) {
+  div#socilaBtn {
+    position: relative;
+    top: 32px;
+    right: 105px;
+}
+div#filter {
+  position: relative;
+  left: 14px;
+  top: 15px;
+}
   #share-icons-regions {
     position: relative;
     flex-direction: inherit;
