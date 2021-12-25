@@ -221,11 +221,11 @@ background-color: #b9daf1; */
   border: 0.1rem solid #b9daf1;
   border-radius: 0.8rem;
 }
-.disclaimer{
+.disclaimer {
   font-size: 14px;
   padding: 5px 30px 5px 30px;
 }
-#image{
+#image {
   position: relative;
   top: 20px;
 }
@@ -248,4 +248,9 @@ background-color: #b9daf1; */
 .btn-primary:not(:disabled):not(.disabled):active:focus,
 .show > .btn-primary.dropdown-toggle:focus {
   box-shadow: 0 0 0 0;
+}
+
+.cdx-simple-image__picture {
+  display: flex;
+  justify-content: center;
 }
