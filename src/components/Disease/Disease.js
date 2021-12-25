@@ -21,6 +21,7 @@ import {FacebookShareButton, FacebookIcon, TwitterIcon, TwitterShareButton, What
 import Cookies from 'js-cookie'
 import WriterImg from '../../assets/healthcare/img/images/special-1.jpg'
 import ArticlePreview from '../LandingPage/ArticlePreview';
+import Bg from './bg_1.jpg'
 
 class Disease extends Component {
   constructor(props) {
@@ -283,7 +284,7 @@ class Disease extends Component {
       <Header history={this.props.history}/>
         <HelmetMetaData title={items.title} description={b[0].data.text} ></HelmetMetaData>
         <div className="ad-spac">
-          {/* <img src={Wall} height="200px" width="1900px"/> */}
+          <img src={Bg}/>
         </div>
         <Row>
           <div id="sidebar-wrapper" className='left-menu pb-3'>  

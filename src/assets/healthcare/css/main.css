@@ -2785,7 +2785,12 @@ div.MuiSelect-root.MuiSelect-select.MuiSelect-selectMenu.MuiInputBase-input.MuiI
 }
 
 .ad-spac {
-  height: 150px;
+  /* height: 150px;
+   */
+}
+
+.ad-spac img{
+  width: 100%;
 }
 
 .error-404 {
