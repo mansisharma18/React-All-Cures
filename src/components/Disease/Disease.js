@@ -26,7 +26,7 @@ import Bg from './bg_1.jpg'
 class Disease extends Component {
   constructor(props) {
     super(props);
-    const acPerm = Cookies.get("acPerm")
+    this.childDiv = React.createRef()
     this.state = { 
       items: [],
       comment: [],
@@ -227,7 +227,17 @@ class Disease extends Component {
     .catch(err => null)
 }
 
+handleScroll = () => {
+  const { index, selected } = this.props
+  if (index === selected) {
+    setTimeout(() => {
+      this.childDiv.current.scrollIntoView({ behavior: 'smooth' })
+    }, 500)
+  }
+}
+
   componentDidMount() {
+    window.scrollTo(0, 0);
     this.fetchBlog()
     this.comments()
     this.getRating(this.props.match.params.id)
@@ -239,6 +249,7 @@ class Disease extends Component {
       this.fetchBlog()
       this.comments()
       this.getRating(this.props.match.params.id)
+      window.scrollTo(0, 340);
     }
   }
 
