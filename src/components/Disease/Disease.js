@@ -278,7 +278,6 @@ class Disease extends Component {
     var artContent = items.content;
     var a = JSON.parse(decodeURIComponent(artContent))
     var b = a.blocks
-    console.log(parseInt(this.props.match.params.id))
     return (
     <div>
       <Header history={this.props.history}/>
