@@ -2,12 +2,10 @@ import React, { Component } from 'react';
 import OwlCarousel from "react-owl-carousel";
 import "owl.carousel/dist/assets/owl.carousel.css";
 import "owl.carousel/dist/assets/owl.theme.default.css";
-import { Link } from 'react-router-dom';
 import "@fortawesome/free-solid-svg-icons";
 import "@fortawesome/fontawesome-svg-core"
 import { backendHost } from '../../api-config';
-import axios from 'axios'; 
-
+import DoctorsCard from './DoctorsCard';
 
 const options = {
    margin: 30,
@@ -43,6 +41,7 @@ export default class Carousel2 extends Component {
         rowno:[],
         ratingValue: [],
         isLoaded: false,
+        imageExists: false,
         responsive:{
          0: {
              items: 1,
@@ -63,24 +62,19 @@ export default class Carousel2 extends Component {
             items: json.map.DoctorDetails.myArrayList,
           })            
         })
-        .catch(err => 
-          console.log(err)
-      )
+        .catch(err => null )
     }
-    // getRating = (ratingId) => {
-    //   axios.get(`${backendHost}/rating/target/${ratingId}/targettype/1/avg`)
-    //   .then(res => {
-    //     this.setState({
-    //       ratingValue: res.data
-    //     })
-    //   }) 
-    //   .catch(err => console.log(err))
-    // }
-    // componentDidMount() {
-    
-    //   this.getRating(this.props.id)
-    // }
-  
+
+    checkIfImageExits = (imageUrl) => {
+      fetch(imageUrl, { method: 'HEAD' })
+      .then(res => {
+          if (res.ok) {
+              this.setState({ imageExists: true })
+          } else {
+            this.setState({ imageExists: false })
+          }
+      }).catch(err => null);
+    }  
     
     render() {
       var { isLoaded,items } = this.state;
@@ -95,26 +89,15 @@ export default class Carousel2 extends Component {
         return(
          <OwlCarousel {...options} nav="true" id="specialists" items={4} margin={10}>
          {items.map((i) => (
-           
-            <div className="item" key={i.map.doctorid}>
-               <div className="item-img">
-                  {/* <img src={Special2} alt="special-img"/> */}
-                  <i className="fas fa-user-md fa-10x"></i>
-
-               </div>
-               {/* <div className="rating">
-                  <span className="icon-star-1"></span>
-                  <p>4</p>
-               </div> */}
-               <div className="sider-contain">
-                  <div className="slider-heading">
-                     <h2>Dr. {i.map.docname_first} {i.map.docname_last}</h2>
-                     <p>{i.map.primary_spl}</p>
-                     <h5 className="text-center"id="head5">{i.map.hospital_affliated} {i.map.state} {i.map.country_code}</h5>
-                  </div>
-                  <Link to={ `/profile/${i.map.rowno}` } className="appointmentBtn allBtn" id="visitDoc">Visit Profile</Link>
-               </div>
-            </div>
+          <DoctorsCard 
+            rowno = {i.map.rowno}
+            firstName= {i.map.docname_first}
+            lastName= {i.map.docname_last}
+            primary_spl = {i.map.primary_spl}
+            hospital_affliated = {i.map.hospital_affliated}
+            state = {i.map.state}
+            country_code = {i.map.country_code}
+          />
          ))}
                         
    </OwlCarousel>

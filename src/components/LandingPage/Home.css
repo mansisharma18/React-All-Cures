@@ -110,6 +110,10 @@
 
 .card-img img {
   width: 100%;
+  /* width: 350px; */
+  height: 250px;
+  vertical-align: middle;
+  object-fit: cover;
 }
 
 .trending-section .comman-heading {
