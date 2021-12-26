@@ -13,15 +13,10 @@ const ArticlePreview = (props) => {
           fetch(`${backendHost}/isearch/${type}`)
           .then((res) => res.json())
           .then((json) => {
-            // this.setState({
-            //   isLoaded: true,
-            //   items: json,
-            // });
             setLoaded(true)
             setItems(json)
           })
           .catch(err => null)
-        // }
       }
 
     function allPosts() {                        // For all available blogs "/blogs"
@@ -98,6 +93,15 @@ const ArticlePreview = (props) => {
               }
             e.target.parentElement.classList.add('active')
         }
+    }
+
+    function IsJsonValid(str) {
+        try {
+            JSON.parse(str);
+        } catch (e) {
+            return [];
+        }
+        return JSON.parse(str).blocks;
     }
 
     useEffect(() => {
@@ -217,12 +221,11 @@ const ArticlePreview = (props) => {
                     items.length !== 0?
                     items.filter((i, idx) => idx < 9).map((i) => {
                     var content = []
-                    var contentBlocks = []
                     var imgLocation = i.content_location
                     var imageLoc = '';
                     if(i.content){
-                        content = JSON.parse(decodeURIComponent(i.content.includes('%22%7D%7D%5D%7D')?i.content: i.content.replaceAll('%7D', '%22%7D%7D%5D%7D')))
-                        contentBlocks = content.blocks
+                        content = IsJsonValid(decodeURIComponent(i.content))
+                        console.log(content)
                     }
                     if(imgLocation && imgLocation.includes('cures_articleimages')){
                         imageLoc = `https://all-cures.com/`+imgLocation.replaceAll('json', 'png').split('/webapps/')[1]
@@ -241,8 +244,8 @@ const ArticlePreview = (props) => {
                                 </h6>
                                 <p className="card-text card-article-content-preview">
                                     {
-                                        contentBlocks?
-                                            contentBlocks.map((j, idx) => idx<1 && (
+                                        content?
+                                            content.map((j, idx) => idx<1 && (
                                                 <CenterWell
                                                     content = {j.data.content}
                                                     type = {j.type}

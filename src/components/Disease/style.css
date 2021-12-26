@@ -163,6 +163,10 @@ background-color: #b9daf1; */
   width: 16rem;
 }
 
+.left-menu #sidebar-wrapper {
+  background: #c8f5ff;
+  width: 16rem;
+}
 @media only screen and (max-width: 968px) {
   .article-title-container .h2 {
     width: 100%;

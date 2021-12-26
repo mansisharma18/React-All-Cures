@@ -3,6 +3,18 @@ import { Link } from 'react-router-dom';
 import CenterWell from '../Disease/CenterWell';
 
 const AllPost = ({id, title, content, f_title, w_title, country, type, published_date, over_allrating, imgLocation}) => {
+    function IsJsonValid(str) {
+        try {
+            JSON.parse(str);
+        } catch (e) {
+            return [];
+        }
+        return JSON.parse(str).blocks;
+    }
+    var previewContent = []
+    if(content){
+        previewContent = IsJsonValid(content)
+    }
     var imageLoc = '';
     if(imgLocation && imgLocation.includes('cures_articleimages')){
         imageLoc = `https://all-cures.com/`+imgLocation.replaceAll('json', 'png').split('/webapps/')[1]
@@ -41,9 +53,8 @@ const AllPost = ({id, title, content, f_title, w_title, country, type, published
                             <div className="card-subtitle text-muted text-capitalize">{w_title.toLowerCase()}</div>
                             <div className='card-article-content-preview'>
                             {
-                                    content !== undefined && content?
-                                        JSON.parse(content)?
-                                    JSON.parse(content).blocks.map((j, idx) => idx<1 && (
+                                    previewContent && previewContent !== undefined?
+                                    previewContent.map((j, idx) => idx<1 && (
                                         <CenterWell
                                             content = {j.data.content}
                                             type = {j.type}
@@ -58,7 +69,6 @@ const AllPost = ({id, title, content, f_title, w_title, country, type, published
                                             url = {j.data.url}
                                         />
                                     ))
-                                    : null
                                     : null
                                 }
                         </div>

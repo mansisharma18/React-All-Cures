@@ -75,7 +75,7 @@ const Side = props => {
                 {/* </ul> */}
             </Nav.Item>
             </Nav>
-          
+            
         </>
         );
   };

@@ -2783,7 +2783,10 @@ div.MuiSelect-root.MuiSelect-select.MuiSelect-selectMenu.MuiInputBase-input.MuiI
 }
 
 .ad-spac {
-  height: 150px;
+  /* height: 150px; */
+  display: flex;
+  justify-content: center;
+  margin: 1rem 0;
 }
 
 .error-404 {

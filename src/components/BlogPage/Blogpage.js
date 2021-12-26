@@ -303,9 +303,7 @@ export default class Blogpage extends Component{
                             f_title = {i.friendly_name}
                             w_title = {i.window_title}
                             country = {i.country_id}
-                            content = {decodeURIComponent(i.content? i.content.includes('%22%7D%7D%5D%7D')?
-                            i.content: i.content.replaceAll('%7D', '%22%7D%7D%5D%7D')
-                            : null)}
+                            content = {decodeURIComponent(i.content)}
                             type = {i.type}
                             imgLocation = {i.content_location}
                             published_date = {i.published_date}

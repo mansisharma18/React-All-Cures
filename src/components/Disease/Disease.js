@@ -19,9 +19,9 @@ import 'react-phone-number-input/style.css';
 import HelmetMetaData from '../HelmetMetaData';
 import {FacebookShareButton, FacebookIcon, TwitterIcon, TwitterShareButton, WhatsappIcon, WhatsappShareButton} from "react-share";
 import Cookies from 'js-cookie'
-import WriterImg from '../../assets/healthcare/img/images/special-1.jpg'
 import ArticlePreview from '../LandingPage/ArticlePreview';
-import Bg from './bg_1.jpg'
+import AyurvedaAd from '../../assets/healthcare/img/images/Banner-ads/97x90 Plain.jpg'
+import PersianAd from '../../assets/healthcare/img/images/Banner-ads/Persian.jpg'
 
 class Disease extends Component {
   constructor(props) {
@@ -294,11 +294,15 @@ handleScroll = () => {
     <div>
       <Header history={this.props.history}/>
         <HelmetMetaData title={items.title} description={b[0].data.text} ></HelmetMetaData>
-        <div className="ad-spac mb 2">
-          {/* <img src={Bg}/> */}
+        <div className="ad-spac">
+        <button className="btn" data-toggle="modal"data-target=".bd-example-modal-lg">
+          <img src={AyurvedaAd} />
+     
+            </button>
         </div>
         <Row>
-          <div id="sidebar-wrapper" className='left-menu pb-3'>  
+          <div className='left-menu pb-3'>  
+            <div id="sidebar-wrapper">
           {
             this.state.regionalPost.length !== 0 &&
               <Sidebar diseaseId={items.disease_condition_id} 
@@ -307,8 +311,12 @@ handleScroll = () => {
               name={items.dc_name} 
               />
           }    
-            
+            </div>
+            <button className="btn pl-4 mt-2" data-toggle="modal"data-target=".bd-example-modal-lg">
+              <img className="pl-4" src={PersianAd}/>
+            </button>
           </div>
+          
           <Col  md={7} id="page-content-wrapper" className="col-xs-12 pb-5">
             <div id="center-well" className="">
               <Breadcrumb >

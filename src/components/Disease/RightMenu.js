@@ -78,11 +78,7 @@ const Side = (props) => {
                             f_title = {i.friendly_name}
                             w_title = {i.window_title}
                             type = {i.type}
-                            content = {decodeURIComponent(i.content? 
-                                        i.content.includes('%22%7D%7D%5D%7D')?
-                                          i.content
-                                          : i.content.replaceAll('%7D', '%22%7D%7D%5D%7D')
-                                        : null)}
+                            content = {decodeURIComponent(i.content)}
                             // type = {i.type}
                             published_date = {i.published_date}
                             over_allrating = {i.over_allrating}
