@@ -171,6 +171,12 @@ background-color: #b9daf1; */
   .article-title-container .h2 {
     width: 100%;
   }
+  #left-menu-ad{
+    display: none;
+  }
+  .ad-spac img{
+    width: 100%;
+  }
 }
 @media only screen and (max-width: 936px) {
   #sidebar-wrapper {
