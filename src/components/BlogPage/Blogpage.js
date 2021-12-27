@@ -291,7 +291,7 @@ export default class Blogpage extends Component{
                  </div>
                   }
                   {
-                    items.length === 0 && this.state.articleFilter !== 'recent'?
+                    items.length === 0 && (this.state.articleFilter !== 'recent' || this.props.match.params.type)?
                     <div className='my-5 py-4 h5 container text-center'>We do not have any cures for this condition yet but our editorial team is working on it. In the meantime, if you have a cure, Please <Link to="/article">Click Here</Link> to add the cure to our site.</div>: null
                   }
                     <div className="row mt-4" id="posts-container">

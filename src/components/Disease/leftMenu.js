@@ -12,7 +12,13 @@ const Side = props => {
         fetch(`${backendHost}/isearch/hierarchy/${props.diseaseId}`)
           .then((res) => res.json())
           .then((json) => {
-            setItems(json)
+              var temp = []
+              json.forEach(i => {
+                  if(i.dc_status === 1){
+                    temp.push(i)
+                  }
+              });
+            setItems(temp)
           })
           .catch(err => 
             null
@@ -64,7 +70,7 @@ const Side = props => {
                         {
                             items.map((i) => (
                                 <div className=" menu-item" key={i.dc_id.toString()}>
-                                    <Link to={`/cures/${i.dc_name}`} className="text-dark h6">{i.dc_name}</Link>
+                                    <Link to={`/searchcures/${i.dc_name}`} className="text-dark h6">{i.dc_name}</Link>
                                 </div>
                             ))
                         }
