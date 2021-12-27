@@ -11,18 +11,18 @@ export default function HelmetMetaData(props) {
    let description = props.description !== undefined ? props.description  : "All-Cures provides a social, centralized, user powered platform for alternate cures from across the globe. All-Cures is an alternative medicine information hub with the mission to democratize information about cures from diverse geographies. It covers all alternate systems of medicine including Ayurveda, Unani, Chinese and Persian.";
    let hashtag = props.hashtag !== undefined ? props.hashtag : "#allcures";
    return ( <Helmet>
-     {/* <title>{title}</title> */}
-     {/* <meta charset="utf-8" /> */}
+     <title>{title}</title>
+     <meta charset="utf-8" />
      <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-     {/* <meta name="csrf_token" content="" /> */}
-     {/* <meta property="type" content="website" /> */}
-     {/* <meta property="url" content={currentUrl} /> */}
+     <meta name="csrf_token" content="" />
+     <meta property="type" content="website" />
+      <meta property="url" content={currentUrl} />
      <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
-     {/* <meta name="msapplication-TileColor" content="#ffffff" /> */}
-     {/* <meta name="msapplication-TileImage" content="/ms-icon-144x144.png" /> */}
-     {/* <meta name="theme-color" content="#ffffff" /> */}
-     {/* <meta name="_token" content="" /> */}
-     {/* <meta property="title" content={title} /> */}
+     <meta name="msapplication-TileColor" content="#ffffff" />
+     <meta name="msapplication-TileImage" content="/ms-icon-144x144.png" />
+     <meta name="theme-color" content="#ffffff" />
+     <meta name="_token" content="" />
+     <meta property="title" content={title} />
      {/* <meta property="quote" content={quote} /> */}
      {/* <meta name="description" content={description} />
      <meta property="image" content={image} />

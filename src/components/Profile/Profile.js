@@ -427,7 +427,7 @@ class Profile extends Component {
                   <div className="profile-card doctors-article d-flex flex-column">
                     <div className="h5 font-weight-bold mb-3">
                       {/* No cures By Dr. {items.docname_first} {items.docname_middle} {items.docname_last} yet */}
-                      <div>Explore Cures</div></div>
+                      <div className="text-center">Explore Cures</div></div>
                     {this.state.articleItems ?
                       this.state.articleItems.map((i, index) => index < 2 && (
                         <AllPost
