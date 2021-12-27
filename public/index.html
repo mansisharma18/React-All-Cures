@@ -27,16 +27,19 @@
       var getCookieValue = (name) => (
         document.cookie.match('(^|;)\\s*' + name + '\\s*=\\s*([^;]+)')?.pop() || ''
       )
+      var host = window.location.hostname;
+      if(host != "localhost"){
+        // Google Analytics
+        window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
 
-      // Google Analytics
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-
-      gtag('config', 'G-E0TVGLDV3W', {
-      'page_title': window.location.pathname + window.location.search,
-      'user_id': getCookieValue('acPerm').split('|')[0]
-      });
+          gtag('config', 'G-E0TVGLDV3W', {
+          'page_title': window.location.pathname + window.location.search,
+          'user_id': getCookieValue('acPerm').split('|')[0]
+          });
+      }
+      
     </script>
     
     <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>

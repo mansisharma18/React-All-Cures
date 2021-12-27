@@ -60,6 +60,7 @@ class Disease extends Component {
         () => {
           this.fetchCountriesCures()
           this.regionalPosts()
+          document.title = `All Cures | ${this.state.items.title}`
         });
       });
   }
@@ -422,7 +423,7 @@ handleScroll = () => {
                 <ArticlePreview type="cures" dcName={`${items.dc_name}`}/>
                 : <>
                    <div className="article-title-container">
-              <div className="h3 font-weight-bold text-capitalize text-decoration-underline">{items.title.toLowerCase()}</div>
+              <div className="h3 font-weight-bold text-decoration-underline">{items.title}</div>
               
               {/* Show average rating */}
 

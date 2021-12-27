@@ -225,7 +225,6 @@ const ArticlePreview = (props) => {
                     var imageLoc = '';
                     if(i.content){
                         content = IsJsonValid(decodeURIComponent(i.content))
-                        console.log(content)
                     }
                     if(imgLocation && imgLocation.includes('cures_articleimages')){
                         imageLoc = `https://all-cures.com/`+imgLocation.replaceAll('json', 'png').split('/webapps/')[1]
