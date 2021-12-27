@@ -312,7 +312,7 @@ handleScroll = () => {
               />
           }    
             </div>
-            <button className="btn pl-4 mt-2" data-toggle="modal"data-target=".bd-example-modal-lg">
+            <button className="btn pl-4 mt-2 " id="left-menu-ad" data-toggle="modal"data-target=".bd-example-modal-lg">
               <img className="pl-4" src={PersianAd}/>
             </button>
           </div>
