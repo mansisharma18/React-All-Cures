@@ -12,32 +12,26 @@
   justify-content: space-between;
   padding: 38px 0;
 }
-
 .pageHeader {
   height: 200px;
 }
-
 .comman-pg-header {
   background: #b9daf1;
 }
-
 .modal-header {
-  padding: 0px;
-  border: 0px;
+  padding: 0;
+  border: 0;
 }
-
 .logo img {
   width: 40px;
   height: 40px;
   margin-right: 8px;
 }
-
 .logo span {
   color: #000;
   text-transform: uppercase;
   font-weight: 500;
 }
-
 #createArticle {
   text-align: center;
   display: inline-block;
@@ -49,7 +43,6 @@
   font-size: 15px;
   font-weight: 400;
 }
-
 .loginSignbtn {
   position: relative;
   text-align: center;
@@ -57,22 +50,18 @@
   height: 50px;
   width: 50px;
 }
-
 .loginSignbtn img {
   position: absolute;
   right: 0.5rem;
   top: 0.5rem;
 }
-
 .serchlabel h1 {
   font-weight: 700;
   color: #00415e;
 }
-
 .search {
   position: relative;
 }
-
 .search span {
   position: absolute;
   top: 13px;
@@ -80,7 +69,6 @@
   color: #000;
   font-weight: bold;
 }
-
 .serch-wrap-inner .form-control {
   box-shadow: none;
   border: 0;
@@ -89,7 +77,6 @@
   font-weight: 400;
   height: 40px;
 }
-
 .search .form-control {
   padding-left: 40px;
 }
@@ -102,7 +89,6 @@
 .form-control::placeholder {
   color: #949494;
 }
-
 .searchBtn {
   background-color: #00415e;
   color: #fff;
@@ -112,34 +98,27 @@
   top: 5px;
   right: 0;
 }
-
 .date {
   position: relative;
 }
-
 .serch-wrap-inner .form-group {
   width: 100%;
 }
-
 .form-group.zipcode {
   border-left: 1px solid #000;
   border-right: 1px solid #000;
 }
-
 .form-group.zipcode {
   border-left: 1px solid #d6d6d6;
   border-right: 1px solid #d6d6d6;
 }
-
 .search .form-control {
   padding-left: 40px;
   border-radius: 100px 0 0 100px;
 }
-
 .date .form-control {
   border-radius: 0 100px 100px 0;
 }
-
 .city .form-control {
   border-radius: 0 100px 100px 0;
 }
@@ -147,111 +126,82 @@
   position: absolute;
   bottom: 119px;
 }
-
 .serch-wrap-inner {
   margin-top: -69px;
 }
-
 @media only screen and (min-width: 220px) and (max-width: 700px) {
   .serchlabel {
-    padding-left: 15px !important;
+    padding-left: 15px !important ;
   }
-
   .header {
-    padding: 38px 15px !important;
+    padding: 38px 15px !important ;
   }
-
   .serchlabel h1 {
-    font-size: 24px !important;
+    font-size: 24px !important ;
   }
-
   .serchlabel {
     bottom: 199px;
   }
-
   .serch-wrap-inner {
-    margin: -179px 15px !important;
+    margin: -179px 15px !important ;
   }
-
   .search .form-control {
-    border-radius: 100px !important;
+    border-radius: 100px !important ;
   }
-
   .form-group.zipcode {
-    border: 0px !important;
+    border: 0 !important ;
   }
-
   .serch-wrap-inner .form-control {
-    border-radius: 100px !important;
+    border-radius: 100px !important ;
   }
-
   .date .form-control {
-    border-radius: 100px !important;
+    border-radius: 100px !important ;
   }
   .pageHeader .serch-wrap-inner {
-    margin: -99px 15px !important;
+    margin: -99px 15px !important ;
   }
-
   .comman-pg-header .serch-wrap-inner {
-    margin: -100px 15px !important;
+    margin: -100px 15px !important ;
   }
-
   .comman-pg-header .megaSearch {
-    padding: 0 0 80px !important;
+    padding: 0 0 80px !important ;
   }
-
   .logo span {
-    display: none !important;
+    display: none !important ;
   }
-
   .serch-wrap-inner {
-    margin: -179px 15px !important;
+    margin: -179px 15px !important ;
   }
   .serch-wrap-inner .form-control {
-    border-radius: 100px !important;
+    border-radius: 100px !important ;
   }
   .form-group .zipcode {
-    border: 0px !important;
+    border: 0 !important ;
   }
 }
-
 .nav-dropdown-link {
   border-left: 2px solid aqua;
-  /* border-right: 1px solid aqua; */
 }
-
-/* .nav-dropdown-link:last-child {
-  border-right: 2px solid aqua;
-} */
-
 .me-auto .btn-primary {
   background-color: initial;
   border-color: #3ad0ff;
 }
-
 .me-auto .btn-primary.dropdown-toggle {
   background-color: initial;
   border-color: transparent;
 }
-
 .border-btm {
   display: block;
   border-bottom: 1px solid black;
   width: 10rem;
   margin-left: 1rem;
-  /* background-color: #000;
-  height: 1px;
-  width:max-content */
 }
-
 .z-menu {
   z-index: 1;
 }
-
 .z-drop {
   z-index: 999;
 }
-
 .no-suggestions {
   background-color: aliceblue;
   color: #999;
@@ -259,12 +209,11 @@
   position: absolute;
   bottom: -2rem;
 }
-
 .suggestions {
   position: relative;
   z-index: 1;
   background-color: aliceblue;
-  border: 1px solid #999;
+  border: #999 solid 1px;
   border-top-width: 0;
   list-style: none;
   margin-top: 0;
@@ -273,11 +222,9 @@
   padding-left: 0;
   width: calc(300px + 1rem);
 }
-
 .suggestions li {
   padding: 0.5rem;
 }
-
 .suggestion-active,
 .suggestions li:hover {
   background-color: #00415e;
@@ -285,7 +232,6 @@
   cursor: pointer;
   font-weight: 700;
 }
-
 .suggestions li:not(:last-of-type) {
   border-bottom: 1px solid #999;
 }
@@ -299,24 +245,13 @@
   top: 0.5rem;
   border-radius: 2rem;
 }
-
-/* .autocomplete #search1 {
-  position: absolute;
-  z-index: 0;
-  right: 2.2rem;
-  top: 0.6rem;
-  border-radius: 2rem;
-} */
-
 .autocomplete input {
   float: left;
 }
-
 .dropdown {
   float: right;
   list-style: none;
 }
-
 .dropdown-toggle {
   color: #0c1b22;
   border: white;
@@ -327,20 +262,9 @@
 .dropdown-toggle:focus {
   color: white;
 }
-
 .fa-user {
   color: #0c1b22;
 }
-/* .zIndex-1 {
-    z-index: 1;
-    position: relative;
-  }
-
-.zIndex-2 {
-  z-index: 2;
-  position: relative;
-} */
-
 .header-drop {
   background-color: #00415e;
   color: white;
@@ -348,28 +272,22 @@
   height: 50px;
   position: relative;
 }
-
 .header-drop i {
   color: #fff;
 }
-
 .header-drop.btn:focus {
   background-color: #00415e;
 }
-
 .header-drop.btn:hover {
   background-color: #00415e;
   color: #f4f4f4;
 }
-
 .btn-article-search {
   background-color: #00415e;
 }
-
 .btn-article-search i {
   padding: 0.755rem;
 }
-
 .mainSearch .doc-name {
   padding-right: 0;
 }
@@ -381,7 +299,6 @@
   right: 0;
   max-width: fit-content;
 }
-
 @media only screen and (max-width: 650px) {
   .article-search .mainBtn {
     position: absolute;
@@ -389,7 +306,6 @@
     width: fit-content;
   }
 }
-
 @media only screen and (min-width: 651px) and (max-width: 990px) {
   .article-search .mainBtn {
     position: absolute;
@@ -397,7 +313,6 @@
     width: fit-content;
   }
 }
-
 @media only screen and (max-width: 990px) {
   .article-search {
     position: absolute;
@@ -406,11 +321,9 @@
   .mainSearch .doc-name {
     padding: 0 15px 0 15px;
   }
-
   .mainSearch .city-name {
     padding: 0 15px 0 15px;
   }
-
   .mainSearch .mainBtn {
     position: absolute;
     padding: 0;
@@ -418,10 +331,4 @@
     bottom: 0;
     max-width: fit-content;
   }
-
-  /* .article-search .mainBtn {
-    position: absolute;
-    right: 10px;
-    width: fit-content;
-  } */
 }
