@@ -90,13 +90,13 @@
 
 /* MOBILE SCREEN  */
 
-@media only screen and (min-device-width: 220px) and (max-device-width: 700px) {
+@media only screen and (min-width: 220px) and (max-width: 700px) {
   .serchlabel {
     padding-left: 15px !important;
   }
 
   .header {
-    padding: 38px 15px i !important;
+    padding: 38px 15px !important;
   }
 
   .banner {
@@ -188,7 +188,7 @@
   }
 
   a.appBTN {
-    padding: 10px 14pxzz;
+    padding: 10px 14px;
     margin-right: 9px;
   }
 
@@ -323,9 +323,6 @@
   } */
   body {
     background-color: #fff;
-  }
-  .subscribe .form-group {
-    padding: -1rem;
   }
   .appStore {
     margin: -7.8rem 1rem 0 1rem;
