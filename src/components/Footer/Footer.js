@@ -237,7 +237,7 @@ class Footer extends Component {
                
                <div class="col-md-4 col-sm-4 col-sx-12">
                   <div class="copyRight">
-                     <p>All rights reserved. Copyright <i class="far fa-copyright fa-1x"></i>2020</p>
+                     <p>All rights reserved. Copyright <i class="far fa-copyright fa-1x"></i>2020 <a href='https://etheriumtech.com'>Etherium Technologies</a></p>
                   </div>
                </div>
 

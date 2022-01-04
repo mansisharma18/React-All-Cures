@@ -13,7 +13,7 @@ export default function ArticleRating(props) {
   const [submitAlert, setAlert] = useState(false)
   const postRating = (rating, article_id) => {
 
-    axios.post(`${backendHost}/DoctorRatingActionController?ratingVal=${rating}&ratedbyid=${Cookies.get("acPerm").split('|')[0]}&ratedbytype=${Cookies.get("acPerm").split('|')[1]}&targetid=${article_id}&targetTypeid=2&cmd=rateAsset`)
+    axios.post(`${backendHost}/DoctorRatingActionController?ratingVal=${rating}&ratedbyid=${Cookies.get("acPerm").split('|')[0]}&ratedbytype=${Cookies.get("acPerm").split('|')[1]}&targetid=${props.article_id}&targetTypeid=2&cmd=rateAsset`)
     // .then(res => console.log(res)
     .then(res => {
       setAlert(true)
@@ -35,7 +35,7 @@ const thirdExample = {
   count: 5,
   isHalf: false,
   value: 0,
-  color: "yellow",
+  color: "#00415e",
   activeColor: "orange",
   // filledIcon:"orange",
   onChange: newValue => {

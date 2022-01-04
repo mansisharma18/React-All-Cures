@@ -15,6 +15,7 @@ import Input from '@material-ui/core/Input';
 import ArticleComment from '../ArticleComment';
 import PhoneInput from 'react-phone-number-input';
 import 'react-phone-number-input/style.css';
+import ArticleRating from '../ArticleRating';
 
 import HelmetMetaData from '../HelmetMetaData';
 import {FacebookShareButton, FacebookIcon, TwitterIcon, TwitterShareButton, WhatsappIcon, WhatsappShareButton} from "react-share";
@@ -376,7 +377,7 @@ handleScroll = () => {
                 
               { finalRegions?
                   finalRegions.map(i => i.countryname!== null && (
-                    <Dropdown>
+                   <Dropdown>
                       <Dropdown.Toggle className="mr-2 btn btn-info color-white">
                         <span className="color-white">{i.countryname}</span>
                       </Dropdown.Toggle>
@@ -424,9 +425,19 @@ handleScroll = () => {
                 : <>
                    <div className="article-title-container">
               <div className="h3 font-weight-bold text-decoration-underline">{items.title}</div>
+             
+             
               
               {/* Show average rating */}
-
+              {/* <div id="rate">
+            
+             <a href='#docRate'>Click To Rate Here</a></div> */}
+            <Dropdown>
+                      <Dropdown.Toggle className="mr-220 btn btn-info color-white">
+                       < a href='#docRate'className="color-white" >Click Here To Rate</a>
+                      </Dropdown.Toggle>
+                   
+                    </Dropdown>
               {
                 this.state.ratingValue?
                 <div className="average-rating mt-2 mb-4 ml-3" id="avg-rating">
@@ -438,10 +449,12 @@ handleScroll = () => {
                 </div>
                 : null
               }
+               
                {/* Call average rating fetch function */}
               {
                 this.state.ratingValue? this.showRating(this.state.ratingValue) : null
               }
+            
             </div>
 
             {/* Center Well article main content */}
@@ -480,7 +493,11 @@ handleScroll = () => {
             }
 
           </div>
-          
+
+          <h3>Rate here</h3>
+                      <div id="docRate">
+          <ArticleRating article_id={this.state.param.id} />
+          </div>
                {/* Review Button (Rating + Comment) */}
                {
                 Cookies.get('acPerm')?
@@ -489,6 +506,8 @@ handleScroll = () => {
                   </>
                 : null
               }
+
+             
             <div id="comments-column">              
 
               {/* SHOW ALL COMMENTS */}
