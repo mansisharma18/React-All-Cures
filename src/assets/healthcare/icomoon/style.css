@@ -1,104 +1,209 @@
-
-@font-face { font-family: 'icomoon'; src: url('fonts/icomoon.eot'); src: url('fonts/icomoon.eot#iefix') format('embedded-opentype'),  url('fonts/icomoon.ttf') format('truetype'),  url('fonts/icomoon.woff') format('woff'),  url('fonts/icomoon.svg') format('svg'); font-weight: normal; font-style: normal; font-display: block; }
- [class^="icon-"], [class*=" icon-"] {
-  /* use !important to prevent issues with browser extensions that change fonts */
-  font-family: 'icomoon' !important;
- speak: never;
- font-style: normal;
- font-weight: normal;
- font-variant: normal;
- text-transform: none;
- line-height: 1;
-
-  /* Better Font Rendering =========== */
-  -webkit-font-smoothing: antialiased;
- -moz-osx-font-smoothing: grayscale;
+@font-face {
+  font-family: "icomoon";
+  src: url("fonts/icomoon.eot");
+  src: url("fonts/icomoon.eot#iefix") format("embedded-opentype"),
+    url("fonts/icomoon.ttf") format("truetype"),
+    url("fonts/icomoon.woff") format("woff"),
+    url("fonts/icomoon.svg") format("svg");
+  font-weight: normal;
+  font-style: normal;
+  font-display: block;
 }
-
-.icon-chatbot .path1:before { content: "\e900"; color: rgb(70, 113, 198); }
-
-.icon-chatbot .path2:before { content: "\e901"; margin-left: -1em; color: rgb(55, 98, 204); }
-
-.icon-chatbot .path3:before { content: "\e902"; margin-left: -1em; color: rgb(164, 201, 255); }
-
-.icon-chatbot .path4:before { content: "\e903"; margin-left: -1em; color: rgb(224, 235, 252); }
-
-.icon-chatbot .path5:before { content: "\e904"; margin-left: -1em; color: rgb(107, 221, 221); }
-
-.icon-chatbot .path6:before { content: "\e905"; margin-left: -1em; color: rgb(249, 167, 167); }
-
-.icon-chatbot .path7:before { content: "\e906"; margin-left: -1em; color: rgb(249, 207, 207); }
-
-.icon-chatbot .path8:before { content: "\e907"; margin-left: -1em; color: rgb(249, 207, 207); }
-
-.icon-chatbot .path9:before { content: "\e908"; margin-left: -1em; color: rgb(224, 235, 252); }
-
-.icon-chatbot .path10:before { content: "\e909"; margin-left: -1em; color: rgb(70, 113, 198); }
-
-.icon-chatbot .path11:before { content: "\e90a"; margin-left: -1em; color: rgb(70, 113, 198); }
-
-.icon-chatbot .path12:before { content: "\e90b"; margin-left: -1em; color: rgb(70, 113, 198); }
-
-.icon-chatbot .path13:before { content: "\e90c"; margin-left: -1em; color: rgb(55, 98, 204); }
-
-.icon-chatbot .path14:before { content: "\e90d"; margin-left: -1em; color: rgb(55, 98, 204); }
-
-.icon-chatbot .path15:before { content: "\e90e"; margin-left: -1em; color: rgb(55, 98, 204); }
-
-.icon-chatbot .path16:before { content: "\e90f"; margin-left: -1em; color: rgb(55, 98, 204); }
-
-.icon-chatbot .path17:before { content: "\e910"; margin-left: -1em; color: rgb(55, 98, 204); }
-
-.icon-chatbot .path18:before { content: "\e911"; margin-left: -1em; color: rgb(55, 98, 204); }
-
-.icon-chatbot .path19:before { content: "\e912"; margin-left: -1em; color: rgb(55, 98, 204); }
-
-.icon-comment .path1:before { content: "\e913"; color: rgb(80, 175, 0); }
-
-.icon-comment .path2:before { content: "\e914"; margin-left: -1em; color: rgb(255, 255, 255); }
-
-.icon-correct-1:before { content: "\e915"; }
-
-.icon-correct-2 .path1:before { content: "\e916"; color: rgb(87, 164, 255); }
-
-.icon-correct-2 .path2:before { content: "\e917"; margin-left: -1em; color: rgb(30, 129, 206); }
-
-.icon-correct-2 .path3:before { content: "\e918"; margin-left: -1em; color: rgb(30, 129, 206); }
-
-.icon-correct:before { content: "\e919"; }
-
-.icon-facebook .path1:before { content: "\e91a"; color: rgb(59, 89, 152); }
-
-.icon-facebook .path2:before { content: "\e91b"; margin-left: -1em; color: rgb(255, 255, 255); }
-
-.icon-heart:before { content: "\e91c"; }
-
-.icon-instagram:before { content: "\e91d"; color: #6a453b; }
-
-.icon-linkedin .path1:before { content: "\e91e"; color: rgb(0, 122, 185); }
-
-.icon-linkedin .path2:before { content: "\e91f"; margin-left: -1em; color: rgb(241, 242, 242); }
-
-.icon-loupe:before { content: "\e920"; }
-
-.icon-magnifying-glass:before { content: "\e921"; }
-
-.icon-move-to-next:before { content: "\e922"; }
-
-.icon-next:before { content: "\e923"; }
-
-.icon-pin-1:before { content: "\e924"; }
-
-.icon-pin:before { content: "\e925"; }
-
-.icon-search:before { content: "\e926"; }
-
-.icon-star-1:before { content: "\e927"; color: #ed8a19; }
-
-.icon-star:before { content: "\e928"; color: #ffc107; }
-
-.icon-stethoscope:before { content: "\e929"; }
-
-.icon-twitter .path1:before { content: "\e92a"; color: rgb(85, 172, 238); }
-
-.icon-twitter .path2:before { content: "\e92b"; margin-left: -1em; color: rgb(241, 242, 242); }
+[class^="icon-"],
+[class*=" icon-"] {
+  font-family: "icomoon" !important ;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+}
+.icon-chatbot .path1:before {
+  content: "\e900";
+  color: rgb(70, 113, 198);
+}
+.icon-chatbot .path2:before {
+  content: "\e901";
+  margin-left: -1em;
+  color: rgb(55, 98, 204);
+}
+.icon-chatbot .path3:before {
+  content: "\e902";
+  margin-left: -1em;
+  color: rgb(164, 201, 255);
+}
+.icon-chatbot .path4:before {
+  content: "\e903";
+  margin-left: -1em;
+  color: rgb(224, 235, 252);
+}
+.icon-chatbot .path5:before {
+  content: "\e904";
+  margin-left: -1em;
+  color: rgb(107, 221, 221);
+}
+.icon-chatbot .path6:before {
+  content: "\e905";
+  margin-left: -1em;
+  color: rgb(249, 167, 167);
+}
+.icon-chatbot .path7:before {
+  content: "\e906";
+  margin-left: -1em;
+  color: rgb(249, 207, 207);
+}
+.icon-chatbot .path8:before {
+  content: "\e907";
+  margin-left: -1em;
+  color: rgb(249, 207, 207);
+}
+.icon-chatbot .path9:before {
+  content: "\e908";
+  margin-left: -1em;
+  color: rgb(224, 235, 252);
+}
+.icon-chatbot .path10:before {
+  content: "\e909";
+  margin-left: -1em;
+  color: rgb(70, 113, 198);
+}
+.icon-chatbot .path11:before {
+  content: "\e90a";
+  margin-left: -1em;
+  color: rgb(70, 113, 198);
+}
+.icon-chatbot .path12:before {
+  content: "\e90b";
+  margin-left: -1em;
+  color: rgb(70, 113, 198);
+}
+.icon-chatbot .path13:before {
+  content: "\e90c";
+  margin-left: -1em;
+  color: rgb(55, 98, 204);
+}
+.icon-chatbot .path14:before {
+  content: "\e90d";
+  margin-left: -1em;
+  color: rgb(55, 98, 204);
+}
+.icon-chatbot .path15:before {
+  content: "\e90e";
+  margin-left: -1em;
+  color: rgb(55, 98, 204);
+}
+.icon-chatbot .path16:before {
+  content: "\e90f";
+  margin-left: -1em;
+  color: rgb(55, 98, 204);
+}
+.icon-chatbot .path17:before {
+  content: "\e910";
+  margin-left: -1em;
+  color: rgb(55, 98, 204);
+}
+.icon-chatbot .path18:before {
+  content: "\e911";
+  margin-left: -1em;
+  color: rgb(55, 98, 204);
+}
+.icon-chatbot .path19:before {
+  content: "\e912";
+  margin-left: -1em;
+  color: rgb(55, 98, 204);
+}
+.icon-comment .path1:before {
+  content: "\e913";
+  color: rgb(80, 175, 0);
+}
+.icon-comment .path2:before {
+  content: "\e914";
+  margin-left: -1em;
+  color: rgb(255, 255, 255);
+}
+.icon-correct-1:before {
+  content: "\e915";
+}
+.icon-correct-2 .path1:before {
+  content: "\e916";
+  color: rgb(87, 164, 255);
+}
+.icon-correct-2 .path2:before {
+  content: "\e917";
+  margin-left: -1em;
+  color: rgb(30, 129, 206);
+}
+.icon-correct-2 .path3:before {
+  content: "\e918";
+  margin-left: -1em;
+  color: rgb(30, 129, 206);
+}
+.icon-correct:before {
+  content: "\e919";
+}
+.icon-facebook .path1:before {
+  content: "\e91a";
+  color: rgb(59, 89, 152);
+}
+.icon-facebook .path2:before {
+  content: "\e91b";
+  margin-left: -1em;
+  color: rgb(255, 255, 255);
+}
+.icon-heart:before {
+  content: "\e91c";
+}
+.icon-instagram:before {
+  content: "\e91d";
+  color: #6a453b;
+}
+.icon-linkedin .path1:before {
+  content: "\e91e";
+  color: rgb(0, 122, 185);
+}
+.icon-linkedin .path2:before {
+  content: "\e91f";
+  margin-left: -1em;
+  color: rgb(241, 242, 242);
+}
+.icon-loupe:before {
+  content: "\e920";
+}
+.icon-magnifying-glass:before {
+  content: "\e921";
+}
+.icon-move-to-next:before {
+  content: "\e922";
+}
+.icon-next:before {
+  content: "\e923";
+}
+.icon-pin-1:before {
+  content: "\e924";
+}
+.icon-pin:before {
+  content: "\e925";
+}
+.icon-search:before {
+  content: "\e926";
+}
+.icon-star-1:before {
+  content: "\e927";
+  color: #ed8a19;
+}
+.icon-star:before {
+  content: "\e928";
+  color: #ffc107;
+}
+.icon-stethoscope:before {
+  content: "\e929";
+}
+.icon-twitter .path1:before {
+  content: "\e92a";
+  color: rgb(85, 172, 238);
+}
+.icon-twitter .path2:before {
+  content: "\e92b";
+  margin-left: -1em;
+  color: rgb(241, 242, 242);
+}
