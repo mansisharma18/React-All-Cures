@@ -35,7 +35,7 @@ const thirdExample = {
   count: 5,
   isHalf: false,
   value: 0,
-  color: "yellow",
+  color: "#00415e",
   activeColor: "orange",
   // filledIcon:"orange",
   onChange: newValue => {
