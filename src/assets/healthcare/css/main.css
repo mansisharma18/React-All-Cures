@@ -148,6 +148,10 @@ a:hover {
 .mr-2 {
   margin-right: 2px;
 }
+.mr-220 {
+  margin-top: 10px;
+  margin-left: 220px;
+}
 
 .mr-3 {
   margin-right: 3px;
@@ -485,7 +489,12 @@ p {
 
 a {
   text-decoration: none;
+ 
 }
+.a .rate {
+  padding-left: 300px;
+  }
+
 
 a:hover,
 a:active {
@@ -1356,6 +1365,7 @@ button.appBtn:hover {
 
 .copyRight p {
   padding-top: 16px;
+  margin-right: -110px;
 }
 
 .footer-bootm .logo {

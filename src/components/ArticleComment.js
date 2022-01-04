@@ -84,19 +84,7 @@ const Comment = ({refreshComments,article_id}, props) => {
         
         
       }
-      const thirdExample = {
-        size: 40,
-        count: 5,
-        isHalf: false,
-        value: 0,
-        color: "yellow",
-        activeColor: "orange",
-        onChange: newValue => {
-          setRatingValue(newValue)
-          
-          postRating(newValue)
-        }
-      };
+      
     return (
         <>
         {
@@ -118,17 +106,17 @@ const Comment = ({refreshComments,article_id}, props) => {
 
       <Modal show={show} onHide={handleClose} className="rounded mt-5" >
         <Modal.Header className="bg-review py-3" closeButton>
-          <Modal.Title className="pl-4">Review here...</Modal.Title>
+          <Modal.Title className="pl-4">Comment Here...</Modal.Title>
         </Modal.Header>
         
         <Modal.Body className="rounded">
         <div  className="pl-4">
-        <ReactStars {...thirdExample} />
+        
         </div>
         
         <div className="pl-4">
                 <form action="" onSubmit={(e) => postComment(e)} className="form-group">
-                    <label htmlFor="" className="h4 font-weight-bold">Comments</label>
+                
                     <textarea name="" 
                     onChange={(e) => {
                         setCmtText(e.target.value)

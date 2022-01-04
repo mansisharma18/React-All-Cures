@@ -158,6 +158,7 @@ background-color: #b9daf1; */
   width: 62%;
 }
 
+
 #sidebar-wrapper.left-menu {
   background: #c8f5ff;
   width: 16rem;
@@ -246,6 +247,7 @@ background-color: #b9daf1; */
   color: #00415e;
   background-color: #00415e;
   border-color: #00415e;
+
 }
 /*
 #dropHead .btn-primary:not(:disabled):not(.disabled).active,
