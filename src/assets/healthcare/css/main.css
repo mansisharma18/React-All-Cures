@@ -35,7 +35,6 @@ body {
 
 a:focus,
 a:hover {
-  color: none !important;
   text-decoration: none !important;
 }
 
@@ -46,7 +45,7 @@ a:hover {
   flex-direction: row;
   flex-wrap: wrap;
 }
-@media only screen and (max-width: "768px") {
+@media only screen and (max-width: 768px) {
   .mainSearch {
     display: block;
   }
@@ -2381,7 +2380,7 @@ p.lorem-text {
   line-height: 1;
   background: #f6f6f7;
   border: 0;
-  box-shadow: 0;
+  box-shadow: none;
   cursor: pointer;
 }
 
@@ -2499,7 +2498,7 @@ p.lorem-text {
   border: 0;
   padding: 1rem;
   border-radius: 1.6rem;
-  box-shadow: 0;
+  box-shadow: none;
   cursor: pointer;
 }
 
@@ -2710,8 +2709,7 @@ div.MuiSelect-root.MuiSelect-select.MuiSelect-selectMenu.MuiInputBase-input.MuiI
 }
 
 .ad-space {
-  background: url(../../img/wall.jpg) center center/no-repeat;
-  height: "8rem";
+  height: 8rem;
   /* borderBottom: "1px solid #4b798d";
   borderTop: "1px solid #4b798d" */
 }
@@ -3018,7 +3016,7 @@ div.main-hero:first-child .card {
 }
 
 .btn:focus {
-  box-shadow: 0 0 0 0;
+  box-shadow: none;
 }
 
 .list-0 {

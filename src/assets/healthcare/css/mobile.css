@@ -1,16 +1,16 @@
 /* ----------- iPhone 4 and 4S ----------- */
 
-@media only screen and (min-device-width: 220px) and (max-device-width: 480px) {
+@media only screen and (min-width: 220px) and (max-width: 480px) {
   div#socilaBtn {
     position: relative;
     top: 15px;
     right: 69px;
-}
-div#filter {
-  position: relative;
-  left: 14px;
-  top: 5px;
-}
+  }
+  div#filter {
+    position: relative;
+    left: 14px;
+    top: 5px;
+  }
   .copyRight p {
     padding-top: 16px;
     position: relative;
@@ -106,7 +106,7 @@ div#filter {
     padding: 0px 5px;
   }
   #signUp {
-    padding: 6x 20px;
+    padding: 6px 20px;
   }
 
   #docRate {
@@ -151,7 +151,8 @@ div#filter {
     position: relative;
     left: 10px;
   }
-  */ .newsletter_float {
+
+  .newsletter_float {
     position: fixed;
     width: 45%;
     height: 40px;
@@ -176,7 +177,7 @@ div#filter {
 
   #signIn {
     position: relative;
-   
+
     width: 132px;
     /* bottom: 31px; */
   }
@@ -206,27 +207,27 @@ div#filter {
 }
 
 /* Portrait */
-@media only screen and (min-device-width: 320px) and (max-device-width: 480px) and (-webkit-min-device-pixel-ratio: 2) and (orientation: portrait) {
+@media only screen and (min-width: 320px) and (max-width: 480px) and (-webkit-min-pixel-ratio: 2) and (orientation: portrait) {
 }
 
 /* Landscape */
-@media only screen and (min-device-width: 320px) and (max-device-width: 480px) and (-webkit-min-device-pixel-ratio: 2) and (orientation: landscape) {
+@media only screen and (min-width: 320px) and (max-width: 480px) and (-webkit-min-pixel-ratio: 2) and (orientation: landscape) {
 }
 
 /* ----------- iPhone 5, 5S, 5C and 5SE ----------- */
 
 /* Portrait and Landscape */
-@media only screen and (min-device-width: 320px) and (max-device-width: 568px) {
+@media only screen and (min-width: 320px) and (max-width: 568px) {
   div#socilaBtn {
     position: relative;
     top: 15px;
     right: 55px;
-}
-div#filter {
-  position: relative;
-  left: 14px;
-  top: 5px;
-}
+  }
+  div#filter {
+    position: relative;
+    left: 14px;
+    top: 5px;
+  }
   .breadcrumb {
     padding: 3rem 1rem;
   }
@@ -313,9 +314,9 @@ div#filter {
   }
 
   #signIn {
-  position: relative;
-  left: 5px;
-  width: 132px;
+    position: relative;
+    left: 5px;
+    width: 132px;
     /* bottom: 31px; */
   }
   .serchlabel {
@@ -344,27 +345,27 @@ div#filter {
 }
 
 /* Portrait */
-@media only screen and (min-device-width: 320px) and (max-device-width: 568px) and (-webkit-min-device-pixel-ratio: 2) and (orientation: portrait) {
+@media only screen and (min-width: 320px) and (max-width: 568px) and (-webkit-min-pixel-ratio: 2) and (orientation: portrait) {
 }
 
 /* Landscape */
-@media only screen and (min-device-width: 320px) and (max-device-width: 568px) and (-webkit-min-device-pixel-ratio: 2) and (orientation: landscape) {
+@media only screen and (min-width: 320px) and (max-width: 568px) and (-webkit-min-pixel-ratio: 2) and (orientation: landscape) {
 }
 
 /* ----------- iPhone 6, 6S, 7 and 8 ----------- */
 
 /* Portrait and Landscape */
-@media only screen and (min-device-width: 375px) and (max-device-width: 914px) {
+@media only screen and (min-width: 375px) and (max-width: 914px) {
   div#socilaBtn {
     position: relative;
     top: 15px;
     right: 69px;
-}
-div#filter {
-  position: relative;
-  left: 14px;
-  top: 5px;
-}
+  }
+  div#filter {
+    position: relative;
+    left: 14px;
+    top: 5px;
+  }
   .breadcrumb {
     padding: 3rem 1rem;
   }
@@ -489,27 +490,27 @@ div#filter {
 }
 
 /* Portrait */
-@media only screen and (min-device-width: 375px) and (max-device-width: 667px) and (-webkit-min-device-pixel-ratio: 2) and (orientation: portrait) {
+@media only screen and (min-width: 375px) and (max-width: 667px) and (-webkit-min-pixel-ratio: 2) and (orientation: portrait) {
 }
 
 /* Landscape */
-@media only screen and (min-device-width: 375px) and (max-device-width: 667px) and (-webkit-min-device-pixel-ratio: 2) and (orientation: landscape) {
+@media only screen and (min-width: 375px) and (max-width: 667px) and (-webkit-min-pixel-ratio: 2) and (orientation: landscape) {
 }
 
 /* ----------- iPhone 6+, 7+ and 8+ ----------- */
 
 /* Portrait and Landscape */
-@media only screen and (min-device-width: 411px) and (max-device-width: 732px) {
+@media only screen and (min-width: 411px) and (max-width: 732px) {
   div#socilaBtn {
     position: relative;
     top: 15px;
     right: 110px;
-}
-div#filter {
-  position: relative;
-  left: 14px;
-  top: 5px;
-}
+  }
+  div#filter {
+    position: relative;
+    left: 14px;
+    top: 5px;
+  }
   .breadcrumb {
     padding: 3rem 1rem;
   }
@@ -625,35 +626,33 @@ div#filter {
 }
 
 /* Portrait */
-@media only screen and (min-device-width: 414px) and (max-device-width: 736px) and (-webkit-min-device-pixel-ratio: 3) and (orientation: portrait) {
+@media only screen and (min-width: 414px) and (max-width: 736px) and (-webkit-min-pixel-ratio: 3) and (orientation: portrait) {
 }
 
 /* Landscape */
-@media only screen and (min-device-width: 414px) and (max-device-width: 736px) and (-webkit-min-device-pixel-ratio: 3) and (orientation: landscape) {
+@media only screen and (min-width: 414px) and (max-width: 736px) and (-webkit-min-pixel-ratio: 3) and (orientation: landscape) {
 }
 
 /* Portrait */
-@media only screen and (min-device-width: 375px) and (max-device-width: 812px) and (-webkit-min-device-pixel-ratio: 3) and (orientation: portrait) {
+@media only screen and (min-width: 375px) and (max-width: 812px) and (-webkit-min-pixel-ratio: 3) and (orientation: portrait) {
 }
 
 /* Landscape */
-@media only screen and (min-device-width: 375px) and (max-device-width: 812px) and (-webkit-min-device-pixel-ratio: 3) and (orientation: landscape) {
+@media only screen and (min-width: 375px) and (max-width: 812px) and (-webkit-min-pixel-ratio: 3) and (orientation: landscape) {
 }
 
-@media screen and (min-device-width: 360px) and (max-device-height: 740px) {
-
-div#filter {
-  position: relative;
-  left: 14px;
-  top: 5px;
-}
+@media screen and (min-width: 360px) and (max-height: 740px) {
+  div#filter {
+    position: relative;
+    left: 14px;
+    top: 5px;
+  }
   .breadcrumb {
     padding: 3rem 1rem;
   }
   #share-icons-regions {
     position: relative;
     flex-direction: column-reverse;
-
   }
   #s1 {
     font-size: 19px;
@@ -766,17 +765,17 @@ div#filter {
 /* ----------- Galaxy S4, S5 and Note 3 ----------- */
 
 /* Portrait and Landscape */
-@media screen and (min-device-width: 320px) and (max-device-height: 640px) {
+@media screen and (min-width: 320px) and (max-height: 640px) {
   div#socilaBtn {
     position: relative;
     top: 15px;
     right: 55px;
-}
-div#filter {
-  position: relative;
-  left: 14px;
-  top: 5px;
-}
+  }
+  div#filter {
+    position: relative;
+    left: 14px;
+    top: 5px;
+  }
   .breadcrumb {
     padding: 3rem 1rem;
   }
@@ -886,17 +885,17 @@ div#filter {
   }
 }
 
-@media only screen and (min-device-width: 768px) and (max-device-width: 1024px) {
+@media only screen and (min-width: 768px) and (max-width: 1024px) {
   div#socilaBtn {
     position: relative;
     top: 32px;
     right: 293px;
-}
-div#filter {
-  position: relative;
-  left: 14px;
-  top: -20px;
-}
+  }
+  div#filter {
+    position: relative;
+    left: 14px;
+    top: -20px;
+  }
 
   .breadcrumb {
     padding: 2rem 1rem;
@@ -905,12 +904,12 @@ div#filter {
     position: relative;
     flex-direction: inherit;
     top: 60px;
- left: 310px;
+    left: 310px;
   }
   #s1 {
     font-size: 35px;
     position: relative;
-   bottom: 10px;
+    bottom: 10px;
   }
   .loginSign {
     position: absolute;
@@ -1061,32 +1060,32 @@ div#filter {
 }
 
 /* Portrait */
-@media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (orientation: portrait) and (-webkit-min-device-pixel-ratio: 1) {
+@media only screen and (min-width: 768px) and (max-width: 1024px) and (orientation: portrait) and (-webkit-min-pixel-ratio: 1) {
 }
 
 /* Landscape */
-@media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (orientation: landscape) and (-webkit-min-device-pixel-ratio: 1) {
+@media only screen and (min-width: 768px) and (max-width: 1024px) and (orientation: landscape) and (-webkit-min-pixel-ratio: 1) {
 }
 
 /* ----------- iPad 3, 4 and Pro 9.7" ----------- */
 
 /* Portrait and Landscape */
-@media only screen and (min-device-width: 1024px) and (max-device-width: 1366px) and (-webkit-min-device-pixel-ratio: 2) {
+@media only screen and (min-width: 1024px) and (max-width: 1366px) and (-webkit-min-pixel-ratio: 2) {
   div#socilaBtn {
     position: relative;
     top: 32px;
     right: 105px;
-}
-div#filter {
-  position: relative;
-  left: 14px;
-  top: 15px;
-}
+  }
+  div#filter {
+    position: relative;
+    left: 14px;
+    top: 15px;
+  }
   #share-icons-regions {
     position: relative;
     flex-direction: inherit;
     top: 60px;
- left: 125px;
+    left: 125px;
   }
   .loginSign {
     position: absolute;
@@ -1234,47 +1233,47 @@ div#filter {
 }
 
 /* Portrait */
-@media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (orientation: portrait) and (-webkit-min-device-pixel-ratio: 2) {
+@media only screen and (min-width: 768px) and (max-width: 1024px) and (orientation: portrait) and (-webkit-min-pixel-ratio: 2) {
 }
 
 /* Landscape */
-@media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (orientation: landscape) and (-webkit-min-device-pixel-ratio: 2) {
+@media only screen and (min-width: 768px) and (max-width: 1024px) and (orientation: landscape) and (-webkit-min-pixel-ratio: 2) {
 }
 
 /* ----------- iPad Pro 10.5" ----------- */
 
 /* Portrait and Landscape */
-@media only screen and (min-device-width: 834px) and (max-device-width: 1112px) and (-webkit-min-device-pixel-ratio: 2) {
+@media only screen and (min-width: 834px) and (max-width: 1112px) and (-webkit-min-pixel-ratio: 2) {
 }
 
 /* Portrait */
 /* Declare the same value for min- and max-width to avoid colliding with desktops */
 /* Source: https://medium.com/connect-the-dots/css-media-queries-for-ipad-pro-8cad10e17106*/
-@media only screen and (min-device-width: 834px) and (max-device-width: 834px) and (orientation: portrait) and (-webkit-min-device-pixel-ratio: 2) {
+@media only screen and (min-width: 834px) and (max-width: 834px) and (orientation: portrait) and (-webkit-min-pixel-ratio: 2) {
 }
 
 /* Landscape */
 /* Declare the same value for min- and max-width to avoid colliding with desktops */
 /* Source: https://medium.com/connect-the-dots/css-media-queries-for-ipad-pro-8cad10e17106*/
-@media only screen and (min-device-width: 1112px) and (max-device-width: 1112px) and (orientation: landscape) and (-webkit-min-device-pixel-ratio: 2) {
+@media only screen and (min-width: 1112px) and (max-width: 1112px) and (orientation: landscape) and (-webkit-min-pixel-ratio: 2) {
 }
 
 /* ----------- iPad Pro 12.9" ----------- */
 
 /* Portrait and Landscape */
-@media only screen and (min-device-width: 1024px) and (max-device-width: 1366px) and (-webkit-min-device-pixel-ratio: 2) {
+@media only screen and (min-width: 1024px) and (max-width: 1366px) and (-webkit-min-pixel-ratio: 2) {
 }
 
 /* Portrait */
 /* Declare the same value for min- and max-width to avoid colliding with desktops */
 /* Source: https://medium.com/connect-the-dots/css-media-queries-for-ipad-pro-8cad10e17106*/
-@media only screen and (min-device-width: 1024px) and (max-device-width: 1024px) and (orientation: portrait) and (-webkit-min-device-pixel-ratio: 2) {
+@media only screen and (min-width: 1024px) and (max-width: 1024px) and (orientation: portrait) and (-webkit-min-pixel-ratio: 2) {
 }
 
 /* Landscape */
 /* Declare the same value for min- and max-width to avoid colliding with desktops */
 /* Source: https://medium.com/connect-the-dots/css-media-queries-for-ipad-pro-8cad10e17106*/
-@media only screen and (min-device-width: 1366px) and (max-device-width: 1366px) and (orientation: landscape) and (-webkit-min-device-pixel-ratio: 2) {
+@media only screen and (min-width: 1366px) and (max-width: 1366px) and (orientation: landscape) and (-webkit-min-pixel-ratio: 2) {
   .loginSign {
     position: absolute;
     top: 1rem;
