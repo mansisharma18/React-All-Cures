@@ -222,12 +222,13 @@ const ArticlePreview = (props) => {
                     items.filter((i, idx) => idx < 9).map((i) => {
                     var content = []
                     var imgLocation = i.content_location
+                    console.log(imgLocation)
                     var imageLoc = '';
                     if(i.content){
                         content = IsJsonValid(decodeURIComponent(i.content))
                     }
                     if(imgLocation && imgLocation.includes('cures_articleimages')){
-                        imageLoc = `https://all-cures.com/`+imgLocation.replaceAll('json', 'png').split('/webapps/')[1]
+                        imageLoc = `https://all-cures.com/`+imgLocation.replace('json', 'png').split('/webapps/')[1]
                     } else {
                         imageLoc = 'https://all-cures.com/cures_articleimages//299/default.png'
                     }

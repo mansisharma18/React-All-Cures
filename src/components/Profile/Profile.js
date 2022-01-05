@@ -439,7 +439,7 @@ class Profile extends Component {
                           content={decodeURIComponent(i.content ?
                             i.content.includes('%22%7D%7D%5D%7D') ?
                               i.content
-                              : i.content.replaceAll('%7D', '%22%7D%7D%5D%7D')
+                              : i.content.replace('%7D', '%22%7D%7D%5D%7D')
                             : null)}
                           // type = {i.type}
                           published_date={i.published_date}
