@@ -112,9 +112,8 @@ class Footer extends Component {
                <div className="col-md-4 col-sm-4 col-sx-12">
                   <div className="footer-inner" >
                      <h1>About us</h1>
-                     <p >We are a new age healthcare technology firm who are trying make it simple and convenient for the users to get information 
-                        on Cures from anywhere in the world. With over 20 years of experience building technology products in the healthcare segment, 
-                        our team is developing an integrated platform for all your health needs. 
+                     <p >All Cures is a product developed, managed and owned by Etherium Technologies. Our mission is to make it simple and convenient for users to get information on Cures from anywhere in the world. 
+                        Our belief is that your wellness is your well-being. 
                         We are passionate about giving our users the unique experience that is both fulfilling and wholesome.</p>
                   </div>
                </div>
