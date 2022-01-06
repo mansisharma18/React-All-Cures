@@ -25,6 +25,8 @@ import Title from './Title';
 import BlogAllPost from './BlogAllPost'
 import EditModal from '../BlogPage/EditModal'
 import { backendHost } from '../../api-config';
+import axios from 'axios';
+
 
 
 function Copyright() {
@@ -155,8 +157,17 @@ export default function Dashboard(props) {
     document.title = 'All Cures | Dashboard'
     console.log(props)
     setIsLoaded(false);
-    fetch(`${backendHost}/dashboard/articlecount`)
-      .then((res) => res.json())
+    // fetch(`${backendHost}/dashboard/articlecount`)
+  //   axios.defaults.withCredentials = true
+  //   axios.get(`${backendHost}/dashboard/articlecount`,    {   withCredentials: true,origin: "http://192.168.29.160",headers: {
+  //     'Access-Control-Allow-Credentials': true
+  //   },credentials: "same-origin"
+  // })
+  fetch(`${backendHost}/dashboard/articlecount`, {
+    method: "GET",
+    credentials: "include",headers: {'Access-Control-Allow-Credentials': true}
+  })
+  .then((res) => res.json())
       .then((json) => {
         setItems(json);
         setIsLoaded(true);        

@@ -306,6 +306,7 @@ background-color: #b9daf1; */
   top: -212px;
   color: #fff;
   padding: 2px 10px !important;
+  display: none !important;
   background: #00415e !important;
 }
 
