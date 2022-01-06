@@ -440,7 +440,7 @@ diseasePosts(dcName) {                     // For specific blogs like "/blogs/di
                 
               { finalRegions?
                   finalRegions.map(i => i.countryname!== null && (
-                    <Dropdown>
+                   <Dropdown>
                       <Dropdown.Toggle className="mr-2 btn btn-info color-white">
                         <span className="color-white">{i.countryname}</span>
                       </Dropdown.Toggle>
@@ -531,10 +531,15 @@ diseasePosts(dcName) {                     // For specific blogs like "/blogs/di
              
               
               {/* Show average rating */}
-             
+              {/* <div id="rate">
             
-            
-            
+             <a href='#docRate'>Click To Rate Here</a></div> */}
+            <Dropdown>
+                      <Dropdown.Toggle className="mr-220 btn btn-info color-white">
+                       < a href='#docRate'className="color-white" >Click Here To Rate</a>
+                      </Dropdown.Toggle>
+                   
+                    </Dropdown>
               {
                 this.state.ratingValue?
                 <div className="average-rating mt-2 mb-4 ml-3" id="avg-rating">
@@ -591,15 +596,14 @@ diseasePosts(dcName) {                     // For specific blogs like "/blogs/di
 
           </div>
 
-         
+          <h3>Rate here</h3>
+                      <div id="docRate">
+          <ArticleRating article_id={this.state.param.id} />
+          </div>
                {/* Review Button (Rating + Comment) */}
                {
                 Cookies.get('acPerm')?
-                  <>         
-                   <h3>Rate here</h3>
-                      <div id="docRate">
-          <ArticleRating article_id={this.state.param.id} />
-          </div>     
+                  <>              
                     <ArticleComment refreshComments={this.comments} article_id={this.props.match.params.id}/>
                   </>
                 : null
