@@ -23,13 +23,46 @@ import Cookies from 'js-cookie'
 import ArticlePreview from '../LandingPage/ArticlePreview';
 import AyurvedaAd from '../../assets/healthcare/img/images/Banner-ads/97x90 Plain.jpg'
 import PersianAd from '../../assets/healthcare/img/images/Banner-ads/Persian.jpg'
+import CarouselPreview from './CarouselPreview';
 
+import OwlCarousel from "react-owl-carousel";
+import "owl.carousel/dist/assets/owl.carousel.css";
+import "owl.carousel/dist/assets/owl.theme.default.css";
+import { PreviewTab } from './PreviewTab';
+import { getBottomNavigationActionUtilityClass } from '@mui/material';
+
+const options = {
+  responsiveClass: true,
+  nav: true,
+  loop: false,
+  smartSpeed: 1000,
+  autoPlay: true
+  // responsive: {
+  //     0: {
+  //         items: 2,
+  //     },
+  //     400: {
+  //         items: 2,
+  //     },
+  //     600: {
+  //         items: 2,
+  //     },
+  //     700: {
+  //         items: 3,
+  //     },
+  //     1000: {
+  //         items: 4,
+
+  //     }
+  // },
+};
 class Disease extends Component {
   constructor(props) {
     super(props);
     this.childDiv = React.createRef()
     this.state = { 
       items: [],
+      carouselItems: [],
       comment: [],
       isLoaded: false,
       ratingValue: '',
@@ -61,6 +94,7 @@ class Disease extends Component {
         () => {
           this.fetchCountriesCures()
           this.regionalPosts()
+          this.diseasePosts(this.state.items.dc_name)
           document.title = `All Cures | ${this.state.items.title}`
         });
       });
@@ -238,6 +272,26 @@ handleScroll = () => {
   }
 }
 
+diseasePosts(dcName) {                     // For specific blogs like "/blogs/diabetes"
+  fetch(`${backendHost}/isearch/${dcName}`)
+  .then((res) => res.json())
+  .then((json) => {
+    // setLoaded(true)
+    console.log(json.pubstatus_id)
+    var temp= []
+    json.forEach(i => {
+      console.log(i.pubstatus_id)
+      if(i.pubstatus_id === 3){
+        temp.push(i)
+      }
+    });
+    this.setState({
+      carouselItems: temp
+    })
+  })
+  .catch(err => null)
+}
+
   componentDidMount() {
     window.scrollTo(0, 0);
     this.fetchBlog()
@@ -261,8 +315,17 @@ handleScroll = () => {
     });
   }
 
+  IsJsonValid(str) {
+    try {
+        JSON.parse(str);
+    } catch (e) {
+        return [];
+    }
+    return JSON.parse(str).blocks;
+  }
+
   render() { 
-    var { isLoaded,items } = this.state;
+    var { isLoaded, items, carouselItems } = this.state;
     if(!isLoaded) {
     return (
       <>
@@ -419,9 +482,48 @@ handleScroll = () => {
                 </div>
               </Breadcrumb>
               
+              {
+                this.props.match.params.cureType?
+                null
+                : <div className="articles-carousel" id="articles-carousel">
+                {
+                  carouselItems.length !== 0?
+                  <OwlCarousel nav="true" items={4} margin={10} autoPlay="true" {...options} >
+                    {
+                      carouselItems.map((i) => {
+                        var content = []
+                        var imgLocation = i.content_location
+                        var imageLoc = '';
+                        if(i.content){
+                            content = this.IsJsonValid(decodeURIComponent(i.content))
+                        }
+                        if(imgLocation && imgLocation.includes('cures_articleimages')){
+                            imageLoc = `https://all-cures.com/`+imgLocation.replace('json', 'png').split('/webapps/')[1]
+                        } else {
+                            imageLoc = 'https://all-cures.com/cures_articleimages//299/default.png'
+                        }
+                        return(
+                        <PreviewTab 
+                          id={i.article_id} 
+                          title={i.title} 
+                          windowTitle={i.window_title}  
+                          content = {content}
+                          imageLoc={imageLoc}
+                        />
+                      )})
+                    }
+                  
+                  
+                </OwlCarousel>
+                : null
+                }
+              
+              </div>
+              }
+              
             {
               this.props.match.params.cureType?
-                <ArticlePreview type="cures" dcName={`${items.dc_name}`}/>
+                <CarouselPreview type="cures" dcName={`${items.dc_name}`}/>
                 : <>
                    <div className="article-title-container">
               <div className="h3 font-weight-bold text-decoration-underline">{items.title}</div>
