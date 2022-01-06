@@ -202,9 +202,14 @@ class Home extends Component {
         });
 
    logout = async e => {
-      await fetch(`${backendHost}/LogoutActionController`, {
-         method: "POST"
-      }).then(res => {
+      fetch(`${backendHost}/LogoutActionController`, {
+         method: "POST",
+         credentials: "include",headers: {'Access-Control-Allow-Credentials': true}
+      })
+      //  axios.defaults.withCredentials = true
+      //  axios.post(`${backendHost}/LogoutActionController`,{ headers: {'Access-Control-Allow-Credentials': true}}
+      //  )
+       .then(res => {
          // if(res.data === '/cures/Login.html?msg=You have successfully logged out.'){
             Cookies.remove('uName')
             setTimeout(() => {

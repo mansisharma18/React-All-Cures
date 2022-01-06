@@ -115,8 +115,12 @@ import List from '../../assets/icon/icons-AllCures/list_black_48dp.svg'
             });
     
          logout = async e => {
-            await fetch(`${backendHost}/LogoutActionController`, {
-               method: "POST"
+            // await fetch(`${backendHost}/LogoutActionController`, {
+            //    method: "POST"
+            // })
+            axios.defaults.withCredentials = true
+            axios.post(`${backendHost}/LogoutActionController`,
+            { headers: {'Access-Control-Allow-Credentials': true}
             }).then(res => {
                Cookies.remove('uName')
                setTimeout(() => {
