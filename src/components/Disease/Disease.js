@@ -36,25 +36,25 @@ const options = {
   nav: true,
   loop: false,
   smartSpeed: 1000,
-  autoPlay: true
-  // responsive: {
-  //     0: {
-  //         items: 2,
-  //     },
-  //     400: {
-  //         items: 2,
-  //     },
-  //     600: {
-  //         items: 2,
-  //     },
-  //     700: {
-  //         items: 3,
-  //     },
-  //     1000: {
-  //         items: 4,
+  autoPlay: true,
+  responsive: {
+      0: {
+          items: 2,
+      },
+      400: {
+          items: 2,
+      },
+      600: {
+          items: 2,
+      },
+      700: {
+          items: 3,
+      },
+      1000: {
+          items: 4,
 
-  //     }
-  // },
+      }
+  },
 };
 class Disease extends Component {
   constructor(props) {
