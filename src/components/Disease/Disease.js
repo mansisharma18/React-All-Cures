@@ -586,7 +586,7 @@ diseasePosts(dcName) {                     // For specific blogs like "/blogs/di
               {/* Author */}
               {
                 items.authors_name?
-                  <div className='h5 text-left ml-3 mb-2'><span>Author:</span> Dr. {items.authors_name}</div>
+                  <div className='h5 text-left ml-3 mb-2'><span>Author:</span> {items.authored_by.includes(7)? null: <>Dr.</>} {items.authors_name}</div>
                   : null
               }
                   <div className='h6 text-muted text-left ml-3 mb-4'><>Published on:</> {items.published_date}</div>
