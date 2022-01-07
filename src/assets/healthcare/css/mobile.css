@@ -144,7 +144,7 @@
     left: 15px;
   }
   #searchArticle {
-    margin: 45px 0 0 10px;
+    margin: 45px 0 0 0;
   }
 
   #Article {
@@ -631,11 +631,11 @@
   #starWeb {
     display: none;
   }
-  .loginSign {
+  /* .loginSign {
     position: absolute;
     top: 1rem;
     right: 1rem;
-  }
+  } */
   #visitDoc {
     padding: 5px 20px;
   }
@@ -654,21 +654,21 @@
     font-size: 26px;
   }
 
-  #homeDoc {
+  /* #homeDoc {
     position: relative;
     bottom: 105px;
     left: 15px;
-  }
-  #homeCity {
+  } */
+  /* #homeCity {
     position: relative;
     bottom: 105px;
     left: 15px;
-  }
-  #btnDoc {
+  } */
+  /* #btnDoc {
     position: relative;
     bottom: 105px;
     left: 13px;
-  }
+  } */
   #Article {
     font-size: 13px;
     padding: 5px;
@@ -696,32 +696,32 @@
   .serchlabel {
     margin-bottom: 110px;
   }
-  .doc-name {
+  /* .doc-name {
     margin-right: 26px;
     margin-top: 0px;
     margin-left: -5px;
     margin-bottom: 0px;
-  }
-
+  } */
+  /* 
   #searchArticle {
     margin: 35px 0px 0px 12px;
-  }
+  } */
   #article {
     margin-right: 12px;
   }
-  .article-search {
-    margin: 35px 0px 0px -5px;
-  }
-  .btn-article-search {
+  /* .article-search { */
+  /* margin: 35px 0px 0px -5px; */
+  /* } */
+  /* .btn-article-search {
     background-color: #00415e;
     margin-right: 23px;
     height: 56px;
-  }
+  } */
 
-  .city-name.col-md-5 {
+  /* .city-name.col-md-5 {
     margin-left: -5px;
     margin-right: 60px;
-  }
+  } */
 }
 
 /* ----------- Galaxy S4, S5 and Note 3 ----------- */
@@ -761,11 +761,11 @@
   #starWeb {
     display: none;
   }
-  .loginSign {
+  /* .loginSign {
     position: absolute;
     top: 1rem;
     right: 1rem;
-  }
+  } */
   #visitDoc {
     padding: 5px 20px;
   }
@@ -792,21 +792,21 @@
     font-size: 26px;
   }
 
-  #homeDoc {
+  /* #homeDoc {
     position: relative;
     bottom: 90px;
     left: 15px;
-  }
-  #homeCity {
+  } */
+  /* #homeCity {
     position: relative;
     bottom: 90px;
     left: 15px;
-  }
-  #btnDoc {
+  } */
+  /* #btnDoc {
     position: relative;
     bottom: 90px;
     left: 13px;
-  }
+  } */
   #createArticle {
     position: relative;
     left: 20px;
@@ -825,26 +825,26 @@
   .serchlabel {
     margin-bottom: 110px;
   }
-  .doc-name {
+  /* .doc-name {
     margin-right: 26px;
     margin-top: -20px;
     margin-left: -5px;
     margin-bottom: 0px;
-  }
+  } */
 
-  .article-search {
+  /* .article-search {
     margin: 20px 0px 0px -5px;
-  }
-  .btn-article-search {
+  } */
+  /* .btn-article-search {
     background-color: #00415e;
     margin-right: 23px;
     height: 56px;
-  }
+  } */
 
-  .city-name.col-md-5 {
+  /* .city-name.col-md-5 {
     margin-left: -5px;
     margin-right: 60px;
-  }
+  } */
 }
 
 @media only screen and (min-width: 768px) and (max-width: 1024px) {
@@ -1041,11 +1041,11 @@
     top: 60px;
     left: 125px;
   }
-  .loginSign {
+  /* .loginSign {
     position: absolute;
     top: 1rem;
     right: 1rem;
-  }
+  } */
 
   #searchHead {
     margin-left: 0;
@@ -1069,13 +1069,13 @@
     font-size: 10px;
   }
 
-  #searchBtn {
+  /* #searchBtn {
     margin-right: -34px;
     margin-top: 110px;
     position: relative;
     top: 35px;
-  }
-  #searchCity {
+  } */
+  /* #searchCity {
     margin-top: 105px;
     position: relative;
     top: 40px;
@@ -1084,12 +1084,12 @@
     margin-top: 105px;
     position: relative;
     top: 40px;
-  }
-  #searchArticle {
+  } */
+  /* #searchArticle {
     margin: 0px -285px 0 0px;
     position: absolute;
     right: 583px;
-  }
+  } */
 
   #Article {
     font-size: 15px;
@@ -1101,50 +1101,50 @@
   .serchlabel {
     margin-bottom: 160px;
   }
-  .doc-name {
+  /* .doc-name {
     margin-top: 110px;
     margin-left: -20px;
-  }
+  } */
 
-  .article-search {
-    margin: 20px 0px 0px -5px;
-  }
-  .btn-article-search {
+  /* .article-search { */
+  /* margin: 20px 0px 0px -5px; */
+  /* } */
+  /* .btn-article-search {
     background-color: #00415e;
     margin-right: 25px;
     height: 56px;
     width: 74px;
-  }
+  } */
 
-  .city-name.col-md-5 {
+  /* .city-name.col-md-5 {
     margin-top: 110px;
-  }
-  .btn.btn-article-search.color-white {
+  } */
+  /* .btn.btn-article-search.color-white {
     position: relative;
     right: 20px;
-  }
-  .btn.btn-article-search.color-white.float-right {
+  } */
+  /* .btn.btn-article-search.color-white.float-right {
     position: relative;
     left: -20px;
     bottom: 90px;
-  }
+  } */
 
   .serchlabel {
     margin-bottom: 70px;
   }
-  .doc-name {
+  /* .doc-name {
     width: 250px;
     margin-top: -90px;
     margin-left: 40px;
-  }
+  } */
 
-  .article-search {
-    margin: 0px 225px 0px 70px;
-  }
+  /* .article-search { */
+  /* margin: 0px 225px 0px 70px; */
+  /* } */
 
-  .city-name.col-md-5 {
+  /* .city-name.col-md-5 {
     margin-top: -90px;
-  }
+  } */
 
   /* 
   
@@ -1192,37 +1192,37 @@
 /* Declare the same value for min- and max-width to avoid colliding with desktops */
 /* Source: https://medium.com/connect-the-dots/css-media-queries-for-ipad-pro-8cad10e17106*/
 @media only screen and (min-width: 1366px) and (max-width: 1366px) and (orientation: landscape) {
-  .loginSign {
+  /* .loginSign {
     position: absolute;
     top: 1rem;
     right: 1rem;
-  }
+  } */
   #textComment {
     font-size: 10px;
   }
 
   #searchBtn {
-    margin-right: -34px;
+    /* margin-right: -34px;
     margin-top: 85px;
-    margin-bottom: 105px;
+    margin-bottom: 105px; */
     position: relative;
-    top: 35px;
+    /* top: 35px; */
   }
-  #searchCity {
+  /* #searchCity {
     margin-top: 80px;
     position: relative;
     top: 40px;
-  }
-  #searchDoc {
+  } */
+  /* #searchDoc {
     margin-top: 80px;
     position: relative;
     top: 40px;
-  }
-  #searchArticle {
+  } */
+  /* #searchArticle {
     margin: 0px 0 0 0px;
     position: absolute;
     right: 583px;
-  }
+  } */
 
   #Article {
     font-size: 15px;
@@ -1234,45 +1234,45 @@
   .serchlabel {
     margin-bottom: 160px;
   }
-  .doc-name {
+  /* .doc-name {
     margin-top: 110px;
     margin-left: -20px;
-  }
+  } */
 
-  .btn-article-search {
+  /* .btn-article-search {
     background-color: #00415e;
     margin-right: 25px;
     height: 56px;
     width: 74px;
-  }
+  } */
 
-  .city-name.col-md-5 {
+  /* .city-name.col-md-5 {
     margin-top: 110px;
-  }
-  .btn.btn-article-search.color-white {
+  } */
+  /* .btn.btn-article-search.color-white {
     position: relative;
     right: 20px;
-  }
-  .btn.btn-article-search.color-white.float-right {
+  } */
+  /* .btn.btn-article-search.color-white.float-right {
     position: relative;
     left: -20px;
     bottom: 90px;
-  }
+  } */
 
   .serchlabel {
     margin-bottom: 70px;
   }
-  .doc-name {
+  /* .doc-name {
     width: 250px;
     margin-top: -90px;
     margin-left: -5px;
-  }
+  } */
 
-  .article-search {
-    margin: 20px 0px 0px -5px;
-  }
+  /* .article-search { */
+  /* margin: 20px 0px 0px -5px; */
+  /* } */
 
-  .city-name.col-md-5 {
+  /* .city-name.col-md-5 {
     margin-top: -90px;
-  }
+  } */
 }
