@@ -283,7 +283,9 @@ const EditModal = (props) => {
         setafterSubmitLoad(true)
         e.preventDefault();
         console.log('author: ', author)
+        axios.defaults.withCredentials = true
         axios.post(`${backendHost}/content?cmd=createArticle`, {
+            headers: {'Access-Control-Allow-Credentials': true },
             "title":title,
                 "friendlyName": articleDisplay,
                 "contentType": contentType,

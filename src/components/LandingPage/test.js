@@ -56,7 +56,9 @@ const Test = (props) => {
     e.preventDefault();
     setSignUpClicked(1);
     if(validEmail && upperCase && lowerCase && match){
-      axios.post(`${backendHost}/RegistrationActionController?firstname=${firstName}&lastname=${lastName}&email=${email}&psw=${password.firstPassword}&psw-repeat=${password.secondPassword}&rempwd=on&doc_patient=${userType}&acceptTnc=${terms}&number=${number}`
+      axios.defaults.withCredentials = true      
+      axios.post(`${backendHost}/RegistrationActionController?firstname=${firstName}&lastname=${lastName}&email=${email}&psw=${password.firstPassword}&psw-repeat=${password.secondPassword}&rempwd=on&doc_patient=${userType}&acceptTnc=${terms}&number=${number}`,
+      {headers: {'Access-Control-Allow-Credentials': true}}
     ).then(response => {
       if(response.data === 'Email Address already Exists in the System'){
         // setExists(true);
@@ -110,7 +112,11 @@ const Test = (props) => {
   const loginForm = async (e) => {
     e.preventDefault();
     setClicked(1);
-    axios.post(`${backendHost}/login?cmd=login&email=${email}&psw=${signInpassword}&rempwd=on`)
+    // Sett withCredentials on $axios before creating instance
+    axios.defaults.withCredentials = true
+    axios.post(`${backendHost}/login?cmd=login&email=${email}&psw=${signInpassword}&rempwd=on`,
+    {headers: {'Access-Control-Allow-Credentials': true}
+  })
     .then(response => {
       if(response.data.registration_id){
         Cookies.set('uName', response.data.first_name, { expires: 365 })
@@ -304,7 +310,7 @@ const Test = (props) => {
         <FormControlLabel
           control={<Checkbox name="Terms" value="on"/>}
           label="Remember Me"
-          checked
+          
         />
       </FormGroup>
         <button className="ghost"id="btn1">Sign In</button>
