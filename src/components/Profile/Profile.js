@@ -42,7 +42,7 @@ class Profile extends Component {
   }
 
   allPosts() {                        // For all available blogs "/blogs"
-    fetch(`${backendHost}/article/allkv`)
+    fetch(`${backendHost}/article/authallkv/reg_type/1/reg_doc_pat_id/978`)
       .then((res) => res.json())
       .then((json) => {
         var temp = []
