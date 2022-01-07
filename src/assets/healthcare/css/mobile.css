@@ -604,23 +604,23 @@
 }
 
 @media screen and (min-width: 360px) and (max-height: 740px) {
-  div#filter {
+  /* div#filter {
     position: relative;
     left: 14px;
     top: 5px;
-  }
-  .breadcrumb {
+  } */
+  /* .breadcrumb {
     padding: 3rem 1rem;
-  }
-  #share-icons-regions {
+  } */
+  /* #share-icons-regions {
     position: relative;
     flex-direction: column-reverse;
-  }
-  #s1 {
+  } */
+  /* #s1 {
     font-size: 19px;
     position: relative;
     bottom: 30px;
-  }
+  } */
   #starMob {
     font-size: 20px;
     display: block;
@@ -728,29 +728,29 @@
 
 /* Portrait and Landscape */
 @media screen and (min-width: 320px) and (max-height: 640px) {
-  div#socilaBtn {
+  /* div#socilaBtn {
     position: relative;
     top: 15px;
     right: 55px;
-  }
-  div#filter {
+  } */
+  /* div#filter {
     position: relative;
     left: 14px;
     top: 5px;
-  }
-  .breadcrumb {
+  } */
+  /* .breadcrumb {
     padding: 3rem 1rem;
-  }
-  #share-icons-regions {
+  } */
+  /* #share-icons-regions {
     position: relative;
     flex-direction: column-reverse;
     left: 70px;
-  }
-  #s1 {
+  } */
+  /* #s1 {
     font-size: 19px;
     position: relative;
     bottom: 30px;
-  }
+  } */
   #starMob {
     font-size: 20px;
     display: block;
@@ -1025,22 +1025,22 @@
 
 /* Portrait and Landscape */
 @media only screen and (min-width: 1024px) and (max-width: 1366px) {
-  div#socilaBtn {
+  /* div#socilaBtn {
     position: relative;
     top: 32px;
     right: 105px;
-  }
-  div#filter {
+  } */
+  /* div#filter {
     position: relative;
     left: 14px;
     top: 15px;
-  }
-  #share-icons-regions {
+  } */
+  /* #share-icons-regions {
     position: relative;
     flex-direction: inherit;
     top: 60px;
     left: 125px;
-  }
+  } */
   /* .loginSign {
     position: absolute;
     top: 1rem;
