@@ -582,24 +582,26 @@ diseasePosts(dcName) {                     // For specific blogs like "/blogs/di
                   />
                 ))}
               </div>
-                  <div className='text-muted text-left ml-3 mb-4'>Published on: {items.published_date}</div>
-              
+              <hr/>
               {/* Author */}
               {
                 items.authors_name?
-                  <div className='text-muted text-left ml-3 mb-4'>Published by: {items.authors_name}</div>
+                  <div className='h5 text-left ml-3 mb-2'><span>Author:</span> {items.authored_by.includes(7)? null: <>Dr.</>} {items.authors_name}</div>
                   : null
               }
+                  <div className='h6 text-muted text-left ml-3 mb-4'><>Published on:</> {items.published_date}</div>
+              
+              
                 
               </>
             }
 
           </div>
 
-          <h3>Rate here</h3>
-                      <div id="docRate">
+          <div className='h4 mt-3'>Rate here</div>
+                      <span id="docRate">
           <ArticleRating article_id={this.state.param.id} />
-          </div>
+          </span>
                {/* Review Button (Rating + Comment) */}
                {
                 Cookies.get('acPerm')?
