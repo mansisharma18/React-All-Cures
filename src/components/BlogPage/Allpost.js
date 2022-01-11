@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import CenterWell from '../Disease/CenterWell';
 
-const AllPost = ({id, title, content, f_title, w_title, country, type, published_date, over_allrating, imgLocation}) => {
+const AllPost = ({id, title, content, f_title, w_title, country, type, published_date, over_allrating, imgLocation, authorName}) => {
     function IsJsonValid(str) {
         try {
             JSON.parse(str);
@@ -37,7 +37,7 @@ const AllPost = ({id, title, content, f_title, w_title, country, type, published
                             {/* <div className='col-md-3'></div> */}
                             <div className="d-flex justify-content-between align-items-center mt-3">
                                 <div>
-                                    <Link to={ `/cure/${id}` }  className="d-flex justify-content-between align-items-center">
+                                    <Link to={ `/cure/${title}` }  className="d-flex justify-content-between align-items-center">
                                         <div className="card-title h5 text-capitalize">{title.toLowerCase()}</div>
                                     </Link>
                                 </div>
@@ -72,7 +72,7 @@ const AllPost = ({id, title, content, f_title, w_title, country, type, published
                                     : null
                                 }
                         </div>
-                        <div className="text-left mt-2 text-muted" id="publish-date">Published on: {published_date}</div>
+                        <div className="text-left mt-2 text-muted" id="publish-date">{authorName} ▪️ {published_date}</div>
                         </div>
                         <div className='cures-tab-chips'>
                                 {

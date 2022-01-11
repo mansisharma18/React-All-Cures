@@ -174,7 +174,7 @@ const CarouselPreview = (props) => {
                         <div className="col-md-12 my-3">
                         <div className="card d-flex justify-content-between">
                             <div className="p-2 py-3 text-dark col-md-7 text-center">
-                            <Link to={`/cure/${i.article_id}`}>
+                            <Link to={`/cure/${i.title}`}>
                                 <div className='text-capitalize h5'>{i.title.toLowerCase()}</div>
                             </Link>
 

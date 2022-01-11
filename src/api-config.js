@@ -1,1 +1,1 @@
-export const backendHost = ''
+export const backendHost = 'https://all-cures.com/cures/'

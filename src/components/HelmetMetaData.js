@@ -23,8 +23,8 @@ export default function HelmetMetaData(props) {
      <meta name="theme-color" content="#ffffff" />
      <meta name="_token" content="" />
      <meta property="title" content={title} />
-     {/* <meta property="quote" content={quote} /> */}
-     {/* <meta name="description" content={description} />
+     <meta property="quote" content={quote} />
+     <meta name="description" content={description} />
      <meta property="image" content={image} />
      <meta property="og:locale" content="en_US" />
      <meta property="og:type" content="website" />
@@ -35,7 +35,7 @@ export default function HelmetMetaData(props) {
      <meta content="image/*" property="og:image:type" />
      <meta property="og:url" content={currentUrl} />
      <meta property="og:site_name" content="AllCures" />
-     <meta property="og:description" content={description} />     */}
+     <meta property="og:description" content={description} />    
     </Helmet>
     );
 }

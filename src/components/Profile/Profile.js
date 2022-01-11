@@ -13,7 +13,7 @@ import EditProfile from "./EditProfile";
 import { backendHost } from '../../api-config';
 import Comment from '../Comment'
 import '../../assets/healthcare/css/mobile.css'
-import ArticleComment from '../ArticleComment';
+// import ArticleComment from '../ArticleComment';
 import { userId } from "../UserId";
 import { userAccess } from "../UserAccess";
 import AllPost from "../BlogPage/Allpost";
@@ -44,7 +44,7 @@ class Profile extends Component {
   }
 
   allPosts() {                        // For all available blogs "/blogs"
-    fetch(`${backendHost}/article/allkv`)
+    fetch(`${backendHost}/article/authallkv/reg_type/1/reg_doc_pat_id/${this.props.match.params.id}`)
       .then((res) => res.json())
       .then((json) => {
         var temp = []
