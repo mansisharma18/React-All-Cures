@@ -566,15 +566,15 @@ diseasePosts(dcName) {                     // For specific blogs like "/blogs/di
               {/* <div id="rate">
             
              <a href='#docRate'>Click To Rate Here</a></div> */}
-            <Dropdown>
+            {/* <Dropdown>
                       <Dropdown.Toggle className="mr-220 btn btn-info color-white">
                        < a href='#docRate'className="color-white" >Click Here To Rate</a>
                       </Dropdown.Toggle>
                    
-                    </Dropdown>
+                    </Dropdown> */}
               {
                 this.state.ratingValue?
-                <div className="average-rating mb-4 ml-3" id="avg-rating">
+                <div className="average-rating mb-4 ml-3 mt-2" id="avg-rating">
                 <span class="fa fa-star fa-2x  opacity-7"></span>
                 <span class="fa fa-star fa-2x  opacity-7"></span>
                 <span class="fa fa-star fa-2x  opacity-7"></span>
@@ -630,10 +630,22 @@ diseasePosts(dcName) {                     // For specific blogs like "/blogs/di
 
           </div>
 
-          <div className='h4 mt-3'>Rate here</div> <p>Your Earlier Rated {this.state.rating } <span className="icon-star-1"></span></p>
+          <div className='h4 mt-3'>Rate here</div> 
+          {
+                Cookies.get('acPerm')?
+                  <>              
+                     <p>Your Earlier Rated {this.state.rating } <span className="icon-star-1"></span></p>
+                  </>
+                : null
+              }
+
                       <span id="docRate">
           <ArticleRating article_id={this.state.param.id} />
           </span>
+
+
+
+
                {/* Review Button (Rating + Comment) */}
                {
                 Cookies.get('acPerm')?

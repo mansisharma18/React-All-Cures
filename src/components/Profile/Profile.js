@@ -18,6 +18,7 @@ import { userId } from "../UserId";
 import { userAccess } from "../UserAccess";
 import AllPost from "../BlogPage/Allpost";
 import {UserId} from "../UserId"
+import Cookies from 'js-cookie'
 
 class Profile extends Component {
   constructor(props) {
@@ -390,7 +391,14 @@ class Profile extends Component {
 
                   {
                      <div className="profile-info-rating">
-                      <h3>Rate here</h3> <p>Your Earlier Rated {this.state.rating } <span className="icon-star-1"></span></p>
+                      <h3>Rate here</h3> 
+                      {
+                Cookies.get('acPerm')?
+                  <>              
+                     <p>Your Earlier Rated {this.state.rating } <span className="icon-star-1"></span></p>
+                  </>
+                : null
+              }
                       <div id="docRate">
                         
                         <Rating docid={this.state.param.id} ratingVal={this.state.rating} />
