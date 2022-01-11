@@ -6,6 +6,7 @@ import './style.css'
 import { Container } from 'react-bootstrap';
 import { backendHost } from '../../api-config';
 import ArticleRating from "../ArticleRating";
+import Heart from"../../assets/img/heart.png";
 
 const Side = (props) => {
 
@@ -50,9 +51,9 @@ const Side = (props) => {
             <>
             <Container className="my-5 loading">
             <div className="h3 pb-3"><u className="text-decoration-none">{props.dcName} Cures</u></div>
-              <div className="loader ">
-                <i className="fa fa-spinner fa-spin fa-3x" />
-              </div>
+            <div className="loader">
+                <img src={Heart} alt="All Cures Logo" id="heart"/>
+            </div>
             </Container>
         </>  
         )

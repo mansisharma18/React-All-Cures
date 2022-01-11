@@ -9,6 +9,7 @@ import Twitter from '../../assets/icon/twitter.svg'
 import { Link } from 'react-router-dom';
 import PhoneInput from 'react-phone-number-input';
 import 'react-phone-number-input/style.css';
+// import Heart from "../../assets/img/heart.png";
 
 
 class Footer extends Component {
@@ -96,7 +97,9 @@ class Footer extends Component {
             {
                 this.state.afterSubmitLoad &&
                 <div className="loader main on-submit-loading">
-                    <i className="fa fa-spinner fa-spin fa-10x" />
+                    {/* <i className="fa fa-spinner fa-spin fa-10x" /> */}
+                    <img src={Heart} alt="All Cures Logo" id="heart"/>
+
                 </div>
             }
             {

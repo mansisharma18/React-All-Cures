@@ -1,6 +1,9 @@
 import React from "react";
 import Cookies from 'js-cookie';
 import { HashRouter, Switch, Route, Redirect, useHistory, BrowserRouter } from "react-router-dom";
+// import Heart from"../assets/img/heart.png";
+
+import Heart from "../assets/img/heart.png"
 
 import Home from "./LandingPage/Home";
 import Profile from "./Profile/Profile";
@@ -72,7 +75,7 @@ function Main(props) {
   if(!authLoaded) {
     return(
       <div className="loader main">
-        <i className="fa fa-spinner fa-spin fa-10x" />
+        <img src={Heart} alt="All Cures Logo" id="heart"/>
       </div>
     )
   }
