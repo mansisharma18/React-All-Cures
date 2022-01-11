@@ -17,6 +17,8 @@ import '../../assets/healthcare/css/mobile.css'
 import { userId } from "../UserId";
 import { userAccess } from "../UserAccess";
 import AllPost from "../BlogPage/Allpost";
+import {UserId} from "../UserId"
+import Cookies from 'js-cookie'
 
 class Profile extends Component {
   constructor(props) {
@@ -29,6 +31,7 @@ class Profile extends Component {
       articleItems: [],
       comment: [],
       ratingValue: '',
+      rating: [],
       firstName: [],
       lastName: [],
       isLoaded: false,
@@ -111,6 +114,18 @@ class Profile extends Component {
       .catch(err => console.log(err))
   }
 
+  
+  getRate = (docId) => {
+    axios.get(`${backendHost}/rating/target/${docId}/targettype/1?userid=${userId}`)
+      .then(res => {
+        this.setState({
+          rating: res.data[0].ratingVal
+        }, ()=> console.log(this.state.rating))
+      })
+      .catch(err => console.log(err))
+  }
+
+
   fetchDoctorData = (id) => {
     fetch(`${backendHost}/DoctorsActionController?rowno=${id}&cmd=getProfile`)
       // .then(res => JSON.parse(res))
@@ -149,6 +164,7 @@ class Profile extends Component {
     this.fetchDoctorData(this.state.param.id)
     this.getComments(this.state.param.id)
     this.getRating(this.props.match.params.id)
+    this.getRate(this.props.match.params.id)
     this.allPosts()
   }
 
@@ -368,16 +384,31 @@ class Profile extends Component {
                     </div>
 
                   </div>
+                  
+                  
+               
+                
+
                   {
-                    userId && <div className="profile-info-rating">
-                      <h3>Rate here</h3>
+                     <div className="profile-info-rating">
+                      <h3>Rate here</h3> 
+                      {
+                Cookies.get('acPerm')?
+                  <>              
+                     <p>Your Earlier Rated {this.state.rating } <span className="icon-star-1"></span></p>
+                  </>
+                : null
+              }
                       <div id="docRate">
-                        <Rating docid={this.state.param.id} />
+                        
+                        <Rating docid={this.state.param.id} ratingVal={this.state.rating} />
+                     
                       </div>
+
 
                     </div>
                   }
-
+                  
                   <div className="comment-box">
 
                     {

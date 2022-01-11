@@ -64,7 +64,8 @@ const EditModal = (props) => {
     }
 
     const getPosts = () =>{
-        axios.get(`${backendHost}/article/${editId.id}`)
+        axios.defaults.withCredentials = true      
+        axios.get(`${backendHost}/article/${editId.id}`, {headers: {'Access-Control-Allow-Credentials': true}})
         .then(res => {
             setEditedBy(res.data.edited_by)
             setAuthor(JSON.parse(res.data.authored_by))

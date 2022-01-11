@@ -30,6 +30,7 @@ import "owl.carousel/dist/assets/owl.carousel.css";
 import "owl.carousel/dist/assets/owl.theme.default.css";
 import { PreviewTab } from './PreviewTab';
 import Heart from"../../assets/img/heart.png";
+import {userId} from "../UserId"
 
 const options = {
   responsiveClass: true,
@@ -66,6 +67,7 @@ class Disease extends Component {
       comment: [],
       isLoaded: false,
       ratingValue: '',
+      rating:[],
       param : this.props.match.params,
       disease: '',
       regions: '',
@@ -98,6 +100,7 @@ class Disease extends Component {
           this.diseasePosts(this.state.items.dc_name)
           this.comments(this.state.items.article_id)
           this.getRating(this.state.items.article_id)
+          this.getRate(this.state.items.article_id)
           document.title = `All Cures | ${this.state.items.title}`
         });
       });
@@ -116,6 +119,7 @@ class Disease extends Component {
           this.diseasePosts(this.state.items.dc_name)
           this.comments(this.state.items.article_id)
           this.getRating(this.state.items.article_id)
+          this.getRate(this.state.items.article_id)
           document.title = `All Cures | ${this.state.items.title}`
         });
       });
@@ -195,6 +199,16 @@ class Disease extends Component {
       })
     }) 
     .catch(err => null)
+  }
+
+  getRate = (articleId) => {
+    axios.get(`${backendHost}/rating/target/${articleId}/targettype/2?userid=${userId}`)
+      .then(res => {
+        this.setState({
+          rating: res.data[0].ratingVal
+        }, ()=> console.log(this.state.rating))
+      })
+      .catch(err => console.log(err))
   }
 
   regionalPosts(){
@@ -552,20 +566,20 @@ diseasePosts(dcName) {                     // For specific blogs like "/blogs/di
               {/* <div id="rate">
             
              <a href='#docRate'>Click To Rate Here</a></div> */}
-            <Dropdown>
-                      <Dropdown.Toggle className="btn btn-info color-white">
-                       < a href='#docRate'className="color-white fs-07">Rate Here</a>
+            {/* <Dropdown>
+                      <Dropdown.Toggle className="mr-220 btn btn-info color-white">
+                       < a href='#docRate'className="color-white" >Click Here To Rate</a>
                       </Dropdown.Toggle>
                    
-                    </Dropdown>
+                    </Dropdown> */}
               {
                 this.state.ratingValue?
-                <div className="average-rating mb-4" id="avg-rating">
-                <span class="fa fa-star opacity-7"></span>
-                <span class="fa fa-star opacity-7"></span>
-                <span class="fa fa-star opacity-7"></span>
-                <span class="fa fa-star opacity-7"></span>
-                <span class="fa fa-star opacity-7"></span>
+                <div className="average-rating mb-4 ml-3 mt-2" id="avg-rating">
+                <span class="fa fa-star fa-2x  opacity-7"></span>
+                <span class="fa fa-star fa-2x  opacity-7"></span>
+                <span class="fa fa-star fa-2x  opacity-7"></span>
+                <span class="fa fa-star fa-2x  opacity-7"></span>
+                <span class="fa fa-star fa-2x  opacity-7"></span>
                 </div>
                 : null
               }
@@ -616,10 +630,22 @@ diseasePosts(dcName) {                     // For specific blogs like "/blogs/di
 
           </div>
 
-          <div className='h4 mt-3'>Rate here</div>
+          <div className='h4 mt-3'>Rate here</div> 
+          {
+                Cookies.get('acPerm')?
+                  <>              
+                     <p>Your Earlier Rated {this.state.rating } <span className="icon-star-1"></span></p>
+                  </>
+                : null
+              }
+
                       <span id="docRate">
           <ArticleRating article_id={this.state.param.id} />
           </span>
+
+
+
+
                {/* Review Button (Rating + Comment) */}
                {
                 Cookies.get('acPerm')?

@@ -109,8 +109,8 @@ a:hover {
   margin-right: 2px;
 }
 .mr-220 {
-  margin-top: 10px;
-  margin-left: 220px;
+  
+  margin-right: 50px;
 }
 
 .mr-3 {
@@ -151,6 +151,7 @@ a:hover {
 }
 .ml-3 {
   margin-left: 3px;
+  font-size: .6rem;
 }
 .ml-10 {
   margin-left: 10px;
@@ -404,6 +405,7 @@ h6 {
 }
 .color-white {
   color: #fff;
+  font-size:0.6rem
 }
 .color-light-gray {
   color: #8c8c8c;
