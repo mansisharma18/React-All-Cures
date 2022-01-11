@@ -560,7 +560,7 @@ diseasePosts(dcName) {                     // For specific blogs like "/blogs/di
                     </Dropdown>
               {
                 this.state.ratingValue?
-                <div className="average-rating mt-2 mb-4 ml-3" id="avg-rating">
+                <div className="average-rating mb-4 ml-3" id="avg-rating">
                 <span class="fa fa-star fa-2x  opacity-7"></span>
                 <span class="fa fa-star fa-2x  opacity-7"></span>
                 <span class="fa fa-star fa-2x  opacity-7"></span>

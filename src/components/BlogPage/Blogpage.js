@@ -13,9 +13,10 @@ export default class Blogpage extends Component{
         super(props);
         const params = props.match.params
         this.state = { 
-          limit: 25,
+          limit: 30,
           offset: 0,
           dc: props.location.search.split('&')[1],
+          noMoreArticles: false,
           param: params,
           items: [],
           isLoaded: false,
@@ -32,9 +33,16 @@ export default class Blogpage extends Component{
         if(loadMore = 'loadMore') {
           this.setState({LoadMore: false})
         }
-        fetch(`${backendHost}/article/allkv?limit=${this.state.limit}`)
+        if(this.state.noMoreArticles){
+          return
+        } else {
+          fetch(`${backendHost}/article/allkv?limit=${this.state.limit}&offset=${this.state.offset}`)
           .then((res) => res.json())
           .then((json) => {
+            if(json.length === 0){
+              this.setState({ noMoreArticles: true })
+              return null
+            }
             var temp = []
               if(this.state.articleFilter === 'recent'){
                 
@@ -43,7 +51,7 @@ export default class Blogpage extends Component{
                         temp.push(i)
                     }
                 });
-                this.setState({isLoaded: true, items: temp})
+                this.setState({isLoaded: true, items: [...this.state.items, ...temp]})
               } else if(this.state.articleFilter === 'earliest'){
                   json.forEach(i => {
                       if(i.pubstatus_id === 3){
@@ -51,38 +59,12 @@ export default class Blogpage extends Component{
                       }
                   });
                   this.setState({isLoaded: true, items: temp.reverse()})
-              } else if(this.state.articleFilter === 'diabetes'){
-                  json.forEach(i => {
-                      if(i.dc_name === 'Diabetes' && i.pubstatus_id === 3){
-                          temp.push(i)
-                      }
-                  });
-                  this.setState({isLoaded: true, items: temp})
-              } else if(this.state.articleFilter === 'neurology'){
-                  json.forEach(i => {
-                      if(i.dc_name === 'Neurology' && i.pubstatus_id === 3){
-                          temp.push(i)
-                      }
-                  });
-                  this.setState({isLoaded: true, items: temp})
-              } else if(this.state.articleFilter === 'arthritis'){
-                  json.forEach(i => {
-                      if(i.dc_name === 'Arthritis' && i.pubstatus_id === 3){
-                          temp.push(i)
-                      }
-                  });
-                  this.setState({isLoaded: true, items: temp})
-              } else if(this.state.articleFilter === 'anemia'){
-                  json.forEach(i => {
-                      if(i.dc_name === 'Anemia' && i.pubstatus_id === 3){
-                          temp.push(i)
-                      }
-                  });
-                  this.setState({isLoaded: true, items: temp})
               }
               this.setState({LoadMore: true})
           })
           .catch(err => console.log(err))
+        }
+        
       }
       
       diseasePosts(type){                     // For specific blogs like "/blogs/diabetes"
@@ -116,8 +98,8 @@ export default class Blogpage extends Component{
         if (bottom) {
           console.log('inside', bottom)
           this.setState({
-            limit: this.state.limit + 20,
-            offset: this.state.offset + 20
+            // limit: this.state.limit + 25,
+            offset: this.state.offset + 30
           }, () => this.allPosts('loadMore'));
         }
       };
@@ -335,6 +317,16 @@ export default class Blogpage extends Component{
                     </div>
                   : null
                 }
+                {
+                  this.state.noMoreArticles?
+                    <div className='container h4 text-center mb-5 pb-2'>
+                      You have reached end of page. Thanks!
+                      <div className='text-center'>
+                        <img src={Heart} alt="All Cures Logo" id="heartend" />
+                      </div>
+                    </div>
+                    : null
+                } 
             <Footer/>
             </>
         );

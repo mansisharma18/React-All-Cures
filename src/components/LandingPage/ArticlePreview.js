@@ -209,7 +209,7 @@ const ArticlePreview = (props) => {
                         <div className='card-img'><img src={imageLoc} /></div>
                         <div className="card-body">
                             <h6 className='pb-2 text-muted'>{i.authors_name} ▪️ {i.published_date}</h6>
-                            <h5 className="card-title text-capitalize"><Link to={`/cure/${i.article_id}`}>{i.title.toLowerCase()}</Link></h5>
+                            <h5 className="card-title text-capitalize"><Link to={`/cure/${i.title}`}>{i.title.toLowerCase()}</Link></h5>
                             <div className="card-info">
                                 {/* <h6 className="card-subtitle mb-2 text-muted text-capitalize">
                                     {i.window_title.toLowerCase()}

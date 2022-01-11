@@ -321,7 +321,9 @@ const EditModal = (props) => {
                 Alert('Cure created successfully! Wait for approval 😄')
             } else if(res.data === -2){
                 Alert('Overview of this disease already exists.')
-            } else {
+            } else if(res.data === -3){
+                Alert("Article's Title already exists! Please change the title.")
+            }else {
                 Alert('Some error occured! Please try again later.')
             }
         })

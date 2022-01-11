@@ -2415,27 +2415,27 @@ div.main-hero:first-child .card {
 @keyframes heartbeat {
   0% {
     transform: scale(0.75);
-    box-shadow: 0 0 0 0px rgba(0, 0, 0, 0.2);
+    /* box-shadow: 0 0 0 0px rgba(0, 0, 0, 0.2); */
   }
   20% {
     transform: scale(1);
-    box-shadow: 0 0 0 0px rgba(0, 0, 0, 0.2);
+    /* box-shadow: 0 0 0 0px rgba(0, 0, 0, 0.2); */
   }
   40% {
     transform: scale(0.75);
-    box-shadow: 0 0 0 0px rgba(0, 0, 0, 0.2);
+    /* box-shadow: 0 0 0 0px rgba(0, 0, 0, 0.2); */
   }
   60% {
     transform: scale(1);
-    box-shadow: 0 0 0 20px rgba(0, 0, 0, 0);
+    /* box-shadow: 0 0 0 20px rgba(0, 0, 0, 0); */
   }
   80% {
     transform: scale(0.75);
-    box-shadow: 0 0 0 20px rgba(0, 0, 0, 0);
+    /* box-shadow: 0 0 0 20px rgba(0, 0, 0, 0); */
   }
   100% {
     transform: scale(0.75);
-    box-shadow: 0 0 0 20px rgba(0, 0, 0, 0);
+    /* box-shadow: 0 0 0 20px rgba(0, 0, 0, 0); */
   }
 }
 
@@ -2444,5 +2444,12 @@ img#heart {
   /* width: 50px; */
   height: 100px;
   margin: 3rem 0;
+  animation: heartbeat 2s infinite;
+}
+img#heartend {
+  /* background-color: red; */
+  /* width: 50px; */
+  height: 80px;
+  /* margin: 3rem 0; */
   animation: heartbeat 2s infinite;
 }
