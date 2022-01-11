@@ -29,12 +29,8 @@ import OwlCarousel from "react-owl-carousel";
 import "owl.carousel/dist/assets/owl.carousel.css";
 import "owl.carousel/dist/assets/owl.theme.default.css";
 import { PreviewTab } from './PreviewTab';
-<<<<<<< HEAD
-import { getBottomNavigationActionUtilityClass } from '@mui/material';
-import {userId} from "../UserId"
-=======
 import Heart from"../../assets/img/heart.png";
->>>>>>> 1477eff0f6e5a59b43b70f94ac1ac817829b0d10
+import {userId} from "../UserId"
 
 const options = {
   responsiveClass: true,
@@ -104,6 +100,7 @@ class Disease extends Component {
           this.diseasePosts(this.state.items.dc_name)
           this.comments(this.state.items.article_id)
           this.getRating(this.state.items.article_id)
+          this.getRate(this.state.items.article_id)
           document.title = `All Cures | ${this.state.items.title}`
         });
       });
@@ -122,6 +119,7 @@ class Disease extends Component {
           this.diseasePosts(this.state.items.dc_name)
           this.comments(this.state.items.article_id)
           this.getRating(this.state.items.article_id)
+          this.getRate(this.state.items.article_id)
           document.title = `All Cures | ${this.state.items.title}`
         });
       });
@@ -632,7 +630,7 @@ diseasePosts(dcName) {                     // For specific blogs like "/blogs/di
 
           </div>
 
-          <div className='h4 mt-3'>Rate here</div>
+          <div className='h4 mt-3'>Rate here</div> <p>Your Earlier Rated {this.state.rating } <span className="icon-star-1"></span></p>
                       <span id="docRate">
           <ArticleRating article_id={this.state.param.id} />
           </span>
