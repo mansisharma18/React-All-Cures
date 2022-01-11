@@ -5,18 +5,20 @@ import axios from 'axios';
 import { Alert} from 'react-bootstrap';
 import { backendHost } from '../api-config';
 
+
+
+
 const Comment = ({refreshComments, docid}) => {
 
     const [cmtText,setCmtText] = React.useState('')
     const [succAlert, setAlert] = useState('')
-   
 
 
     const postComment = (e) => {
         e.preventDefault()
 
         if(cmtText !== '') {
-            axios.post(`${backendHost}/DoctorRatingActionController?comments='${cmtText}'&ratedbyid=${Cookies.get("acPerm").split('|')[0]}&ratedbytype=${Cookies.get("acPerm").split('|')[1]}&targetid=${docid}&targetTypeid=1&cmd=rateAsset`)
+            axios.post(`${backendHost}/DoctorRatingActionController?comments=${cmtText}&ratedbyid=${Cookies.get("acPerm").split('|')[0]}&ratedbytype=${Cookies.get("acPerm").split('|')[1]}&targetid=${docid}&targetTypeid=1&cmd=rateAsset`)
             .then(res => {
                
                 setAlert(true)

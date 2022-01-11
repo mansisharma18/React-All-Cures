@@ -12,12 +12,14 @@ export default class App extends Component {
             data: [],
             perPage: 8,
             currentPage: 0
+           
             
         };
         this.handlePageClick = this
             .handlePageClick
             .bind(this);
     }
+    
     receivedData() {
         axios
             .get(`${backendHost}/article/all`)
@@ -26,11 +28,14 @@ export default class App extends Component {
                 const data = res.data;
                 const slice = data.slice(this.state.offset, this.state.offset + this.state.perPage)
                 const postData = slice.map(pd => <React.Fragment>
+                    
                     <div >
+                        
                 <div >
                      <div className="col-md-11  mt-5 ml-5">
-                       
+                    
                      <div >
+                         
                          
                      <AllPost
                                             key={pd[0]}
@@ -39,6 +44,8 @@ export default class App extends Component {
                                             f_title = {pd[2]}
                                             w_title = {pd[6]}
                                             dis={pd[15]}
+                                            pubstatus_id= {pd[16]}
+                                            article_id={pd[0]}
                                         />
                                         </div>
                                         </div>
@@ -76,6 +83,7 @@ export default class App extends Component {
     render() {
         return (
             <div >
+                
                {/* <h1 style="text-align:center">All Articles</h1> */}
                 {this.state.postData}
                 <ReactPaginate

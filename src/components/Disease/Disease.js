@@ -30,6 +30,7 @@ import "owl.carousel/dist/assets/owl.carousel.css";
 import "owl.carousel/dist/assets/owl.theme.default.css";
 import { PreviewTab } from './PreviewTab';
 import { getBottomNavigationActionUtilityClass } from '@mui/material';
+import {userId} from "../UserId"
 
 const options = {
   responsiveClass: true,
@@ -66,6 +67,7 @@ class Disease extends Component {
       comment: [],
       isLoaded: false,
       ratingValue: '',
+      rating:[],
       param : this.props.match.params,
       disease: '',
       regions: '',
@@ -172,6 +174,16 @@ class Disease extends Component {
       })
     }) 
     .catch(err => null)
+  }
+
+  getRate = (articleId) => {
+    axios.get(`${backendHost}/rating/target/${articleId}/targettype/2?userid=${userId}`)
+      .then(res => {
+        this.setState({
+          rating: res.data[0].ratingVal
+        }, ()=> console.log(this.state.rating))
+      })
+      .catch(err => console.log(err))
   }
 
   regionalPosts(){
@@ -297,6 +309,7 @@ diseasePosts(dcName) {                     // For specific blogs like "/blogs/di
     this.fetchBlog()
     this.comments()
     this.getRating(this.props.match.params.id)
+    this.getRate(this.props.match.params.id)
     this.getDisease()
   }
 
@@ -596,7 +609,7 @@ diseasePosts(dcName) {                     // For specific blogs like "/blogs/di
 
           </div>
 
-          <h3>Rate here</h3>
+          <p>Rate here</p> <p>Your Earlier Rated {this.state.rating } <span className="icon-star-1"></span></p>
                       <div id="docRate">
           <ArticleRating article_id={this.state.param.id} />
           </div>

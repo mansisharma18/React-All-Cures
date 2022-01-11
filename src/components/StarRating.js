@@ -5,15 +5,18 @@ import ReactStars from "react-rating-stars-component";
 import { Alert } from 'react-bootstrap';
 import { backendHost } from '../api-config';
 import Cookies from 'js-cookie';
+import { userId } from './UserId';
 
 
 export default function Rating(props) {
 
-  const [ratingValue, setRatingValue] = React.useState([])
+  const [ratingValue, setRatingValue] = React.useState([]
+    )
   const [submitAlert, setAlert] = useState(false)
+  const [rateId,setRateId] = useState(userId?userId:0)
   const postRating = (rating, docid) => {
 
-    axios.post(`${backendHost}/DoctorRatingActionController?ratingVal=${rating}&ratedbyid=${Cookies.get("acPerm").split('|')[0]}&ratedbytype=${Cookies.get("acPerm").split('|')[1]}&targetid=${props.docid}&targetTypeid=1&cmd=rateAsset`)
+    axios.post(`${backendHost}/DoctorRatingActionController?ratingVal=${rating}&ratedbyid=${rateId}&ratedbytype=${rateId}&targetid=${props.docid}&targetTypeid=1&cmd=rateAsset`)
     // .then(res => console.log(res)
     .then(res => {
       setAlert(true)
@@ -33,7 +36,7 @@ const thirdExample = {
   size: 40,
   count: 5,
   isHalf: false,
-  value:0,
+  value: 0,
   color: "yellow",
   activeColor: "orange",
   // filledIcon:"orange",
@@ -44,7 +47,7 @@ const thirdExample = {
     console.log(`Example 3: new value is ${newValue}`);
   }
 };
-
+console.log(props.ratingVal)
 
 
   return (
