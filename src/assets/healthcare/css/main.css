@@ -2247,12 +2247,12 @@ div.trending-articles .col-4:nth-last-child(even) .card {
 .trending-articles .card img {
   height: 125px;
 }
-div.main-hero .col-4:nth-of-type(even) .card {
+/* div.main-hero .col-4:nth-of-type(even) .card {
   background-color: #e4faff;
 }
 div.main-hero:first-child .card {
   background-color: #ffeeee;
-}
+} */
 .trending-section .btn:focus {
   box-shadow: none;
 }
@@ -2317,6 +2317,11 @@ div.main-hero:first-child .card {
 }
 #main-hero .card {
   min-height: 36.5rem;
+  border: none;
+}
+
+#main-hero .card-body {
+  padding: 1.25rem 0;
 }
 .card-article-content-preview .ce-block {
   width: 100%;
@@ -2406,4 +2411,38 @@ div.main-hero:first-child .card {
   border-radius: 3rem;
   background-color: #fff;
   box-shadow: 5px 5px 25px;
+}
+@keyframes heartbeat {
+  0% {
+    transform: scale(0.75);
+    box-shadow: 0 0 0 0px rgba(0, 0, 0, 0.2);
+  }
+  20% {
+    transform: scale(1);
+    box-shadow: 0 0 0 0px rgba(0, 0, 0, 0.2);
+  }
+  40% {
+    transform: scale(0.75);
+    box-shadow: 0 0 0 0px rgba(0, 0, 0, 0.2);
+  }
+  60% {
+    transform: scale(1);
+    box-shadow: 0 0 0 20px rgba(0, 0, 0, 0);
+  }
+  80% {
+    transform: scale(0.75);
+    box-shadow: 0 0 0 20px rgba(0, 0, 0, 0);
+  }
+  100% {
+    transform: scale(0.75);
+    box-shadow: 0 0 0 20px rgba(0, 0, 0, 0);
+  }
+}
+
+img#heart {
+  /* background-color: red; */
+  /* width: 50px; */
+  height: 100px;
+  margin: 3rem 0;
+  animation: heartbeat 2s infinite;
 }

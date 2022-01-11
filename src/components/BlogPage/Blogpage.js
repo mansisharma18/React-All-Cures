@@ -5,9 +5,7 @@ import Footer from '../Footer/Footer'
 import AllPost from './Allpost.js';
 import { backendHost } from '../../api-config';
 import { Link } from 'react-router-dom';
-import OwlCarousel from "react-owl-carousel";
-import "owl.carousel/dist/assets/owl.carousel.css";
-import "owl.carousel/dist/assets/owl.theme.default.css";
+import Heart from"../../assets/img/heart.png";
 
 export default class Blogpage extends Component{
 
@@ -15,11 +13,13 @@ export default class Blogpage extends Component{
         super(props);
         const params = props.match.params
         this.state = { 
-          limit: 250,
+          limit: 25,
+          offset: 0,
           dc: props.location.search.split('&')[1],
           param: params,
           items: [],
           isLoaded: false,
+          LoadMore: false,
           regionPostsLoaded: false,
           articleFilter: 'Recent',
           country: new URLSearchParams(this.props.location.search).get('c'),
@@ -28,8 +28,11 @@ export default class Blogpage extends Component{
         };
       }
 
-      allPosts() {                        // For all available blogs "/blogs"
-        fetch(`${backendHost}/article/allkv`)
+      allPosts(loadMore) {                        // For all available blogs "/blogs"
+        if(loadMore = 'loadMore') {
+          this.setState({LoadMore: false})
+        }
+        fetch(`${backendHost}/article/allkv?limit=${this.state.limit}`)
           .then((res) => res.json())
           .then((json) => {
             var temp = []
@@ -77,6 +80,7 @@ export default class Blogpage extends Component{
                   });
                   this.setState({isLoaded: true, items: temp})
               }
+              this.setState({LoadMore: true})
           })
           .catch(err => console.log(err))
       }
@@ -107,15 +111,16 @@ export default class Blogpage extends Component{
         .catch(err => console.log(err))
       }
 
-      // handleScroll = () => {
-      //   const bottom = Math.ceil(window.innerHeight + window.scrollY) >= document.documentElement.scrollHeight
-      //   if (bottom) {
-      //     console.log('inside', bottom)
-      //     this.setState({
-      //       limit: this.state.limit + 25
-      //     }, () => this.allPosts());
-      //   }
-      // };
+      handleScroll = () => {
+        const bottom = Math.ceil(window.innerHeight + window.scrollY) >= document.documentElement.scrollHeight
+        if (bottom) {
+          console.log('inside', bottom)
+          this.setState({
+            limit: this.state.limit + 20,
+            offset: this.state.offset + 20
+          }, () => this.allPosts('loadMore'));
+        }
+      };
       // React.useEffect(() => {
         
       // }, []);
@@ -139,7 +144,6 @@ export default class Blogpage extends Component{
         // if(this.props.match.params.type === undefined){
         //   this.allPosts()
         // }
-        console.log(this.props.match.params.type)
         if(this.props.match.params.type !== undefined){
           this.diseasePosts(this.props.match.params.type)
         } else if(this.props.location.search){
@@ -158,23 +162,25 @@ export default class Blogpage extends Component{
           }
           
         }
-        // window.addEventListener('scroll', this.handleScroll, {
-        //   passive: true
-        // });
+        window.addEventListener('scroll', this.handleScroll, {
+          passive: true
+        });
     
-        // return () => {
-        //   window.removeEventListener('scroll', this.handleScroll);
-        // };
+        return () => {
+          window.removeEventListener('scroll', this.handleScroll);
+        };
       }
       
     render(){
-        var { isLoaded, items, regionPostsLoaded } = this.state;
+        var { isLoaded, items, regionPostsLoaded, LoadMore } = this.state;
         if(!isLoaded && !regionPostsLoaded) {
         return (
         <>
           <Header history={this.props.history}/>
             <div className="loader my-4">
-              <i className="fa fa-spinner fa-spin fa-6x" />
+              {/* <i className="fa fa-spinner fa-spin fa-6x" /> */}
+              <img src={Heart} alt="All Cures Logo" id="heart"/>
+
             </div>
           <Footer/>
         </>  
@@ -309,6 +315,7 @@ export default class Blogpage extends Component{
                             published_date = {i.published_date}
                             key = {i.article_id}
                             over_allrating={i.over_allrating}
+                            authorName = {i.authors_name}
                             allPostsContent={() => this.allPosts()}
                         />
                         : null
@@ -321,6 +328,13 @@ export default class Blogpage extends Component{
                     }}>Show more</button> */}
                     </div>
                 </div>
+                {
+                  LoadMore?
+                    <div className="loader my-4">
+                      <img src={Heart} alt="All Cures Logo" id="heart"/>
+                    </div>
+                  : null
+                }
             <Footer/>
             </>
         );

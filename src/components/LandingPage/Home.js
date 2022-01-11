@@ -275,7 +275,7 @@ class Home extends Component {
             {
                 this.state.afterSubmitLoad &&
                 <div className="loader main on-submit-loading">
-                    <i className="fa fa-spinner fa-spin fa-10x" />
+                  <img src={Heart} alt="All Cures Logo" id="heart"/>
                 </div>
             }
             {

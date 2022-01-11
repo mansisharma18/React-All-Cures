@@ -29,7 +29,7 @@ import OwlCarousel from "react-owl-carousel";
 import "owl.carousel/dist/assets/owl.carousel.css";
 import "owl.carousel/dist/assets/owl.theme.default.css";
 import { PreviewTab } from './PreviewTab';
-import { getBottomNavigationActionUtilityClass } from '@mui/material';
+import Heart from"../../assets/img/heart.png";
 
 const options = {
   responsiveClass: true,
@@ -84,7 +84,8 @@ class Disease extends Component {
   }
 
   fetchBlog = () => {
-    fetch(`${backendHost}/article/${this.props.match.params.id}`)
+    if(/^[0-9]+$/.test (this.props.match.params.id)){           // Test if URL contains article_id or TITLE
+      fetch(`${backendHost}/article/${this.props.match.params.id}`)       // if URL contains article_id
       .then((res) => res.json())
       .then((json) => {
         this.setState({
@@ -95,9 +96,31 @@ class Disease extends Component {
           this.fetchCountriesCures()
           this.regionalPosts()
           this.diseasePosts(this.state.items.dc_name)
+          this.comments(this.state.items.article_id)
+          this.getRating(this.state.items.article_id)
           document.title = `All Cures | ${this.state.items.title}`
         });
       });
+    } else {                                                    // if URL contains title
+
+      fetch(`${backendHost}/article/title/${this.props.match.params.id}`)
+      .then((res) => res.json())
+      .then((json) => {
+        this.setState({
+          isLoaded: true,
+          items: json,
+        }, 
+        () => {
+          this.fetchCountriesCures()
+          this.regionalPosts()
+          this.diseasePosts(this.state.items.dc_name)
+          this.comments(this.state.items.article_id)
+          this.getRating(this.state.items.article_id)
+          document.title = `All Cures | ${this.state.items.title}`
+        });
+      });
+    }
+    
   }
 
   Alert = (msg) => {
@@ -187,8 +210,8 @@ class Disease extends Component {
       null
   )
   }
-  comments() {                        // For all available blogs "/blogs"
-    fetch(`${backendHost}/rating/target/${this.props.match.params.id}/targettype/2`)
+  comments(id) {                        // For all available blogs "/blogs"
+    fetch(`${backendHost}/rating/target/${id}/targettype/2`)
       .then((res) => res.json())
       .then((json) => {
         var temp = []
@@ -277,10 +300,8 @@ diseasePosts(dcName) {                     // For specific blogs like "/blogs/di
   .then((res) => res.json())
   .then((json) => {
     // setLoaded(true)
-    console.log(json.pubstatus_id)
     var temp= []
     json.forEach(i => {
-      console.log(i.pubstatus_id)
       if(i.pubstatus_id === 3){
         temp.push(i)
       }
@@ -295,16 +316,13 @@ diseasePosts(dcName) {                     // For specific blogs like "/blogs/di
   componentDidMount() {
     window.scrollTo(0, 0);
     this.fetchBlog()
-    this.comments()
-    this.getRating(this.props.match.params.id)
+    
     this.getDisease()
   }
 
   componentDidUpdate(prevProps){
     if ( prevProps.match.params.id !== this.props.match.params.id){
       this.fetchBlog()
-      this.comments()
-      this.getRating(this.props.match.params.id)
       window.scrollTo(0, 340);
     }
   }
@@ -331,8 +349,8 @@ diseasePosts(dcName) {                     // For specific blogs like "/blogs/di
       <>
       <Header history={this.props.history}/>
         <Container className="my-5 loading">
-          <div className="loader ">
-            <i className="fa fa-spinner fa-spin fa-6x" />
+          <div className="loader">
+            <img src={Heart} alt="All Cures Logo" id="heart"/>
           </div>
         </Container>
       <Footer/>
@@ -586,7 +604,7 @@ diseasePosts(dcName) {                     // For specific blogs like "/blogs/di
               {/* Author */}
               {
                 items.authors_name?
-                  <div className='h5 text-left ml-3 mb-2'><span>Author:</span> {items.authored_by.includes(7)? null: <>Dr.</>} {items.authors_name}</div>
+                  <div className='h5 text-left ml-3 mb-2'><span>Author:</span> {items.authored_by.includes(7)? items.authors_name: <Link to={`/profile/${items.reg_doc_pat_id}`}><>Dr.</> {items.authors_name}</Link>}</div>
                   : null
               }
                   <div className='h6 text-muted text-left ml-3 mb-4'><>Published on:</> {items.published_date}</div>

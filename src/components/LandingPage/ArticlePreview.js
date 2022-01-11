@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { backendHost } from '../../api-config';
 import { Link } from 'react-router-dom'
 import CenterWell from '../Disease/CenterWell'
+import Heart from"../../assets/img/heart.png";
 
 const ArticlePreview = (props) => {
     const [items, setItems] = useState([])
@@ -20,7 +21,7 @@ const ArticlePreview = (props) => {
       }
 
     function allPosts() {                        // For all available blogs "/blogs"
-        fetch(`${backendHost}/article/allkv`)
+        fetch(`${backendHost}/article/allkv?limit=50`)
           .then((res) => res.json())
           .then((json) => {
             var temp = []
@@ -46,40 +47,10 @@ const ArticlePreview = (props) => {
                       }
                   });
                   setItems(temp)
-              } else if(articleFilter === 'diabetes'){
-                  json.forEach(i => {
-                      if(i.dc_name === 'Diabetes' && i.pubstatus_id === 3){
-                          temp.push(i)
-                      }
-                  });
-                  setItems(temp)
-              } else if(articleFilter === 'neurology'){
-                  json.forEach(i => {
-                      if(i.dc_name === 'Neurology' && i.pubstatus_id === 3){
-                          temp.push(i)
-                      }
-                  });
-                  setItems(temp)
-              } else if(articleFilter === 'arthritis'){
-                  json.forEach(i => {
-                      if(i.dc_name === 'Arthritis' && i.pubstatus_id === 3){
-                          temp.push(i)
-                      }
-                  });
-                  setItems(temp)
-              } else if(articleFilter === 'anemia'){
-                  json.forEach(i => {
-                      if(i.dc_name === 'Anemia' && i.pubstatus_id === 3){
-                          temp.push(i)
-                      }
-                  });
-                  setItems(temp)
               }
             setLoaded(true)
           })
-          .catch(err => 
-            null
-        )
+          .catch(err => null)
     }
 
     function articleFilterClick(e, filter) {
@@ -111,7 +82,7 @@ const ArticlePreview = (props) => {
     if(!isLoaded){
         return (
             <div className="loader my-4">
-                <i className="fa fa-spinner fa-spin fa-6x" />
+                <img src={Heart} alt="All Cures Logo" id="heart"/>
             </div>
         );
     }
@@ -237,11 +208,12 @@ const ArticlePreview = (props) => {
                     <div className="card my-2 w-100">
                         <div className='card-img'><img src={imageLoc} /></div>
                         <div className="card-body">
+                            <h6 className='pb-2 text-muted'>{i.authors_name} ▪️ {i.published_date}</h6>
                             <h5 className="card-title text-capitalize"><Link to={`/cure/${i.article_id}`}>{i.title.toLowerCase()}</Link></h5>
                             <div className="card-info">
-                                <h6 className="card-subtitle mb-2 text-muted text-capitalize">
+                                {/* <h6 className="card-subtitle mb-2 text-muted text-capitalize">
                                     {i.window_title.toLowerCase()}
-                                </h6>
+                                </h6> */}
                                 <p className="card-text card-article-content-preview">
                                     {
                                         content?
@@ -249,7 +221,7 @@ const ArticlePreview = (props) => {
                                                 <CenterWell
                                                     content = {j.data.content}
                                                     type = {j.type}
-                                                    text = {j.data.text.substr(0, 200) + '....'}
+                                                    text = {j.data.text.substr(0, 250) + '....'}
                                                     title = {j.data.title}
                                                     message = {j.data.message}
                                                     source = {j.data.source}

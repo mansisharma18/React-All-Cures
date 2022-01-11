@@ -1,1 +1,1 @@
-export const backendHost = 'https://all-cures.com/cures'
+export const backendHost = 'http://192.168.29.160:8080/cures'

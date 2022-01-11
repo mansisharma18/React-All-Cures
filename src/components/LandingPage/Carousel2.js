@@ -5,6 +5,7 @@ import "owl.carousel/dist/assets/owl.theme.default.css";
 import "@fortawesome/free-solid-svg-icons";
 import "@fortawesome/fontawesome-svg-core"
 import { backendHost } from '../../api-config';
+import Heart from"../../assets/img/heart.png";
 import DoctorsCard from './DoctorsCard';
 
 const options = {
@@ -81,8 +82,8 @@ export default class Carousel2 extends Component {
       if(!isLoaded) {
         return (
           <div className="loader my-4">
-        <i className="fa fa-spinner fa-spin fa-6x" />
-      </div>
+            <img src={Heart} alt="All Cures Logo" id="heart"/>
+          </div>
         );
       }
       else if(isLoaded){
