@@ -305,12 +305,13 @@ background-color: #b9daf1; */
 }
 .articles-carousel#articles-carousel .owl-prev {
   left: 0;
-  top: -87px;
+  top: 57px;
   padding: 13px 10px !important;
   background: #fff !important;
   border-radius: 0;
   box-shadow: 3px 3px 10px black;
   opacity: 0.5;
+  position: absolute;
 }
 
 .articles-carousel#articles-carousel .owl-prev:hover,
@@ -332,4 +333,7 @@ background-color: #b9daf1; */
 
 .fs-08 {
   font-size: 0.85rem;
+}
+.fs-07 {
+  font-size: 0.7rem;
 }

@@ -427,23 +427,23 @@ diseasePosts(dcName) {                     // For specific blogs like "/blogs/di
                 {/* Sharing icons */}
                 <div id="socilaBtn">
                 <FacebookShareButton
-                  url={"https://all-cures.com"}
-                  quote={"All-Cures - All in one Health App"}
-                  hashtag="#allCures"
+                  url={encodeURI(`https://all-cures.com${this.props.location.pathname}`)}
+                  quote={`All-Cures - ${items.title}`}
+                  hashtag={`#allCures#${items.title}`}
                   className="socialMediaButton"
                 >
                   <FacebookIcon size={36} />
                 </FacebookShareButton>
                 <TwitterShareButton
-                  url={"https://all-cures.com"}
-                  title={"All-Cures - All in one Health App"}
-                  hashtag="#allCures"
+                  url={encodeURI(`https://all-cures.com${this.props.location.pathname}`)}
+                  title={`All-Cures - ${items.title}`}
+                  hashtag={`#allCures#${items.title}`}
                   className="socialMediaButton"
                 >
                   <TwitterIcon size={36} />
                 </TwitterShareButton>
                 <WhatsappShareButton
-                  url={`https://all-cures.com/${this.props.location.pathname}`}
+                  url={encodeURI(`https://all-cures.com${this.props.location.pathname}`)}
                   title={`*All Cures -* ${items.title}`}
                   separator=": "
                   className="socialMediaButton"
@@ -553,19 +553,19 @@ diseasePosts(dcName) {                     // For specific blogs like "/blogs/di
             
              <a href='#docRate'>Click To Rate Here</a></div> */}
             <Dropdown>
-                      <Dropdown.Toggle className="mr-220 btn btn-info color-white">
-                       < a href='#docRate'className="color-white" >Click Here To Rate</a>
+                      <Dropdown.Toggle className="btn btn-info color-white">
+                       < a href='#docRate'className="color-white fs-07">Rate Here</a>
                       </Dropdown.Toggle>
                    
                     </Dropdown>
               {
                 this.state.ratingValue?
-                <div className="average-rating mb-4 ml-3" id="avg-rating">
-                <span class="fa fa-star fa-2x  opacity-7"></span>
-                <span class="fa fa-star fa-2x  opacity-7"></span>
-                <span class="fa fa-star fa-2x  opacity-7"></span>
-                <span class="fa fa-star fa-2x  opacity-7"></span>
-                <span class="fa fa-star fa-2x  opacity-7"></span>
+                <div className="average-rating mb-4" id="avg-rating">
+                <span class="fa fa-star opacity-7"></span>
+                <span class="fa fa-star opacity-7"></span>
+                <span class="fa fa-star opacity-7"></span>
+                <span class="fa fa-star opacity-7"></span>
+                <span class="fa fa-star opacity-7"></span>
                 </div>
                 : null
               }

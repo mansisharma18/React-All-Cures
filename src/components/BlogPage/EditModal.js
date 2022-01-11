@@ -53,6 +53,7 @@ const EditModal = (props) => {
     const [alertMsg, setAlertMsg] = useState('')
 
     const [afterSubmitLoad, setafterSubmitLoad] = useState(false)
+    const [jsonValid, setJsonValid] = useState(false)
     
     function Alert(msg){
       setShowAlert(true)
@@ -80,7 +81,7 @@ const EditModal = (props) => {
             setDisease(res.data.disease_condition_id)
             setComment(res.data.comments) 
             setKeywords(res.data.keywords) 
-            setContentSmall(res.data.content_small)
+            setContentSmall(decodeURIComponent(res.data.content_small))
             setArticleContent(JSON.parse(decodeURIComponent(res.data.content)))
         })
         .catch(err => 
@@ -338,6 +339,20 @@ const EditModal = (props) => {
         setArticleContent(savedData)  
     }
     
+    function IsJsonValid(str) {
+        try {
+            var json = JSON.parse(str);
+            if(typeof json === 'object') setJsonValid(true)
+          } catch (e) {
+            setJsonValid(false);
+          }
+}
+    
+
+    useEffect(() => {
+        // console.log(contentSmall)
+        IsJsonValid(contentSmall)
+    }, [contentSmall])
     return (
         <>
             {   
@@ -826,14 +841,18 @@ By visiting this page on our website: <a href="https://www.all-cures.com">www.al
                         parseInt(userAccess) === 7 || parseInt(userAccess) === 9?
                         <>
                         <hr/>
-                        <div className='h5'>Content Preview</div>
+                        <div className='h5'>Content JSON Preview</div>
                         <textarea 
                             className='w-100' 
-                            value={decodeURIComponent(contentSmall)} 
-                            onChange={(e)=> setContentSmall(e.target.value)}></textarea>
+                            value={contentSmall} 
+                            onChange={(e)=> {
+                                setContentSmall(e.target.value)
+                                IsJsonValid(e.target.value)
+                            }}></textarea>
                         </>
                         : null
                     }
+                    JSON {jsonValid? <span className="text-success">Valid</span>: <span className='text-danger'>Invalid</span>}
                     </div>
                 </div>
             </div>
