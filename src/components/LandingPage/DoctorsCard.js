@@ -15,7 +15,7 @@ const DoctorsCard = ({rowno, firstName, lastName, primary_spl, hospital_affliate
    }
 
    useEffect(() => {
-      checkIfImageExits(`https://all-cures.com/cures_articleimages/doctors/${rowno}.png`)
+      checkIfImageExits(`https://all-cures.com:444/cures_articleimages/doctors/${rowno}.png`)
    }, [])
     return(
         <>
@@ -26,7 +26,7 @@ const DoctorsCard = ({rowno, firstName, lastName, primary_spl, hospital_affliate
 
        {
          imageExists?
-           <img src={`https://all-cures.com/cures_articleimages/doctors/${rowno}.png`} />
+           <img src={`https://all-cures.com:444/cures_articleimages/doctors/${rowno}.png`} />
            :  <i className="fas fa-user-md fa-10x"></i>
        }
     </div>

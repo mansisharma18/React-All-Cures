@@ -134,7 +134,7 @@ class Profile extends Component {
         this.setState({
           isLoaded: true,
           items: json,
-        }, () => this.checkIfImageExits(`https://all-cures.com/cures_articleimages/doctors/${json.rowno}.png`));
+        }, () => this.checkIfImageExits(`https://all-cures.com:444/cures_articleimages/doctors/${json.rowno}.png`));
       });
 
   }
@@ -248,7 +248,7 @@ class Profile extends Component {
                           } */}
                           {
                             this.state.imageExists ?
-                              <img src={`https://all-cures.com/cures_articleimages/doctors/${items.rowno}.png`} />
+                              <img src={`https://all-cures.com:444/cures_articleimages/doctors/${items.rowno}.png`} />
                               : <i className="fas fa-user-md fa-6x"></i>
                           }
 
