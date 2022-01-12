@@ -16,7 +16,7 @@ const ProfileTab = ({ setModalShow, docid, rowno, name, pSpl, hospital, state, c
   }
 
   useEffect(() => {
-    checkIfImageExits(`https://all-cures.com/cures_articleimages/doctors/${rowno}.png`)
+    checkIfImageExits(`https://all-cures.com:444/cures_articleimages/doctors/${rowno}.png`)
   }, [])
   
   return (
@@ -30,10 +30,10 @@ const ProfileTab = ({ setModalShow, docid, rowno, name, pSpl, hospital, state, c
                   {/* <img src={Special1} alt="special-1"/>  */}
                   {
                     imageExists?
-                      <img src={`https://all-cures.com/cures_articleimages/doctors/${rowno}.png`} />
+                      <img src={`https://all-cures.com:444/cures_articleimages/doctors/${rowno}.png`} />
                       :  <i className="fas fa-user-md fa-6x"></i>
                   }
-                  {/* <img src={`https://all-cures.com/cures_articleimages/doctors/${rowno}.png`} alt={`Doctor's Photo`}/> */}
+                  {/* <img src={`https://all-cures.com:444/cures_articleimages/doctors/${rowno}.png`} alt={`Doctor's Photo`}/> */}
                   {/* <i className="fas fa-user-md fa-6x"></i> */}
                   </div>
               <div className="col-md-12 col-sm-12">

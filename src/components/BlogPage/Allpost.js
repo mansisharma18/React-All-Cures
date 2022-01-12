@@ -17,9 +17,9 @@ const AllPost = ({id, title, content, f_title, w_title, country, type, published
     }
     var imageLoc = '';
     if(imgLocation && imgLocation.includes('cures_articleimages')){
-        imageLoc = `https://all-cures.com/`+imgLocation.replace('json', 'png').split('/webapps/')[1]
+        imageLoc = `https://all-cures.com:444/`+imgLocation.replace('json', 'png').split('/webapps/')[1]
     } else {
-        imageLoc = 'https://all-cures.com/cures_articleimages//299/default.png'
+        imageLoc = 'https://all-cures.com:444/cures_articleimages//299/default.png'
     }
         return (
             <>
