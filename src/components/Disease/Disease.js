@@ -575,11 +575,11 @@ diseasePosts(dcName) {                     // For specific blogs like "/blogs/di
               {
                 this.state.ratingValue?
                 <div className="average-rating mb-4 ml-3 mt-2" id="avg-rating">
-                <span class="fa fa-star fa-2x  opacity-7"></span>
-                <span class="fa fa-star fa-2x  opacity-7"></span>
-                <span class="fa fa-star fa-2x  opacity-7"></span>
-                <span class="fa fa-star fa-2x  opacity-7"></span>
-                <span class="fa fa-star fa-2x  opacity-7"></span>
+                <span class="fa fa-star opacity-7"></span>
+                <span class="fa fa-star opacity-7"></span>
+                <span class="fa fa-star opacity-7"></span>
+                <span class="fa fa-star opacity-7"></span>
+                <span class="fa fa-star opacity-7"></span>
                 </div>
                 : null
               }

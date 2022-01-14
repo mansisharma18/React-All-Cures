@@ -54,6 +54,8 @@ const EditModal = (props) => {
 
     const [afterSubmitLoad, setafterSubmitLoad] = useState(false)
     const [jsonValid, setJsonValid] = useState(false)
+
+    const [updateSubscribers, setUpdateSubscribers] = useState(false)
     
     function Alert(msg){
       setShowAlert(true)
@@ -117,6 +119,7 @@ const EditModal = (props) => {
                 "keywords": keywords,
                 "comments": comment,
                 "disease_condition_id": disease,
+                "update_subscribers": updateSubscribers,
                 "content_small": encodeURIComponent(contentSmall)
             })
             .then(res => {
@@ -158,6 +161,7 @@ const EditModal = (props) => {
                 "comments": comment,
                 "keywords": keywords,
                 "country_id": parseInt(country),
+                "update_subscribers": updateSubscribers,
                 "content_small": encodeURIComponent(contentSmall)
             })
             .then(res => {
@@ -199,9 +203,6 @@ const EditModal = (props) => {
         }
     }
   
-
-
-
     const getLanguages = () => {
         axios.get(`${backendHost}/article/all/table/languages`)
         .then(res => {
@@ -348,7 +349,11 @@ const EditModal = (props) => {
             setJsonValid(false);
           }
 }
-    
+    // send Update checkbox handler
+    const handleMessage = (event) => {
+        setUpdateSubscribers(event.target.checked);
+    };
+
 
     useEffect(() => {
         // console.log(contentSmall)
@@ -701,7 +706,16 @@ These Terms and Conditions are governed by the internal substantive laws of the 
                                         
                                     />
 
-
+                    {
+                        parseInt(userAccess) === 7 || parseInt(userAccess) === 9?
+                        <FormControlLabel
+                            control={<Checkbox name="message" value="on" required/>}
+                            label="Send Update to Subscribers"
+                            checked = {updateSubscribers}
+                            onClick={handleMessage}                    
+                        />
+                        : null 
+                    }
 
     
 
@@ -850,10 +864,11 @@ By visiting this page on our website: <a href="https://www.all-cures.com">www.al
                                 setContentSmall(e.target.value)
                                 IsJsonValid(e.target.value)
                             }}></textarea>
+                        JSON {jsonValid? <span className="text-success">Valid</span>: <span className='text-danger'>Invalid</span>}
                         </>
                         : null
                     }
-                    JSON {jsonValid? <span className="text-success">Valid</span>: <span className='text-danger'>Invalid</span>}
+                    
                     </div>
                 </div>
             </div>
