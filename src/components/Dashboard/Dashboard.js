@@ -26,6 +26,7 @@ import BlogAllPost from './BlogAllPost'
 import EditModal from '../BlogPage/EditModal'
 import { backendHost } from '../../api-config';
 import axios from 'axios';
+import { ImageUpload } from './ImageUpload';
 
 
 
@@ -345,6 +346,10 @@ function RenderComponent(props){
     )
   
   // 
+  } else if(props.search.split('=')[0] === '?upload-img'){
+    return(
+      <ImageUpload search = {props.search}/>
+    )
   } else {
     if (!props.ajaxIsLoaded) {
 

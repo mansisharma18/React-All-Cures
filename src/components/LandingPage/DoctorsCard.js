@@ -3,8 +3,9 @@ import { Link } from 'react-router-dom';
 
 const DoctorsCard = ({rowno, firstName, lastName, primary_spl, hospital_affliated, state, country_code}) => {
    const [imageExists, setImageExists] = useState(false)
+   
    const checkIfImageExits = (imageUrl) => {
-      fetch(imageUrl, { method: 'HEAD' })
+      fetch(imageUrl, { method: 'HEAD', mode: 'no-cors' })
       .then(res => {
          if (res.ok) {
                setImageExists(true)
@@ -23,12 +24,12 @@ const DoctorsCard = ({rowno, firstName, lastName, primary_spl, hospital_affliate
     <div className="item-img">
        {/* <img src={Special2} alt="special-img"/> */}
        
-
+{/* 
        {
-         imageExists?
-           <img src={`https://all-cures.com:444/cures_articleimages/doctors/${rowno}.png`} />
-           :  <i className="fas fa-user-md fa-10x"></i>
-       }
+         imageExists? */}
+           <img className="sorting_asc" src={`https://all-cures.com:444/cures_articleimages/doctors/${rowno}.png`} alt="" />
+      {/* //      :  <i className="fas fa-user-md fa-10x"></i>
+      //  } */}
     </div>
     {/* <div className="rating">
        <span className="icon-star-1"></span>
@@ -38,7 +39,7 @@ const DoctorsCard = ({rowno, firstName, lastName, primary_spl, hospital_affliate
        <div className="slider-heading">
           <h2>Dr. {firstName} {lastName}</h2>
           <p>{primary_spl}</p>
-          <h5 className="text-center"id="head5">{hospital_affliated} {state} {country_code}</h5>
+          <h5 className="text-center">{hospital_affliated} {state} {country_code}</h5>
        </div>
        <Link to={ `/profile/${rowno}` } className="appointmentBtn allBtn" id="visitDoc">Visit Profile</Link>
     </div>

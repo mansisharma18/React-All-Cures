@@ -246,11 +246,11 @@ class Profile extends Component {
                               <img src={imageUrl} />
                             : <i className="fas fa-user-md fa-6x"></i>
                           } */}
-                          {
-                            this.state.imageExists ?
+                          {/* {
+                            this.state.imageExists ? */}
                               <img src={`https://all-cures.com:444/cures_articleimages/doctors/${items.rowno}.png`} />
-                              : <i className="fas fa-user-md fa-6x"></i>
-                          }
+                              {/* : <i className="fas fa-user-md fa-6x"></i>
+                          } */}
 
                         </div>
                       </div>

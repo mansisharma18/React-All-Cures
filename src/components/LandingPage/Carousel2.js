@@ -66,16 +66,16 @@ export default class Carousel2 extends Component {
         .catch(err => null )
     }
 
-    checkIfImageExits = (imageUrl) => {
-      fetch(imageUrl, { method: 'HEAD' })
-      .then(res => {
-          if (res.ok) {
-              this.setState({ imageExists: true })
-          } else {
-            this.setState({ imageExists: false })
-          }
-      }).catch(err => null);
-    }  
+    // checkIfImageExits = (imageUrl) => {
+    //   fetch(imageUrl, { method: 'HEAD' })
+    //   .then(res => {
+    //       if (res.ok) {
+    //           this.setState({ imageExists: true })
+    //       } else {
+    //         this.setState({ imageExists: false })
+    //       }
+    //   }).catch(err => null);
+    // }  
     
     render() {
       var { isLoaded,items } = this.state;
