@@ -55,7 +55,7 @@ export default class Carousel2 extends Component {
     }
 
    componentDidMount(lat,lon,city){
-      fetch(`${backendHost}/SearchActionController?cmd=getResults&city=jammu&doctors=&Latitude=${lat}&Longitude=${lon}`)
+      fetch(`${backendHost}/SearchActionController?cmd=getResults&city=jammu&doctors=manoj&Latitude=${lat}&Longitude=${lon}`)
         .then(res => res.json())
         .then(json => {
           this.setState({
@@ -66,16 +66,16 @@ export default class Carousel2 extends Component {
         .catch(err => null )
     }
 
-    checkIfImageExits = (imageUrl) => {
-      fetch(imageUrl, { method: 'HEAD' })
-      .then(res => {
-          if (res.ok) {
-              this.setState({ imageExists: true })
-          } else {
-            this.setState({ imageExists: false })
-          }
-      }).catch(err => null);
-    }  
+    // checkIfImageExits = (imageUrl) => {
+    //   fetch(imageUrl, { method: 'HEAD' })
+    //   .then(res => {
+    //       if (res.ok) {
+    //           this.setState({ imageExists: true })
+    //       } else {
+    //         this.setState({ imageExists: false })
+    //       }
+    //   }).catch(err => null);
+    // }  
     
     render() {
       var { isLoaded,items } = this.state;

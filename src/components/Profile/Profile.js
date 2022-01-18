@@ -160,6 +160,7 @@ class Profile extends Component {
   }
 
   componentDidMount() {
+    window.scrollTo(0, 0);
     document.title = "All Cures | Profile"
     this.fetchDoctorData(this.state.param.id)
     this.getComments(this.state.param.id)
@@ -198,6 +199,10 @@ class Profile extends Component {
           })
         }
       }).catch(err => console.log('Error:', err));
+  }
+
+  onError = (e) => {
+    e.target.parentElement.innerHTML = `<i class="fas fa-user-md fa-6x"></i>`
   }
 
   render() {
@@ -246,11 +251,11 @@ class Profile extends Component {
                               <img src={imageUrl} />
                             : <i className="fas fa-user-md fa-6x"></i>
                           } */}
-                          {
-                            this.state.imageExists ?
-                              <img src={`https://all-cures.com:444/cures_articleimages/doctors/${items.rowno}.png`} />
-                              : <i className="fas fa-user-md fa-6x"></i>
-                          }
+                          {/* {
+                            this.state.imageExists ? */}
+                              <img src={`https://all-cures.com:444/cures_articleimages/doctors/${items.rowno}.png`} onError = {(e) => this.onError(e)}/>
+                              {/* : <i className="fas fa-user-md fa-6x"></i>
+                          } */}
 
                         </div>
                       </div>

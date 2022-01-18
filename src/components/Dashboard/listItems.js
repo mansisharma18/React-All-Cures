@@ -6,6 +6,7 @@ import ListSubheader from '@material-ui/core/ListSubheader';
 import DashboardIcon from '@material-ui/icons/Dashboard';
 import PeopleIcon from '@material-ui/icons/People';
 import BarChartIcon from '@material-ui/icons/BarChart';
+// import AssignmentIcon from '@mui/icons-material/Assignment';
 import { Link } from 'react-router-dom'
 
 export const mainListItems = (
@@ -98,12 +99,24 @@ export const mainListItems = (
 );
 export const secondaryListItems = (
   <div>
-    <ListSubheader inset></ListSubheader>
+    <ListSubheader inset>Uploads</ListSubheader>
     <ListItem button>
-      </ListItem>
-    <ListItem button>
-   </ListItem>
-    <ListItem button>
+      <ListItemIcon>
+        {/* <AssignmentIcon /> */}
+      </ListItemIcon>
+      <Link to="/dashboard?upload-img">
+      <ListItemText primary="Upload Image" />
+      </Link>
     </ListItem>
+    {/* <ListItem button>
+      <ListItemIcon>
+      </ListItemIcon>
+      <ListItemText primary="Last quarter" />
+    </ListItem>
+    <ListItem button>
+      <ListItemIcon>
+            ]      </ListItemIcon>
+      <ListItemText primary="Year-end sale" />
+    </ListItem> */}
   </div>
 );

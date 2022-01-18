@@ -715,8 +715,11 @@ h6 {
   position: relative;
 }
 #specialists .item-img img,
-#doctor .item-img img {
-  width: 264px;
+#doctor .item-img {
+  background: no-repeat center center;
+  background-image: url(../img/images/defaultDoc2.png);
+  background-color: #c6dffe;
+  width: 275px;
   height: 264px;
   vertical-align: middle;
   object-fit: cover;
@@ -1239,10 +1242,15 @@ h4 {
   overflow: hidden;
   width: 180px;
   height: 180px;
+  background: no-repeat center center;
+  background-size: cover;
+  background-color: #c6dffe;
+  background-image: url(../img/images/defaultDoc1.png);
 }
 .profile-card-img img {
   height: 180px;
   max-width: 100%;
+  object-fit: cover;
 }
 .viewPhoto a {
   font-weight: 500;

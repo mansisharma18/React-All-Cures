@@ -709,7 +709,7 @@ These Terms and Conditions are governed by the internal substantive laws of the 
                     {
                         parseInt(userAccess) === 7 || parseInt(userAccess) === 9?
                         <FormControlLabel
-                            control={<Checkbox name="message" value="on" required/>}
+                            control={<Checkbox name="message" value="on"/>}
                             label="Send Update to Subscribers"
                             checked = {updateSubscribers}
                             onClick={handleMessage}                    

@@ -13,7 +13,7 @@ export default class Blogpage extends Component{
         super(props);
         const params = props.match.params
         this.state = { 
-          limit: 30,
+          limit: 40,
           offset: 0,
           dc: props.location.search.split('&')[1],
           noMoreArticles: false,
@@ -96,7 +96,6 @@ export default class Blogpage extends Component{
       handleScroll = () => {
         const bottom = Math.ceil(window.innerHeight + window.scrollY) >= document.documentElement.scrollHeight
         if (bottom) {
-          console.log('inside', bottom)
           this.setState({
             // limit: this.state.limit + 25,
             offset: this.state.offset + 30
