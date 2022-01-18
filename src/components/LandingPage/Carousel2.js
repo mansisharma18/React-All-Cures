@@ -55,7 +55,7 @@ export default class Carousel2 extends Component {
     }
 
    componentDidMount(lat,lon,city){
-      fetch(`${backendHost}/SearchActionController?cmd=getResults&city=jammu&doctors=&Latitude=${lat}&Longitude=${lon}`)
+      fetch(`${backendHost}/SearchActionController?cmd=getResults&city=jammu&doctors=manoj&Latitude=${lat}&Longitude=${lon}`)
         .then(res => res.json())
         .then(json => {
           this.setState({

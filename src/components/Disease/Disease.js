@@ -300,15 +300,6 @@ class Disease extends Component {
     .catch(err => null)
 }
 
-handleScroll = () => {
-  const { index, selected } = this.props
-  if (index === selected) {
-    setTimeout(() => {
-      this.childDiv.current.scrollIntoView({ behavior: 'smooth' })
-    }, 500)
-  }
-}
-
 diseasePosts(dcName) {                     // For specific blogs like "/blogs/diabetes"
   fetch(`${backendHost}/isearch/${dcName}`)
   .then((res) => res.json())

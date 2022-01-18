@@ -15,6 +15,10 @@ const DoctorsCard = ({rowno, firstName, lastName, primary_spl, hospital_affliate
       }).catch(err => null);
    }
 
+   const onError = (e) => {
+      e.target.parentElement.innerHTML = `<i class="fas fa-user-md fa-10x"></i>`
+   }
+   
    useEffect(() => {
       checkIfImageExits(`https://all-cures.com:444/cures_articleimages/doctors/${rowno}.png`)
    }, [])
@@ -22,19 +26,11 @@ const DoctorsCard = ({rowno, firstName, lastName, primary_spl, hospital_affliate
         <>
          <div className="item" key={rowno}>
     <div className="item-img">
-       {/* <img src={Special2} alt="special-img"/> */}
-       
-{/* 
-       {
-         imageExists? */}
-           <img className="sorting_asc" src={`https://all-cures.com:444/cures_articleimages/doctors/${rowno}.png`} alt="" />
-      {/* //      :  <i className="fas fa-user-md fa-10x"></i>
-      //  } */}
+    {/* <object data="avatar.jpg" type="image/jpg"> */}
+      <img src={`https://all-cures.com:444/cures_articleimages/doctors/${rowno}.png`} 
+      onError={(e) => onError(e)}/>
+      {/* </object> */}
     </div>
-    {/* <div className="rating">
-       <span className="icon-star-1"></span>
-       <p>4</p>
-    </div> */}
     <div className="sider-contain">
        <div className="slider-heading">
           <h2>Dr. {firstName} {lastName}</h2>
