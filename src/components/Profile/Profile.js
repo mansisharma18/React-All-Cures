@@ -341,12 +341,12 @@ class Profile extends Component {
                     <br />
                     <div className="abt-eduction ">
                       <div className="h4 font-weight-bold">Education</div>
-                      {items.edu_training.split('•').map((i, idx) => <li className={`list-${idx}`}>{i}</li>)}
+                      {items.edu_training}
                     </div>
-                    <div className="mt-5">
+                    {/* <div className="mt-5">
                       <div className="h4 font-weight-bold">Accomplishments</div>
                       {items.awards.split('•').map((i, idx) => <li className={`list-${idx}`}>{i}</li>)}
-                    </div>
+                    </div> */}
 
                     <br />
                     <div className="about-specialties">
@@ -366,14 +366,24 @@ class Profile extends Component {
                     <div className="abt-eduction ">
                       <div className="h4 font-weight-bold">Miscellaneous
                       </div>
-                      <div className="h6 font-weight-bold">Accepts Insurance:
+                      <div className="h5 font-weight-bold">City :            
+                        <span>{items.cityname}</span>
+                      </div>
+                      <div className="h5 font-weight-bold">State :          
+                         <span>{items.statename}</span>
+                      </div>
+                      <div className="h5 font-weight-bold">Country :          
+                         <span>{items.country_code}</span>
+                      </div>
+
+                      {/* <div className="h6 font-weight-bold">Accepts Insurance:
                         {
                           items.insurance_accept === true ?
                             <span> <i className="fa fa-check" style={{ color: 'green' }} aria-hidden="true"></i></span>
                             : <span> <i className="fas fa-times-circle " style={{ color: 'red' }}></i></span>
                         }
-                      </div>
-                      <div className="h6 font-weight-bold">Gender:
+                      </div> */}
+                      <div className="h5 font-weight-bold">Gender : 
                         {
                           items.gender === 2 ?
                             <span> Male </span>
@@ -389,16 +399,20 @@ class Profile extends Component {
                
                 
 
+                  
                   {
-                     <div className="profile-info-rating">
-                      <h3>Rate here</h3> 
-                      {
-                Cookies.get('acPerm')?
-                  <>              
-                     <p>Your Earlier Rated {this.state.rating } <span className="icon-star-1"></span></p>
-                  </>
-                : null
-              }
+
+Cookies.get('acPerm')?
+  <>    
+    {
+          this.state.rating.length === 0 ?
+            <span className='h4 mt-3'> You Have Not Rated Yet, Please Rate </span>
+            : <p className='h4 mt-3'>Your Earlier Rated {this.state.rating } <span className="icon-star-1"></span><br/>Rate Again,</p>
+            
+        }          
+  </>
+: <div className='h4 mt-3'>Rate here</div>
+}
                       <div id="docRate">
                         
                         <Rating docid={this.state.param.id} ratingVal={this.state.rating} />
@@ -406,8 +420,8 @@ class Profile extends Component {
                       </div>
 
 
-                    </div>
-                  }
+                
+                  
                   
                   <div className="comment-box">
 

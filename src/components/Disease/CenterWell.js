@@ -1,7 +1,7 @@
 import React from 'react';
 import parse from 'html-react-parser';
 
-const CenterWell = ({pageTitle, imageUrl, content, type, text, title, message, source, embed, caption, alignment, url, item, level, props}) =>{
+const CenterWell = ({pageTitle, imageUrl, content, type, text, title, message, source, embed, caption, alignment, ratingVal,url, item, level,  props}) =>{
 
     var list;
     var rows;
