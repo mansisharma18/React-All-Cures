@@ -68,6 +68,7 @@ class Disease extends Component {
       isLoaded: false,
       ratingValue: '',
       rating:[],
+      ratingVal:[],
       param : this.props.match.params,
       disease: '',
       regions: '',
@@ -621,17 +622,23 @@ diseasePosts(dcName) {                     // For specific blogs like "/blogs/di
 
           </div>
 
-          <div className='h4 mt-3'>Rate here</div> 
+           
           {
-                Cookies.get('acPerm')?
-                  <>              
-                     <p>Your Earlier Rated {this.state.rating } <span className="icon-star-1"></span></p>
-                  </>
-                : null
-              }
 
+                Cookies.get('acPerm')?
+                  <>    
+                    {
+                          this.state.rating.length === 0 ?
+                            <span className='h4 mt-3'> You Have Not Rated Yet, Please Rate </span>
+                            : <p className='h4 mt-3'>Your Earlier Rated {this.state.rating } <span className="icon-star-1"></span><br/>Rate Again,</p>
+                            
+                        }          
+                  </>
+                : <div className='h4 mt-3'>Rate here</div>
+              }
+                      
                       <span id="docRate">
-          <ArticleRating article_id={this.state.param.id} />
+          <ArticleRating article_id={this.state.items.article_id} />
           </span>
 
 
