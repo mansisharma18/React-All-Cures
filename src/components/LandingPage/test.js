@@ -16,6 +16,7 @@ const Test = (props) => {
 
     const [click, setClick] = useState(true)
     const [email, setEmail] = useState("");
+    const [rememberMe, setRememberMe] = useState("off");
     const [signInpassword, setPass] = useState("");
     const [buttonClick, setClicked] = useState("");
 
@@ -114,7 +115,7 @@ const Test = (props) => {
     setClicked(1);
     // Sett withCredentials on $axios before creating instance
     axios.defaults.withCredentials = true
-    axios.post(`${backendHost}/login?cmd=login&email=${email}&psw=${signInpassword}&rempwd=on`,
+    axios.post(`${backendHost}/login?cmd=login&email=${email}&psw=${signInpassword}&rempwd=${rememberMe}`,
     {headers: {'Access-Control-Allow-Credentials': true}
   })
     .then(response => {
@@ -308,9 +309,8 @@ const Test = (props) => {
         <Link className="text-dark" to="/loginForm/verify" id="forgetPass">Forgot your password?</Link>
         <FormGroup>
         <FormControlLabel
-          control={<Checkbox name="Terms" value="on"/>}
+          control={<Checkbox name="Terms" value={rememberMe} onClick={(e) => e.target.value === "off"? setRememberMe("on"): setRememberMe("off")} />}
           label="Remember Me"
-          
         />
       </FormGroup>
         <button className="ghost"id="btn1">Sign In</button>
