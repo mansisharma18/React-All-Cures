@@ -17,6 +17,7 @@ import '../../assets/healthcare/css/mobile.css'
 import { userId } from "../UserId";
 import { userAccess } from "../UserAccess";
 import AllPost from "../BlogPage/Allpost";
+import { Link } from "react-router-dom";
 
 class Profile extends Component {
   constructor(props) {
@@ -266,21 +267,22 @@ class Profile extends Component {
                               {items.prefix} {items.docname_first} {items.docname_middle}{" "}
                               {items.docname_last}{" "}
                             </div>
-                            <div className="h5 text-capitalize"> {items.primary_spl}</div>
+                            <div className="h5 text-capitalize"><i class="fas fa-award pr-1"></i>{items.primary_spl.toLowerCase()}</div>
                             <div className="h5 ">{items.experience}</div>
                             <div className="h5 text-capitalize">
-                              {items.hospital_affliated}{" "}
+                            <i class="fas fa-hospital pr-1"></i>
+                               {items.hospital_affliated}{" "}
                               {items.country_code}
                             </div>
                             {/* Show average rating */}
                             {
                               this.state.ratingValue ?
                                 <div className="average-rating mt-2 mb-4" id="doctor-avg-rating">
-                                  <span class="fa fa-star fa-2x opacity-7"></span>
-                                  <span class="fa fa-star fa-2x opacity-7"></span>
-                                  <span class="fa fa-star fa-2x opacity-7"></span>
-                                  <span class="fa fa-star fa-2x opacity-7"></span>
-                                  <span class="fa fa-star fa-2x opacity-7"></span>
+                                  <span class="fa fa-star opacity-7"></span>
+                                  <span class="fa fa-star opacity-7"></span>
+                                  <span class="fa fa-star opacity-7"></span>
+                                  <span class="fa fa-star opacity-7"></span>
+                                  <span class="fa fa-star opacity-7"></span>
                                 </div>
                                 : null
                             }
@@ -337,19 +339,22 @@ class Profile extends Component {
                     <div id="about-contain">
                       <p className="text one">
                         {" "}
-                        {items.about}{" "}
+                        {items.about.includes('•')? items.about.split('•').map((i, idx) => <li className={`list-${idx}`}>{i}</li>): items.about}{" "}
+                        {this.props.match.params.id == 874?<li>More about him can be read at <a href="https://planetayurveda.com/curriculum-vitae" target="_blank">Planet Ayurveda</a>.</li>: null}
+                      
+                        {this.props.match.params.id == 872?<><br/>More about him can be read at <a href="https://ayurvedguru.com" target="_blank">Ayurved Guru</a>.</>: null}
                       </p>
                     </div>
 
                     <br />
                     <div className="abt-eduction ">
                       <div className="h4 font-weight-bold">Education</div>
-                      {items.edu_training}
+                      {items.edu_training.split('•').map((i, idx) => <li className={`list-${idx}`}>{i}</li>)}
                     </div>
-                    {/* <div className="mt-5">
+                    <div className="mt-5">
                       <div className="h4 font-weight-bold">Accomplishments</div>
                       {items.awards.split('•').map((i, idx) => <li className={`list-${idx}`}>{i}</li>)}
-                    </div> */}
+                    </div>
 
                     <br />
                     <div className="about-specialties">
@@ -369,24 +374,24 @@ class Profile extends Component {
                     <div className="abt-eduction ">
                       <div className="h4 font-weight-bold">Miscellaneous
                       </div>
-                      <div className="h5 font-weight-bold">City :            
-                        <span>{items.cityname}</span>
+                      <div className="h6 font-weight-bold">City:            
+                        <span> {items.cityname}</span>
                       </div>
-                      <div className="h5 font-weight-bold">State :          
-                         <span>{items.statename}</span>
+                      <div className="h6 font-weight-bold">State:          
+                         <span> {items.statename}</span>
                       </div>
-                      <div className="h5 font-weight-bold">Country :          
-                         <span>{items.country_code}</span>
+                      <div className="h6 font-weight-bold">Country:          
+                         <span> {items.country_code}</span>
                       </div>
 
                       {/* <div className="h6 font-weight-bold">Accepts Insurance:
                         {
                           items.insurance_accept === true ?
                             <span> <i className="fa fa-check" style={{ color: 'green' }} aria-hidden="true"></i></span>
-                            : <span> <i className="fas fa-times-circle " style={{ color: 'red' }}></i></span>
+                           : <span> <i className="fas fa-times-circle " style={{ color: 'red' }}></i></span>
                         }
                       </div> */}
-                      <div className="h5 font-weight-bold">Gender : 
+                      <div className="h6 font-weight-bold">Gender: 
                         {
                           items.gender === 2 ?
                             <span> Male </span>
@@ -409,7 +414,7 @@ userAccess?
   <>    
     {
           this.state.rating.length === 0 ?
-            <span className='h4 mt-3'> You Have Not Rated Yet, Please Rate </span>
+            <span className='h4 mt-3'> You feedback is valubale to us, Please rate here... </span>
             : <p className='h4 mt-3'>Your Earlier Rated {this.state.rating } <span className="icon-star-1"></span><br/>Rate Again,</p>
             
         }          
