@@ -46,13 +46,8 @@ function Main(props) {
   const [auth, setAuth] = React.useState('not-logged-in');
   const [authLoaded, setAuthLoaded] = React.useState(false);
   const readCookie = () => {
-    // if(Cookies.get('acPerm')){
-    var user = Cookies.get("acPerm")
-    if(!user){
-      return
-    } else {
-      user = user.split('|')[1]
-    }
+
+    var user = userAccess
 
     if(user >= 4 && user<10){             // user access for reviewer to admin previleges
       setAuth('admin',() => setAuthLoaded(true))

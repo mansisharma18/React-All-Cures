@@ -68,16 +68,12 @@ class Home extends Component {
          param: params,
          cures:[],
          disease:[],
-   
-          acPerm: Cookies.get('acPerm'),
-          searchParams: {
+         searchParams: {
             city: '',
             Pincode: '',
             name: '',
-            subscription: '',
-           
-          
-        }
+            subscription: '',  
+         }
         
     };      
   }
@@ -339,8 +335,6 @@ class Home extends Component {
                   {/* Create Cures, Sign Up || Hi ${name} Button */}
 
                   <div className="loginSign mt-1"> 
-                     {/* {
-                        this.state.acPerm? */}
                            <Link className="btn mr-1 primary-btn-color
                             loginSignbtn color-blue-dark" to="/article">
                               <img src={CreateCures} className='filter-white' height="30px"/>
@@ -353,7 +347,14 @@ class Home extends Component {
                   
                   {/* Toggle Sign up & Hi there dropdown */}
 
-                  <ToggleButton userName={Cookies.get('uName')} setModalShow={this.setModalShow} acPerm={this.state.acPerm} match={this.props.match.url} logout={this.logout}/> 
+                  <ToggleButton 
+                     userName={Cookies.get('uName')} 
+                     setModalShow={this.setModalShow} 
+                     userAccess={userAccess} 
+                     match={this.props.match.url} 
+                     logout={this.logout}
+                  />
+
                </div>  
             </div>
 
@@ -651,7 +652,7 @@ class Home extends Component {
 }
 
 function ToggleButton(props) {
-   if(props.acPerm){
+   if(props.userAccess){
        return(
          <>
          <Dropdown>
@@ -665,7 +666,7 @@ function ToggleButton(props) {
                                Profile
                       </Link>
              </Dropdown.Item>
-             { props.acPerm.split('|')[1] >= 4?
+             { props.userAccess >= 4?
                <Dropdown.Item >
                <Link to="/dashboard" className="text-dark btn">
                   Dashboard</Link>

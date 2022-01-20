@@ -17,8 +17,6 @@ import '../../assets/healthcare/css/mobile.css'
 import { userId } from "../UserId";
 import { userAccess } from "../UserAccess";
 import AllPost from "../BlogPage/Allpost";
-import {UserId} from "../UserId"
-import Cookies from 'js-cookie'
 
 class Profile extends Component {
   constructor(props) {
@@ -407,7 +405,7 @@ class Profile extends Component {
                   
                   {
 
-Cookies.get('acPerm')?
+userAccess?
   <>    
     {
           this.state.rating.length === 0 ?

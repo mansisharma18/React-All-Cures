@@ -6,7 +6,7 @@ import axios from 'axios';
 import { Dropdown, Nav } from 'react-bootstrap';
 import Heart from"../../assets/img/heart.png";
 import { Link } from "react-router-dom";
-// import Autocomplete from '../Autocomplete'
+
 import Test from '../LandingPage/test'
 import { backendHost } from '../../api-config';
 import TextField from '@mui/material/TextField';
@@ -16,6 +16,7 @@ import Autocomplete from '@mui/material/Autocomplete';
 import Account from '../../assets/icon/icons-AllCures/account_circle_black_48dp.svg'
 import CreateCures from '../../assets/icon/icons-AllCures/edit_black_48dp.svg'
 import List from '../../assets/icon/icons-AllCures/list_black_48dp.svg'
+import { userAccess } from "../UserAccess";
 
    class Header extends Component {
        
@@ -38,12 +39,11 @@ import List from '../../assets/icon/icons-AllCures/list_black_48dp.svg'
                getCityName:null,
                docname : '',
                article: '',
-                acPerm: Cookies.get('acPerm'),
-                searchParams: {
+               searchParams: {
                   city: '',
                   Pincode: '',
                   name: '',
-              }
+               }
             };
         }
 
@@ -214,7 +214,7 @@ import List from '../../assets/icon/icons-AllCures/list_black_48dp.svg'
 
                            <div className="loginSign">
                            {
-                              this.state.acPerm?
+                              userAccess?
                               <Link className="btn mr-2 primary-btn-color loginSignbtn color-blue-dark" id="Article" to="/article">
                               <img src={CreateCures} className='filter-white' height="30px"/>
                             </Link>
@@ -225,7 +225,12 @@ import List from '../../assets/icon/icons-AllCures/list_black_48dp.svg'
                               <img src={CreateCures} className='filter-white' height="30px"/>
                             </button>
                            }   
-                            <ToggleButton userName={Cookies.get('uName')} setModalShow={this.setModalShow} acPerm={this.state.acPerm} logout={this.logout}/> 
+                           <ToggleButton 
+                              userName={Cookies.get('uName')} 
+                              setModalShow={this.setModalShow} 
+                              userAccess={userAccess} 
+                              logout={this.logout}
+                           /> 
                            </div>   	
                         </div>
                     </div>
@@ -320,7 +325,7 @@ import List from '../../assets/icon/icons-AllCures/list_black_48dp.svg'
    }
 }
 function ToggleButton(props) {
-   if(props.acPerm){
+   if(props.userAccess){
        return(
          <>
          <Dropdown>
@@ -334,7 +339,7 @@ function ToggleButton(props) {
                                Profile
                       </Link>
              </Dropdown.Item>
-             { props.acPerm.split('|')[1] >= 4?
+             { props.userAccess >= 4?
                <Dropdown.Item >
                <Link to="/dashboard" className="text-dark btn">
                   Dashboard</Link>

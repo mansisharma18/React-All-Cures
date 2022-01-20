@@ -29,8 +29,11 @@ const Side = props => {
         allPosts()
         if(props.regionalPosts){
         props.regionalPosts.forEach(i => {
-            if(i.type.includes(1)) setOverviewArticle(i.article_id)
-            // if(i.type === "3") setCureArticle(i.article_id)
+            var title = i.title
+            var regex = new RegExp(' ', 'g');
+            //replace via regex
+            title = title.replace(regex, '-');
+            if(i.type.includes(1)) setOverviewArticle(i.article_id+'-'+title)
         });
     }
         // eslint-disable-next-line

@@ -5,10 +5,11 @@ import Header from '../Header/Header';
 import Footer from '../Footer/Footer';
 import { backendHost } from '../../api-config';
 import { useHistory } from 'react-router-dom';
+import { userId } from '../UserId';
 
 
 export default function Userprofile(props) {
-    const [profileId, setProfile] = useState(Cookies.get('acPerm').split('|')[0])
+    const [profileId, setProfile] = useState(userId)
     const [firstName, setFirstName] = useState('')
     const [lastName, setLastName] = useState('')
     const [regType, setRegType] = useState('')

@@ -21,7 +21,14 @@ const AllPost = ({id, title, content, f_title, w_title, country, type, published
     } else {
         imageLoc = 'https://all-cures.com:444/cures_articleimages//299/default.png'
     }
-        return (
+
+    var articleTitle = title
+    var regex = new RegExp(' ', 'g');
+
+    //replace via regex
+    articleTitle = articleTitle.replace(regex, '-');
+ 
+    return (
             <>
             <div key={id.toString()} className="d-flex cures-search-tab w-100 card mb-5">
                 <div className='col-md-3 cures-tab-img rounded px-0'>
@@ -37,7 +44,7 @@ const AllPost = ({id, title, content, f_title, w_title, country, type, published
                             {/* <div className='col-md-3'></div> */}
                             <div className="d-flex justify-content-between align-items-center mt-3">
                                 <div>
-                                    <Link to={ `/cure/${title}` }  className="d-flex justify-content-between align-items-center">
+                                    <Link to={ `/cure/${id}-${articleTitle}` }  className="d-flex justify-content-between align-items-center">
                                         <div className="card-title h5 text-capitalize">{title.toLowerCase()}</div>
                                     </Link>
                                 </div>

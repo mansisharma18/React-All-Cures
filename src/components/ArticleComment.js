@@ -5,6 +5,8 @@ import axios from 'axios';
 import { backendHost } from '../api-config';
 import { Button, Modal } from "react-bootstrap";
 import ReactStars from "react-rating-stars-component";
+import { userId } from './UserId';
+import { userAccess } from './UserAccess';
  
 const Comment = ({refreshComments,article_id}, props) => {
     const [cmtText,setCmtText] = React.useState('')
@@ -35,7 +37,7 @@ const Comment = ({refreshComments,article_id}, props) => {
         e.preventDefault()
 
         if(cmtText !== '') {
-            axios.post(`${backendHost}/DoctorRatingActionController?comments=${cmtText}&ratedbyid=${Cookies.get("acPerm").split('|')[0]}&ratedbytype=${Cookies.get("acPerm").split('|')[1]}&targetid=${article_id}&targetTypeid=2&cmd=rateAsset`)
+            axios.post(`${backendHost}/DoctorRatingActionController?comments=${cmtText}&ratedbyid=${userId}&ratedbytype=${userAccess}&targetid=${article_id}&targetTypeid=2&cmd=rateAsset`)
             .then(res => {
               if(res.data === 1){
                 setafterSubmitLoad(false)
@@ -63,7 +65,7 @@ const Comment = ({refreshComments,article_id}, props) => {
     }
     const postRating = (rating) => {
         setafterSubmitLoad(true)
-        axios.post(`${backendHost}/DoctorRatingActionController?ratingVal=${rating}&ratedbyid=${Cookies.get("acPerm").split('|')[0]}&ratedbytype=${Cookies.get("acPerm").split('|')[1]}&targetid=${article_id}&targetTypeid=2&cmd=rateAsset`)
+        axios.post(`${backendHost}/DoctorRatingActionController?ratingVal=${rating}&ratedbyid=${userId}&ratedbytype=${userAccess}&targetid=${article_id}&targetTypeid=2&cmd=rateAsset`)
         .then(res => {
           if(res.data === 1){
           setafterSubmitLoad(false)

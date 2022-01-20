@@ -7,7 +7,6 @@ import Doct from "../../assets/img/doct.png";
 import axios from 'axios';
 import { backendHost } from '../../api-config';
 
-import { Dropdown, DropdownButton } from 'react-bootstrap';
 import '../../assets/healthcare/css/main.css';
 import '../../assets/healthcare/css/responsive.css';
 import '../../assets/healthcare/css/animate.css';
@@ -16,11 +15,7 @@ import './custom.css';
 import Carousel1 from './Caousel1';
 import Carousel2 from './Carousel2';
 
-import CarouselReview from './CarouselReview';
-// import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-// import ToggleButton from '../Header/Header'
-
-
+import { userAccess } from '../UserAccess';
 
 class Home extends Component {
    constructor(props){
@@ -34,7 +29,6 @@ class Home extends Component {
          getPincode:null,
          getCityName:null,
          docname : '',
-          acPerm: Cookies.get('acPerm'),
           searchParams: {
             city: '',
             Pincode: '',
@@ -157,7 +151,7 @@ onChangeHandlerdoctor = (e, text) => {
                               <div className="loginSign"> 
                               {/* <Link to="/profile">Go to Profile</Link> */}
                               
-                                 <ToggleButton acPerm={this.state.acPerm} match={this.props.match.url} logout={this.logout}/> 
+                                 <ToggleButton userAccess={userAccess} match={this.props.match.url} logout={this.logout}/> 
                                  {/* <button onClick={this.logout}></button> */}
                               </div>  
                            </div>   
@@ -396,7 +390,7 @@ onChangeHandlerdoctor = (e, text) => {
 }
 
 function ToggleButton(props) {
-   if(props.acPerm){
+   if(props.userAccess){
        return(
          <li className="dropdown">
          <a className="dropdown-toggle" data-toggle="dropdown" href="#">

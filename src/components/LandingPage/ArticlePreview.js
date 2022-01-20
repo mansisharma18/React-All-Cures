@@ -202,13 +202,19 @@ const ArticlePreview = (props) => {
                     } else {
                         imageLoc = 'https://all-cures.com:444/cures_articleimages//299/default.png'
                     }
+
+                    var title = i.title
+                    var regex = new RegExp(' ', 'g');
+
+                    //replace via regex
+                    title = title.replace(regex, '-');
                     return(
                     <div className="col-4">
                     <div className="card my-2 w-100">
                         <div className='card-img'><img src={imageLoc} /></div>
                         <div className="card-body">
                             <h6 className='pb-2 text-muted'>{i.authors_name} ▪️ {i.published_date}</h6>
-                            <h5 className="card-title text-capitalize"><Link to={`/cure/${i.title}`}>{i.title.toLowerCase()}</Link></h5>
+                            <h5 className="card-title text-capitalize"><Link to={`/cure/${i.article_id}-${title}`}>{i.title.toLowerCase()}</Link></h5>
                             <div className="card-info">
                                 {/* <h6 className="card-subtitle mb-2 text-muted text-capitalize">
                                     {i.window_title.toLowerCase()}

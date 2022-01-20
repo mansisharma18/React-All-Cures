@@ -167,6 +167,13 @@ const CarouselPreview = (props) => {
                     } else {
                         imageLoc = 'https://all-cures.com:444/cures_articleimages//299/default.png'
                     }
+
+                    var title = i.title
+                    var regex = new RegExp(' ', 'g');
+
+                    //replace via regex
+                    title = title.replace(regex, '-');
+
                     return(
                         <>
                             <OwlCarousel nav="true" items={1} margin={10} {...options} >
@@ -174,7 +181,7 @@ const CarouselPreview = (props) => {
                         <div className="col-md-12 my-3">
                         <div className="card d-flex justify-content-between">
                             <div className="p-2 py-3 text-dark col-md-7 text-center">
-                            <Link to={`/cure/${i.title}`}>
+                            <Link to={`/cure/${i.article_id}-${title}`}>
                                 <div className='text-capitalize h5'>{i.title.toLowerCase()}</div>
                             </Link>
 

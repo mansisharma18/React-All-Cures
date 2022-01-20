@@ -1,4 +1,6 @@
 import Cookies from 'js-cookie'
 
 const acPerm = Cookies.get("acPerm")
-export const userAccess = acPerm? acPerm.split('|')[1]: null
+const acSession = Cookies.get("acSession")
+
+export const userAccess = acPerm? acPerm.split('|')[1]: acSession? acSession.split('|')[2]: null

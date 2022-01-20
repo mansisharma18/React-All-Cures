@@ -3,6 +3,12 @@ import CenterWell from './CenterWell';
 import {Link } from 'react-router-dom'
 
 export const PreviewTab = ({id, title, windowTitle, content, imageLoc}) => {
+    var articleTitle = title
+    var regex = new RegExp(' ', 'g');
+
+    //replace via regex
+    articleTitle = articleTitle.replace(regex, '-');
+
         return(
                
                 <div className="col-4">
@@ -10,7 +16,7 @@ export const PreviewTab = ({id, title, windowTitle, content, imageLoc}) => {
                     {/* <Link to={`/cure/${id}`}> */}
                         <div className='card-img'><img src={imageLoc} /></div>
                         <div className="card-body p-0">
-                            <div className=" text-capitalize mb-0 pt-1"><Link to={`/cure/${title}`} className='fs-08'>{title}</Link></div>
+                            <div className=" text-capitalize mb-0 pt-1"><Link to={`/cure/${id}-${articleTitle}`} className='fs-08'>{title}</Link></div>
                             <div className="card-info">
                                 {/* <h6 className="card-subtitle mb-2 text-muted text-capitalize">
                                     {windowTitle}

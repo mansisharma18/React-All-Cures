@@ -7,6 +7,7 @@ import {Container} from "react-bootstrap";
 import { backendHost } from '../../api-config';
 import ListArticle from './ListArticle'
 import Cookies from 'js-cookie';
+import { userId } from '../UserId';
 
 export default class Blogpage extends Component{
 
@@ -29,7 +30,7 @@ export default class Blogpage extends Component{
           .then((json) => {
             var temp = []
             json.forEach(i => {
-              if(parseInt(Cookies.get('acPerm').split('|')[0]) === parseInt(i.published_by)){
+              if(parseInt(userId) === parseInt(i.published_by)){
                 temp.push(i)
               }
             });
@@ -93,7 +94,7 @@ export default class Blogpage extends Component{
                     <div className="row" id="posts-container">
                       
                     {items.map((i) => (
-                      parseInt(Cookies.get('acPerm').split('|')[0]) === parseInt(i.published_by)?
+                      parseInt(userId) === parseInt(i.published_by)?
                                 // Selects articles with publish status = 3 (Published)
                       <ListArticle
                         id = {i.article_id}

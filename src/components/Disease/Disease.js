@@ -31,6 +31,7 @@ import "owl.carousel/dist/assets/owl.theme.default.css";
 import { PreviewTab } from './PreviewTab';
 import Heart from"../../assets/img/heart.png";
 import {userId} from "../UserId"
+import { userAccess } from '../UserAccess';
 
 const options = {
   responsiveClass: true,
@@ -87,8 +88,9 @@ class Disease extends Component {
   }
 
   fetchBlog = () => {
-    if(/^[0-9]+$/.test (this.props.match.params.id)){           // Test if URL contains article_id or TITLE
-      fetch(`${backendHost}/article/${this.props.match.params.id}`)       // if URL contains article_id
+    var id = this.props.match.params.id.split('-')[0]
+    if(/^[0-9]+$/.test (id)){           // Test if URL contains article_id or TITLE
+      fetch(`${backendHost}/article/${id}`)       // if URL contains article_id
       .then((res) => res.json())
       .then((json) => {
         this.setState({
@@ -107,7 +109,7 @@ class Disease extends Component {
       });
     } else {                                                    // if URL contains title
 
-      fetch(`${backendHost}/article/title/${this.props.match.params.id}`)
+      fetch(`${backendHost}/article/title/${id}`)
       .then((res) => res.json())
       .then((json) => {
         this.setState({
@@ -625,7 +627,7 @@ diseasePosts(dcName) {                     // For specific blogs like "/blogs/di
            
           {
 
-                Cookies.get('acPerm')?
+                userAccess?
                   <>    
                     {
                           this.state.rating.length === 0 ?
@@ -646,7 +648,7 @@ diseasePosts(dcName) {                     // For specific blogs like "/blogs/di
 
                {/* Review Button (Rating + Comment) */}
                {
-                Cookies.get('acPerm')?
+                userAccess?
                   <>              
                     <ArticleComment refreshComments={this.comments} article_id={this.props.match.params.id}/>
                   </>
