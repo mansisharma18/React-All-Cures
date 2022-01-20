@@ -130,6 +130,8 @@ class Profile extends Component {
       // .then(res => JSON.parse(res))
       .then((res) => res.json())
       .then((json) => {
+        document.title = `All Cures | ${json.docname_first} ${json.docname_last}`
+
         this.setState({
           isLoaded: true,
           items: json,
@@ -160,7 +162,6 @@ class Profile extends Component {
 
   componentDidMount() {
     window.scrollTo(0, 0);
-    document.title = "All Cures | Profile"
     this.fetchDoctorData(this.state.param.id)
     this.getComments(this.state.param.id)
     this.getRating(this.props.match.params.id)
