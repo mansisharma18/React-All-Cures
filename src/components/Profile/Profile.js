@@ -341,9 +341,9 @@ class Profile extends Component {
                       <p className="text one">
                         {" "}
                         {items.about.includes('•')? items.about.split('•').map((i, idx) => <li className={`list-${idx}`}>{i}</li>): items.about}{" "}
-                        {this.props.match.params.id == 874?<li>More about him can be read at <a href="https://planetayurveda.com/curriculum-vitae" target="_blank">Planet Ayurveda</a>.</li>: null}
+                        {this.props.match.params.id == 874?<li>More about him at <a href="https://planetayurveda.com" target="_blank">www.planetayurveda.com</a>.</li>: null}
                       
-                        {this.props.match.params.id == 872?<><br/>More about him can be read at <a href="https://ayurvedguru.com" target="_blank">Ayurved Guru</a>.</>: null}
+                        {this.props.match.params.id == 872?<><br/>More about him at <a href="https://ayurvedguru.com" target="_blank">www.ayurvedguru.com</a>.</>: null}
                       </p>
                     </div>
 
