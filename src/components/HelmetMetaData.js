@@ -1,6 +1,7 @@
 import React from "react";
-import { Helmet } from "react-helmet";
+// import { Helmet } from "react-helmet";
 import { useLocation } from "react-router-dom";
+import {Helmet, HelmetProvider } from "react-helmet-async";
 
 export default function HelmetMetaData(props) {   
    let location = useLocation();
@@ -10,7 +11,10 @@ export default function HelmetMetaData(props) {
    let image = props.image !== undefined ? props.image : "https://all-cures.com/static/media/Banner1-Full.2bbf7fa6.jpg";
    let description = props.description !== undefined ? props.description  : "Now a centralized, user powered platform for bringing information on Alternate Systems of medicine from across the world. Covering Ayurveda, Unani, Persian & other systems of medicine, it focuses on your health and well being";
    let hashtag = props.hashtag !== undefined ? props.hashtag : "#allcures";
-   return ( <Helmet>
+   
+   return ( 
+    <HelmetProvider>
+   <Helmet prioritizeSeoTags>
      <title>{title}</title>
      <meta charset="utf-8" />
      <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -37,5 +41,6 @@ export default function HelmetMetaData(props) {
      <meta property="og:site_name" content="AllCures" />
      <meta property="og:description" content={description} />    
     </Helmet>
+    </HelmetProvider>
     );
 }
