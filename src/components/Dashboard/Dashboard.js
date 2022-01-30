@@ -24,6 +24,8 @@ import UpdatePromo from './Promo/UpdatePromo';
 import Title from './Title';
 import BlogAllPost from './BlogAllPost'
 import EditModal from '../BlogPage/EditModal'
+import RegisterUser from './RegisterUser'
+
 import { backendHost } from '../../api-config';
 import axios from 'axios';
 import { ImageUpload } from './ImageUpload';
@@ -288,6 +290,7 @@ function RenderComponent(props){
   if(props.search === '?blogs'){
     return(<BlogAllPost/>);
   }
+ 
   if(props.search === '?create_promo'){
     return(<Promo/>);
   } else if(props.search === '?stats'){
@@ -334,6 +337,7 @@ function RenderComponent(props){
       <GetPromo/>
     )
     
+
   } else if(props.search.split('=')[0] === '?edit'){
     return(
       <UpdatePromo search={props.search}/>
@@ -344,7 +348,10 @@ function RenderComponent(props){
     return(
       <EditModal search={props.search}/>
     )
-  
+  } else if(props.search.split('=')[0] === '?user'){
+    return(
+      <RegisterUser search={props.search}/>
+    )
   // 
   } else if(props.search.split('=')[0] === '?upload-img'){
     return(
@@ -371,20 +378,11 @@ function RenderComponent(props){
         </React.Fragment>
        </Paper>
      </Grid>
+    
      <Grid item xs={12} md={4} lg={3}>
        <Paper className={props.fixedHeightPaper}>
         <React.Fragment>
-          <Title>Approval Cures</Title>   
-          <div onClick={() => props.handleCountClick("Approval",props.ajaxItems["approval_article"])}>{props.ajaxItems["approval_article"].length}</div>
-          <Typography color="textSecondary">
-          </Typography>
-        </React.Fragment>
-       </Paper>
-     </Grid>
-     <Grid item xs={12} md={4} lg={3}>
-       <Paper className={props.fixedHeightPaper}>
-        <React.Fragment>
-          <Title>Review Cures</Title>   
+          <Title>For Review</Title>   
           <div onClick={() => props.handleCountClick("Review",props.ajaxItems["review_article"])}>{props.ajaxItems["review_article"].length}</div>
           <Typography color="textSecondary">
           </Typography>
@@ -394,7 +392,7 @@ function RenderComponent(props){
      <Grid item xs={12} md={4} lg={3}>
        <Paper className={props.fixedHeightPaper}>
         <React.Fragment>
-          <Title>Publish Cures</Title>   
+          <Title>Published Cures</Title>   
           <div onClick={() => props.handleCountClick("Publish",props.ajaxItems["published_article"])}>{props.ajaxItems["published_article"].length}</div>  
           <Typography color="textSecondary">
           </Typography>
