@@ -57,6 +57,27 @@ export const mainListItems = (
            </Link>
     
     </ListItem>
+
+    <ListItem button>
+      <ListItemIcon>
+        <BarChartIcon />
+      </ListItemIcon>
+      {/* <ListItemText primary="Reports" /> */}
+      <Link to="/dashboard?user">
+      <ListItemText primary="Register User" />
+      </Link>
+    </ListItem>
+    <ListItem button>
+      <ListItemIcon>
+        <BarChartIcon />
+      </ListItemIcon>
+      {/* <ListItemText primary="Reports" /> */}
+      <Link to="/dashboard?subscribedusers">
+      <ListItemText primary="Subscribed User" />
+      </Link>
+    </ListItem>
+  
+
     <ListItem button>
       <ListItemIcon>
         <BarChartIcon />
