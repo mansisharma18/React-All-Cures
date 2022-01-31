@@ -3,7 +3,7 @@ import axios from 'axios';
 import { backendHost } from '../../api-config';
 
 
-class RegisterUser extends React.Component {
+class SubscribedUser extends React.Component {
   
 	// Constructor
 	constructor(props) {
@@ -19,7 +19,7 @@ class RegisterUser extends React.Component {
 	// ComponentDidMount is used to
 	// execute the code
 	componentDidMount() {
-       axios.get(`${backendHost}/article/all/table/registration`)
+       axios.get(`${backendHost}/article/all/table/newsletter`)
         // .then(res => res.json())
        .then(res => {
 
@@ -36,15 +36,18 @@ class RegisterUser extends React.Component {
 		if (!DataisLoaded) return( <div><h1> wait.... </h1> </div> );
 		else return (
 		<div class="Regist123">
-		<h1> Registered users </h1> 
+		<h1> Subscribed users </h1> 
         <table class="table">
             <thead>
         <tr>
                                     <th scope="col " style={{width:"230px"}}>Id</th>
-                                    <th style={{width:"230px"}}>First Name</th>
-                                    <th style={{width:"230px"}}>Last Name</th>
-                                    <th style={{width:"230px"}}>Email id</th>
-                                    <th style={{width:"230px"}}>Registration Type</th>
+                                    <th style={{width:"230px"}}>Subscription Disease_id</th>
+                                    <th style={{width:"230px"}}>Start Date</th>
+                                    <th style={{width:"230px"}}>Sub Type</th>
+                                   
+                                    <th style={{width:"230px"}}>Phone No.</th>
+                                    <th style={{width:"230px"}}>Subscription Cure_id</th>
+                                    <th style={{width:"230px"}}>Active</th>
                                 </tr>
                                 </thead></table>{
 				items.map((item) => (
@@ -57,7 +60,9 @@ class RegisterUser extends React.Component {
                                     <td style={{width:"230px"}}>{item[1]}</td>
                                     <td style={{width:"230px"}}>{item[2]}</td>
                                     <td style={{width:"230px"}}>{item[3]}</td>
+                                    <td style={{width:"230px"}}>{item[4]}</td>
                                     <td style={{width:"230px"}}>{item[5]}</td>
+                                    <td style={{width:"230px"}}>{item[6]}</td>
                                 </tr>
                                 
                             </tbody>
@@ -75,4 +80,4 @@ class RegisterUser extends React.Component {
 	}
 }
 
-export default RegisterUser;
+export default SubscribedUser;

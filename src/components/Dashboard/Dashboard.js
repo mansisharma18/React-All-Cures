@@ -25,6 +25,7 @@ import Title from './Title';
 import BlogAllPost from './BlogAllPost'
 import EditModal from '../BlogPage/EditModal'
 import RegisterUser from './RegisterUser'
+import SubscribedUser from './SubscribedUser'
 
 import { backendHost } from '../../api-config';
 import axios from 'axios';
@@ -353,7 +354,16 @@ function RenderComponent(props){
       <RegisterUser search={props.search}/>
     )
   // 
-  } else if(props.search.split('=')[0] === '?upload-img'){
+  } else if(props.search.split('=')[0] === '?subscribedusers'){
+    return(
+      <SubscribedUser search={props.search}/>
+    )
+  // 
+  } 
+  
+  
+  
+  else if(props.search.split('=')[0] === '?upload-img'){
     return(
       <ImageUpload search = {props.search}/>
     )
