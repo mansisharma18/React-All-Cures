@@ -415,18 +415,16 @@ userAccess?
   <>    
     {
           this.state.rating.length === 0 ?
-            <span className='h4 mt-3'> You feedback is valubale to us, Please rate here... </span>
-            : <p className='h4 mt-3'>Your Earlier Rated {this.state.rating } <span className="icon-star-1"></span><br/>Rate Again,</p>
+            <span className='h5 mt-3'> You feedback is valuable to us, Please rate here... </span>
+            : <p className='h5 mt-3'>Your Earlier Rated {this.state.rating } <span className="icon-star-1"></span><br/>Rate Again,</p>
             
         }          
   </>
-: <div className='h4 mt-3'>Rate here</div>
+: <div className='h5 mt-3'>Rate here</div>
 }
-                      <div id="docRate">
-                        
-                        <Rating docid={this.state.param.id} ratingVal={this.state.rating} />
-                     
-                      </div>
+        <div id="docRate">
+          <Rating docid={this.state.param.id} ratingVal={this.state.rating} />
+        </div>
 
 
                 
