@@ -19,8 +19,6 @@ import ArticleRating from '../ArticleRating';
 
 import HelmetMetaData from '../HelmetMetaData';
 import {FacebookShareButton, FacebookIcon, TwitterIcon, TwitterShareButton, WhatsappIcon, WhatsappShareButton} from "react-share";
-import Cookies from 'js-cookie'
-import ArticlePreview from '../LandingPage/ArticlePreview';
 import AyurvedaAd from '../../assets/healthcare/img/images/Banner-ads/97x90 Plain.jpg'
 import PersianAd from '../../assets/healthcare/img/images/Banner-ads/Persian.jpg'
 import CarouselPreview from './CarouselPreview';
@@ -460,7 +458,7 @@ diseasePosts(dcName) {                     // For specific blogs like "/blogs/di
                 </WhatsappShareButton>
               </div>
               
-              <div className="share-buttons-region ml-5" id="filter">
+              <div className="share-buttons-region ml-2" id="filter">
               
               <div className="d-flex justify-content-end margin-auto" id="article-acc-to-regions">
                 
@@ -631,7 +629,7 @@ diseasePosts(dcName) {                     // For specific blogs like "/blogs/di
                   <>    
                     {
                           this.state.rating.length === 0 ?
-                            <span className='h4 mt-3'> You Have Not Rated Yet, Please Rate </span>
+                            <span className='h6 mt-3'> You Have Not Rated Yet, Please Rate </span>
                             : <p className='h4 mt-3'>Your Earlier Rated {this.state.rating } <span className="icon-star-1"></span><br/>Rate Again,</p>
                             
                         }          

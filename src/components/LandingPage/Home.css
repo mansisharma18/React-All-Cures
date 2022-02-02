@@ -119,3 +119,15 @@
 .trending-section .comman-heading {
   width: 11rem;
 }
+
+.featured-articles .owl-prev {
+  position: absolute;
+  left: 0;
+  background: #00415e !important;
+  top: 8rem;
+}
+
+.featured-articles .owl-prev span {
+  padding: 0.55rem;
+  color: white;
+}
