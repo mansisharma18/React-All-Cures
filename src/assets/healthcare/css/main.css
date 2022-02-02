@@ -2378,6 +2378,17 @@ div.main-hero:first-child .card {
     border-radius: 2px;
   }
 }
+#table{
+  margin-top: 13px;
+  
+ 
+}
+
+#td {
+  position: sticky;
+  top: 0
+}
+
 .btn:focus {
   box-shadow: none;
 }
