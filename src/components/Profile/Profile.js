@@ -344,6 +344,7 @@ class Profile extends Component {
                         {this.props.match.params.id == 874?<li>More about him at <a href="https://planetayurveda.com" target="_blank">www.planetayurveda.com</a>.</li>: null}
                       
                         {this.props.match.params.id == 872?<><br/>More about him at <a href="https://ayurvedguru.com" target="_blank">www.ayurvedguru.com</a>.</>: null}
+                        {this.props.match.params.id == 878?<><br/>More about him at <a href="http://www.ayushmanbhavayurveda.com/" target="_blank">www.ayushmanbhavayurveda.com</a>.</>: null}
                       </p>
                     </div>
 
