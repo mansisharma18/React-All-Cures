@@ -28,7 +28,6 @@ import RegisterUser from './RegisterUser'
 import SubscribedUser from './SubscribedUser'
 
 import { backendHost } from '../../api-config';
-import axios from 'axios';
 import { ImageUpload } from './ImageUpload';
 
 

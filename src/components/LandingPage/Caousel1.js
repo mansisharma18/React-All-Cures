@@ -5,7 +5,7 @@ import "owl.carousel/dist/assets/owl.theme.default.css";
 import Arthritis from "../../assets/img/arthritis.png";
 import Slider2 from "../../assets/img/slider-2.png";
 import BloodPressure from "../../assets/img/bloodpressure.png";
-import Slider4 from "../../assets/img/slider-4.png";
+// import Slider4 from "../../assets/img/slider-4.png";
 import Thyroid from "../../assets/img/thyroid.png";
 import Psoriasis from "../../assets/img/psoriasis.png";
 import Slider7 from "../../assets/img/insomnia.png";

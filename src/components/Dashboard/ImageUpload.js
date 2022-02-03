@@ -1,11 +1,11 @@
-import React, { Component, useState } from 'react';
-import { Alert, Form } from 'react-bootstrap';
+import React, { useState } from 'react';
+import { Form } from 'react-bootstrap';
 import { backendHost } from '../../api-config';
 
 export const ImageUpload = () => {
     const [imageType, setImageType] = useState('')
     const [id, setId] = useState('')
-    const [image, setImage] = useState(null)   
+    // const [image, setImage] = useState(null)   
 
     // function uploadImage(){
     //     console.log(imageType, id)

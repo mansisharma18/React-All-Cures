@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import CenterWell from '../Disease/CenterWell';
+import Date from '../Date'
 
 const AllPost = ({id, title, content, f_title, w_title, country, type, published_date, over_allrating, imgLocation, authorName}) => {
     function IsJsonValid(str) {
@@ -32,7 +33,7 @@ const AllPost = ({id, title, content, f_title, w_title, country, type, published
             <>
             <div key={id.toString()} className="d-flex cures-search-tab w-100 card mb-5">
                 <div className='col-md-3 cures-tab-img rounded px-0'>
-                        <img src={`${imageLoc}`} />
+                        <img src={`${imageLoc}`} alt={articleTitle}/>
                                 {/* {
                                     over_allrating !== 0?
                                     <div className='checked'id="starMob"><span class="fa fa-star checked mr-1"></span>{Math.round(over_allrating * 10) / 10}</div>
@@ -63,6 +64,7 @@ const AllPost = ({id, title, content, f_title, w_title, country, type, published
                                     previewContent && previewContent !== undefined?
                                     previewContent.map((j, idx) => idx<1 && (
                                         <CenterWell
+                                            key={idx}
                                             content = {j.data.content}
                                             type = {j.type}
                                             text = {j.data.text.substr(0, 250)+'...'}
@@ -79,7 +81,7 @@ const AllPost = ({id, title, content, f_title, w_title, country, type, published
                                     : null
                                 }
                         </div>
-                        <div className="text-left mt-2 text-muted" id="publish-date">{authorName} ▪️ {published_date}</div>
+                        <div className="text-left mt-2 text-muted" id="publish-date">{authorName} ▪️ {<Date dateString={published_date} />}</div>
                         </div>
                         <div className='cures-tab-chips'>
                                 {
@@ -104,10 +106,18 @@ const AllPost = ({id, title, content, f_title, w_title, country, type, published
                             {   
                                 country !== 0?
                                     country === 9?
-                                        <div className ="chip country ml-2">India</div>
+                                        <div className ="chip country ml-2 color-white">India</div>
                                         : country === 10?
-                                            <div className="chip country ml-2">Iran</div>
-                                            :null
+                                            <div className="chip country ml-2 color-white">Iran</div>
+                                            :   country === 11?
+                                            <div className="chip country ml-2 color-white">China</div>
+                                            :   country === 12?
+                                            <div className="chip country ml-2 color-white">Japan</div>
+                                            : country === 14?
+                                            <div className="chip country ml-2 color-white">Netherland</div>
+                                            :   country === 13?
+                                            <div className="chip country ml-2 color-white">Greece</div>
+                                            : null
                                         : null
                             }
                             </div>

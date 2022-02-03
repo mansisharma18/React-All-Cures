@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom'
 // import Special1 from '../../assets/img/special-1.jpg'
 
-const ProfileTab = ({ setModalShow, docid, rowno, name, pSpl, hospital, state, country, acPerm, url, reload,ratingVal}) => {
+const ProfileTab = ({ setModalShow, docid, firstName, lastName, rowno, name, pSpl, hospital, state, country, acPerm, url, reload,ratingVal}) => {
   const [imageExists, setImageExists] = useState(false)
   const checkIfImageExits = (imageUrl) => {
     fetch(imageUrl, { method: 'HEAD' })
@@ -49,7 +49,7 @@ const ProfileTab = ({ setModalShow, docid, rowno, name, pSpl, hospital, state, c
                     <p></p>
                   </div>
                   <div className="btn-group"> 
-                  <Link to={ `/profile/${rowno}` } className="btn-bg profile-btn color-white" id="profile">
+                  <Link to={ `/profile/${rowno}-${firstName}-${lastName}` } className="btn-bg profile-btn color-white" id="profile">
                          Visit Profile
                         </Link>
                     {/* {

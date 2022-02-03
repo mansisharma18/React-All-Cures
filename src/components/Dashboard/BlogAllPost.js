@@ -13,7 +13,6 @@ function App() {
 
   const [article, setArticle] = useState({});
   const [page, setPage] = useState(1);
-  const [offset, setOffset] = useState(1);
   const [article_id,setArticle_Id] = useState()
   const [title, setTitle] = useState('')
   
@@ -42,13 +41,13 @@ function App() {
         name: <h5>STATUS</h5>,
        
         selector: row=> 
-           row.pubstatus_id == 1?
+           parseInt(row.pubstatus_id) === 1?
                 <h6 className="chip overview mr-2 col">Work In Progress</h6>
                 
-            : row.pubstatus_id == 2?
+            : parseInt(row.pubstatus_id) === 2?
                 <h6 className="chip symptoms mr-2 col">Reviewed
                  </h6>
-            : row.pubstatus_id == 3? 
+            : parseInt(row.pubstatus_id) === 3? 
                 <h6 className="chip cure mr-2 col">Published </h6>
             : null,
             sortable: true,

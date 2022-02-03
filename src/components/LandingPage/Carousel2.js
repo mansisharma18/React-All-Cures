@@ -66,17 +66,6 @@ export default class Carousel2 extends Component {
         .catch(err => null )
     }
 
-    // checkIfImageExits = (imageUrl) => {
-    //   fetch(imageUrl, { method: 'HEAD' })
-    //   .then(res => {
-    //       if (res.ok) {
-    //           this.setState({ imageExists: true })
-    //       } else {
-    //         this.setState({ imageExists: false })
-    //       }
-    //   }).catch(err => null);
-    // }  
-    
     render() {
       var { isLoaded,items } = this.state;
       if(!isLoaded) {
@@ -90,7 +79,8 @@ export default class Carousel2 extends Component {
         return(
          <OwlCarousel {...options} nav="true" id="specialists" items={4} margin={10}>
          {items.map((i) => (
-          <DoctorsCard 
+          <DoctorsCard
+            key = {i.map.rowno.toString()}
             rowno = {i.map.rowno}
             firstName= {i.map.docname_first}
             lastName= {i.map.docname_last}

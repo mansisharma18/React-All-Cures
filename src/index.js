@@ -10,15 +10,9 @@ import { hydrate, render } from "react-dom";
  
 const rootElement = document.getElementById("root");
 if (rootElement.hasChildNodes()) {
-  hydrate(
-      <React.StrictMode>
-        <App />
-      </React.StrictMode>, rootElement);
+  hydrate(<App />, rootElement);
 } else {
-  render(
-      <React.StrictMode>
-        <App />
-      </React.StrictMode>, rootElement);
+  render(<App />, rootElement);
 }
 
 // ReactDOM.render(

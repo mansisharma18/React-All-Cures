@@ -1,6 +1,5 @@
 import React from "react";
-import Cookies from 'js-cookie';
-import { HashRouter, Switch, Route, Redirect, useHistory, BrowserRouter } from "react-router-dom";
+import { Switch, Route, Redirect, useHistory, BrowserRouter } from "react-router-dom";
 // import Heart from"../assets/img/heart.png";
 
 import Heart from "../assets/img/heart.png"
@@ -50,11 +49,11 @@ function Main(props) {
     var user = userAccess
 
     if(user >= 4 && user<10){             // user access for reviewer to admin previleges
-      setAuth('admin',() => setAuthLoaded(true))
+      setAuth('admin')
     } else if(user >= 1 && user < 4){     // user access for normal users
-      setAuth('normal-user',() => { setAuthLoaded(true) })
+      setAuth('normal-user')
     } else if(!user){                              // user access for not logged in users
-      setAuth('not-logged-in',() => setAuthLoaded(true))
+      setAuth('not-logged-in')
     }
   }
   const url = props.url;

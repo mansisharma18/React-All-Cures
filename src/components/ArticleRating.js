@@ -1,10 +1,8 @@
 import axios from "axios";
 import React, { useState } from 'react';
-// import "./styles.css";
 import ReactStars from "react-rating-stars-component";
 import { Alert } from 'react-bootstrap';
 import { backendHost } from '../api-config';
-import Cookies from 'js-cookie';
 import { userId } from './UserId';
 
 
@@ -12,7 +10,7 @@ export default function ArticleRating(props) {
 
   const [ratingValue, setRatingValue] = React.useState([])
   const [submitAlert, setAlert] = useState(false)
-  const [rateId,setRateId] = useState(userId?userId:0)
+  const rateId = userId?userId:0
   const postRating = (rating, article_id) => {
 
     axios.post(`${backendHost}/DoctorRatingActionController?ratingVal=${rating}&ratedbyid=${rateId}&ratedbytype=0&targetid=${props.article_id}&targetTypeid=2&cmd=rateAsset`)

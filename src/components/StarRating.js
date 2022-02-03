@@ -4,7 +4,6 @@ import React, { useState } from 'react';
 import ReactStars from "react-rating-stars-component";
 import { Alert } from 'react-bootstrap';
 import { backendHost } from '../api-config';
-import Cookies from 'js-cookie';
 import { userId } from './UserId';
 
 

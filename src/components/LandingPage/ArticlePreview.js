@@ -3,6 +3,7 @@ import { backendHost } from '../../api-config';
 import { Link } from 'react-router-dom'
 import CenterWell from '../Disease/CenterWell'
 import Heart from"../../assets/img/heart.png";
+import Date from '../Date'
 
 const ArticlePreview = (props) => {
     const [items, setItems] = useState([])
@@ -91,13 +92,13 @@ const ArticlePreview = (props) => {
         <>
         <div className="container">
             <div className="row">
-            <div class="tab-nav">
+            <div className="tab-nav">
                 {
                    props.type === "cures"?
                    null:
                    <>
-               <div class="comman-heading">
-                  <div class="h4 mt-4 text-capitalize">
+               <div className="comman-heading">
+                  <div className="h4 mt-4 text-capitalize">
                      {articleFilter} Cures
                   </div>
                </div>
@@ -209,21 +210,23 @@ const ArticlePreview = (props) => {
                     //replace via regex
                     title = title.replace(regex, '-');
                     return(
-                    <div className="col-4">
+                    <div className="col-4" key={i.article_id.toString()}>
                     <div className="card my-2 w-100">
                         <div className='card-img'><img src={imageLoc} /></div>
                         <div className="card-body">
-                            <h6 className='pb-2 text-muted'>{i.authors_name} ▪️ {i.published_date}</h6>
+            
+                            <h6 className='pb-2 text-muted'>{i.authors_name} ▪️ {<Date dateString={i.published_date} />}</h6>
                             <h5 className="card-title text-capitalize"><Link to={`/cure/${i.article_id}-${title}`}>{i.title.toLowerCase()}</Link></h5>
                             <div className="card-info">
                                 {/* <h6 className="card-subtitle mb-2 text-muted text-capitalize">
                                     {i.window_title.toLowerCase()}
                                 </h6> */}
-                                <p className="card-text card-article-content-preview">
+                                <div className="card-text card-article-content-preview">
                                     {
                                         content?
                                             content.map((j, idx) => idx<1 && (
                                                 <CenterWell
+                                                    key = {idx}
                                                     content = {j.data.content}
                                                     type = {j.type}
                                                     text = {j.data.text.substr(0, 250) + '....'}
@@ -239,7 +242,7 @@ const ArticlePreview = (props) => {
                                             ))
                                             : null
                                     }
-                                </p>
+                                </div>
                             </div>
                         </div>
                     </div>

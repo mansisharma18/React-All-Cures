@@ -1,5 +1,4 @@
 import React from 'react';
-import CenterWell from './CenterWell';
 import {Link } from 'react-router-dom'
 
 export const PreviewTab = ({id, title, windowTitle, content, imageLoc}) => {
@@ -14,7 +13,7 @@ export const PreviewTab = ({id, title, windowTitle, content, imageLoc}) => {
                 <div className="col-4">
                     <div className="card my-2 w-100 border-none">
                     {/* <Link to={`/cure/${id}`}> */}
-                        <div className='card-img'><img src={imageLoc} /></div>
+                        <div className='card-img'><img src={imageLoc} alt={articleTitle}/></div>
                         <div className="card-body p-0">
                             <div className=" text-capitalize mb-0 pt-1"><Link to={`/cure/${id}-${articleTitle}`} className='fs-08'>{title}</Link></div>
                             <div className="card-info">

@@ -13,7 +13,7 @@ import './custom.css';
 import Carousel1 from './Caousel1';
 import Carousel2 from './Carousel2';
 // import CarouselReview from './CarouselReview';
-import { Dropdown, Alert } from 'react-bootstrap';
+import { Dropdown } from 'react-bootstrap';
 import PhoneInput from 'react-phone-number-input';
 import 'react-phone-number-input/style.css';
 import './Home.css'
@@ -338,7 +338,7 @@ class Home extends Component {
                   <div className="loginSign mt-1"> 
                            <Link className="btn mr-1 primary-btn-color
                             loginSignbtn color-blue-dark" to="/article">
-                              <img src={CreateCures} className='filter-white' height="30px"/>
+                              <img src={CreateCures} className='filter-white' height="30px" alt="create cures"/>
                            </Link>
                         {/* : <button className="btn mr-1 primary-btn-color
                          loginSignbtn color-blue-dark" onClick={() => this.setModalShow(true)}>
@@ -601,7 +601,7 @@ class Home extends Component {
             </button>
            
          </div>
-<div className="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+<div className="modal fade bd-example-modal-lg" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
   <div className="modal-dialog modal-lg">
     <div className="modal-content">
     <div className="modal-header">
@@ -670,8 +670,8 @@ function ToggleButton(props) {
          <>
          <Dropdown>
            <Dropdown.Toggle  className="header-drop text-capitalize" id="drop-down">
-            <img className='filter-white mr-1' src={List} height="30px" />
-           <img className='filter-white' src={Account} height="30px" />
+            <img className='filter-white mr-1' src={List} height="30px" alt='list'/>
+           <img className='filter-white' src={Account} height="30px" alt="account"/>
            </Dropdown.Toggle>
            <Dropdown.Menu>
              <Dropdown.Item>

@@ -6,7 +6,7 @@ export default function HelmetMetaData(props) {
    let location = useLocation();
    let currentUrl = "https://all-cures.com" + location.pathname;
    let quote = props.quote !== undefined ? props.quote : "";
-   let title = props.title !== undefined ? "All-Cures - "+props.title : "All-Cures - Around health and about it";
+   let title = props.title !== undefined ? props.title : "All-Cures - Around health and about it";
    let image = props.image !== undefined ? props.image : "https://all-cures.com/static/media/Banner1-Full.2bbf7fa6.jpg";
    let description = props.description !== undefined ? props.description  : "Now a centralized, user powered platform for bringing information on Alternate Systems of medicine from across the world. Covering Ayurveda, Unani, Persian & other systems of medicine, it focuses on your health and well being";
    let hashtag = props.hashtag !== undefined ? props.hashtag : "#allcures";

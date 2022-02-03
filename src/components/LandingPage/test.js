@@ -286,7 +286,7 @@ const Test = (props) => {
         
         {
           buttonClick === 1 && !loginSuccess &&
-          <div id="login-msg" class = 'alert alert-danger mt-2 py-1 px-3 border border-dark'>Some Error Occured</div>
+          <div id="login-msg" className= 'alert alert-danger mt-2 py-1 px-3 border border-dark'>Some Error Occured</div>
         }
         
         <input 

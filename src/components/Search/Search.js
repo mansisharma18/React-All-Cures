@@ -183,6 +183,8 @@ class Search extends Component {
                           <ProfileTab
                             rowno = {i.map.rowno}
                             docid= {i.map.doctorid}
+                            firstName = {i.map.docname_first}
+                            lastName = {i.map.docname_last}
                             name = {i.map.name}
                             pSpl = {i.map.primary_spl}
                             hospital = {i.map.hospital_affliated}

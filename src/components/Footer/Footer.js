@@ -221,65 +221,65 @@ class Footer extends Component {
          </div>
         
       </section>
-      <div class="footer-bootm">
-         <div class="container">
-            <div class="row">
+      <div className="footer-bootm">
+         <div className="container">
+            <div className="row">
             <div className='col-xs-12 disclaimer mb-3'>
                Disclaimer: Content available on All Cures website is not intended to be a substitute for professional medical advice, diagnosis, or treatment. It is strongly recommended to consult your physician or other qualified medical practitioner with any questions you may have regarding a medical condition. The website should not be used as a source for treatment of any medical condition.
                </div>
              
               
-               <div class="col-md-4 col-sm-4 col-sx-12">
-                  <div class="logo">
+               <div className="col-md-4 col-sm-4 col-sx-12">
+                  <div className="logo">
                      <a href="/#">
                         <img src={Heart} alt="All Cures Logo" /><span>All Cures</span>
                     </a>
                   </div>
                </div>
                
-               <div class="col-md-4 col-sm-4 col-sx-12">
-                  <div class="copyRight">
-                     <p>All rights reserved. Copyright <i class="far fa-copyright fa-1x"></i>2020 <a href='https://etheriumtech.com'>Etherium Technologies</a></p>
+               <div className="col-md-4 col-sm-4 col-sx-12">
+                  <div className="copyRight">
+                     <p>All rights reserved. Copyright <i className="far fa-copyright fa-1x"></i>2020 <a href='https://etheriumtech.com'>Etherium Technologies</a></p>
                   </div>
                </div>
 
-               <div class="col-md-4 col-sm-4 col-sx-12" id="social">
-                  <div class="socia-media-footer">
+               <div className="col-md-4 col-sm-4 col-sx-12" id="social">
+                  <div className="socia-media-footer">
                      <ul>
                         <li>
-                           <a href="https://www.facebook.com/All-Cures-100610265834385" target="_blank">
+                           <a href="https://www.facebook.com/All-Cures-100610265834385" target="_blank" rel="noreferrer">
                               <span>
                                  <img src={Facebook} alt="Facebook Link" height="30px" width="30px"></img>
                               </span> 
-                              <span class="path1"></span>
-                              <span class="path2"></span>
+                              <span className="path1"></span>
+                              <span className="path2"></span>
                            </a>
                         </li>
                         <li>
-                           <a href="https://www.instagram.com/allcuresinfo/" target="_blank">
+                           <a href="https://www.instagram.com/allcuresinfo/" target="_blank" rel="noreferrer">
                               <span>
                                  <img src={Instagram} alt="Instagram Link" height="30px" width="30px"></img>
                               </span> 
-                              <span class="path1"></span>
-                              <span class="path2"></span>
+                              <span className="path1"></span>
+                              <span className="path2"></span>
                            </a>
                         </li>
                         <li>
-                           <a href="https://twitter.com/allcuresinfo" target="_blank">
+                           <a href="https://twitter.com/allcuresinfo" target="_blank" rel="noreferrer">
                               <span>
                                  <img src={Twitter} alt="Twitter Link" height="30px" width="30px"></img>
                               </span> 
-                              <span class="path1"></span>
-                              <span class="path2"></span>
+                              <span className="path1"></span>
+                              <span className="path2"></span>
                            </a>
                         </li>
                         <li>
-                           <a href="https://www.linkedin.com/company/etherium-technologies/" target="_blank">
+                           <a href="https://www.linkedin.com/company/etherium-technologies/" target="_blank" rel="noreferrer">
                               <span>
                                  <img src={Linkedin} alt="LinkedIn Link" height="30px" width="30px"></img>
                               </span> 
-                              <span class="path1"></span>
-                              <span class="path2"></span>
+                              <span className="path1"></span>
+                              <span className="path2"></span>
                            </a>
                         </li>
                         {/* <li>
@@ -287,8 +287,8 @@ class Footer extends Component {
                               <span>
                                  <img src={Twitter} alt="Twitter Link" height="30px" width="30px"></img>
                               </span> 
-                              <span class="path1"></span>
-                              <span class="path2"></span>
+                              <span className="path1"></span>
+                              <span className="path2"></span>
                            </a>
                         </li> */}
                      </ul>

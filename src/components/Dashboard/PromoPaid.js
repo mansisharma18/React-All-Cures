@@ -207,7 +207,7 @@ render(){
                                   "Are You Sure?"
                                 )
                                 if (confirmBox === true) {
-                                  {this.postApproved(selectedCheckboxes, unselectedCheckboxes)} }
+                                  this.postApproved(selectedCheckboxes, unselectedCheckboxes) }
                               }}>
                                   
                                   

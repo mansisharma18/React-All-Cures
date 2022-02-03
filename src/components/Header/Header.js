@@ -3,7 +3,7 @@ import './header.css';
 import '../../assets/healthcare/css/mobile.css'
 import Cookies from 'js-cookie';
 import axios from 'axios';
-import { Dropdown, Nav } from 'react-bootstrap';
+import { Dropdown } from 'react-bootstrap';
 import Heart from"../../assets/img/heart.png";
 import { Link } from "react-router-dom";
 
@@ -159,11 +159,6 @@ import { userAccess } from "../UserAccess";
       }
    }
    render() {
-      const userStyle ={
-        display: 'grid',
-        gridTemplateColumns: 'repeat(2,1fr)',
-        gridGap:'1rem' 
-      }
       return(
          <div className="profilePage">
             <div className="comman-pg-header">
@@ -216,13 +211,13 @@ import { userAccess } from "../UserAccess";
                            {
                               userAccess?
                               <Link className="btn mr-2 primary-btn-color loginSignbtn color-blue-dark" id="Article" to="/article">
-                              <img src={CreateCures} className='filter-white' height="30px"/>
+                              <img src={CreateCures} alt="create cures" className='filter-white' height="30px"/>
                             </Link>
                               : <button 
                               className="btn mr-2 primary-btn-color loginSignbtn color-blue-dark" id="Article" 
                               onClick={() => this.setModalShow(true)}
                             >
-                              <img src={CreateCures} className='filter-white' height="30px"/>
+                              <img src={CreateCures} alt="create cures" className='filter-white' height="30px"/>
                             </button>
                            }   
                            <ToggleButton 
@@ -330,8 +325,8 @@ function ToggleButton(props) {
          <>
          <Dropdown>
            <Dropdown.Toggle  className="header-drop text-capitalize" id="dropHead">
-           <img className='filter-white mr-1' src={List} height="30px" />
-           <img className='filter-white' src={Account} height="30px" />
+           <img alt="list" className='filter-white mr-1' src={List} height="30px" />
+           <img alt="list" className='filter-white' src={Account} height="30px" />
            </Dropdown.Toggle>
            <Dropdown.Menu>
              <Dropdown.Item>
