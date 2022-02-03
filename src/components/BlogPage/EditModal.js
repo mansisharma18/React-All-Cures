@@ -126,9 +126,9 @@ const EditModal = (props) => {
                 setafterSubmitLoad(false)
                 if(res.data === 1){
                     Alert('Updated article successfully.') 
-                    setTimeout(() => {
-                        history.replace(`/cure/${editId.id}`)
-                    }, 5000);  
+                    // setTimeout(() => {
+                    //     history.replace(`/cure/${editId.id}`)
+                    // }, 5000);  
                   } else {
                     Alert('Some error occured. Try again later')
                   }
@@ -168,9 +168,9 @@ const EditModal = (props) => {
                 setafterSubmitLoad(false)
                 if(res.data === 1){
                     Alert('Updated article successfully.')
-                    setTimeout(() => {
-                        history.replace(`/cure/${editId.id}`)
-                    }, 5000);
+                    // setTimeout(() => {
+                    //     history.replace(`/cure/${editId.id}`)
+                    // }, 5000);
                   } else {
                     Alert('Some error occured. Try again later')
                   }
@@ -825,9 +825,26 @@ By visiting this page on our website: <a href="https://www.all-cures.com">www.al
         </Modal.Body>
       </Modal>
                     <div className="form-group">
-                  
-                        <button type="submit" id="article-submit" className="btn mt-3 btn-dark">Submit</button>
-                        {/* <button onClick={(e) => finishLater(e)} id="article-submit" className="btn ml-3 mt-3 btn-secondary">Finish Later</button> */}
+                    {
+                        editId.id && !jsonValid?
+                        <button 
+                        type="submit" 
+                        id="article-submit" 
+                        className="btn mt-3 btn-dark"
+                        disabled
+                        >Submit</button>
+                        : <button 
+                        type="submit" 
+                        id="article-submit" 
+                        className="btn mt-3 btn-dark"
+                    >Submit</button>
+                    }
+                        {/* <button 
+                            type="submit" 
+                            id="article-submit" 
+                            className="btn mt-3 btn-dark"
+                        >Submit</button> */}
+
                     </div>
                     </form>
                     <div id="article-preview">
