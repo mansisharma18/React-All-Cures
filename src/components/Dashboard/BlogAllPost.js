@@ -15,8 +15,8 @@ function App() {
   const [page, setPage] = useState(1);
   const [article_id,setArticle_Id] = useState()
   const [title, setTitle] = useState('')
-  
-
+  const [id, setId] = useState();
+const[type,setType] = useState();
   const columns = [
 
     {
@@ -33,7 +33,7 @@ function App() {
       name: <h5>ARTICLE TITLE</h5>,
       
       selector: row=> <Link to={ `/cure/${row.article_id}` }>
-      <h6 className='col-5'> {row.title}</h6>
+      <h6 className='col'> {row.title}</h6>
   </Link>,
   sortable: true,
     },
@@ -53,12 +53,7 @@ function App() {
             sortable: true,
         
     },
-    {
-        name: <h5>CREATE DATE</h5>,
-      
-        selector: row=> <h6 className='col'>{row.create_date}</h6>,
-        sortable: true,
-    },
+   
     {
         name: <h5>PUBLISHED DATE</h5>,
       
@@ -66,21 +61,44 @@ function App() {
         sortable: true,
     },
     {
+      name: <h5>CURES TYPE</h5>,
+     
+      selector: row=> 
+         row.type.includes('1') || type === '1'?
+              <h6 className="chip overview">Overview</h6>
+              
+          : row.type.includes('2') || type === '2'?
+              <h6 className="chip symptoms">Cure
+               </h6>
+          : row.type.includes('3') || type === '3'?
+              <h6 className="chip cure">Symptoms </h6>
+          : null,
+          sortable: true,
+      
+  },
+    {
         name: <h5>AUTHOR NAME</h5>,
         
         selector: row=> <h6 className='col'>{row.authors_name}</h6>,
         sortable: true,
     },
     {
-        name: <h5>Edit Cure</h5>,
-       
-        selector: row=> <Link className="chip symptoms mr-2 col" to={ `/article/${row.article_id}`}>Edit</Link>,
-        sortable: true,
-    },
-    {
-        name: <h5>Delete Cure</h5>,
+      name: <h5>DISEASE NAME</h5>,
       
-        selector: row=> <AllPost/>,
+      selector: row=> <h6 className='chip  mr-2col'>{row.dc_name}</h6>,
+      sortable: true,
+  },
+  
+    // {
+    //     name: <h5>Edit Cure</h5>,
+       
+    //     selector: row=> <Link className="chip symptoms mr-2 col" to={ `/article/${row.article_id}`}>Edit</Link>,
+    //     sortable: true,
+    // },
+    {
+        name: <h5>Action Buttons</h5>,
+      
+        selector: row=> <AllPost id={row.article_id}/>,
         sortable: true,
     },
   
