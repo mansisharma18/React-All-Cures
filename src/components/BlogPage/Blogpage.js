@@ -109,12 +109,10 @@ export default class Blogpage extends Component{
       articleFilterClick(e, filter) {
         this.setState({articleFilter: filter})
         var siblings = e.target.parentNode.parentElement.children
-        console.log(siblings)
         if(siblings){
             for(var i=0;i<siblings.length; i++){
                 if(siblings[i].classList.contains('active')){
                     siblings[i].classList.remove('active')
-                    console.log(siblings[i])
                 }
               }
             e.target.parentElement.classList.add('active')

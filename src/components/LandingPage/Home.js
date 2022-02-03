@@ -32,6 +32,7 @@ import { userId } from '../UserId'
 import { userAccess } from '../UserAccess'
 import ArticlePreview from './ArticlePreview'
 import TrendingArticles from './TrendingArticles';
+import FeaturedArticles from './FeaturedArticles';
 env.REACT_APP = 'http://117.241.171.115:8080/cures';
 
 class Home extends Component {
@@ -482,7 +483,19 @@ class Home extends Component {
         </div>
       </section> 
 
-
+      <section className="mb-5 mt-2">
+      <div className="container">
+            <div className="row">
+               <div className="comman-heading">
+                  <div className="h4">Featured Cures</div>
+               </div>
+            </div>
+            <div className="row">
+         <FeaturedArticles/>
+         </div>
+           
+         </div>
+      </section>
 
 
       <section className="mb-5 mt-2">
