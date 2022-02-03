@@ -612,7 +612,10 @@ diseasePosts(dcName) {                     // For specific blogs like "/blogs/di
                   <div className='h5 text-left ml-3 mb-2'><span>Author:</span> {items.authored_by.includes(7)? items.authors_name: <Link to={`/profile/${items.reg_doc_pat_id}`}> {items.authors_name}</Link>}</div>
                   : null
               }
-                  <div className='h6 text-muted text-left ml-3 mb-4'><>Published on:</> {<Date dateString={items.published_date} />}</div>
+                  <div className='h6 text-muted text-left ml-3 mb-4'><>Published on:</> 
+                  {items.published_date? 
+                  <Date dateString={items.published_date} />
+                  : items.published_date}</div>
               
               
                 
