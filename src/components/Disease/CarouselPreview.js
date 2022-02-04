@@ -38,16 +38,16 @@ const CarouselPreview = (props) => {
     const [isLoaded, setLoaded] = useState(false)
     const [articleFilter, setArticleFilter]= useState(props.dcName? props.dcName: 'recent')
     
-    function diseasePosts(type){                     // For specific blogs like "/blogs/diabetes"
-        // if(type){
-          fetch(`${backendHost}/isearch/${type}`)
-          .then((res) => res.json())
-          .then((json) => {
-            setLoaded(true)
-            setItems(json)
-          })
-          .catch(err => null)
-      }
+    // function diseasePosts(type){                     // For specific blogs like "/blogs/diabetes"
+    //     // if(type){
+    //       fetch(`${backendHost}/isearch/${type}`)
+    //       .then((res) => res.json())
+    //       .then((json) => {
+    //         setLoaded(true)
+    //         setItems(json)
+    //       })
+    //       .catch(err => null)
+    //   }
 
     function allPosts() {                        // For all available blogs "/blogs"
         fetch(`${backendHost}/article/allkv`)
@@ -112,18 +112,18 @@ const CarouselPreview = (props) => {
         )
     }
 
-    function articleFilterClick(e, filter) {
-        setArticleFilter(filter)
-        var siblings = e.target.parentNode.parentElement.children
-        if(siblings){
-            for(var i=0;i<siblings.length; i++){
-                if(siblings[i].classList.contains('active')){
-                    siblings[i].classList.remove('active')
-                }
-              }
-            e.target.parentElement.classList.add('active')
-        }
-    }
+    // function articleFilterClick(e, filter) {
+    //     setArticleFilter(filter)
+    //     var siblings = e.target.parentNode.parentElement.children
+    //     if(siblings){
+    //         for(var i=0;i<siblings.length; i++){
+    //             if(siblings[i].classList.contains('active')){
+    //                 siblings[i].classList.remove('active')
+    //             }
+    //           }
+    //         e.target.parentElement.classList.add('active')
+    //     }
+    // }
 
     function IsJsonValid(str) {
         try {
@@ -208,7 +208,7 @@ const CarouselPreview = (props) => {
                                 </p>
                             </div>
                             {/* <div className="col-md-6 rounded" > */}
-                                <img className="col-md-5 rounded" src={imageLoc}/>
+                                <img className="col-md-5 rounded" src={imageLoc} alt="preview" />
                             {/* </div> */}
                         </div>
                     </div>

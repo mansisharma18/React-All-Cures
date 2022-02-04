@@ -1,17 +1,14 @@
 import React, { useState } from 'react';
-import Cookies from 'js-cookie';
-// import CommentBox from 'react-commentbox';
 import axios from 'axios';
 import { backendHost } from '../api-config';
 import { Button, Modal } from "react-bootstrap";
-import ReactStars from "react-rating-stars-component";
 import { userId } from './UserId';
 import { userAccess } from './UserAccess';
+
  
 const Comment = ({refreshComments,article_id}, props) => {
     const [cmtText,setCmtText] = React.useState('')
     const [show, setShow] = useState(false);
-    const [ratingValue, setRatingValue] = React.useState([]);
     const [showAlert, setShowAlert] = useState(false)
     const [alertMsg, setAlertMsg] = useState(true)
 
@@ -63,29 +60,29 @@ const Comment = ({refreshComments,article_id}, props) => {
         
         
     }
-    const postRating = (rating) => {
-        setafterSubmitLoad(true)
-        axios.post(`${backendHost}/DoctorRatingActionController?ratingVal=${rating}&ratedbyid=${userId}&ratedbytype=${userAccess}&targetid=${article_id}&targetTypeid=2&cmd=rateAsset`)
-        .then(res => {
-          if(res.data === 1){
-          setafterSubmitLoad(false)
-          // setShow(false)
-          Alert('You have rated this cure! Thanks')
-          } else {
+    // const postRating = (rating) => {
+    //     setafterSubmitLoad(true)
+    //     axios.post(`${backendHost}/DoctorRatingActionController?ratingVal=${rating}&ratedbyid=${userId}&ratedbytype=${userAccess}&targetid=${article_id}&targetTypeid=2&cmd=rateAsset`)
+    //     .then(res => {
+    //       if(res.data === 1){
+    //       setafterSubmitLoad(false)
+    //       // setShow(false)
+    //       Alert('You have rated this cure! Thanks')
+    //       } else {
             
-          setafterSubmitLoad(false)
-          // setShow(false)
-          Alert('Some error occured! Please try again later.')
-          }
-      })
-      .catch(res => {
-        setafterSubmitLoad(false)
-        // setShow(false)
-        Alert('Some error occured! Please try again later.')
-      })
+    //       setafterSubmitLoad(false)
+    //       // setShow(false)
+    //       Alert('Some error occured! Please try again later.')
+    //       }
+    //   })
+    //   .catch(res => {
+    //     setafterSubmitLoad(false)
+    //     // setShow(false)
+    //     Alert('Some error occured! Please try again later.')
+    //   })
         
         
-      }
+    //   }
       
     return (
         <>

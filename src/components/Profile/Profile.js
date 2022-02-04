@@ -44,7 +44,7 @@ class Profile extends Component {
   }
 
   allPosts() {                        // For all available blogs "/blogs"
-    fetch(`${backendHost}/article/authallkv/reg_type/1/reg_doc_pat_id/${this.props.match.params.id}`)
+    fetch(`${backendHost}/article/authallkv/reg_type/1/reg_doc_pat_id/${this.props.match.params.id.split('-')[0]}`)
       .then((res) => res.json())
       .then((json) => {
         var temp = []
@@ -130,7 +130,7 @@ class Profile extends Component {
       // .then(res => JSON.parse(res))
       .then((res) => res.json())
       .then((json) => {
-        document.title = `All Cures | ${json.docname_first} ${json.docname_last}`
+        document.title = `${json.docname_first} ${json.docname_last}`
 
         this.setState({
           isLoaded: true,
@@ -162,10 +162,10 @@ class Profile extends Component {
 
   componentDidMount() {
     window.scrollTo(0, 0);
-    this.fetchDoctorData(this.state.param.id)
-    this.getComments(this.state.param.id)
-    this.getRating(this.props.match.params.id)
-    this.getRate(this.props.match.params.id)
+    this.fetchDoctorData(this.props.match.params.id.split('-')[0])
+    this.getComments(this.props.match.params.id.split('-')[0])
+    this.getRating(this.props.match.params.id.split('-')[0])
+    this.getRate(this.props.match.params.id.split('-')[0])
     this.allPosts()
   }
 
@@ -253,7 +253,7 @@ class Profile extends Component {
                           } */}
                           {/* {
                             this.state.imageExists ? */}
-                              <img src={`https://all-cures.com:444/cures_articleimages/doctors/${items.rowno}.png`} onError = {(e) => this.onError(e)}/>
+                              <img alt={items.docname_first} src={`https://all-cures.com:444/cures_articleimages/doctors/${items.rowno}.png`} onError = {(e) => this.onError(e)}/>
                               {/* : <i className="fas fa-user-md fa-6x"></i>
                           } */}
 
@@ -310,7 +310,7 @@ class Profile extends Component {
                           <div className="reviews" >
 
                             {
-                              userAccess === '9' || parseInt(userId) === parseInt(this.state.param.id) ?
+                              userAccess === '9' || parseInt(userId) === parseInt(this.props.match.params.id.split('-')[0]) ?
                                 <Button variant="dark" onClick={() => this.setModalShow(true)}>
                                   Edit Profile
                                 </Button>
@@ -321,7 +321,7 @@ class Profile extends Component {
                               onHide={() => this.setModalShow(false)}
                               items={items}
                               fetchDoctor={this.fetchDoctorData}
-                              id={this.state.param.id}
+                              id={this.props.match.params.id.split('-')[0]}
 
 
                             />
@@ -341,10 +341,10 @@ class Profile extends Component {
                       <p className="text one">
                         {" "}
                         {items.about.includes('•')? items.about.split('•').map((i, idx) => <li className={`list-${idx}`}>{i}</li>): items.about}{" "}
-                        {this.props.match.params.id == 874?<li>More about him at <a href="https://planetayurveda.com" target="_blank">www.planetayurveda.com</a>.</li>: null}
+                        {this.props.match.params.id.split('-')[0] == 874?<li>More about him at <a href="https://planetayurveda.com" target="_blank" rel="noreferrer">www.planetayurveda.com</a>.</li>: null}
                       
-                        {this.props.match.params.id == 872?<><br/>More about him at <a href="https://ayurvedguru.com" target="_blank">www.ayurvedguru.com</a>.</>: null}
-                        {this.props.match.params.id == 878?<><br/>More about him at <a href="http://www.ayushmanbhavayurveda.com/" target="_blank">www.ayushmanbhavayurveda.com</a>.</>: null}
+                        {this.props.match.params.id.split('-')[0] == 872?<><br/>More about him at <a href="https://ayurvedguru.com" target="_blank" rel="noreferrer">www.ayurvedguru.com</a>.</>: null}
+                        {this.props.match.params.id.split('-')[0] == 878?<><br/>More about him at <a href="http://www.ayushmanbhavayurveda.com/" target="_blank" rel="noreferrer">www.ayushmanbhavayurveda.com</a>.</>: null}
                       </p>
                     </div>
 
@@ -424,7 +424,7 @@ userAccess?
 : <div className='h5 mt-3'>Rate here</div>
 }
         <div id="docRate">
-          <Rating docid={this.state.param.id} ratingVal={this.state.rating} />
+          <Rating docid={this.props.match.params.id.split('-')[0]} ratingVal={this.state.rating} />
         </div>
 
 
@@ -436,7 +436,7 @@ userAccess?
                     {
                       userId ?
                         <>
-                          <Comment refreshComments={this.getComments} docid={this.props.match.params.id} />
+                          <Comment refreshComments={this.getComments} docid={this.props.match.params.id.split('-')[0]} />
                         </>
                         : null
                     }

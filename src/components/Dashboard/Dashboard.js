@@ -30,7 +30,6 @@ import SubscribedUser from './SubscribedUser'
 import DoctorCreate from './DoctorCreate'
 
 import { backendHost } from '../../api-config';
-import axios from 'axios';
 import { ImageUpload } from './ImageUpload';
 import createTypography from '@material-ui/core/styles/createTypography';
 

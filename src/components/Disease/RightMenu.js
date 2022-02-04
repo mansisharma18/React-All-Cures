@@ -5,7 +5,6 @@ import AllPost from "../BlogPage/Allpost";
 import './style.css'
 import { Container } from 'react-bootstrap';
 import { backendHost } from '../../api-config';
-import ArticleRating from "../ArticleRating";
 import Heart from"../../assets/img/heart.png";
 
 const Side = (props) => {
@@ -54,11 +53,12 @@ const Side = (props) => {
                 <div className="sidebar-sticky"></div>
                 
             <Nav.Item className="set-width"  id="dc-right-menu">
-                <div className="h3 pb-3"><u className="text-decoration-none">{props.dcName} Cures</u></div>
+                <div className="h4 pb-3"><u className="text-decoration-none">{props.dcName} Cures</u></div>
                 
             {   items?
                     items.map((i, index) => (
                         <AllPost
+                            key = {i.article_id.toString()}
                             id = {i.article_id}
                             title = {i.title}
                             f_title = {i.friendly_name}

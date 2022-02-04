@@ -30,6 +30,7 @@ import { PreviewTab } from './PreviewTab';
 import Heart from"../../assets/img/heart.png";
 import {userId} from "../UserId"
 import { userAccess } from '../UserAccess';
+import Date from '../Date'
 
 const options = {
   responsiveClass: true,
@@ -75,7 +76,7 @@ class Disease extends Component {
       regionalPost: [],
       showMore: false,
       value:'',
-      type:'',
+      type: [],
       diseaseList:[],
       disease:[],
       cures:[],
@@ -102,7 +103,7 @@ class Disease extends Component {
           this.comments(this.state.items.article_id)
           this.getRating(this.state.items.article_id)
           this.getRate(this.state.items.article_id)
-          document.title = `All Cures | ${this.state.items.title}`
+          document.title = `${this.state.items.title}`
         });
       });
     } else {                                                    // if URL contains title
@@ -121,7 +122,7 @@ class Disease extends Component {
           this.comments(this.state.items.article_id)
           this.getRating(this.state.items.article_id)
           this.getRate(this.state.items.article_id)
-          document.title = `All Cures | ${this.state.items.title}`
+          document.title = `${this.state.items.title}`
         });
       });
     }
@@ -203,7 +204,7 @@ class Disease extends Component {
   }
 
   getRate = (articleId) => {
-    axios.get(`${backendHost}/rating/target/${articleId}/targettype/2?userid=${userId}`)
+    axios.get(`${backendHost}/rating/target/${articleId}/targettype/2?userid=${userId? userId: 0}`)
       .then(res => {
         this.setState({
           rating: res.data[0].ratingVal
@@ -385,7 +386,7 @@ diseasePosts(dcName) {                     // For specific blogs like "/blogs/di
         <HelmetMetaData title={items.title} description={b[0].data.text} ></HelmetMetaData>
         <div className="ad-spac">
         <button className="btn" data-toggle="modal"data-target=".bd-example-modal-lg">
-          <img src={AyurvedaAd} />
+          <img src={AyurvedaAd} alt="advertisment"/>
      
             </button>
         </div>
@@ -402,7 +403,7 @@ diseasePosts(dcName) {                     // For specific blogs like "/blogs/di
           }    
             </div>
             <button className="btn pl-4 mt-2 " id="left-menu-ad" data-toggle="modal"data-target=".bd-example-modal-lg">
-              <img className="pl-4" src={PersianAd}/>
+              <img className="pl-4" src={PersianAd} alt="ad"/>
             </button>
           </div>
           
@@ -415,18 +416,14 @@ diseasePosts(dcName) {                     // For specific blogs like "/blogs/di
                   <Link to={`/searchcures/${items.dc_name}`}>
                     {items.dc_name}
                   </Link>
-                  {/* <Link to="/searchcures">
-                    Cures
-                  </Link> */}
+                  
                 </Breadcrumb.Item>
                 <Breadcrumb.Item className='mt-1'id="s1">
                   {
                     items.type.includes(1) && !this.props.match.params.cureType?
-                    <Link>Overview</Link>: <Link>Cures</Link>
+                    <Link to="#">Overview</Link>: <Link to="#">Cures</Link>
                   }
-                  {/* <Link to="/searchcures">
-                    Cures
-                  </Link> */}
+                  
                 </Breadcrumb.Item>
                 
                 <div id="share-icons-regions">
@@ -464,7 +461,7 @@ diseasePosts(dcName) {                     // For specific blogs like "/blogs/di
                 
               { finalRegions?
                   finalRegions.map(i => i.countryname!== null && (
-                   <Dropdown>
+                   <Dropdown key={i.countryname}>
                       <Dropdown.Toggle className="mr-2 btn btn-info color-white">
                         <span className="color-white">{i.countryname}</span>
                       </Dropdown.Toggle>
@@ -473,7 +470,7 @@ diseasePosts(dcName) {                     // For specific blogs like "/blogs/di
                       this.state.regionalPost.map(j => j.countryname === i.countryname 
                         &&(
                         <>
-                        <Dropdown.Item href="#" className="pt-2">
+                        <Dropdown.Item href="#" className="pt-2" key={j.countryname}>
                         <Link to={ `/cure/${j.article_id}` }  className="d-flex justify-content-between align-items-center mr-2">
                           <div className="d-flex justify-content-between align-items-center mb-2"id="artBtn">
                             <div>                  
@@ -528,6 +525,7 @@ diseasePosts(dcName) {                     // For specific blogs like "/blogs/di
                         }
                         return(
                         <PreviewTab 
+                          key={i.article_id.toString()}
                           id={i.article_id} 
                           title={i.title} 
                           windowTitle={i.window_title}  
@@ -585,8 +583,9 @@ diseasePosts(dcName) {                     // For specific blogs like "/blogs/di
 
             {/* Center Well article main content */}
               <div id="article-main-content">
-                {b.map((i) => (
+                {b.map((i, idx) => (
                   <CenterWell
+                    key={idx}
                     pageTitle = {items.title}
                     level = {i.data.level}
                     content = {i.data.content}
@@ -613,7 +612,10 @@ diseasePosts(dcName) {                     // For specific blogs like "/blogs/di
                   <div className='h5 text-left ml-3 mb-2'><span>Author:</span> {items.authored_by.includes(7)? items.authors_name: <Link to={`/profile/${items.reg_doc_pat_id}`}> {items.authors_name}</Link>}</div>
                   : null
               }
-                  <div className='h6 text-muted text-left ml-3 mb-4'><>Published on:</> {items.published_date}</div>
+                  <div className='h6 text-muted text-left ml-3 mb-4'><>Published on:</> 
+                  {items.published_date? 
+                  <Date dateString={items.published_date} />
+                  : items.published_date}</div>
               
               
                 
@@ -702,7 +704,7 @@ diseasePosts(dcName) {                     // For specific blogs like "/blogs/di
             </button>
            
          </div>
-<div className="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+<div className="modal fade bd-example-modal-lg" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
   <div className="modal-dialog modal-lg">
     <div className="modal-content">
     <div className="modal-header">
@@ -753,7 +755,7 @@ diseasePosts(dcName) {                     // For specific blogs like "/blogs/di
                         className="form-control">
                         {this.state.diseaseList.map((lan) => {
                             return (
-                                <MenuItem key={lan[0]}value={lan[0]} >
+                                <MenuItem key={lan[0].toString()} value={lan[0]} >
                                     {lan[1]}
                                 </MenuItem>
                             )
@@ -778,7 +780,7 @@ diseasePosts(dcName) {                     // For specific blogs like "/blogs/di
                         {this.state.diseaseList.map((lan) => {
 
                             return (
-                                <MenuItem key={lan[0]}value={lan[0]} >
+                                <MenuItem key={lan[0].toString()} value={lan[0]} >
                                     {lan[1]}
                                 </MenuItem>
                             )

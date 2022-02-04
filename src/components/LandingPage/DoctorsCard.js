@@ -37,7 +37,7 @@ const DoctorsCard = ({rowno, firstName, lastName, primary_spl, hospital_affliate
           <p>{primary_spl}</p>
           <h5 className="text-center">{hospital_affliated} {state} {country_code}</h5>
        </div>
-       <Link to={ `/profile/${rowno}` } className="appointmentBtn allBtn" id="visitDoc">Visit Profile</Link>
+       <Link to={ `/profile/${rowno}-${firstName}-${lastName}` } className="appointmentBtn allBtn" id="visitDoc">Visit Profile</Link>
     </div>
  </div>
         </>

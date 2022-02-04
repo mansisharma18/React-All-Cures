@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import Cookies from 'js-cookie';
 import axios from 'axios';
 import Header from '../Header/Header';
 import Footer from '../Footer/Footer';
@@ -9,10 +8,9 @@ import { userId } from '../UserId';
 
 
 export default function Userprofile(props) {
-    const [profileId, setProfile] = useState(userId)
+    const profileId = useState(userId)
     const [firstName, setFirstName] = useState('')
     const [lastName, setLastName] = useState('')
-    const [regType, setRegType] = useState('')
     const [email, setEmail] = useState('')
     const [isLoaded, setLoaded] = useState(false)
     const history = useHistory()

@@ -1,7 +1,7 @@
 import React from 'react';
 import parse from 'html-react-parser';
 
-const CenterWell = ({pageTitle, imageUrl, content, type, text, title, message, source, embed, caption, alignment, ratingVal,url, item, level,  props}) =>{
+const CenterWell = ({pageTitle, index, imageUrl, content, type, text, title, message, source, embed, caption, alignment, ratingVal,url, item, level,  props}) =>{
 
     var list;
     var rows;
@@ -26,7 +26,7 @@ const CenterWell = ({pageTitle, imageUrl, content, type, text, title, message, s
         {/* <Popper className="socialMediaPopper" open={true} transition> */}
    
   {/* </Popper> */}
-        <div>
+        <div key={index}>
             {
                 {
                     'header': <div className="ce-block py-2">
@@ -87,7 +87,7 @@ const CenterWell = ({pageTitle, imageUrl, content, type, text, title, message, s
                                             {   
                                                 item ?
                                                     list = item.map((i) =>( 
-                                                        <li className="cdx-list__item">{i}</li>
+                                                        <li className="cdx-list__item" key={i.toString()}>{i}</li>
                                                     ))
                                                 : null
                                             }

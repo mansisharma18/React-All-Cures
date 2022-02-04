@@ -1,6 +1,4 @@
 import React, { useState } from 'react';
-import Cookies from 'js-cookie';
-// import CommentBox from 'react-commentbox';
 import axios from 'axios';
 import { Alert} from 'react-bootstrap';
 import { backendHost } from '../api-config';

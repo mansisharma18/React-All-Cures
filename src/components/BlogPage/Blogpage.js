@@ -13,7 +13,7 @@ export default class Blogpage extends Component{
         super(props);
         const params = props.match.params
         this.state = { 
-          limit: 40,
+          limit: 15,
           offset: 0,
           dc: props.location.search.split('&')[1],
           noMoreArticles: false,
@@ -22,7 +22,6 @@ export default class Blogpage extends Component{
           isLoaded: false,
           LoadMore: false,
           regionPostsLoaded: false,
-          articleFilter: 'Recent',
           country: new URLSearchParams(this.props.location.search).get('c'),
           diseaseCondition: new URLSearchParams(this.props.location.search).get('dc'),
           articleFilter: 'recent'
@@ -30,7 +29,7 @@ export default class Blogpage extends Component{
       }
 
       allPosts(loadMore) {                        // For all available blogs "/blogs"
-        if(loadMore = 'loadMore') {
+        if(loadMore === 'loadMore') {
           this.setState({LoadMore: false})
         }
         if(this.state.noMoreArticles){
@@ -98,7 +97,7 @@ export default class Blogpage extends Component{
         if (bottom) {
           this.setState({
             // limit: this.state.limit + 25,
-            offset: this.state.offset + 30
+            offset: this.state.offset + 15
           }, () => this.allPosts('loadMore'));
         }
       };
@@ -185,7 +184,7 @@ export default class Blogpage extends Component{
                   {
                     this.props.match.params.type?
                     <div className="h3 text-capitalize text-center font-weight-bold mb-4">Cures Related to "{this.props.match.params.type.toLowerCase()}"</div>
-                    :<div class="tab-nav">
+                    :<div className="tab-nav">
                     {/* <div class="comman-heading">
                        <div class="h3 mb-4 text-capitalize mr-5">
                           {this.state.articleFilter} Cures

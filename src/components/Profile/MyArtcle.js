@@ -6,7 +6,6 @@ import {Container} from "react-bootstrap";
 // import PostArticle from '././components/BlogPage/PostArticle';
 import { backendHost } from '../../api-config';
 import ListArticle from './ListArticle'
-import Cookies from 'js-cookie';
 import { userId } from '../UserId';
 
 export default class Blogpage extends Component{

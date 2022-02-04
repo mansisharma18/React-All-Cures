@@ -1,32 +1,28 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
-import axios from 'axios';
-import { Alert } from 'react-bootstrap';
-import { backendHost } from '../../api-config';
 
 const ListArticle = ({id, title, f_title, w_title, country, type, pubstatus_id, dis}) => {
 
     if (parseInt(dis)===0) dis = true 
     else dis = false
-    const [disable, setDisable] = React.useState(dis);
-    const [deleteAlert, setAlert] = useState(false)
+    // const [deleteAlert, setAlert] = useState(false)
     
-    const singlePostDelete = (id) => {
-        axios.delete(`${backendHost}/article/${id}`)
-        .then(res => {
-            singlePostDelete()
-            setAlert(true)
-            setTimeout(() => {
-                setAlert(false)
-            }, 4000);
-        })
-        .then(err => {
-            console.log(err);
-        })
-        .catch(err => 
-            console.log(err)
-        )
-    }
+    // const singlePostDelete = (id) => {
+    //     axios.delete(`${backendHost}/article/${id}`)
+    //     .then(res => {
+    //         singlePostDelete()
+    //         // setAlert(true)
+    //         // setTimeout(() => {
+    //         //     setAlert(false)
+    //         // }, 4000);
+    //     })
+    //     .then(err => {
+    //         console.log(err);
+    //     })
+    //     .catch(err => 
+    //         console.log(err)
+    //     )
+    // }
 
     return (
         <>
