@@ -114,6 +114,24 @@ export const mainListItems = (
     <ListItemText primary="Create Promo" />
            </Link>
     </ListItem>
+    <ListItem button>
+      <ListItemIcon>
+        <PeopleIcon />
+      </ListItemIcon>
+      {/* <ListItemText primary="Customers"  /> */}
+    <Link to="/dashboard?doctor">
+    <ListItemText primary="Create Doctors Info" />
+           </Link>
+    </ListItem>
+    <ListItem button>
+      <ListItemIcon>
+        <PeopleIcon />
+      </ListItemIcon>
+      {/* <ListItemText primary="Customers"  /> */}
+    <Link to="/dashboard?doctorcreate">
+    <ListItemText primary="Create Doctors" />
+           </Link>
+    </ListItem>
     
   
   </div>
