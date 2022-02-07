@@ -17,7 +17,7 @@ import '../../assets/healthcare/css/mobile.css'
 import { userId } from "../UserId";
 import { userAccess } from "../UserAccess";
 import AllPost from "../BlogPage/Allpost";
-import { Link } from "react-router-dom";
+import Heart from"../../assets/img/heart.png";
 
 class Profile extends Component {
   constructor(props) {
@@ -212,11 +212,11 @@ class Profile extends Component {
       return (
         <>
           <Header history={this.props.history} />
-          <Container className="my-5 loading">
-            <div className="loader ">
-              <i className="fa fa-spinner fa-spin fa-6x" />
+          <div className="loader my-4">
+              {/* <i className="fa fa-spinner fa-spin fa-6x" /> */}
+              <img src={Heart} alt="All Cures Logo" id="heart"/>
+
             </div>
-          </Container>
           <Footer />
         </>
       );

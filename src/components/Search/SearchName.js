@@ -11,6 +11,7 @@ import '../../assets/healthcare/icomoon/style.css';
 import { Container } from 'react-bootstrap';
 import { backendHost } from '../../api-config';
 import Test from '../LandingPage/test'
+import Heart from"../../assets/img/heart.png";
 
 
 class SearchName extends Component {
@@ -83,11 +84,11 @@ class SearchName extends Component {
         return (
         <>
           <Header history={this.props.history} url={this.props.match.url}/>
-            <Container className="my-5 loading">
-              <div className="loader">
-                <i className="fa fa-spinner fa-spin fa-6x" />
-              </div>
-            </Container>
+          <div className="loader my-4">
+              {/* <i className="fa fa-spinner fa-spin fa-6x" /> */}
+              <img src={Heart} alt="All Cures Logo" id="heart"/>
+
+            </div>
           <Footer/>
         </>  
       );
@@ -136,6 +137,8 @@ class SearchName extends Component {
                         {items.map((i) => (
                           <ProfileTab
                             rowno = {i.map.rowno}
+                            firstName = {i.map.docname_first}
+                            lastName = {i.map.docname_last}
                             docid= {i.map.doctorid}
                             name = {i.map.name}
                             pSpl = {i.map.primary_spl}

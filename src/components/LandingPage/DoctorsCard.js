@@ -1,27 +1,12 @@
-import React, { useEffect, useState} from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 
 const DoctorsCard = ({rowno, firstName, lastName, primary_spl, hospital_affliated, state, country_code}) => {
-   const [imageExists, setImageExists] = useState(false)
-   
-   const checkIfImageExits = (imageUrl) => {
-      fetch(imageUrl, { method: 'HEAD', mode: 'no-cors' })
-      .then(res => {
-         if (res.ok) {
-               setImageExists(true)
-         } else {
-            setImageExists(false)
-         }
-      }).catch(err => null);
-   }
 
    const onError = (e) => {
       e.target.parentElement.innerHTML = `<i class="fas fa-user-md fa-10x"></i>`
    }
    
-   useEffect(() => {
-      checkIfImageExits(`https://all-cures.com:444/cures_articleimages/doctors/${rowno}.png`)
-   }, [])
     return(
         <>
          <div className="item" key={rowno}>

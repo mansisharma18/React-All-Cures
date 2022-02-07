@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import Header from '../Header/Header';
 import Footer from '../Footer/Footer'
-// import EditModal from './EditModal'
 import AllPost from './Allpost.js';
 import { backendHost } from '../../api-config';
 import { Link } from 'react-router-dom';
@@ -282,6 +281,7 @@ export default class Blogpage extends Component{
                     {items.map((i) => (
                       i.pubstatus_id === 3 ?            // Selects articles with publish status = 3 (Published)
                         <AllPost
+                            rowno = {i.rowno}
                             id = {i.article_id}
                             title = {i.title}
                             f_title = {i.friendly_name}
