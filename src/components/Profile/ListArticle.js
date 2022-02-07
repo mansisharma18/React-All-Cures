@@ -17,10 +17,8 @@ const ListArticle = ({id, title, f_title, w_title, country, type, pubstatus_id, 
     //         // }, 4000);
     //     })
     //     .then(err => {
-    //         console.log(err);
     //     })
     //     .catch(err => 
-    //         console.log(err)
     //     )
     // }
 

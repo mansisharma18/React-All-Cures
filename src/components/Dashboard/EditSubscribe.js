@@ -33,9 +33,9 @@ function LoginInfo(props) {
   "nl_subscription_cures_id": 0
   })
   .then(res => {
-      console.log(res)
+    //   console.log(res)
   })
-  .catch(err => console.log(err))
+  .catch(err => {return})
    }
     
     useEffect(() => {
@@ -78,10 +78,9 @@ function LoginInfo(props) {
     const getDisease = () => {
         axios.get(`${backendHost}/article/all/table/disease_condition`)
         .then(res => {
-            console.log(res.data);
             setDiseaseList(res.data)
         })
-        .catch(err => console.log(err))
+        .catch(err => {return})
     }
 
     return (

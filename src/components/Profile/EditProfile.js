@@ -92,8 +92,7 @@ const EditProfile = (props) => {
             setDiseaseList(diseaseData)
             setHospitalList(hospitalData)
         })
-        .catch(err => 
-          console.log(err)
+        .catch(err => {return}
       )
     }
 

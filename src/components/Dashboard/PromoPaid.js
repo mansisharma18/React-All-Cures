@@ -34,7 +34,7 @@ class PromoPaid extends Component {
         })
       })
 
-      .catch(err => console.log(err))
+      .catch(err => {return})
     
   }
 
@@ -49,7 +49,7 @@ class PromoPaid extends Component {
       this.setState({ShowSubmitAlert: true});
      
     })
-    .catch(err => console.log(err))
+    .catch(err => {return})
     this.setState({ShowErrorAlert: true});
       setTimeout(()=>{
       this.setState({ShowErrorAlert: false});
@@ -99,7 +99,6 @@ render(){
    function select(e) {
     
     var checkboxes = document.getElementsByClassName('check');
-    console.log(checkboxes)
     for (var checkbox of checkboxes) {
         checkbox.checked = e.target.checked;
     }
@@ -194,13 +193,13 @@ render(){
                           {
                                         this.state.ShowSubmitAlert
                                             ? <SubmitAlert ShowSubmitAlert={this.state.ShowSubmitAlert}/>
-                                            : console.log('Submit ALert')
+                                            : null
                                     }
 
                                     {
                                         this.state.ShowErrorAlert
                                             ? <SubmitError ShowErrorAlert={this.state.ShowErrorAlert}/>
-                                            : console.log('')
+                                            : null
                                     }
                                 <button className='bcolor'onClick={() => {
                                 const confirmBox = window.confirm(
@@ -231,7 +230,6 @@ render(){
 // SHOW ALERT
 
 function SubmitAlert(props) {
-  console.log('Submit ALert', props.ShowSubmitAlert)
   if(props.ShowSubmitAlert) {
       return(
           <Alert className="bg-green">Promo has been saved successfully!</Alert>
@@ -242,7 +240,6 @@ function SubmitAlert(props) {
 // Show Error Alert
 
 function SubmitError(props) {
-  console.log('Submit ALert', props.ShowErrorAlert)
   if(props.ShowErrorAlert) {
       return(
           <Alert className="bg-red">Some Error occured!</Alert>

@@ -157,7 +157,6 @@ const CarouselPreview = (props) => {
                     items.filter((i, idx) => idx < 9).map((i) => {
                     var content = []
                     var imgLocation = i.content_location
-                    console.log(imgLocation)
                     var imageLoc = '';
                     if(i.content){
                         content = IsJsonValid(decodeURIComponent(i.content))

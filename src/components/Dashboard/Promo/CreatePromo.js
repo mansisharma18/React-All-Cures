@@ -33,7 +33,7 @@ function Promo(props) {
                 setAlert(false)
             }, 4000);
         })
-        .catch(res => console.log(res))
+        .catch(res => {return})
     }
     return(
         <>

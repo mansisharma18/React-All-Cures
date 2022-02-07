@@ -3,7 +3,6 @@ import Header from './Header/Header';
 import Footer from './Footer/Footer';
 
 const NotFound = (props) => {
-    console.log(props)
     return(
         <>  
             <Header/>

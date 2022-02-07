@@ -130,7 +130,6 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function Dashboard(props) {
-  console.log(props.location)
   const classes = useStyles();
   // const acPerm = Cookies.get("acPerm").split('|')
   const [open, setOpen] = React.useState(true);
@@ -148,7 +147,6 @@ export default function Dashboard(props) {
   
   const handleCountClick = (key,value) => {
     // e.preventDefault()
-    console.log("CCCCCCCCCCLIIIIIIIIIICCCCCCCKKKKKKKKKKK"+key+value);
     setIsOnline(true);
     // useEffect(() => {
     //   setKey(key)
@@ -161,7 +159,6 @@ export default function Dashboard(props) {
   
   useEffect(() => {
     document.title = 'All Cures | Dashboard'
-    console.log(props)
     setIsLoaded(false);
     // fetch(`${backendHost}/dashboard/articlecount`)
   //   axios.defaults.withCredentials = true
@@ -274,11 +271,8 @@ export default function Dashboard(props) {
 //}
 
 function RenderComponent(props){
-  console.log(props)
   // debugger
   // if (props.ajaxItems){
-  // console.log("aaaaaaa"+props.key)
-  // console.log(props.ajaxItems["draft_article"])
   // this.ajaxItems['draft_article']
   // if(props.key === "Draft"){
     // if (props.key)

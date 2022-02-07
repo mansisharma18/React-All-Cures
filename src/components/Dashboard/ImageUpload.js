@@ -8,7 +8,6 @@ export const ImageUpload = () => {
     // const [image, setImage] = useState(null)   
 
     // function uploadImage(){
-    //     console.log(imageType, id)
     //     if(imageType === 'article'){
     //         // axios.post(`${backendHost}/`)
     //     } else if(imageType === 'doctor'){
@@ -18,7 +17,6 @@ export const ImageUpload = () => {
 
     // const onImageChange = (event) => {
     //     if (event.target.files && event.target.files[0]) {
-    //         console.log(URL.createObjectURL(event.target.files[0]))
     //       setImage(URL.createObjectURL(event.target.files[0]));
     //     }
     // }
@@ -49,10 +47,10 @@ export const ImageUpload = () => {
 		)
         .then((response) => response.json())
 		.then((result) => {
-    		console.log('Success:', result);
+    		// console.log('Success:', result);
 		})
 		.catch((error) => {
-    		console.error('Error:', error);
+    		return
 		});
 	}
 

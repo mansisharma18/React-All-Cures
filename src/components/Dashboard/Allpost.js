@@ -14,7 +14,6 @@ const AllPost = ({ id, title, w_title, dis }) => {
     const [deleteAlert, setAlert] = useState(false)
     
     const singlePostDelete = (id) => {
-        console.log('delete',id);
         axios.delete(`${backendHost}/article/${id}`)
         .then(res => {
             singlePostDelete()
@@ -24,10 +23,11 @@ const AllPost = ({ id, title, w_title, dis }) => {
             }, 4000);
         })
         .then(err => {
-            console.log(err);
+            return
         })
-        .catch(err => 
-            console.log(err)
+        .catch(err => {
+            return
+            }
         )
     }
 

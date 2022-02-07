@@ -14,7 +14,6 @@ export default function ArticleRating(props) {
   const postRating = (rating, article_id) => {
 
     axios.post(`${backendHost}/DoctorRatingActionController?ratingVal=${rating}&ratedbyid=${rateId}&ratedbytype=0&targetid=${props.article_id}&targetTypeid=2&cmd=rateAsset`)
-    // .then(res => console.log(res)
     .then(res => {
       setAlert(true)
     
@@ -22,7 +21,7 @@ export default function ArticleRating(props) {
           setAlert(false)
       }, 4000);
   })
-  .catch(res => console.log(res))
+  .catch(res => {return})
     
     
   }

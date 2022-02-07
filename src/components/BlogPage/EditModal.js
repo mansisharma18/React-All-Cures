@@ -87,8 +87,9 @@ const EditModal = (props) => {
             setContentSmall(decodeURIComponent(res.data.content_small))
             setArticleContent(JSON.parse(decodeURIComponent(res.data.content)))
         })
-        .catch(err => 
-            console.log("errrrrrrorrrrrrrrrrrrrrrrrr",err)
+        .catch(err => {
+            return
+        }
         )
     }
     
@@ -185,7 +186,6 @@ const EditModal = (props) => {
 
     const onImageChange = (event) => {
         if (event.target.files && event.target.files[0]) {
-            console.log(URL.createObjectURL(event.target.files[0]))
           setImage(URL.createObjectURL(event.target.files[0]));
         }
        }
@@ -208,8 +208,9 @@ const EditModal = (props) => {
         .then(res => {
             setLanList(res.data)
         })
-        .catch(err => 
-            console.log(err)
+        .catch(err => {
+            return
+        }
         )
     }
 
@@ -218,8 +219,9 @@ const EditModal = (props) => {
         .then(res => {
             setAuthList(res.data)
         })
-        .catch(err => 
-            console.log(err)
+        .catch(err => {
+            return
+        }
         )
     }
 
@@ -229,8 +231,9 @@ const EditModal = (props) => {
             
             setCountriesList(res.data)
         })
-        .catch(err => 
-            console.log(err)
+        .catch(err => {
+            return
+        }
         )
     }
 
@@ -240,7 +243,7 @@ const EditModal = (props) => {
             setDisclaimerId(res.data)
         })
         .catch(err => 
-            console.log(err)
+            {return}
         )
     }
     const getDisease = () => {
@@ -249,7 +252,7 @@ const EditModal = (props) => {
             setDiseaseList(res.data)
         })
         .catch(err => 
-            console.log(err)
+            {return}
         )
     }
     
@@ -287,13 +290,12 @@ const EditModal = (props) => {
         for (let i = 0; i < c.length; i++) {
             ctype.push(c[i].value);
         }
-        setType(ctype, ()=> console.log(type));
+        setType(ctype);
     }
 
     const submitArticleForm = async e => {
         setafterSubmitLoad(true)
         e.preventDefault();
-        console.log('author: ', author)
         axios.defaults.withCredentials = true
         axios.post(`${backendHost}/content?cmd=createArticle`, {
             headers: {'Access-Control-Allow-Credentials': true },
@@ -356,7 +358,6 @@ const EditModal = (props) => {
 
 
     useEffect(() => {
-        // console.log(contentSmall)
         IsJsonValid(contentSmall)
     }, [contentSmall])
     return (

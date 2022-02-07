@@ -20,8 +20,8 @@ const Side = (props) => {
               setItems(json)
             
           })
-          .catch(err => 
-            console.log(err)
+          .catch(err => {return
+        }
         )
       }
       

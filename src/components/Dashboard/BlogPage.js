@@ -21,20 +21,17 @@ export default class Blogpage extends Component{
         fetch(`${backendHost}/article/all`)
           .then((res) => res.json())
           .then((json) => {
-            console.log(json);
             this.setState({
               isLoaded: true,
               items: json,
             });
           })
-          .catch(err => 
-            console.log(err)
+          .catch(err => {return}
         )
       }
     render(){
         var { isLoaded,items } = this.state;
         if(!isLoaded) {
-        console.log(items);
         
         return (
         <>

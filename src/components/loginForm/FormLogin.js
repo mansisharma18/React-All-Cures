@@ -25,29 +25,6 @@ const FormLogin = (props) => {
     axios.post(`${backendHost}/login?cmd=login&email=${email}&psw=${password}&rempwd=on`)
     .then(response => console.log(response.data))
     .catch(res => console.log(res))
-    // const res = await fetch("/login?cmd=login", {
-    //   method: "POST",
-    //   body: `email=${email}&psw=${password}&rempwd="on"`,
-    //   headers: {
-    //   "Content-Type": "application/x-www-form-urlencoded"
-    //   }
-  // });
-
-  // setData(res.data)
-  // console.log('Dataaaaaaaaa: ', res)
-  // console.log('props '+props)
-  // console.log('status '+ res.status)
-  // console.log('Statusssssssssssssssss ',status)
-  //   setStatus(res.status);
-  //   console.log('Statsus res ',res.status)
-  // const data = await res.text();
-  // console.log('dataaaaa ', res)
-  //   !data.hasOwnProperty("error")
-  //     ? setMessage( 'success' )
-  //     : setError( true );
-
-  // setTimeout( () => console.log('Message ', message ), 1600 );
-  // setTimeout( () => console.log('Error ', isError ), 1600 );
 }
 
 // Redirect and Reload after logging in
@@ -65,7 +42,7 @@ function Redirec(){
 
 function AfterLogin() {
   if(status === 200){
-    console.log('logged in')
+    return
   } else if(status === 401){
     return(
       <div className="alert alert-secondary" role="alert">{data}</div>
@@ -81,8 +58,6 @@ function AfterLogin() {
   }
 } 
   const responseGoogle = (res) => {
-    console.log(res);
-    console.log(res.profileObj);
   }
   return(
   <SlidingForm className="text-center">
@@ -97,13 +72,6 @@ function AfterLogin() {
         cookiePolicy={'single_host_origin'}
         className="text-dark"
       />
-    {/* { 
-      buttonClick === 1? 
-        status === 200 ? 
-          Redirec()
-          : <div className="alert alert-secondary" role="alert">Email or Password incorrect</div>
-        : console.log('Button not clicked')
-    } */}
     {
       buttonClick === 1?
         AfterLogin()
