@@ -58,12 +58,14 @@ const Side = (props) => {
             {   items?
                     items.map((i, index) => (
                         <AllPost
+                            rowno = {i.rowno}
                             key = {i.article_id.toString()}
                             id = {i.article_id}
                             title = {i.title}
                             f_title = {i.friendly_name}
                             w_title = {i.window_title}
                             type = {i.type}
+                            // authorName={i.author_name}
                             content = {decodeURIComponent(i.content)}
                             // type = {i.type}
                             published_date = {i.published_date}

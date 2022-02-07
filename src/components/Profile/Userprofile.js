@@ -8,7 +8,7 @@ import { userId } from '../UserId';
 
 
 export default function Userprofile(props) {
-    const profileId = useState(userId)
+    // const profileId = useState(userId)
     const [firstName, setFirstName] = useState('')
     const [lastName, setLastName] = useState('')
     const [email, setEmail] = useState('')
@@ -16,7 +16,7 @@ export default function Userprofile(props) {
     const history = useHistory()
 
     const getProfile = () => {
-        axios.get(`${backendHost}/profile/${profileId}`)
+        axios.get(`${backendHost}/profile/${userId}`)
         .then(res => {
             setFirstName(res.data.first_name)
             setLastName(res.data.last_name)

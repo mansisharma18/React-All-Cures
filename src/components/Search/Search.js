@@ -12,6 +12,7 @@ import {Form ,Container } from 'react-bootstrap';
 import axios from 'axios';
 import { backendHost } from '../../api-config';
 import Test from '../LandingPage/test'
+import Heart from"../../assets/img/heart.png";
 
 
 class Search extends Component {
@@ -128,11 +129,11 @@ class Search extends Component {
         return (
         <>
           <Header history={this.props.history} url={this.props.match.url}/>
-            <Container className="my-5 loading">
-              <div className="loader ">
-                <i className="fa fa-spinner fa-spin fa-6x" />
-              </div>
-            </Container>
+          <div className="loader my-4">
+              {/* <i className="fa fa-spinner fa-spin fa-6x" /> */}
+              <img src={Heart} alt="All Cures Logo" id="heart"/>
+
+            </div>
           <Footer/>
         </>  
       );

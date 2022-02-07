@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import CenterWell from '../Disease/CenterWell';
 import Date from '../Date'
 
-const AllPost = ({id, title, content, f_title, w_title, country, type, published_date, over_allrating, imgLocation, authorName}) => {
+const AllPost = ({id, title, content, rowno, f_title, w_title, country, type, published_date, over_allrating, imgLocation, authorName}) => {
     function IsJsonValid(str) {
         try {
             JSON.parse(str);
@@ -25,10 +25,14 @@ const AllPost = ({id, title, content, f_title, w_title, country, type, published
 
     var articleTitle = title
     var regex = new RegExp(' ', 'g');
+    // var regexDr = new RegExp('Dr. ', 'g');
 
     //replace via regex
     articleTitle = articleTitle.replace(regex, '-');
- 
+
+    // var authorLinkName = authorName
+    // authorLinkName = authorLinkName.replace(regex, '-');
+    // authorLinkName = authorLinkName.replace(regexDr, '');
     return (
             <>
             <div key={id.toString()} className="d-flex cures-search-tab w-100 card mb-5">
@@ -81,7 +85,13 @@ const AllPost = ({id, title, content, f_title, w_title, country, type, published
                                     : null
                                 }
                         </div>
-                        <div className="text-left mt-2 text-muted" id="publish-date">{authorName} ▪️ {<Date dateString={published_date} />}</div>
+                        <div className="text-left mt-2 text-muted" id="publish-date">
+                        {
+                                    authorName !== "All Cures Team"?
+                                    <Link to={`/profile/${rowno}`}>{authorName}</Link> 
+                                    : authorName
+                                }{" "} 
+                                ▪️ {<Date dateString={published_date} />}</div>
                         </div>
                         <div className='cures-tab-chips'>
                                 {
