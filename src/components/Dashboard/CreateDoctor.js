@@ -20,7 +20,7 @@ function App() {
   const [emaill, setEmail] = useState()
   const [type,setType] = useState()
   const[id,setId] = useState()
-  const[hospitalId,setHospitalId] = useState()
+ 
   const[hospital,setHospital] = useState()
   const[spl,setSpl] = useState('')
   const[splName,setSplName] = useState('')
@@ -28,6 +28,7 @@ function App() {
   const[cityName,setCityName] = useState('')
   const[state, setState] = useState('')
     const[stateList,setStateList] = useState([])
+    const[splId,setSplId] = useState()
     const [countriesList,setCountriesList] = useState([])
   const [country, setCountry] = useState('')
   const [stateName, setStateName] = useState()
@@ -62,7 +63,7 @@ function App() {
 const hospitalForm = (e) => {
     e.preventDefault();
     axios.post(`${backendHost}admin/create/hospital  `, {
-        "hospitalid": parseInt(hospitalId),
+        // "hospitalid": parseInt(hospitalId),
         "hospital_affliated": hospital,
     })
     .then(res => {
@@ -77,7 +78,7 @@ const hospitalForm = (e) => {
 const specialtiesForm = (e) => {
     e.preventDefault();
     axios.post(`${backendHost}admin/create/specialties  `, {
-        "splid": parseInt(spl),
+        // "splid": parseInt(spl),
         "spl_name": splName,
     })
     .then(res => {
@@ -92,9 +93,9 @@ const specialtiesForm = (e) => {
 const cityForm = (e) => {
     e.preventDefault();
     axios.post(`${backendHost}admin/create/city  `, {
-        "citycode": parseInt(cityCode),
+        // "citycode": parseInt(cityCode),
         "cityname": cityName,
-        "state_name":parseInt(state),
+        "state_code":parseInt(state),
         "country_code":parseInt(country),
     })
     .then(res => {
@@ -109,7 +110,7 @@ const cityForm = (e) => {
 const statesForm = (e) => {
     e.preventDefault();
     axios.post(`${backendHost}admin/create/states  `, {
-        "codeid": parseInt(state),
+        // "codeid": parseInt(state),
         "statename":stateName,
         "country_code":parseInt(country),
     })
@@ -125,7 +126,7 @@ const statesForm = (e) => {
 const countriesForm = (e) => {
     e.preventDefault();
     axios.post(`${backendHost}admin/create/countries  `, {
-        "countrycodeid": parseInt(country),
+        // "countrycodeid": parseInt(country),
         "countryname":countryName,
        
     })
@@ -150,6 +151,17 @@ const getState = () => {
         console.log(err)
     )
 }
+
+const getSpecialties = () => {
+    axios.get(`${backendHost}/article/all/table/specialties`)
+    .then(res => {
+        
+        setSplId(res.data)
+    })
+    .catch(err => 
+        console.log(err)
+    )
+}
 const getCountries = () => {
     axios.get(`${backendHost}/article/all/table/countries`)
     .then(res => {
@@ -165,6 +177,7 @@ const getCountries = () => {
 useEffect(() => {
      getState()
      getCountries()   
+     getSpecialties()
  
 }, []) 
   return (
@@ -185,7 +198,7 @@ useEffect(() => {
                         <Form.Group className="col-md-6 float-left" style={{zIndex: 2}}>
                             <Form.Label>Enter Author Middle Name</Form.Label>
                             <Form.Control  value={middle} onChange={(e) => setMiddle(e.target.value)} type="text" name=""
-                            placeholder="Enter Author Middle Name..." required/>
+                            placeholder="Enter Author Middle Name..." />
                         </Form.Group>
                         <Form.Group className="col-md-6 float-left" style={{zIndex: 2}}>
                             <Form.Label>Enter Author Last Name</Form.Label>
@@ -201,7 +214,8 @@ useEffect(() => {
                         <Form.Group className="col-md-6 float-left" style={{zIndex: 2}}>
                             <Form.Label>Enter Author Email</Form.Label>
                             <Form.Control value={emaill} onChange={(e) => setEmail(e.target.value)}  type="text" name=""
-                            placeholder="Enter Author Email..." required/>
+                            placeholder="Enter Author Email..."
+                            />
                         </Form.Group>
                         <Form.Group className="col-md-6 float-left" style={{zIndex: 2}}>
                             <Form.Label>Enter Author Type</Form.Label>
@@ -231,11 +245,11 @@ useEffect(() => {
                         <div className="card-title h3 text-center py-2 border-bottom">Hospital Table</div>
                         <form onSubmit={hospitalForm}>
                             <div className="row m-4">
-                        <Form.Group className="col-md-6 float-left" style={{zIndex: 2}}>
+                        {/* <Form.Group className="col-md-6 float-left" style={{zIndex: 2}}>
                             <Form.Label>Enter Hospital Id</Form.Label>
                             <Form.Control value={hospitalId} onChange={(e) => setHospitalId(e.target.value)}  type="text" name=""
-                            placeholder="Enter Hospital Id..." required/>
-                        </Form.Group>
+                            placeholder="Enter Hospital Id..." />
+                        </Form.Group> */}
                         <Form.Group className="col-md-6 float-left" style={{zIndex: 2}}>
                             <Form.Label>Enter Hospital Name</Form.Label>
                             <Form.Control value={hospital} onChange={(e) => setHospital(e.target.value)}  type="text" name=""
@@ -261,17 +275,17 @@ useEffect(() => {
                         <div className="card-title h3 text-center py-2 border-bottom">Speciality Table</div>
                         <form onSubmit={specialtiesForm}>
                             <div className="row m-4">
-                        <Form.Group className="col-md-6 float-left" style={{zIndex: 2}}>
+                        {/* <Form.Group className="col-md-6 float-left" style={{zIndex: 2}}>
                             <Form.Label>Enter Speciality Id</Form.Label>
                             <Form.Control value={spl} onChange={(e) => setSpl(e.target.value)}  type="text" name=""
                             placeholder="Enter Speciality Id..." required/>
-                        </Form.Group>
+                        </Form.Group> */}
                         <Form.Group className="col-md-6 float-left" style={{zIndex: 2}}>
                             <Form.Label>Enter Speciality Name</Form.Label>
                             <Form.Control value={splName} onChange={(e) => setSplName(e.target.value)}  type="text" name=""
                             placeholder="Enter Speciality Name..." required/>
                         </Form.Group>
-                   
+                    
                         {
                             specialtiesAlert?
                                 <Alert variant="success" className="h6 mx-3">Specialties Create successfully!!</Alert>
@@ -291,11 +305,11 @@ useEffect(() => {
                         <div className="card-title h3 text-center py-2 border-bottom">City Table</div>
                         <form onSubmit={cityForm}>
                             <div className="row m-4">
-                        <Form.Group className="col-md-6 float-left" style={{zIndex: 2}}>
+                        {/* <Form.Group className="col-md-6 float-left" style={{zIndex: 2}}>
                             <Form.Label>Enter City Id</Form.Label>
                             <Form.Control value={cityCode} onChange={(e) => setCityCode(e.target.value)}  type="text" name=""
                             placeholder="Enter City Id..." required/>
-                        </Form.Group>
+                        </Form.Group> */}
                         <Form.Group className="col-md-6 float-left" style={{zIndex: 2}}>
                             <Form.Label>Enter City Name</Form.Label>
                             <Form.Control value={cityName} onChange={(e) => setCityName(e.target.value)}  type="text" name=""
@@ -347,11 +361,11 @@ useEffect(() => {
                         <div className="card-title h3 text-center py-2 border-bottom">State Table</div>
                         <form onSubmit={statesForm}>
                             <div className="row m-4">
-                        <Form.Group className="col-md-6 float-left" style={{zIndex: 2}}>
+                        {/* <Form.Group className="col-md-6 float-left" style={{zIndex: 2}}>
                             <Form.Label>Enter State Id</Form.Label>
                             <Form.Control value={state} onChange={(e) => setState(e.target.value)}  type="text" name=""
                             placeholder="Enter State Id..." required/>
-                        </Form.Group>
+                        </Form.Group> */}
                         <Form.Group className="col-md-6 float-left" style={{zIndex: 2}}>
                             <Form.Label>Enter State Name</Form.Label>
                             <Form.Control value={stateName} onChange={(e) => setStateName(e.target.value)}  type="text" name=""
@@ -390,11 +404,11 @@ useEffect(() => {
                         <div className="card-title h3 text-center py-2 border-bottom">Country Table</div>
                         <form onSubmit={countriesForm}>
                             <div className="row m-4">
-                        <Form.Group className="col-md-6 float-left" style={{zIndex: 2}}>
+                        {/* <Form.Group className="col-md-6 float-left" style={{zIndex: 2}}>
                             <Form.Label>Enter Country Id</Form.Label>
                             <Form.Control value={country} onChange={(e) => setCountry(e.target.value)}  type="text" name=""
                             placeholder="Enter Country Id..." required/>
-                        </Form.Group>
+                        </Form.Group> */}
                         <Form.Group className="col-md-6 float-left" style={{zIndex: 2}}>
                             <Form.Label>Enter Country Name</Form.Label>
                             <Form.Control value={countryName} onChange={(e) => setCountryName(e.target.value)}  type="text" name=""

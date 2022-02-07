@@ -6,6 +6,11 @@ import { backendHost } from '../../api-config';
 import { Link } from 'react-router-dom';
 import AllPost from './Allpost';
 import { Alert, Form } from 'react-bootstrap';
+import Radio from '@material-ui/core/Radio';
+import RadioGroup from '@material-ui/core/RadioGroup';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
+import FormControl from '@material-ui/core/FormControl';
+import FormLabel from '@material-ui/core/FormLabel';
 
 
 
@@ -164,9 +169,16 @@ useEffect(() => {
                             placeholder="Enter Doctor Last Name..." required/>
                         </Form.Group>
                         <Form.Group className="col-md-6 float-left" style={{zIndex: 2}}>
-                            <Form.Label>Enter Doctor Gender</Form.Label>
-                            <Form.Control value={gender} onChange={(e) => setGender(e.target.value)}  type="text" name=""
-                            placeholder="Enter Doctor Gender..." required/>
+                           
+                            <FormLabel component="legend" className="text-dark">Gender</FormLabel>
+      <RadioGroup value={gender.toString()} onChange={(e) => {setGender(e.target.value)}}
+      style={{display: 'flex', flexDirection:'row'}}>
+        <FormControlLabel value="1" control={<Radio />} label="Female" />
+        <FormControlLabel value="2" control={<Radio />} label="Male" />
+        <FormControlLabel value="3" control={<Radio />} label="Other" />
+      </RadioGroup>
+      
+
                         </Form.Group>
                         <Form.Group className="col-md-6 float-left" style={{zIndex: 2}}>
                             <Form.Label>Enter Edu Training</Form.Label>
@@ -174,9 +186,9 @@ useEffect(() => {
                             placeholder="Enter Edu Training..." required/>
                         </Form.Group>
                         <Form.Group className="col-md-6 float-left" style={{zIndex: 2}}>
-                            <Form.Label>Enter Insurance Accept</Form.Label>
+                            <Form.Label>Enter Insurance Accept Value <b>1</b></Form.Label>
                             <Form.Control value={insurance} onChange={(e) => setInsurance(e.target.value)}  type="text" name=""
-                            placeholder="Enter Insurance Accept..." required/>
+                            placeholder="Enter Insurance Accept Value 1..." required/>
                         </Form.Group>
                         <Form.Group className="col-md-6 float-left" style={{zIndex: 2}}>
                         <label htmlFor="">Enter Hospital</label>
