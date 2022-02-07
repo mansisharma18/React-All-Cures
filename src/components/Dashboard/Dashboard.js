@@ -24,11 +24,14 @@ import UpdatePromo from './Promo/UpdatePromo';
 import Title from './Title';
 import BlogAllPost from './BlogAllPost'
 import EditModal from '../BlogPage/EditModal'
+import CreateDoctor from './CreateDoctor'
 import RegisterUser from './RegisterUser'
 import SubscribedUser from './SubscribedUser'
+import DoctorCreate from './DoctorCreate'
 
 import { backendHost } from '../../api-config';
 import { ImageUpload } from './ImageUpload';
+import createTypography from '@material-ui/core/styles/createTypography';
 
 
 
@@ -335,6 +338,14 @@ function RenderComponent(props){
   } else if(props.search.split('=')[0] === '?edit'){
     return(
       <UpdatePromo search={props.search}/>
+    )
+  } else if(props.search.split('=')[0] === '?doctor'){
+    return(
+      <CreateDoctor search={props.search}/>
+    )
+  } else if(props.search.split('=')[0] === '?doctorcreate'){
+    return(
+      <DoctorCreate search={props.search}/>
     )
 
        
