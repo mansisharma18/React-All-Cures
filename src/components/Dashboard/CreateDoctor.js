@@ -95,7 +95,7 @@ const cityForm = (e) => {
     axios.post(`${backendHost}admin/create/city  `, {
         // "citycode": parseInt(cityCode),
         "cityname": cityName,
-        "state_name":parseInt(state),
+        "state_code":parseInt(state),
         "country_code":parseInt(country),
     })
     .then(res => {
