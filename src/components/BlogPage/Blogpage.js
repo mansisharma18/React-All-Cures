@@ -61,7 +61,7 @@ export default class Blogpage extends Component{
               }
               this.setState({LoadMore: true})
           })
-          .catch(err => console.log(err))
+          .catch(err => {return})
         }
         
       }
@@ -76,7 +76,7 @@ export default class Blogpage extends Component{
               items: json,
             });
           })
-          .catch(err => console.log(err))
+          .catch(err => {return})
         // }
       }
 
@@ -89,7 +89,7 @@ export default class Blogpage extends Component{
             items: json.reverse(),
           });
         })
-        .catch(err => console.log(err))
+        .catch(err => {return})
       }
 
       handleScroll = () => {

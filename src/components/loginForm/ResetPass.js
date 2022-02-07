@@ -77,9 +77,7 @@ function LoginInfo(props) {
           
         }
             )
-            .catch(err => {
-                console.log(err);
-                console.log('error in Resetting')
+            .catch(err => {return
             })
     
         }

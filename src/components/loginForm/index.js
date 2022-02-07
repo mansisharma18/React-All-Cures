@@ -10,7 +10,6 @@ import useToggle, { STATE_LOG_IN } from "./useToggle";
 
 const Form = ({ initialState = STATE_LOG_IN },props) => {
   const [mode, toggleMode] = useToggle(initialState);
-  console.log("props opem",props.open)
 
   return (
     <Container className="sign-forms" pose={mode === STATE_LOG_IN ? "signup" : "login"}>

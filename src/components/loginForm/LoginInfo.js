@@ -60,8 +60,7 @@ function LoginInfo(props) {
                 routeChange(res.data)
             })
             .catch(err => {
-                console.log(err);
-                console.log('error in updating')
+                return
             })
     
         }
@@ -71,7 +70,6 @@ function LoginInfo(props) {
         Promise.all([
             fetch(`${backendHost}/article/all/table/states`).then(res => res.json()),
         ]).then(([statesData]) => {
-            console.log('States Data: ',statesData)
                 setStates(statesData);
             });
         }, [])

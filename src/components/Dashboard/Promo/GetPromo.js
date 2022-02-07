@@ -8,10 +8,9 @@ function GetPromo(){
     const fetchPromo = (e) => {
         axios.get(`${backendHost}/promo/all`)
         .then(res => {
-            console.log(res.data)
             setPromo(res.data)
         })
-        .catch(res => console.log(res))
+        .catch(res => {return})
     }
     useEffect(() => {
         document.title = "All Cures | Dashboard | Promotions"
@@ -24,7 +23,7 @@ function GetPromo(){
             fetchPromo()
         })
         .catch(err => {
-            console.log(err);
+            return;
         })
     }
 

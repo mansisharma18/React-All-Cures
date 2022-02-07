@@ -28,7 +28,6 @@ class SearchName extends Component {
   }
 
   fetchDoctors(name) {
-    console.log('fetchDoctor: ', name)
     document.title = `All Cures | Search | ${name}`
       fetch(`${backendHost}/SearchActionController?cmd=getResults&city=&doctors=${name}&Latitude=32.7266&Longitude=74.8570`)
       .then(res => res.json())
@@ -40,7 +39,9 @@ class SearchName extends Component {
         })            
       })
       .catch(err => 
-        console.log(err)
+        {
+          return
+        }
     )
   }
 
@@ -53,8 +54,9 @@ class SearchName extends Component {
           speciality: diseaseData
       });
       })
-      .catch(err => 
-        console.log(err)
+      .catch(err => {
+        return
+      }
     )
   }
 

@@ -41,43 +41,30 @@ class CommentsRev extends Component {
         res.data.map(i => (
           s.push(i.rate_id)
         ))
-        console.log(s)
         this.setState({
           commentItems:res.data,
           unselectedCheckboxes: s
         })
         
-        console.log('kjdghkhgkhgsd',this.state.unselectedCheckboxes)
       })
-      // .then(res => {
-      //   res.data.map((i) => {
-      //     console.log(i.rate_id)
-      //   })
-      //   // console.log(check)
-      // })
-      .catch(err => console.log(err))
+      .catch(err => {return})
     
   }
 
 
   postApproved(selected, rejected) {
-    // console.log('post approved fired!');
-    console.log(selected.join())
-    console.log(rejected.join())
 
     const isCurrentItemApproved = !this.state.approvedIds.includes(this.state.currentlySelected) ? 1 : 0
-    console.log(isCurrentItemApproved, this.state.currentlySelected,this.state.approvedIds)
     
     axios.post(`${backendHost}/rating/reviewedby/${Cookies.get("acPerm").split('|')[0]}/reviewed/${isCurrentItemApproved}`, {
       "rateids": selected.join(),
       "rateids_rejected": rejected.join()
     })
       .then(res => {
-        console.log(res)
         this.setState({ShowSubmitAlert: true});
        
       })
-      .catch(err => console.log(err))
+      .catch(err => {return})
       this.setState({ShowErrorAlert: true});
       setTimeout(()=>{
       this.setState({ShowErrorAlert: false});
@@ -97,17 +84,14 @@ class CommentsRev extends Component {
   }
   
   onChange = id => {
-    // event.target.checked
     this.setState({ currentlySelected: id })
 
     const index = this.state.unselectedCheckboxes.indexOf(id);
     if (index > -1) {
       this.state.unselectedCheckboxes.splice(index, 1);
     }
-    console.log('after delete: ',this.state.unselectedCheckboxes)
-    console.log('##########################',id)
     const selectedCheckboxes = this.state.selectedCheckboxes;
-    console.log(selectedCheckboxes)
+
     // Find index
     const unselectedCheckboxes = this.state.unselectedCheckboxes
     const findIdx = selectedCheckboxes.indexOf(id);
@@ -144,7 +128,6 @@ render(){
    function select(e) {
     
     var checkboxes = document.getElementsByClassName('check');
-    console.log(checkboxes)
     for (var checkbox of checkboxes) {
         checkbox.checked = e.target.checked;
     }
@@ -211,7 +194,6 @@ render(){
                                       customSelector: [...new Set(this.state.customSelector), item.rate_id ],
                                       checked: !this.state.isChecked
                                     })
-                                    console.log('custom select ' + this.state.customSelector);
                                   }}
                                   selected={selectedCheckboxes.includes(item.rate_id)}
                                   className="check c1"
@@ -271,14 +253,8 @@ render(){
                           {
                                         this.state.ShowSubmitAlert
                                             ? <SubmitAlert ShowSubmitAlert={this.state.ShowSubmitAlert}/>
-                                            : console.log('Submit ALert')
+                                            : null
                                     }
-
-                                    {/* {
-                                        this.state.ShowErrorAlert
-                                            ? <SubmitError ShowErrorAlert={this.state.ShowErrorAlert}/>
-                                            : console.log('')
-                                    } */}
                                 
                                 <button className='bcolor' onClick={() => {this.postApproved(selectedCheckboxes, unselectedCheckboxes)}}>Submit</button>
                               </div>
@@ -304,7 +280,6 @@ render(){
 // SHOW ALERT
 
 function SubmitAlert(props) {
-  console.log('Submit ALert', props.ShowSubmitAlert)
   if(props.ShowSubmitAlert) {
       return(
           <Alert className="bg-green">Comments has been saved successfully!</Alert>
@@ -315,7 +290,6 @@ function SubmitAlert(props) {
 // Show Error Alert
 
 // function SubmitError(props) {
-//   console.log('Submit ALert', props.ShowErrorAlert)
 //   if(props.ShowErrorAlert) {
 //       return(
 //           <Alert className="bg-red">Some Error occured!</Alert>

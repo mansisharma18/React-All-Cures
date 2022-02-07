@@ -58,7 +58,7 @@ class Profile extends Component {
         })
       })
       .catch(err =>
-        console.log(err)
+        {return}
       )
   }
 
@@ -75,7 +75,7 @@ class Profile extends Component {
           comment: temp
         })
       })
-      .catch(err => console.log(err))
+      .catch(err => {return})
   }
 
 
@@ -110,7 +110,7 @@ class Profile extends Component {
           }, 1000);
         })
       })
-      .catch(err => console.log(err))
+      .catch(err => {return})
   }
 
   
@@ -119,9 +119,9 @@ class Profile extends Component {
       .then(res => {
         this.setState({
           rating: res.data[0].ratingVal
-        }, ()=> console.log(this.state.rating))
+        })
       })
-      .catch(err => console.log(err))
+      .catch(err => {return})
   }
 
 
@@ -198,7 +198,7 @@ class Profile extends Component {
             imageExists: false
           })
         }
-      }).catch(err => console.log('Error:', err));
+      }).catch(err => {return});
   }
 
   onError = (e) => {

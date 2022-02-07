@@ -11,7 +11,6 @@ const NotAuthorizedPage = (props) => {
         setTimeout(() => {
             setCount(count - 1)
         }, 1000);
-        console.log(count)
         if(count === 0){
             history.replace('/cures')
         }

@@ -16,7 +16,6 @@ export default function Rating(props) {
   const postRating = (rating, docid) => {
 
     axios.post(`${backendHost}/DoctorRatingActionController?ratingVal=${rating}&ratedbyid=${rateId}&ratedbytype=${rateId}&targetid=${props.docid}&targetTypeid=1&cmd=rateAsset`)
-    // .then(res => console.log(res)
     .then(res => {
       setAlert(true)
     
@@ -24,7 +23,7 @@ export default function Rating(props) {
           setAlert(false)
       }, 4000);
   })
-  .catch(res => console.log(res))
+  .catch(res => {return})
     
     
   }
@@ -43,10 +42,8 @@ const thirdExample = {
     setRatingValue(newValue)
     // getRating(newValue)
     postRating(newValue)
-    console.log(`Example 3: new value is ${newValue}`);
   }
 };
-console.log(props.ratingVal)
 
 
   return (

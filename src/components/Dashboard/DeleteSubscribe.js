@@ -44,10 +44,9 @@ const[number,setNumber] = useState('');
     const getDisease = () => {
         axios.get(`${backendHost}/article/all/table/disease_condition`)
         .then(res => {
-            console.log(res.data);
             setDiseaseList(res.data)
         })
-        .catch(err => console.log(err))
+        .catch(err =>{return})
     }
 
     return (

@@ -12,7 +12,7 @@ const ProfileTab = ({ setModalShow, docid, firstName, lastName, rowno, name, pSp
         } else {
           setImageExists(false)
         }
-    }).catch(err => console.log('Error:', err));
+    }).catch(err => {return});
   }
 
   useEffect(() => {

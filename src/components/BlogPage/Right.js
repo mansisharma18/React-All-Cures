@@ -12,33 +12,26 @@ const Side = (props) => {
         fetch(`${backendHost}/isearch/${props.title}`)
           .then((res) => res.json())
           .then((json) => {                      
-            console.log(json);
-            
               setisLoaded(true)
               setItems(json)
             
           })
-          .catch(err => 
-            console.log(err)
+          .catch(err => {return}
         )
       }
       function allPosts() {                        // For all available blogs "/blogs"
         fetch(`${backendHost}/article/allkv`)
           .then((res) => res.json())
           .then((json) => {
-            console.log(json);
             setisLoaded(true)
             setItems(json.reverse())
           })
-          .catch(res => console.log(res))
+          .catch(res => {return})
           
       }
       useEffect(() => {
           allPosts()
         // diseasePosts()
-        if(items){
-            console.log('reverse: ',items.reverse())
-        }
     }, [])
     // diseasePosts()
     return (

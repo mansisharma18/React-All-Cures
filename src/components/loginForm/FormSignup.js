@@ -101,11 +101,10 @@ const setSecond = (event) => {
     })
       .catch(res => {
         setError(true) 
-        console.log(res.data)
       })
 
     } else {
-      console.log('not posssiiibbbllleee')
+      return
     }
 }
 
@@ -119,11 +118,9 @@ const setSecond = (event) => {
     var re= /^[a-zA-Z0-9]+@[a-zA-Z0-9]+\.[A-Za-z]+$/;
     if(!re.test(e.target.value)){
       setValidEmail(false)
-      console.log('Enter valid email')
     } else {
       setEmail(e.target.value)
       setValidEmail(true)
-      console.log('validEmail')
     }
   }
 
@@ -138,8 +135,6 @@ const setSecond = (event) => {
   const classes = useStyles();
 
   const afterSignUp = () => {
-    console.log(emailExists, 'Email already exists')
-    console.log(success, 'Successfully signed up')
     if(emailExists === true){
       return(<div className="alert alert-secondary">Email already exists!</div>);
     }
@@ -171,11 +166,8 @@ const setSecond = (event) => {
   }
 
   const responseGoogle = (res) => {
-    console.log(res);
-    console.log(res.profileObj);
   }
 
-  console.log(firstName, lastName, password, email, terms, policy, userType, number)
   return(
     <>
     <SlidingForm signup className="text-center">
@@ -303,7 +295,7 @@ const setSecond = (event) => {
         {/* <Form.Group className="col-md-12 float-left" >
           <FormControl component="fieldset">
       <FormLabel component="legend" className="text-dark">Gender</FormLabel>
-      <RadioGroup value={gender.toString()} onChange={(e) => {setGender(e.target.value); console.log(e.target.value)}}
+      <RadioGroup value={gender.toString()} onChange={(e) => {setGender(e.target.value)}}
       >
         <FormControlLabel className="col-md-1" value="1" control={<Radio />} label="Female" />
         <FormControlLabel className="col-md-1" value="2" control={<Radio />} label="Male" />
@@ -317,7 +309,6 @@ const setSecond = (event) => {
                  <select name="country" value={country} onChange={(e) => setCountry(e.target.value)} placeholder="Country" required="" class="form-control">
                      
                      {countriesList.map((lan) => {
-                       console.log('Country: ', country)
                          return (
                              <option value={lan[0]}>{lan[1]}</option>
                          )

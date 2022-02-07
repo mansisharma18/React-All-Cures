@@ -50,7 +50,7 @@ class Search extends Component {
           isLoaded: true,
           items: json.map.DoctorDetails.myArrayList,
         })            
-      }).catch(err => console.log(err))
+      }).catch(err => {return})
     } else if((this.props.match.params.name) && (!city)) {
 
       document.title = `All Cures | ${this.props.match.params.name}`
@@ -62,7 +62,7 @@ class Search extends Component {
           items: json.map.DoctorDetails.myArrayList,
         })            
       })
-      .catch(err => console.log(err))
+      .catch(err => {return})
     } else if((city) && (!this.props.match.params.name)) {
 
       document.title = `All Cures | ${city}`
@@ -75,7 +75,7 @@ class Search extends Component {
           acPerm: Cookies.get('acPerm'),
         })            
       })
-      .catch(err => console.log(err))
+      .catch(err => {return})
     }
   }
 
@@ -87,7 +87,7 @@ class Search extends Component {
         this.setState({
           speciality: diseaseData
         })
-      }).catch(err => console.log(err))
+      }).catch(err => {return})
   }
   getRating = (docId) => {
     axios.get(`${backendHost}/rating/target/${docId}/targettype/1/avg`)
@@ -100,7 +100,7 @@ class Search extends Component {
         }, 1000);
       })
     }) 
-    .catch(err => console.log(err))
+    .catch(err => {return})
   } 
     // USE if statement
   componentDidMount() {
@@ -110,7 +110,6 @@ class Search extends Component {
   }
 
   componentDidUpdate(prevProps){
-    console.log(this.props.match.params.city)
     if ( prevProps.match.params.city !== this.props.match.params.city){
       this.fetchDoctors(this.props.match.params.city)
     }

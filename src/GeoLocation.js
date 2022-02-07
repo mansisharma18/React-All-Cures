@@ -13,8 +13,6 @@ class App extends Component {
     navigator.geolocation.getCurrentPosition(function(position) {
       Cookies.set('latitude', position.coords.latitude)
       Cookies.set('longitude', position.coords.longitude)
-      console.log("Latitude is :", position.coords.latitude);
-      console.log("Longitude is :", position.coords.longitude);
     });
   }
 

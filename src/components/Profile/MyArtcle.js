@@ -39,7 +39,7 @@ export default class Blogpage extends Component{
             });
           })
           .catch(err => 
-            console.log(err)
+            {return}
         )
       }
 
@@ -83,7 +83,6 @@ export default class Blogpage extends Component{
         );
       
     } else if(isLoaded){
-      console.log(items)
         return(
             <>
             <Header history={this.props.history}/>

@@ -113,7 +113,6 @@ const[type,setType] = useState();
     if(title && article_id){
       axios.get(`${backendHost}/article/allkv?offset=${(page-1)*countPerPage}&limit=${countPerPage}&search=title:${title}~article_id:${article_id}&order=article_id:asc`).then(res => {
         setArticle(res.data);
-        console.log(res)
         
       }).catch(err => {
         setArticle({});
@@ -121,7 +120,6 @@ const[type,setType] = useState();
     } else if(title){
       axios.get(`${backendHost}/article/allkv?offset=${(page-1)*countPerPage}&limit=${countPerPage}&search=title:${title}&order=article_id:asc`).then(res => {
         setArticle(res.data);
-        console.log(res)
         
       }).catch(err => {
         setArticle({});
@@ -129,7 +127,6 @@ const[type,setType] = useState();
     } else if(article_id){
       axios.get(`${backendHost}/article/allkv?offset=${(page-1)*countPerPage}&limit=${countPerPage}&search=article_id:${article_id}&order=article_id:asc`).then(res => {
         setArticle(res.data);
-        console.log(res)
         
       }).catch(err => {
         setArticle({});
@@ -137,7 +134,6 @@ const[type,setType] = useState();
     } else if(sort){
       axios.get(`${backendHost}/article/allkv?offset=${(page-1)*countPerPage}&limit=${countPerPage}&&order=article_id:${sort}`).then(res => {
         setArticle(res.data);
-        console.log(res)
         
       }).catch(err => {
         setArticle({});
@@ -145,7 +141,6 @@ const[type,setType] = useState();
     } else{
       axios.get(`${backendHost}/article/allkv?offset=${(page-1)*countPerPage}&limit=${countPerPage}`).then(res => {
         setArticle(res.data);
-        console.log(res)
         
       }).catch(err => {
         setArticle({});

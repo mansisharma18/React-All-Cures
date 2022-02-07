@@ -49,7 +49,6 @@ const Comment = ({refreshComments,article_id}, props) => {
             .catch(err =>{
               setafterSubmitLoad(false)
               Alert('Some error occured! Please try again later')
-                console.log(err);
             })
             refreshComments()
             

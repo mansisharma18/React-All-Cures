@@ -12,6 +12,10 @@ import 'react-phone-number-input/style.css';
 // import Heart from "../../assets/img/heart.png";
 
 
+
+
+
+
 class Footer extends Component {
    constructor(props){
       super(props);
@@ -36,16 +40,10 @@ class Footer extends Component {
     };      
   }
   postSubscribtion() {
-   //  var mobileNumber = this.state.mobile.split('+')
-   console.log('value: ', this.state.value)
    var phoneNumber = this.state.value.split('+')[1]
-   console.log(phoneNumber)
    var countryCodeLength = phoneNumber.length % 10
-    console.log('Country COde:', countryCodeLength)
    var countryCode = phoneNumber.slice(0, countryCodeLength)
-   console.log(countryCode)
    var StringValue = phoneNumber.slice(countryCodeLength).replace(/,/g, '')
-   console.log(StringValue)
     if(phoneNumber){
       this.setState({
          afterSubmitLoad: true

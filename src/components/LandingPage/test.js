@@ -67,7 +67,6 @@ const Test = (props) => {
           setSignUpClicked(3)
         }, 5000);
         document.getElementById('signup-msg').innerText = 'Email already exists!'
-        console.log('kjsdhkasjdhkj: ', response.data)
       }
       else if(response.data.registration_id){
         // setSuccess(true);
@@ -82,11 +81,10 @@ const Test = (props) => {
           setSignUpClicked(3)
         }, 5000);
         document.getElementById('signup-msg').innerText = 'Some error occured!' 
-        console.log(err.response.data)
       })
 
     } else {
-      console.log('not posssiiibbbllleee')
+      return
     }
   }
 
@@ -94,11 +92,9 @@ const Test = (props) => {
     var re= /^[a-zA-Z-0-9.]+@[a-zA-Z0-9]+\.[A-Za-z]+$/;
     if(!re.test(e.target.value)){
       setValidEmail(false)
-      console.log('Enter valid email')
     } else {
       setEmail(e.target.value)
       setValidEmail(true)
-      console.log('validEmail')
     }
   }
 
@@ -121,7 +117,6 @@ const Test = (props) => {
     .then(response => {
       if(response.data.registration_id){
         Cookies.set('uName', response.data.first_name, { expires: 365 })
-        console.log(response.data)
         setTimeout(() => {
           if(props.path){
             window.location = props.path
@@ -132,7 +127,6 @@ const Test = (props) => {
       } else {
         document.getElementById('login-msg').innerText="Some error occured!"
       }
-      console.log(response.data)
     })
     .catch(err => {
       setLoginSuccess(false)
@@ -143,8 +137,7 @@ const Test = (props) => {
         document.getElementById('login-msg').innerText="Some error occured!"
       }
     }else{
-      console.log(err)
-
+      return
     }
     })
   }

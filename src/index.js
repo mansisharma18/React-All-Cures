@@ -9,10 +9,24 @@ import "@fortawesome/free-brands-svg-icons";
 import { hydrate, render } from "react-dom";
  
 const rootElement = document.getElementById("root");
-if (rootElement.hasChildNodes()) {
-  hydrate(<App />, rootElement);
+if (rootElement?.hasChildNodes()) {
+  hydrate(  
+    <>
+    <React.StrictMode>
+      <App />
+    </React.StrictMode>
+    </>, 
+    rootElement
+  );
 } else {
-  render(<App />, rootElement);
+  render( 
+    <> 
+    <React.StrictMode>
+      <App />
+    </React.StrictMode>
+    </>, 
+    rootElement
+  );
 }
 
 // ReactDOM.render(

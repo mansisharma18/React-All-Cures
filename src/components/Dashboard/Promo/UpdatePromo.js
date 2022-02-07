@@ -19,12 +19,10 @@ export default function UpdatePromo(props){
     
     const search = useLocation().search;  
     const id = new URLSearchParams(search).get('edit');
-    console.log('IIIIIIIDDDDDDDDDDDD: ', id)
 
     const fetchPromo = (e) => {
         axios.get(`${backendHost}/promo/${id}`)
         .then(res => {
-            console.log(res.data[0])
             setPromo(res.data)
             setCode(res.data[0].promo_code)
             setStart(res.data[0].promo_start_datetime.split('T')[0])
@@ -32,7 +30,7 @@ export default function UpdatePromo(props){
             setMax(res.data[0].promo_max_limit)
             setActive(res.data[0].promo_active)
         })
-        .catch(res => console.log(res))
+        .catch(res => {return})
     }
 
     useEffect(() => {
@@ -54,7 +52,7 @@ export default function UpdatePromo(props){
         .then(res => {
             history.back()
         })
-        .catch(res => console.log(res))
+        .catch(res => {return})
     }
 
     return(

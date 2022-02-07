@@ -24,7 +24,7 @@ export default function Userprofile(props) {
             // setRegType(res.data.registration_type)
             setLoaded(true)
         })
-        .catch(err => console.log(err))
+        .catch(err => {return})
     }
     useEffect(() => {
         getProfile()
