@@ -15,8 +15,10 @@ import Grid from '@material-ui/core/Grid';
 import Link from '@material-ui/core/Link';
 import MenuIcon from '@material-ui/icons/Menu';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
-import { mainListItems, secondaryListItems } from './listItems';
-import PromoPaid from './PromoPaid'
+import { StyledEngineProvider } from '@mui/material/styles';
+import PromoPaid from './PromoPaid';
+import {mainListItems, secondaryListItems } from './NestedListItems';
+import NestedListItems from './NestedListItems';
 
 
 
@@ -159,9 +161,11 @@ export default function Dashboard() {
           </IconButton>
         </div>
         <Divider />
-        <List>{mainListItems}</List>
+        <StyledEngineProvider injectFirst>
+    <NestedListItems />
+  </StyledEngineProvider>
         <Divider />
-        <List>{secondaryListItems}</List>
+        
       </Drawer>
       <main className={classes.content}>
         <div className={classes.appBarSpacer} />
