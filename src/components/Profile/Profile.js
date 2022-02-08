@@ -345,6 +345,8 @@ class Profile extends Component {
                       
                         {this.props.match.params.id.split('-')[0] == 872?<><br/>More about him at <a href="https://ayurvedguru.com" target="_blank" rel="noreferrer">www.ayurvedguru.com</a>.</>: null}
                         {this.props.match.params.id.split('-')[0] == 878?<><br/>More about him at <a href="http://www.ayushmanbhavayurveda.com/" target="_blank" rel="noreferrer">www.ayushmanbhavayurveda.com</a>.</>: null}
+                        {this.props.match.params.id.split('-')[0] == 884?<><br/>More about him at <a href="http://expertayurveda.com//" target="_blank" rel="noreferrer">http://expertayurveda.com/</a>.</>: null}
+
                       </p>
                     </div>
 
