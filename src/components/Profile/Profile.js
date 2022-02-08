@@ -349,11 +349,11 @@ class Profile extends Component {
                       
                         {this.props.match.params.id.split('-')[0] == 872?<><br/>More about him at <a href="https://ayurvedguru.com" target="_blank" rel="noreferrer">www.ayurvedguru.com</a>.</>: null}
                         {this.props.match.params.id.split('-')[0] == 878?<><br/>More about him at <a href="http://www.ayushmanbhavayurveda.com/" target="_blank" rel="noreferrer">www.ayushmanbhavayurveda.com</a>.</>: null}
-                        {this.props.match.params.id.split('-')[0] == 878?<><br/>More about him at <a href="www.ayurvedanashik.com" target="_blank" rel="noreferrer">www.ayurvedanashik.com</a>.</>: null}
+                        {/* {this.props.match.params.id.split('-')[0] == 878?<><br/>More about him at <a href="https://www.ayurvedanashik.com" target="_blank" rel="noreferrer">www.ayurvedanashik.com</a>.</>: null} */}
                         {this.props.match.params.id.split('-')[0] == 884?<><br/>More about him at <a href="http://expertayurveda.com/" target="_blank" rel="noreferrer">http://expertayurveda.com/</a>.</>: null}
 
                       </p>
-                      <a href={`${items.website_url}`} target="_blank" rel="noreferrer" className="h4">{items.website_url}</a>
+                      <a href={`${items.website_url}`} target="_blank" rel="noreferrer" className="h6">{items.website_url}</a>
 
                     </div>
 
