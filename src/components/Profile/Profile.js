@@ -353,7 +353,7 @@ class Profile extends Component {
                         {this.props.match.params.id.split('-')[0] == 884?<><br/>More about him at <a href="http://expertayurveda.com/" target="_blank" rel="noreferrer">http://expertayurveda.com/</a>.</>: null}
 
                       </p>
-                      <a href={`${items.website_url}`} target="_blank" rel="noreferrer" className="h5">More About Doctor{items.website_url}</a>
+                      <a href={`${items.website_url}`} target="_blank" rel="noreferrer" className="h5">{items.website_url}</a>
 
                     </div>
 
