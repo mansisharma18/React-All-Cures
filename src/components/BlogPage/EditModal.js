@@ -339,7 +339,8 @@ const EditModal = (props) => {
     }
     
     async function handleSave() {
-        const savedData = await instanceRef.current.save();        
+        const savedData = await instanceRef.current.save();   
+        console.log(savedData)     
         setArticleContent(savedData)  
     }
     
@@ -855,6 +856,7 @@ By visiting this page on our website: <a href="https://www.all-cures.com">www.al
                                 <CenterWell
                                     content = {i.data.content}
                                     type = {i.type}
+                                    level={i.data.level}
                                     text = {i.data.text}
                                     title = {i.data.title}
                                     message = {i.data.message}
@@ -864,6 +866,7 @@ By visiting this page on our website: <a href="https://www.all-cures.com">www.al
                                     alignment = {i.data.alignment}
                                     imageUrl = {i.data.file? i.data.file.url: null}
                                     url = {i.data.url}
+                                    link = {i.data.link}
                                 />
                               ))
                             : null

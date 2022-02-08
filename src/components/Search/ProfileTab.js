@@ -23,10 +23,10 @@ const ProfileTab = ({ firstName, lastName, rowno, name, pSpl, hospital, state, c
                     <p>{ratingVal}</p>
                   </div> */}
                   <div className="name">
-                  <h2>{name}</h2>
-                  <h3>{pSpl}</h3>           {/* Primary Specialization */}
-                  <h4 id="head4">{hospital} {state} {country}</h4>
-                  <h2 id="about">About {name}</h2>
+                  <h3>{name}</h3>
+                  <h4>{pSpl}</h4>           {/* Primary Specialization */}
+                  <h4>{hospital} {state} {country}</h4>
+                  <h5 id="about">About {name}</h5>
                     <p></p>
                   </div>
                   <div className="btn-group"> 
