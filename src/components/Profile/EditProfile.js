@@ -40,6 +40,7 @@ const EditProfile = (props) => {
     const [alertMsg, setAlertMsg] = useState(true)
 
     const [afterSubmitLoad, setafterSubmitLoad] = useState(false)
+    const[website,setWebsite] = useState(item.website_url)
 
     function Alert(msg){
       setShowAlert(true)
@@ -66,7 +67,8 @@ const EditProfile = (props) => {
             "insurance_accept": acceptInsurance,
             "gender": gender,
             "about": about,
-            "awards": awards
+            "awards": awards,
+            "website_url":website
         })
         .then(res => {
           setafterSubmitLoad(false)
@@ -214,6 +216,11 @@ const EditProfile = (props) => {
             <Form.Label>Mobile Number</Form.Label>
             <Form.Control value={num} onChange={(e) => setNum(e.target.value)} style={{border: "1px solid #ced4da"}} type="text" name=""
             placeholder="Enter contact number" />
+          </Form.Group>
+          <Form.Group className="col-md-12 float-left" >
+            <Form.Label>Doctor Website URL</Form.Label>
+            <Form.Control value={website} onChange={(e) => setWebsite(e.target.value)} style={{border: "1px solid #ced4da"}} type="text" name=""
+            placeholder="Enter Doctor Website URL" />
           </Form.Group>
           
           <Form.Group className="col-md-12 float-left">

@@ -18,6 +18,8 @@ import { userId } from "../UserId";
 import { userAccess } from "../UserAccess";
 import AllPost from "../BlogPage/Allpost";
 import Heart from"../../assets/img/heart.png";
+import {Link } from 'react-router-dom'
+
 
 class Profile extends Component {
   constructor(props) {
@@ -274,6 +276,7 @@ class Profile extends Component {
                             <i class="fas fa-hospital pr-1"></i>
                                {items.hospital_affliated}{" "}
                               {items.country_code}
+                              
                             </div>
                             {/* Show average rating */}
                             {
@@ -335,6 +338,8 @@ class Profile extends Component {
                     <div className="h4 font-weight-bold">
                       About {items.prefix}. {items.docname_first} {items.docname_middle}{" "}
                       {items.docname_last}
+                      {/* <Link to={`${items.website_url}`}> {items.website_url}</Link> */}
+
                     </div>
 
                     <div id="about-contain">
@@ -345,9 +350,11 @@ class Profile extends Component {
                       
                         {this.props.match.params.id.split('-')[0] == 872?<><br/>More about him at <a href="https://ayurvedguru.com" target="_blank" rel="noreferrer">www.ayurvedguru.com</a>.</>: null}
                         {this.props.match.params.id.split('-')[0] == 878?<><br/>More about him at <a href="http://www.ayushmanbhavayurveda.com/" target="_blank" rel="noreferrer">www.ayushmanbhavayurveda.com</a>.</>: null}
-                        {this.props.match.params.id.split('-')[0] == 884?<><br/>More about him at <a href="http://expertayurveda.com//" target="_blank" rel="noreferrer">http://expertayurveda.com/</a>.</>: null}
+                        {this.props.match.params.id.split('-')[0] == 884?<><br/>More about him at <a href="http://expertayurveda.com/" target="_blank" rel="noreferrer">http://expertayurveda.com/</a>.</>: null}
 
                       </p>
+                      <a href={`${items.website_url}`} target="_blank" rel="noreferrer" className="h5">More About Doctor{items.website_url}</a>
+
                     </div>
 
                     <br />
