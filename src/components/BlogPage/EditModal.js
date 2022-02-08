@@ -357,7 +357,8 @@ const EditModal = (props) => {
     }
     
     async function handleSave() {
-        const savedData = await instanceRef.current.save();        
+        const savedData = await instanceRef.current.save();   
+        console.log(savedData)     
         setArticleContent(savedData)  
     }
     
@@ -522,11 +523,24 @@ const EditModal = (props) => {
                     <label htmlFor="">Disease and Conditions</label>
                     <select value={disease} name="" onChange={(e) => setDisease(e.target.value)} className="form-control" id="">
                     <option>Open this select menu</option>
-                        {diseaseList.map((lan) => {
-                            return (
-                                <option value={lan[0]}>{lan[3]}</option>
-                            )
-                        })}
+                       
+
+{diseaseList.map((lan) => {
+                           
+                           //const selected = (optionState === option.value) ? selected : false;
+                           //lan[7] it has parent child relationship value
+                           if(lan[7]){
+                               return (
+                                   <option style={{ paddingLeft: '50px' }} value={lan[0]}>&nbsp;&nbsp;{lan[3]}</option>
+                               )
+                           }else{
+                               return (
+                                   <option style={{ fontWeight: 'bold' }} value={lan[0]}>{lan[3]}</option>
+                               )
+                           }
+                       })}
+
+
                     </select>
                 </div>
 
@@ -884,6 +898,7 @@ By visiting this page on our website: <a href="https://www.all-cures.com">www.al
                                 <CenterWell
                                     content = {i.data.content}
                                     type = {i.type}
+                                    level={i.data.level}
                                     text = {i.data.text}
                                     title = {i.data.title}
                                     message = {i.data.message}
@@ -893,6 +908,7 @@ By visiting this page on our website: <a href="https://www.all-cures.com">www.al
                                     alignment = {i.data.alignment}
                                     imageUrl = {i.data.file? i.data.file.url: null}
                                     url = {i.data.url}
+                                    link = {i.data.link}
                                 />
                               ))
                             : null

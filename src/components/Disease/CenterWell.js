@@ -1,7 +1,7 @@
 import React from 'react';
 import parse from 'html-react-parser';
 
-const CenterWell = ({pageTitle, index, imageUrl, content, type, text, title, message, source, embed, caption, alignment, ratingVal,url, item, level,  props}) =>{
+const CenterWell = ({pageTitle, index, imageUrl, content, type, text, title, message, source, embed, caption, alignment, ratingVal,url, item, level,  props, link}) =>{
 
     var list;
     var rows;
@@ -17,15 +17,8 @@ const CenterWell = ({pageTitle, index, imageUrl, content, type, text, title, mes
             )}</tr>`;
         });
     }
-   
-     
-     
-    
     return(
         <>
-        {/* <Popper className="socialMediaPopper" open={true} transition> */}
-   
-  {/* </Popper> */}
         <div key={index}>
             {
                 {
@@ -106,6 +99,11 @@ const CenterWell = ({pageTitle, index, imageUrl, content, type, text, title, mes
                                         }
                                     </tbody>
                                 </table>,
+                    'linkTool': <div className="ce-block py-2">
+                                    <div className="ce-block__content">
+                                        <a target="_blank" href={`${link}`}>{link}</a>
+                                    </div>
+                                </div>,
                     'simpleImage':  <div className="ce-block py-2">
                     <div className="ce-block__content">
                         <div className="cdx-block cdx-simple-image">

@@ -598,7 +598,7 @@ diseasePosts(dcName) {                     // For specific blogs like "/blogs/di
                     caption = {i.data.caption}
                     alignment = {i.data.alignment}
                     imageUrl = {i.data.file? i.data.file.url: null}
-
+                    link = {i.data.link}
                     url = {i.data.url}
                     item = {i.data.items}
                     props = {this.props}
