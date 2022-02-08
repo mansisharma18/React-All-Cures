@@ -3,6 +3,7 @@ import clsx from 'clsx';
 import { makeStyles } from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Drawer from '@material-ui/core/Drawer';
+import { StyledEngineProvider } from '@mui/material/styles';
 import Box from '@material-ui/core/Box';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
@@ -17,17 +18,18 @@ import Paper from '@material-ui/core/Paper';
 import Link from '@material-ui/core/Link';
 import MenuIcon from '@material-ui/icons/Menu';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
-import { mainListItems, secondaryListItems } from './listItems';
+//import { mainListItems, secondaryListItems } from './listItems';
 import Promo from './Promo/CreatePromo'
 import GetPromo from './Promo/GetPromo';
 import UpdatePromo from './Promo/UpdatePromo';
 import Title from './Title';
-import BlogAllPost from './BlogAllPost'
-import EditModal from '../BlogPage/EditModal'
-import CreateDoctor from './CreateDoctor'
-import RegisterUser from './RegisterUser'
-import SubscribedUser from './SubscribedUser'
-import DoctorCreate from './DoctorCreate'
+import BlogAllPost from './BlogAllPost';
+import EditModal from '../BlogPage/EditModal';
+import CreateDoctor from './CreateDoctor';
+import RegisterUser from './RegisterUser';
+import SubscribedUser from './SubscribedUser';
+import DoctorCreate from './DoctorCreate';
+import NestedListItems from './NestedListItems';
 
 import { backendHost } from '../../api-config';
 import { ImageUpload } from './ImageUpload';
@@ -224,9 +226,11 @@ export default function Dashboard(props) {
           </IconButton>
         </div>
         <Divider />
-        <List>{mainListItems}</List>
+        <StyledEngineProvider injectFirst>
+    <NestedListItems />
+  </StyledEngineProvider>
         <Divider />
-        <List>{secondaryListItems}</List>
+        
       </Drawer>
       <main className={classes.content}>
         <div className={classes.appBarSpacer} />
@@ -358,7 +362,14 @@ function RenderComponent(props){
       <RegisterUser search={props.search}/>
     )
   // 
-  } else if(props.search.split('=')[0] === '?subscribedusers'){
+  }else if(props.search.split('=')[0] === '?test'){
+    return(
+      <NestedListItems search={props.search}/>
+    )
+  // 
+  }
+  
+  else if(props.search.split('=')[0] === '?subscribedusers'){
     return(
       <SubscribedUser search={props.search}/>
     )

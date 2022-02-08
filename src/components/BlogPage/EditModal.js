@@ -493,11 +493,24 @@ const EditModal = (props) => {
                     <label htmlFor="">Disease and Conditions</label>
                     <select value={disease} name="" onChange={(e) => setDisease(e.target.value)} className="form-control" id="">
                     <option>Open this select menu</option>
-                        {diseaseList.map((lan) => {
-                            return (
-                                <option value={lan[0]}>{lan[3]}</option>
-                            )
-                        })}
+                       
+
+{diseaseList.map((lan) => {
+                           
+                           //const selected = (optionState === option.value) ? selected : false;
+                           //lan[7] it has parent child relationship value
+                           if(lan[7]){
+                               return (
+                                   <option style={{ paddingLeft: '50px' }} value={lan[0]}>&nbsp;&nbsp;{lan[3]}</option>
+                               )
+                           }else{
+                               return (
+                                   <option style={{ fontWeight: 'bold' }} value={lan[0]}>{lan[3]}</option>
+                               )
+                           }
+                       })}
+
+
                     </select>
                 </div>
 
