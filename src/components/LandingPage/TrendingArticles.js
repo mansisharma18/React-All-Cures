@@ -15,16 +15,16 @@ const TrendingArticles = () => {
                     </div>
                     </Link>
                 </div>
-
                 <div className="col-md-4 my-3">
-                    <Link to="/searchcures/Unani">
-                    <div className="card d-flex justify-content-between">
-                        <div className="h5 text-dark col-md-6 text-center">Unani</div>
-                        <div className="col-md-6 rounded" id="unani">
+                    <Link to="/searchcures/Chinese">
+                        <div className="card d-flex justify-content-between">
+                            <div className="h5 text-dark col-md-6 text-center">Chinese<br/> Medicine</div>
+                            <div className="col-md-6 rounded" id="chinese">
+                            </div>
                         </div>
-                    </div>
                     </Link>
                 </div>
+           
 
                 <div className="col-md-4 my-3">
                     <Link to="/searchcures/Persian">
@@ -37,12 +37,12 @@ const TrendingArticles = () => {
                 </div>
 
                 <div className="col-md-4 my-3">
-                    <Link to="/searchcures/Chinese">
-                        <div className="card d-flex justify-content-between">
-                            <div className="h5 text-dark col-md-6 text-center">Chinese<br/> Medicine</div>
-                            <div className="col-md-6 rounded" id="chinese">
-                            </div>
+                    <Link to="/searchcures/Unani">
+                    <div className="card d-flex justify-content-between">
+                        <div className="h5 text-dark col-md-6 text-center">Unani</div>
+                        <div className="col-md-6 rounded" id="unani">
                         </div>
+                    </div>
                     </Link>
                 </div>
 

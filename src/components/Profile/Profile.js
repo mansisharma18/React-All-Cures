@@ -360,7 +360,7 @@ class Profile extends Component {
                     <br />
                     <div className="abt-eduction ">
                       <div className="h4 font-weight-bold">Education</div>
-                      {items.edu_training.split('•').map((i, idx) => <li className={`list-${idx}`}>{i}</li>)}
+                      {items.edu_training}
                     </div>
                     <div className="mt-5">
                       <div className="h4 font-weight-bold">Accomplishments</div>
