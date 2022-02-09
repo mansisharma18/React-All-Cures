@@ -36,7 +36,7 @@ import ListArticle from './Profile/ListArticle'
 import NotFound from "./NotFound";
 import { userAccess } from "./UserAccess";
 import NotAuthorizedPage from "./NotAuthorizedPage";
-
+import Feedback from "./Feedback";
 
 function Main(props) {
   const history = useHistory()
@@ -96,6 +96,7 @@ const Routes = (props) => {
 
        <Route exact path="/" component={Home} />
        <Route exact path="/home" component={Home} />
+       <Route exact path="/feedback" component={Feedback} />
 
       {/* Doctor search page */}
       <Route exact path="/search/:city" component={Search} /> 
