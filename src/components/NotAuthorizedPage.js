@@ -12,7 +12,7 @@ const NotAuthorizedPage = (props) => {
             setCount(count - 1)
         }, 1000);
         if(count === 0){
-            history.replace('/cures')
+            history.replace('/searchcures')
         }
     }
     useEffect(() => {

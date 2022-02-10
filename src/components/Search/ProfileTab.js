@@ -1,9 +1,12 @@
 import { Link } from 'react-router-dom'
+import { imagePath } from '../../image-path';
 
-const ProfileTab = ({ firstName, lastName, rowno, name, pSpl, hospital, state, country }) => {
+const ProfileTab = ({ firstName, lastName, rowno, name, pSpl, hospital, state, country, eduTraining }) => {
 
   const onError = (e) => {
-    e.target.parentElement.innerHTML = `<i class="fas fa-user-md fa-6x"></i>`
+    if(e.target.parentElement){
+      e.target.parentElement.innerHTML = `<i class="fas fa-user-md fa-6x"></i>`
+    }
  }
   
   return (
@@ -14,7 +17,7 @@ const ProfileTab = ({ firstName, lastName, rowno, name, pSpl, hospital, state, c
           <div className="tab-content-detail clearfix mr-20">
             <div className="dr-detail">
               <div className="tab-content-img">
-                  <img src={`https://all-cures.com:444/cures_articleimages/doctors/${rowno}.png`} 
+                  <img src={`${imagePath}/cures_articleimages/doctors/${rowno}.png?d=${parseInt(Math.random()* 1000)}`} 
       onError={(e) => onError(e)}/>
                   </div>
               <div className="col-md-12 col-sm-12">
@@ -24,8 +27,9 @@ const ProfileTab = ({ firstName, lastName, rowno, name, pSpl, hospital, state, c
                   </div> */}
                   <div className="name">
                   <h3>{name}</h3>
-                  <h4>{pSpl}</h4>           {/* Primary Specialization */}
-                  <h4>{hospital} {state} {country}</h4>
+                  <h5>{pSpl}</h5>           {/* Primary Specialization */}
+                  <h5>{hospital} {state} {country}</h5>
+                  {/* <h5>{eduTraining.substr(0, 90)}</h5> */}
                   <h5 id="about">About {name}</h5>
                     <p></p>
                   </div>
