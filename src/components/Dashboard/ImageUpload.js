@@ -22,10 +22,8 @@ export const ImageUpload = () => {
 	};
 
     const Alert = (msg) => {
-        this.setState({
-           showAlert:true,
-           alertMsg: msg
-        })
+        setShowAlert(true)
+        setAlertMsg(msg)
         setTimeout(() => {
            setShowAlert(false)
         }, 5000);
