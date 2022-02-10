@@ -37,6 +37,7 @@ function App() {
   const[hospital,setHospital] = useState('')
   const[hospitalList,setHospitalList] = useState([])
   const [alert,setAlert] = useState()
+  const[website,setWebsite] = useState()
 
 
 
@@ -51,14 +52,15 @@ function App() {
         "docname_last": last,
         "gender":parseInt(gender),
         "edu_training":edu,
-        "insurance_accept":parseInt(insurance),
+        "insurance_accept":1,
         "hospital_affliated":parseInt(hospital),
         "primary_spl":parseInt(disease),
         "city":parseInt(city),
         "state":parseInt(state),
         "country_code":parseInt(country),
         "location":parseInt(location),
-        "pincode":parseInt(pincode)
+        "pincode":parseInt(pincode),
+        "website_url":website
     
     })
     .then(res => {
@@ -187,7 +189,7 @@ useEffect(() => {
                         </Form.Group>
                         <Form.Group className="col-md-6 float-left" style={{zIndex: 2}}>
                             <Form.Label>Enter Insurance Accept Value <b>1</b></Form.Label>
-                            <Form.Control value={insurance} onChange={(e) => setInsurance(e.target.value)}  type="text" name=""
+                            <Form.Control value={1}  type="text" name=""
                             placeholder="Enter Insurance Accept Value 1..." required/>
                         </Form.Group>
                         <Form.Group className="col-md-6 float-left" style={{zIndex: 2}}>
@@ -251,6 +253,11 @@ useEffect(() => {
         )
     })}
 </select>
+                        </Form.Group>
+                        <Form.Group className="col-md-6 float-left" style={{zIndex: 2}}>
+                            <Form.Label>Enter Doctor URL</Form.Label>
+                            <Form.Control value={website} onChange={(e) => setWebsite(e.target.value)}  type="text" name=""
+                            placeholder="Enter Doctor URL..." />
                         </Form.Group>
                         <Form.Group className="col-md-6 float-left" style={{zIndex: 2}}>
                             <Form.Label>Enter Location</Form.Label>

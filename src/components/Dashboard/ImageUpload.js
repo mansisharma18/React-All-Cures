@@ -5,21 +5,8 @@ import { backendHost } from '../../api-config';
 export const ImageUpload = () => {
     const [imageType, setImageType] = useState('')
     const [id, setId] = useState('')
-    // const [image, setImage] = useState(null)   
-
-    // function uploadImage(){
-    //     if(imageType === 'article'){
-    //         // axios.post(`${backendHost}/`)
-    //     } else if(imageType === 'doctor'){
-
-    //     }
-    // }
-
-    // const onImageChange = (event) => {
-    //     if (event.target.files && event.target.files[0]) {
-    //       setImage(URL.createObjectURL(event.target.files[0]));
-    //     }
-    // }
+    const [showAlert, setShowAlert] = useState(false)
+    const [alertMsg, setAlertMsg] = useState(true)
 
     const [selectedFile, setSelectedFile] = useState();
 
@@ -34,6 +21,15 @@ export const ImageUpload = () => {
 
 	};
 
+    const Alert = (msg) => {
+        this.setState({
+           showAlert:true,
+           alertMsg: msg
+        })
+        setTimeout(() => {
+           setShowAlert(false)
+        }, 5000);
+    }
 
 	const handleSubmission = (e) => {
         e.preventDefault()
@@ -47,6 +43,7 @@ export const ImageUpload = () => {
 		)
         .then((response) => response.json())
 		.then((result) => {
+            Alert('Image uploaded successfully.')
     		// console.log('Success:', result);
 		})
 		.catch((error) => {
@@ -56,7 +53,13 @@ export const ImageUpload = () => {
 
     return(
         <>  
-            
+            {
+                showAlert &&
+                    <div className="alert alert-success pop-up border-bottom">
+                        <div className="h5 mb-0 text-center">{alertMsg}</div>
+                        <div className="timer"></div>
+                    </div>
+            }
             <div className="upload-image">
                 <div className="container mt-2">
                     <button className='btn btn-success w-25 h5 mr-3' onClick={(e)=> setImageType('doctor')}>Upload Doctor's Image</button>

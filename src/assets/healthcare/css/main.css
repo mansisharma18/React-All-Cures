@@ -1117,15 +1117,15 @@ button.appBtn:hover {
   color: #00415e;
   padding-top: 20px;
 }
-.name h2 {
+/* .name h2 {
   font-size: 16px;
   font-weight: 700;
-}
-.name h3 {
+} */
+/* .name h3 {
   font-size: 16px;
   line-height: 19px;
   text-transform: capitalize;
-}
+} */
 .name h4 {
   font-weight: 300;
 }
@@ -1190,13 +1190,13 @@ button.appBtn:hover {
 .detail-r {
   padding-left: 30px;
 }
-.profile-info-name h1 {
+/* .profile-info-name h1 {
   font-size: 20px;
   line-height: 23px;
   text-transform: capitalize;
   color: #00415e;
-}
-.profile-info-name h3,
+} */
+/* .profile-info-name h3,
 h2,
 h4 {
   font-weight: 300;
@@ -1204,14 +1204,14 @@ h4 {
   line-height: 23px;
   text-transform: capitalize;
   color: #00415e;
-}
-.profile-info-rating h2 {
+} */
+/* .profile-info-rating h2 {
   font-weight: 500;
   font-size: 18px;
   line-height: 40px;
   text-transform: capitalize;
   color: #ed8a19;
-}
+} */
 .profile-info-rating ul li {
   color: #ed8a19;
   display: inline-block;
@@ -2378,15 +2378,13 @@ div.main-hero:first-child .card {
     border-radius: 2px;
   }
 }
-#table{
+#table {
   margin-top: 13px;
-  
- 
 }
 
 #td {
-  position: sticky;
-  top: 0
+  height: 140px;
+
 }
 
 .btn:focus {

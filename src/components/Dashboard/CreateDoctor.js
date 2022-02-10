@@ -20,7 +20,7 @@ function App() {
   const [emaill, setEmail] = useState()
   const [type,setType] = useState()
   const[id,setId] = useState()
- 
+ const[pinCode,setPinCode] = useState()
   const[hospital,setHospital] = useState()
   const[spl,setSpl] = useState('')
   const[splName,setSplName] = useState('')
@@ -97,6 +97,7 @@ const cityForm = (e) => {
         "cityname": cityName,
         "state_code":parseInt(state),
         "country_code":parseInt(country),
+        "pincode":parseInt(pinCode)
     })
     .then(res => {
         setCityAlert(true)
@@ -245,11 +246,7 @@ useEffect(() => {
                         <div className="card-title h3 text-center py-2 border-bottom">Hospital Table</div>
                         <form onSubmit={hospitalForm}>
                             <div className="row m-4">
-                        {/* <Form.Group className="col-md-6 float-left" style={{zIndex: 2}}>
-                            <Form.Label>Enter Hospital Id</Form.Label>
-                            <Form.Control value={hospitalId} onChange={(e) => setHospitalId(e.target.value)}  type="text" name=""
-                            placeholder="Enter Hospital Id..." />
-                        </Form.Group> */}
+                    
                         <Form.Group className="col-md-6 float-left" style={{zIndex: 2}}>
                             <Form.Label>Enter Hospital Name</Form.Label>
                             <Form.Control value={hospital} onChange={(e) => setHospital(e.target.value)}  type="text" name=""
@@ -275,11 +272,7 @@ useEffect(() => {
                         <div className="card-title h3 text-center py-2 border-bottom">Speciality Table</div>
                         <form onSubmit={specialtiesForm}>
                             <div className="row m-4">
-                        {/* <Form.Group className="col-md-6 float-left" style={{zIndex: 2}}>
-                            <Form.Label>Enter Speciality Id</Form.Label>
-                            <Form.Control value={spl} onChange={(e) => setSpl(e.target.value)}  type="text" name=""
-                            placeholder="Enter Speciality Id..." required/>
-                        </Form.Group> */}
+                     
                         <Form.Group className="col-md-6 float-left" style={{zIndex: 2}}>
                             <Form.Label>Enter Speciality Name</Form.Label>
                             <Form.Control value={splName} onChange={(e) => setSplName(e.target.value)}  type="text" name=""
@@ -305,11 +298,7 @@ useEffect(() => {
                         <div className="card-title h3 text-center py-2 border-bottom">City Table</div>
                         <form onSubmit={cityForm}>
                             <div className="row m-4">
-                        {/* <Form.Group className="col-md-6 float-left" style={{zIndex: 2}}>
-                            <Form.Label>Enter City Id</Form.Label>
-                            <Form.Control value={cityCode} onChange={(e) => setCityCode(e.target.value)}  type="text" name=""
-                            placeholder="Enter City Id..." required/>
-                        </Form.Group> */}
+                     
                         <Form.Group className="col-md-6 float-left" style={{zIndex: 2}}>
                             <Form.Label>Enter City Name</Form.Label>
                             <Form.Control value={cityName} onChange={(e) => setCityName(e.target.value)}  type="text" name=""
@@ -342,7 +331,11 @@ useEffect(() => {
     })}
 </select>
                         </Form.Group>
-                     
+                        <Form.Group className="col-md-6 float-left" style={{zIndex: 2}}>
+                            <Form.Label>Enter City Pincode</Form.Label>
+                            <Form.Control value={pinCode} onChange={(e) => setPinCode(e.target.value)}  type="text" name=""
+                            placeholder="Enter City Pincode..." required/>
+                        </Form.Group>
                         {
                             cityAlert?
                                 <Alert variant="success" className="h6 mx-3">City Create successfully!!</Alert>
@@ -361,11 +354,7 @@ useEffect(() => {
                         <div className="card-title h3 text-center py-2 border-bottom">State Table</div>
                         <form onSubmit={statesForm}>
                             <div className="row m-4">
-                        {/* <Form.Group className="col-md-6 float-left" style={{zIndex: 2}}>
-                            <Form.Label>Enter State Id</Form.Label>
-                            <Form.Control value={state} onChange={(e) => setState(e.target.value)}  type="text" name=""
-                            placeholder="Enter State Id..." required/>
-                        </Form.Group> */}
+                       
                         <Form.Group className="col-md-6 float-left" style={{zIndex: 2}}>
                             <Form.Label>Enter State Name</Form.Label>
                             <Form.Control value={stateName} onChange={(e) => setStateName(e.target.value)}  type="text" name=""
@@ -373,7 +362,7 @@ useEffect(() => {
                         </Form.Group>
                    
                         <Form.Group className="col-md-6 float-left" style={{zIndex: 2}}>
-                            {/* <Form.Label>Enter Country</Form.Label> */}
+                         
 
                             <label htmlFor="">Enter Country</label>
 <select name="country" value={country} onChange={(e) => setCountry(e.target.value)} placeholder=" Enter Country" required="" className="form-control">
@@ -404,11 +393,7 @@ useEffect(() => {
                         <div className="card-title h3 text-center py-2 border-bottom">Country Table</div>
                         <form onSubmit={countriesForm}>
                             <div className="row m-4">
-                        {/* <Form.Group className="col-md-6 float-left" style={{zIndex: 2}}>
-                            <Form.Label>Enter Country Id</Form.Label>
-                            <Form.Control value={country} onChange={(e) => setCountry(e.target.value)}  type="text" name=""
-                            placeholder="Enter Country Id..." required/>
-                        </Form.Group> */}
+                       
                         <Form.Group className="col-md-6 float-left" style={{zIndex: 2}}>
                             <Form.Label>Enter Country Name</Form.Label>
                             <Form.Control value={countryName} onChange={(e) => setCountryName(e.target.value)}  type="text" name=""

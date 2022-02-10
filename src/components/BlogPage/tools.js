@@ -18,7 +18,7 @@ import { backendHost } from '../../api-config'
 export const EDITOR_JS_TOOLS = {
   embed: Embed,
   table: Table,
-  paragraph: Paragraph,
+  // paragraph: Paragraph,
   list: List,
   warning: Warning,
 //   code: Code,

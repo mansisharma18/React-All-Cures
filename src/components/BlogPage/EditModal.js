@@ -28,6 +28,8 @@ const EditModal = (props) => {
     const [disclaimer, setDisclaimer] = useState('')
     const [copyright, setCopyright] = useState('')
     const [language, setLanguage] = useState('')
+    const [medicineType,setMedicineType] = useState('')
+    const [medicineList,setMedicineList] = useState([])
     const [author, setAuthor] = useState([])
     const [country, setCountry] = useState('')
     const [win, setWin] = useState('')
@@ -83,6 +85,7 @@ const EditModal = (props) => {
             setCountry(res.data.country_id)
             setDisease(res.data.disease_condition_id)
             setComment(res.data.comments) 
+            setMedicineType(res.data.medicine_type)
             setKeywords(res.data.keywords) 
             setContentSmall(decodeURIComponent(res.data.content_small))
             setArticleContent(JSON.parse(decodeURIComponent(res.data.content)))
@@ -114,6 +117,7 @@ const EditModal = (props) => {
                 "copyright_id": 11,
                 "disclaimer_id": 1,
                 "pubstatus_id": parseInt(articleStatus),
+                "medicine_type":parseInt(medicineType),
                 "language_id": parseInt(language),
                 "articleContent": encodeURIComponent(JSON.stringify(articleContent)),
                 "country_id": parseInt(country),
@@ -157,6 +161,7 @@ const EditModal = (props) => {
                 "copyright_id": 11,
                 "disclaimer_id": 1,
                 "pubstatus_id": parseInt(articleStatus),
+                "medicine_type":parseInt(medicineType),
                 "language_id": parseInt(language),
                 "articleContent": encodeURIComponent(JSON.stringify(articleContent)),
                 "comments": comment,
@@ -207,6 +212,17 @@ const EditModal = (props) => {
         axios.get(`${backendHost}/article/all/table/languages`)
         .then(res => {
             setLanList(res.data)
+        })
+        .catch(err => {
+            return
+        }
+        )
+    }
+
+    const getMedicine = () => {
+        axios.get(`${backendHost}/article/all/table/medicinetype`)
+        .then(res => {
+            setMedicineList(res.data)
         })
         .catch(err => {
             return
@@ -273,6 +289,7 @@ const EditModal = (props) => {
         getCountries()
         getDisclaimer()
         getDisease()  
+        getMedicine()
         // eslint-disable-next-line   
     }, [userId])
 
@@ -313,6 +330,7 @@ const EditModal = (props) => {
                 "copyId": 11,
                 "disclaimerId": 1,
                 "diseaseConditionId": disease,
+                "medicine_type":parseInt(medicineType),
                 "articleStatus": articleStatus? articleStatus: 2,
                 "language": parseInt(language),
                 "articleContent": encodeURIComponent(JSON.stringify(articleContent)),
@@ -339,7 +357,8 @@ const EditModal = (props) => {
     }
     
     async function handleSave() {
-        const savedData = await instanceRef.current.save();        
+        const savedData = await instanceRef.current.save();   
+        console.log(savedData)     
         setArticleContent(savedData)  
     }
     
@@ -483,6 +502,17 @@ const EditModal = (props) => {
                     <select value={language} name="" onChange={(e) => setLanguage(e.target.value)} className="form-control" id="">
                     <option>Open this select menu</option>
                         {lanList.map((lan) => {
+                            return (
+                                <option value={lan[0]}>{lan[1]}</option>
+                            )
+                        })}
+                    </select>
+                </div>
+                <div className="col-lg-6 form-group">
+                    <label htmlFor="">Type Of Medicine</label>
+                    <select value={medicineType} name="" onChange={(e) => setMedicineType(e.target.value)} className="form-control" id="">
+                    <option>Open this select menu</option>
+                        {medicineList.map((lan) => {
                             return (
                                 <option value={lan[0]}>{lan[1]}</option>
                             )
@@ -868,6 +898,7 @@ By visiting this page on our website: <a href="https://www.all-cures.com">www.al
                                 <CenterWell
                                     content = {i.data.content}
                                     type = {i.type}
+                                    level={i.data.level}
                                     text = {i.data.text}
                                     title = {i.data.title}
                                     message = {i.data.message}
@@ -877,6 +908,7 @@ By visiting this page on our website: <a href="https://www.all-cures.com">www.al
                                     alignment = {i.data.alignment}
                                     imageUrl = {i.data.file? i.data.file.url: null}
                                     url = {i.data.url}
+                                    link = {i.data.link}
                                 />
                               ))
                             : null
