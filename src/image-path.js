@@ -1,1 +1,1 @@
-export const imagePath = 'https://all-cures.com:8244/'
+export const imagePath = 'https://all-cures.com:444/'
