@@ -60,9 +60,9 @@ function Feedback() {
                         </Form.Group>
                        
                         <Form.Group className="col-md-6 float-left" style={{zIndex: 2}}>
-                            <Form.Label>EnterYour Email</Form.Label>
+                            <Form.Label>Enter Your Email</Form.Label>
                             <Form.Control  value={email} onChange={(e) => setEmail(e.target.value)} type="text" name=""
-                            placeholder="EnterYour Email..."
+                            placeholder="Enter Your Email..."
                             />
                         </Form.Group>
                         <Form.Group className="col-md-6 float-left" style={{zIndex: 2}}>
@@ -72,8 +72,16 @@ function Feedback() {
                         </Form.Group>
                         <Form.Group className="col-md-12 float-left"  style={{zIndex: 2}}>
                             <Form.Label>Enter Your Feedback</Form.Label>
-                            <Form.Control  id='td'value={feedback} onChange={(e) => setFeedback(e.target.value)}  type="text" name=""
-                            placeholder="Enter Your Feedback..." />
+                            {/* <Form.Control  id='td'value={feedback} onChange={(e) => setFeedback(e.target.value)}  type="text" name=""
+                            placeholder="Enter Your Feedback..." /> */}
+                            <Form.Control
+        Value={feedback}
+        onChange={(e) => setFeedback(e.target.value)}
+        as="textarea"
+        placeholder="Enter Your Feedback"
+        style={{ height: '100px' }}
+      />
+                             
                         </Form.Group>
                         {
                             alert?
