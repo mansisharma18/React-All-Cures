@@ -186,7 +186,7 @@ class Footer extends Component {
                            <p className="text-light">Create A Cure</p>
                         </li>
                         </Link>
-                        <Link  to="/article">
+                        <Link  to="/feedback">
 
                         <li>
                            <p className="text-light">Sumbit Your Feedback</p>
