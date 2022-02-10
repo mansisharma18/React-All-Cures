@@ -18,6 +18,8 @@ const Side = (props) => {
           .then((json) => {                                  
               setisLoaded(true)
               setItems(json)
+
+            
             
           })
           .catch(err => {return
@@ -42,7 +44,8 @@ const Side = (props) => {
         </>  
         )
     }
-    else {
+    else {var id = props.id
+    console.log(id+"test");
     return (
         <>
 
@@ -55,8 +58,11 @@ const Side = (props) => {
             <Nav.Item className="set-width"  id="dc-right-menu">
                 <div className="h4 pb-3"><u className="text-decoration-none">{props.dcName} Cures</u></div>
                 
-            {   items?
+            {  
+            
+            items?
                     items.map((i, index) => (
+                      i.article_id!=id?
                         <AllPost
                             rowno = {i.rowno}
                             key = {i.article_id.toString()}
@@ -73,7 +79,7 @@ const Side = (props) => {
                             // country = {i.country_id}
                             imgLocation={i.content_location}
                             history = {props.history}
-                        />
+                        />:null
                     ))
                     : null
                 }
