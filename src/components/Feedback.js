@@ -54,9 +54,9 @@ function Feedback() {
                             placeholder="Enter Your First Name..." required/>
                         </Form.Group>
                         <Form.Group className="col-md-6 float-left" style={{zIndex: 2}}>
-                            <Form.Label>Enter Your Middle Name</Form.Label>
+                            <Form.Label>Enter Your Last Name</Form.Label>
                             <Form.Control value={name} onChange={(e) => setName(e.target.value)} type="text" name=""
-                            placeholder="Enter Your Middle Name..." />
+                            placeholder="Enter Your Last Name..." />
                         </Form.Group>
                        
                         <Form.Group className="col-md-6 float-left" style={{zIndex: 2}}>
