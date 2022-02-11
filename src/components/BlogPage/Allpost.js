@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import CenterWell from '../Disease/CenterWell';
 import Date from '../Date'
+import { imagePath } from '../../image-path';
 
 const AllPost = ({id, title, content, rowno, f_title, w_title, country, type, published_date, over_allrating, imgLocation, authorName}) => {
     function IsJsonValid(str) {
@@ -18,9 +19,9 @@ const AllPost = ({id, title, content, rowno, f_title, w_title, country, type, pu
     }
     var imageLoc = '';
     if(imgLocation && imgLocation.includes('cures_articleimages')){
-        imageLoc = `https://all-cures.com:444/`+imgLocation.replace('json', 'png').split('/webapps/')[1]
+        imageLoc = `${imagePath}`+imgLocation.replace('json', 'png').split('/webapps/')[1]
     } else {
-        imageLoc = 'https://all-cures.com:444/cures_articleimages//299/default.png'
+        imageLoc = '${imagePath}cures_articleimages//299/default.png'
     }
 
     var articleTitle = title
@@ -37,7 +38,7 @@ const AllPost = ({id, title, content, rowno, f_title, w_title, country, type, pu
             <>
             <div key={id.toString()} className="d-flex cures-search-tab w-100 card mb-5">
                 <div className='col-md-3 cures-tab-img rounded px-0'>
-                        <img src={`${imageLoc}`} alt={articleTitle}/>
+                        <img src={`${imageLoc}?dummy=${parseInt(Math.random() * 10000)}`} alt={articleTitle}/>
                                 {/* {
                                     over_allrating !== 0?
                                     <div className='checked'id="starMob"><span class="fa fa-star checked mr-1"></span>{Math.round(over_allrating * 10) / 10}</div>

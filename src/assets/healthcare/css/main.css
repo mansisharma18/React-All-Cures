@@ -1260,6 +1260,7 @@ h4 {
 }
 .profileImageBlok {
   text-align: center;
+  position: relative;
 }
 .check-icon {
   font-size: 38px;
@@ -2384,7 +2385,6 @@ div.main-hero:first-child .card {
 
 #td {
   height: 140px;
-
 }
 
 .btn:focus {
@@ -2467,4 +2467,29 @@ img#heartend {
   height: 80px;
   /* margin: 3rem 0; */
   animation: heartbeat 2s infinite;
+}
+
+#edit-profile-img {
+  position: absolute;
+  bottom: 0;
+  color: #9c8fab;
+  left: 8rem;
+}
+
+#fileInput {
+  display: none;
+}
+#icon {
+  width: 100px;
+  cursor: pointer;
+}
+
+.fa-edit {
+  cursor: pointer;
+}
+
+.image-edit-icon {
+  position: absolute;
+  bottom: 0;
+  right: -1.5rem;
 }

@@ -522,8 +522,10 @@ diseasePosts(dcName) {                     // For specific blogs like "/blogs/di
                             imageLoc = `https://all-cures.com:444/`+imgLocation.replace('json', 'png').split('/webapps/')[1]
                         } else {
                             imageLoc = 'https://all-cures.com:444/cures_articleimages//299/default.png'
-                        }
+                        }var id = this.props.match.params.id.split('-')[0]
                         return(
+                          
+                          i.article_id!=id?
                         <PreviewTab 
                           key={i.article_id.toString()}
                           id={i.article_id} 
@@ -531,7 +533,7 @@ diseasePosts(dcName) {                     // For specific blogs like "/blogs/di
                           windowTitle={i.window_title}  
                           content = {content}
                           imageLoc={imageLoc}
-                        />
+                        />:null
                       )})
                     }
                   
@@ -693,7 +695,7 @@ diseasePosts(dcName) {                     // For specific blogs like "/blogs/di
             </div>
           </Col> 
           <Col id="sidebar-wrapper">      
-            <SidebarRight title={items.title} history={this.props.history} dcName={items.dc_name} />
+            <SidebarRight title={items.title} history={this.props.history} dcName={items.dc_name} id={items.article_id}/>
           </Col>
         </Row>
         <div>

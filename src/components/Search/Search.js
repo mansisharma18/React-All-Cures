@@ -195,6 +195,7 @@ class Search extends Component {
                             reload = {this.state.reload}
                             setModalShow = {this.setModalShow}
                             key = {i.map.doctorid}
+                            eduTraining={i.map.edu_training}
                             ratingVal={this.state.ratingvalue}
                           />
                         ))}

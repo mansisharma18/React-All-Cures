@@ -167,7 +167,7 @@ const[type,setType] = useState();
         setArticle({});
       });
     } else{
-      axios.get(`${backendHost}/article/allkv?offset=${(page-1)*countPerPage}&limit=${countPerPage}`).then(res => {
+      axios.get(`${backendHost}/article/allkv?offset=${(page-1)*countPerPage}&limit=${countPerPage}&&order=article_id:desc`).then(res => {
         setArticle(res.data);
         
       }).catch(err => {

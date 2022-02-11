@@ -19,6 +19,7 @@ import { userAccess } from "../UserAccess";
 import AllPost from "../BlogPage/Allpost";
 import Heart from"../../assets/img/heart.png";
 import {Link } from 'react-router-dom'
+import { imagePath } from "../../image-path";
 
 
 class Profile extends Component {
@@ -41,9 +42,66 @@ class Profile extends Component {
       showMore: false,
       modalShow: false,
       show: false,
-      imageExists: false
+      imageExists: false,
+      selectedFile: '',
+      isFilePicked: false,
+      imageUploadLoading: false,
+      showAlert: false,
+      alertMsg: ''
     };
   }
+
+  // Image Upload 
+	changeHandler = (event) => {
+    if(event.target.files[0].size > 1048576){
+      this.Alert('Image should be less than 1MB!')
+      return
+    }
+    this.setState({
+      selectedFile: event.target.files[0],
+    }, (event) => this.handleImageSubmission(event))
+	}
+
+  handleImageSubmission = (e) => {
+    // e.preventDefault()
+    this.setState({imageUploadLoading: true})
+    const formData = new FormData();
+    formData.append('File', this.state.selectedFile);
+    fetch(`${backendHost}/dashboard/imageupload/doctor/${this.props.match.params.id.split('-')[0]}`,
+      {
+        method: 'POST',
+        body: formData,
+      }
+    )
+    .then((response) => response.json())
+    .then((result) => {
+      setTimeout(() => {
+        this.setState({
+          isFilePicked: true,
+          imageUploadLoading: false
+        })
+      }, 5000);
+      
+      this.Alert('Image uploaded successfully.')
+    })
+    .catch((error) => {
+        return
+    });
+    }
+  Alert = (msg) => {
+    console.log(msg)
+    this.setState({
+       showAlert:true,
+       alertMsg: msg
+    })
+    setTimeout(() => {
+       this.setState({
+         showAlert: false
+       })
+    }, 5000);
+}
+
+  // DOCTOR'S WRITTEN CURES
 
   allPosts() {                        // For all available blogs "/blogs"
     fetch(`${backendHost}/article/authallkv/reg_type/1/reg_doc_pat_id/${this.props.match.params.id.split('-')[0]}`)
@@ -137,7 +195,7 @@ class Profile extends Component {
         this.setState({
           isLoaded: true,
           items: json,
-        }, () => this.checkIfImageExits(`https://all-cures.com:444/cures_articleimages/doctors/${json.rowno}.png`));
+        })
       });
 
   }
@@ -204,7 +262,9 @@ class Profile extends Component {
   }
 
   onError = (e) => {
-    e.target.parentElement.innerHTML = `<i class="fas fa-user-md fa-6x"></i>`
+    if(e.target.parentElement){
+      e.target.parentElement.innerHTML = `<i class="fas fa-user-md fa-6x"></i>`
+    }
   }
 
   render() {
@@ -235,9 +295,16 @@ class Profile extends Component {
         </>
       )
     } else if (isLoaded) {
-
+      const { isFilePicked, showAlert, alertMsg } = this.state
       return (
         <div>
+          {
+                showAlert &&
+                    <div className="alert alert-success pop-up border-bottom">
+                        <div className="h5 mb-0 text-center">{alertMsg}</div>
+                        <div className="timer"></div>
+                    </div>
+            }
           <Header history={this.props.history} />
 
           <section className="Profileleft">
@@ -249,17 +316,55 @@ class Profile extends Component {
                       <div className="profileImageBlok">
                         <div className="profile-card-img text-center" id="profile-card-img">
                           {/* {
-                            finalUrlExists === false?
-                              <img src={imageUrl} />
-                            : <i className="fas fa-user-md fa-6x"></i>
+                            imageUploadLoading?
+                              <div className="loader">
+                                <img src={Heart} alt="All Cures Logo" id="heart"/>
+                              </div>
+                            : null
                           } */}
-                          {/* {
-                            this.state.imageExists ? */}
-                              <img alt={items.docname_first} src={`https://all-cures.com:444/cures_articleimages/doctors/${items.rowno}.png`} onError = {(e) => this.onError(e)}/>
-                              {/* : <i className="fas fa-user-md fa-6x"></i>
-                          } */}
-
+                        <img alt={items.docname_first} 
+                                src={`${imagePath}/cures_articleimages/doctors/${items.rowno}.png?d=${parseInt(Math.random() * 1000)}`} 
+                                onError = {(e) => this.onError(e)}
+                              />
+                          
                         </div>
+                          {
+                            this.props.match.params.id.split('-')[0] === userId || userAccess == 9?
+                            <>
+                              <label for="fileInput" className="image-edit-icon"> 
+                                <i className="fas fa-edit fa-2x"></i>
+                              </label>
+                              <input id="fileInput" type="file" name="file" onChange={this.changeHandler} required/>
+                            </>
+                            : null
+                          }
+                        
+
+                          {/* {isFilePicked ? (
+
+                              <div>
+                                
+                                  <p>Filename: {selectedFile.name}</p>
+
+                                  <p>Filetype: {selectedFile.type}</p>
+
+                                  <p>Size in bytes: {selectedFile.size}</p>
+
+                                  <p>
+
+                                      lastModifiedDate:{' '}
+
+                                      {selectedFile.lastModifiedDate.toLocaleDateString()}
+
+                                  </p>
+
+                              </div>
+
+                              ) : (
+
+                              <p>Select a file to show details</p>
+
+                              )} */}
                       </div>
                     </div>
                     <div className="col-md-9">
