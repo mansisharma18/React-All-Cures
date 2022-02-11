@@ -102,7 +102,7 @@ setOpenn(!openn);
               <AddCommentIcon />
             </ListItemIcon>
             {/* <ListItemText primary="Customers"  /> */}
-            <Link to="/dashboard/reviewcomments">
+            <Link to="/dashboard/?comments">
               <ListItemText primary="Comments" />
 
             </Link>
@@ -140,7 +140,17 @@ setOpenn(!openn);
 
 
           </ListItem>
+          <ListItem button>
+            <ListItemIcon>
+              <SupervisedUserCircleIcon />
+            </ListItemIcon>
+            {/* <ListItemText primary="Reports" /> */}
+            <Link to="/dashboard?feedbacks">
+              <ListItemText primary="User Feedback" />
+            </Link>
 
+
+          </ListItem>
 
         </List>
       </Collapse>

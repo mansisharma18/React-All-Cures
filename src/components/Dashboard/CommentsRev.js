@@ -113,9 +113,7 @@ class CommentsRev extends Component {
     });
 
     
-    // this.setState({
-    //   UnselectedCheckboxes: UnselectedCheckboxes
-    // });
+   
   };
   toggleChange = () => {
     this.setState({
