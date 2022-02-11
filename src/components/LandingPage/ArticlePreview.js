@@ -4,11 +4,14 @@ import { Link } from 'react-router-dom'
 import CenterWell from '../Disease/CenterWell'
 import Heart from"../../assets/img/heart.png";
 import Date from '../Date'
+import { useHistory } from 'react-router';
 
 const ArticlePreview = (props) => {
     const [items, setItems] = useState([])
     const [isLoaded, setLoaded] = useState(false)
+    const [offset, setOffset] = useState(0)
     const [articleFilter, setArticleFilter]= useState(props.dcName? props.dcName: 'recent')
+    const history = useHistory()
     
     function diseasePosts(type){                     // For specific blogs like "/blogs/diabetes"
         // if(type){
@@ -22,7 +25,7 @@ const ArticlePreview = (props) => {
       }
 
     function allPosts() {                        // For all available blogs "/blogs"
-        fetch(`${backendHost}/article/allkv?limit=50`)
+        fetch(`${backendHost}/article/allkv?limit=9&offset=${offset}`)
           .then((res) => res.json())
           .then((json) => {
             var temp = []
@@ -67,6 +70,18 @@ const ArticlePreview = (props) => {
         }
     }
 
+    function paginateButtons(e){
+        var siblings = e.target.parentElement.children
+        if(siblings){
+            for(var i=0;i<siblings.length; i++){
+                if(siblings[i].classList.contains('active')){
+                    siblings[i].classList.remove('active')
+                }
+              }
+            e.target.classList.add('active')
+        }
+    }
+
     function IsJsonValid(str) {
         try {
             JSON.parse(str);
@@ -80,6 +95,11 @@ const ArticlePreview = (props) => {
         allPosts()
     }, [])
 
+    useEffect((e) => {
+        console.log(e)
+        allPosts()
+    }, [offset])
+    
     if(!isLoaded){
         return (
             <div className="loader my-4">
@@ -181,11 +201,6 @@ const ArticlePreview = (props) => {
     }
                
             </div>
-               {/* <div className="comman-heading">
-                  <div className="h4 float-left mr-4">Recent Articles</div> */}
-                {/* <span><Link className="btn btn-article-search color-white" to="/cures">All Articles</Link></span> */}
-
-               {/* </div> */}
             </div>
             <div className="row">
             <div className="main-hero" id="main-hero">
@@ -260,6 +275,55 @@ const ArticlePreview = (props) => {
                 <div className='my-5 py-4 h5 container text-center'>We do not have any cures for this condition yet but our editorial team is working on it. In the meantime, if you have a cure, Please <Link to="/article">Click Here</Link> to add the cure to our site.</div>
             }
             </div>
+
+            {
+                articleFilter === "recent"?
+                <div className='pagination-preview'>
+                <button className='btn border mr-2 active' onClick={(e) => {
+                    setOffset(9)
+                    paginateButtons(e)
+                }}>1</button>
+                <button className='btn border mr-2' 
+                onClick={(e) => {
+                    setOffset(18) 
+                    paginateButtons(e)
+                }}>2</button>
+                <button className='btn border mr-2' 
+                    onClick={(e) => {
+                        setOffset(27)
+                        paginateButtons(e)
+                    }}>3</button>
+                <button className='btn border mr-2' 
+                    onClick={(e) => {
+                        setOffset(36)
+                        paginateButtons(e)
+                    }}>4</button>
+                <button className='btn border mr-2' 
+                    onClick={(e) => {
+                        setOffset(45)
+                        paginateButtons(e)
+                    }}>5</button>
+                <button className='btn border mr-2' 
+                    onClick={(e) => {
+                        setOffset(54)
+                        paginateButtons(e)
+                    }}>6</button>
+                <button className='btn border mr-2' 
+                    onClick={(e) => {
+                        setOffset(63)
+                        paginateButtons(e)
+                    }}>7</button>
+                <button className='btn border mr-2' 
+                    onClick={(e) => {
+                        setOffset(72)
+                        paginateButtons(e)
+                    }}>8</button>
+                {/* <button className='btn border mr-2' onClick={() => setOffset(81)}>9</button> */}
+                <button className='btn border mr-2 show-all-cures' id="show-all-cures" onClick={() => history.push('/searchcures')}>Show All</button>
+            </div>
+            : null
+            }
+            
             </div>
             </div>
         </>
