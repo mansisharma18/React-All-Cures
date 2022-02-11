@@ -15,6 +15,7 @@ import { userId } from '../UserId'
 import { userAccess } from '../UserAccess'
 import { Modal } from "react-bootstrap";
 import Heart from"../../assets/img/heart.png";
+import { imagePath } from '../../image-path';
 
 
 const EditModal = (props) => {
@@ -59,6 +60,12 @@ const EditModal = (props) => {
 
     const [updateSubscribers, setUpdateSubscribers] = useState(false)
     
+    const [selectedFile, setSelectedFile] = useState();
+
+	const [isFilePicked, setIsFilePicked] = useState(false);
+
+    const [path, setPath] = useState("")
+
     function Alert(msg){
       setShowAlert(true)
       setAlertMsg(msg)
@@ -89,6 +96,7 @@ const EditModal = (props) => {
             setKeywords(res.data.keywords) 
             setContentSmall(decodeURIComponent(res.data.content_small))
             setArticleContent(JSON.parse(decodeURIComponent(res.data.content)))
+            setPath(res.data.content_location.replace('json', 'png').split('/webapps/')[1])
         })
         .catch(err => {
             return
@@ -131,9 +139,6 @@ const EditModal = (props) => {
                 setafterSubmitLoad(false)
                 if(res.data === 1){
                     Alert('Updated article successfully.') 
-                    // setTimeout(() => {
-                    //     history.replace(`/cure/${editId.id}`)
-                    // }, 5000);  
                   } else {
                     Alert('Some error occured. Try again later')
                   }
@@ -158,6 +163,7 @@ const EditModal = (props) => {
                 "edited_by": parseInt(userId),
                 // "copyright_id": parseInt(copyright),
                 // "disclaimer_id": parseInt(disclaimer),
+                "disease_condition_id": disease,
                 "copyright_id": 11,
                 "disclaimer_id": 1,
                 "pubstatus_id": parseInt(articleStatus),
@@ -174,9 +180,6 @@ const EditModal = (props) => {
                 setafterSubmitLoad(false)
                 if(res.data === 1){
                     Alert('Updated article successfully.')
-                    // setTimeout(() => {
-                    //     history.replace(`/cure/${editId.id}`)
-                    // }, 5000);
                   } else {
                     Alert('Some error occured. Try again later')
                   }
@@ -355,10 +358,37 @@ const EditModal = (props) => {
             Alert('Some error occured! Please try again later.')
         })
     }
+
+    const handleImageSubmission = () => {
+        // e.preventDefault()
+		const formData = new FormData();
+		formData.append('File', selectedFile);
+		fetch(`${backendHost}/dashboard/imageupload/article/${editId.id}`,
+			{
+                method: 'POST',
+				body: formData,
+			}
+		)
+        .then((response) => response.json())
+		.then((result) => {
+            Alert('Image uploaded successfully.')
+            setIsFilePicked(true);
+		})
+		.catch((error) => {
+    		return
+		});
+	}
+    
+	const changeHandler = (event) => {
+		setSelectedFile(event.target.files[0]);
+	}
+
+    useEffect(() => {
+      handleImageSubmission()
+    }, [selectedFile]);
     
     async function handleSave() {
         const savedData = await instanceRef.current.save();   
-        console.log(savedData)     
         setArticleContent(savedData)  
     }
     
@@ -597,11 +627,27 @@ const EditModal = (props) => {
                     // style={{ height: '100px' }}
                     />
                 </div>
+                {
+                    editId.id?
+                    <div className="col-md-6 float-left" style={{zIndex: 2}}>
+                    <input type="file" name="file" onChange={changeHandler}/>
 
-                <div className="col-md-6 float-left">
-                    <input type="file" onChange={onImageChange} className="filetype" />
-                    <img height="350px" src={image} alt="preview" />
-                </div>
+                    {isFilePicked ? (
+
+                        <div>
+
+                            <img src={`${imagePath}/${path}?d=${parseInt(Math.random() * 10000)}`} width={500}/>
+                        </div>
+
+                    ) : (
+
+                        <p>Select a file to show details</p>
+
+                    )}
+                    </div>
+                    : null
+                }
+                
                 </>
                 : null
                 }

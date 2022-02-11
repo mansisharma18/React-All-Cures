@@ -145,6 +145,7 @@ class SearchName extends Component {
                             hospital = {i.map.hospital_affliated}
                             state = {i.map.state}
                             country = {i.map.country_code}
+                            eduTraining={i.map.edu_training}
                             acPerm = {Cookies.get('acPerm')}
                             url = {this.props.url}
                             reload = {this.state.reload}

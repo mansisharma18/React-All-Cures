@@ -66,10 +66,23 @@ const AllPost = ({ id, title, w_title, dis }) => {
                                 )
                                 if (confirmBox === true) {
                                     singlePostDelete(id)     }
-                                    setDisable(true)
+
+                                    
                               }}> Delete</button>
-                              
-                               
+                     : <button className="col-md-4 btn btn-dark" disabled>Delete</button>
+
+                              {/* {
+                                i.promo_active === 1?
+                                    <button onClick={() => {
+                                        const confirmBox = window.confirm(
+                                            "Are you sure?"
+                                        )
+                                        if (confirmBox === true) {
+                                            PromoDelete(i.promo_id)
+                                        }
+                                    }} className="col-md-4 btn btn-dark">De-activate</button>
+                                    : <button className="col-md-4 btn btn-dark" disabled>De-activate</button>
+                            } */}
                              
                            
                             
