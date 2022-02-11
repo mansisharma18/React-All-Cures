@@ -30,7 +30,6 @@ import RegisterUser from './RegisterUser';
 import SubscribedUser from './SubscribedUser';
 import DoctorCreate from './DoctorCreate';
 import NestedListItems from './NestedListItems';
-import UserFeedback from './UserFeedback';
 import CommentsRev from './CommentsRev';
 
 import { backendHost } from '../../api-config';
@@ -359,10 +358,10 @@ function RenderComponent(props){
     return(
       <EditModal search={props.search}/>
     )
-  } else if(props.search.split('=')[0] === '?feedbacks'){
-    return(
-      <UserFeedback search={props.search}/>
-    )
+  // } else if(props.search.split('=')[0] === '?feedbacks'){
+  //   return(
+  //     <UserFeedback search={props.search}/>
+  //   )
   } else if(props.search.split('=')[0] === '?comments'){
     return(
       <CommentsRev search={props.search}/>
