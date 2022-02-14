@@ -2303,7 +2303,7 @@ div.main-hero:first-child .card {
 #mobile-subscribe-fixed-btn {
   position: fixed;
   bottom: 250px;
-  left:-36px;
+  right:1261px;
   
   float:left;
   font-size: 1rem;
