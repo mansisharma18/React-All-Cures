@@ -83,6 +83,34 @@ const[type,setType] = useState();
         sortable: true,
     },
     {
+      name: <h5>MEDICINE TYPE</h5>,
+     
+      selector: row=> 
+         parseInt(row.medicine_type) === 1?
+              <h6 className="chip overview mr-2 col">Ayurveda</h6>
+              
+          : parseInt(row.medicine_type) === 2?
+              <h6 className="chip symptoms mr-2 col">Unani
+               </h6>
+          : parseInt(row.medicine_type) === 3? 
+              <h6 className="chip cure mr-2 col">Persian </h6>
+              : parseInt(row.medicine_type) === 2?
+              <h6 className="chip symptoms mr-2 col">Chinese
+               </h6>
+               : parseInt(row.medicine_type) === 2?
+               <h6 className="chip overview mr-2 col">Scandinavian
+                </h6>
+                : parseInt(row.medicine_type) === 2?
+                <h6 className="chip cure mr-2 col">Japenese
+                 </h6>
+                 : parseInt(row.medicine_type) === 2?
+                 <h6 className="chip overview col">Traditional Australian
+                  </h6>
+          : null,
+          sortable: true,
+      
+  },
+    {
       name: <h5>DISEASE NAME</h5>,
       
       selector: row=> <h6 className='chip  mr-2col'>{row.dc_name}</h6>,

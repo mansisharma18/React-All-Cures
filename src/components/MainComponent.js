@@ -21,7 +21,6 @@ import EditPost from './BlogPage/EditModal';
 import BlogAllPost from './Dashboard/BlogAllPost'
 import LoginInfo from './loginForm/LoginInfo'
 import CommentsRev from './Dashboard/CommentsRev.js'
-import ReviewComments from './Dashboard/ReviewComments.js'
 import Results from './Dashboard/Results.js'
 import PromoPaid from './Dashboard/PromoPaid.js'
 import PromoAdmin from './Dashboard/PromoAdmin.js'
@@ -113,7 +112,6 @@ const Routes = (props) => {
       <ProtectedRouteDashboard userAccess={props.userAccess} auth={Auth.auth} exact path="/dashboard" component={Dashboard} />
       <ProtectedRouteDashboard userAccess={props.userAccess} auth={Auth.auth} exact path="/dashboard/blogs" component={BlogAllPost} />
       <ProtectedRouteDashboard userAccess={props.userAccess} auth={Auth.auth} exact path="/dashboard/commentsrev" component={CommentsRev} />
-      <ProtectedRouteDashboard userAccess={props.userAccess} auth={Auth.auth} exact path="/dashboard/reviewcomments" component={ReviewComments} />
       <ProtectedRouteDashboard userAccess={props.userAccess} auth={Auth.auth} exact path="/dashboard/results" component={Results} />
       <ProtectedRouteDashboard userAccess={props.userAccess} auth={Auth.auth} exact path="/dashboard/promopaid" component={PromoPaid} />
       <ProtectedRouteDashboard userAccess={props.userAccess} auth={Auth.auth} exact path="/dashboard/promoadmin" component={PromoAdmin} />

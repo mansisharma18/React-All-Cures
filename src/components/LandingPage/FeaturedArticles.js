@@ -22,7 +22,7 @@ const ArticlePreview = (props) => {
       }
 
     function allPosts() {                        // For all available blogs "/blogs"
-        fetch(`${backendHost}/article/allkvfeatured?search=article_id:831,860,936`)
+        fetch(`${backendHost}/article/allkvfeatured?search=article_id:886,860,936`)
           .then((res) => res.json())
           .then((json) => {
             var temp = []

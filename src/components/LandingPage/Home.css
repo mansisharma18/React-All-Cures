@@ -136,3 +136,26 @@
   padding: 0.55rem;
   color: white;
 }
+
+button.active {
+  background-color: #387a99;
+  color: #f4f4f4;
+}
+
+#show-all-cures {
+  background-color: #00415e;
+  color: white;
+}
+
+.pagination-preview {
+  margin: 0 1rem;
+}
+@media only screen and (max-width: 768px) {
+  .pagination-preview button:nth-child(n + 6) {
+    display: none;
+  }
+
+  .pagination-preview button:last-child {
+    display: inline;
+  }
+}

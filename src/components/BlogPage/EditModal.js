@@ -630,7 +630,7 @@ const EditModal = (props) => {
                 {
                     editId.id?
                     <div className="col-md-6 float-left" style={{zIndex: 2}}>
-                    <input type="file" name="file" onChange={changeHandler} required/>
+                    <input type="file" name="file" onChange={changeHandler}/>
 
                     {isFilePicked ? (
 
