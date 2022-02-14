@@ -2303,7 +2303,7 @@ div.main-hero:first-child .card {
 #mobile-subscribe-fixed-btn {
   position: fixed;
   bottom: 250px;
-  right:1261px;
+  left:-45px;
   
   float:left;
   font-size: 1rem;
@@ -2314,6 +2314,7 @@ div.main-hero:first-child .card {
     font-size: 18px;
     border: 2px solid lightblue;
     border-radius: 25px 25px 0 0!important;
+    width:150px;
 }
 .checked {
   color: orange;
