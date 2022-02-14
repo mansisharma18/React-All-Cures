@@ -2302,10 +2302,19 @@ div.main-hero:first-child .card {
 }
 #mobile-subscribe-fixed-btn {
   position: fixed;
-  bottom: 0;
-  right: 0;
-  left: auto;
+  bottom: 250px;
+  left:-45px;
+  
+  float:left;
   font-size: 1rem;
+  -ms-transform: rotate(90deg); /* IE 9 */
+  transform: rotate(90deg);
+  background-color: #00415e;
+    padding: 16px 11px;
+    font-size: 18px;
+    border: 2px solid lightblue;
+    border-radius: 25px 25px 0 0!important;
+    width:150px;
 }
 .checked {
   color: orange;

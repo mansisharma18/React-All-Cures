@@ -107,13 +107,18 @@
   filter: invert(99%) sepia(60%) saturate(1%) hue-rotate(291deg)
     brightness(119%) contrast(91%);
 }
-
+.card-img{
+}
 .card-img img {
   width: 100%;
   /* width: 350px; */
-  height: 250px;
+  display: block;
+  max-width:350px;
+  height:250px;
+ 
+  
   vertical-align: middle;
-  object-fit: cover;
+  
 }
 
 .trending-section .comman-heading {
