@@ -5,6 +5,7 @@ import CenterWell from '../Disease/CenterWell'
 import Heart from"../../assets/img/heart.png";
 import Date from '../Date'
 import { useHistory } from 'react-router';
+var Promise = require('es6-promise').Promise;
 
 const ArticlePreview = (props) => {
     const [items, setItems] = useState([])
@@ -24,7 +25,30 @@ const ArticlePreview = (props) => {
           .catch(err => null)
       }
 
+      const getJSON = url => {
+          console.log("Get Json")
+        var promise = new Promise(function(resolve, reject){
+          var client = new XMLHttpRequest();
+          client.open("GET", url);
+          client.onreadystatechange = handler;
+          client.responseType = "json";
+          client.setRequestHeader("Accept", "application/json");
+          client.send();
+      
+          function handler() {
+            if (this.readyState === this.DONE) {
+              if (this.status === 200) { resolve(this.response); }
+              else { reject(this); }
+            }
+          };
+        });
+      
+        return promise;
+      };
+
+      
     function allPosts() {                        // For all available blogs "/blogs"
+        console.log('All Posts')
         fetch(`${backendHost}/article/allkv?limit=9&offset=${offset}`)
           .then((res) => res.json())
           .then((json) => {
@@ -92,12 +116,68 @@ const ArticlePreview = (props) => {
     }
 
     useEffect(() => {
-        allPosts()
+        getJSON(`${backendHost}/article/allkv?limit=9&offset=${offset}`).then(json => {
+            var temp = []
+            if(articleFilter === props.dcName){
+                json.forEach(i => {
+                    if(i.dc_name === props.dcName && i.pubstatus_id === 3 && i.type.includes(2)){
+                        temp.push(i)
+                    }
+                });
+                setItems(temp)
+            }
+              else if(articleFilter === 'recent'){
+                json.forEach(i => {
+                    if(i.pubstatus_id === 3){
+                        temp.push(i)
+                    }
+                });
+                setItems(temp)
+              } else if(articleFilter === 'earliest'){
+                  json.forEach(i => {
+                      if(i.pubstatus_id === 3){
+                          temp.push(i)
+                      }
+                  });
+                  setItems(temp)
+              }
+            setLoaded(true)
+          }).catch(function(error) {
+            console.log(error)
+          })
+        // allPosts()
     }, [])
 
     useEffect((e) => {
-        console.log(e)
-        allPosts()
+        getJSON(`${backendHost}/article/allkv?limit=9&offset=${offset}`).then(json => {
+            var temp = []
+            if(articleFilter === props.dcName){
+                json.forEach(i => {
+                    if(i.dc_name === props.dcName && i.pubstatus_id === 3 && i.type.includes(2)){
+                        temp.push(i)
+                    }
+                });
+                setItems(temp)
+            }
+              else if(articleFilter === 'recent'){
+                json.forEach(i => {
+                    if(i.pubstatus_id === 3){
+                        temp.push(i)
+                    }
+                });
+                setItems(temp)
+              } else if(articleFilter === 'earliest'){
+                  json.forEach(i => {
+                      if(i.pubstatus_id === 3){
+                          temp.push(i)
+                      }
+                  });
+                  setItems(temp)
+              }
+            setLoaded(true)
+          }).catch(function(error) {
+            console.log(error)
+          })
     }, [offset])
     
     if(!isLoaded){
