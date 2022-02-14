@@ -43,6 +43,7 @@
     "history": "^5.0.0",
     "html-react-parser": "^1.2.4",
     "js-cookie": "^2.2.1",
+    "polyfills": "^2.1.1",
     "react": "^17.0.1",
     "react-bootstrap": "^1.5.2",
     "react-cookie-consent": "^6.3.0",
