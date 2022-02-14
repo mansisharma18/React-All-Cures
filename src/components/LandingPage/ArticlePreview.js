@@ -5,7 +5,6 @@ import CenterWell from '../Disease/CenterWell'
 import Heart from"../../assets/img/heart.png";
 import Date from '../Date'
 import { useHistory } from 'react-router';
-
 var Promise = require('es6-promise').Promise;
 
 const ArticlePreview = (props) => {
