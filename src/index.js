@@ -8,8 +8,8 @@ import "@fortawesome/free-solid-svg-icons";
 import "@fortawesome/free-brands-svg-icons";
 import { hydrate, render } from "react-dom";
 var polyfills = require('polyfills')
-var polyfill = polyfills(options)
-var js = polyfill('es6-promise/auto')
+var polyfill = polyfills('es6-promise/auto')
+// var js = polyfill('es6-promise/auto')
 
 const rootElement = document.getElementById("root");
 if (rootElement.hasChildNodes()) {
