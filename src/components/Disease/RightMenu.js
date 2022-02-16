@@ -45,7 +45,6 @@ const Side = (props) => {
         )
     }
     else {var id = props.id
-    console.log(id+"test");
     return (
         <>
 
