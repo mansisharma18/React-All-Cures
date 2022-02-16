@@ -18,7 +18,8 @@ import { userId } from "../UserId";
 import { userAccess } from "../UserAccess";
 import AllPost from "../BlogPage/Allpost";
 import Heart from"../../assets/img/heart.png";
-import {Link } from 'react-router-dom'
+
+import HelmetMetaData from '../HelmetMetaData'
 import { imagePath } from "../../image-path";
 
 
@@ -305,6 +306,12 @@ class Profile extends Component {
                         <div className="timer"></div>
                     </div>
             }
+            <HelmetMetaData 
+              title={items.prefix + ' ' + items.docname_first + ' ' +items.docname_last} 
+              description={items.about} 
+              image={`${imagePath}/cures_articleimages/doctors/${items.rowno}.png`}
+              keywords = {items.docname_first +' '+ items.docname_last+' , '+ items.hospital_affliated+ ' , '+items.primary_spl}>
+        </HelmetMetaData>
           <Header history={this.props.history} />
 
           <section className="Profileleft">

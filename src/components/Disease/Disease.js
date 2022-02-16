@@ -386,6 +386,7 @@ diseasePosts(dcName) {                     // For specific blogs like "/blogs/di
         <HelmetMetaData 
           title={items.title} 
           description={b[0].data.text} 
+          keywords = {items.keywords}
           image={`${imagePath}`+ items.content_location.replace('json', 'png').split('/webapps/')[1]}>
         </HelmetMetaData>
         <div className="ad-spac">
