@@ -31,7 +31,7 @@ import Heart from"../../assets/img/heart.png";
 import {userId} from "../UserId"
 import { userAccess } from '../UserAccess';
 import Date from '../Date'
-
+import { imagePath } from '../../image-path'
 const options = {
   responsiveClass: true,
   nav: true,
@@ -208,9 +208,9 @@ class Disease extends Component {
       .then(res => {
         this.setState({
           rating: res.data[0].ratingVal
-        }, ()=> console.log(this.state.rating))
+        })
       })
-      .catch(err => console.log(err))
+      .catch(err => null)
   }
 
   regionalPosts(){
@@ -383,7 +383,12 @@ diseasePosts(dcName) {                     // For specific blogs like "/blogs/di
     return (
     <div>
       <Header history={this.props.history}/>
-        <HelmetMetaData title={items.title} description={b[0].data.text} ></HelmetMetaData>
+        <HelmetMetaData 
+          title={items.title} 
+          description={b[0].data.text} 
+          keywords = {items.keywords}
+          image={`${imagePath}`+ items.content_location.replace('json', 'png').split('/webapps/')[1]}>
+        </HelmetMetaData>
         <div className="ad-spac">
         <button className="btn" data-toggle="modal"data-target=".bd-example-modal-lg">
           <img src={AyurvedaAd} alt="advertisment"/>

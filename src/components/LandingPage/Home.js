@@ -334,17 +334,18 @@ class Home extends Component {
                   </form>
 
                   {/* Create Cures, Sign Up || Hi ${name} Button */}
-
                   <div className="loginSign mt-1"> 
+                  { userId?
+
                            <Link className="btn mr-1 primary-btn-color
                             loginSignbtn color-blue-dark" to="/article">
                               <img src={CreateCures} className='filter-white' height="30px" alt="create cures"/>
                            </Link>
-                        {/* : <button className="btn mr-1 primary-btn-color
+                        : <button className="btn mr-1 primary-btn-color
                          loginSignbtn color-blue-dark" onClick={() => this.setModalShow(true)}>
                              <img src={CreateCures} className='filter-white' height="30px"/>
                            </button>
-                     }    */}
+                     }   
                   
                   {/* Toggle Sign up & Hi there dropdown */}
 
