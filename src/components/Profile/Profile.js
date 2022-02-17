@@ -431,15 +431,14 @@ class Profile extends Component {
                                 </Button>
                                 : null
                             }
+                            
                             <EditProfile
                               show={this.state.modalShow}
                               onHide={() => this.setModalShow(false)}
                               items={items}
                               fetchDoctor={this.fetchDoctorData}
-                              id={this.props.match.params.id.split('-')[0]}
+                              id={this.props.match.params.id.split('-')[0]} />
 
-
-                            />
                           </div>
                         </div>
                       </div>
@@ -467,7 +466,8 @@ class Profile extends Component {
                       </p>
                       <a href={`${items.website_url}`} target="_blank" rel="noreferrer" className="h6">{items.website_url}</a>
 
-                    </div>
+                    </div> 
+                    <div></div>
 
                     <br />
                     <div className="abt-eduction ">
@@ -505,15 +505,8 @@ class Profile extends Component {
                       </div>
                       <div className="h6 font-weight-bold">Country:          
                          <span> {items.country_code}</span>
+                       
                       </div>
-
-                      {/* <div className="h6 font-weight-bold">Accepts Insurance:
-                        {
-                          items.insurance_accept === true ?
-                            <span> <i className="fa fa-check" style={{ color: 'green' }} aria-hidden="true"></i></span>
-                           : <span> <i className="fas fa-times-circle " style={{ color: 'red' }}></i></span>
-                        }
-                      </div> */}
                       <div className="h6 font-weight-bold">Gender: 
                         {
                           items.gender === 2 ?
@@ -521,6 +514,31 @@ class Profile extends Component {
                             : <span> Female</span>
                         }
                       </div>
+
+                      {
+                      userId ?
+                        <>
+                         <div className="h4 font-weight-bold">Doctor Contact Info : </div>
+                                {this.props.match.params.id.split('-')[0] == 878?<><br/><b>Phone Number: </b>9405613618 <br/><b>Email: </b> ayushmanbhavayurveda@gmail.com </>: null}
+
+{this.props.match.params.id.split('-')[0] == 874?<><br/><b>Phone Number: </b>85788 88111 <br/><b>Email: </b> herbalremedies123@yahoo.com </>: null}
+{this.props.match.params.id.split('-')[0] == 875?<><br/><b>Phone Number: </b>98984 51663<br/><b>Email: </b>vishwaayu@gmail.com</>: null}
+{this.props.match.params.id.split('-')[0] == 877?<><br/><b>Phone Number: </b> 70514 35488<br/><b>Email: </b> afsahnium@gmail.com </>: null}
+{this.props.match.params.id.split('-')[0] == 876?<><br/><b>Phone Number: </b>9501766530 <br/><b>Email: </b> tejasviayurveda@gmail.com </>: null}
+{this.props.match.params.id.split('-')[0] == 871?<><br/><b>Phone Number: </b>9464567425 <br/><b>Email: </b> bhc_bhupendra@yahoo.com </>: null}
+                        </>
+                        : null
+                    }
+
+                     
+                        
+                
+
+                     
+                     
+
+                   
+                     
 
                     </div>
 
