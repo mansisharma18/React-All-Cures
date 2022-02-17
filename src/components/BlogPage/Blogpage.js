@@ -418,13 +418,10 @@ export default class Blogpage extends Component{
                 <div>
          
          <button id="mobile-subscribe-fixed-btn" className="btn newsletter-icon rounded subscribe-btn newsletter_float" data-toggle="modal"data-target=".bd-example-modal-lg">
-      Subscribe
-            </button>
+      Subscribe</button>
             <Link  to="/feedback">
-            <button id="mobile-feedback-fixed-btn" className="btn newsletter-icon rounded subscribe-btn newsletter_float">
-      Feedback
-     
-            </button>
+            <button id="mobile-feedback-fixed-btn" 
+            className="btn newsletter-icon rounded subscribe-btn newsletter_float">Feedback</button>
             </Link>
            
          </div>

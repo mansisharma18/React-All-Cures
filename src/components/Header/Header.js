@@ -334,6 +334,11 @@ function ToggleButton(props) {
                                Profile
                       </Link>
              </Dropdown.Item>
+             <Dropdown.Item >
+               <Link to="/editSubscribe" className="text-dark btn">
+                  Edit Subscription</Link>
+               </Dropdown.Item>
+            
              { props.userAccess >= 4?
                <Dropdown.Item >
                <Link to="/dashboard" className="text-dark btn">
@@ -347,6 +352,7 @@ function ToggleButton(props) {
              <Dropdown.Item >
              <button className="btn text-dark text-capitalize" onClick={props.logout}> Logout</button>
              </Dropdown.Item>
+             
            </Dropdown.Menu>
          </Dropdown>
        </>
