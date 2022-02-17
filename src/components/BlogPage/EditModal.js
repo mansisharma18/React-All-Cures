@@ -59,6 +59,8 @@ const EditModal = (props) => {
     const [jsonValid, setJsonValid] = useState(false)
 
     const [updateSubscribers, setUpdateSubscribers] = useState(false)
+    const [featuredArticle,setFeaturedArticle] = useState('')
+
     
     const [selectedFile, setSelectedFile] = useState();
 
@@ -133,6 +135,7 @@ const EditModal = (props) => {
                 "comments": comment,
                 "disease_condition_id": disease,
                 "update_subscribers": updateSubscribers,
+                "featured_article":featuredArticle,
                 "content_small": encodeURIComponent(contentSmall)
             })
             .then(res => {
@@ -174,6 +177,7 @@ const EditModal = (props) => {
                 "keywords": keywords,
                 "country_id": parseInt(country),
                 "update_subscribers": updateSubscribers,
+                "featured_article":featuredArticle,
                 "content_small": encodeURIComponent(contentSmall)
             })
             .then(res => {
@@ -313,6 +317,14 @@ const EditModal = (props) => {
         setType(ctype);
     }
 
+    const handleSelectFeatured = function(e, c) {
+        const ctype = [];
+        for (let i = 0; i < c.length; i++) {
+            ctype.push(c[i].value);
+        }
+        setFeaturedArticle(ctype);
+    }
+
     const submitArticleForm = async e => {
         setafterSubmitLoad(true)
         e.preventDefault();
@@ -340,6 +352,8 @@ const EditModal = (props) => {
                 "comments": comment,
                 "keywords": keywords,
                 "countryId": country,
+                "featured_article":featuredArticle,
+
         })
         .then(res => {
             setafterSubmitLoad(false)
@@ -662,6 +676,22 @@ const EditModal = (props) => {
                     as="textarea"
                     placeholder="Leave a comment here"
                     />
+                </div>
+
+                <div className="col-lg-6 form-group">
+                    <label htmlFor="">Featured Article</label>
+                    <select 
+                    multiple
+                    name="featured" placeholder="Featured" 
+                    value={featuredArticle}
+                    onChange={(e)=> {
+                        handleSelectFeatured(e, e.target.selectedOptions)
+                    }}
+                     className="form-control">
+                        <option value="1">Yes</option>
+                        <option value="0">No</option>
+                       
+                    </select>
                 </div>
 
                 </div>

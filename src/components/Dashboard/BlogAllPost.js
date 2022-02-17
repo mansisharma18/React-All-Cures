@@ -14,6 +14,7 @@ function App() {
   const [article, setArticle] = useState({});
   const [page, setPage] = useState(1);
   const [article_id,setArticle_Id] = useState()
+  const[pubstatus_id,setPubstatus_Id] = useState()
   const [title, setTitle] = useState('')
   const [id, setId] = useState();
 const[type,setType] = useState();
@@ -126,7 +127,7 @@ const[type,setType] = useState();
     {
         name: <h5>Action Buttons</h5>,
       
-        selector: row=> <AllPost id={row.article_id}/>,
+        selector: row=> <AllPost id={row.article_id} pubstatus_id={row.pubstatus_id}/>,
         sortable: true,
     },
   

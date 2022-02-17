@@ -6,8 +6,8 @@ import { backendHost } from '../../api-config';
 
 
 
-const AllPost = ({ id, title, w_title, dis }) => {
-
+const AllPost = ({ id, title, w_title, dis,pubstatus_id }) => {
+    console.log(pubstatus_id)
     if (parseInt(dis) === 0) dis = true 
     else dis = false
     const [disable, setDisable] = React.useState(dis);
@@ -50,15 +50,15 @@ const AllPost = ({ id, title, w_title, dis }) => {
                         <div className="delete-edit-buttons">
                         <Link className="btn btn-info btn-sm" to={ `/article/${id}`}>Edit</Link>
 
-                        
+                        {pubstatus_id == '1' || pubstatus_id =='2' || pubstatus_id =='3' ?
 
-                        {
-                            deleteAlert?
-                                <Alert variant="success" className="h6 mx-3">Deleted  successfully!!</Alert>
-                                : null
-                        }
+                        // {
+                        //     deleteAlert?
+                        //         <Alert variant="success" className="h6 mx-3">Deleted  successfully!!</Alert>
+                        //         : null
+                        // }
                             
-                            <button className="btn btn-danger btn-sm mr-2" disabled={disable}  
+                            <button className="btn btn-danger btn-sm mr-2" 
                             onClick={() => {
                                 
                                 const confirmBox = window.confirm(
@@ -69,20 +69,9 @@ const AllPost = ({ id, title, w_title, dis }) => {
 
                                     
                               }}> Delete</button>
-                     : <button className="col-md-4 btn btn-dark" disabled>Delete</button>
-
-                              {/* {
-                                i.promo_active === 1?
-                                    <button onClick={() => {
-                                        const confirmBox = window.confirm(
-                                            "Are you sure?"
-                                        )
-                                        if (confirmBox === true) {
-                                            PromoDelete(i.promo_id)
-                                        }
-                                    }} className="col-md-4 btn btn-dark">De-activate</button>
-                                    : <button className="col-md-4 btn btn-dark" disabled>De-activate</button>
-                            } */}
+                     : <button className="col-md-4 btn " disabled>Delete</button>
+                    }
+                             
                              
                            
                             
