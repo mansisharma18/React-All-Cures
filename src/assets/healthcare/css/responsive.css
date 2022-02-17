@@ -388,7 +388,7 @@
 }
 
 @media only screen and (max-width: 768px) {
-  #mobile-subscribe-fixed-btn {
+  #mobile-subscribe-fixed-btn, #mobile-feedback-fixed-btn {
     display: none;
   }
 
@@ -455,7 +455,7 @@
   }
 
   #posts-container .chip.country {
-    display: none !important;
+    /*display: none !important;*/
   }
 }
 @media screen and (min-width: 500px) {

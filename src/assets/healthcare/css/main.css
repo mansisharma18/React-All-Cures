@@ -2300,18 +2300,22 @@ div.main-hero:first-child .card {
   background-color: rgb(41, 39, 39);
   color: #fff;
 }
-#mobile-subscribe-fixed-btn {
+#mobile-feedback-fixed-btn{
+  bottom:102px !important;
+}
+#mobile-subscribe-fixed-btn,  #mobile-feedback-fixed-btn{
   position: fixed;
   bottom: 250px;
-  left:-45px;
-  
+  left:-58px;
+ opacity:0.9;
   float:left;
+  
   font-size: 1rem;
   -ms-transform: rotate(90deg); /* IE 9 */
   transform: rotate(90deg);
   background-color: #00415e;
-    padding: 16px 11px;
-    font-size: 18px;
+    padding: 7px 2px;
+    font-size: 15px;
     border: 2px solid lightblue;
     border-radius: 25px 25px 0 0!important;
     width:150px;
