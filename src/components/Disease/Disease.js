@@ -709,6 +709,12 @@ diseasePosts(dcName) {                     // For specific blogs like "/blogs/di
       Subscribe
      
             </button>
+            <Link  to="/feedback">
+            <button id="mobile-feedback-fixed-btn" className="btn newsletter-icon rounded subscribe-btn newsletter_float">
+      Feedback
+     
+            </button>
+            </Link>
            
          </div>
 <div className="modal fade bd-example-modal-lg" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">

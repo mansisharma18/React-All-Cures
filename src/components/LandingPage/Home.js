@@ -600,6 +600,12 @@ class Home extends Component {
       Subscribe
      
             </button>
+            <Link  to="/feedback">
+            <button id="mobile-feedback-fixed-btn" className="btn newsletter-icon rounded subscribe-btn newsletter_float">
+      Feedback
+     
+            </button>
+            </Link>
            
          </div>
 <div className="modal fade bd-example-modal-lg" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
@@ -680,8 +686,12 @@ function ToggleButton(props) {
                                Profile
                       </Link>
              </Dropdown.Item>
+             <Dropdown.Item >
+               <Link to="/editSubscribe" className="text-dark btn">
+                  Edit Subscription</Link>
+               </Dropdown.Item>
              { props.userAccess >= 4?
-               <Dropdown.Item >
+                <Dropdown.Item >
                <Link to="/dashboard" className="text-dark btn">
                   Dashboard</Link>
                </Dropdown.Item>

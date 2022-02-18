@@ -186,41 +186,13 @@ class Footer extends Component {
                            <p className="text-light">Create A Cure</p>
                         </li>
                         </Link>
-                        <Link  to="/feedback">
-
-                        <li>
-                           <p className="text-light">Sumbit Your Feedback</p>
-                        </li>
-                        </Link>
+                        
                        
                        
                      </ul>
                   </div>
                </div>
-               <div className="col-md-3 col-sm-3 col-sx-12">
-                  <div className="footer-inner">
-                     {/* <h1>Our Mission</h1>
-                     <p> We are a new age healthcare technology firm who are trying make it simple and convenient for the users to get information on Cures from anywhere in the world.</p> */}
-                     <h1 className="helth-app">
-                        <div className="h6">Subscribe to our Newsletter</div>
-                        {/* <form onSubmit={(e) => this.postSubscribtion(e)}> */}
-                        <PhoneInput
-                           placeholder="Enter phone number"
-                           value={this.state.value}
-                           defaultCountry="IN"
-                        
-                           onChange={(newValue) => {
-                              this.setState({
-                                 value: newValue
-                              })
-                           }}
-                        />
-                        <button className="btn appBtn rounded" onClick={( ) => {this.postSubscribtion()}}>
-                           Subscribe
-                        </button>
-                     </h1>
-                  </div>
-               </div>
+              
             </div>
          </div>
         
