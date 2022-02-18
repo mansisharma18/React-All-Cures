@@ -324,6 +324,7 @@ const EditModal = (props) => {
         }
         setFeaturedArticle(ctype);
     }
+    
 
     const submitArticleForm = async e => {
         setafterSubmitLoad(true)
