@@ -320,11 +320,11 @@ const EditModal = (props) => {
     }
 
     const handleSelectFeatured = function(e, c) {
-        const ctype = [];
+        const farticle = [];
         for (let i = 0; i < c.length; i++) {
-            ctype.push(c[i].value);
+            farticle.push(c[i].value);
         }
-        setFeaturedArticle(ctype);
+        setFeaturedArticle(farticle);
     }
     
 
