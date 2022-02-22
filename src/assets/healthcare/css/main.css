@@ -1445,6 +1445,9 @@ span {
   display: flex;
   justify-content: space-between;
 }
+.back-top{
+  z-index:999999;
+}
 .back-top p {
   font-size: 14px;
   font-weight: 400;
