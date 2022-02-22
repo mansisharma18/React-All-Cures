@@ -18,6 +18,7 @@ import { userId } from "../UserId";
 import { userAccess } from "../UserAccess";
 import AllPost from "../BlogPage/Allpost";
 import Heart from"../../assets/img/heart.png";
+import { Modal } from "react-bootstrap";
 
 import HelmetMetaData from '../HelmetMetaData'
 import { imagePath } from "../../image-path";
@@ -48,9 +49,19 @@ class Profile extends Component {
       isFilePicked: false,
       imageUploadLoading: false,
       showAlert: false,
-      alertMsg: ''
+      alertMsg: '',
+      show:false
     };
+    this.showModal = this.showModal.bind(this);
+    this.hideModal = this.hideModal.bind(this);
   }
+  showModal = () => {
+    this.setState({ show: true });
+  };
+
+  hideModal = () => {
+    this.setState({ show: false });
+  };
 
   // Image Upload 
 	changeHandler = (event) => {
@@ -230,22 +241,22 @@ class Profile extends Component {
     this.allPosts()
   }
 
-  setModalShow = (action) => {
-    this.setState({
-      modalShow: action
-    })
-  }
-  handleClose = () => {
-    this.setState({
-      show: false
-    })
-  }
+  // setModalShow = (action) => {
+  //   this.setState({
+  //     modalShow: action
+  //   })
+  // }
+  // handleClose = () => {
+  //   this.setState({
+  //     show: false
+  //   })
+  // }
 
-  handleShow = () => {
-    this.setState({
-      show: true
-    })
-  }
+  // handleShow = () => {
+  //   this.setState({
+  //     show: true
+  //   })
+  // }
 
   checkIfImageExits = (imageUrl) => {
     fetch(imageUrl, { method: 'HEAD' })
@@ -518,24 +529,43 @@ class Profile extends Component {
                       {
                       userId ?
                         <>
-                         <div className="h4 font-weight-bold">Doctor Contact Info : </div>
-                                {this.props.match.params.id.split('-')[0] == 878?<><br/><b>Phone Number: </b>9405613618 <br/><b>Email: </b> ayushmanbhavayurveda@gmail.com </>: null}
+                               
+        <Button className="ml-3 mt-4 btn-article-search" id="textComment"  onClick={this.showModal}>
+       Contact Doctor
+      </Button>
+
+      <Modal show={this.state.show} onHide={this.hideModal} className="rounded mt-5" >
+        <Modal.Header className="bg-review py-3" closeButton>
+          <Modal.Title className="pl-4">{items.prefix}. {items.docname_first} {items.docname_middle}{" "}
+                      {items.docname_last} contact info...</Modal.Title>
+        </Modal.Header>
+        
+        <Modal.Body className="rounded">
+        <div  className="pl-4">
+        
+        </div>
+        
+        <div className="pl-4">
+
+        {this.props.match.params.id.split('-')[0] == 878?<><br/><b>Phone Number: </b>9405613618 <br/><b>Email: </b> ayushmanbhavayurveda@gmail.com </>: null}
 
 {this.props.match.params.id.split('-')[0] == 874?<><br/><b>Phone Number: </b>85788 88111 <br/><b>Email: </b> herbalremedies123@yahoo.com </>: null}
 {this.props.match.params.id.split('-')[0] == 875?<><br/><b>Phone Number: </b>98984 51663<br/><b>Email: </b>vishwaayu@gmail.com</>: null}
 {this.props.match.params.id.split('-')[0] == 877?<><br/><b>Phone Number: </b> 70514 35488<br/><b>Email: </b> afsahnium@gmail.com </>: null}
 {this.props.match.params.id.split('-')[0] == 876?<><br/><b>Phone Number: </b>9501766530 <br/><b>Email: </b> tejasviayurveda@gmail.com </>: null}
 {this.props.match.params.id.split('-')[0] == 871?<><br/><b>Phone Number: </b>9464567425 <br/><b>Email: </b> bhc_bhupendra@yahoo.com </>: null}
+            </div>
+        </Modal.Body>
+        <Modal.Footer>
+       
+        </Modal.Footer>
+      </Modal>
+           
                         </>
                         : null
                     }
-
-                     
-                        
-                
-
-                     
-                     
+         
+        
 
                    
                      
