@@ -90,7 +90,9 @@ const EditModal = (props) => {
             setArticleStatus(res.data.pubstatus_id)
             setArticleDisplay(res.data.friendly_name)
             setType(res.data.type)
+            setFeaturedArticle(res.data.type)
             setContentType(res.data.content_type)
+            setFeaturedArticle(res.data.featured_article)
             setCountry(res.data.country_id)
             setDisease(res.data.disease_condition_id)
             setComment(res.data.comments) 
@@ -318,11 +320,11 @@ const EditModal = (props) => {
     }
 
     const handleSelectFeatured = function(e, c) {
-        const ctype = [];
+        const farticle = [];
         for (let i = 0; i < c.length; i++) {
-            ctype.push(c[i].value);
+            farticle.push(c[i].value);
         }
-        setFeaturedArticle(ctype);
+        setFeaturedArticle(farticle);
     }
     
 
@@ -694,6 +696,7 @@ const EditModal = (props) => {
                        
                     </select>
                 </div>
+                
 
                 </div>
                             </div>
