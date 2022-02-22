@@ -4,7 +4,7 @@ export default function Date({ dateString }) {
   const date = parseISO(dateString)
   try{
     return <time dateTime={dateString}>{format(date, 'LLL dd, yyyy')}</time>
-  }catch(Exceptqq){
+  }catch(error){
     return dateString
 
   }
