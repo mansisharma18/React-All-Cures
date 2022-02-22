@@ -612,7 +612,8 @@ h6 {
   left: 540px;
   top: 30px;
 }
-#specialists .owl-next {
+
+#specialists .owl-next , #featured .owl-next{
   padding: 2px 10px !important ;
   background-color: #fff;
   color: #000;
@@ -621,6 +622,14 @@ h6 {
   position: absolute;
   top: 135px;
   right: 0;
+}
+#featured .owl-next{
+  background-color:lightblue;
+  padding: 10px 10px !important;
+  opacity:0.8;
+}
+#featured .owl-next span, #featured .owl-prev span{
+  font-size: 70px;
 }
 #choose-category .owl-next {
   padding: 2px 10px !important ;
@@ -648,12 +657,30 @@ h6 {
   color: white;
   font-weight: bold;
 }
-#specialists .owl-prev {
+#specialists .owl-prev, #featured .owl-prev{
   left: 0;
   top: -157px;
   padding: 2px 10px !important ;
   background: white;
+
 }
+#featured .owl-prev:hover{
+  background:lightblue;
+}
+#featured .owl-prev{
+top:-453px;
+padding:10px 10px !important;
+background:lightblue;
+opacity:0.8;
+
+
+}
+.owl-nav :disabled{
+  
+    display: block;
+  
+}
+
 #testimonials .owl-nav .owl-next {
   padding: 2px 10px !important ;
   background-color: #fff;
@@ -668,6 +695,21 @@ h6 {
   background-color: #00415e;
   color: #fff;
 }
+#featured .owl-next:hover{
+  background-color: lightblue;
+}
+@media screen and (max-width: 768px){
+  #featured .owl-prev{
+top:-403px;
+  }
+  .owl-carousel.owl-loaded#featured{
+    height:500px !important;
+  }
+  #main-hero #featured  .card-body{
+    padding:1.25rem 1rem 0;
+  }
+}
+
 #testimonials .owl-nav .owl-next:hover {
   background-color: #00415e;
   color: #fff;
@@ -679,7 +721,7 @@ h6 {
   overflow-x: hidden;
 }
 @media only screen and (max-width: 600px) {
-  #specialists .item,
+  #specialists .item, #featured .item,
   #doctor .item {
     border: #c4c4c4 solid 1px;
     box-sizing: border-box;
@@ -704,7 +746,7 @@ h6 {
     width: 90%;
   }
 }
-#specialists .item,
+#specialists .item, #featured .item,
 #doctor .item {
   border: #c4c4c4 solid 1px;
   box-sizing: border-box;
@@ -714,7 +756,7 @@ h6 {
   height: 264px;
   position: relative;
 }
-#specialists .item-img img,
+#specialists .item-img img, #featured .item-img img,
 #doctor .item-img {
   background: no-repeat center center;
   background-image: url(../img/images/defaultDoc2.png);
@@ -761,7 +803,7 @@ a.appointmentBtn {
   padding: 28px 0 28px 37px;
   font-weight: 400;
 }
-#specialists .slider-heading h5,
+#specialists .slider-heading h5, #featured .slider-heading h5,
 #doctor .slider-heading h5 {
   color: #fff;
   font-size: 16px;
@@ -777,7 +819,7 @@ a.appointmentBtn {
   color: #fff;
   padding-top: 7px;
 }
-#specialists .slider-heading p,
+#specialists .slider-heading p, #featured .slider-heading p,
 #doctor .slider-heading p {
   font-weight: 300;
   font-size: 16px;
@@ -797,15 +839,19 @@ a.appointmentBtn {
   text-align: center;
 }
 #specialists .item:hover .sider-contain,
-#doctor .item:hover .sider-contain {
+#doctor .item:hover .sider-contain,
+#featured .item:hover .sider-contain {
   bottom: 0;
 }
-.specialists #specialists {
+.specialists #specialists,
+.specialists #featured {
   margin: 0 0 3rem 0;
 }
 .owl-carousel .owl-item .active:last-child {
   margin-right: 0 !important ;
 }
+
+
 .consultunt {
   position: relative;
 }
@@ -1398,6 +1444,9 @@ span {
 .rating-footer {
   display: flex;
   justify-content: space-between;
+}
+.back-top{
+  z-index:999999;
 }
 .back-top p {
   font-size: 14px;
@@ -2343,6 +2392,13 @@ div.main-hero:first-child .card {
 #main-hero .card-body {
   padding: 1.25rem 0;
 }
+
+.main-hero #featured .card {
+  min-height:31rem;
+}
+.owl-carousel.owl-loaded#featured{
+  height:565px;
+}
 .card-article-content-preview .ce-block {
   width: 100%;
 }
@@ -2431,13 +2487,14 @@ div.main-hero:first-child .card {
   background-color: #fff;
   box-shadow: 5px 5px 25px;
 }
+
 #article-filter-carousel .owl-nav .owl-next {
   padding: 2px 10px !important ;
   position: absolute;
   right: -40px;
   top: -2px;
   border-radius: 3rem;
-  background-color: #fff;
+  background-color: lightblue;
   box-shadow: 5px 5px 25px;
 }
 @keyframes heartbeat {
