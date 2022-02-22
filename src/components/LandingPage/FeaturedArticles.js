@@ -4,6 +4,41 @@ import { Link } from 'react-router-dom'
 import CenterWell from '../Disease/CenterWell'
 import Heart from"../../assets/img/heart.png";
 import Date from '../Date'
+import OwlCarousel from "react-owl-carousel";
+import "owl.carousel/dist/assets/owl.carousel.css";
+import "owl.carousel/dist/assets/owl.theme.default.css";
+import "@fortawesome/free-solid-svg-icons";
+import "@fortawesome/fontawesome-svg-core"
+
+const options = {
+   margin: 30,
+   responsiveClass: true,
+   nav: true,
+   loop: false,
+   dots: true,
+   smartSpeed: 1000,
+   singleItem: true,
+   items:1,
+   responsive: {
+       0: {
+           items: 1,
+       },
+       400: {
+           items: 1,
+       },
+       600: {
+           items: 2,
+       },
+       700: {
+           items: 2,
+       },
+       1000: {
+           items: 3,
+
+       }
+   },
+};
+
 
 const ArticlePreview = (props) => {
     const [items, setItems] = useState([])
@@ -60,9 +95,10 @@ const ArticlePreview = (props) => {
         return(
         <>
         <div className="container">
-
-            <div className="row">
+        
+            <div className="row" marginBottom={10}>
             <div className="main-hero" id="main-hero">
+            <OwlCarousel {...options} nav="true" id="featured" height={550} items={1} singleItem={true} margin={10}>
                 {
                     items.length !== 0?
                     items.filter((i, idx) => idx < 9).map((i) => {
@@ -99,6 +135,7 @@ const ArticlePreview = (props) => {
                                 {/* <h6 className="card-subtitle mb-2 text-muted text-capitalize">
                                     {i.window_title.toLowerCase()}
                                 </h6> */}
+                                
                                 <div className="card-text card-article-content-preview">
                                     {
                                         content?
@@ -129,9 +166,10 @@ const ArticlePreview = (props) => {
                 // : null
                 
                 ): null
-            }
+            }</OwlCarousel>
             </div>
             </div>
+           
             </div>
         </>
     )
