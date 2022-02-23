@@ -241,22 +241,22 @@ class Profile extends Component {
     this.allPosts()
   }
 
-  // setModalShow = (action) => {
-  //   this.setState({
-  //     modalShow: action
-  //   })
-  // }
-  // handleClose = () => {
-  //   this.setState({
-  //     show: false
-  //   })
-  // }
+  setModalShow = (action) => {
+    this.setState({
+      modalShow: action
+    })
+  }
+  handleClose = () => {
+    this.setState({
+      show: false
+    })
+  }
 
-  // handleShow = () => {
-  //   this.setState({
-  //     show: true
-  //   })
-  // }
+  handleShow = () => {
+    this.setState({
+      show: true
+    })
+  }
 
   checkIfImageExits = (imageUrl) => {
     fetch(imageUrl, { method: 'HEAD' })
