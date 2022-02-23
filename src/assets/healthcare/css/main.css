@@ -668,7 +668,7 @@ h6 {
   background:lightblue;
 }
 #featured .owl-prev{
-top:-453px;
+top:-428px;
 padding:10px 10px !important;
 background:lightblue;
 opacity:0.8;
@@ -698,9 +698,9 @@ opacity:0.8;
 #featured .owl-next:hover{
   background-color: lightblue;
 }
-@media screen and (max-width: 600px){
+@media screen and (max-width:480px){
   #featured .owl-prev{
-    top:-461px;
+    top:-383px !important;
       }
       .owl-carousel.owl-loaded#featured{
         height:530px !important;
@@ -708,7 +708,7 @@ opacity:0.8;
 }
 @media screen and (max-width: 768px){
   #featured .owl-prev{
-top:-403px;
+top:-435px;
   }
   .owl-carousel.owl-loaded#featured{
     height:500px !important;
