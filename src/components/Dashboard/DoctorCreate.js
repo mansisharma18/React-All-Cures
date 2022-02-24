@@ -45,7 +45,7 @@ function App() {
 
   const submitForm = (e) => {
     e.preventDefault();
-    axios.post(`${backendHost}admin/create/doctors  `, {
+    axios.post(`${backendHost}/admin/create/doctors  `, {
         "prefix":'Dr.',
         "docname_first": first,
         "docname_middle": middle,

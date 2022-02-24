@@ -42,7 +42,7 @@ function App() {
   
   const submitForm = (e) => {
     e.preventDefault();
-    axios.post(`${backendHost}admin/create/author  `, {
+    axios.post(`${backendHost}/admin/create/author  `, {
         "author_firstname": first,
         "author_middlename": middle,
         "author_lastname": last,
@@ -62,7 +62,7 @@ function App() {
 
 const hospitalForm = (e) => {
     e.preventDefault();
-    axios.post(`${backendHost}admin/create/hospital  `, {
+    axios.post(`${backendHost}/admin/create/hospital  `, {
         // "hospitalid": parseInt(hospitalId),
         "hospital_affliated": hospital,
     })
@@ -77,7 +77,7 @@ const hospitalForm = (e) => {
 
 const specialtiesForm = (e) => {
     e.preventDefault();
-    axios.post(`${backendHost}admin/create/specialties  `, {
+    axios.post(`${backendHost}/admin/create/specialties  `, {
         // "splid": parseInt(spl),
         "spl_name": splName,
     })
@@ -92,7 +92,7 @@ const specialtiesForm = (e) => {
 
 const cityForm = (e) => {
     e.preventDefault();
-    axios.post(`${backendHost}admin/create/city  `, {
+    axios.post(`${backendHost}/admin/create/city  `, {
         // "citycode": parseInt(cityCode),
         "cityname": cityName,
         "state_code":parseInt(state),
@@ -110,7 +110,7 @@ const cityForm = (e) => {
 
 const statesForm = (e) => {
     e.preventDefault();
-    axios.post(`${backendHost}admin/create/states  `, {
+    axios.post(`${backendHost}/admin/create/states  `, {
         // "codeid": parseInt(state),
         "statename":stateName,
         "country_code":parseInt(country),
@@ -126,7 +126,7 @@ const statesForm = (e) => {
 
 const countriesForm = (e) => {
     e.preventDefault();
-    axios.post(`${backendHost}admin/create/countries  `, {
+    axios.post(`${backendHost}/admin/create/countries  `, {
         // "countrycodeid": parseInt(country),
         "countryname":countryName,
        
