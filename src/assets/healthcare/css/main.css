@@ -2434,8 +2434,14 @@ div.main-hero:first-child .card {
   }
   .cures-tab-chips {
     position: absolute;
-    right: 0.5rem;
-    bottom: 0;
+    /*right: 0.5rem;
+    bottom: 0;*/
+    left: 0.8rem;
+    bottom: -30px;
+    
+  }
+  .mtc{
+    margin-bottom:40px!important;
   }
   #posts-container .chip {
     display: inline-block;
