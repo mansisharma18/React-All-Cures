@@ -46,7 +46,7 @@ function App() {
   const submitForm = (e) => {
     e.preventDefault();
     axios.post(`${backendHost}admin/create/doctors  `, {
-        "prefix":prefix,
+        "prefix":'Dr.',
         "docname_first": first,
         "docname_middle": middle,
         "docname_last": last,
@@ -151,28 +151,28 @@ useEffect(() => {
                         <form onSubmit={submitForm}>
                             <div className="row m-4">
                             <Form.Group className="col-md-6 float-left" style={{zIndex: 2}}>
-                            <Form.Label>Enter Doctor Prefix</Form.Label>
-                            <Form.Control value={prefix} onChange={(e) => setPrefix(e.target.value)}   type="text" name=""
+                            <Form.Label>Enter Doctor Prefix   <span><b>(Already Selected)</b></span></Form.Label>
+                            <Form.Control value={'Dr.'} onChange={(e) => setPrefix(e.target.value)}   type="text" name=""
                             placeholder="Enter Doctor Prefix..." required/>
                         </Form.Group>
                         <Form.Group className="col-md-6 float-left" style={{zIndex: 2}}>
-                            <Form.Label>Enter Doctor First Name</Form.Label>
+                            <Form.Label>Enter Doctor First Name  <b> (Required)</b></Form.Label>
                             <Form.Control value={first} onChange={(e) => setFirst(e.target.value)}  type="text" name=""
                             placeholder="Enter Doctor First Name..." required/>
                         </Form.Group>
                         <Form.Group className="col-md-6 float-left" style={{zIndex: 2}}>
-                            <Form.Label>Enter Doctor Middle Name</Form.Label>
+                            <Form.Label>Enter Doctor Middle Name  <b>(Optional) </b></Form.Label>
                             <Form.Control value={middle} onChange={(e) => setMiddle(e.target.value)}  type="text" name=""
-                            placeholder="Enter Doctor Middle Name..." required/>
+                            placeholder="Enter Doctor Middle Name..." />
                         </Form.Group>
                         <Form.Group className="col-md-6 float-left" style={{zIndex: 2}}>
-                            <Form.Label>Enter Doctor Last Name</Form.Label>
+                            <Form.Label>Enter Doctor Last Name  <b> (Required)</b></Form.Label>
                             <Form.Control value={last} onChange={(e) => setLast(e.target.value)}  type="text" name=""
-                            placeholder="Enter Doctor Last Name..." required/>
+                            placeholder="Enter Doctor Last Name..." />
                         </Form.Group>
                         <Form.Group className="col-md-6 float-left" style={{zIndex: 2}}>
                            
-                            <FormLabel component="legend" className="text-dark">Gender</FormLabel>
+                            <FormLabel component="legend" className="text-dark">Gender <b>(Required)</b></FormLabel>
       <RadioGroup value={gender.toString()} onChange={(e) => {setGender(e.target.value)}}
       style={{display: 'flex', flexDirection:'row'}}>
         <FormControlLabel value="1" control={<Radio />} label="Female" />
@@ -183,17 +183,17 @@ useEffect(() => {
 
                         </Form.Group>
                         <Form.Group className="col-md-6 float-left" style={{zIndex: 2}}>
-                            <Form.Label>Enter Edu Training</Form.Label>
+                            <Form.Label>Enter Edu Training  <b>(Required)</b> </Form.Label>
                             <Form.Control value={edu} onChange={(e) => setEdu(e.target.value)}  type="text" name=""
                             placeholder="Enter Edu Training..." required/>
                         </Form.Group>
                         <Form.Group className="col-md-6 float-left" style={{zIndex: 2}}>
-                            <Form.Label>Enter Insurance Accept Value <b>1</b></Form.Label>
+                            <Form.Label>Enter Insurance Accept Value <b>(Already Selected)</b><b>1</b></Form.Label>
                             <Form.Control value={1}  type="text" name=""
                             placeholder="Enter Insurance Accept Value 1..." required/>
                         </Form.Group>
                         <Form.Group className="col-md-6 float-left" style={{zIndex: 2}}>
-                        <label htmlFor="">Enter Hospital</label>
+                        <label htmlFor="">Enter Hospital <b>(Required)</b></label>
 <select name="hospital" value={hospital} onChange={(e) => setHospital(e.target.value)} placeholder=" Enter Hospital" required="" className="form-control">
 <option>Select Hospital</option>
     {hospitalList.map((c) => {
@@ -205,7 +205,7 @@ useEffect(() => {
 </select>
                         </Form.Group>
                         <Form.Group className="col-md-6 float-left" style={{zIndex: 2}}>
-                        <label htmlFor="">Enter Speciality</label>
+                        <label htmlFor="">Enter Speciality <b>(Required)</b></label>
 <select name="speciality" value={disease} onChange={(e) => setDisease(e.target.value)} placeholder=" Enter Speciality" required="" className="form-control">
 <option>Select speciality</option>
     {diseaseList.map((c) => {
@@ -217,7 +217,7 @@ useEffect(() => {
 </select>
                         </Form.Group>
                         <Form.Group className="col-md-6 float-left" style={{zIndex: 2}}>
-                        <label htmlFor="">Enter City</label>
+                        <label htmlFor="">Enter City <b>(Required)</b></label>
 <select name="city" value={city} onChange={(e) => setCity(e.target.value)} placeholder=" Enter City" required="" className="form-control">
 <option>Select City</option>
     {cityList.map((c) => {
@@ -229,7 +229,7 @@ useEffect(() => {
 </select>
                         </Form.Group>
                         <Form.Group className="col-md-6 float-left" style={{zIndex: 2}}>
-                        <label htmlFor="">Enter State</label>
+                        <label htmlFor="">Enter State <b>(Required)</b></label>
 <select name="state" value={state} onChange={(e) => setState(e.target.value)} placeholder="Enter State" required="" className="form-control">
 <option>Select State</option>
     {stateList.map((c) => {
@@ -243,7 +243,7 @@ useEffect(() => {
                         <Form.Group className="col-md-6 float-left" style={{zIndex: 2}}>
                             {/* <Form.Label>Enter Country</Form.Label> */}
 
-                            <label htmlFor="">Enter Country</label>
+                            <label htmlFor="">Enter Country <b>(Required)</b></label>
 <select name="country" value={country} onChange={(e) => setCountry(e.target.value)} placeholder=" Enter Country" required="" className="form-control">
 <option>Select Country</option>
     {countriesList.map((c) => {
@@ -255,17 +255,17 @@ useEffect(() => {
 </select>
                         </Form.Group>
                         <Form.Group className="col-md-6 float-left" style={{zIndex: 2}}>
-                            <Form.Label>Enter Doctor URL</Form.Label>
+                            <Form.Label>Enter Doctor Website URL <b>(Optional)</b></Form.Label>
                             <Form.Control value={website} onChange={(e) => setWebsite(e.target.value)}  type="text" name=""
                             placeholder="Enter Doctor URL..." />
                         </Form.Group>
                         <Form.Group className="col-md-6 float-left" style={{zIndex: 2}}>
-                            <Form.Label>Enter Location</Form.Label>
-                            <Form.Control value={location} onChange={(e) => setLocation(e.target.value)}  type="number" name=""
+                            <Form.Label>Enter Location <b>(Required)</b></Form.Label>
+                            <Form.Control value={location} onChange={(e) => setLocation(e.target.value)}  type="text" name=""
                             placeholder="Enter Location..." required/>
                         </Form.Group>
                         <Form.Group className="col-md-6 float-left" style={{zIndex: 2}}>
-                            <Form.Label>Enter Pincode</Form.Label>
+                            <Form.Label>Enter Pincode <b>(Required)</b></Form.Label>
                             <Form.Control value={pincode} onChange={(e) => setPincode(e.target.value)}  type="text" name=""
                             placeholder="Enter Pincode..." required/>
                         </Form.Group>

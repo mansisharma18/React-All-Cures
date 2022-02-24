@@ -100,9 +100,9 @@ class Disease extends Component {
           this.fetchCountriesCures()
           this.regionalPosts()
           this.diseasePosts(this.state.items.dc_name)
-          this.comments(this.state.items.article_id)
-          this.getRating(this.state.items.article_id)
-          this.getRate(this.state.items.article_id)
+          this.comments(this.props.match.params.id.split('-')[0])
+          this.getRating(this.props.match.params.id.split('-')[0])
+          this.getRate(this.props.match.params.id.split('-')[0])
           document.title = `${this.state.items.title}`
         });
       });
@@ -119,9 +119,9 @@ class Disease extends Component {
           this.fetchCountriesCures()
           this.regionalPosts()
           this.diseasePosts(this.state.items.dc_name)
-          this.comments(this.state.items.article_id)
-          this.getRating(this.state.items.article_id)
-          this.getRate(this.state.items.article_id)
+          this.comments(this.props.match.params.id.split('-')[0])
+          this.getRating(this.props.match.params.id.split('-')[0])
+          this.getRate(this.props.match.params.id.split('-')[0])
           document.title = `${this.state.items.title}`
         });
       });
@@ -226,8 +226,8 @@ class Disease extends Component {
       null
   )
   }
-  comments(id) {                        // For all available blogs "/blogs"
-    fetch(`${backendHost}/rating/target/${id}/targettype/2`)
+  comments(article_id) {                        // For all available blogs "/blogs"
+    fetch(`${backendHost}/rating/target/${article_id}/targettype/2`)
       .then((res) => res.json())
       .then((json) => {
         var temp = []
@@ -647,7 +647,7 @@ diseasePosts(dcName) {                     // For specific blogs like "/blogs/di
               }
                       
                       <span id="docRate">
-          <ArticleRating article_id={this.state.items.article_id} />
+          <ArticleRating article_id={this.props.match.params.id.split('-')[0]} />
           </span>
 
 
@@ -657,7 +657,7 @@ diseasePosts(dcName) {                     // For specific blogs like "/blogs/di
                {
                 userAccess?
                   <>              
-                    <ArticleComment refreshComments={this.comments} article_id={this.props.match.params.id}/>
+                    <ArticleComment refreshComments={this.comments} article_id={this.props.match.params.id.split('-')[0]}/>
                   </>
                 : null
               }

@@ -46,8 +46,8 @@ function App() {
         "author_firstname": first,
         "author_middlename": middle,
         "author_lastname": last,
-        "author_status": parseInt(status),
-        "reg_type": parseInt(type),
+        "author_status": 1,
+        "reg_type": 1,
         "author_email": emaill,
         "reg_doc_pat_id":parseInt(id),
     })
@@ -188,45 +188,45 @@ useEffect(() => {
           <div className="promo-page">
                 <div className="container">
                 <div className="card my-3">
-                        <div className="card-title h3 text-center py-2 border-bottom">Author Table</div>
+                        <div className="card-title h3 text-center py-2 border-bottom">Author Table  <b> (Please Create Doctor First)</b></div>
                         <form onSubmit={submitForm}>
                             <div className="row m-4">
                         <Form.Group className="col-md-6 float-left" style={{zIndex: 2}}>
-                            <Form.Label>Enter Author First Name</Form.Label>
+                            <Form.Label>Enter Author First Name  <b> (Required)</b></Form.Label>
                             <Form.Control value={first} onChange={(e) => setFirst(e.target.value)}  type="text" name=""
                             placeholder="Enter Author First Name..." required/>
                         </Form.Group>
                         <Form.Group className="col-md-6 float-left" style={{zIndex: 2}}>
-                            <Form.Label>Enter Author Middle Name</Form.Label>
+                            <Form.Label>Enter Author Middle Name  <b> (Optional)</b></Form.Label>
                             <Form.Control  value={middle} onChange={(e) => setMiddle(e.target.value)} type="text" name=""
                             placeholder="Enter Author Middle Name..." />
                         </Form.Group>
                         <Form.Group className="col-md-6 float-left" style={{zIndex: 2}}>
-                            <Form.Label>Enter Author Last Name</Form.Label>
+                            <Form.Label>Enter Author Last Name  <b> (Required)</b></Form.Label>
                             <Form.Control value={last} onChange={(e) => setLast(e.target.value)}  type="text" name=""
                             placeholder="Enter Author Last Name..." required/>
                         </Form.Group>
                    
                         <Form.Group className="col-md-6 float-left" style={{zIndex: 2}}>
-                            <Form.Label>Enter Author Status</Form.Label>
-                            <Form.Control value={status} onChange={(e) => setStatus(e.target.value)}   type="text" name=""
+                            <Form.Label>Enter Author Status  <b> (Already Selected)</b></Form.Label>
+                            <Form.Control value={1} onChange={(e) => setStatus(e.target.value)}   type="text" name=""
                             placeholder="Enter Author Status..." required/>
                         </Form.Group>
                         <Form.Group className="col-md-6 float-left" style={{zIndex: 2}}>
-                            <Form.Label>Enter Author Email</Form.Label>
+                            <Form.Label>Enter Author Email  <b> (Required)</b></Form.Label>
                             <Form.Control value={emaill} onChange={(e) => setEmail(e.target.value)}  type="text" name=""
                             placeholder="Enter Author Email..."
                             />
                         </Form.Group>
                         <Form.Group className="col-md-6 float-left" style={{zIndex: 2}}>
-                            <Form.Label>Enter Author Type</Form.Label>
-                            <Form.Control value={type} onChange={(e) => setType(e.target.value)}  type="text" name=""
+                            <Form.Label>Enter Author Type  <b> (Already Selected)</b></Form.Label>
+                            <Form.Control value={1} onChange={(e) => setType(e.target.value)}  type="text" name=""
                             placeholder="Enter Author Type..." required/>
                         </Form.Group>
                         <Form.Group className="col-md-6 float-left" style={{zIndex: 2}}>
-                            <Form.Label>Enter Author Id</Form.Label>
+                            <Form.Label>Enter Doctor Row No  <b> (Required)</b></Form.Label>
                             <Form.Control value={id} onChange={(e) => setId(e.target.value)}  type="text" name=""
-                            placeholder="Enter Author Id..." required/>
+                            placeholder="Enter Doctor Row No..." required/>
                         </Form.Group>
                         {
                             alert?
