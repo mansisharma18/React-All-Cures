@@ -668,10 +668,11 @@ h6 {
   background:lightblue;
 }
 #featured .owl-prev{
-top:-428px;
+top:136px;
 padding:10px 10px !important;
 background:lightblue;
 opacity:0.8;
+position: absolute;
 
 
 }
@@ -698,21 +699,10 @@ opacity:0.8;
 #featured .owl-next:hover{
   background-color: lightblue;
 }
-@media screen and (max-width:480px){
-  #featured .owl-prev{
-    top:-383px !important;
-      }
-      .owl-carousel.owl-loaded#featured{
-        height:530px !important;
-      }
-}
+
 @media screen and (max-width: 768px){
-  #featured .owl-prev{
-top:-435px;
-  }
-  .owl-carousel.owl-loaded#featured{
-    height:500px !important;
-  }
+ 
+  
   #main-hero #featured  .card-body{
     padding:1.25rem 1rem 0;
   }
