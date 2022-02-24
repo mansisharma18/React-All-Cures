@@ -269,6 +269,8 @@ useEffect(() => {
                             <Form.Control value={pincode} onChange={(e) => setPincode(e.target.value)}  type="text" name=""
                             placeholder="Enter Pincode..." required/>
                         </Form.Group>
+
+                     
                         {
                             alert?
                                 <Alert variant="success" className="h6 mx-3">Doctor Create successfully!!</Alert>
@@ -277,8 +279,14 @@ useEffect(() => {
                         </div>
                      
                         <div className="col-md-12 text-center">
-                            <button type="submit" className="btn btn-dark col-md-12 mb-4">Submit</button>
+                            <button type="submit" className="btn btn-dark col-md-12 mb-4">Submit Doctor</button>
                         </div>
+
+                        <Form.Group className="col-md-6 float-left" style={{zIndex: 2}}>
+                            
+                        <a href='http://all-cures.com:8983/solr/#/new_core/dataimport//dataimport'> <button type="button" className="btn btn-dark col-md-12 mb-4">Update SOLR</button></a>
+
+                        </Form.Group>
                         </form>
                     </div>
 
