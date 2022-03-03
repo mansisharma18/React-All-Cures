@@ -78,9 +78,9 @@ export default class Blogpage extends Component{
         
       }
       
-      diseasePosts(type){                     // For specific blogs like "/blogs/diabetes"
+      diseasePosts(medicine_type){                     // For specific blogs like "/blogs/diabetes"
         // if(type){
-          fetch(`${backendHost}/isearch/${type}`)
+          fetch(`${backendHost}/isearch/medicinetype/${medicine_type}`)
           .then((res) => res.json())
           .then((json) => {
             this.setState({
@@ -199,8 +199,8 @@ export default class Blogpage extends Component{
         //   this.allPosts()
         // }
         this.getDisease()
-        if(this.props.match.params.type !== undefined){
-          this.diseasePosts(this.props.match.params.type)
+        if(this.props.match.params.medicine_type !== undefined){
+          this.diseasePosts(this.props.match.params.medicine_type)
         } else if(this.props.location.search){
           this.regionalPosts()
         } else {
@@ -209,9 +209,9 @@ export default class Blogpage extends Component{
       }
 
       componentDidUpdate(prevProps, prevState){
-        if ( prevProps.match.params.type !== this.props.match.params.type ){
-          if(this.props.match.params.type){
-            this.diseasePosts(this.props.match.params.type)
+        if ( prevProps.match.params.medicine_type !== this.props.match.params.medicine_type ){
+          if(this.props.match.params.medicine_type){
+            this.diseasePosts(this.props.match.params.medicine_type)
           } else {
             this.allPosts()
           }
@@ -290,8 +290,8 @@ export default class Blogpage extends Component{
             
                 <div className="container cures-search my-4">
                   {
-                    this.props.match.params.type?
-                    <div className="h3 text-capitalize text-center font-weight-bold mb-4">Cures Related to "{this.props.match.params.type.toLowerCase()}"</div>
+                    this.props.match.params.medicine_type?
+                    <div className="h3 text-capitalize text-center font-weight-bold mb-4">Cures Related to "{this.props.match.params.medicine_type.toLowerCase()}"</div>
                     :<div className="tab-nav">
                     {/* <div class="comman-heading">
                        <div class="h3 mb-4 text-capitalize mr-5">
@@ -383,7 +383,7 @@ export default class Blogpage extends Component{
                  </div>
                   }
                   {
-                    items.length === 0 && (this.state.articleFilter !== 'recent' || this.props.match.params.type)?
+                    items.length === 0 && (this.state.articleFilter !== 'recent' || this.props.match.params.medicine_type)?
                     <div className='my-5 py-4 h5 container text-center'>We do not have any cures for this condition yet but our editorial team is working on it. In the meantime, if you have a cure, Please <Link to="/article">Click Here</Link> to add the cure to our site.</div>: null
                   }
                     <div className="row mt-4" id="posts-container">
@@ -398,6 +398,7 @@ export default class Blogpage extends Component{
                             country = {i.country_id}
                             content = {decodeURIComponent(i.content)}
                             type = {i.type}
+                            medicine_type={i.medicine_type}
                             imgLocation = {i.content_location}
                             published_date = {i.published_date}
                             key = {i.article_id}
@@ -577,8 +578,8 @@ export default class Blogpage extends Component{
             
                 <div className="container my-4">
                   {
-                    this.state.param.type?
-                    <h1 className="h2 text-center">Cures related to "{this.state.param.type}"</h1>
+                    this.state.param.medicine_type?
+                    <h1 className="h2 text-center">Cures related to "{this.state.param.medicine_type}"</h1>
                     :<h1 className="h2 text-center">All Cures</h1>
                   }
                     <div className="row" id="posts-container">

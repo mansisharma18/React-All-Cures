@@ -2,12 +2,12 @@ import React from 'react';
 import { Link } from 'react-router-dom'
 
 const TrendingArticles = () => {
-    
+   
         return(
         <>
             <div className="trending-articles">
                 <div className="col-md-4 my-3">
-                    <Link to="/searchcures/Ayurveda">
+                    <Link to="/searchcures/medicinetype/1">
                     <div className="card d-flex justify-content-between">
                         <div className="h5 text-dark col-md-6 text-center">Ayurveda</div>
                         <div className="col-md-6 rounded" id="ayurveda">
@@ -16,7 +16,7 @@ const TrendingArticles = () => {
                     </Link>
                 </div>
                 <div className="col-md-4 my-3">
-                    <Link to="/searchcures/Chinese">
+                    <Link to="/searchcures/medicinetype/4">
                         <div className="card d-flex justify-content-between">
                             <div className="h5 text-dark col-md-6 text-center">Chinese<br/> Medicine</div>
                             <div className="col-md-6 rounded" id="chinese">
@@ -27,7 +27,7 @@ const TrendingArticles = () => {
            
 
                 <div className="col-md-4 my-3">
-                    <Link to="/searchcures/Persian">
+                    <Link to="/searchcures/medicinetype/3">
                     <div className="card d-flex justify-content-between">
                         <div className="h5 text-dark col-md-6 text-center">Persian</div>
                         <div className="col-md-6 rounded" id="naturopathy">
@@ -37,7 +37,7 @@ const TrendingArticles = () => {
                 </div>
 
                 <div className="col-md-4 my-3">
-                    <Link to="/searchcures/Unani">
+                    <Link to="/searchcures/medicinetype/2">
                     <div className="card d-flex justify-content-between">
                         <div className="h5 text-dark col-md-6 text-center">Unani</div>
                         <div className="col-md-6 rounded" id="unani">
@@ -47,7 +47,7 @@ const TrendingArticles = () => {
                 </div>
 
                 <div className="col-md-4 my-3">
-                    <Link to="/searchcures/Japanese">
+                    <Link to="/searchcures/medicinetype/6">
                     <div className="card d-flex justify-content-between">
                         <div className="h5 text-dark col-md-6 text-center">Japanese</div>
                         <div className="col-md-6 rounded" id="homeopathy">
@@ -57,7 +57,7 @@ const TrendingArticles = () => {
                 </div>
 
                 <div className="col-md-4 my-3">
-                <Link to="/searchcures/Scandinavian">
+                <Link to="/searchcures/medicinetype/5">
                     <div className="card d-flex justify-content-between rounded">
                         <div className="h5 text-dark col-md-6 text-center">Scandinavian</div>
                         <div className="col-md-6 rounded" id="yoga">                           
@@ -65,6 +65,7 @@ const TrendingArticles = () => {
                     </div>
                     </Link>
                 </div>
+                
                 
             </div>
         </>
