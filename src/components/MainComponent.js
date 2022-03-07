@@ -17,6 +17,7 @@ import Dashboard from "./Dashboard/Dashboard.js";
 import HelmetMetaData from "./HelmetMetaData";
 
 import Blogpage from "./BlogPage/Blogpage";
+import Medicinepage from "./BlogPage/Medicinepage";
 import EditPost from './BlogPage/EditModal';
 import BlogAllPost from './Dashboard/BlogAllPost'
 import LoginInfo from './loginForm/LoginInfo'
@@ -118,8 +119,11 @@ const Routes = (props) => {
       <ProtectedRouteDashboard userAccess={props.userAccess} auth={Auth.auth} exact path="/dashboard/promoadmin" component={PromoAdmin} />
 
       {/* Cures list page */}
-      <Route exact path="/searchcures/medicinetype" component={Blogpage}/>
-      <Route path="/searchcures/medicinetype/:medicine_type" component={Blogpage}/>
+      <Route exact path="/searchcures" component={Blogpage}/>
+      <Route path="/searchcures/:type" component={Blogpage}/>
+
+      <Route exact path="/searchmedicine" component={Medicinepage}/>
+      <Route path="/searchmedicine/medicinetype/:medicine_type" component={Medicinepage}/>
 
       {/* Cure according to article_id*/}
       <Route auth={Auth.auth} exact path="/cure/:cureType/:id" component={Disease}/>
