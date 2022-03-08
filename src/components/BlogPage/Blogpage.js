@@ -5,11 +5,6 @@ import AllPost from './Allpost.js';
 import { backendHost } from '../../api-config';
 import { Link } from 'react-router-dom';
 import Heart from"../../assets/img/heart.png";
-import { Select, MenuItem } from '@material-ui/core';
-import PhoneInput from 'react-phone-number-input';
-import Input from '@material-ui/core/Input';
-import Disease from '../Disease/Disease';
-import axios from 'axios';
 
 export default class Blogpage extends Component{
 
@@ -23,17 +18,9 @@ export default class Blogpage extends Component{
           noMoreArticles: false,
           param: params,
           items: [],
-          regions: '',
           isLoaded: false,
           LoadMore: false,
           regionPostsLoaded: false,
-          diseaseList:[],
-      disease:[],
-      cures:[],
-      
-     
-      showAlert: false,
-      alertMsg: '',
           country: new URLSearchParams(this.props.location.search).get('c'),
           diseaseCondition: new URLSearchParams(this.props.location.search).get('dc'),
           articleFilter: 'recent'
@@ -78,9 +65,9 @@ export default class Blogpage extends Component{
         
       }
       
-      diseasePosts(medicine_type){                     // For specific blogs like "/blogs/diabetes"
+      diseasePosts(type){                     // For specific blogs like "/blogs/diabetes"
         // if(type){
-          fetch(`${backendHost}/isearch/medicinetype/${medicine_type}`)
+          fetch(`${backendHost}/isearch/${type}`)
           .then((res) => res.json())
           .then((json) => {
             this.setState({
@@ -113,70 +100,6 @@ export default class Blogpage extends Component{
           }, () => this.allPosts('loadMore'));
         }
       };
-      postSubscribtion() {
-        //  var mobileNumber = this.state.mobile.split('+')
-        var phoneNumber = this.state.value.split('+')[1]
-        var countryCodeLength = phoneNumber.length % 10
-        var countryCode = phoneNumber.slice(0, countryCodeLength)
-        var StringValue = phoneNumber.slice(countryCodeLength).replace(/,/g, '')
-         if(phoneNumber){
-           this.setState({
-              afterSubmitLoad: true
-           })
-          axios.post(`${backendHost}/users/subscribe/${StringValue}`, {
-          "nl_subscription_disease_id":this.state.disease.join(','),
-          "nl_sub_type": this.state.type.indexOf('1') === -1 ? 0: 1,
-          "nl_subscription_cures_id":this.state.cures.join(','),
-          "country_code": countryCode,
-          })
-            .then(res => {
-             this.setState({
-                afterSubmitLoad: false
-             })
-             if(res.data === 1){
-                this.Alert('You have successfully subscribed to our Newsletter')
-             }
-             else {
-                this.Alert('Some error occured! Please try again later.')
-             }
-            })
-            .catch(err => {
-             this.setState({
-                afterSubmitLoad: false
-             })
-             this.Alert('Some error occured! Please try again later.')
-             
-       
-          })
-         } else {
-            this.Alert('Please enter a valid number!')
-         }
-      }
-      Alert = (msg) => {
-        this.setState({
-           showAlert:true,
-           alertMsg: msg
-        })
-        setTimeout(() => {
-           this.setState({
-              showAlert: false
-           })
-        }, 5000);
-      }
-    
-      fetchCountriesCures = () => {
-        fetch(`${backendHost}/isearch/treatmentregions/${this.state.items.disease_condition_id}`)
-          .then((res)=> res.json())
-          .then((json) => {
-            this.setState({
-              regions: json
-            })
-          })
-          .catch(err => 
-            null
-          )
-      }
-  
       // React.useEffect(() => {
         
       // }, []);
@@ -198,9 +121,8 @@ export default class Blogpage extends Component{
         // if(this.props.match.params.type === undefined){
         //   this.allPosts()
         // }
-        this.getDisease()
-        if(this.props.match.params.medicine_type !== undefined){
-          this.diseasePosts(this.props.match.params.medicine_type)
+        if(this.props.match.params.type !== undefined){
+          this.diseasePosts(this.props.match.params.type)
         } else if(this.props.location.search){
           this.regionalPosts()
         } else {
@@ -209,9 +131,9 @@ export default class Blogpage extends Component{
       }
 
       componentDidUpdate(prevProps, prevState){
-        if ( prevProps.match.params.medicine_type !== this.props.match.params.medicine_type ){
-          if(this.props.match.params.medicine_type){
-            this.diseasePosts(this.props.match.params.medicine_type)
+        if ( prevProps.match.params.type !== this.props.match.params.type ){
+          if(this.props.match.params.type){
+            this.diseasePosts(this.props.match.params.type)
           } else {
             this.allPosts()
           }
@@ -225,27 +147,7 @@ export default class Blogpage extends Component{
           window.removeEventListener('scroll', this.handleScroll);
         };
       }
-      handleSelect = function(subs) {
-        const flavors = [];
-        for (let i=0; i<subs.length; i++) {
-            flavors.push(subs[i].value);
-        }
-        this.setState({
-          type:flavors
-        })
-        
-    }
-    
-     getDisease = () => {
-        axios.get(`${backendHost}/article/all/table/disease_condition`)
-        .then(res => {
-            this.setState({
-              diseaseList:res.data
-            })
-           
-        })
-        .catch(err => null)
-    }
+      
     render(){
         var { isLoaded, items, regionPostsLoaded, LoadMore } = this.state;
         if(!isLoaded && !regionPostsLoaded) {
@@ -273,25 +175,14 @@ export default class Blogpage extends Component{
     //   )
     // }
     else if(isLoaded){
-      const finalRegions = [];
-      const map = new Map();
-      for (const item of this.state.regions) {
-          if(!map.has(item.countryname)){
-              map.set(item.countryname, true);    // set any value to Map
-              finalRegions.push({
-                countryname: item.countryname
-              });
-          }
-      }
-  
         return(
             <>
             <Header history={this.props.history}/>
             
                 <div className="container cures-search my-4">
                   {
-                    this.props.match.params.medicine_type?
-                    <div className="h3 text-capitalize text-center font-weight-bold mb-4">Cures Related to "{this.props.match.params.medicine_type.toLowerCase()}"</div>
+                    this.props.match.params.type?
+                    <div className="h3 text-capitalize text-center font-weight-bold mb-4">Cures Related to "{this.props.match.params.type.toLowerCase()}"</div>
                     :<div className="tab-nav">
                     {/* <div class="comman-heading">
                        <div class="h3 mb-4 text-capitalize mr-5">
@@ -383,7 +274,7 @@ export default class Blogpage extends Component{
                  </div>
                   }
                   {
-                    items.length === 0 && (this.state.articleFilter !== 'recent' || this.props.match.params.medicine_type)?
+                    items.length === 0 && (this.state.articleFilter !== 'recent' || this.props.match.params.type)?
                     <div className='my-5 py-4 h5 container text-center'>We do not have any cures for this condition yet but our editorial team is working on it. In the meantime, if you have a cure, Please <Link to="/article">Click Here</Link> to add the cure to our site.</div>: null
                   }
                     <div className="row mt-4" id="posts-container">
@@ -398,7 +289,6 @@ export default class Blogpage extends Component{
                             country = {i.country_id}
                             content = {decodeURIComponent(i.content)}
                             type = {i.type}
-                            medicine_type={i.medicine_type}
                             imgLocation = {i.content_location}
                             published_date = {i.published_date}
                             key = {i.article_id}
@@ -416,141 +306,6 @@ export default class Blogpage extends Component{
                     }}>Show more</button> */}
                     </div>
                 </div>
-                <div>
-         
-         <button id="mobile-subscribe-fixed-btn" className="btn newsletter-icon rounded subscribe-btn newsletter_float" data-toggle="modal"data-target=".bd-example-modal-lg">
-      Subscribe</button>
-            <Link  to="/feedback">
-            <button id="mobile-feedback-fixed-btn" 
-            className="btn newsletter-icon rounded subscribe-btn newsletter_float">Feedback</button>
-            </Link>
-           
-         </div>
-         <div className="modal fade bd-example-modal-lg" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
-  <div className="modal-dialog modal-lg">
-    <div className="modal-content">
-    <div className="modal-header">
-        
-        <button type="button" className="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-    <section className="appStore" >
-         <div className="container">
-            <div className="row">
-               <div className="appStoreBg clearfix" style={{display:"flex",width: "100%",flexWrap: 'wrap'}}>
-                  <div className="col-md-6 col-sm-6 col-sx-12">
-                     <div className="innerapp">
-                        <div className="doc-img">
-                           {/* <img src={Doct} alt="doct"/> */}
-                           <div className="aaa">
-                             <div className='container'>
-                    <h3 className="text-dark">Subscribe Your Disease/Cures Type</h3></div><br/>
-                    <select 
-                    multiple
-               
-                    name="type" placeholder="Type" 
-                    value={this.state.type} 
-                    
-                    onChange={(e)=> {
-                       this.handleSelect(e.target.selectedOptions)
-                    }}
-                    required className="form-control">
-                        <option value="1">All</option>
-                        <option value="2">Disease</option>
-                        <option value="3">Cures</option>
-                    </select>
-                </div>
-                {   
-                    this.state.type?
-                    this.state.type.indexOf('2') === -1 
-                    ? null 
-                    :                             <div className="col-lg-6 form-group">
-                    <label htmlFor="">Disease</label>
-                        <Select multiple
-                        value={this.state.disease}
-                        onChange={(e) =>  this.setState({
-                          disease:e.target.value
-                        })
-                          }
-                        input={<Input id="select-multiple-chip" />}
-                        className="form-control">
-                        {this.state.diseaseList.map((lan) => {
-                            return (
-                                <MenuItem key={lan[0].toString()} value={lan[0]} >
-                                    {lan[1]}
-                                </MenuItem>
-                            )
-                        })}
-                        </Select>
-                </div>
-                    : null
-                } 
-                {   
-                    this.state.type?
-                   this.state.type.indexOf('3') === -1 
-                    ? null 
-                    :  <div className="col-lg-6 form-group">
-                    <label htmlFor="">Cure</label>
-                        <Select multiple
-                        value={this.state.cures}
-                        onChange={(e) =>  this.setState({
-                          cures:e.target.value
-                        })}
-                        input={<Input id="select-multiple-chip" />}
-                        className="form-control">
-                        {this.state.diseaseList.map((lan) => {
-
-                            return (
-                                <MenuItem key={lan[0].toString()} value={lan[0]} >
-                                    {lan[1]}
-                                </MenuItem>
-                            )
-                        })}
-                        </Select>
-                </div>
-                    : null
-                } 
-                        </div>
-                       
-                     </div>
-                  </div>
-                  <div className="col-md-6 col-sm-6 col-sx-12 bg-white subs-hero-2">
-                     <div className="subscribe">                    
-                        <h1 className="text-dark">All Cures</h1>
-                        <div className="h5">Sign up for our free <span>Disease/Cures</span> Weekly Newsletter</div><br/>
-                        <div className="h5">Get <span>doctor-approved</span> health tips, news, and more</div>
-                        <div className="form-group relative">
-                           <div className="aaa">
-                           <PhoneInput
-                            placeholder="Enter phone number"
-                            value={this.state.value}
-                            defaultCountry='IN'
-                          
-                            onChange={(newValue) => {
-                              this.setState({
-                                value: newValue
-                              })
-                            }}
-                            />
-                              
-                           </div>
-                           <div>
-                                <button className="bcolor rounded py-2" onClick={( ) => {this.postSubscribtion()}}>
-                                   Submit
-                                </button>
-                           </div>
-                        </div>
-                     </div>
-                  </div>
-               </div>
-            </div>
-         </div>
-        
-      </section>
-    </div>
-  </div>
-</div>
                 {
                   LoadMore?
                     <div className="loader my-4">
@@ -578,8 +333,8 @@ export default class Blogpage extends Component{
             
                 <div className="container my-4">
                   {
-                    this.state.param.medicine_type?
-                    <h1 className="h2 text-center">Cures related to "{this.state.param.medicine_type}"</h1>
+                    this.state.param.type?
+                    <h1 className="h2 text-center">Cures related to "{this.state.param.type}"</h1>
                     :<h1 className="h2 text-center">All Cures</h1>
                   }
                     <div className="row" id="posts-container">
