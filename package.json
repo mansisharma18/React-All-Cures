@@ -79,7 +79,7 @@
       "react-app/jest"
     ]
   },
-  "proxy":"http://192.168.29.228:8080/cures",
+ 
   "browserslist": {
     "production": [
       ">0.2%",
