@@ -39,6 +39,8 @@ function App() {
   const [cityAlert,setCityAlert] = useState()
   const [stateAlert,setStateAlert] = useState()
   const [countryAlert,setCountryAlert] = useState()
+  const [user,setUser] = useState()
+  const [article,setArticle] = useState()
   
   const submitForm = (e) => {
     e.preventDefault();
@@ -65,6 +67,22 @@ const hospitalForm = (e) => {
     axios.post(`${backendHost}/admin/create/hospital  `, {
         // "hospitalid": parseInt(hospitalId),
         "hospital_affliated": hospital,
+    })
+    .then(res => {
+        setHospitalAlert(true)
+        setTimeout(() => {
+            setHospitalAlert(false)
+        }, 4000);
+    })
+    .catch(res => console.log(res))
+}
+
+const favouriteForm = (e,user_id,article_id) => {
+    e.preventDefault();
+    axios.post(`${backendHost}/favourite/userid/3/articleid/721/create  `, {
+        // "hospitalid": parseInt(hospitalId),
+        "user_id": user,
+        "article_id" : article
     })
     .then(res => {
         setHospitalAlert(true)
@@ -250,6 +268,38 @@ useEffect(() => {
                         <Form.Group className="col-md-6 float-left" style={{zIndex: 2}}>
                             <Form.Label>Enter Hospital Name</Form.Label>
                             <Form.Control value={hospital} onChange={(e) => setHospital(e.target.value)}  type="text" name=""
+                            placeholder="Enter Hospital Name..." required/>
+                        </Form.Group>
+                        {
+                            hospitalAlert?
+                                <Alert variant="success" className="h6 mx-3">Hospital Create successfully!!</Alert>
+                                : null
+                        }
+                   
+                     
+                        </div>
+                     
+                      
+                        <div className="col-md-12 text-center">
+                            <button type="submit" className="btn btn-dark col-md-12 mb-4">Submit</button>
+                        </div>
+                        </form>
+                    </div>
+
+                    <div className="card my-3">
+                        <div className="card-title h3 text-center py-2 border-bottom"> Table</div>
+                        <form onSubmit={favouriteForm}>
+                            <div className="row m-4">
+                    
+                        <Form.Group className="col-md-6 float-left" style={{zIndex: 2}}>
+                            <Form.Label>Enter user Name</Form.Label>
+                            <Form.Control value={user} onChange={(e) => setUser(e.target.value)}  type="text" name=""
+                            placeholder="Enter Hospital Name..." required/>
+                        </Form.Group>
+
+                        <Form.Group className="col-md-6 float-left" style={{zIndex: 2}}>
+                            <Form.Label>Enter article Name</Form.Label>
+                            <Form.Control value={article} onChange={(e) => setArticle(e.target.value)}  type="text" name=""
                             placeholder="Enter Hospital Name..." required/>
                         </Form.Group>
                         {
