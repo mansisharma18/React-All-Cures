@@ -21,7 +21,7 @@ function Feedback() {
     
     const submitForm = (e) => {
         e.preventDefault();
-        axios.post(`${backendHost}admin/create/feedback  `, {
+        axios.post(`${backendHost}/admin/create/feedback  `, {
             "firstname":first,
             "lastname": name,
             "email": email,
