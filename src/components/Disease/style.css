@@ -91,7 +91,13 @@ background-color: #b9daf1; */
 }
 
 /* CENTER WELL */
+@media only screen and (max-width: 768px) {
+#center-well{
+  padding-bottom:25px;
+}
 
+
+}
 #center-well {
   text-align: left;
   border: 0.1rem solid #b9daf1;
@@ -100,6 +106,7 @@ background-color: #b9daf1; */
 #center-well #para p {
   font-size: 1.2rem;
 }
+
 
 #center-well #quote h3 {
   font-size: 1.2rem;

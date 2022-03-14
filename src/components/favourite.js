@@ -32,12 +32,12 @@ const favouriteForm = (e) => {
 } 
   return (
       
-                                    <form onSubmit={favouriteForm}>
+                                    <form onSubmit={favouriteForm} className="favouriteForm">
                                      <div className="row m-4">
 
                                         {
                                             alert?
-                                                <Alert variant="success" className="h6 mx-3">Add To Your Favourite List successfully!!</Alert>
+                                                <Alert variant="success" className="h6 mx-3 success">Add To Your Favourite List successfully!!</Alert>
                                                 : null
                                         }
                                 
@@ -46,7 +46,7 @@ const favouriteForm = (e) => {
                                     
                                     
                                         <div className="">
-                                            <button type="submit" className="ml-3 mt-4 btn-article-search" >Add To Favourite<i class="fa fa-heart-o"></i></button>
+                                            <button type="submit" className="ml-3 mt-4 btn-article-search favourite" >Add To Favourite<i class="fa fa-heart-o"></i></button>
                                         </div>
                                         </form>
                          

@@ -2366,12 +2366,45 @@ div.main-hero:first-child .card {
 #mobile-feedback-fixed-btn{
   bottom:102px !important;
 }
+.favouriteForm{
+  position: relative;
+  bottom: 259px;
+    left: 45%;
+
+}
+
+.favourite{
+  padding: 3px 4px 8px 13px;
+  margin-top:0 !important;
+  }
+
+.success{
+  position: absolute;
+  bottom:40px;
+  left:1%;
+ 
+}
 @media only screen and (max-width: 768px) {
   #mobile-subscribe-fixed-btn,  #mobile-feedback-fixed-btn{
     width:135px !important;
   }
+ 
   #mobile-feedback-fixed-btn{
     bottom:114px !important;
+  }
+  .favouriteForm{
+    bottom: 250px;
+   
+  }
+  .success{
+   left:-150px;
+    width:390px;
+  }
+  .favourite{
+    font-size: 14px;
+    font-weight: 200;
+    padding: 0px 2px 6px 11px;
+    height: 38px !important;
   }
 }
 #mobile-subscribe-fixed-btn,  #mobile-feedback-fixed-btn{
