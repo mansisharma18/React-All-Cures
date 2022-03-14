@@ -14,8 +14,10 @@ import axios from 'axios';
 import Input from '@material-ui/core/Input';
 import ArticleComment from '../ArticleComment';
 import PhoneInput from 'react-phone-number-input';
+import { Button, Modal } from "react-bootstrap";
 import 'react-phone-number-input/style.css';
 import ArticleRating from '../ArticleRating';
+import Favourite from '../favourite'
 
 import HelmetMetaData from '../HelmetMetaData';
 import {FacebookShareButton, FacebookIcon, TwitterIcon, TwitterShareButton, WhatsappIcon, WhatsappShareButton} from "react-share";
@@ -627,7 +629,11 @@ diseasePosts(dcName) {                     // For specific blogs like "/blogs/di
               
                 
               </>
+             
             }
+              {/* <Button className="ml-3 mt-4 btn-article-search" id="textComment" >
+               Add To Favourite
+             </Button> */}
 
           </div>
 
@@ -661,6 +667,7 @@ diseasePosts(dcName) {                     // For specific blogs like "/blogs/di
                   </>
                 : null
               }
+                                    <Favourite  article_id={this.props.match.params.id.split('-')[0]}/>
 
              
             <div id="comments-column">              
