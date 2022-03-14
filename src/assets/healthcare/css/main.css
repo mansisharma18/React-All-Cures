@@ -2366,6 +2366,14 @@ div.main-hero:first-child .card {
 #mobile-feedback-fixed-btn{
   bottom:102px !important;
 }
+@media only screen and (max-width: 768px) {
+  #mobile-subscribe-fixed-btn,  #mobile-feedback-fixed-btn{
+    width:135px !important;
+  }
+  #mobile-feedback-fixed-btn{
+    bottom:114px !important;
+  }
+}
 #mobile-subscribe-fixed-btn,  #mobile-feedback-fixed-btn{
   position: fixed;
   bottom: 250px;
