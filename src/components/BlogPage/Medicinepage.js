@@ -120,11 +120,11 @@ export default class Medicinepage extends Component{
  <Header history={this.props.history}/>
             
             <div className="container my-4">
-              {
+              {/* {
                 this.state.param.medicine_type?
                 <h1 className="h2 text-center">Cures related to "{this.state.param.medicine_type}"</h1>
                 :<h1 className="h2 text-center">All Cures</h1>
-              }
+              } */}
                 <div className="row" id="posts-container">
                     
                 {
