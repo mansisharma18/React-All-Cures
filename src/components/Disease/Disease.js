@@ -667,7 +667,7 @@ diseasePosts(dcName) {                     // For specific blogs like "/blogs/di
                   </>
                 : null
               }
-                                    <Favourite  article_id={this.props.match.params.id.split('-')[0]}/>
+                                    {/* <Favourite  article_id={this.props.match.params.id.split('-')[0]}/> */}
 
              
             <div id="comments-column">              
