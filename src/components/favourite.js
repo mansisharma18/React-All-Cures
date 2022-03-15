@@ -46,7 +46,10 @@ const favouriteForm = (e) => {
                                     
                                     
                                         <div className="">
-                                            <button type="submit" className="ml-3 mt-4 btn-article-search favourite" >Add To Favourite<i class="fa fa-heart-o"></i></button>
+                                            <button type="submit" className="ml-3 mt-4 btn-article-search favourite" ><i className='fas fa-heart fa-1x'></i> Add To Favourite</button>
+                                            
+                                          
+                                           
                                         </div>
                                         </form>
                          
