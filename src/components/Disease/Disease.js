@@ -17,7 +17,8 @@ import PhoneInput from 'react-phone-number-input';
 import { Button, Modal } from "react-bootstrap";
 import 'react-phone-number-input/style.css';
 import ArticleRating from '../ArticleRating';
-import Favourite from '../favourite'
+import Favourite from '../favourite';
+import Favourites from '../UpdateFavourite';
 
 import HelmetMetaData from '../HelmetMetaData';
 import {FacebookShareButton, FacebookIcon, TwitterIcon, TwitterShareButton, WhatsappIcon, WhatsappShareButton} from "react-share";
@@ -79,6 +80,7 @@ class Disease extends Component {
       showMore: false,
       value:'',
       type: [],
+      favourite: [],
       diseaseList:[],
       disease:[],
       cures:[],
@@ -105,6 +107,7 @@ class Disease extends Component {
           this.comments(this.props.match.params.id.split('-')[0])
           this.getRating(this.props.match.params.id.split('-')[0])
           this.getRate(this.props.match.params.id.split('-')[0])
+          this.getFavourite(this.props.match.params.id.split('-')[0])
           document.title = `${this.state.items.title}`
         });
       });
@@ -124,6 +127,7 @@ class Disease extends Component {
           this.comments(this.props.match.params.id.split('-')[0])
           this.getRating(this.props.match.params.id.split('-')[0])
           this.getRate(this.props.match.params.id.split('-')[0])
+          this.getFavourite(this.props.match.params.id.split('-')[0])
           document.title = `${this.state.items.title}`
         });
       });
@@ -215,6 +219,15 @@ class Disease extends Component {
       .catch(err => null)
   }
 
+  getFavourite = (articleid) => {
+    axios.get(`${backendHost}/favourite/userid/${userId}/articleid/${articleid}/favourite`)
+      .then(res => {
+        this.setState({
+          favourite: res.data[0].status
+        })
+      })
+      .catch(err => null)
+  }
   regionalPosts(){
     fetch(`${backendHost}/isearch/treatmentregions/${this.state.items.disease_condition_id}`)       // /isearch/treatmentregions/${this.state.diseaseCondition}
     .then((res) => res.json())
@@ -667,8 +680,17 @@ diseasePosts(dcName) {                     // For specific blogs like "/blogs/di
                   </>
                 : null
               }
-                                    <Favourite  article_id={this.props.match.params.id.split('-')[0]}/>
-
+                                {/* {
+                userAccess?
+                  <>   
+                  {
+                          this.state.favourite.length === 0 ?
+                     <Favourite  article_id={this.props.match.params.id.split('-')[0]}/>
+                     :<Favourites  article_id={this.props.match.params.id.split('-')[0]}/>
+                  }
+                     </>
+                : null
+              } */}
              
             <div id="comments-column">              
 
