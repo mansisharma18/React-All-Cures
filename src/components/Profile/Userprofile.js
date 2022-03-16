@@ -80,7 +80,7 @@ export default function Userprofile(props) {
 
 const getSubsnum=() =>{
  console.log(mobile)
- subnum=0;
+ 
   axios.get(`${backendHost}/users/subscriptiondetails/${mobile}/cc/91`)
   
   .then((res) => {
@@ -168,6 +168,7 @@ const onError = (e) => {
         (() => {
           if(subnum==0) {
             return<><div><button className='article-search primary-btn-color'>subscribe</button>
+      
               </div></>
           }
           else{
