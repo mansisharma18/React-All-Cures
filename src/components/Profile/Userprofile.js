@@ -14,6 +14,10 @@ export default function Userprofile(props) {
     const [firstName, setFirstName] = useState('')
     const [lastName, setLastName] = useState('')
     const [email, setEmail] = useState('')
+    
+    const [mobile, setMobile] = useState('')
+    const [number, setNumber] = useState('')
+    
     const [isLoaded, setLoaded] = useState(false)
     const history = useHistory()
     const [showAlert, setShowAlert] = useState(false)
@@ -22,6 +26,7 @@ export default function Userprofile(props) {
     const [selectedFile, setSelectedFile] = useState();
 
 	const [isFilePicked, setIsFilePicked] = useState(false);
+ var subnum=0;
 
 
 	const changeHandler = (event) => {
@@ -64,6 +69,27 @@ export default function Userprofile(props) {
     handleImageSubmission()
   }, [selectedFile]);
 
+  useEffect(() => {
+    getSubsnum()
+  }, [mobile]);
+
+  useEffect(() => {
+    getProfile()
+    // eslint-disable-next-line
+}, [])
+
+const getSubsnum=() =>{
+ console.log(mobile)
+ subnum=0;
+  axios.get(`${backendHost}/users/subscriptiondetails/${mobile}/cc/91`)
+  
+  .then((res) => {
+     subnum=res.data.length;
+     setLoaded(true)
+  })
+  .catch(err => {return})
+}
+
 const onError = (e) => {
   if(e.target.parentElement){
   e.target.parentElement.innerHTML = `<i class="fas fa-user-md fa-6x"></i>`
@@ -76,15 +102,14 @@ const onError = (e) => {
             setFirstName(res.data.first_name)
             setLastName(res.data.last_name)
             setEmail(res.data.email_address)
+            setMobile(res.data.mobile_number)
             // setRegType(res.data.registration_type)
             setLoaded(true)
+           
         })
         .catch(err => {return})
     }
-    useEffect(() => {
-        getProfile()
-        // eslint-disable-next-line
-    }, [])
+    
     
     if(!isLoaded){
       return(
@@ -136,7 +161,21 @@ const onError = (e) => {
                           <div>
             <div className="h4 text-capitalize">Name: {firstName} {lastName}</div>
             <div className="h5"><span className=''>Email:</span> {email}</div>
+           {<div className="h5"><span className=''>Mobile:</span> {mobile}</div>}
             {/* <div className="h5"><span className=''>Registration Type:</span> {regType}</div> */}
+            <div>
+      { 
+        (() => {
+          if(subnum==0) {
+            return<><div><button className='article-search primary-btn-color'>subscribe</button>
+              </div></>
+          }
+          else{
+            return<><div><button className='article-search primary-btn-color'>edit subscribe</button></div></>
+          }
+        })()
+      }
+    </div>
         </div>
                             </div>
                             {/* <!--  <button onclick="loadUsers()">Click</button> --> */}
