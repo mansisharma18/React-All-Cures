@@ -16,7 +16,7 @@ export default function Userprofile(props) {
     const [email, setEmail] = useState('')
     
     const [mobile, setMobile] = useState('')
-    const [number, setNumber] = useState('')
+    const [subnum, setSubnum] = useState('')
     
     const [isLoaded, setLoaded] = useState(false)
     const history = useHistory()
@@ -26,7 +26,7 @@ export default function Userprofile(props) {
     const [selectedFile, setSelectedFile] = useState();
 
 	const [isFilePicked, setIsFilePicked] = useState(false);
- var subnum=0;
+ 
 
 
 	const changeHandler = (event) => {
@@ -84,7 +84,7 @@ const getSubsnum=() =>{
   axios.get(`${backendHost}/users/subscriptiondetails/${mobile}/cc/91`)
   
   .then((res) => {
-     subnum=res.data.length;
+     setSubnum=(res.data.length);
      setLoaded(true)
   })
   .catch(err => {return})
