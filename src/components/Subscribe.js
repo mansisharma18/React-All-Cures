@@ -42,7 +42,7 @@ class Subscribe extends Component{
        show: false,
        docname : '',
        spec1: [],
-       param : this.props.match.params,
+       //param : this.props.match.params,
        cures:[],
        disease:[],
        searchParams: {
@@ -52,8 +52,10 @@ class Subscribe extends Component{
           subscription: '',  
        }
       
-  };      
+  };
+     
 }
+
 componentDidMount(){
   if(userId){
      this.setState({modalShow: false})
@@ -145,7 +147,7 @@ componentDidMount(){
     }
     componentDidMount() {
         window.scrollTo(0, 0);
-        this.fetchBlog()
+        //this.fetchBlog()
         
         this.getDisease()
       }
@@ -159,10 +161,7 @@ componentDidMount(){
            <>
              <div>
          
-         <button id="mobile-subscribe-fixed-btn" className="btn newsletter-icon rounded subscribe-btn newsletter_float" data-toggle="modal"data-target=".bd-example-modal-lg">
-      Subscribe
-     
-            </button>
+        
            
          </div>
 <div className="modal fade bd-example-modal-lg" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">

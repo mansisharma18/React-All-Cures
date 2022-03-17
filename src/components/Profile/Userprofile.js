@@ -166,13 +166,17 @@ const onError = (e) => {
       { 
         (() => {
           if(subnum==0) {
-            return<><div><button className='article-search primary-btn-color'>subscribe</button>
-            <button id="mobile-subscribe-fixed-btn" class="btn newsletter-icon roundedsubscribe-btn newsletter_float userprofile" 
+            return<><div>
+            <button id="userprofile" class="primary-btn-color" 
             data-toggle="modal" data-target=".bd-example-modal-lg">Subscribe</button>
               </div></>
           }
           else{
-            return<><div><button className='article-search primary-btn-color'>edit subscribe</button></div></>
+            return<><div>
+              <Link to={'/editsubscribe/?em=J1rUFb3eALx3Z6zVwWk2fw=='}>
+              <button className='article-search primary-btn-color'>edit subscribe</button></Link>
+              </div></>
+              
           }
         })()
       }
@@ -194,7 +198,7 @@ const onError = (e) => {
               </div>
             </div>
          
-           
+           <Subscribe/>
           </section>
           <Footer />
         </div>
