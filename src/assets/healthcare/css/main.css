@@ -2356,12 +2356,20 @@ div.main-hero:first-child .card {
     width: 0%;
   }
 }
+
 .subscribe-btn {
   background-color: #000;
 }
 .subscribe-btn:hover {
   background-color: rgb(41, 39, 39);
   color: #fff;
+}
+#userprofile {
+  position: relative;
+  top: 0px;
+  left: 200px;
+  transform: none;
+  border-radius: 0px !important;
 }
 #mobile-feedback-fixed-btn{
   bottom:102px !important;

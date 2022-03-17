@@ -2,13 +2,13 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import Header from '../Header/Header';
 import Footer from '../Footer/Footer';
+import { Link, useParams } from 'react-router-dom';
 import { backendHost } from '../../api-config';
 import { useHistory } from 'react-router-dom';
 import { userId } from '../UserId';
 import { userAccess } from '../UserAccess';
 import { imagePath } from '../../image-path';
-
-
+import Subscribe from '../Subscribe';
 export default function Userprofile(props) {
     // const profileId = useState(userId)
     const [firstName, setFirstName] = useState('')
@@ -26,7 +26,7 @@ export default function Userprofile(props) {
     const [selectedFile, setSelectedFile] = useState();
 
 	const [isFilePicked, setIsFilePicked] = useState(false);
- 
+  
 
 
 	const changeHandler = (event) => {
@@ -84,7 +84,7 @@ const getSubsnum=() =>{
   axios.get(`${backendHost}/users/subscriptiondetails/${mobile}/cc/91`)
   
   .then((res) => {
-     setSubnum=(res.data.length);
+     setSubnum(res.data.length);
      setLoaded(true)
   })
   .catch(err => {return})
@@ -109,8 +109,7 @@ const onError = (e) => {
         })
         .catch(err => {return})
     }
-    
-    
+   
     if(!isLoaded){
       return(
       <>
@@ -167,12 +166,17 @@ const onError = (e) => {
       { 
         (() => {
           if(subnum==0) {
-            return<><div><button className='article-search primary-btn-color'>subscribe</button>
-      
+            return<><div>
+            <button id="userprofile" class="primary-btn-color" 
+            data-toggle="modal" data-target=".bd-example-modal-lg">Subscribe</button>
               </div></>
           }
           else{
-            return<><div><button className='article-search primary-btn-color'>edit subscribe</button></div></>
+            return<><div>
+              <Link to={'/editsubscribe/?em=J1rUFb3eALx3Z6zVwWk2fw=='}>
+              <button className='article-search primary-btn-color'>edit subscribe</button></Link>
+              </div></>
+              
           }
         })()
       }
@@ -193,6 +197,8 @@ const onError = (e) => {
                 </div>
               </div>
             </div>
+         
+           <Subscribe/>
           </section>
           <Footer />
         </div>
