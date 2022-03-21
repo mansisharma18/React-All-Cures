@@ -1,116 +1,199 @@
-import React, { Component } from 'react';
-import Header from '../Header/Header';
-import Footer from '../Footer/Footer'
-// import EditModal from './EditModal'
-import {Container} from "react-bootstrap";
-// import PostArticle from '././components/BlogPage/PostArticle';
+import React, { useState, useEffect } from 'react';
 import { backendHost } from '../../api-config';
-import ListArticle from './ListArticle'
-import { userId } from '../UserId';
+import Header from "../Header/Header";
+import Footer from "../Footer/Footer";
+import { Link } from 'react-router-dom'
+import CenterWell from '../Disease/CenterWell'
+import Heart from"../../assets/img/heart.png";
+import Date from '../Date'
+import OwlCarousel from "react-owl-carousel";
+import {userId} from "../UserId"
 
-export default class Blogpage extends Component{
+import "owl.carousel/dist/assets/owl.carousel.css";
+import "owl.carousel/dist/assets/owl.theme.default.css";
+import "@fortawesome/free-solid-svg-icons";
+import "@fortawesome/fontawesome-svg-core"
 
-    constructor(props) {
-        super(props);
-        const params = props.match.params
-        this.state = { 
-          // url: props.url,
-          param: params,
-          items: [],
-          isLoaded: false,
-          regionPostsLoaded: false,
-        };
-      }
+const options = {
+   margin: 30,
+   responsiveClass: true,
+   nav: true,
+   loop: false,
+   dots: true,
+   smartSpeed: 1000,
+   singleItem: true,
+   items:1,
+   responsive: {
+       0: {
+           items: 1,
+       },
+       400: {
+           items: 1,
+       },
+       600: {
+           items: 2,
+       },
+       700: {
+           items: 2,
+       },
+       1000: {
+           items: 3,
+
+       }
+   },
+};
+
+
+const ArticlePreview = (props) => {
+    const [items, setItems] = useState([])
+    const [isLoaded, setLoaded] = useState(false)
+    const [articleFilter, setArticleFilter]= useState(props.dcName? props.dcName: 'recent')
     
+    function diseasePosts(type){                     // For specific blogs like "/blogs/diabetes"
+        // if(type){
+          fetch(`${backendHost}/isearch/${type}`)
+          .then((res) => res.json())
+          .then((json) => {
+            setLoaded(true)
+            setItems(json)
+          })
+          .catch(err => null)
+      }
 
-      PostArticles() {                        // For all available blogs "/blogs"
-        fetch(`${backendHost}/article/allkv`)
+    function allPosts() {                        // For all available blogs "/blogs"
+        fetch(`${backendHost}/favourite/userid/${userId}/favouritearticle`)
           .then((res) => res.json())
           .then((json) => {
             var temp = []
             json.forEach(i => {
-              if(parseInt(userId) === parseInt(i.published_by)){
                 temp.push(i)
-              }
             });
-            this.setState({
-              isLoaded: true,
-              items: temp,
-            });
-          })
-          .catch(err => 
-            {return}
-        )
-      }
+            setItems(temp)
+            setLoaded(true)
+        })
+          .catch(err => null)
+    }
 
-      componentDidMount() {
-        this.PostArticles()  
-      }
 
-      componentDidUpdate(prevProps){
-        if ( prevProps.match.params.type !== this.props.match.params.type){
-          this.diseasePosts(this.props.match.params.type)
+    function IsJsonValid(str) {
+        try {
+            JSON.parse(str);
+        } catch (e) {
+            return [];
         }
-      }
-      
-    render(){
-        var { isLoaded,items } = this.state;
+        return JSON.parse(str).blocks;
+    }
 
-        if(!isLoaded) {
+    useEffect(() => {
+        allPosts()
+    }, [])
+
+    if(!isLoaded){
         return (
-        <>
-          <Header history={this.props.history}/>
-            <Container className="mt-5 my-5 loading">
-              <h3 className="text-left">Loading...</h3>
-            </Container>
-          <Footer/> 
-        </>  
-      );
-    } else if(isLoaded && items.length === 0) {
-     
-        return(
-          <>
-          <Header history={this.props.history} url={this.props.match.url}/>
-            <Container className="mt-5 my-5 ">
-            {/* <h3 className="pt-5 text-center"><span className="icon-loupe "></span></h3> */}
-            <h3 className="mt-3 text-center">We do not have any cures for this condition yet but our editorial team is working on it. </h3>
-            <h3 className="mt-3 text-center">In the meantime, if you have a cure, please   <a href='/article'>"Click Here"</a> to add the cure to our site. </h3><hr/>
-
-           
-            </Container>
-          <Footer/>
-          </>
-        );
-      
-    } else if(isLoaded){
-        return(
-            <>
-            <Header history={this.props.history}/>
-            
-                <div className="container">
-                    <h1 className="h2 text-center font-weight-bold my-4">My Cures</h1>
-                    <div className="row" id="posts-container">
-                      
-                    {items.map((i) => (
-                      parseInt(userId) === parseInt(i.published_by)?
-                                // Selects articles with publish status = 3 (Published)
-                      <ListArticle
-                        id = {i.article_id}
-                        title = {i.title}
-                        f_title = {i.friendly_name}
-                        w_title = {i.window_title}
-                        country = {i.country_id}
-                        type = {i.type}
-                        pubstatus_id= {i.pubstatus_id}
-                        PostArticlesContent={() => this.PostArticles()}
-                      />
-                      : null
-                    ))}
-                    </div>
-                </div>
-            <Footer/>
-            </>
+            <div className="loader my-4">
+                <img src={Heart} alt="All Cures Logo" id="heart"/>
+            </div>
         );
     }
+    else {
+        return(
+        <>
+        <Header/>
+        {/* {items.map((i) => (
+                        i.status === 1 ?
+                        : null
+                        ))} */}
+        <div className="container">
+        
+            <div className="row" marginBottom={10}>
+            <div className="main-hero" id="main-hero">
+            <h3 >My Favourite Cures</h3>
+
+            <OwlCarousel {...options} nav="true" id="featured" height={550} items={1} singleItem={true} margin={10}>
+              
+                {
+                    items.length !== 0?
+                    items.filter((i, idx) => idx < 9).map((i) => {
+                    var content = []
+                    var imgLocation = i.content_location
+                    var imageLoc = '';
+                    if(i.content){
+                        content = IsJsonValid(decodeURIComponent(i.content))
+                    }
+                    if(imgLocation && imgLocation.includes('cures_articleimages')){
+                        imageLoc = `https://all-cures.com:444/`+imgLocation.replace('json', 'png').split('/webapps/')[1]
+                    } else {
+                        imageLoc = 'https://all-cures.com:444/cures_articleimages//299/default.png'
+                    }
+
+                    var title = i.title
+                    var regex = new RegExp(' ', 'g');
+
+                    //replace via regex
+                    title = title.replace(regex, '-');
+                    return i.status===1?( 
+                      
+                  
+                    <div className="col-4">
+                     
+                    <div className="card my-2 w-100">
+                        <div className='card-img'><img src={imageLoc} /></div>
+                        <div className="card-body">
+                            <h6 className='pb-2 text-muted'>
+                                {
+                                    i.authors_name !== "All Cures Team"?
+                                    <Link to={`/profile/${i.rowno}`}>{i.authors_name}</Link> 
+                                    : i.authors_name
+                                }{" "}▪️ {<Date dateString={i.published_date} />}</h6>
+                            <h5 className="card-title text-capitalize"><Link to={`/cure/${i.article_id}-${title}`}>{i.title.toLowerCase()}</Link></h5>
+                            
+                            <div className="card-info">
+                                {/* <h6 className="card-subtitle mb-2 text-muted text-capitalize">
+                                    {i.window_title.toLowerCase()}
+                                </h6> */}
+                                
+                                <div className="card-text card-article-content-preview">
+                                    {
+                                        content?
+                                            content.map((j, idx) => idx<1 && (
+                                                <CenterWell
+                                                    content = {j.data.content}
+                                                    type = {j.type}
+                                                    text = {j.data.text.substr(0, 250) + '....'}
+                                                    title = {j.data.title}
+                                                    message = {j.data.message}
+                                                    source = {j.data.source}
+                                                    embed = {j.data.embed}
+                                                    caption = {j.data.caption}
+                                                    alignment = {j.data.alignment}
+                                                    imageUrl = {j.data.file? j.data.file.url: null}
+                                                    url = {j.data.url}
+                                                />
+                                            ))
+                                            : null
+                                    }
+                                </div>
+                            </div>
+                        </div>
+                        
+                    </div>
+                </div>
+                ):null}
+
+                
+                // : null
+                
+                ): null
+            }</OwlCarousel>
+            </div>
+            </div>
+          
+            </div>
+            <Footer />
+        </>
+
+    )
 }
 }
+
+export default ArticlePreview
