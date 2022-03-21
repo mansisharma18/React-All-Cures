@@ -9,6 +9,7 @@ import { userId } from '../UserId';
 import { userAccess } from '../UserAccess';
 import { imagePath } from '../../image-path';
 import Subscribe from '../Subscribe';
+
 export default function Userprofile(props) {
     // const profileId = useState(userId)
     const [firstName, setFirstName] = useState('')
@@ -167,14 +168,14 @@ const onError = (e) => {
         (() => {
           if(subnum==0) {
             return<><div>
-            <button id="userprofile" class="primary-btn-color" 
+            <button id="userprofile" class="btn btn-dark" 
             data-toggle="modal" data-target=".bd-example-modal-lg">Subscribe</button>
               </div></>
           }
           else{
             return<><div>
-              <Link to={'/editsubscribe/?em=J1rUFb3eALx3Z6zVwWk2fw=='}>
-              <button className='article-search primary-btn-color'>edit subscribe</button></Link>
+              <Link to={'/editsubscribe'}>
+              <button className='article-search btn btn-dark'>edit subscribe</button></Link>
               </div></>
               
           }
