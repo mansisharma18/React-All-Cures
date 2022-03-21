@@ -680,17 +680,17 @@ diseasePosts(dcName) {                     // For specific blogs like "/blogs/di
                   </>
                 : null
               }
-                                {/* {
+                                {
                 userAccess?
                   <>   
                   {
-                          this.state.favourite.length === 0 ?
+                          this.state.favourite.length === 0 || this.state.status===0 ?
                      <Favourite  article_id={this.props.match.params.id.split('-')[0]}/>
                      :<Favourites  article_id={this.props.match.params.id.split('-')[0]}/>
                   }
                      </>
                 : null
-              } */}
+              }
              
             <div id="comments-column">              
 
