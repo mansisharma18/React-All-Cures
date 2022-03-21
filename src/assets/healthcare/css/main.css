@@ -2376,8 +2376,8 @@ div.main-hero:first-child .card {
 }
 .favouriteForm{
   position: relative;
-  bottom: 259px;
-    left: 71%;
+  bottom: 263px;
+  left: 66%;
 
 }
 .btn-article-search i.fa-heart{
@@ -2386,6 +2386,8 @@ padding:0.22rem;
 .favourite{
   padding: 3px 4px 5px 7px;
   margin-top:0 !important;
+  
+    position: absolute;
   }
 
 .success{
