@@ -41,6 +41,7 @@ function App() {
   const [countryAlert,setCountryAlert] = useState()
   const [user,setUser] = useState()
   const [article,setArticle] = useState()
+  const[search,setSearch] = useState()
   
   const submitForm = (e) => {
     e.preventDefault();
@@ -79,10 +80,11 @@ const hospitalForm = (e) => {
 
 const favouriteForm = (e,user_id,article_id) => {
     e.preventDefault();
-    axios.post(`${backendHost}/favourite/userid/3/articleid/721/create  `, {
+    axios.post(`${backendHost}/data/create  `, {
         // "hospitalid": parseInt(hospitalId),
-        "user_id": user,
-        "article_id" : article
+        "iemi" :122,
+        "user_id": 2,
+        "search" : 'ffff'
     })
     .then(res => {
         setHospitalAlert(true)
@@ -300,6 +302,12 @@ useEffect(() => {
                         <Form.Group className="col-md-6 float-left" style={{zIndex: 2}}>
                             <Form.Label>Enter article Name</Form.Label>
                             <Form.Control value={article} onChange={(e) => setArticle(e.target.value)}  type="text" name=""
+                            placeholder="Enter Hospital Name..." required/>
+                        </Form.Group>
+
+                        <Form.Group className="col-md-6 float-left" style={{zIndex: 2}}>
+                            <Form.Label>Enter search Name</Form.Label>
+                            <Form.Control value={search} onChange={(e) => setSearch(e.target.value)}  type="text" name=""
                             placeholder="Enter Hospital Name..." required/>
                         </Form.Group>
                         {
