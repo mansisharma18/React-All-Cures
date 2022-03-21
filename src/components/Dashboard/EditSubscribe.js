@@ -5,6 +5,7 @@ import Footer from '../Footer/Footer';
 import Heart from"../../assets/img/heart.png";
 import { Link } from 'react-router-dom'
 import { backendHost } from '../../api-config';
+import { userId } from '../UserId';
 
 import axios from 'axios';
 
@@ -16,6 +17,10 @@ import Userprofile from '../Profile/Userprofile';
 function LoginInfo(props) { 
     
     const[number,setNumber] = useState();
+    const [mobile, setMobile] = useState('')
+    const [subnum, setSubnum] = useState('')
+    
+    const [isLoaded, setLoaded] = useState(false)
 
     const [type,setType] = useState([])
    
@@ -40,6 +45,17 @@ function LoginInfo(props) {
   .catch(err => {return})
    }
   
+   const getProfile = () => {
+    axios.get(`${backendHost}/profile/${userId}`)
+    .then(res => {
+        
+        setMobile(res.data.mobile_number)
+        // setRegType(res.data.registration_type)
+        setLoaded(true)
+       
+    })
+    .catch(err => {return})
+}
 
 
 
@@ -61,7 +77,7 @@ function LoginInfo(props) {
     
      
         getDisease()
-
+        getProfile()
          // eslint-disable-next-line
         }, [])
 
@@ -146,7 +162,7 @@ function LoginInfo(props) {
                 </div>
                        <Form.Group className="col-lg-6  " style={{zIndex: 1}}>
                                 <Form.Label>Mobile Number</Form.Label>
-                                <Form.Control  onChange={setMail} value={number} inputmode="numeric" type="number" name="" required/>
+                                <Form.Control  onChange={setMobile} value={mobile} inputmode="numeric" type="number" name="" required/>
                             </Form.Group>
 
 
