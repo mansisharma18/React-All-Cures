@@ -10,10 +10,12 @@ import axios from 'axios';
 
 import '../../assets/healthcare/css/main.css';
 import Input from '@material-ui/core/Input';
-import { Select, MenuItem } from '@material-ui/core'
+import { Select, MenuItem } from '@material-ui/core';
+import Userprofile from '../Profile/Userprofile';
 
-function LoginInfo(props) {  
-    const[number,setNumber] = useState('');
+function LoginInfo(props) { 
+    
+    const[number,setNumber] = useState();
 
     const [type,setType] = useState([])
    
@@ -21,23 +23,26 @@ function LoginInfo(props) {
     const [cures, setCures] = useState([])
     const [diseaseList, setDiseaseList] = useState([])
     const setMail = (event)=>{
-        setNumber({ ...number,Mail: event.target.value})
+        setNumber({ ...number,Mail: event.target.valueAsNumber})
     }
      
   const putSubscribe= async e => {
        e.preventDefault()
-    axios.post(`${backendHost}/users/subscribe/7889761896`,
+    axios.post(`${backendHost}/users/subscribe/${number}`,
   {   
  "nl_subscription_disease_id":1,
   "nl_sub_type":1,
   "nl_subscription_cures_id": 0
-  })
+  })    
   .then(res => {
     //   console.log(res)
   })
   .catch(err => {return})
    }
-    
+  
+
+
+
     useEffect(() => {
 
         // const params = new URLSearchParams(location.search);
@@ -85,6 +90,7 @@ function LoginInfo(props) {
 
     return (
         <>
+        
                         <div className="profilePage">
                 <div className="comman-pg-header">
                     <section className="pageHeader zIndex-2 h-auto">
@@ -140,7 +146,7 @@ function LoginInfo(props) {
                 </div>
                        <Form.Group className="col-lg-6  " style={{zIndex: 1}}>
                                 <Form.Label>Mobile Number</Form.Label>
-                                <Form.Control disabled onChange={setMail} value={number} type="Email" name="" required/>
+                                <Form.Control  onChange={setMail} value={number} inputmode="numeric" type="number" name="" required/>
                             </Form.Group>
 
 
