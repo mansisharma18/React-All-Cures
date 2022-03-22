@@ -2364,6 +2364,9 @@ div.main-hero:first-child .card {
   background-color: rgb(41, 39, 39);
   color: #fff;
 }
+.average-rating{
+  width:16%;
+}
 #userprofile {
   position: relative;
   top: 0px;
@@ -2376,8 +2379,8 @@ div.main-hero:first-child .card {
 }
 .favouriteForm{
   position: relative;
-  bottom: 263px;
-  left: 66%;
+  bottom: 243px;
+    left: 65%;
 
 }
 .btn-article-search i.fa-heart{
