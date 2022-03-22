@@ -222,6 +222,7 @@ class Disease extends Component {
   getFavourite = (articleid) => {
     axios.get(`${backendHost}/favourite/userid/${userId}/articleid/${articleid}/favourite`)
       .then(res => {
+       
         this.setState({
           favourite: res.data[0].status
         })
@@ -680,11 +681,11 @@ diseasePosts(dcName) {                     // For specific blogs like "/blogs/di
                   </>
                 : null
               }
-                                {
+                                    {
                 userAccess?
                   <>   
                   {
-                          this.state.favourite.length === 0 || this.state.status===0 ?
+                          this.state.favourite.length === 0  ?
                      <Favourite  article_id={this.props.match.params.id.split('-')[0]}/>
                      :<Favourites  article_id={this.props.match.params.id.split('-')[0]}/>
                   }

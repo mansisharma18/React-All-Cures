@@ -19,7 +19,7 @@ function  Favourites ({article_id}) {
   
 const favouriteForm = (e) => {
     e.preventDefault();
-    axios.post(`${backendHost}/favourite/userid/${userId}/articleid/${article_id}/status/0/create  `, {
+    axios.delete(`${backendHost}/favourite/userid/${userId}/articleid/${article_id}/status/1/delete  `, {
       
     })
     .then(res => {
