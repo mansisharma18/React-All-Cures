@@ -33,18 +33,68 @@ function LoginInfo(props) {
      
   const putSubscribe= async e => {
        e.preventDefault()
-    axios.post(`${backendHost}/users/subscribe/${number}`,
+    axios.post(`${backendHost}/users/subscribe/${mobile}`,
   {   
  "nl_subscription_disease_id":1,
   "nl_sub_type":1,
   "nl_subscription_cures_id": 0
-  })    
-  .then(res => {
-    //   console.log(res)
-  })
-  .catch(err => {return})
-   }
+  }) 
   
+  .then(res => {
+               
+   
+    // window.location.reload(false);
+})
+
+.then(err => {
+    return
+})
+.catch(err => {return}
+)
+
+
+
+
+   }
+  const postSubscribtion= async e=> {
+    //  var mobileNumber = this.state.mobile.split('+')
+    var phoneNumber = this.state.value.split('+')[1]
+    var countryCodeLength = phoneNumber.length % 10
+    var countryCode = phoneNumber.slice(0, countryCodeLength)
+    var StringValue = phoneNumber.slice(countryCodeLength).replace(/,/g, '')
+     if(phoneNumber){
+       this.setState({
+          afterSubmitLoad: true
+       })
+      axios.post(`${backendHost}/users/subscribe/${mobile}`, {
+      "nl_subscription_disease_id":this.state.disease.join(','),
+      "nl_sub_type": this.state.type.indexOf('1') === -1 ? 0: 1,
+      "nl_subscription_cures_id":this.state.cures.join(','),
+      "country_code": countryCode,
+      })
+        .then(res => {
+         this.setState({
+            afterSubmitLoad: false
+         })
+         if(res.data === 1){
+            this.Alert('You have successfully subscribed to our Newsletter')
+         }
+         else {
+            this.Alert('Some error occured! Please try again later.')
+         }
+        })
+        .catch(err => {
+         this.setState({
+            afterSubmitLoad: false
+         })
+         this.Alert('Some error occured! Please try again later.')
+         
+   
+      })
+     } else {
+        this.Alert('Please enter a valid number!')
+     }
+  }
    const getProfile = () => {
     axios.get(`${backendHost}/profile/${userId}`)
     .then(res => {
@@ -218,7 +268,7 @@ function LoginInfo(props) {
                 </div> 
                        
       <div className="d-flex flex-column align-items-sm-center">
-                            <button onClick={putSubscribe} className="btn btn-dark col-md-4" >Submit</button>
+                            <button onClick={postSubscribtion} className="btn btn-dark col-md-4" >Submit</button>
                             </div>
                         </form>
                     </div>
