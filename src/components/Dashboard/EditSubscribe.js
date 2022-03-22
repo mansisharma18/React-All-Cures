@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { Component } from 'react';
 
 import { Form } from 'react-bootstrap';
 import Footer from '../Footer/Footer';
@@ -14,195 +14,159 @@ import Input from '@material-ui/core/Input';
 import { Select, MenuItem } from '@material-ui/core';
 import Userprofile from '../Profile/Userprofile';
 
-function LoginInfo(props) { 
-    
-    const[number,setNumber] = useState();
-    const [mobile, setMobile] = useState('')
-    const [subnum, setSubnum] = useState('')
-    
-    const [isLoaded, setLoaded] = useState(false)
 
-    const [type,setType] = useState([])
-   
-    const [disease, setDisease] = useState([])
-    const [cures, setCures] = useState([])
-    const [diseaseList, setDiseaseList] = useState([])
-    const setMail = (event)=>{
-        setNumber({ ...number,Mail: event.target.valueAsNumber})
+class Disease extends Component {
+    constructor(props) {
+      super(props);
+      this.childDiv = React.createRef()
+      this.state = { 
+        items: [],
+        carouselItems: [],
+        comment: [],
+        isLoaded: false,
+        ratingValue: '',
+        rating:[],
+        ratingVal:[],
+        param : this.props.match.params,
+        disease: '',
+        regions: '',
+        regionPostsLoaded: false,
+        regionalPost: [],
+        showMore: false,
+        value:'',
+        type: [],
+        favourite: [],
+        diseaseList:[],
+        mobile:'',
+        disease:[],
+        cures:[],
+        showAlert: false,
+        loaded:false,
+        alertMsg: '',
+        showCuresCards: false
+      };
     }
-     
-  const putSubscribe= async e => {
-       e.preventDefault()
-    axios.post(`${backendHost}/users/subscribe/${mobile}`,
-  {   
- "nl_subscription_disease_id":1,
-  "nl_sub_type":1,
-  "nl_subscription_cures_id": 0
-  }) 
-  
-  .then(res => {
-               
-   
-    // window.location.reload(false);
-})
-
-.then(err => {
-    return
-})
-.catch(err => {return}
-)
 
 
 
-
-   }
-  const postSubscribtion= async e=> {
-    //  var mobileNumber = this.state.mobile.split('+')
-    var phoneNumber = this.state.value.split('+')[1]
-    var countryCodeLength = phoneNumber.length % 10
-    var countryCode = phoneNumber.slice(0, countryCodeLength)
-    var StringValue = phoneNumber.slice(countryCodeLength).replace(/,/g, '')
-     if(phoneNumber){
-       this.setState({
-          afterSubmitLoad: true
-       })
-      axios.post(`${backendHost}/users/subscribe/${mobile}`, {
-      "nl_subscription_disease_id":this.state.disease.join(','),
-      "nl_sub_type": this.state.type.indexOf('1') === -1 ? 0: 1,
-      "nl_subscription_cures_id":this.state.cures.join(','),
-      "country_code": countryCode,
-      })
-        .then(res => {
-         this.setState({
-            afterSubmitLoad: false
-         })
-         if(res.data === 1){
-            this.Alert('You have successfully subscribed to our Newsletter')
-         }
-         else {
-            this.Alert('Some error occured! Please try again later.')
-         }
-        })
-        .catch(err => {
-         this.setState({
-            afterSubmitLoad: false
-         })
-         this.Alert('Some error occured! Please try again later.')
+    postSubscribtion(mobile) {
+        //  var mobileNumber = this.state.mobile.split('+')
+        // var phoneNumber = this.state.value.split('+')[1]
+        // var countryCodeLength = phoneNumber.length % 10
+        // var countryCode = phoneNumber.slice(0, countryCodeLength)
+        // var StringValue = phoneNumber.slice(countryCodeLength).replace(/,/g, '')
          
-   
-      })
-     } else {
-        this.Alert('Please enter a valid number!')
-     }
-  }
-   const getProfile = () => {
-    axios.get(`${backendHost}/profile/${userId}`)
-    .then(res => {
-        
-        setMobile(res.data.mobile_number)
-        // setRegType(res.data.registration_type)
-        setLoaded(true)
+          
+          axios.post(`${backendHost}/users/subscribe/${mobile}`, {
+          "nl_subscription_disease_id":this.state.disease.join(','),
+          "nl_sub_type": this.state.type.indexOf('1') === -1 ? 0: 1,
+          "nl_subscription_cures_id":this.state.cures.join(','),
+        //   "country_code": countryCode,
+          })
+            .then(res => {
+             this.setState({
+                afterSubmitLoad: false
+             })
+             if(res.data === 1){
+                this.Alert('You have successfully subscribed to our Newsletter')
+             }
+             else {
+                this.Alert('Some error occured! Please try again later.')
+             }
+            })
+            .catch(err => {
+             this.setState({
+                afterSubmitLoad: false
+             })
+            //  this.Alert('Some error occured! Please try again later.')
+             
        
-    })
-    .catch(err => {return})
-}
-
-
-
-    useEffect(() => {
-
-        // const params = new URLSearchParams(location.search);
-        // const getEmail= params.get('em');
-      
-       const getEmail = props.location.search
+          })
        
-         axios.post(`${backendHost}/users/getemdecrypt`,
-         {
-             "email":getEmail.split('em=')[1]
-         })
-         .then(res => {
-            setNumber(res.data)
-         })
-         
-    
-     
-        getDisease()
-        getProfile()
-         // eslint-disable-next-line
-        }, [])
-
-    // const logout = async e => {
-    //     const res = await fetch("/LogoutActionController", {
-    //        method: "POST"
-    //     });
-    //     setTimeout(() => {
-    //        window.location.reload()
-    //     }, 1000);
-    //  }
-     const handleSelect = function(countries) {
-        const flavors = [];
-        for (let i=0; i<countries.length; i++) {
-            flavors.push(countries[i].value);
-        }
-        setType(flavors);
-    }
-    const getDisease = () => {
-        axios.get(`${backendHost}/article/all/table/disease_condition`)
+      }
+       getProfile = () => {
+        axios.get(`${backendHost}/profile/${userId}`)
         .then(res => {
-            setDiseaseList(res.data)
+            
+            this.setState({
+                mobile:res.data.mobile_number,
+                loaded:true
+            })
+           
         })
         .catch(err => {return})
     }
-
-    return (
-        <>
+      handleSelect = function(subs) {
+        const flavors = [];
+        for (let i=0; i<subs.length; i++) {
+            flavors.push(subs[i].value);
+        }
+        this.setState({
+          type:flavors
+        })
         
-                        <div className="profilePage">
-                <div className="comman-pg-header">
-                    <section className="pageHeader zIndex-2 h-auto">
-                    <div className="container">
-                    <div className="row">
-                        <div className="header" style={{width:"100%"}}>
-                        <div className="logo"> 
-                            <Link to='/home'>
-                                <img src={Heart} alt="All Cures Logo"/>
-                                <span>All Cures</span>
-                            </Link>
-                        </div>
-    
-                        <div className="loginSign">
-                            {/* <ToggleButton acPerm={acPerm} url={props.url} logout={logout}/>  */}
-                        </div>   	
-                        </div>
-                    </div>
-                    </div>
-                    </section>
-                </div>
-                 </div>
-                        <div className="container">
-                <div className="h2 text-center my-3">Edit Subscribe</div>
-        <div className="card mb-5">
+    }
+
+      getDisease = () => {
+        axios.get(`${backendHost}/article/all/table/disease_condition`)
+        .then(res => {
+            this.setState({
+              diseaseList:res.data
+            })
+           
+        })
+        .catch(err => null)
+    }
+
+
+
+
+    componentDidMount() {
+        window.scrollTo(0, 0);
       
-                    <div className="card-body">
-                        <form>
-                        <div className='LoginInfo'>
-                            
-                        
-    
+        this.getProfile()
+        this.getDisease()
+      }
+
+      render() { 
+        return (
+            <>
+                 <button id="mobile-subscribe-fixed-btn" className="btn newsletter-icon rounded subscribe-btn newsletter_float" data-toggle="modal"data-target=".bd-example-modal-lg">
+      Subscribe
+     
+            </button>
+
+
+                
+         
+<div className="modal fade bd-example-modal-lg" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+  <div className="modal-dialog modal-lg">
+    <div className="modal-content">
+    <div className="modal-header">
+        
+        <button type="button" className="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
       </div>
-                           
-      <div className="row">
-                  
-      <div className="col-lg-6 form-group">
-                    <label htmlFor="">Type</label>
+    <section className="appStore" >
+         <div className="container">
+            <div className="row">
+               <div className="appStoreBg clearfix" style={{display:"flex",width: "100%",flexWrap: 'wrap'}}>
+                  <div className="col-md-6 col-sm-6 col-sx-12">
+                     <div className="innerapp">
+                        <div className="doc-img">
+                           {/* <img src={Doct} alt="doct"/> */}
+                           <div className="aaa">
+                             <div className='container'>
+                    <h3 className="text-dark">Subscribe Your Disease/Cures Type</h3></div><br/>
                     <select 
                     multiple
                
                     name="type" placeholder="Type" 
-                    value={type} 
+                    value={this.state.type} 
                     
                     onChange={(e)=> {
-                        handleSelect(e.target.selectedOptions)
+                       this.handleSelect(e.target.selectedOptions)
                     }}
                     required className="form-control">
                         <option value="1">All</option>
@@ -210,27 +174,23 @@ function LoginInfo(props) {
                         <option value="3">Cures</option>
                     </select>
                 </div>
-                       <Form.Group className="col-lg-6  " style={{zIndex: 1}}>
-                                <Form.Label>Mobile Number</Form.Label>
-                                <Form.Control  onChange={setMobile} value={mobile} inputmode="numeric" type="number" name="" required/>
-                            </Form.Group>
-
-
-                              {   
-                    type?
-                    type.indexOf('2') === -1 
+                {   
+                    this.state.type?
+                    this.state.type.indexOf('2') === -1 
                     ? null 
                     :                             <div className="col-lg-6 form-group">
                     <label htmlFor="">Disease</label>
                         <Select multiple
-                        value={disease}
-                        onChange={(e) =>  setDisease(e.target.value)}
+                        value={this.state.disease}
+                        onChange={(e) =>  this.setState({
+                          disease:e.target.value
+                        })
+                          }
                         input={<Input id="select-multiple-chip" />}
-                        // MenuProps={MenuProps}
                         className="form-control">
-                        {diseaseList.map((lan) => {
+                        {this.state.diseaseList.map((lan) => {
                             return (
-                                <MenuItem key={lan[0]}value={lan[0]} >
+                                <MenuItem key={lan[0].toString()} value={lan[0]} >
                                     {lan[1]}
                                 </MenuItem>
                             )
@@ -239,22 +199,23 @@ function LoginInfo(props) {
                 </div>
                     : null
                 } 
-                  {   
-                    type?
-                    type.indexOf('3') === -1 
+                {   
+                    this.state.type?
+                   this.state.type.indexOf('3') === -1 
                     ? null 
                     :  <div className="col-lg-6 form-group">
                     <label htmlFor="">Cure</label>
                         <Select multiple
-                        value={cures}
-                        onChange={(e) =>  setCures(e.target.value)}
+                        value={this.state.cures}
+                        onChange={(e) =>  this.setState({
+                          cures:e.target.value
+                        })}
                         input={<Input id="select-multiple-chip" />}
-                        // MenuProps={MenuProps}
                         className="form-control">
-                        {diseaseList.map((lan) => {
+                        {this.state.diseaseList.map((lan) => {
 
                             return (
-                                <MenuItem key={lan[0]}value={lan[0]} >
+                                <MenuItem key={lan[0].toString()} value={lan[0]} >
                                     {lan[1]}
                                 </MenuItem>
                             )
@@ -263,20 +224,61 @@ function LoginInfo(props) {
                 </div>
                     : null
                 } 
-                
-                
-                </div> 
+                        </div>
                        
-      <div className="d-flex flex-column align-items-sm-center">
-                            <button onClick={postSubscribtion} className="btn btn-dark col-md-4" >Submit</button>
-                            </div>
-                        </form>
-                    </div>
-                </div>
+                     </div>
+                  </div>
+                  <div className="col-md-6 col-sm-6 col-sx-12 bg-white subs-hero-2">
+                     <div className="subscribe">                    
+                        <h1 className="text-dark">All Cures</h1>
+                        <div className="h5">Sign up for our free <span>Disease/Cures</span> Weekly Newsletter</div><br/>
+                        <div className="h5">Get <span>doctor-approved</span> health tips, news, and more</div>
+                        <div className="form-group relative">
+                           <div className="aaa">
+                           {/* <PhoneInput
+                            placeholder="Enter phone number"
+                            value={this.state.value}
+                            defaultCountry='IN'
+                          
+                            onChange={(newValue) => {
+                              this.setState({
+                                value: newValue
+                              })
+                            }}
+                            /> */}
+                               <Form.Group className="col-lg-6  " style={{zIndex: 1}}>
+                                <Form.Label>Mobile Number</Form.Label>
+                                <Form.Control   onChange={(newValue) => {
+                              this.setState({
+                                value: newValue
+                              })
+                            }} value={this.state.mobile} inputmode="numeric" type="number" name="" required/>
+                            </Form.Group>
+                           </div>
+                           <div>
+                                <button className="bcolor rounded py-2" onClick={( ) => {this.postSubscribtion(this.state.mobile)}}>
+                                   Submit
+                                </button>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
             </div>
-            <Footer/>
-            </>
-      );
-    }
+         </div>
+        
+      </section>
+    </div>
+  </div>
+</div>
 
-export default LoginInfo;       
+
+
+</>
+        );
+
+
+      }
+}
+
+export default Disease;  
