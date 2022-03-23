@@ -54,7 +54,17 @@ class LoginInfo extends Component{
         };
       }
 
-
+      Alert = (msg) => {
+        this.setState({
+           showAlert:true,
+           alertMsg: msg
+        })
+        setTimeout(() => {
+           this.setState({
+              showAlert: false
+           })
+        }, 5000);
+      }
     
    
   
@@ -143,6 +153,11 @@ getSubsnum=(mobile) =>{
           type:flavors
         })
     }
+    handleChange = e => {
+        this.setState({
+            disease: e.target.value 
+        });
+      }
      getDisease = () => {
         axios.get(`${backendHost}/article/all/table/disease_condition`)
         .then(res => {
@@ -157,14 +172,14 @@ getSubsnum=(mobile) =>{
         
         
         this.getDisease()
-        this.getProfile(this.state.mobile)
-        this.getSubsnum(this.state.mobile)
+        this.getProfile()
+        this.getSubsnum()
        
         
       }
     
     render() { 
-        var { isLoaded, items,type, carouselItems,mobile } = this.state;
+        var { isLoaded, items, carouselItems,mobile } = this.state;
     return (
         <>
         
@@ -210,7 +225,7 @@ getSubsnum=(mobile) =>{
                     multiple
                
                     name="type" placeholder="Type" 
-                    value={type} 
+                    value={this.state.type} 
                     
                     onChange={(e)=> {
                         this.handleSelect(e.target.selectedOptions)
@@ -228,8 +243,8 @@ getSubsnum=(mobile) =>{
 
 
                               {   
-                    type?
-                    type.indexOf('2') === -1 
+                    this.state.type?
+                    this.state.type.indexOf('2') === -1 
                     ? null 
                     :                             <div className="col-lg-6 form-group">
                     <label htmlFor="">Disease</label>
@@ -244,7 +259,7 @@ getSubsnum=(mobile) =>{
                         className="form-control">
                         {this.state.diseaseList.map((lan) => {
                             return (
-                                <MenuItem key={lan[0]}value={lan[0]} >
+                                <MenuItem key={lan[0].toString()}value={lan[0]} >
                                     {lan[1]}
                                 </MenuItem>
                             )
@@ -254,8 +269,8 @@ getSubsnum=(mobile) =>{
                     : null
                 } 
                   {   
-                    type?
-                    type.indexOf('3') === -1 
+                    this.state.type?
+                    this.state.type.indexOf('3') === -1 
                     ? null 
                     :  <div className="col-lg-6 form-group">
                     <label htmlFor="">Cure</label>
@@ -270,9 +285,10 @@ getSubsnum=(mobile) =>{
                         {this.state.diseaseList.map((lan) => {
 
                             return (
-                                <MenuItem key={lan[0]}value={lan[0]} >
-                                    {lan[1]}
-                                </MenuItem>
+                               
+                                <MenuItem key={lan[0].toString()} value={lan[0]} >
+                                {lan[1]}
+                            </MenuItem>
                             )
                         })}
                         </Select>
