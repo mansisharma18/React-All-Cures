@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, Component } from 'react';
 
 import { Form } from 'react-bootstrap';
 import Footer from '../Footer/Footer';
@@ -13,27 +13,52 @@ import '../../assets/healthcare/css/main.css';
 import Input from '@material-ui/core/Input';
 import { Select, MenuItem } from '@material-ui/core';
 import Userprofile from '../Profile/Userprofile';
+import { faLaptopHouse } from '@fortawesome/free-solid-svg-icons';
+class LoginInfo extends Component{
+    constructor(props) {
+        super(props);
+        this.childDiv = React.createRef()
+        this.state = { 
+          items: [],
+          carouselItems: [],
+          comment: [],
+          isLoaded: false,
+          ratingValue: '',
+          rating:[],
+          ratingVal:[],
+          param : this.props.match.params,
+          disease: '',
+          regions: '',
+          regionPostsLoaded: false,
+          regionalPost: [],
+          showMore: false,
+          value:'',
+          type: [],
+          favourite: [],
+          diseaseList:[],
+          disease:[],
+          cures:[],
+          showAlert: false,
+          alertMsg: '',
+          showCuresCards: false,
+          number:'',
+          mobile:'',
+          subnum:'',
+          isLoaded:false,
+          searchParams: {
+            city: '',
+            Pincode: '',
+            name: '',
+            subscription: '',  
+         }
+        };
+      }
 
-function LoginInfo(props) { 
-    
-    const[number,setNumber] = useState();
-    const [mobile, setMobile] = useState('')
-    const [subnum, setSubnum] = useState('')
-    
-    const [isLoaded, setLoaded] = useState(false)
 
-    const [type,setType] = useState([])
+    
    
-    const [disease, setDisease] = useState([])
-    const [cures, setCures] = useState([])
-    const [diseaseList, setDiseaseList] = useState([])
-    const setMail = (event)=>{
-        setNumber({ ...number,Mail: event.target.valueAsNumber})
-    
-    }
-     
   
- const postSubscribtion= (mobile)=> {
+ postSubscribtion= (mobile)=> {
     //  var mobileNumber = this.state.mobile.split('+')
    // var phoneNumber = this.state.value.split('+')[1]
     //var countryCodeLength = phoneNumber.length % 10
@@ -48,7 +73,7 @@ function LoginInfo(props) {
       })
         .then(res => {
          this.setState({
-            afterSubmitLoad: false
+            afterSubmitLoad: true
          })
          if(res.data === 1){
             this.Alert('You have successfully subscribed to our Newsletter')
@@ -66,41 +91,40 @@ function LoginInfo(props) {
    
       })
      } 
-   const getProfile = () => {
+   getProfile = () => {
     axios.get(`${backendHost}/profile/${userId}`)
     .then(res => {
-        
-        setMobile(res.data.mobile_number)
-        // setRegType(res.data.registration_type)
-        setLoaded(true)
+        this.setState({
+          mobile:res.data.mobile_number,
+          loaded:true,
+          
+        })
        
     })
+    
+   
     .catch(err => {return})
 }
 
-
-
-    useEffect(() => {
-
-        // const params = new URLSearchParams(location.search);
-        // const getEmail= params.get('em');
-      
-       const getEmail = props.location.search
-       
-         axios.post(`${backendHost}/users/getemdecrypt`,
-         {
-             "email":getEmail.split('em=')[1]
-         })
-         .then(res => {
-            setNumber(res.data)
-         })
-         
+getSubsnum=(mobile) =>{
     
+    
+     axios.get(`${backendHost}/users/subscriptiondetails/${this.state.mobile}/cc/91`)
      
-        getDisease()
-        getProfile()
-         // eslint-disable-next-line
-        }, [])
+     .then((res) => {
+
+        this.setState({
+           // subnum:res.data.length,
+            disease:res.data.nl_subscription_cures_id,
+            loaded:true,
+
+          })
+      
+     })
+     .catch(err => {return})
+   }
+
+    
 
     // const logout = async e => {
     //     const res = await fetch("/LogoutActionController", {
@@ -110,21 +134,37 @@ function LoginInfo(props) {
     //        window.location.reload()
     //     }, 1000);
     //  }
-     const handleSelect = function(countries) {
+    handleSelect = function(subs) {
         const flavors = [];
-        for (let i=0; i<countries.length; i++) {
-            flavors.push(countries[i].value);
+        for (let i=0; i<subs.length; i++) {
+            flavors.push(subs[i].value);
         }
-        setType(flavors);
+        this.setState({
+          type:flavors
+        })
     }
-    const getDisease = () => {
+     getDisease = () => {
         axios.get(`${backendHost}/article/all/table/disease_condition`)
         .then(res => {
-            setDiseaseList(res.data)
+            this.setState({
+                diseaseList:res.data
+              })
         })
         .catch(err => {return})
-    }
-
+     }
+     componentDidMount() {
+        window.scrollTo(0, 0);
+        
+        
+        this.getDisease()
+        this.getProfile(this.state.mobile)
+        this.getSubsnum(this.state.mobile)
+       
+        
+      }
+    
+    render() { 
+        var { isLoaded, items,type, carouselItems,mobile } = this.state;
     return (
         <>
         
@@ -173,7 +213,7 @@ function LoginInfo(props) {
                     value={type} 
                     
                     onChange={(e)=> {
-                        handleSelect(e.target.selectedOptions)
+                        this.handleSelect(e.target.selectedOptions)
                     }}
                     required className="form-control">
                         <option value="1">All</option>
@@ -183,7 +223,7 @@ function LoginInfo(props) {
                 </div>
                        <Form.Group className="col-lg-6  " style={{zIndex: 1}}>
                                 <Form.Label>Mobile Number</Form.Label>
-                                <Form.Control  onChange={setMobile} value={mobile} inputmode="numeric" type="number" name="" required/>
+                                <Form.Control   value={this.state.mobile} inputmode="numeric" type="number" name="" required/>
                             </Form.Group>
 
 
@@ -194,12 +234,15 @@ function LoginInfo(props) {
                     :                             <div className="col-lg-6 form-group">
                     <label htmlFor="">Disease</label>
                         <Select multiple
-                        value={disease}
-                        onChange={(e) =>  setDisease(e.target.value)}
+                        value={this.state.disease}
+                        onChange={(e) =>  this.setState({
+                            disease:e.target.value
+                          })
+                            }
                         input={<Input id="select-multiple-chip" />}
                         // MenuProps={MenuProps}
                         className="form-control">
-                        {diseaseList.map((lan) => {
+                        {this.state.diseaseList.map((lan) => {
                             return (
                                 <MenuItem key={lan[0]}value={lan[0]} >
                                     {lan[1]}
@@ -217,12 +260,14 @@ function LoginInfo(props) {
                     :  <div className="col-lg-6 form-group">
                     <label htmlFor="">Cure</label>
                         <Select multiple
-                        value={cures}
-                        onChange={(e) =>  setCures(e.target.value)}
+                        value={this.state.cures}
+                        onChange={(e) =>   this.setState({
+                            cures:e.target.value
+                          })}
                         input={<Input id="select-multiple-chip" />}
                         // MenuProps={MenuProps}
                         className="form-control">
-                        {diseaseList.map((lan) => {
+                        {this.state.diseaseList.map((lan) => {
 
                             return (
                                 <MenuItem key={lan[0]}value={lan[0]} >
@@ -239,7 +284,7 @@ function LoginInfo(props) {
                 </div> 
                        
       <div className="d-flex flex-column align-items-sm-center">
-      <button className="bcolor rounded py-2 mb-20" onClick={( ) => {this.postSubscribtion(this.state.mobile)}}>
+      <button className="bcolor rounded py-2" onClick={( ) => {this.postSubscribtion(this.state.mobile)}}>
                                    Submit
                                 </button>
                 
@@ -252,5 +297,6 @@ function LoginInfo(props) {
             </>
       );
     }
+}
 
 export default LoginInfo;
