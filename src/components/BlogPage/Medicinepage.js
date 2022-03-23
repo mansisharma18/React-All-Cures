@@ -129,7 +129,7 @@ export default class Medicinepage extends Component{
                     
                 {
                 items.map((i)  =>(
-                    i.country_id === 9?
+                  
                     <AllPost
                     rowno = {i.rowno}
                     id = {i.article_id}
@@ -146,7 +146,7 @@ export default class Medicinepage extends Component{
                     authorName = {i.authors_name}
                     allPostsContent={() => this.allPosts()}
                         />
-                        :null
+                       
                 ) )}
                 </div>
             </div>
