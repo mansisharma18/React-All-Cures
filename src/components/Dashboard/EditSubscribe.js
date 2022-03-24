@@ -125,7 +125,7 @@ getSubsnum=() =>{
 
         this.setState({
            // subnum:res.data.length,
-            disease:res.data.nl_subscription_disease_id,
+            disease:res.data.nl_subscription_cures_id,
             loaded:true,
 
           })
@@ -185,7 +185,13 @@ getSubsnum=() =>{
         var { isLoaded, items, carouselItems,mobile } = this.state;
     return (
         <>
-        <div> {
+        <div>
+        {
+                this.state.afterSubmitLoad &&
+                <div className="loader main on-submit-loading">
+                  <img src={Heart} alt="All Cures Logo" id="heart"/>
+                </div>
+            } {
                 this.state.showAlert &&
                     <div className="alert alert-success pop-up border-bottom">
                         <div className="h5 mb-0 text-center">{this.state.alertMsg}</div>

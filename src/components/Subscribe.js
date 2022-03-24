@@ -5,7 +5,8 @@ import TextField from '@mui/material/TextField';
 import PhoneInput from 'react-phone-number-input';
 import Input from '@material-ui/core/Input';
 import { Select, MenuItem } from '@material-ui/core';
-import { userId } from './UserId'
+import { userId } from './UserId';
+import Heart from"../assets/img/heart.png";
 import { Button, Modal, Form } from "react-bootstrap";
 
 
@@ -149,6 +150,12 @@ componentDidMount(){
         return(
            <>
              <div>
+             {
+                this.state.afterSubmitLoad &&
+                <div className="loader main on-submit-loading">
+                  <img src={Heart} alt="All Cures Logo" id="heart"/>
+                </div>
+            }
              {
                 this.state.showAlert &&
                     <div className="alert alert-success pop-up border-bottom">

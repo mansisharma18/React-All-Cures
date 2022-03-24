@@ -8,6 +8,7 @@ import {Link } from 'react-router-dom'
 import CenterWell from './CenterWell';
 import Sidebar from "./leftMenu";
 import SidebarRight from "./RightMenu";
+
 import { backendHost } from '../../api-config';
 import Dropdown from 'react-bootstrap/Dropdown';
 import axios from 'axios';
@@ -398,6 +399,24 @@ diseasePosts(dcName) {                     // For specific blogs like "/blogs/di
     var b = a.blocks
     return (
     <div>
+
+<div>
+             {
+                this.state.afterSubmitLoad &&
+                <div className="loader main on-submit-loading">
+                  <img src={Heart} alt="All Cures Logo" id="heart"/>
+                </div>
+            }
+             {
+                this.state.showAlert &&
+                    <div className="alert alert-success pop-up border-bottom">
+                        <div className="h5 mb-0 text-center">{this.state.alertMsg}</div>
+                        <div className="timer"></div>
+                    </div>
+            }
+        
+           
+         </div>
       <Header history={this.props.history}/>
         <HelmetMetaData 
           title={items.title} 
