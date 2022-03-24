@@ -16,41 +16,29 @@ class Subscribe extends Component{
     this.childDiv = React.createRef()
    
     this.state = {
-       afterSubmitLoad: false,
-       showAlert: false,
-       alertMsg: '',
-       articleFilter: '',
-       article: '',
-       users: [],
-       city: '',
-       name: '',
-       value:'',
-       texts: '',
-       cityList: [],
-       pinList: [],
-       suggestions: [],
-       suggestionsDoc: [],
-       doctor : [],
-       diseaseTitle: [],
-       mobile: '',
-       getPincode:null,
-       getCityName:null,
-       edit: false,
-       doctorLoaded: false,
-      // modalShow: this.props.location.state? this.props.location.state.modalShow: false,
-      // path: this.props.location.state? this.props.location.state.path: '',
-       show: false,
-       docname : '',
-       spec1: [],
-       //param : this.props.match.params,
-       cures:[],
-       disease:[],
-       searchParams: {
-          city: '',
-          Pincode: '',
-          name: '',
-          subscription: '',  
-       }
+      items: [],
+      carouselItems: [],
+      comment: [],
+      isLoaded: false,
+      ratingValue: '',
+      rating:[],
+      ratingVal:[],
+     // param : this.props.match.params,
+      disease: '',
+      regions: '',
+      regionPostsLoaded: false,
+      regionalPost: [],
+      showMore: false,
+      value:'',
+      type: [],
+      favourite: [],
+      diseaseList:[],
+      disease:[],
+      cures:[],
+      showAlert: false,
+      alertMsg: '',
+      showCuresCards: false
+  
       
   };
      
@@ -73,6 +61,7 @@ componentDidMount(){
            })
         }, 5000);
       }
+     
     
       postSubscribtion() {
         //  var mobileNumber = this.state.mobile.split('+')
@@ -160,7 +149,13 @@ componentDidMount(){
         return(
            <>
              <div>
-         
+             {
+                this.state.showAlert &&
+                    <div className="alert alert-success pop-up border-bottom">
+                        <div className="h5 mb-0 text-center">{this.state.alertMsg}</div>
+                        <div className="timer"></div>
+                    </div>
+            }
         
            
          </div>

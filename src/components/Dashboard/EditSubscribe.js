@@ -116,7 +116,7 @@ class LoginInfo extends Component{
     .catch(err => {return})
 }
 
-getSubsnum=(mobile) =>{
+getSubsnum=() =>{
     
     
      axios.get(`${backendHost}/users/subscriptiondetails/${this.state.mobile}/cc/91`)
@@ -125,7 +125,7 @@ getSubsnum=(mobile) =>{
 
         this.setState({
            // subnum:res.data.length,
-            disease:res.data.nl_subscription_cures_id,
+            disease:res.data.nl_subscription_disease_id,
             loaded:true,
 
           })
@@ -177,11 +177,21 @@ getSubsnum=(mobile) =>{
        
         
       }
+      componentDidUpdate(){
+      
+      }
     
     render() { 
         var { isLoaded, items, carouselItems,mobile } = this.state;
     return (
         <>
+        <div> {
+                this.state.showAlert &&
+                    <div className="alert alert-success pop-up border-bottom">
+                        <div className="h5 mb-0 text-center">{this.state.alertMsg}</div>
+                        <div className="timer"></div>
+                    </div>
+            }</div>
         
                         <div className="profilePage">
                 <div className="comman-pg-header">
@@ -236,11 +246,11 @@ getSubsnum=(mobile) =>{
                         <option value="3">Cures</option>
                     </select>
                 </div>
-                       <Form.Group className="col-lg-6  " style={{zIndex: 1}}>
+                      
+                <Form.Group className="col-lg-6  " style={{zIndex: 1}}>
                                 <Form.Label>Mobile Number</Form.Label>
                                 <Form.Control   value={this.state.mobile} inputmode="numeric" type="number" name="" required/>
                             </Form.Group>
-
 
                               {   
                     this.state.type?
@@ -259,7 +269,7 @@ getSubsnum=(mobile) =>{
                         className="form-control">
                         {this.state.diseaseList.map((lan) => {
                             return (
-                                <MenuItem key={lan[0].toString()}value={lan[0]} >
+                                <MenuItem key={lan[0].toString()} value={lan[0]} >
                                     {lan[1]}
                                 </MenuItem>
                             )
