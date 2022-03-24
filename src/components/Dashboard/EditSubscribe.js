@@ -15,7 +15,7 @@ import { Select, MenuItem } from '@material-ui/core';
 import Userprofile from '../Profile/Userprofile';
 import { faLaptopHouse } from '@fortawesome/free-solid-svg-icons';
 class LoginInfo extends Component{
-    constructor(props) {
+    constructor(props){
         super(props);
         this.childDiv = React.createRef()
         this.state = { 
@@ -27,7 +27,7 @@ class LoginInfo extends Component{
           rating:[],
           ratingVal:[],
           param : this.props.match.params,
-          disease: '',
+          disease_name: '',
           regions: '',
           regionPostsLoaded: false,
           regionalPost: [],
@@ -35,8 +35,8 @@ class LoginInfo extends Component{
           value:'',
           type: [],
           favourite: [],
-          diseaseList:[],
-          disease:[],
+          disease_nameList:[],
+          disease_name:[],
           cures:[],
           showAlert: false,
           alertMsg: '',
@@ -76,7 +76,7 @@ class LoginInfo extends Component{
     //var StringValue = phoneNumber.slice(countryCodeLength).replace(/,/g, '')
      
       axios.post(`${backendHost}/users/subscribe/${mobile}`, {
-      "nl_subscription_disease_id":this.state.disease.join(','),
+      "nl_subscription_disease_name_id":this.state.disease_name.join(','),
       "nl_sub_type": this.state.type.indexOf('1') === -1 ? 0: 1,
       "nl_subscription_cures_id":this.state.cures.join(','),
       //"country_code": countryCode,
@@ -108,7 +108,13 @@ class LoginInfo extends Component{
           mobile:res.data.mobile_number,
           loaded:true,
           
-        })
+          
+        },
+        () => {
+            this.getSubsnum()
+          
+          });
+        
        
     })
     
@@ -125,7 +131,7 @@ getSubsnum=() =>{
 
         this.setState({
            // subnum:res.data.length,
-            disease:res.data.nl_subscription_cures_id,
+            //disease_name:res.data.disease_name_name,
             loaded:true,
 
           })
@@ -154,15 +160,16 @@ getSubsnum=() =>{
         })
     }
     handleChange = e => {
+        e.preventDefault();
         this.setState({
-            disease: e.target.value 
+            disease_name: e.target.value 
         });
       }
      getDisease = () => {
-        axios.get(`${backendHost}/article/all/table/disease_condition`)
+        axios.get(`${backendHost}/article/all/table/disease_name_condition`)
         .then(res => {
             this.setState({
-                diseaseList:res.data
+                disease_nameList:res.data
               })
         })
         .catch(err => {return})
@@ -172,14 +179,12 @@ getSubsnum=() =>{
         
         
         this.getDisease()
-        this.getProfile()
-        this.getSubsnum()
-       
+        this.getProfile(this.state.mobile)
+      
+        
         
       }
-      componentDidUpdate(){
       
-      }
     
     render() { 
         var { isLoaded, items, carouselItems,mobile } = this.state;
@@ -265,15 +270,15 @@ getSubsnum=() =>{
                     :                             <div className="col-lg-6 form-group">
                     <label htmlFor="">Disease</label>
                         <Select multiple
-                        value={this.state.disease}
+                        value={this.state.disease_name}
                         onChange={(e) =>  this.setState({
-                            disease:e.target.value
+                            disease_name:e.target.value
                           })
                             }
                         input={<Input id="select-multiple-chip" />}
                         // MenuProps={MenuProps}
                         className="form-control">
-                        {this.state.diseaseList.map((lan) => {
+                        {this.state.disease_nameList.map((lan) => {
                             return (
                                 <MenuItem key={lan[0].toString()} value={lan[0]} >
                                     {lan[1]}
@@ -298,7 +303,7 @@ getSubsnum=() =>{
                         input={<Input id="select-multiple-chip" />}
                         // MenuProps={MenuProps}
                         className="form-control">
-                        {this.state.diseaseList.map((lan) => {
+                        {this.state.disease_nameList.map((lan) => {
 
                             return (
                                
