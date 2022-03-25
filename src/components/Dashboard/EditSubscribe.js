@@ -17,7 +17,7 @@ import Userprofile from '../Profile/Userprofile';
 
 
 class LoginInfo extends Component {
-    constructor(props) {
+    constructor(props){
       super(props);
       this.childDiv = React.createRef()
       this.state = { 
@@ -44,13 +44,16 @@ class LoginInfo extends Component {
         showAlert: false,
         loaded:false,
         alertMsg: '',
-        showCuresCards: false
+        mobile : '',
+        showCuresCards: false,
+        subscribedDisease:'',
+        subnum:''
       };
     }
 
 
 
-    postSubscribtion(mobile) {
+    postSubscribtion=(mobile)=> {
         //  var mobileNumber = this.state.mobile.split('+')
         // var phoneNumber = this.state.value.split('+')[1]
         // var countryCodeLength = phoneNumber.length % 10
@@ -92,10 +95,34 @@ class LoginInfo extends Component {
             this.setState({
                 mobile:res.data.mobile_number,
                 loaded:true
-            })
+            },
+            () => {
+                this.getSubsnum()
+              
+              });
            
         })
         .catch(err => {return})
+    }
+   
+    getSubsnum=() =>{
+    
+    
+      axios.get(`${backendHost}/users/subscriptiondetails/${this.state.mobile}/cc/91`)
+      
+      .then((res) => {
+ 
+         this.setState({
+            // subnum:res.data.length,
+             //disease_name:res.data.disease_name_name,
+             subscribedDisease:res.data.disease_name,
+             
+             loaded:true
+ 
+           })
+       
+      })
+      .catch(err => {return})
     }
       handleSelect = function(subs) {
         const flavors = [];
@@ -118,20 +145,46 @@ class LoginInfo extends Component {
         })
         .catch(err => null)
     }
-
+    Alert = (msg) => {
+      this.setState({
+         showAlert:true,
+         alertMsg: msg
+      })
+      setTimeout(() => {
+         this.setState({
+            showAlert: false
+         })
+      }, 5000);
+    }
+  
 
 
 
     componentDidMount() {
         window.scrollTo(0, 0);
-      
+       
         this.getProfile()
+     
         this.getDisease()
+       
       }
 
       render() { 
         return (
             <>
+            <div>  {
+                this.state.afterSubmitLoad &&
+                <div className="loader main on-submit-loading">
+                  <img src={Heart} alt="All Cures Logo" id="heart"/>
+                </div>
+            }
+             {
+                this.state.showAlert &&
+                    <div className="alert alert-success pop-up border-bottom">
+                        <div className="h5 mb-0 text-center">{this.state.alertMsg}</div>
+                        <div className="timer"></div>
+                    </div>
+            }</div>
               <Header/>
              <div className="container">
                 <div className="h2 text-center my-3">Edit Subscribe</div>
@@ -218,6 +271,15 @@ class LoginInfo extends Component {
                             }} value={this.state.mobile} inputmode="numeric" type="number" name="" required/>
                             </Form.Group>
                             <div>
+                            <Form.Group className="col-lg-6  " style={{zIndex: 1}}>
+                                <Form.Label>Subscribed Disease</Form.Label>
+                                <Form.Control   onChange={(newValue) => {
+                              this.setState({
+                                value: newValue
+                              })
+                            }} value={this.state.subscribedDisease}  type="text" name="" required/>
+                            </Form.Group>
+                           
             <button className="bcolor rounded py-2" onClick={( ) => {this.postSubscribtion(this.state.mobile)}}>
                                    Submit
                                 </button>
