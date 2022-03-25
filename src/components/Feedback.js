@@ -25,7 +25,7 @@ function Feedback() {
             "firstname":first,
             "lastname": name,
             "email": email,
-            "phonenumber": parseInt(number),
+            "phonenumber": number,
             "feedback": feedback,
          
         })
