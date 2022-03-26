@@ -65,6 +65,7 @@ class LoginInfo extends Component {
           "nl_subscription_disease_id":this.state.disease.join(','),
           "nl_sub_type": this.state.type.indexOf('1') === -1 ? 0: 1,
           "nl_subscription_cures_id":this.state.cures.join(','),
+          "disease_name":this.state.subscribedDisease.join(','),
         //   "country_code": countryCode,
           })
             .then(res => {
@@ -106,20 +107,13 @@ class LoginInfo extends Component {
     }
    
     getSubsnum=() =>{
-    
-    
       axios.get(`${backendHost}/users/subscriptiondetails/${this.state.mobile}/cc/91`)
-      
-      .then((res) => {
- 
-         this.setState({
-            // subnum:res.data.length,
-             //disease_name:res.data.disease_name_name,
-             subscribedDisease:res.data.disease_name,
-             
-             loaded:true
- 
-           })
+      .then(res => {
+        this.setState({
+         
+          subscribedDisease: res.data[0].disease_name
+        })    
+     
        
       })
       .catch(err => {return})
@@ -169,9 +163,11 @@ class LoginInfo extends Component {
        
       }
 
+
       render() { 
         return (
             <>
+           
             <div>  {
                 this.state.afterSubmitLoad &&
                 <div className="loader main on-submit-loading">
