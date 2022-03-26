@@ -65,7 +65,7 @@ class LoginInfo extends Component {
           "nl_subscription_disease_id":this.state.disease.join(','),
           "nl_sub_type": this.state.type.indexOf('1') === -1 ? 0: 1,
           "nl_subscription_cures_id":this.state.cures.join(','),
-          "disease_name":this.state.subscribedDisease.join(','),
+          "disease_name":this.state.subscribedDisease,
         //   "country_code": countryCode,
           })
             .then(res => {
