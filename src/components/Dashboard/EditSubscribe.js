@@ -260,20 +260,22 @@ class LoginInfo extends Component {
                             </div>
                             <Form.Group className="col-lg-6  " style={{zIndex: 1}}>
                                 <Form.Label>Mobile Number</Form.Label>
-                                <Form.Control   onChange={(newValue) => {
+                                <Form.Control   onChange={(e) => {
                               this.setState({
-                                value: newValue
+                                mobile: e.target.mobile
                               })
                             }} value={this.state.mobile} inputmode="numeric" type="number" name="" required/>
                             </Form.Group>
+
+
+                            
+
                             <div>
+                            
+
                             <Form.Group className="col-lg-6  " style={{zIndex: 1}}>
                                 <Form.Label>Subscribed Disease</Form.Label>
-                                <Form.Control   onChange={(newValue) => {
-                              this.setState({
-                                value: newValue
-                              })
-                            }} value={this.state.subscribedDisease}  type="text" name="" required/>
+                                <Form.Control value={this.state.subscribedDisease} onChange={(e) =>  this.setState({subscribedDisease:e.target.subscribedDisease})}  type="text" name="" required/>
                             </Form.Group>
                            
             <button className="bcolor rounded py-2" onClick={( ) => {this.postSubscribtion(this.state.mobile)}}>
