@@ -44,7 +44,7 @@ export default function Carousel1(props){
             <div className="tab-content category " id="choose-category" style={{maxWidth:"1140px", zIndex: 0}}>
                   <OwlCarousel className="owl-theme owl-loading" items={6} loop margin={150}  {...options}>
                   <div className="item bg-pink">
-                        <Link to={ `/searchcures/Arthritis` }>
+                        <Link to={ `/searchcategory/disease/1` }>
                            <div className="item-img">
                               <img src={Arthritis} alt="slider-img"/>
                            </div>
@@ -54,7 +54,7 @@ export default function Carousel1(props){
                         </Link>
                         </div>
                         <div className="item bg-org">
-                        <Link to={ `/searchcures/Diabetes` }>
+                        <Link to={ `/searchcategory/disease/74` }>
                            <div className="item-img">
                               <img src={Slider2} alt="slider-img"/>
                            </div>
@@ -64,7 +64,7 @@ export default function Carousel1(props){
                            </Link>
                         </div>
                         <div className="item bg-l-org">
-                        <Link to={ `/searchcures/Hypertension` }>
+                        <Link to={ `/searchcategory/disease/1` }>
                            <div className="item-img">
                               <img src={BloodPressure} alt="slider-img"/>
                            </div>
@@ -74,7 +74,7 @@ export default function Carousel1(props){
                            </Link>
                         </div>
                         <div className="item bg-voilet">
-                        <Link to={ `/searchcures/Insomnia` }>
+                        <Link to={ `/searchcategory/disease/1` }>
                            <div className="item-img">
                               <img src={Slider7} alt="slider-img" />
                            </div>
@@ -85,7 +85,7 @@ export default function Carousel1(props){
                         </div>
                         
                         <div className="item bg-blue">
-                        <Link to={ `/searchcures/Thyroid` }>
+                        <Link to={ `/searchcategory/disease/87` }>
                            <div className="item-img">
                               <img src={Thyroid} alt="slider-img"/>
                            </div>
@@ -95,7 +95,7 @@ export default function Carousel1(props){
                            </Link>
                         </div>
                         <div className="item bg-green">
-                        <Link to={ `/searchcures/Psoriasis` }>
+                        <Link to={ `/searchcategory/disease/160` }>
                            <div className="item-img">
                               <img src={Psoriasis} alt="slider-img"/>
                            </div>
@@ -105,7 +105,7 @@ export default function Carousel1(props){
                            </Link>
                         </div> 
                         <div className="item bg-l-org">
-                        <Link to={ `/searchcures/Skin Care` }>
+                        <Link to={ `/searchcategory/disease/1` }>
                            <div className="item-img">
                               <img src={Slider5} alt="slider-img"/>
                            </div>

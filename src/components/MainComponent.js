@@ -37,6 +37,7 @@ import NotFound from "./NotFound";
 import { userAccess } from "./UserAccess";
 import NotAuthorizedPage from "./NotAuthorizedPage";
 import Feedback from "./Feedback";
+import Categorypage from "./BlogPage/Categorypage";
 
 function Main(props) {
   const history = useHistory()
@@ -125,6 +126,9 @@ const Routes = (props) => {
       <Route exact path="/searchmedicine" component={Medicinepage}/>
       <Route path="/searchmedicine/medicinetype/:medicine_type" component={Medicinepage}/>
 
+{/*category*/}
+ <Route exact path="/searchcategory" component={Categorypage}/>
+      <Route path="/searchcategory/disease/:disease_condition_id" component={Categorypage}/>
       {/* Cure according to article_id*/}
       <Route auth={Auth.auth} exact path="/cure/:cureType/:id" component={Disease}/>
 
