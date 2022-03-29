@@ -467,7 +467,7 @@ class Profile extends Component {
                       <p className="text one">
                         {" "}
                         {items.about.includes('•')? items.about.split('•').map((i, idx) => <li className={`list-${idx}`}>{i}</li>): items.about}{" "}
-                        {this.props.match.params.id.split('-')[0] == 874?<li>More about him at <a href="https://planetayurveda.com" target="_blank" rel="noreferrer">www.planetayurveda.com</a>.</li>: null}
+                        {/* {this.props.match.params.id.split('-')[0] == 874?<li>More about him at <a href="https://planetayurveda.com" target="_blank" rel="noreferrer">www.planetayurveda.com</a>.</li>: null} */}
                       
                         {this.props.match.params.id.split('-')[0] == 872?<><br/>More about him at <a href="https://ayurvedguru.com" target="_blank" rel="noreferrer">www.ayurvedguru.com</a>.</>: null}
                         {this.props.match.params.id.split('-')[0] == 878?<><br/>More about him at <a href="http://www.ayushmanbhavayurveda.com/" target="_blank" rel="noreferrer">www.ayushmanbhavayurveda.com</a>.</>: null}
