@@ -64,7 +64,7 @@ export default function Carousel1(props){
                            </Link>
                         </div>
                         <div className="item bg-l-org">
-                        <Link to={ `/searchcategory/disease/1` }>
+                        <Link to={ `/searchcategory/disease/50` }>
                            <div className="item-img">
                               <img src={BloodPressure} alt="slider-img"/>
                            </div>
@@ -74,7 +74,7 @@ export default function Carousel1(props){
                            </Link>
                         </div>
                         <div className="item bg-voilet">
-                        <Link to={ `/searchcategory/disease/1` }>
+                        <Link to={ `/searchcategory/disease/164` }>
                            <div className="item-img">
                               <img src={Slider7} alt="slider-img" />
                            </div>
@@ -105,7 +105,7 @@ export default function Carousel1(props){
                            </Link>
                         </div> 
                         <div className="item bg-l-org">
-                        <Link to={ `/searchcategory/disease/1` }>
+                        <Link to={ `/searchcategory/disease/155` }>
                            <div className="item-img">
                               <img src={Slider5} alt="slider-img"/>
                            </div>
