@@ -5,6 +5,8 @@ import Cookies from 'js-cookie';
 import Heart from"../../assets/img/heart.png";
 import Doct from "../../assets/img/doct.png";
 import axios from 'axios';
+import { Navbar} from "react-bootstrap"
+import { Nav,NavDropdown,Container} from "react-bootstrap"
 import '../../assets/healthcare/css/main.css';
 import '../../assets/healthcare/css/responsive.css';
 import '../../assets/healthcare/css/animate.css';
@@ -282,86 +284,101 @@ class Home extends Component {
                         <div className="timer"></div>
                     </div>
             }
-            <div className="homeHeader my-3">
-                  <div className='container d-flex justify-content-between'>
+            <div className="profilePage">
+            <div className="">
+               <section className=" zIndex-2" >
+                  <div className="container">
+                     <div className="row">
+                        <div className="header" style={{width:"100%"}}>
+                           <div className=" logo mt-3"> 
+                              <Link to='/home'>
+                                <img src={Heart} alt="All Cures Logo"/>
+                                <span>All Cures</span>
+                              </Link>
+                           </div>
+                           <div class="fgrow"><Navbar bg="light" expand="lg">
+  <Container>
+  
+    <Navbar.Toggle aria-controls="basic-navbar-nav" />
+    <Navbar.Collapse id="basic-navbar-nav">
+      <Nav className="me-auto">
+        <Nav.Link href="#home">Home</Nav.Link>
+        <Nav.Link href="#link">Recent</Nav.Link>
+        <NavDropdown title="Categories" id="basic-nav-dropdown">
+          <NavDropdown.Item href="#action/3.1">Ayurveda</NavDropdown.Item>
+          <NavDropdown.Item href="#action/3.2"> Chinese</NavDropdown.Item>
+          <NavDropdown.Item href="#action/3.3">Persian</NavDropdown.Item>
+          <NavDropdown.Divider />
+          <NavDropdown.Item href="#action/3.4"></NavDropdown.Item>
+        </NavDropdown>
+        <Nav.Link href="#link">Trending</Nav.Link>
+        <Nav.Link href="#link">About US</Nav.Link>
+      </Nav>
+    </Navbar.Collapse>
+  </Container>
+</Navbar></div>
+                           <form onSubmit={(e) => this.articleSearch(e)} className="searchHeader" id="searchArticle">
+                              <div className="col-md-12 row">
+                                 <div className="col-md-10 p-0">    
+                                    <Autocomplete className="bg-white color-black"
+                                       freeSolo
+                                       value={this.state.article}
+                                       onChange={(event, newValue) => {
+                                          this.setState({
+                                             article: newValue
+                                          })
+                                       }}
+                                       inputValue={this.state.article ? this.state.article : ''}
+                                       onInputChange={(event, newInputValue) => {
+                                          this.setState({
+                                             article: newInputValue
+                                          })
+                                       }}
+                                       id="combo-box-demo"
+                                       options={this.state.article?
+                                          this.state.article.length >=1 ? 
+                                          this.state.diseaseTitle 
+                                          : [] 
+                                       : []}
+                                       sx={{ width: 170}}
+                                       renderInput={(params) => <TextField {...params} label="Search Cures" />}
+                                    />
+                                 </div>
+                                 <div className="col-md-2 p-0 mainBtn">
+                                    <button className="btn search-main-btns color-white" id="searchHead"type="submit">
+                                       <i className="fas header-search fa-search" id="iconSearch"></i>
+                                    </button>
+                                 </div>
+                              </div>
+                           </form>
 
-                  {/* LOGO */}
-
-                  <div className="logo mt-2">
-                     <Link to='/home'>
-                        <img src={Heart} alt="All Cures logo"/>
-                        <span>All Cures</span>
-                     </Link>               
-                  </div>
-
-                  {/* Search for Cures */}
-
-                  <form onSubmit={(e) => this.articleSearch(e)} className="article-search" id="article-search">
-                     <div className="col-md-12 row">
-                        <div className="col-md-10 p-0">    
-                           <Autocomplete className="bg-white color-black" freeSolo
-                              value={this.state.article}
-                              onChange={(event, newValue) => {
-                                 this.setState({
-                                    article: newValue
-                                 })
-                              }}
-                              inputValue={this.state.article ? this.state.article : ''}
-                              onInputChange={(event, newInputValue) => {
-                                 this.setState({
-                                    article: newInputValue
-                                 })
-                              }}
-                              id="combo-box-demo"
-                              options={
-                                 this.state.article?
-                                    this.state.article.length >=1 ? 
-                                    this.state.diseaseTitle 
-                                    : [] 
-                                 : []
-                              }
-                              sx={{ width: 300 }}
-                              
-                              renderInput={(params) => <TextField {...params} label="Search Cures" />}
-                           />
+                           <div className="loginSign">
+                           {
+                              userAccess?
+                              <Link className="btn mr-2 primary-btn-color loginSignbtn color-blue-dark" id="Article" to="/article">
+                              <img src={CreateCures} alt="create cures" className='filter-white' height="30px"/>
+                            </Link>
+                              : <button 
+                              className="btn mr-2 primary-btn-color loginSignbtn color-blue-dark" id="Article" 
+                              onClick={() => this.setModalShow(true)}
+                            >
+                              <img src={CreateCures} alt="create cures" className='filter-white' height="30px"/>
+                            </button>
+                           }   
+                           <ToggleButton 
+                              userName={Cookies.get('uName')} 
+                              setModalShow={this.setModalShow} 
+                              userAccess={userAccess} 
+                              logout={this.logout}
+                           /> 
+                           </div>   	
                         </div>
-                        <div className="col-md-2 p-0 mainBtn">
-                           <button className="btn btn-article-search color-white search-main-btns" id="mainSearch" type="submit">
-                              <i className="fas fa-search"></i>
-                           </button>
-                        </div>
-                     </div>
-                  </form>
-
-                  {/* Create Cures, Sign Up || Hi ${name} Button */}
-                  <div className="loginSign mt-1"> 
-                  { userId?
-
-                           <Link className="btn mr-1 primary-btn-color
-                            loginSignbtn color-blue-dark" to="/article">
-                              <img src={CreateCures} className='filter-white' height="30px" alt="create cures"/>
-                           </Link>
-                        : <button className="btn mr-1 primary-btn-color
-                         loginSignbtn color-blue-dark" onClick={() => this.setModalShow(true)}>
-                             <img src={CreateCures} className='filter-white' height="30px"/>
-                           </button>
-                     }   
-                  
-                  {/* Toggle Sign up & Hi there dropdown */}
-
-                  <ToggleButton 
-                     userName={Cookies.get('uName')} 
-                     setModalShow={this.setModalShow} 
-                     userAccess={userAccess} 
-                     match={this.props.match.url} 
-                     logout={this.logout}
-                  />
-
-               </div>  
+                    </div>
+                    </div>
+                </section>
+              
             </div>
-
-               {/* </section> */}
-            </div>
+        </div>
                <section className="banner">
                   <div className='banner-title h1 d-flex justify-content-center align-items-center'>
                      <h1 className='color-white font-weight-bold 'id="head1">All Cures</h1>
@@ -677,7 +694,7 @@ function ToggleButton(props) {
          <>
          <Dropdown>
            <Dropdown.Toggle  className="header-drop text-capitalize" id="drop-down">
-            <img className='filter-white mr-1' src={List} height="30px" alt='list'/>
+            
            <img className='filter-white' src={Account} height="30px" alt="account"/>
            </Dropdown.Toggle>
            <Dropdown.Menu>
