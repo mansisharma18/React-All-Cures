@@ -9,8 +9,8 @@
 }
 .header {
   display: flex;
-  justify-content: space-between;
-  padding: 38px 0;
+  /*justify-content: space-between;*/
+  padding: 15px 0;
 }
 .pageHeader {
   height: 200px;
@@ -27,10 +27,20 @@
   height: 40px;
   margin-right: 8px;
 }
+.logo{
+  flex-grow:1;
+}
+.fgrow{
+  flex-grow:2;
+}
 .logo span {
-  color: #000;
+  color: #00415e;
   text-transform: uppercase;
   font-weight: 500;
+}
+.navbar-nav .nav-link{
+  padding-left:1rem;
+  padding-right:.5rem;
 }
 #createArticle {
   text-align: center;
@@ -40,20 +50,24 @@
   width: 150px;
   padding-top: 6px;
   padding-bottom: 1.8rem;
+
   font-size: 15px;
   font-weight: 400;
+}
+#Article{
+  padding:21px;
 }
 .loginSignbtn {
   position: relative;
   text-align: center;
   border-radius: 2rem;
-  height: 50px;
-  width: 50px;
+  height: 45px;
+  width: 45px;
 }
 .loginSignbtn img {
   position: absolute;
-  right: 0.5rem;
-  top: 0.5rem;
+  right: 0.3rem;
+  top: 0.3rem;
 }
 .serchlabel h1 {
   font-weight: 700;
@@ -166,6 +180,7 @@
   .comman-pg-header .megaSearch {
     padding: 0 0 80px !important ;
   }
+  
   .logo span {
     display: none !important ;
   }
@@ -265,12 +280,25 @@
 .fa-user {
   color: #0c1b22;
 }
+#searchArticle{
+  POSITION: ABSOLUTE;
+  RIGHT: 253pX;
+}
+.css-1fw5qws-MuiAutocomplete-root .MuiOutlinedInput-root .MuiAutocomplete-input{
+  padding:0 !important;
+}
 .header-drop {
   background-color: #00415e;
   color: white;
   border-radius: 2rem;
-  height: 50px;
+  height: 45px;
   position: relative;
+  width:45px;
+}
+.header-drop img{
+  position: absolute;
+  left:0.45rem;
+  top:0.45rem;
 }
 .header-drop i {
   color: #fff;
@@ -298,6 +326,18 @@
   padding: 0;
   right: 0;
   max-width: fit-content;
+}
+.css-1d3z3hw-MuiOutlinedInput-notchedOutline {
+  border-color: white !important;
+  border-bottom:1px solid grey !important;
+}
+.css-1dv0nny-MuiAutocomplete-root .MuiOutlinedInput-root .MuiAutocomplete-input{
+  padding:0 !important;
+}
+.header-search{
+  color: darkgrey;
+align-items: center;
+padding-top: 13px;
 }
 @media only screen and (max-width: 650px) {
   .article-search .mainBtn {
