@@ -6,11 +6,13 @@ import axios from 'axios';
 import { Dropdown } from 'react-bootstrap';
 import Heart from"../../assets/img/heart.png";
 import { Link } from "react-router-dom";
-
+import { Navbar} from "react-bootstrap"
+import { Nav,NavDropdown,Container} from "react-bootstrap"
 import Test from '../LandingPage/test'
 import { backendHost } from '../../api-config';
 import TextField from '@mui/material/TextField';
 import Autocomplete from '@mui/material/Autocomplete';
+
 
 // ICONS
 import Account from '../../assets/icon/icons-AllCures/account_circle_black_48dp.svg'
@@ -39,15 +41,22 @@ import { userAccess } from "../UserAccess";
                getCityName:null,
                docname : '',
                article: '',
+               showMenu: false,
+               
                searchParams: {
                   city: '',
                   Pincode: '',
                   name: '',
                }
+              
             };
+     
+       
         }
-
-
+    
+       
+      
+      
         componentDidMount(){
          Promise.all([
             fetch(`${backendHost}/article/all/table/disease_condition`)
@@ -161,19 +170,40 @@ import { userAccess } from "../UserAccess";
    render() {
       return(
          <div className="profilePage">
-            <div className="comman-pg-header">
+            <div className="">
                <section className="pageHeader zIndex-2" >
                   <div className="container">
                      <div className="row">
                         <div className="header" style={{width:"100%"}}>
-                           <div className="logo"> 
+                           <div className=" logo mt-3"> 
                               <Link to='/home'>
                                 <img src={Heart} alt="All Cures Logo"/>
                                 <span>All Cures</span>
                               </Link>
                            </div>
-                           <form onSubmit={(e) => this.articleSearch(e)} className="article-search" id="searchArticle">
-                              <div className="col-md-12 row">
+                           <div class="fgrow"><Navbar bg="light" expand="lg">
+  <Container>
+  
+    <Navbar.Toggle aria-controls="basic-navbar-nav" />
+    <Navbar.Collapse id="basic-navbar-nav">
+      <Nav className="me-auto">
+        <Nav.Link href="#home">Home</Nav.Link>
+        <Nav.Link href="#link">Recent</Nav.Link>
+        <NavDropdown title="Categories" id="basic-nav-dropdown">
+          <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
+          <NavDropdown.Item href="#action/3.2">Another action</NavDropdown.Item>
+          <NavDropdown.Item href="#action/3.3">Something</NavDropdown.Item>
+          <NavDropdown.Divider />
+          <NavDropdown.Item href="#action/3.4">Separated link</NavDropdown.Item>
+        </NavDropdown>
+        <Nav.Link href="#link">Trending</Nav.Link>
+        <Nav.Link href="#link">About US</Nav.Link>
+      </Nav>
+    </Navbar.Collapse>
+  </Container>
+</Navbar></div>
+                           <form onSubmit={(e) => this.articleSearch(e)} className="" id="searchArticle">
+                              <div className="col-md-12 row" >
                                  <div className="col-md-10 p-0">    
                                     <Autocomplete className="bg-white color-black"
                                        freeSolo
@@ -195,13 +225,13 @@ import { userAccess } from "../UserAccess";
                                           this.state.diseaseTitle 
                                           : [] 
                                        : []}
-                                       sx={{ width: 300 }}
+                                       sx={{ width: 150}}
                                        renderInput={(params) => <TextField {...params} label="Search Cures" />}
                                     />
                                  </div>
                                  <div className="col-md-2 p-0 mainBtn">
-                                    <button className="btn btn-article-search search-main-btns color-white" id="searchHead"type="submit">
-                                       <i className="fas fa-search" id="iconSearch"></i>
+                                    <button className="btn search-main-btns color-white" id="searchHead"type="submit">
+                                       <i className="fas header-search fa-search" id="iconSearch"></i>
                                     </button>
                                  </div>
                               </div>
@@ -325,7 +355,7 @@ function ToggleButton(props) {
          <>
          <Dropdown>
            <Dropdown.Toggle  className="header-drop text-capitalize" id="dropHead">
-           <img alt="list" className='filter-white mr-1' src={List} height="30px" />
+          
            <img alt="list" className='filter-white' src={Account} height="30px" />
            </Dropdown.Toggle>
            <Dropdown.Menu>
