@@ -20,6 +20,8 @@ function Disease() {
         )
     }
 
+    
+
     useEffect(() => {
         getDisease()  
         
@@ -28,18 +30,27 @@ function Disease() {
    return(
 
     <div className="card my-3">
-    <div className="card-title   h3 text-center py-2 border-bottom">All Disease</div>
+    <div className="card-title h3 text-center py-2 border-bottom">All Disease</div>
     <form >
         <div className="row m-4">
+            <div className='col-8'>
 
-        {diseaseList.map((c) => {
-        
-        return (
-            <option value={c[0]}>{c[1]}</option>
-        )
-    })}
+        {diseaseList.map((lan) => {
+                           
+                         
+                           if(lan[7]){
+                               return (
+                                   <option  value={lan[0]}>&nbsp;&nbsp;{lan[3]}</option>
+                               )
+                           }else{
+                               return (
+                                   <option style={{ fontWeight: 'bold' }} value={lan[0]}>{lan[3]}</option>
+                               )
+                           }
+                       })}
 
  
+    </div>
     </div>
  
 
