@@ -38,6 +38,7 @@ import { userAccess } from "./UserAccess";
 import NotAuthorizedPage from "./NotAuthorizedPage";
 import Feedback from "./Feedback";
 import Categorypage from "./BlogPage/Categorypage";
+import AllDisease from "./Header/AllDisease"
 
 function Main(props) {
   const history = useHistory()
@@ -98,6 +99,7 @@ const Routes = (props) => {
        <Route exact path="/" component={Home} />
        <Route exact path="/home" component={Home} />
        <Route exact path="/feedback" component={Feedback} />
+       <Route exact path="/alldisease" component={AllDisease}/>
 
       {/* Doctor search page */}
       <Route exact path="/search/:city" component={Search} /> 
