@@ -290,13 +290,13 @@ class Home extends Component {
                   <div className="container">
                      <div className="row">
                         <div className="header" style={{width:"100%"}}>
-                           <div className=" logo mt-3"> 
+                           <div className=" logo mt-2"> 
                               <Link to='/home'>
                                 <img src={Heart} alt="All Cures Logo"/>
                                 <span>All Cures</span>
                               </Link>
                            </div>
-                           <div class="fgrow"><Navbar bg="light" expand="lg">
+                           <div class="grow"><Navbar bg="light" expand="lg">
   <Container>
   
     <Navbar.Toggle aria-controls="basic-navbar-nav" />

@@ -175,29 +175,38 @@ import { userAccess } from "../UserAccess";
                   <div className="container">
                      <div className="row">
                         <div className="header" style={{width:"100%"}}>
-                           <div className=" logo mt-3"> 
+                           <div className=" logo mt-2"> 
                               <Link to='/home'>
                                 <img src={Heart} alt="All Cures Logo"/>
                                 <span>All Cures</span>
                               </Link>
                            </div>
-                           <div class="fgrow"><Navbar bg="light" expand="lg">
+                           <div class="grow"><Navbar bg="light" expand="lg">
   <Container>
   
     <Navbar.Toggle aria-controls="basic-navbar-nav" />
     <Navbar.Collapse id="basic-navbar-nav">
       <Nav className="me-auto">
-        <Nav.Link href="#home">Home</Nav.Link>
-        <Nav.Link href="#link">Recent</Nav.Link>
+        <Nav.Link href="/home">Home</Nav.Link>
+       
         <NavDropdown title="Categories" id="basic-nav-dropdown">
-          <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
-          <NavDropdown.Item href="#action/3.2">Another action</NavDropdown.Item>
-          <NavDropdown.Item href="#action/3.3">Something</NavDropdown.Item>
+          <NavDropdown.Item href="/searchcategory/disease/1">Arthritis</NavDropdown.Item>
+          <NavDropdown.Item href="/searchcategory/disease/74"> Diabetes</NavDropdown.Item>
+          <NavDropdown.Item href="/searchcategory/disease/50">Hypertension</NavDropdown.Item>
           <NavDropdown.Divider />
-          <NavDropdown.Item href="#action/3.4">Separated link</NavDropdown.Item>
+          <NavDropdown.Item href="/AllDisease">View More</NavDropdown.Item>
         </NavDropdown>
-        <Nav.Link href="#link">Trending</Nav.Link>
-        <Nav.Link href="#link">About US</Nav.Link>
+        <NavDropdown title="Trending Cures" id="basic-nav-dropdown">
+          <NavDropdown.Item href="/searchmedicine/medicinetype/1">Ayurveda</NavDropdown.Item>
+          <NavDropdown.Item href="/searchmedicine/medicinetype/4"> Chinese Medicine</NavDropdown.Item>
+          <NavDropdown.Item href="/searchmedicine/medicinetype/3">Persian</NavDropdown.Item>
+          <NavDropdown.Item href="/searchmedicine/medicinetype/2">Unani</NavDropdown.Item>
+          <NavDropdown.Item href="/searchmedicine/medicinetype/6">Japanese</NavDropdown.Item>
+          <NavDropdown.Item href="/searchmedicine/medicinetype/5">Scandinavian</NavDropdown.Item>
+        
+        </NavDropdown>
+       
+        <Nav.Link href="/AboutUs">About US</Nav.Link>
       </Nav>
     </Navbar.Collapse>
   </Container>
