@@ -125,39 +125,39 @@ class Footer extends Component {
                         {/* <li>
                            <a className="text-light"></a>
                         </li> */}
-                         <Link to={ `/searchcures/Arthritis` }>
+                         <Link to={ `/searchcategory/disease/1`}>
                           
                            
                               <li>
                                  <p className="text-light">Arthritis</p></li>
                            
                         </Link>
-                        <Link to={ `/searchcures/Diabetes` }>
+                        <Link to={ `/searchcategory/disease/74` }>
                         <li>
                            <p className="text-light">Diabetes</p>
                         </li>
                         </Link>
-                        <Link to={ `/searchcures/Hypertension` }>
+                        <Link to={ `/searchcategory/disease/50` }>
                         <li>
                            <p className="text-light">Hypertension</p>
                         </li>
                         </Link>
-                        <Link to={ `/searchcures/Insomnia` }>
+                        <Link to={ `/searchcategory/disease/164` }>
                         <li>
                            <p className="text-light">Insomnia</p>
                         </li>
                         </Link>
-                        <Link to={ `/searchcures/Skin Care` }>
+                        <Link to={ `/searchcategory/disease/155` }>
                         <li>
                            <p className="text-light">Skin Care</p>
                         </li>
                         </Link>
-                        <Link to={ `/searchcures/Thyroid` }>
+                        <Link to={ `/searchcategory/disease/87` }>
                         <li>
                            <p className="text-light">Thyroid</p>
                         </li>
                         </Link>
-                        <Link to={ `/searchcures/Psoriasis` }>
+                        <Link to={ `/searchcategory/disease/160` }>
                         <li>
                            <p className="text-light">Psoriasis</p>
                         </li>
@@ -215,7 +215,7 @@ class Footer extends Component {
                
                <div className="col-md-4 col-sm-4 col-sx-12">
                   <div className="copyRight">
-                     <p>All rights reserved. Copyright <i className="far fa-copyright fa-1x"></i>2020 <a href='https://etheriumtech.com'>Etherium Technologies</a></p>
+                     <p>All rights reserved. Copyright <i className="far fa-copyright fa-1x"></i>2022 <a href='https://etheriumtech.com'>Etherium Technologies</a></p>
                   </div>
                </div>
 
