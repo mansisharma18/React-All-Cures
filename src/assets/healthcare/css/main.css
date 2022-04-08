@@ -2393,6 +2393,17 @@ padding:0.22rem;
     position: absolute;
   }
 
+  #dis{
+    background-color:#e4faff ;
+    }
+
+    #dis1{
+      background-color: white;
+      color: black;
+      padding: .5rem 1.9rem;
+    }      
+  
+
 .success{
   position: absolute;
   bottom:40px;
