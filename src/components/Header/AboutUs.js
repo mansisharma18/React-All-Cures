@@ -38,7 +38,7 @@ export default class AboutUs extends Component{
          
          </p>
          <div><a href="/feedback"><button id=""
-          className="article-search btn btn-dark mt-10">Submit Your Feedback</button></a></div>
+          className="article-search btn btn-dark mt-10">Submit Your Feedback</button></a></div><br/><br/>
 </div>
 <Footer></Footer>
 </div>
