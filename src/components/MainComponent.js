@@ -9,7 +9,7 @@ import Profile from "./Profile/Profile";
 
 import Search from "./Search/Search";
 import SearchName from './Search/SearchName';
-
+import AboutUs from "./Header/AboutUs";
 import AuthApi from './AuthApi'
 import Disease from "./Disease/Disease";
 import Dashboard from "./Dashboard/Dashboard.js";
@@ -132,6 +132,7 @@ const Routes = (props) => {
        <Route exact path="/home" component={Home} />
        <Route exact path="/feedback" component={Feedback} />
        <Route exact path="/alldisease" component={AllDisease}/>
+       <Route exact path="/aboutus" component={AboutUs}/>
 
         {/* Health a to z Page */}
 
