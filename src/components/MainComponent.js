@@ -39,6 +39,8 @@ import NotAuthorizedPage from "./NotAuthorizedPage";
 import Feedback from "./Feedback";
 import Categorypage from "./BlogPage/Categorypage";
 import AllDisease from "./Header/AllDisease"
+import privacy from './BlogPage/Privacy'
+import A from './Header/Health A To Z/A'
 
 function Main(props) {
   const history = useHistory()
@@ -101,6 +103,11 @@ const Routes = (props) => {
        <Route exact path="/feedback" component={Feedback} />
        <Route exact path="/alldisease" component={AllDisease}/>
 
+        {/* Health a to z Page */}
+
+        <Route exact path="/A" component={A} />
+      
+
       {/* Doctor search page */}
       <Route exact path="/search/:city" component={Search} /> 
       <Route exact path="/searchName/:name" component={SearchName} /> 
@@ -139,7 +146,7 @@ const Routes = (props) => {
       {/* Doctor profile page */}
       <Route auth={Auth.auth} exact path="/profile/:id" component={Profile} />
       <Route exact path="/profile/:id/edit" component={LoginInfo} />
-
+   <Route exact path="/privacy" component={privacy}/>
       {/* Doctor invitation page and ask for UPNR number */}
       <Route exact path="/login/doctor" component={LoginInfo}/>
 
