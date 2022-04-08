@@ -34,38 +34,38 @@ function Disease() {
                         <div class="container mt-3" >
                         <div class="btn-group btn-group-lg" >
                         
-  <button type="button" class=" btn-lg" id='dis1'>ALL</button>
+                        <Link to="/alldisease"><button type="button" class=" btn-lg" id='dis1'>ALL</button></Link>
 
-    <button type="button" class=" btn-lg" id='dis1'>A</button>
-    <button type="button" class=" btn-lg" id='dis1'>B</button>
-    <button type="button" class=" btn-lg" id='dis1'>C</button>
-    <button type="button" class=" btn-lg" id='dis1'>D</button>
-    <button type="button" class=" btn-lg" id='dis1'>E</button>
-    <button type="button" class=" btn-lg" id='dis1'>F</button>
-    <button type="button" class=" btn-lg" id='dis1'>G</button>
-    <button type="button" class=" btn-lg" id='dis1'>H</button>
-    <button type="button" class=" btn-lg" id='dis1'>I</button>
-    <button type="button" class=" btn-lg" id='dis1'>J</button>
-    <button type="button" class=" btn-lg" id='dis1'>K</button>
-    <button type="button" class=" btn-lg" id='dis1'>L</button>
+  <Link to="/alldisease-A">  <button type="button" class=" btn-lg" id='dis1'>A</button></Link>
+  <Link to="/alldisease-B">  <button type="button" class=" btn-lg" id='dis1'>B</button></Link>
+  <Link to="/alldisease-C"> <button type="button" class=" btn-lg" id='dis1'>C</button></Link>
+  <Link to="/alldisease-D"> <button type="button" class=" btn-lg" id='dis1'>D</button></Link>
+  <Link to="/alldisease-E"> <button type="button" class=" btn-lg" id='dis1'>E</button></Link>
+  <Link to="/alldisease-F"> <button type="button" class=" btn-lg" id='dis1'>F</button></Link>
+  <Link to="/alldisease-G"><button type="button" class=" btn-lg" id='dis1'>G</button></Link>
+  <Link to="/alldisease-H"><button type="button" class=" btn-lg" id='dis1'>H</button></Link>
+  <Link to="/alldisease-I"><button type="button" class=" btn-lg" id='dis1'>I</button></Link>
+  <Link to="/alldisease-J"><button type="button" class=" btn-lg" id='dis1'>J</button></Link>
+  <Link to="/alldisease-K"><button type="button" class=" btn-lg" id='dis1'>K</button></Link>
+  <Link to="/alldisease-L"><button type="button" class=" btn-lg" id='dis1'>L</button></Link>
     
   </div><br/>
   <div class="btn-group btn-group-lg">
 
     
-    <button type="button" class=" btn-lg" id='dis1'>M</button>
-    <button type="button" class=" btn-lg" id='dis1'>N</button>
-    <button type="button" class=" btn-lg" id='dis1'>O</button>
-    <button type="button" class=" btn-lg" id='dis1'>P</button>
-    <button type="button" class=" btn-lg" id='dis1'>Q</button>
-    <button type="button" class=" btn-lg" id='dis1'>R</button>
-    <button type="button" class=" btn-lg" id='dis1'>S</button>
-    <button type="button" class=" btn-lg" id='dis1'>T</button>
-    <button type="button" class=" btn-lg" id='dis1'>U</button>
-    <button type="button" class=" btn-lg" id='dis1'>V</button>
-    <button type="button" class=" btn-lg" id='dis1'>X</button>
-    <button type="button" class=" btn-lg" id='dis1'>Y</button>
-    <button type="button" class=" btn-lg" id='dis1'>Z</button>
+  <Link to="/alldisease-M"><button type="button" class=" btn-lg" id='dis1'>M</button></Link>
+  <Link to="/alldisease-N"><button type="button" class=" btn-lg" id='dis1'>N</button></Link>
+  <Link to="/alldisease-O"><button type="button" class=" btn-lg" id='dis1'>O</button></Link>
+  <Link to="/alldisease-P"><button type="button" class=" btn-lg" id='dis1'>P</button></Link>
+  <Link to="/alldisease-Q"><button type="button" class=" btn-lg" id='dis1'>Q</button></Link>
+  <Link to="/alldisease-R"><button type="button" class=" btn-lg" id='dis1'>R</button></Link>
+  <Link to="/alldisease-S"><button type="button" class=" btn-lg" id='dis1'>S</button></Link>
+  <Link to="/alldisease-T"><button type="button" class=" btn-lg" id='dis1'>T</button></Link>
+  <Link to="/alldisease-U"><button type="button" class=" btn-lg" id='dis1'>U</button></Link>
+  <Link to="/alldisease-V"><button type="button" class=" btn-lg" id='dis1'>V</button></Link>
+  <Link to="/alldisease-X"><button type="button" class=" btn-lg" id='dis1'>X</button></Link>
+  <Link to="/alldisease-Y"><button type="button" class=" btn-lg" id='dis1'>Y</button></Link>
+  <Link to="/alldisease-Z"><button type="button" class=" btn-lg" id='dis1'>Z</button></Link>
   </div>
   
   
@@ -86,76 +86,74 @@ function Disease() {
                         <Link to="/searchcategory/disease/1">
                         <div className="h5  col-md-6 text-right">Arthritis</div>
                         
-                   
-                    </Link>
+ </Link>
                         </div>
+                        
                         <div className="col-md-6 float-left">
-                        <Link to="/searchmedicine/medicinetype/1">
+                        <Link>
                         <div className="h5  col-md-6 text-left">Ankylosing Spondylitis</div>
                         
-                   
-                    </Link>
+                   </Link>
                         </div>
 
                         <div className="col-md-6 float-left">
-                        <Link to="/searchmedicine/medicinetype/1">
+                            <Link>
                         <div className="h5 col-md-6 text-right">Anemia</div>
                         
-                   
-                    </Link>
+                        </Link>
                         </div>
 
                         <div className="col-md-6 float-left">
-                        <Link to="/searchmedicine/medicinetype/1">
+                        <Link >
                         <div className="h5  col-md-6 text-left">Alzheimer's Disease</div>
                         
                    
                     </Link>
                         </div>
                         <div className="col-md-6 float-left">
-                        <Link to="/searchmedicine/medicinetype/1">
+                        <Link >
                         <div className="h5 col-md-6 text-right">Autism</div>
                         
                    
                     </Link>
                         </div>
                         <div className="col-md-6 float-left">
-                        <Link to="/searchmedicine/medicinetype/1">
+                        <Link >
                         <div className="h5  col-md-6 text-left">Atrial Fibrillation</div>
                         
                    
                     </Link>
                         </div>
                         <div className="col-md-6 float-left">
-                        <Link to="/searchmedicine/medicinetype/1">
+                        <Link >
                         <div className="h5 col-md-6 text-right"> Allergies</div>
                         
                    
                     </Link>
                         </div>
                         <div className="col-md-6 float-left">
-                        <Link to="/searchmedicine/medicinetype/1">
+                        <Link >
                         <div className="h5  col-md-6 text-left"> Addictions Substance</div>
                         
                    
                     </Link>
                         </div>
                         <div className="col-md-6 float-left">
-                        <Link to="/searchmedicine/medicinetype/1">
+                        <Link >
                         <div className="h5 col-md-6 text-right"> Asthma</div>
                         
                    
                     </Link>
                         </div>
                         <div className="col-md-6 float-left">
-                        <Link to="/searchmedicine/medicinetype/1">
+                        <Link >
                         <div className="h5  col-md-6 text-left">Athlete's Foot</div>
                         
                    
                     </Link>
                         </div>
                         <div className="col-md-6 float-left">
-                        <Link to="/searchmedicine/medicinetype/1">
+                        <Link >
                         <div className="h5 col-md-6 text-right">Anaphylaxis</div>
                         
                    
@@ -163,7 +161,7 @@ function Disease() {
                         </div>
 
                         <div className="col-md-6 float-left">
-                        <Link to="/searchmedicine/medicinetype/1">
+                        <Link >
                         <div className="h5  col-md-6 text-left">ADHD - ADD</div>
                         
                    
@@ -171,7 +169,7 @@ function Disease() {
                         </div>
 
                         <div className="col-md-6 float-left">
-                        <Link to="/searchmedicine/medicinetype/1">
+                        <Link to="/searchmedicine/disease/156">
                         <div className="h5 col-md-6 text-right">Acne</div>
                         
                    
@@ -179,7 +177,7 @@ function Disease() {
                         </div>
 
                         <div className="col-md-6 float-left">
-                        <Link to="/searchmedicine/medicinetype/1">
+                        <Link >
                         <div className="h5  col-md-6 text-left">Abdominal Pain</div>
                         
                    
@@ -188,7 +186,7 @@ function Disease() {
 
                         
                         <div className="col-md-6 float-left">
-                        <Link to="/searchmedicine/medicinetype/1">
+                        <Link >
                         <div className="h5 col-md-6 text-right">Abuse topics</div>
                         
                    
@@ -196,7 +194,7 @@ function Disease() {
                         </div>
 
                         <div className="col-md-6 float-left">
-                        <Link to="/searchmedicine/medicinetype/1">
+                        <Link >
                         <div className="h5  col-md-6 text-left"> Anxiety - Panic Disorder</div>
                         
                    
@@ -204,7 +202,7 @@ function Disease() {
                         </div>
 
                         <div className="col-md-6 float-left">
-                        <Link to="/searchmedicine/medicinetype/1">
+                        <Link >
                         <div className="h5 col-md-6 text-right">Abortion</div>
                         
                    
@@ -212,7 +210,7 @@ function Disease() {
                         </div>
 
                         <div className="col-md-6 float-left">
-                        <Link to="/searchmedicine/medicinetype/1">
+                        <Link >
                         <div className="h5  col-md-6 text-left">Acute Renal Failure</div>
                         
                    
@@ -220,7 +218,7 @@ function Disease() {
                         </div>
 
                         <div className="col-md-6 float-left">
-                        <Link to="/searchmedicine/medicinetype/1">
+                        <Link >
                         <div className="h5 col-md-6 text-right"> Appendicitis
                         
                         </div>
@@ -255,14 +253,14 @@ function Disease() {
                     
                             <div >
                         <div className="col-md-6 float-left">
-                        <Link to="/searchcategory/disease/1">
+                        <Link to="/searchcategory/disease/12">
                         <div className="h5 col-md-6 text-right">Blood Disorders</div>
                         
                    
                     </Link>
                         </div>
                         <div className="col-md-6 float-left">
-                        <Link to="/searchmedicine/medicinetype/1">
+                        <Link >
                         <div className="h5  col-md-6 text-left">Bones and Joints</div>
                         
                    
@@ -270,7 +268,7 @@ function Disease() {
                         </div>
 
                         <div className="col-md-6 float-left">
-                        <Link to="/searchmedicine/medicinetype/1">
+                        <Link >
                         <div className="h5 col-md-6 text-right"> Bladder Cancer</div>
                         
                    
@@ -278,42 +276,42 @@ function Disease() {
                         </div>
 
                         <div className="col-md-6 float-left">
-                        <Link to="/searchmedicine/medicinetype/1">
+                        <Link >
                         <div className="h5  col-md-6 text-left">Brain and Nervous</div>
                         
                    
                     </Link>
                         </div>
                         <div className="col-md-6 float-left">
-                        <Link to="/searchmedicine/medicinetype/1">
+                        <Link >
                         <div className="h5 col-md-6 text-right">Brain Cancer</div>
                         
                    
                     </Link>
                         </div>
                         <div className="col-md-6 float-left">
-                        <Link to="/searchmedicine/medicinetype/1">
+                        <Link >
                         <div className="h5  col-md-6 text-left">Brain Tumors</div>
                         
                    
                     </Link>
                         </div>
                         <div className="col-md-6 float-left">
-                        <Link to="/searchmedicine/medicinetype/1">
+                        <Link >
                         <div className="h5 col-md-6 text-right">Breast Cancer</div>
                         
                    
                     </Link>
                         </div>
                         <div className="col-md-6 float-left">
-                        <Link to="/searchmedicine/medicinetype/1">
+                        <Link >
                         <div className="h5  col-md-6 text-left"> Bipolar Disorder</div>
                         
                    
                     </Link>
                         </div>
                         <div className="col-md-6 float-left">
-                        <Link to="/searchmedicine/medicinetype/1">
+                        <Link >
                         <div className="h5 col-md-6 text-right">Back Pain</div>
                         
                    
@@ -336,14 +334,14 @@ function Disease() {
                     
                             <div >
                         <div className="col-md-6 float-left">
-                        <Link to="/searchcategory/disease/1">
+                        <Link >
                         <div className="h5 col-md-6 text-right">Cancer</div>
                         
                    
                     </Link>
                         </div>
                         <div className="col-md-6 float-left">
-                        <Link to="/searchmedicine/medicinetype/1">
+                        <Link >
                         <div className="h5  col-md-6 text-left">Chronic Fatigue </div>
                         
                    
@@ -351,7 +349,7 @@ function Disease() {
                         </div>
 
                         <div className="col-md-6 float-left">
-                        <Link to="/searchmedicine/medicinetype/1">
+                        <Link >
                         <div className="h5 col-md-6 text-right">Carcinoid Tumors</div>
                         
                    
@@ -359,119 +357,119 @@ function Disease() {
                         </div>
 
                         <div className="col-md-6 float-left">
-                        <Link to="/searchmedicine/medicinetype/1">
+                        <Link >
                         <div className="h5  col-md-6 text-left">Cervical Cancer</div>
                         
                    
                     </Link>
                         </div>
                         <div className="col-md-6 float-left">
-                        <Link to="/searchmedicine/medicinetype/1">
+                        <Link >
                         <div className="h5 col-md-6 text-right">Colorectal Cancer</div>
                         
                    
                     </Link>
                         </div>
                         <div className="col-md-6 float-left">
-                        <Link to="/searchmedicine/medicinetype/1">
+                        <Link >
                         <div className="h5  col-md-6 text-left">Cardiovascular</div>
                         
                    
                     </Link>
                         </div>
                         <div className="col-md-6 float-left">
-                        <Link to="/searchmedicine/medicinetype/1">
+                        <Link >
                         <div className="h5 col-md-6 text-right">Celiac Disease</div>
                         
                    
                     </Link>
                         </div>
                         <div className="col-md-6 float-left">
-                        <Link to="/searchmedicine/medicinetype/1">
+                        <Link >
                         <div className="h5  col-md-6 text-left"> Cholesterol Management</div>
                         
                    
                     </Link>
                         </div>
                         <div className="col-md-6 float-left">
-                        <Link to="/searchmedicine/medicinetype/1">
+                        <Link >
                         <div className="h5 col-md-6 text-right">Constipation</div>
                         
                    
                     </Link>
                         </div>
                         <div className="col-md-6 float-left">
-                        <Link to="/searchmedicine/medicinetype/1">
+                        <Link >
                         <div className="h5  col-md-6 text-left"> Crohn's Disease </div>
                         
                    
                     </Link>
                         </div>
                         <div className="col-md-6 float-left">
-                        <Link to="/searchmedicine/medicinetype/1">
+                        <Link >
                         <div className="h5 col-md-6 text-right">Cataracts</div>
                         
                    
                     </Link>
                         </div>
                         <div className="col-md-6 float-left">
-                        <Link to="/searchmedicine/medicinetype/1">
+                        <Link >
                         <div className="h5  col-md-6 text-left"> Chicken Pox </div>
                         
                    
                     </Link>
                         </div>
                         <div className="col-md-6 float-left">
-                        <Link to="/searchmedicine/medicinetype/1">
+                        <Link >
                         <div className="h5 col-md-6 text-right">Cold and Flu</div>
                         
                    
                     </Link>
                         </div>
                         <div className="col-md-6 float-left">
-                        <Link to="/searchmedicine/medicinetype/1">
+                        <Link >
                         <div className="h5  col-md-6 text-left"> Cold </div>
                         
                    
                     </Link>
                         </div>
                         <div className="col-md-6 float-left">
-                        <Link to="/searchmedicine/medicinetype/1">
+                        <Link >
                         <div className="h5 col-md-6 text-right">COPD</div>
                         
                    
                     </Link>
                         </div>
                         <div className="col-md-6 float-left">
-                        <Link to="/searchmedicine/medicinetype/1">
+                        <Link >
                         <div className="h5  col-md-6 text-left">Cystic Fibrosis</div>
                         
                    
                     </Link>
                         </div>
                         <div className="col-md-6 float-left">
-                        <Link to="/searchmedicine/medicinetype/1">
+                        <Link >
                         <div className="h5 col-md-6 text-right">Canker Sores</div>
                         
                    
                     </Link>
                         </div>
                         <div className="col-md-6 float-left">
-                        <Link to="/searchmedicine/medicinetype/1">
+                        <Link >
                         <div className="h5  col-md-6 text-left"> Carpal Tunnel Syndrome </div>
                         
                    
                     </Link>
                         </div>
                         <div className="col-md-6 float-left">
-                        <Link to="/searchmedicine/medicinetype/1">
+                        <Link >
                         <div className="h5 col-md-6 text-right">Chronic Female Pelvic Pain</div>
                         
                    
                     </Link>
                         </div>
                         <div className="col-md-6 float-left">
-                        <Link to="/searchmedicine/medicinetype/1">
+                        <Link >
                         <div className="h5  col-md-6 text-left"> Chronic Kidney Disease </div>
                         
                    
@@ -490,14 +488,14 @@ function Disease() {
                     
                             <div >
                         <div className="col-md-6 float-left">
-                        <Link to="/searchcategory/disease/1">
+                        <Link to="/searchcategory/disease/74">
                         <div className="h5 col-md-6 text-right">Diabetes</div>
                         
                    
                     </Link>
                         </div>
                         <div className="col-md-6 float-left">
-                        <Link to="/searchmedicine/medicinetype/1">
+                        <Link >
                         <div className="h5  col-md-6 text-left">Diabetic Neuropathy</div>
                         
                    
@@ -505,7 +503,7 @@ function Disease() {
                         </div>
 
                         <div className="col-md-6 float-left">
-                        <Link to="/searchmedicine/medicinetype/1">
+                        <Link >
                         <div className="h5 col-md-6 text-right">Depression</div>
                         
                    
@@ -513,35 +511,35 @@ function Disease() {
                         </div>
 
                         <div className="col-md-6 float-left">
-                        <Link to="/searchmedicine/medicinetype/1">
+                        <Link >
                         <div className="h5  col-md-6 text-left">Depression Treatment-Resistant</div>
                         
                    
                     </Link>
                         </div>
                         <div className="col-md-6 float-left">
-                        <Link to="/searchmedicine/medicinetype/1">
+                        <Link >
                         <div className="h5 col-md-6 text-right">Dry Mouth</div>
                         
                    
                     </Link>
                         </div>
                         <div className="col-md-6 float-left">
-                        <Link to="/searchmedicine/medicinetype/1">
+                        <Link >
                         <div className="h5  col-md-6 text-left">Digestive Disorders</div>
                         
                    
                     </Link>
                         </div>
                         <div className="col-md-6 float-left">
-                        <Link to="/searchmedicine/medicinetype/1">
+                        <Link >
                         <div className="h5 col-md-6 text-right">Dupuytren's</div>
                         
                    
                     </Link>
                         </div>
                         <div className="col-md-6 float-left">
-                        <Link to="/searchmedicine/medicinetype/1">
+                        <Link >
                         <div className="h5  col-md-6 text-left"> DVT</div>
                         
                    
@@ -562,14 +560,14 @@ function Disease() {
                     
                             <div >
                         <div className="col-md-6 float-left">
-                        <Link to="/searchcategory/disease/1">
+                        <Link >
                         <div className="h5 col-md-6 text-right">Ear Disorders</div>
                         
                    
                     </Link>
                         </div>
                         <div className="col-md-6 float-left">
-                        <Link to="/searchmedicine/medicinetype/1">
+                        <Link >
                         <div className="h5  col-md-6 text-left">Eating Disorders</div>
                         
                    
@@ -577,7 +575,7 @@ function Disease() {
                         </div>
 
                         <div className="col-md-6 float-left">
-                        <Link to="/searchmedicine/medicinetype/1">
+                        <Link >
                         <div className="h5 col-md-6 text-right">Eczema</div>
                         
                    
@@ -585,35 +583,35 @@ function Disease() {
                         </div>
 
                         <div className="col-md-6 float-left">
-                        <Link to="/searchmedicine/medicinetype/1">
+                        <Link >
                         <div className="h5  col-md-6 text-left">Endocrine and metabolic Diseases</div>
                         
                    
                     </Link>
                         </div>
                         <div className="col-md-6 float-left">
-                        <Link to="/searchmedicine/medicinetype/1">
+                        <Link >
                         <div className="h5 col-md-6 text-right">Endometriosis</div>
                         
                    
                     </Link>
                         </div>
                         <div className="col-md-6 float-left">
-                        <Link to="/searchmedicine/medicinetype/1">
+                        <Link >
                         <div className="h5  col-md-6 text-left">Epilepsy</div>
                         
                    
                     </Link>
                         </div>
                         <div className="col-md-6 float-left">
-                        <Link to="/searchmedicine/medicinetype/1">
+                        <Link >
                         <div className="h5 col-md-6 text-right">Erectile Dysfunction</div>
                         
                    
                     </Link>
                         </div>
                         <div className="col-md-6 float-left">
-                        <Link to="/searchmedicine/medicinetype/1">
+                        <Link >
                         <div className="h5  col-md-6 text-left"> Essential Tremors</div>
                         
                    
@@ -621,14 +619,14 @@ function Disease() {
                         </div>
 
                         <div className="col-md-6 float-left">
-                        <Link to="/searchmedicine/medicinetype/1">
+                        <Link >
                         <div className="h5 col-md-6 text-right">Estrogen Replacement Therapy</div>
                         
                    
                     </Link>
                         </div>
                         <div className="col-md-6 float-left">
-                        <Link to="/searchmedicine/medicinetype/1">
+                        <Link >
                         <div className="h5  col-md-6 text-left"> Eye Health</div>
                         
                    
@@ -648,14 +646,14 @@ function Disease() {
                     
                             <div >
                         <div className="col-md-6 float-left">
-                        <Link to="/searchcategory/disease/1">
+                        <Link >
                         <div className="h5 col-md-6 text-right">Fibromyalgia</div>
                         
                    
                     </Link>
                         </div>
                         <div className="col-md-6 float-left">
-                        <Link to="/searchmedicine/medicinetype/1">
+                        <Link >
                         <div className="h5  col-md-6 text-left">First Aid</div>
                         
                    
@@ -663,7 +661,7 @@ function Disease() {
                         </div>
 
                         <div className="col-md-6 float-left">
-                        <Link to="/searchmedicine/medicinetype/1">
+                        <Link >
                         <div className="h5 col-md-6 text-right">Flu</div>
                         
                    
@@ -671,7 +669,7 @@ function Disease() {
                         </div>
 
                         <div className="col-md-6 float-left">
-                        <Link to="/searchmedicine/medicinetype/1">
+                        <Link >
                         <div className="h5  col-md-6 text-left">Foot Problems</div>
                         
                    
@@ -691,14 +689,14 @@ function Disease() {
                     
                             <div >
                         <div className="col-md-6 float-left">
-                        <Link to="/searchcategory/disease/1">
+                        <Link >
                         <div className="h5 col-md-6 text-right">Gallstones</div>
                         
                    
                     </Link>
                         </div>
                         <div className="col-md-6 float-left">
-                        <Link to="/searchmedicine/medicinetype/1">
+                        <Link >
                         <div className="h5  col-md-6 text-left">Genital Herpes</div>
                         
                    
@@ -706,7 +704,7 @@ function Disease() {
                         </div>
 
                         <div className="col-md-6 float-left">
-                        <Link to="/searchmedicine/medicinetype/1">
+                        <Link >
                         <div className="h5 col-md-6 text-right">Gestational Diabetes</div>
                         
                    
@@ -714,14 +712,14 @@ function Disease() {
                         </div>
 
                         <div className="col-md-6 float-left">
-                        <Link to="/searchmedicine/medicinetype/1">
+                        <Link >
                         <div className="h5  col-md-6 text-left">Gingivitis</div>
                         
                    
                     </Link>
                         </div>
                         <div className="col-md-6 float-left">
-                        <Link to="/searchmedicine/medicinetype/1">
+                        <Link >
                         <div className="h5 col-md-6 text-right">Gout</div>
                         
                    
@@ -741,14 +739,14 @@ function Disease() {
                     
                             <div >
                         <div className="col-md-6 float-left">
-                        <Link to="/searchcategory/disease/1">
+                        <Link >
                         <div className="h5 col-md-6 text-right">Hair Loss</div>
                         
                    
                     </Link>
                         </div>
                         <div className="col-md-6 float-left">
-                        <Link to="/searchmedicine/medicinetype/1">
+                        <Link to="/searchmedicine/disease/176">
                         <div className="h5  col-md-6 text-left">Healthy Lifestyle</div>
                         
                    
@@ -756,7 +754,7 @@ function Disease() {
                         </div>
 
                         <div className="col-md-6 float-left">
-                        <Link to="/searchmedicine/medicinetype/1">
+                        <Link >
                         <div className="h5 col-md-6 text-right">Hearing Loss</div>
                         
                    
@@ -764,14 +762,14 @@ function Disease() {
                         </div>
 
                         <div className="col-md-6 float-left">
-                        <Link to="/searchmedicine/medicinetype/1">
+                        <Link >
                         <div className="h5  col-md-6 text-left">Heart Failure</div>
                         
                    
                     </Link>
                         </div>
                         <div className="col-md-6 float-left">
-                        <Link to="/searchmedicine/medicinetype/1">
+                        <Link >
                         <div className="h5 col-md-6 text-right">Heart Health</div>
                         
                    
@@ -779,35 +777,35 @@ function Disease() {
                         </div>
                         
                         <div className="col-md-6 float-left">
-                        <Link to="/searchmedicine/medicinetype/1">
+                        <Link >
                         <div className="h5  col-md-6 text-left">Heartburn - GERD</div>
                         
                    
                     </Link>
                         </div>
                         <div className="col-md-6 float-left">
-                        <Link to="/searchmedicine/medicinetype/1">
+                        <Link >
                         <div className="h5 col-md-6 text-right">Hemorrhoids</div>
                         
                    
                     </Link>
                         </div>
                         <div className="col-md-6 float-left">
-                        <Link to="/searchmedicine/medicinetype/1">
+                        <Link >
                         <div className="h5  col-md-6 text-left"> Hep A</div>
                         
                    
                     </Link>
                         </div>
                         <div className="col-md-6 float-left">
-                        <Link to="/searchmedicine/medicinetype/1">
+                        <Link >
                         <div className="h5 col-md-6 text-right">Hep B</div>
                         
                    
                     </Link>
                         </div>
                         <div className="col-md-6 float-left">
-                        <Link to="/searchmedicine/medicinetype/1">
+                        <Link >
                         <div className="h5  col-md-6 text-left">Hep C</div>
                         
                    
@@ -815,7 +813,7 @@ function Disease() {
                         </div>
                         
   <div className="col-md-6 float-left">
-                        <Link to="/searchmedicine/medicinetype/1">
+                        <Link >
                         <div className="h5 col-md-6 text-right">Hepatitis</div>
                         
                    
@@ -823,7 +821,7 @@ function Disease() {
                         </div>
 
                         <div className="col-md-6 float-left">
-                        <Link to="/searchmedicine/medicinetype/1">
+                        <Link >
                         <div className="h5  col-md-6 text-left">Hernia</div>
                         
                    
@@ -831,7 +829,7 @@ function Disease() {
                         </div>
 
                         <div className="col-md-6 float-left">
-                        <Link to="/searchmedicine/medicinetype/1">
+                        <Link >
                         <div className="h5 col-md-6 text-right">Herpes Cold Sores</div>
                         
                    
@@ -839,7 +837,7 @@ function Disease() {
                         </div>
 
                         <div className="col-md-6 float-left">
-                        <Link to="/searchmedicine/medicinetype/1">
+                        <Link >
                         <div className="h5  col-md-6 text-left">HIV-AIDS</div>
                         
                    
@@ -847,7 +845,7 @@ function Disease() {
                         </div>
                         
                         <div className="col-md-6 float-left">
-                        <Link to="/searchmedicine/medicinetype/1">
+                        <Link >
                         <div className="h5 col-md-6 text-right">Hodgkin's Disease</div>
                         
                    
@@ -855,7 +853,7 @@ function Disease() {
                         </div>
 
                         <div className="col-md-6 float-left">
-                        <Link to="/searchmedicine/medicinetype/1">
+                        <Link >
                         <div className="h5  col-md-6 text-left">Hormonal Disorders</div>
                         
                    
@@ -863,7 +861,7 @@ function Disease() {
                         </div>
 
                         <div className="col-md-6 float-left">
-                        <Link to="/searchmedicine/medicinetype/1">
+                        <Link >
                         <div className="h5 col-md-6 text-right">HPV-Genital Warts</div>
                         
                    
@@ -871,7 +869,7 @@ function Disease() {
                         </div>
 
                         <div className="col-md-6 float-left">
-                        <Link to="/searchmedicine/medicinetype/1">
+                        <Link to="/searchmedicine/disease/50">
                         <div className="h5  col-md-6 text-left">Hypertension</div>
                         
                    
@@ -879,7 +877,7 @@ function Disease() {
                         </div>
 
                         <div className="col-md-6 float-left">
-                        <Link to="/searchmedicine/medicinetype/1">
+                        <Link >
                         <div className="h5 col-md-6 text-right">Hypotension
                         
                         </div>
@@ -910,14 +908,14 @@ function Disease() {
                     
                             <div >
                         <div className="col-md-6 float-left">
-                        <Link to="/searchcategory/disease/1">
+                        <Link>
                         <div className="h5 col-md-6 text-right">  IBD</div>
                         
                    
                     </Link>
                         </div>
                         <div className="col-md-6 float-left">
-                        <Link to="/searchmedicine/medicinetype/1">
+                        <Link >
                         <div className="h5  col-md-6 text-left">Incontinence / OAB</div>
                         
                    
@@ -925,7 +923,7 @@ function Disease() {
                         </div>
                     
                         <div className="col-md-6 float-left">
-                        <Link to="/searchmedicine/medicinetype/1">
+                        <Link >
                         <div className="h5 col-md-6 text-right">IBS</div>
                         
                    
@@ -933,35 +931,35 @@ function Disease() {
                         </div>
 
                         <div className="col-md-6 float-left">
-                        <Link to="/searchmedicine/medicinetype/1">
+                        <Link >
                         <div className="h5  col-md-6 text-left">Infection</div>
                         
                    
                     </Link>
                         </div>
                         <div className="col-md-6 float-left">
-                        <Link to="/searchmedicine/medicinetype/1">
+                        <Link >
                         <div className="h5 col-md-6 text-right">Infectious Diseases</div>
                         
                    
                     </Link>
                         </div>
                         <div className="col-md-6 float-left">
-                        <Link to="/searchmedicine/medicinetype/1">
+                        <Link >
                         <div className="h5  col-md-6 text-left">Infertility</div>
                         
                    
                     </Link>
                         </div>
                         <div className="col-md-6 float-left">
-                        <Link to="/searchmedicine/medicinetype/1">
+                        <Link >
                         <div className="h5 col-md-6 text-right">Injuries</div>
                         
                    
                     </Link>
                         </div>
                         <div className="col-md-6 float-left">
-                        <Link to="/searchmedicine/medicinetype/1">
+                        <Link to="/searchmedicine/disease/164">
                         <div className="h5  col-md-6 text-left"> Insomnia</div>
                         
                    
@@ -969,6 +967,21 @@ function Disease() {
                         </div>
                       
                       
+                    </div>  </div> </div>  
+                </div>
+
+                <div className="">
+                <div className="container">
+                   
+                <div className="card my-3">
+                        <div className="card-title h3  py-2 border-bottom" id='dis'> Disease Starting From <b>"J"</b></div>
+                    
+                            <div >
+                        <div className="col-md-6 float-left">
+                      <h5>There Are No Diseases Beginning With This Letter</h5>
+                
+        </div>
+                       
                     </div>  </div> </div>  
                 </div>
 
@@ -981,7 +994,7 @@ function Disease() {
                     
                             <div >
                         <div className="col-md-6 float-left">
-                        <Link to="/searchcategory/disease/1">
+                        <Link >
                         <div className="h5 col-md-6 text-right">  Kidney Cancer</div>
                         
                    
@@ -992,7 +1005,7 @@ function Disease() {
 
         </div>
                         <div className="col-md-6 float-left">
-                        <Link to="/searchmedicine/medicinetype/1">
+                        <Link >
                         <div className="h5  col-md-6 text-left">Kidney Disorders</div>
                         
                    
@@ -1000,7 +1013,7 @@ function Disease() {
                         </div>
                     
                         <div className="col-md-6 float-left">
-                        <Link to="/searchmedicine/medicinetype/1">
+                        <Link >
                         <div className="h5 col-md-6 text-right">Kidney Stones</div>
                         
                    
@@ -1008,7 +1021,7 @@ function Disease() {
                         </div>
 
                         <div className="col-md-6 float-left">
-                        <Link to="/searchmedicine/medicinetype/1">
+                        <Link >
                         <div className="h5  col-md-6 text-left">Knee Pain</div>
                         
                    
@@ -1032,14 +1045,14 @@ function Disease() {
                     
                             <div >
                         <div className="col-md-6 float-left">
-                        <Link to="/searchcategory/disease/1">
+                        <Link >
                         <div className="h5 col-md-6 text-right">Lactose intolerance</div>
                         
                    
                     </Link>
                         </div>
                         <div className="col-md-6 float-left">
-                        <Link to="/searchmedicine/medicinetype/1">
+                        <Link >
                         <div className="h5  col-md-6 text-left">Leukemia</div>
                         
                    
@@ -1047,7 +1060,7 @@ function Disease() {
                         </div>
                     
                         <div className="col-md-6 float-left">
-                        <Link to="/searchmedicine/medicinetype/1">
+                        <Link >
                         <div className="h5 col-md-6 text-right">Liver Disease</div>
                         
                    
@@ -1055,35 +1068,35 @@ function Disease() {
                         </div>
 
                         <div className="col-md-6 float-left">
-                        <Link to="/searchmedicine/medicinetype/1">
+                        <Link >
                         <div className="h5  col-md-6 text-left">Low Testerone</div>
                         
                    
                     </Link>
                         </div>
                         <div className="col-md-6 float-left">
-                        <Link to="/searchmedicine/medicinetype/1">
+                        <Link >
                         <div className="h5 col-md-6 text-right">Lung&Respiratory Health</div>
                         
                    
                     </Link>
                         </div>
                         <div className="col-md-6 float-left">
-                        <Link to="/searchmedicine/medicinetype/1">
+                        <Link >
                         <div className="h5  col-md-6 text-left">Lung Cancer</div>
                         
                    
                     </Link>
                         </div>
                         <div className="col-md-6 float-left">
-                        <Link to="/searchmedicine/medicinetype/1">
+                        <Link >
                         <div className="h5 col-md-6 text-right">Lupus</div>
                         
                    
                     </Link>
                         </div>
                         <div className="col-md-6 float-left">
-                        <Link to="/searchmedicine/medicinetype/1">
+                        <Link >
                         <div className="h5  col-md-6 text-left"> Lyme Disease</div>
                         
                    
@@ -1103,14 +1116,14 @@ function Disease() {
                     
                             <div >
                         <div className="col-md-6 float-left">
-                        <Link to="/searchcategory/disease/1">
+                        <Link >
                         <div className="h5 col-md-6 text-right">Macular Degeneration</div>
                         
                    
                     </Link>
                         </div>
                         <div className="col-md-6 float-left">
-                        <Link to="/searchmedicine/medicinetype/1">
+                        <Link >
                         <div className="h5  col-md-6 text-left">Melanoma - Skin Cancer</div>
                         
                    
@@ -1118,7 +1131,7 @@ function Disease() {
                         </div>
                     
                         <div className="col-md-6 float-left">
-                        <Link to="/searchmedicine/medicinetype/1">
+                        <Link >
                         <div className="h5 col-md-6 text-right">Menopause</div>
                         
                    
@@ -1126,35 +1139,35 @@ function Disease() {
                         </div>
 
                         <div className="col-md-6 float-left">
-                        <Link to="/searchmedicine/medicinetype/1">
+                        <Link >
                         <div className="h5  col-md-6 text-left">Mental Health</div>
                         
                    
                     </Link>
                         </div>
                         <div className="col-md-6 float-left">
-                        <Link to="/searchmedicine/medicinetype/1">
+                        <Link >
                         <div className="h5 col-md-6 text-right">Metabolic Syndrome</div>
                         
                    
                     </Link>
                         </div>
                         <div className="col-md-6 float-left">
-                        <Link to="/searchmedicine/medicinetype/1">
+                        <Link to="/searchmedicine/disease/137">
                         <div className="h5  col-md-6 text-left">Migraines - Headaches</div>
                         
                    
                     </Link>
                         </div>
                         <div className="col-md-6 float-left">
-                        <Link to="/searchmedicine/medicinetype/1">
+                        <Link >
                         <div className="h5 col-md-6 text-right">Miscarriage</div>
                         
                    
                     </Link>
                         </div>
                         <div className="col-md-6 float-left">
-                        <Link to="/searchmedicine/medicinetype/1">
+                        <Link >
                         <div className="h5  col-md-6 text-left"> Multiple Sclerosis</div>
                         
                    
@@ -1174,14 +1187,14 @@ function Disease() {
                     
                             <div >
                         <div className="col-md-6 float-left">
-                        <Link to="/searchcategory/disease/1">
+                        <Link >
                         <div className="h5 col-md-6 text-right">Narcolepsy</div>
                         
                    
                     </Link>
                         </div>
                         <div className="col-md-6 float-left">
-                        <Link to="/searchmedicine/medicinetype/1">
+                        <Link >
                         <div className="h5  col-md-6 text-left">Non-Hodgkin's Lymphoma</div>
                         
                    
@@ -1202,14 +1215,14 @@ function Disease() {
                     
                             <div >
                         <div className="col-md-6 float-left">
-                        <Link to="/searchcategory/disease/1">
+                        <Link >
                         <div className="h5 col-md-6 text-right">Oral Cancer</div>
                         
                    
                     </Link>
                         </div>
                         <div className="col-md-6 float-left">
-                        <Link to="/searchmedicine/medicinetype/1">
+                        <Link >
                         <div className="h5  col-md-6 text-left">Oral Diseases</div>
                         
                    
@@ -1217,7 +1230,7 @@ function Disease() {
                         </div>
                     
                         <div className="col-md-6 float-left">
-                        <Link to="/searchmedicine/medicinetype/1">
+                        <Link >
                         <div className="h5 col-md-6 text-right">Osteoarthritis</div>
                         
                    
@@ -1225,14 +1238,14 @@ function Disease() {
                         </div>
 
                         <div className="col-md-6 float-left">
-                        <Link to="/searchmedicine/medicinetype/1">
+                        <Link >
                         <div className="h5  col-md-6 text-left">Osteoporosis</div>
                         
                    
                     </Link>
                         </div>
                         <div className="col-md-6 float-left">
-                        <Link to="/searchmedicine/medicinetype/1">
+                        <Link >
                         <div className="h5 col-md-6 text-right">Ovarian Cancer</div>
                         
                    
@@ -1254,14 +1267,14 @@ function Disease() {
                     
                             <div >
                         <div className="col-md-6 float-left">
-                        <Link to="/searchcategory/disease/1">
+                        <Link >
                         <div className="h5 col-md-6 text-right"> Pain Management</div>
                         
                    
                     </Link>
                         </div>
                         <div className="col-md-6 float-left">
-                        <Link to="/searchmedicine/medicinetype/1">
+                        <Link >
                         <div className="h5  col-md-6 text-left">Pancreatic Cancer</div>
                         
                    
@@ -1269,7 +1282,7 @@ function Disease() {
                         </div>
 
                         <div className="col-md-6 float-left">
-                        <Link to="/searchmedicine/medicinetype/1">
+                        <Link >
                         <div className="h5 col-md-6 text-right">Parkinson's Disease</div>
                         
                    
@@ -1277,14 +1290,14 @@ function Disease() {
                         </div>
 
                         <div className="col-md-6 float-left">
-                        <Link to="/searchmedicine/medicinetype/1">
+                        <Link >
                         <div className="h5  col-md-6 text-left">Pelvic Inflammatory Disease</div>
                         
                    
                     </Link>
                         </div>
                         <div className="col-md-6 float-left">
-                        <Link to="/searchmedicine/medicinetype/1">
+                        <Link >
                         <div className="h5 col-md-6 text-right">Pink Eye - Conjunctivitis</div>
                         
                    
@@ -1292,35 +1305,35 @@ function Disease() {
                         </div>
                         
                         <div className="col-md-6 float-left">
-                        <Link to="/searchmedicine/medicinetype/1">
+                        <Link >
                         <div className="h5  col-md-6 text-left">PMS</div>
                         
                    
                     </Link>
                         </div>
                         <div className="col-md-6 float-left">
-                        <Link to="/searchmedicine/medicinetype/1">
+                        <Link >
                         <div className="h5 col-md-6 text-right">Pneumonia</div>
                         
                    
                     </Link>
                         </div>
                         <div className="col-md-6 float-left">
-                        <Link to="/searchmedicine/medicinetype/1">
+                        <Link >
                         <div className="h5  col-md-6 text-left"> Polycystic Ovary Syndrome</div>
                         
                    
                 </Link>
                         </div>
                         <div className="col-md-6 float-left">
-                        <Link to="/searchmedicine/medicinetype/1">
+                        <Link >
                         <div className="h5 col-md-6 text-right">Postpartum Depression</div>
                         
                    
                     </Link>
                         </div>
                         <div className="col-md-6 float-left">
-                        <Link to="/searchmedicine/medicinetype/1">
+                        <Link >
                         <div className="h5  col-md-6 text-left">Pregnancy Complications</div>
                         
                    
@@ -1328,7 +1341,7 @@ function Disease() {
                         </div>
                         
   <div className="col-md-6 float-left">
-                        <Link to="/searchmedicine/medicinetype/1">
+                        <Link >
                         <div className="h5 col-md-6 text-right">Prostate Cancer</div>
                         
                    
@@ -1336,7 +1349,7 @@ function Disease() {
                         </div>
 
                         <div className="col-md-6 float-left">
-                        <Link to="/searchmedicine/medicinetype/1">
+                        <Link >
                         <div className="h5  col-md-6 text-left">Prostate Enlargement/BPH</div>
                         
                    
@@ -1344,7 +1357,7 @@ function Disease() {
                         </div>
 
                         <div className="col-md-6 float-left">
-                        <Link to="/searchmedicine/medicinetype/1">
+                        <Link to="/searchmedicine/disease/160">
                         <div className="h5 col-md-6 text-right">Psoriasis</div>
                         
                    
@@ -1352,7 +1365,7 @@ function Disease() {
                         </div>
 
                         <div className="col-md-6 float-left">
-                        <Link to="/searchmedicine/medicinetype/1">
+                        <Link >
                         <div className="h5  col-md-6 text-left">Psoriatic Arthritis</div>
                         
                    
@@ -1370,6 +1383,23 @@ function Disease() {
                    
                 </div>
                 {/* END OF LIST P */}
+                <div className="">
+                <div className="container">
+                   
+                <div className="card my-3">
+                        <div className="card-title h3  py-2 border-bottom" id='dis'> Disease Starting From <b>"Q"</b></div>
+                    
+                            <div >
+                        <div className="col-md-6 float-left">
+                      <h5>There Are No Diseases Beginning With This Letter</h5>
+                   
+
+
+
+        </div>
+                       
+                    </div>  </div> </div>  
+                </div>
 
                 <div className="">
                 <div className="container">
@@ -1379,7 +1409,7 @@ function Disease() {
                     
                             <div >
                         <div className="col-md-6 float-left">
-                        <Link to="/searchcategory/disease/1">
+                        <Link >
                         <div className="h5 col-md-6 text-right"> Reproduction</div>
                         
                    
@@ -1387,7 +1417,7 @@ function Disease() {
                         </div>
                         <div className="col-md-6 float-left">
                        
-                  <Link to="/searchmedicine/medicinetype/1">
+                  <Link >
                         <div className="h5  col-md-6 text-left">Rheumatoid Arthritis</div>
                         
                    
@@ -1395,7 +1425,7 @@ function Disease() {
                         </div>
                     
                         <div className="col-md-6 float-left">
-                        <Link to="/searchmedicine/medicinetype/1">
+                        <Link >
                         <div className="h5 col-md-6 text-right">Restless Leg Syndrome (RLS)</div>
                         
                    
@@ -1403,7 +1433,7 @@ function Disease() {
                         </div>
 
                         <div className="col-md-6 float-left">
-                        <Link to="/searchmedicine/medicinetype/1">
+                        <Link >
                         <div className="h5  col-md-6 text-left">
 Rosacea</div>
                         
@@ -1424,14 +1454,14 @@ Rosacea</div>
                     
                             <div >
                         <div className="col-md-6 float-left">
-                        <Link to="/searchcategory/disease/1">
+                        <Link >
                         <div className="h5 col-md-6 text-right">  Schizophrenia</div>
                         
                    
                     </Link>
                         </div>
                         <div className="col-md-6 float-left">
-                        <Link to="/searchmedicine/medicinetype/1">
+                        <Link >
                         <div className="h5  col-md-6 text-left">Sensitive topics</div>
                         
                    
@@ -1439,7 +1469,7 @@ Rosacea</div>
                         </div>
 
                         <div className="col-md-6 float-left">
-                        <Link to="/searchmedicine/medicinetype/1">
+                        <Link >
                         <div className="h5 col-md-6 text-right">Sexual Conditions</div>
                         <div className="col-md-6 rounded" id="ayurveda">
   </div>
@@ -1448,14 +1478,14 @@ Rosacea</div>
                         </div>
 
                         <div className="col-md-6 float-left">
-                        <Link to="/searchmedicine/medicinetype/1">
+                        <Link >
                         <div className="h5  col-md-6 text-left">Sexual Health</div>
                         
                    
                     </Link>
                         </div>
                         <div className="col-md-6 float-left">
-                        <Link to="/searchmedicine/medicinetype/1">
+                        <Link >
                         <div className="h5 col-md-6 text-right">Shingles</div>
                         
                    
@@ -1463,14 +1493,14 @@ Rosacea</div>
                         </div>
                         
                         <div className="col-md-6 float-left">
-                        <Link to="/searchmedicine/medicinetype/1">
+                        <Link >
                         <div className="h5  col-md-6 text-left">Sinusitis</div>
                         
                    
                     </Link>
                         </div>
                         <div className="col-md-6 float-left">
-                        <Link to="/searchmedicine/medicinetype/1">
+                        <Link >
                         <div className="h5 col-md-6 text-right">Sjogren's Syndrome</div>
                         
                    
@@ -1478,21 +1508,21 @@ Rosacea</div>
               </Link>
                         </div>
                         <div className="col-md-6 float-left">
-                        <Link to="/searchmedicine/medicinetype/1">
+                        <Link to="/searchmedicine/disease/155">
                         <div className="h5  col-md-6 text-left">Skin Problems</div>
                         
                    
                 </Link>
                         </div>
                         <div className="col-md-6 float-left">
-                        <Link to="/searchmedicine/medicinetype/1">
+                        <Link >
                         <div className="h5 col-md-6 text-right">Sleep Apnea</div>
                         
                    
                     </Link>
                         </div>
                         <div className="col-md-6 float-left">
-                        <Link to="/searchmedicine/medicinetype/1">
+                        <Link >
                         <div className="h5  col-md-6 text-left">Sleep Disorders</div>
                         
                    
@@ -1500,7 +1530,7 @@ Rosacea</div>
                         </div>
                         
   <div className="col-md-6 float-left">
-                        <Link to="/searchmedicine/medicinetype/1">
+                        <Link >
                         <div className="h5 col-md-6 text-right">Smoking Cessation</div>
                         
                    
@@ -1508,14 +1538,14 @@ Rosacea</div>
                         </div>
 
                         <div className="col-md-6 float-left">
-                        <Link to="/searchmedicine/medicinetype/1">
+                        <Link >
                         <div className="h5  col-md-6 text-left">Spinal Cord Disorders</div>
                         
                    
                     </Link>
                         </div>                                                                                
                         <div className="col-md-6 float-left">
-                        <Link to="/searchmedicine/medicinetype/1">
+                        <Link >
                         <div className="h5 col-md-6 text-right">STDs</div>
                         
                    
@@ -1523,7 +1553,7 @@ Rosacea</div>
                         </div>
 
                         <div className="col-md-6 float-left">
-                        <Link to="/searchmedicine/medicinetype/1">
+                        <Link >
                         <div className="h5  col-md-6 text-left">Strep Throat</div>
                         
                    
@@ -1531,7 +1561,7 @@ Rosacea</div>
                         </div>
 
                         <div className="col-md-6 float-left">
-                        <Link to="/searchmedicine/medicinetype/1">
+                        <Link >
                         <div className="h5 col-md-6 text-right">Stroke</div>
                         
                    
@@ -1539,7 +1569,7 @@ Rosacea</div>
                         </div>
 
                         <div className="col-md-6 float-left">
-                        <Link to="/searchmedicine/medicinetype/1">
+                        <Link >
                         <div className="h5  col-md-6 text-left">Swine Flu </div>
                         
                    
@@ -1568,7 +1598,7 @@ Rosacea</div>
                     
                             <div >
                         <div className="col-md-6 float-left">
-                        <Link to="/searchcategory/disease/1">
+                        <Link >
                         <div className="h5 col-md-6 text-right">Thrush
                         </div>
                         
@@ -1576,7 +1606,7 @@ Rosacea</div>
                     </Link>
                         </div>
                         <div className="col-md-6 float-left">
-                        <Link to="/searchmedicine/medicinetype/1">
+                        <Link to="/searchmedicine/disease/87">
                         <div className="h5  col-md-6 text-left">Thyroid Disorders</div>
                         
                    
@@ -1584,7 +1614,7 @@ Rosacea</div>
                         </div>
                     
                         <div className="col-md-6 float-left">
-                        <Link to="/searchmedicine/medicinetype/1">
+                        <Link >
                         <div className="h5 col-md-6 text-right">Triglycerides</div>
                         
                    
@@ -1592,14 +1622,14 @@ Rosacea</div>
                         </div>
 
                         <div className="col-md-6 float-left">
-                        <Link to="/searchmedicine/medicinetype/1">
+                        <Link >
                         <div className="h5  col-md-6 text-left">Type 1 Diabetes</div>
                         
                    
                     </Link>
                         </div>
                         <div className="col-md-6 float-left">
-                        <Link to="/searchmedicine/medicinetype/1">
+                        <Link >
                         <div className="h5 col-md-6 text-right">Type 2 Diabetes</div>
                         
                    
@@ -1619,7 +1649,7 @@ Rosacea</div>
                     
                             <div >
                         <div className="col-md-6 float-left">
-                        <Link to="/searchcategory/disease/1">
+                        <Link >
                         <div className="h5 col-md-6 text-right">Ulcerative Colitis
                         </div>
                         
@@ -1627,7 +1657,7 @@ Rosacea</div>
                     </Link>
                         </div>
                         <div className="col-md-6 float-left">
-                        <Link to="/searchmedicine/medicinetype/1">
+                        <Link >
                         <div className="h5  col-md-6 text-left">Urinary Disorders</div>
                         
                    
@@ -1635,7 +1665,7 @@ Rosacea</div>
                         </div>
                     
                         <div className="col-md-6 float-left">
-                        <Link to="/searchmedicine/medicinetype/1">
+                        <Link >
                         <div className="h5 col-md-6 text-right">Urinary Tract Infection</div>
                         
                    
@@ -1643,7 +1673,7 @@ Rosacea</div>
                         </div>
 
                         <div className="col-md-6 float-left">
-                        <Link to="/searchmedicine/medicinetype/1">
+                        <Link >
                         <div className="h5  col-md-6 text-left">Uterine Fibroids</div>
                         
                    
@@ -1662,7 +1692,7 @@ Rosacea</div>
                     
                             <div >
                         <div className="col-md-6 float-left">
-                        <Link to="/searchcategory/disease/1">
+                        <Link >
                         <div className="h5 col-md-6 text-right">Varicose Veins
                         </div>
                         
@@ -1670,7 +1700,7 @@ Rosacea</div>
                     </Link>
                         </div>
                         <div className="col-md-6 float-left">
-                        <Link to="/searchmedicine/medicinetype/1">
+                        <Link >
                         <div className="h5  col-md-6 text-left">Vascular Disease</div>
                         
                    
@@ -1678,7 +1708,7 @@ Rosacea</div>
                         </div>
                     
                         <div className="col-md-6 float-left">
-                        <Link to="/searchmedicine/medicinetype/1">
+                        <Link >
                         <div className="h5 col-md-6 text-right">Vertigo</div>
                         
                    
@@ -1686,13 +1716,64 @@ Rosacea</div>
                         </div>
 
                         <div className="col-md-6 float-left">
-                        <Link to="/searchmedicine/medicinetype/1">
+                        <Link >
                         <div className="h5  col-md-6 text-left">Vision Correction</div>
                         
                    
                     </Link>
                         </div>
                   
+                       
+                    </div>  </div> </div>  
+                </div>
+                <div className="">
+                <div className="container">
+                   
+                <div className="card my-3">
+                        <div className="card-title h3  py-2 border-bottom" id='dis'> Disease Starting From <b>"X"</b></div>
+                    
+                            <div >
+                        <div className="col-md-6 float-left">
+                      <h5>There Are No Diseases Beginning With This Letter</h5>
+                   
+
+
+
+        </div>
+                       
+                    </div>  </div> </div>  
+                </div>
+                <div className="">
+                <div className="container">
+                   
+                <div className="card my-3">
+                        <div className="card-title h3  py-2 border-bottom" id='dis'> Disease Starting From <b>"Y"</b></div>
+                    
+                            <div >
+                        <div className="col-md-6 float-left">
+                      <h5>There Are No Diseases Beginning With This Letter</h5>
+                   
+
+
+
+        </div>
+                       
+                    </div>  </div> </div>  
+                </div>
+                <div className="">
+                <div className="container">
+                   
+                <div className="card my-3">
+                        <div className="card-title h3  py-2 border-bottom" id='dis'> Disease Starting From <b>"Z"</b></div>
+                    
+                            <div >
+                        <div className="col-md-6 float-left">
+                      <h5>There Are No Diseases Beginning With This Letter</h5>
+                   
+
+
+
+        </div>
                        
                     </div>  </div> </div>  
                 </div>

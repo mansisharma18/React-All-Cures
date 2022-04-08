@@ -79,85 +79,23 @@ function Disease() {
                 
 
               
-             
-              
-                             <div className="card my-3">
-                        <div className="card-title h3  py-2 border-bottom" id='dis'> Disease Starting From <b>"A"</b></div>
+                             <div className="">
+                <div className="container">
+                   
+                <div className="card my-3">
+                        <div className="card-title h3  py-2 border-bottom" id='dis'> Disease Starting From <b>"B"</b></div>
                     
                             <div >
                         <div className="col-md-6 float-left">
-                        <Link to="/searchcategory/disease/1">
-                        <div className="h5  col-md-6 text-right">Arthritis</div>
-                        
- </Link>
-                        </div>
-                        
-                        <div className="col-md-6 float-left">
-                        <Link>
-                        <div className="h5  col-md-6 text-left">Ankylosing Spondylitis</div>
-                        
-                   </Link>
-                        </div>
-
-                        <div className="col-md-6 float-left">
-                            <Link>
-                        <div className="h5 col-md-6 text-right">Anemia</div>
-                        
-                        </Link>
-                        </div>
-
-                        <div className="col-md-6 float-left">
-                        <Link >
-                        <div className="h5  col-md-6 text-left">Alzheimer's Disease</div>
+                        <Link to="/searchcategory/disease/12">
+                        <div className="h5 col-md-6 text-right">Blood Disorders</div>
                         
                    
                     </Link>
                         </div>
                         <div className="col-md-6 float-left">
                         <Link >
-                        <div className="h5 col-md-6 text-right">Autism</div>
-                        
-                   
-                    </Link>
-                        </div>
-                        <div className="col-md-6 float-left">
-                        <Link >
-                        <div className="h5  col-md-6 text-left">Atrial Fibrillation</div>
-                        
-                   
-                    </Link>
-                        </div>
-                        <div className="col-md-6 float-left">
-                        <Link >
-                        <div className="h5 col-md-6 text-right"> Allergies</div>
-                        
-                   
-                    </Link>
-                        </div>
-                        <div className="col-md-6 float-left">
-                        <Link >
-                        <div className="h5  col-md-6 text-left"> Addictions Substance</div>
-                        
-                   
-                    </Link>
-                        </div>
-                        <div className="col-md-6 float-left">
-                        <Link >
-                        <div className="h5 col-md-6 text-right"> Asthma</div>
-                        
-                   
-                    </Link>
-                        </div>
-                        <div className="col-md-6 float-left">
-                        <Link >
-                        <div className="h5  col-md-6 text-left">Athlete's Foot</div>
-                        
-                   
-                    </Link>
-                        </div>
-                        <div className="col-md-6 float-left">
-                        <Link >
-                        <div className="h5 col-md-6 text-right">Anaphylaxis</div>
+                        <div className="h5  col-md-6 text-left">Bones and Joints</div>
                         
                    
                     </Link>
@@ -165,15 +103,7 @@ function Disease() {
 
                         <div className="col-md-6 float-left">
                         <Link >
-                        <div className="h5  col-md-6 text-left">ADHD - ADD</div>
-                        
-                   
-                    </Link>
-                        </div>
-
-                        <div className="col-md-6 float-left">
-                        <Link to="/searchmedicine/disease/156">
-                        <div className="h5 col-md-6 text-right">Acne</div>
+                        <div className="h5 col-md-6 text-right"> Bladder Cancer</div>
                         
                    
                     </Link>
@@ -181,62 +111,54 @@ function Disease() {
 
                         <div className="col-md-6 float-left">
                         <Link >
-                        <div className="h5  col-md-6 text-left">Abdominal Pain</div>
+                        <div className="h5  col-md-6 text-left">Brain and Nervous</div>
                         
                    
                     </Link>
                         </div>
-
-                        
                         <div className="col-md-6 float-left">
                         <Link >
-                        <div className="h5 col-md-6 text-right">Abuse topics</div>
+                        <div className="h5 col-md-6 text-right">Brain Cancer</div>
                         
                    
                     </Link>
                         </div>
-
                         <div className="col-md-6 float-left">
                         <Link >
-                        <div className="h5  col-md-6 text-left"> Anxiety - Panic Disorder</div>
+                        <div className="h5  col-md-6 text-left">Brain Tumors</div>
                         
                    
                     </Link>
                         </div>
-
                         <div className="col-md-6 float-left">
                         <Link >
-                        <div className="h5 col-md-6 text-right">Abortion</div>
+                        <div className="h5 col-md-6 text-right">Breast Cancer</div>
                         
                    
                     </Link>
                         </div>
-
                         <div className="col-md-6 float-left">
                         <Link >
-                        <div className="h5  col-md-6 text-left">Acute Renal Failure</div>
+                        <div className="h5  col-md-6 text-left"> Bipolar Disorder</div>
                         
                    
                     </Link>
                         </div>
-
                         <div className="col-md-6 float-left">
                         <Link >
-                        <div className="h5 col-md-6 text-right"> Appendicitis
-                        
-                        </div>
+                        <div className="h5 col-md-6 text-right">Back Pain</div>
                         
                    
                     </Link>
                         </div>
+                      
+                    </div>  </div> </div>  
+                </div>
 
 
-                    </div>
+
                    
-                       
-                    </div>
-
-
+                   
                     </div>
                    
                 </div>

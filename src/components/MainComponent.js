@@ -41,6 +41,36 @@ import Categorypage from "./BlogPage/Categorypage";
 import AllDisease from "./Header/AllDisease"
 import privacy from './BlogPage/Privacy'
 import A from './Header/Health A To Z/A'
+import B from './Header/Health A To Z/B'
+import C from './Header/Health A To Z/C'
+import D from './Header/Health A To Z/D'
+import E from './Header/Health A To Z/E'
+import F from './Header/Health A To Z/F'
+import G from './Header/Health A To Z/G'
+import H from './Header/Health A To Z/H'
+import I from './Header/Health A To Z/I'
+import K from './Header/Health A To Z/K'
+import L from './Header/Health A To Z/L'
+import M from './Header/Health A To Z/M'
+import N from './Header/Health A To Z/N'
+import O from './Header/Health A To Z/O'
+import P from './Header/Health A To Z/P'
+import R from './Header/Health A To Z/R'
+import S from './Header/Health A To Z/S'
+import T from './Header/Health A To Z/T'
+import U from './Header/Health A To Z/U'
+import V from './Header/Health A To Z/V'
+import J from './Header/Health A To Z/J'
+import Q from './Header/Health A To Z/Q'
+
+import X from './Header/Health A To Z/X'
+
+import Y from './Header/Health A To Z/Y'
+
+import Z from './Header/Health A To Z/Z'
+
+
+
 
 function Main(props) {
   const history = useHistory()
@@ -105,7 +135,32 @@ const Routes = (props) => {
 
         {/* Health a to z Page */}
 
-        <Route exact path="/A" component={A} />
+        <Route exact path="/alldisease-A" component={A} />
+        <Route exact path="/alldisease-B" component={B} />
+        <Route exact path="/alldisease-C" component={C} />
+        <Route exact path="/alldisease-D" component={D} />
+        <Route exact path="/alldisease-E" component={E} />
+        <Route exact path="/alldisease-F" component={F} />
+        <Route exact path="/alldisease-G" component={G} />
+        <Route exact path="/alldisease-H" component={H} />
+        <Route exact path="/alldisease-I" component={I} />
+        <Route exact path="/alldisease-K" component={K} />
+        <Route exact path="/alldisease-L" component={L} />
+        <Route exact path="/alldisease-M" component={M} />
+        <Route exact path="/alldisease-N" component={N} />
+        <Route exact path="/alldisease-O" component={O} />
+        <Route exact path="/alldisease-P" component={P} />
+        <Route exact path="/alldisease-R" component={R} />
+        <Route exact path="/alldisease-S" component={S} />
+        <Route exact path="/alldisease-T" component={T} />
+        <Route exact path="/alldisease-U" component={U} />
+        <Route exact path="/alldisease-V" component={V} />
+
+        <Route exact path="/alldisease-J" component={J} />
+        <Route exact path="/alldisease-Q" component={Q} />
+        <Route exact path="/alldisease-X" component={X} />
+        <Route exact path="/alldisease-Y" component={Y} />
+        <Route exact path="/alldisease-Z" component={Z} />
       
 
       {/* Doctor search page */}
