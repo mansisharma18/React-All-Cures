@@ -84,62 +84,62 @@ function Disease() {
                     
                             <div >
                         <div className="col-md-6 float-left">
-                        <Link >
+                       
                         <div className="h5 col-md-6 text-right">Lactose intolerance</div>
                         
                    
-                    </Link>
+                    
                         </div>
                         <div className="col-md-6 float-left">
-                        <Link >
+                       
                         <div className="h5  col-md-6 text-left">Leukemia</div>
                         
                    
-                    </Link>
+                    
                         </div>
                     
                         <div className="col-md-6 float-left">
-                        <Link >
+                       
                         <div className="h5 col-md-6 text-right">Liver Disease</div>
                         
                    
-                    </Link>
+                    
                         </div>
 
                         <div className="col-md-6 float-left">
-                        <Link >
+                       
                         <div className="h5  col-md-6 text-left">Low Testerone</div>
                         
                    
-                    </Link>
+                    
                         </div>
                         <div className="col-md-6 float-left">
-                        <Link >
-                        <div className="h5 col-md-6 text-right">Lung&Respiratory Health</div>
+                       
+                        <div className="h5 col-md-6 text-right">Lung Cancer</div>
                         
                    
-                    </Link>
+                    
                         </div>
                         <div className="col-md-6 float-left">
-                        <Link >
-                        <div className="h5  col-md-6 text-left">Lung Cancer</div>
+                       
+                        <div className="h5  col-md-6 text-left"> Lung&Respiratory Health</div>
                         
                    
-                    </Link>
+                    
                         </div>
                         <div className="col-md-6 float-left">
-                        <Link >
+                       
                         <div className="h5 col-md-6 text-right">Lupus</div>
                         
                    
-                    </Link>
+                    
                         </div>
                         <div className="col-md-6 float-left">
-                        <Link >
+                       
                         <div className="h5  col-md-6 text-left"> Lyme Disease</div>
                         
                    
-                    </Link>
+                    
                         </div>
                       
                       

@@ -87,146 +87,146 @@ function Disease() {
                     
                             <div >
                         <div className="col-md-6 float-left">
-                        <Link >
+                     
                         <div className="h5 col-md-6 text-right">Cancer</div>
                         
                    
-                    </Link>
+                   
                         </div>
                         <div className="col-md-6 float-left">
-                        <Link >
+                     
                         <div className="h5  col-md-6 text-left">Chronic Fatigue </div>
                         
                    
-                    </Link>
+                   
                         </div>
 
                         <div className="col-md-6 float-left">
-                        <Link >
+                     
                         <div className="h5 col-md-6 text-right">Carcinoid Tumors</div>
                         
                    
-                    </Link>
+                   
                         </div>
 
                         <div className="col-md-6 float-left">
-                        <Link >
+                     
                         <div className="h5  col-md-6 text-left">Cervical Cancer</div>
                         
                    
-                    </Link>
+                   
                         </div>
                         <div className="col-md-6 float-left">
-                        <Link >
+                     
                         <div className="h5 col-md-6 text-right">Colorectal Cancer</div>
                         
                    
-                    </Link>
+                   
                         </div>
                         <div className="col-md-6 float-left">
-                        <Link >
+                     
                         <div className="h5  col-md-6 text-left">Cardiovascular</div>
                         
                    
-                    </Link>
+                   
                         </div>
                         <div className="col-md-6 float-left">
-                        <Link >
+                     
                         <div className="h5 col-md-6 text-right">Celiac Disease</div>
                         
                    
-                    </Link>
+                   
                         </div>
                         <div className="col-md-6 float-left">
-                        <Link >
+                     
                         <div className="h5  col-md-6 text-left"> Cholesterol Management</div>
                         
                    
-                    </Link>
+                   
                         </div>
                         <div className="col-md-6 float-left">
-                        <Link >
+                     
                         <div className="h5 col-md-6 text-right">Constipation</div>
                         
                    
-                    </Link>
+                   
                         </div>
                         <div className="col-md-6 float-left">
-                        <Link >
+                     
                         <div className="h5  col-md-6 text-left"> Crohn's Disease </div>
                         
                    
-                    </Link>
+                   
                         </div>
                         <div className="col-md-6 float-left">
-                        <Link >
+                     
                         <div className="h5 col-md-6 text-right">Cataracts</div>
                         
                    
-                    </Link>
+                   
                         </div>
                         <div className="col-md-6 float-left">
-                        <Link >
+                     
                         <div className="h5  col-md-6 text-left"> Chicken Pox </div>
                         
                    
-                    </Link>
+                   
                         </div>
                         <div className="col-md-6 float-left">
-                        <Link >
+                     
                         <div className="h5 col-md-6 text-right">Cold and Flu</div>
                         
                    
-                    </Link>
+                   
                         </div>
                         <div className="col-md-6 float-left">
-                        <Link >
+                     
                         <div className="h5  col-md-6 text-left"> Cold </div>
                         
                    
-                    </Link>
+                   
                         </div>
                         <div className="col-md-6 float-left">
-                        <Link >
+                     
                         <div className="h5 col-md-6 text-right">COPD</div>
                         
                    
-                    </Link>
+                   
                         </div>
                         <div className="col-md-6 float-left">
-                        <Link >
+                     
                         <div className="h5  col-md-6 text-left">Cystic Fibrosis</div>
                         
                    
-                    </Link>
+                   
                         </div>
                         <div className="col-md-6 float-left">
-                        <Link >
+                     
                         <div className="h5 col-md-6 text-right">Canker Sores</div>
                         
                    
-                    </Link>
+                   
                         </div>
                         <div className="col-md-6 float-left">
-                        <Link >
+                     
                         <div className="h5  col-md-6 text-left"> Carpal Tunnel Syndrome </div>
                         
                    
-                    </Link>
+                   
                         </div>
                         <div className="col-md-6 float-left">
-                        <Link >
+                     
                         <div className="h5 col-md-6 text-right">Chronic Female Pelvic Pain</div>
                         
                    
-                    </Link>
+                   
                         </div>
                         <div className="col-md-6 float-left">
-                        <Link >
+                     
                         <div className="h5  col-md-6 text-left"> Chronic Kidney Disease </div>
                         
                    
-                    </Link>
+                   
                         </div>
                       
                     </div>  </div> </div>  

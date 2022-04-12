@@ -84,126 +84,126 @@ function Disease() {
                     
                             <div >
                         <div className="col-md-6 float-left">
-                        <Link >
+                        
                         <div className="h5 col-md-6 text-right">  Schizophrenia</div>
                         
                    
-                    </Link>
+                  
                         </div>
                         <div className="col-md-6 float-left">
-                        <Link >
+                        
                         <div className="h5  col-md-6 text-left">Sensitive topics</div>
                         
                    
-                    </Link>
+                  
                         </div>
 
                         <div className="col-md-6 float-left">
-                        <Link >
+                        
                         <div className="h5 col-md-6 text-right">Sexual Conditions</div>
                         <div className="col-md-6 rounded" id="ayurveda">
   </div>
                    
-                    </Link>
+                  
                         </div>
 
                         <div className="col-md-6 float-left">
-                        <Link >
+                        
                         <div className="h5  col-md-6 text-left">Sexual Health</div>
                         
                    
-                    </Link>
+                  
                         </div>
                         <div className="col-md-6 float-left">
-                        <Link >
+                        
                         <div className="h5 col-md-6 text-right">Shingles</div>
                         
                    
-                    </Link>
+                  
                         </div>
                         
                         <div className="col-md-6 float-left">
-                        <Link >
+                        
                         <div className="h5  col-md-6 text-left">Sinusitis</div>
                         
                    
-                    </Link>
+                  
                         </div>
                         <div className="col-md-6 float-left">
-                        <Link >
+                        
                         <div className="h5 col-md-6 text-right">Sjogren's Syndrome</div>
                         
                    
      
-              </Link>
+            
                         </div>
                         <div className="col-md-6 float-left">
                         <Link to="/searchmedicine/disease/155">
                         <div className="h5  col-md-6 text-left">Skin Problems</div>
                         
                    
-                </Link>
+                </Link >
                         </div>
                         <div className="col-md-6 float-left">
-                        <Link >
+                        
                         <div className="h5 col-md-6 text-right">Sleep Apnea</div>
                         
                    
-                    </Link>
+                  
                         </div>
                         <div className="col-md-6 float-left">
-                        <Link >
+                        
                         <div className="h5  col-md-6 text-left">Sleep Disorders</div>
                         
                    
-                    </Link>
+                  
                         </div>
                         
   <div className="col-md-6 float-left">
-                        <Link >
+                        
                         <div className="h5 col-md-6 text-right">Smoking Cessation</div>
                         
                    
-                    </Link>
+                  
                         </div>
 
                         <div className="col-md-6 float-left">
-                        <Link >
+                        
                         <div className="h5  col-md-6 text-left">Spinal Cord Disorders</div>
                         
                    
-                    </Link>
+                  
                         </div>                                                                                
                         <div className="col-md-6 float-left">
-                        <Link >
+                        
                         <div className="h5 col-md-6 text-right">STDs</div>
                         
                    
-                    </Link>
+                  
                         </div>
 
                         <div className="col-md-6 float-left">
-                        <Link >
+                        
                         <div className="h5  col-md-6 text-left">Strep Throat</div>
                         
                    
-                    </Link>
+                  
                         </div>
 
                         <div className="col-md-6 float-left">
-                        <Link >
+                        
                         <div className="h5 col-md-6 text-right">Stroke</div>
                         
                    
-                    </Link>
+                  
                         </div>
 
                         <div className="col-md-6 float-left">
-                        <Link >
+                        
                         <div className="h5  col-md-6 text-left">Swine Flu </div>
                         
                    
-                    </Link>
+                  
                         </div>
 
 

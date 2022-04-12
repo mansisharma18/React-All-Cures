@@ -84,93 +84,93 @@ function Disease() {
                     
                             <div >
                         <div className="col-md-6 float-left">
-                        <Link >
+                        
                         <div className="h5 col-md-6 text-right"> Pain Management</div>
                         
                    
-                    </Link>
+                   
                         </div>
                         <div className="col-md-6 float-left">
-                        <Link >
+                        
                         <div className="h5  col-md-6 text-left">Pancreatic Cancer</div>
                         
                    
-                    </Link>
+                   
                         </div>
 
                         <div className="col-md-6 float-left">
-                        <Link >
+                        
                         <div className="h5 col-md-6 text-right">Parkinson's Disease</div>
                         
                    
-                    </Link>
+                   
                         </div>
 
                         <div className="col-md-6 float-left">
-                        <Link >
+                        
                         <div className="h5  col-md-6 text-left">Pelvic Inflammatory Disease</div>
                         
                    
-                    </Link>
+                   
                         </div>
                         <div className="col-md-6 float-left">
-                        <Link >
+                        
                         <div className="h5 col-md-6 text-right">Pink Eye - Conjunctivitis</div>
                         
                    
-                    </Link>
+                   
                         </div>
                         
                         <div className="col-md-6 float-left">
-                        <Link >
+                        
                         <div className="h5  col-md-6 text-left">PMS</div>
                         
                    
-                    </Link>
+                   
                         </div>
                         <div className="col-md-6 float-left">
-                        <Link >
+                        
                         <div className="h5 col-md-6 text-right">Pneumonia</div>
                         
                    
-                    </Link>
+                   
                         </div>
                         <div className="col-md-6 float-left">
-                        <Link >
+                        
                         <div className="h5  col-md-6 text-left"> Polycystic Ovary Syndrome</div>
                         
                    
-                </Link>
+               
                         </div>
                         <div className="col-md-6 float-left">
-                        <Link >
+                        
                         <div className="h5 col-md-6 text-right">Postpartum Depression</div>
                         
                    
-                    </Link>
+                   
                         </div>
                         <div className="col-md-6 float-left">
-                        <Link >
+                        
                         <div className="h5  col-md-6 text-left">Pregnancy Complications</div>
                         
                    
-                    </Link>
+                   
                         </div>
                         
   <div className="col-md-6 float-left">
-                        <Link >
+                        
                         <div className="h5 col-md-6 text-right">Prostate Cancer</div>
                         
                    
-                    </Link>
+                   
                         </div>
 
                         <div className="col-md-6 float-left">
-                        <Link >
+                        
                         <div className="h5  col-md-6 text-left">Prostate Enlargement/BPH</div>
                         
                    
-                    </Link>
+                   
                         </div>
 
                         <div className="col-md-6 float-left">
@@ -178,15 +178,15 @@ function Disease() {
                         <div className="h5 col-md-6 text-right">Psoriasis</div>
                         
                    
-                    </Link>
+                    </Link >
                         </div>
 
                         <div className="col-md-6 float-left">
-                        <Link >
+                        
                         <div className="h5  col-md-6 text-left">Psoriatic Arthritis</div>
                         
                    
-                    </Link>
+                   
                         </div>
 
 

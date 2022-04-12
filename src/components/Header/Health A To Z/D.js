@@ -89,58 +89,58 @@ function Disease() {
                         <div className="h5 col-md-6 text-right">Diabetes</div>
                         
                    
-                    </Link>
+                    </Link >
                         </div>
                         <div className="col-md-6 float-left">
-                        <Link >
+                        
                         <div className="h5  col-md-6 text-left">Diabetic Neuropathy</div>
                         
                    
-                    </Link>
+                    
                         </div>
 
                         <div className="col-md-6 float-left">
-                        <Link >
+                        
                         <div className="h5 col-md-6 text-right">Depression</div>
                         
                    
-                    </Link>
+                    
                         </div>
 
                         <div className="col-md-6 float-left">
-                        <Link >
+                        
                         <div className="h5  col-md-6 text-left">Depression Treatment-Resistant</div>
                         
                    
-                    </Link>
+                    
                         </div>
                         <div className="col-md-6 float-left">
-                        <Link >
+                        
                         <div className="h5 col-md-6 text-right">Dry Mouth</div>
                         
                    
-                    </Link>
+                    
                         </div>
                         <div className="col-md-6 float-left">
-                        <Link >
+                        
                         <div className="h5  col-md-6 text-left">Digestive Disorders</div>
                         
                    
-                    </Link>
+                    
                         </div>
                         <div className="col-md-6 float-left">
-                        <Link >
+                        
                         <div className="h5 col-md-6 text-right">Dupuytren's</div>
                         
                    
-                    </Link>
+                    
                         </div>
                         <div className="col-md-6 float-left">
-                        <Link >
+                        
                         <div className="h5  col-md-6 text-left"> DVT</div>
                         
                    
-                    </Link>
+                    
                         </div>
                       
                       

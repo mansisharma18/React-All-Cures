@@ -88,87 +88,87 @@ function Disease() {
                         <div className="col-md-6 float-left">
                         <Link to="/searchcategory/disease/1">
                         <div className="h5  col-md-6 text-right">Arthritis</div>
-                        
- </Link>
+                        </Link>
+
                         </div>
                         
                         <div className="col-md-6 float-left">
-                        <Link>
+                        
                         <div className="h5  col-md-6 text-left">Ankylosing Spondylitis</div>
                         
-                   </Link>
+                  
                         </div>
 
                         <div className="col-md-6 float-left">
-                            <Link>
+                            
                         <div className="h5 col-md-6 text-right">Anemia</div>
                         
-                        </Link>
+                       
                         </div>
 
                         <div className="col-md-6 float-left">
-                        <Link >
+                        
                         <div className="h5  col-md-6 text-left">Alzheimer's Disease</div>
                         
                    
-                    </Link>
+                   
                         </div>
                         <div className="col-md-6 float-left">
-                        <Link >
+                        
                         <div className="h5 col-md-6 text-right">Autism</div>
                         
                    
-                    </Link>
+                   
                         </div>
                         <div className="col-md-6 float-left">
-                        <Link >
+                        
                         <div className="h5  col-md-6 text-left">Atrial Fibrillation</div>
                         
                    
-                    </Link>
+                   
                         </div>
                         <div className="col-md-6 float-left">
-                        <Link >
+                        
                         <div className="h5 col-md-6 text-right"> Allergies</div>
                         
                    
-                    </Link>
+                   
                         </div>
                         <div className="col-md-6 float-left">
-                        <Link >
+                        
                         <div className="h5  col-md-6 text-left"> Addictions Substance</div>
                         
                    
-                    </Link>
+                   
                         </div>
                         <div className="col-md-6 float-left">
-                        <Link >
+                        
                         <div className="h5 col-md-6 text-right"> Asthma</div>
                         
                    
-                    </Link>
+                   
                         </div>
                         <div className="col-md-6 float-left">
-                        <Link >
+                        
                         <div className="h5  col-md-6 text-left">Athlete's Foot</div>
                         
                    
-                    </Link>
+                   
                         </div>
                         <div className="col-md-6 float-left">
-                        <Link >
+                        
                         <div className="h5 col-md-6 text-right">Anaphylaxis</div>
                         
                    
-                    </Link>
+                   
                         </div>
 
                         <div className="col-md-6 float-left">
-                        <Link >
+                        
                         <div className="h5  col-md-6 text-left">ADHD - ADD</div>
                         
                    
-                    </Link>
+                   
                         </div>
 
                         <div className="col-md-6 float-left">
@@ -176,58 +176,58 @@ function Disease() {
                         <div className="h5 col-md-6 text-right">Acne</div>
                         
                    
-                    </Link>
+                    </Link >
                         </div>
 
                         <div className="col-md-6 float-left">
-                        <Link >
+                        
                         <div className="h5  col-md-6 text-left">Abdominal Pain</div>
                         
                    
-                    </Link>
+                   
                         </div>
 
                         
                         <div className="col-md-6 float-left">
-                        <Link >
+                        
                         <div className="h5 col-md-6 text-right">Abuse topics</div>
                         
                    
-                    </Link>
+                   
                         </div>
 
                         <div className="col-md-6 float-left">
-                        <Link >
+                        
                         <div className="h5  col-md-6 text-left"> Anxiety - Panic Disorder</div>
                         
                    
-                    </Link>
+                   
                         </div>
 
                         <div className="col-md-6 float-left">
-                        <Link >
+                        
                         <div className="h5 col-md-6 text-right">Abortion</div>
                         
                    
-                    </Link>
+                   
                         </div>
 
                         <div className="col-md-6 float-left">
-                        <Link >
+                        
                         <div className="h5  col-md-6 text-left">Acute Renal Failure</div>
                         
                    
-                    </Link>
+                   
                         </div>
 
                         <div className="col-md-6 float-left">
-                        <Link >
+                        
                         <div className="h5 col-md-6 text-right"> Appendicitis
                         
                         </div>
                         
                    
-                    </Link>
+                   
                         </div>
 
 

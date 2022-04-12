@@ -83,77 +83,77 @@ function Disease() {
                     
                             <div >
                         <div className="col-md-6 float-left">
-                        <Link >
+                       
                         <div className="h5 col-md-6 text-right">Ear Disorders</div>
                         
                    
-                    </Link>
+                    
                         </div>
                         <div className="col-md-6 float-left">
-                        <Link >
+                       
                         <div className="h5  col-md-6 text-left">Eating Disorders</div>
                         
                    
-                    </Link>
+                    
                         </div>
 
                         <div className="col-md-6 float-left">
-                        <Link >
+                       
                         <div className="h5 col-md-6 text-right">Eczema</div>
                         
                    
-                    </Link>
+                    
                         </div>
 
                         <div className="col-md-6 float-left">
-                        <Link >
+                       
                         <div className="h5  col-md-6 text-left">Endocrine and metabolic Diseases</div>
                         
                    
-                    </Link>
+                    
                         </div>
                         <div className="col-md-6 float-left">
-                        <Link >
+                       
                         <div className="h5 col-md-6 text-right">Endometriosis</div>
                         
                    
-                    </Link>
+                    
                         </div>
                         <div className="col-md-6 float-left">
-                        <Link >
+                       
                         <div className="h5  col-md-6 text-left">Epilepsy</div>
                         
                    
-                    </Link>
+                    
                         </div>
                         <div className="col-md-6 float-left">
-                        <Link >
+                       
                         <div className="h5 col-md-6 text-right">Erectile Dysfunction</div>
                         
                    
-                    </Link>
+                    
                         </div>
                         <div className="col-md-6 float-left">
-                        <Link >
+                       
                         <div className="h5  col-md-6 text-left"> Essential Tremors</div>
                         
                    
-                    </Link>
+                    
                         </div>
 
                         <div className="col-md-6 float-left">
-                        <Link >
+                       
                         <div className="h5 col-md-6 text-right">Estrogen Replacement Therapy</div>
                         
                    
-                    </Link>
+                    
                         </div>
                         <div className="col-md-6 float-left">
-                        <Link >
+                       
                         <div className="h5  col-md-6 text-left"> Eye Health</div>
                         
                    
-                    </Link>
+                    
                         </div>
                       
                     </div>  </div> </div>  

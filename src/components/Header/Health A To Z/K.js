@@ -83,38 +83,38 @@ function Disease() {
                     
                             <div >
                         <div className="col-md-6 float-left">
-                        <Link >
+                        
                         <div className="h5 col-md-6 text-right">  Kidney Cancer</div>
                         
                    
-                    </Link>
+                  
                    
 
 
 
         </div>
                         <div className="col-md-6 float-left">
-                        <Link >
+                        
                         <div className="h5  col-md-6 text-left">Kidney Disorders</div>
                         
                    
-                    </Link>
+                  
                         </div>
                     
                         <div className="col-md-6 float-left">
-                        <Link >
+                        
                         <div className="h5 col-md-6 text-right">Kidney Stones</div>
                         
                    
-                    </Link>
+                  
                         </div>
 
                         <div className="col-md-6 float-left">
-                        <Link >
+                        
                         <div className="h5  col-md-6 text-left">Knee Pain</div>
                         
                    
-                    </Link>
+                  
                         </div>
                     
                     

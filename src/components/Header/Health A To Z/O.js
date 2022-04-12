@@ -84,41 +84,41 @@ function Disease() {
                     
                             <div >
                         <div className="col-md-6 float-left">
-                        <Link >
+                        
                         <div className="h5 col-md-6 text-right">Oral Cancer</div>
                         
                    
-                    </Link>
+                    
                         </div>
                         <div className="col-md-6 float-left">
-                        <Link >
+                        
                         <div className="h5  col-md-6 text-left">Oral Diseases</div>
                         
                    
-                    </Link>
+                    
                         </div>
                     
                         <div className="col-md-6 float-left">
-                        <Link >
+                        
                         <div className="h5 col-md-6 text-right">Osteoarthritis</div>
                         
                    
-                    </Link>
+                    
                         </div>
 
                         <div className="col-md-6 float-left">
-                        <Link >
+                        
                         <div className="h5  col-md-6 text-left">Osteoporosis</div>
                         
                    
-                    </Link>
+                    
                         </div>
                         <div className="col-md-6 float-left">
-                        <Link >
+                        
                         <div className="h5 col-md-6 text-right">Ovarian Cancer</div>
                         
                    
-                    </Link>
+                    
                         </div>
                        
                     </div>  </div> </div>  

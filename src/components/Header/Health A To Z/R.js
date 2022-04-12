@@ -85,36 +85,36 @@ function Disease() {
                     
                             <div >
                         <div className="col-md-6 float-left">
-                        <Link >
+                       
                         <div className="h5 col-md-6 text-right"> Reproduction</div>
                         
                    
-                    </Link>
+                   
                         </div>
                         <div className="col-md-6 float-left">
                        
-                  <Link >
+                 
                         <div className="h5  col-md-6 text-left">Rheumatoid Arthritis</div>
                         
                    
-                    </Link>
+                   
                         </div>
                     
                         <div className="col-md-6 float-left">
-                        <Link >
+                       
                         <div className="h5 col-md-6 text-right">Restless Leg Syndrome (RLS)</div>
                         
                    
-                    </Link>
+                   
                         </div>
 
                         <div className="col-md-6 float-left">
-                        <Link >
+                       
                         <div className="h5  col-md-6 text-left">
 Rosacea</div>
                         
                    
-                    </Link>
+                   
                         </div>
                        
                        

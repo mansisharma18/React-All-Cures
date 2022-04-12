@@ -83,42 +83,42 @@ function Disease() {
                     
                             <div >
                         <div className="col-md-6 float-left">
-                        <Link >
+                       
                         <div className="h5 col-md-6 text-right">Thrush
                         </div>
                         
                    
-                    </Link>
+                   
                         </div>
                         <div className="col-md-6 float-left">
                         <Link to="/searchmedicine/disease/87">
                         <div className="h5  col-md-6 text-left">Thyroid Disorders</div>
                         
                    
-                    </Link>
+                    </Link >
                         </div>
                     
                         <div className="col-md-6 float-left">
-                        <Link >
+                       
                         <div className="h5 col-md-6 text-right">Triglycerides</div>
                         
                    
-                    </Link>
+                   
                         </div>
 
                         <div className="col-md-6 float-left">
-                        <Link >
+                       
                         <div className="h5  col-md-6 text-left">Type 1 Diabetes</div>
                         
                    
-                    </Link>
+                   
                         </div>
                         <div className="col-md-6 float-left">
-                        <Link >
+                       
                         <div className="h5 col-md-6 text-right">Type 2 Diabetes</div>
                         
                    
-                    </Link>
+                   
                         </div>
                        
                     </div>  </div> </div>  

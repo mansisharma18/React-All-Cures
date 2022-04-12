@@ -85,18 +85,18 @@ function Disease() {
                     
                             <div >
                         <div className="col-md-6 float-left">
-                        <Link >
+                      
                         <div className="h5 col-md-6 text-right">Narcolepsy</div>
                         
                    
-                    </Link>
+                 
                         </div>
                         <div className="col-md-6 float-left">
-                        <Link >
+                      
                         <div className="h5  col-md-6 text-left">Non-Hodgkin's Lymphoma</div>
                         
                    
-                    </Link>
+                 
                         </div>
                     
                       
