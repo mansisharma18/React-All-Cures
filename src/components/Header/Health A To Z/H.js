@@ -77,152 +77,153 @@ function Disease() {
                     
                              </div>  
                 
-
-              
-             
-              
-                             <div className="card my-3">
-                        <div className="card-title h3  py-2 border-bottom" id='dis'> Disease Starting From <b>"A"</b></div>
+                             <div className="">
+                <div className="container">
+                <div className="card my-3">
+                        <div className="card-title h3  py-2 border-bottom" id='dis'> Disease Starting From <b>"H"</b></div>
                     
                             <div >
                         <div className="col-md-6 float-left">
-                        <Link to="/searchcategory/disease/1">
-                        <div className="h5  col-md-6 text-right">Arthritis</div>
-                        </Link>
-
-                        </div>
+                       
+                        <div className="h5 col-md-6 text-right">Hair Loss</div>
                         
-                        <div className="col-md-6 float-left">
-                        
-                        <div className="h5  col-md-6 text-left">Ankylosing Spondylitis</div>
-                        
+                   
                   
                         </div>
-
                         <div className="col-md-6 float-left">
-                            
-                        <div className="h5 col-md-6 text-right">Anemia</div>
-                        
-                       
-                        </div>
-
-                        <div className="col-md-6 float-left">
-                        
-                        <div className="h5  col-md-6 text-left">Alzheimer's Disease</div>
-                        
-                   
-                   
-                        </div>
-                        <div className="col-md-6 float-left">
-                        
-                        <div className="h5 col-md-6 text-right">Autism</div>
-                        
-                   
-                   
-                        </div>
-                        <div className="col-md-6 float-left">
-                        
-                        <div className="h5  col-md-6 text-left">Atrial Fibrillation</div>
-                        
-                   
-                   
-                        </div>
-                        <div className="col-md-6 float-left">
-                        
-                        <div className="h5 col-md-6 text-right"> Allergies</div>
-                        
-                   
-                   
-                        </div>
-                        <div className="col-md-6 float-left">
-                        
-                        <div className="h5  col-md-6 text-left"> Addictions Substance</div>
-                        
-                   
-                   
-                        </div>
-                        <div className="col-md-6 float-left">
-                        
-                        <div className="h5 col-md-6 text-right"> Asthma</div>
-                        
-                   
-                   
-                        </div>
-                        <div className="col-md-6 float-left">
-                        
-                        <div className="h5  col-md-6 text-left">Athlete's Foot</div>
-                        
-                   
-                   
-                        </div>
-                        <div className="col-md-6 float-left">
-                        
-                        <div className="h5 col-md-6 text-right">Anaphylaxis</div>
-                        
-                   
-                   
-                        </div>
-
-                        <div className="col-md-6 float-left">
-                        
-                        <div className="h5  col-md-6 text-left">ADHD - ADD</div>
-                        
-                   
-                   
-                        </div>
-
-                        <div className="col-md-6 float-left">
-                        <Link to="/searchmedicine/disease/156">
-                        <div className="h5 col-md-6 text-right">Acne</div>
+                        <Link to="/searchmedicine/disease/176">
+                        <div className="h5  col-md-6 text-left">Healthy Lifestyle</div>
                         
                    
                     </Link >
                         </div>
 
                         <div className="col-md-6 float-left">
+                       
+                        <div className="h5 col-md-6 text-right">Hearing Loss</div>
                         
-                        <div className="h5  col-md-6 text-left">Abdominal Pain</div>
+                   
+                  
+                        </div>
+
+                        <div className="col-md-6 float-left">
+                       
+                        <div className="h5  col-md-6 text-left">Heart Failure</div>
+                        
+                   
+                  
+                        </div>
+                        <div className="col-md-6 float-left">
+                       
+                        <div className="h5 col-md-6 text-right">Heart Health</div>
+                        
+                   
+                  
+                        </div>
+                        
+                        <div className="col-md-6 float-left">
+                       
+                        <div className="h5  col-md-6 text-left">Heartburn - GERD</div>
+                        
+                   
+                  
+                        </div>
+                        <div className="col-md-6 float-left">
+                       
+                        <div className="h5 col-md-6 text-right">Hemorrhoids</div>
+                        
+                   
+                  
+                        </div>
+                        <div className="col-md-6 float-left">
+                       
+                        <div className="h5  col-md-6 text-left"> Hep A</div>
+                        
+                   
+                  
+                        </div>
+                        <div className="col-md-6 float-left">
+                       
+                        <div className="h5 col-md-6 text-right">Hep B</div>
+                        
+                   
+                  
+                        </div>
+                        <div className="col-md-6 float-left">
+                       
+                        <div className="h5  col-md-6 text-left">Hep C</div>
+                        
+                   
+                  
+                        </div>
+                        
+  <div className="col-md-6 float-left">
+                       
+                        <div className="h5 col-md-6 text-right">Hepatitis</div>
                         
                    
                    
                         </div>
 
-                        
                         <div className="col-md-6 float-left">
-                        
-                        <div className="h5 col-md-6 text-right">Abuse topics</div>
+                       
+                        <div className="h5  col-md-6 text-left">Hernia</div>
                         
                    
                    
                         </div>
 
                         <div className="col-md-6 float-left">
-                        
-                        <div className="h5  col-md-6 text-left"> Anxiety - Panic Disorder</div>
-                        
-                   
-                   
-                        </div>
-
-                        <div className="col-md-6 float-left">
-                        
-                        <div className="h5 col-md-6 text-right">Abortion</div>
+                       
+                        <div className="h5 col-md-6 text-right">Herpes Cold Sores</div>
                         
                    
                    
                         </div>
 
                         <div className="col-md-6 float-left">
+                       
+                        <div className="h5  col-md-6 text-left">HIV-AIDS</div>
                         
-                        <div className="h5  col-md-6 text-left">Acute Renal Failure</div>
+                   
+                   
+                        </div>
+                        
+                        <div className="col-md-6 float-left">
+                       
+                        <div className="h5 col-md-6 text-right">Hodgkin's Disease</div>
                         
                    
                    
                         </div>
 
                         <div className="col-md-6 float-left">
+                       
+                        <div className="h5  col-md-6 text-left">Hormonal Disorders</div>
                         
-                        <div className="h5 col-md-6 text-right"> Appendicitis
+                   
+                   
+                        </div>
+
+                        <div className="col-md-6 float-left">
+                       
+                        <div className="h5 col-md-6 text-right">HPV-Genital Warts</div>
+                        
+                   
+                   
+                        </div>
+
+                        <div className="col-md-6 float-left">
+                        <Link to="/searchmedicine/disease/50">
+                        <div className="h5  col-md-6 text-left">Hypertension</div>
+                        
+                   
+                    </Link >
+                        </div>
+
+                        <div className="col-md-6 float-left">
+                       
+                        <div className="h5 col-md-6 text-right">Hypotension
                         
                         </div>
                         
@@ -240,10 +241,11 @@ function Disease() {
                     </div>
                    
                 </div>
-{/* 
-                <h1>END OF A</h1>
 
-                <h1>sTART OF B</h1> */}
+                    </div>
+                   
+                </div>
+
                 
 
           
