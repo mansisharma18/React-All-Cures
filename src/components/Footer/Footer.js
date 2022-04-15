@@ -2,10 +2,12 @@ import React, { Component } from 'react';
 import { backendHost } from '../../api-config';
 import axios from 'axios';
 import Heart from"../../assets/img/heart.png";
-import Facebook from '../../assets/icon/facebook.svg'
-import Instagram from '../../assets/icon/instagram.svg'
-import Linkedin from '../../assets/icon/linkedin.svg'
-import Twitter from '../../assets/icon/twitter.svg'
+import Facebook from '../../assets/icon/facebook.svg';
+import Instagram from '../../assets/icon/instagram.svg';
+import Linkedin from '../../assets/icon/linkedin.svg';
+import AppStore from '../../assets/icon/appstore.svg';
+import GooglePlay from '../../assets/icon/googleplay.png';
+import Twitter from '../../assets/icon/twitter.svg';
 import { Link } from 'react-router-dom';
 import PhoneInput from 'react-phone-number-input';
 import 'react-phone-number-input/style.css';
@@ -192,6 +194,25 @@ class Footer extends Component {
                      </ul>
                   </div>
                </div>
+               <div className="col-md-3 col-sm-3 col-sx-12">
+                  <div className="footer-inner">
+                     <h1>All Cures App Download here:</h1>
+               { /*  <a href="https://www.facebook.com/All-Cures-100610265834385" target="_blank" rel="noreferrer">
+                              <span>
+                                 <img src={AppStore} alt="Facebook Link" height="40px" width="150px"></img>
+                              </span> 
+                              <span className="path1"></span>
+                              <span className="path2"></span>
+                           </a>*/}
+                           <a href="https://play.google.com/store/apps/details?id=com.allcures" target="_blank" rel="noreferrer">
+                              <span>
+                                 <img src={GooglePlay} alt="Facebook Link" height="" width="150"></img>
+                              </span> 
+                              <span className="path1"></span>
+                              <span className="path2"></span>
+                           </a>
+                     </div>
+                     </div>
               
             </div>
          </div>
