@@ -392,16 +392,7 @@ class Profile extends Component {
                             <div className="h4 font-weight-bold">
                               {items.prefix} {items.docname_first} {items.docname_middle}{" "}
                               {items.docname_last}{" "}
-                            </div>
-                            <div className="h5 text-capitalize"><i class="fas fa-award pr-1"></i>{items.primary_spl.toLowerCase()}</div>
-                            <div className="h5 ">{items.experience}</div>
-                            <div className="h5 text-capitalize">
-                            <i class="fas fa-hospital pr-1"></i>
-                               {items.hospital_affliated}{" "}
-                              {items.country_code}
-                              
-                            </div>
-                            {/* Show average rating */}
+                               {/* Show average rating */}
                             {
                               this.state.ratingValue ?
                                 <div className="average-rating mt-2 mb-4" id="doctor-avg-rating">
@@ -413,6 +404,16 @@ class Profile extends Component {
                                 </div>
                                 : null
                             }
+                            </div>
+                            <div className="h5 text-capitalize"><i class="fas fa-award pr-1"></i>{items.primary_spl.toLowerCase()}</div>
+                            <div className="h5 ">{items.experience}</div>
+                            <div className="h5 text-capitalize">
+                            <i class="fas fa-hospital pr-1"></i>
+                               {items.hospital_affliated}{" "}
+                              {items.country_code}
+                              
+                            </div>
+                           
                             <div>
 
 
