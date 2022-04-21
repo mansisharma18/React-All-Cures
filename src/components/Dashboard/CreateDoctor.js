@@ -22,6 +22,7 @@ function App() {
   const[id,setId] = useState()
  const[pinCode,setPinCode] = useState()
   const[hospital,setHospital] = useState()
+  const[others,setOthers] = useState()
   const[spl,setSpl] = useState('')
   const[splName,setSplName] = useState('')
   const[cityCode,setCityCode] = useState('')
@@ -68,6 +69,7 @@ const hospitalForm = (e) => {
     axios.post(`${backendHost}/admin/create/hospital  `, {
         // "hospitalid": parseInt(hospitalId),
         "hospital_affliated": hospital,
+        "others": others,
     })
     .then(res => {
         setHospitalAlert(true)
@@ -272,6 +274,13 @@ useEffect(() => {
                             <Form.Control value={hospital} onChange={(e) => setHospital(e.target.value)}  type="text" name=""
                             placeholder="Enter Hospital Name..." required/>
                         </Form.Group>
+
+                        <Form.Group className="col-md-6 float-left" style={{zIndex: 2}}>
+                            <Form.Label>Enter Others</Form.Label>
+                            <Form.Control value={others} onChange={(e) => setOthers(e.target.value)}  type="text" name=""
+                            placeholder="Enter Others..." required/>
+                        </Form.Group>
+
                         {
                             hospitalAlert?
                                 <Alert variant="success" className="h6 mx-3">Hospital Create successfully!!</Alert>
@@ -288,7 +297,7 @@ useEffect(() => {
                         </form>
                     </div>
 
-                    <div className="card my-3">
+                    {/* <div className="card my-3">
                         <div className="card-title h3 text-center py-2 border-bottom"> Table</div>
                         <form onSubmit={favouriteForm}>
                             <div className="row m-4">
@@ -324,7 +333,7 @@ useEffect(() => {
                             <button type="submit" className="btn btn-dark col-md-12 mb-4">Submit</button>
                         </div>
                         </form>
-                    </div>
+                    </div> */}
 
                     <div className="card my-3">
                         <div className="card-title h3 text-center py-2 border-bottom">Speciality Table</div>
