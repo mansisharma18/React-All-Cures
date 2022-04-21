@@ -194,7 +194,7 @@ import { userAccess } from "../UserAccess";
           <NavDropdown.Item href="/searchcategory/disease/74"> Diabetes</NavDropdown.Item>
           <NavDropdown.Item href="/searchcategory/disease/50">Hypertension</NavDropdown.Item>
           <NavDropdown.Divider />
-          <NavDropdown.Item href="/AllDisease">View More</NavDropdown.Item>
+          {/* <NavDropdown.Item href="/AllDisease">View More</NavDropdown.Item> */}
         </NavDropdown>
         <NavDropdown title="Trending Cures" id="basic-nav-dropdown">
           <NavDropdown.Item href="/searchmedicine/medicinetype/1">Ayurveda</NavDropdown.Item>

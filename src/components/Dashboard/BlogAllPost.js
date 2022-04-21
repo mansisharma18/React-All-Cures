@@ -95,18 +95,21 @@ const[type,setType] = useState();
                </h6>
           : parseInt(row.medicine_type) === 3? 
               <h6 className="chip cure mr-2 col">Persian </h6>
-              : parseInt(row.medicine_type) === 2?
+              : parseInt(row.medicine_type) === 4?
               <h6 className="chip symptoms mr-2 col">Chinese
                </h6>
-               : parseInt(row.medicine_type) === 2?
+               : parseInt(row.medicine_type) === 5?
                <h6 className="chip overview mr-2 col">Scandinavian
                 </h6>
-                : parseInt(row.medicine_type) === 2?
+                : parseInt(row.medicine_type) === 6?
                 <h6 className="chip cure mr-2 col">Japenese
                  </h6>
-                 : parseInt(row.medicine_type) === 2?
+                 : parseInt(row.medicine_type) === 7?
                  <h6 className="chip overview col">Traditional Australian
                   </h6>
+                   : parseInt(row.medicine_type) === 8?
+                   <h6 className="chip overview col">Homeopathy
+                    </h6>
           : null,
           sortable: true,
       
