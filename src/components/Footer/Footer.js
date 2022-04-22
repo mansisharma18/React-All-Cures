@@ -5,7 +5,7 @@ import Heart from"../../assets/img/heart.png";
 import Facebook from '../../assets/icon/facebook.svg';
 import Instagram from '../../assets/icon/instagram.svg';
 import Linkedin from '../../assets/icon/linkedin.svg';
-import AppStore from '../../assets/icon/appstore.svg';
+
 import GooglePlay from '../../assets/icon/googleplay.png';
 import Twitter from '../../assets/icon/twitter.svg';
 import { Link } from 'react-router-dom';

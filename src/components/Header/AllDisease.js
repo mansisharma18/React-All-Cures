@@ -1,4 +1,4 @@
-import React, {useEffect,useState, useRef} from 'react';
+import React from 'react';
 import Header from '../Header/Header';
 import Footer from '../Footer/Footer'
 import axios from 'axios';
@@ -79,7 +79,7 @@ function Disease() {
 
               
                 <div className="card my-3">
-                        <div className="card-title h3  py-2 border-bottom" id='dis'> Disease Starting From <b>"A"</b></div>
+                        <div className="card-title h3  py-2 border-bottom" id='disA'> Disease Starting From <b>"A"</b></div>
                     
                             <div >
                         <div className="col-md-6 float-left">
@@ -251,7 +251,7 @@ function Disease() {
                 <div className="container">
                    
                 <div className="card my-3">
-                        <div className="card-title h3  py-2 border-bottom" id='dis'> Disease Starting From <b>"B"</b></div>
+                        <div className="card-title h3  py-2 border-bottom" id='disB'> Disease Starting From <b>"B"</b></div>
                     
                             <div >
                         <div className="col-md-6 float-left">
