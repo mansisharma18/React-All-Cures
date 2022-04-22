@@ -350,10 +350,7 @@
   right: 0;
   max-width: fit-content;
 }
-.css-1d3z3hw-MuiOutlinedInput-notchedOutline {
-  border-color: white !important;
-  border-bottom:1px solid grey !important;
-}
+
 .css-1dv0nny-MuiAutocomplete-root .MuiOutlinedInput-root .MuiAutocomplete-input{
   padding:1 !important;
 }
