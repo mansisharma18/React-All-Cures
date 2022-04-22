@@ -355,7 +355,12 @@
   border-bottom:1px solid grey !important;
 }
 .css-1dv0nny-MuiAutocomplete-root .MuiOutlinedInput-root .MuiAutocomplete-input{
+<<<<<<< HEAD
   padding:1 !important;
+=======
+  
+  padding:0 !important;
+>>>>>>> 99d7013859fe1c17d6ea76c80a98626d5c301656
 }
 .header-search{
   color: darkgrey;
