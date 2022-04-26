@@ -128,7 +128,9 @@
   background: #00415e !important;
   top: 8rem;
 }
-
+.nav-item.dropdown:hover .dropdown-menu {
+  display: block;
+}
 .featured-articles .owl-prev span {
   padding: 0.55rem;
   color: white;

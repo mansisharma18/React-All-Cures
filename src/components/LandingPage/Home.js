@@ -71,6 +71,7 @@ class Home extends Component {
          param: params,
          cures:[],
          disease:[],
+         setVisible: false,
          searchParams: {
             city: '',
             Pincode: '',
@@ -80,8 +81,9 @@ class Home extends Component {
         
     };      
   }
+  
  
-
+ 
  componentDidMount(){
     if(userId){
        this.setState({modalShow: false})
@@ -300,18 +302,18 @@ class Home extends Component {
   <Container>
   
     <Navbar.Toggle aria-controls="basic-navbar-nav" />
-    <Navbar.Collapse id="basic-navbar-nav">
+    <Navbar.Collapse id="basic-navbar-nav"  >
       <Nav className="me-auto">
         <Nav.Link href="/home">Home</Nav.Link>
        
-        <NavDropdown title="Categories" id="basic-nav-dropdown">
+        <NavDropdown title="Categories" id="basic-nav-dropdown" renderMenuOnMount={true}>
           <NavDropdown.Item href="/searchcategory/disease/1">Arthritis</NavDropdown.Item>
           <NavDropdown.Item href="/searchcategory/disease/74"> Diabetes</NavDropdown.Item>
           <NavDropdown.Item href="/searchcategory/disease/50">Hypertension</NavDropdown.Item>
           <NavDropdown.Divider />
           {/* <NavDropdown.Item href="/AllDisease">View More</NavDropdown.Item> */}
         </NavDropdown>
-        <NavDropdown title="Trending Cures" id="basic-nav-dropdown">
+        <NavDropdown title="Trending Cures" id="basic-nav-dropdown" renderMenuOnMount={true}>
           <NavDropdown.Item href="/searchmedicine/medicinetype/1">Ayurveda</NavDropdown.Item>
           <NavDropdown.Item href="/searchmedicine/medicinetype/4"> Chinese Medicine</NavDropdown.Item>
           <NavDropdown.Item href="/searchmedicine/medicinetype/3">Persian</NavDropdown.Item>
