@@ -2356,7 +2356,10 @@ div.main-hero:first-child .card {
     width: 0%;
   }
 }
-
+.css-1d3z3hw-MuiOutlinedInput-notchedOutline {
+  border-color: white !important;
+  border-bottom: 1px solid grey !important;
+}
 .subscribe-btn {
   background-color: #000;
 }
