@@ -5,7 +5,7 @@ import AllPost from './Allpost.js';
 import { backendHost } from '../../api-config';
 import { Link } from 'react-router-dom';
 import Heart from"../../assets/img/heart.png";
-
+import Subscribe from '../Subscribe';
 export default class Categorypage extends Component{
     constructor(props) {
         super(props);
@@ -162,7 +162,7 @@ export default class Categorypage extends Component{
      
             </button>
             </Link>
-           
+            <Subscribe/>
          </div>
         <Footer/>
         

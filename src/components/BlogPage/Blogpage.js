@@ -49,7 +49,7 @@ export default class Blogpage extends Component{
                         temp.push(i)
                     }
                 });
-                this.setState({isLoaded: true, items: [...this.state.items, ...temp]})
+                //this.setState({isLoaded: true, items: [...this.state.items, ...temp]})
               } else if(this.state.articleFilter === 'earliest'){
                   json.forEach(i => {
                       if(i.pubstatus_id === 3){

@@ -62,7 +62,7 @@ import U from './Header/Health A To Z/U'
 import V from './Header/Health A To Z/V'
 import J from './Header/Health A To Z/J'
 import Q from './Header/Health A To Z/Q'
-
+import All from './Header/Health A To Z/All'
 import X from './Header/Health A To Z/X'
 
 import Y from './Header/Health A To Z/Y'
@@ -162,6 +162,7 @@ const Routes = (props) => {
         <Route exact path="/alldisease-X" component={X} />
         <Route exact path="/alldisease-Y" component={Y} />
         <Route exact path="/alldisease-Z" component={Z} />
+        <Route exact path="/allcategory" component={All} />
       
 
       {/* Doctor search page */}
