@@ -181,7 +181,7 @@ import { userAccess } from "../UserAccess";
                                 <span>All Cures</span>
                               </Link>
                            </div>
-                           <div class="grow"><Navbar bg="light" expand="lg">
+                           <div class="fgrow"><Navbar bg="light" expand="lg">
   <Container>
   
     <Navbar.Toggle aria-controls="basic-navbar-nav" />
