@@ -360,7 +360,7 @@
 .header-search{
   color: darkgrey;
 align-items: center;
-padding-top: 13px;
+padding-top: 12px;
 }
 @media only screen and (max-width: 650px) {
   .article-search .mainBtn {
