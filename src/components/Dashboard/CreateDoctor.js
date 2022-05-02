@@ -278,7 +278,7 @@ useEffect(() => {
                         <Form.Group className="col-md-6 float-left" style={{zIndex: 2}}>
                             <Form.Label>Enter Others</Form.Label>
                             <Form.Control value={others} onChange={(e) => setOthers(e.target.value)}  type="text" name=""
-                            placeholder="Enter Others..." required/>
+                            placeholder="Enter Others..." />
                         </Form.Group>
 
                         {
