@@ -206,7 +206,7 @@ import { userAccess } from "../UserAccess";
         
         </NavDropdown>
        
-        <Nav.Link href="/AboutUs">About US</Nav.Link>
+        <Nav.Link href="/AboutUs" id="basic-nav-dropdown">About Us</Nav.Link>
       </Nav>
     </Navbar.Collapse>
   </Container>
