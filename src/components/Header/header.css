@@ -153,11 +153,7 @@
       top: 64px;
     }
     #searchArticle{
-      position: absolute;
-        top: 68px;
-        left: 105px;
-        margin:0 !important;
-  
+     
     }
     #searchArticle .mainBtn{
       position: absolute;
@@ -286,6 +282,9 @@
   }
   .autocomplete input {
     float: left;
+  }
+  #basic-nav-dropdown{
+    background:white
   }
   .dropdown {
     float: right;
