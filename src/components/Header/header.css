@@ -287,6 +287,9 @@
   .autocomplete input {
     float: left;
   }
+  #basic-nav-dropdown{
+    background:white
+  }
   .dropdown {
     float: right;
     list-style: none;
