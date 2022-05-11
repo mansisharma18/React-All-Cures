@@ -41,7 +41,7 @@ const options = {
 export default function Carousel1(props){
 
         return(
-            <div className="tab-content category " id="choose-category" style={{maxWidth:"1140px", zIndex: 0}}>
+            <div className="tab-content category " id="choose-category" style={{maxWidth:"1140px", width:"100%", zIndex: 0}}>
                   <OwlCarousel className="owl-theme owl-loading" items={6} loop margin={150}  {...options}>
                   <div className="item bg-pink">
                         <Link to={ `/searchcategory/disease/1` }>
