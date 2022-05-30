@@ -613,7 +613,7 @@ h6 {
   top: 30px;
 }
 
-#specialists .owl-next , #featured .owl-next{
+#specialists .owl-next , #featured .owl-next,#choose-category .owl-next{
   padding: 10px 10px !important;
     background-color: lightblue;
     color: white;
@@ -2240,6 +2240,9 @@ div.MuiSelect-root.MuiSelect-select.MuiSelect-selectMenu.MuiInputBase-input.MuiI
   line-height: 38px;
   border-radius: 2px;
   background-color: #f1f1f1;
+  position: absolute;
+    right: 5px;
+
 }
 .bg-review {
   background-color: rgb(185, 218, 241);
@@ -2455,7 +2458,7 @@ padding:0.22rem;
   left:-58px;
  opacity:0.9;
   float:left;
-  
+  z-index: 999999;
   font-size: 1rem;
   -ms-transform: rotate(90deg); /* IE 9 */
   transform: rotate(90deg);
