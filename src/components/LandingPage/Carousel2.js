@@ -55,7 +55,7 @@ export default class Carousel2 extends Component {
     }
 
    componentDidMount(lat,lon,city){
-      fetch(`${backendHost}/SearchActionController?cmd=getResults&FeaturedDoctors=885,871,872,873,874,875,876,877,878,879,880,881,882,884,885,887,888,889,890,891,893,894,895,896,897,898,890,891,892,893,894,895,896,897,898,899,900`)
+      fetch(`${backendHost}/SearchActionController?cmd=getResults&FeaturedDoctors=898,899,871,872,873,874,875,876,877,878,879,880`)
         .then(res => res.json())
         .then(json => {
           this.setState({
@@ -77,7 +77,7 @@ export default class Carousel2 extends Component {
       }
       else if(isLoaded){
         return(
-         <OwlCarousel {...options} nav="true" id="specialists" items={4} margin={10}>
+         <OwlCarousel {...options} nav="true" id="specialists" items={40} margin={20}>
          {items.map((i) => (
           <DoctorsCard
             key = {i.map.rowno.toString()}

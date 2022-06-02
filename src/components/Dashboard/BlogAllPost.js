@@ -102,8 +102,8 @@ const[type,setType] = useState();
                <h6 className="chip overview mr-2 col">Scandinavian
                 </h6>
                 : parseInt(row.medicine_type) === 6?
-                <h6 className="chip cure mr-2 col">Japenese
-                 </h6>
+                <h6 className="chip cure mr-2 col"> Japanese
+                 </h6> 
                  : parseInt(row.medicine_type) === 7?
                  <h6 className="chip overview col">Traditional Australian
                   </h6>
