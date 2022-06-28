@@ -144,7 +144,7 @@ class Search extends Component {
               <Header history={this.props.history} url={this.props.match.url}/>
                 <Container className="mt-5 my-5 loading">
                 <h3 className="pt-5 text-center"><span className="icon-loupe "></span></h3>
-                <h3 className="mt-3 text-center">We couldn't find any doctors matching '{this.props.match.params.city}'</h3>
+                <h3 className="mt-3 text-center">We couldn't find any doctors matching in '{this.props.match.params.city}'</h3>
                 <p className="text-center">You can try again. </p>
                 </Container>
               <Footer/>
@@ -156,7 +156,7 @@ class Search extends Component {
               <Header history={this.props.history}/>
                 <Container className="mt-5 my-5">
                 <h3 className="pt-5 text-center"><span className="icon-loupe "></span></h3>
-                <h3 className="text-center">We couldn't find any doctors matching '{this.state.param.name}'</h3>
+                <h3 className="text-center">We couldn't find any doctors matching in '{this.state.param.name}'</h3>
                 <p className="text-center">You could try again. </p>
                 </Container>
               <Footer/>
