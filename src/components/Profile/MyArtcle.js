@@ -13,6 +13,7 @@ import "owl.carousel/dist/assets/owl.carousel.css";
 import "owl.carousel/dist/assets/owl.theme.default.css";
 import "@fortawesome/free-solid-svg-icons";
 import "@fortawesome/fontawesome-svg-core"
+import { Direction } from 'react-data-table-component';
 
 const options = {
    margin: 30,
@@ -183,7 +184,7 @@ const ArticlePreview = (props) => {
                 
                 // : null
                 
-                ): null
+                ): <div class="articlesub"><h5 >You Dont have Cures Yet Please Add Your Favourite Cures First</h5></div>
                                 }</OwlCarousel>
            
             </div>

@@ -2709,3 +2709,13 @@ font-weight: 600;
 .css-wb57ya-MuiFormControl-root-MuiTextField-root{
   height:56px;
 }
+.articlesub{
+  width:800px;
+  display:flex;
+  flex-direction: row-reverse;
+}
+@media only screen and (min-width: 320px) and (max-width: 914px) {
+  .articlesub{
+    width: 100% !important;
+  }
+}
