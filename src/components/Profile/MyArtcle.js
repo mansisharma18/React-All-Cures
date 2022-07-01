@@ -13,6 +13,7 @@ import "owl.carousel/dist/assets/owl.carousel.css";
 import "owl.carousel/dist/assets/owl.theme.default.css";
 import "@fortawesome/free-solid-svg-icons";
 import "@fortawesome/fontawesome-svg-core"
+import { color } from '@mui/system';
 
 const options = {
    margin: 30,
@@ -183,7 +184,7 @@ const ArticlePreview = (props) => {
                 
                 // : null
                 
-                ): null
+                ): <div ><h4 style={{textAlign:"center",justifyContent:'center'}}>You Dont have Cures Yet Please Add Your Favourite Cures First</h4></div>
             }</OwlCarousel>
             </div>
             </div>
