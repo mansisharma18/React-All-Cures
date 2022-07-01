@@ -8,7 +8,7 @@ import Heart from"../../assets/img/heart.png";
 import Date from '../Date'
 import OwlCarousel from "react-owl-carousel";
 import {userId} from "../UserId"
-
+import Subscribe from '../Subscribe';
 import "owl.carousel/dist/assets/owl.carousel.css";
 import "owl.carousel/dist/assets/owl.theme.default.css";
 import "@fortawesome/free-solid-svg-icons";
@@ -107,7 +107,7 @@ const ArticlePreview = (props) => {
         
             <div className="row" marginBottom={10}>
             <div className="main-hero" id="main-hero">
-            <h3 >My Favourite Cures</h3>
+              <h3 class="mt-5">My Favourite Cures</h3>
 
             <OwlCarousel {...options} nav="true" id="featured" height={550} items={1} singleItem={true} margin={10}>
               
@@ -184,11 +184,27 @@ const ArticlePreview = (props) => {
                 // : null
                 
                 ): null
-            }</OwlCarousel>
+                                }</OwlCarousel>
+           
             </div>
+    
             </div>
           
             </div>
+            <div>
+         
+         <button id="mobile-subscribe-fixed-btn" className="btn newsletter-icon rounded subscribe-btn newsletter_float" data-toggle="modal"data-target=".bd-example-modal-lg">
+      Subscribe
+     
+            </button>
+            <Link  to="/feedback">
+            <button id="mobile-feedback-fixed-btn" className="btn newsletter-icon rounded subscribe-btn newsletter_float">
+      Feedback
+     
+            </button>
+            </Link>
+            <Subscribe/>
+         </div>
             <Footer />
         </>
 
