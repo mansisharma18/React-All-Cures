@@ -8,7 +8,9 @@
     height: 40vh;
   }
 }
-
+.mb-25r{
+  margin-bottom:2.5rem;
+}
 .banner {
   height: 49vh;
   position: relative;

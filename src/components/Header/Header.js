@@ -24,13 +24,20 @@ import { userAccess } from "../UserAccess";
        
         constructor(props){
             super(props);
+            var prevPageType = props.url ? props.url.split('/')[1] : '' ;
+            var prevPageVal = prevPageType !='' ? props.url.split('/')[2] : '';
+            var prevPageVal3 = prevPageType !='' ? props.url.split('/')[3] : '';
             this.state = {
                users: '',
                texts: '',
                city: '',
+               name: '',
+               city: prevPageType == 'search' ? prevPageVal : '',
+             
+               name: prevPageType == 'searchName' ? prevPageVal : prevPageType == 'search' ? prevPageVal3 : '',
                cityList: [],
                pinList: [],
-               name: '',
+               
                suggestions: [],
                suggestionsDoc: [],
                diseaseTitle: [],
@@ -235,7 +242,7 @@ import { userAccess } from "../UserAccess";
                                           : [] 
                                        : []}
                                        sx={{ width: 150}}
-                                       renderInput={(params) => <TextField {...params} label="Search Cures" />}
+                                       renderInput={(params) => <TextField {...params} label="Search Cures" required />}
                                     />
                                  </div>
                                  <div className="col-md-2 p-0 mainBtn">
@@ -282,6 +289,7 @@ import { userAccess } from "../UserAccess";
                             <div className="doc-name col-md-6 col-sm-12" id="searchDoc">
                             <Autocomplete className="bg-white color-black"
                               freeSolo
+                             
                               value={this.state.name}
                               onChange={(event, newValue) => {
                                  this.setState({
@@ -303,7 +311,9 @@ import { userAccess } from "../UserAccess";
                                  : []
                                  :[]
                                  }
-                              renderInput={(params) => <TextField {...params} label="Search Doctors (Name)" />}
+                              renderInput={(params) => <TextField {...params} label="Search Doctors (Name)"
+                             
+                             />}
                            />
                             </div>
                                  <div className="city-name col-md-5"id="searchCity">

@@ -76,7 +76,7 @@ class Home extends Component {
          searchParams: {
             city: '',
             Pincode: '',
-            name: '',
+            name: [],
             subscription: '',  
          }
         
@@ -439,7 +439,10 @@ class Home extends Component {
                                     : []
                                     :[]
                               }
-                              renderInput={(params) => <TextField {...params} label="Search Doctors (Name)" />}
+                              renderInput={(params) => <TextField {...params} label="Search Doctors (Name)"
+                             
+                            
+                              />}
                            />
                             </div>
                             

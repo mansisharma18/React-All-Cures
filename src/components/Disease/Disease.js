@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import Header from '../Header/Header';
 import Footer from '../Footer/Footer';
 import { Select, MenuItem } from '@material-ui/core';
-
+import parse from 'html-react-parser';
 import {Container, Row, Col, Breadcrumb } from "react-bootstrap";
 import {Link } from 'react-router-dom'
 import CenterWell from './CenterWell';
@@ -367,7 +367,9 @@ diseasePosts(dcName) {                     // For specific blogs like "/blogs/di
   }
 
   render() { 
-    var { isLoaded, items, carouselItems } = this.state;
+    var { isLoaded, items, carouselItems,text } = this.state;
+    
+    
     if(!isLoaded) {
     return (
       <>
@@ -514,7 +516,7 @@ diseasePosts(dcName) {                     // For specific blogs like "/blogs/di
                         <Link to={ `/cure/${j.article_id}` }  className="d-flex justify-content-between align-items-center mr-2">
                           <div className="d-flex justify-content-between align-items-center mb-2"id="artBtn">
                             <div>                  
-                              <div className="card-title mr-5">{j.title}</div>
+                              <div className="card-title mr-5">{j.title.substr(0,25)+'...'}</div>
                             </div>
                             <div>
                               {

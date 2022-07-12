@@ -45,7 +45,7 @@ const AllPost = ({id, title, content, rowno, f_title, w_title, country, type, pu
                                     : null
                                 } */}
                                 </div>
-                <div className='col-md-9 mb-2'>
+                <div className='col-md-9 mb-25r'>
                     {/* <div className="card-body"> */}
                             {/* <div className='col-md-3'></div> */}
                             <div className="d-flex justify-content-between align-items-center mt-3">
