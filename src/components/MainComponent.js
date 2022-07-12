@@ -38,7 +38,8 @@ import { userAccess } from "./UserAccess";
 import NotAuthorizedPage from "./NotAuthorizedPage";
 import Feedback from "./Feedback";
 import Categorypage from "./BlogPage/Categorypage";
-import AllDisease from "./Header/AllDisease"
+import AllDisease from "./Header/AllDisease";
+import SubscriptionDetails from "./LandingPage/SubscriptionDetails";
 import privacy from './BlogPage/Privacy'
 import A from './Header/Health A To Z/A'
 import B from './Header/Health A To Z/B'
@@ -190,8 +191,11 @@ const Routes = (props) => {
       <Route path="/searchcures/:type" component={Blogpage}/>
 
       <Route exact path="/searchmedicine" component={Medicinepage}/>
+
       <Route path="/searchmedicine/medicinetype/:medicine_type" component={Medicinepage}/>
 
+      <Route exact path="/subscription" component={SubscriptionDetails}/>
+     
 {/*category*/}
  <Route exact path="/searchcategory" component={Categorypage}/>
       <Route path="/searchcategory/disease/:disease_condition_id" component={Categorypage}/>
