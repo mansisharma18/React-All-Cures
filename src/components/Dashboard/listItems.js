@@ -114,6 +114,37 @@ export const mainListItems = (
     <ListItemText primary="Create Promo" />
            </Link>
     </ListItem>
+
+    <ListItem button>
+      <ListItemIcon>
+        <PeopleIcon />
+      </ListItemIcon>
+      {/* <ListItemText primary="Customers"  /> */}
+    <Link to="/dashboard?createsubscription">
+    <ListItemText primary="Create Subscription" />
+           </Link>
+    </ListItem>
+
+    <ListItem button>
+      <ListItemIcon>
+        <PeopleIcon />
+      </ListItemIcon>
+      {/* <ListItemText primary="Customers"  /> */}
+    <Link to="/dashboard?createprice">
+    <ListItemText primary="Create Price" />
+           </Link>
+    </ListItem>
+
+    <ListItem button>
+      <ListItemIcon>
+        <PeopleIcon />
+      </ListItemIcon>
+      {/* <ListItemText primary="Customers"  /> */}
+    <Link to="/dashboard?getsubscription">
+    <ListItemText primary="All Subscription" />
+           </Link>
+    </ListItem>
+
     <ListItem button>
       <ListItemIcon>
         <PeopleIcon />

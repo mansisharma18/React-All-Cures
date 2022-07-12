@@ -22,6 +22,9 @@ import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import Promo from './Promo/CreatePromo'
 import GetPromo from './Promo/GetPromo';
 import UpdatePromo from './Promo/UpdatePromo';
+import GetSubscription from './subscription/GetSubscription'
+import CreateSubscription from './subscription/CreateSubscription';
+import UpdateSubscription from './subscription/UpdateSubscription'
 import Title from './Title';
 import BlogAllPost from './BlogAllPost';
 import EditModal from '../BlogPage/EditModal';
@@ -31,6 +34,7 @@ import SubscribedUser from './SubscribedUser';
 import DoctorCreate from './DoctorCreate';
 import NestedListItems from './NestedListItems';
 import CommentsRev from './CommentsRev';
+import CreatePrice from './subscription/CreatePrice';
 
 import { backendHost } from '../../api-config';
 import { ImageUpload } from './ImageUpload';
@@ -344,6 +348,12 @@ function RenderComponent(props){
     return(
       <UpdatePromo search={props.search}/>
     )
+
+  } else if(props.search.split('=')[0] === '?editsubscription'){
+    return(
+      <UpdateSubscription search={props.search}/>
+    )
+
   } else if(props.search.split('=')[0] === '?doctor'){
     return(
       <CreateDoctor search={props.search}/>
@@ -382,11 +392,30 @@ function RenderComponent(props){
     return(
       <SubscribedUser search={props.search}/>
     )
-  // 
+   
   } 
   
+  else if(props.search.split('=')[0] === '?createsubscription'){
+    return(
+      <CreateSubscription search={props.search}/>
+    )
+   
+  } 
   
-  
+  else if(props.search.split('=')[0] === '?createprice'){
+    return(
+      <CreatePrice search={props.search}/>
+    )
+   
+  } 
+
+  else if(props.search.split('=')[0] === '?getsubscription'){
+    return(
+      <GetSubscription search={props.search}/>
+    )
+   
+  } 
+
   else if(props.search.split('=')[0] === '?upload-img'){
     return(
       <ImageUpload search = {props.search}/>

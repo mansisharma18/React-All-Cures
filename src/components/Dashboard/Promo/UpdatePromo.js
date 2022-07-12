@@ -7,7 +7,7 @@ import { userId } from '../../UserId'
 import { backendHost } from '../../../api-config';
 
 
-export default function UpdatePromo(props){
+export default function UpdatePromo(props){ 
     const [code, setCode] = useState('')
     const [startDate, setStart] = useState()
     const [endDate, setEnd] = useState()

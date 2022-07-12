@@ -144,7 +144,7 @@ export default class Medicinepage extends Component{
                     published_date = {i.published_date}
                     key = {i.article_id}
                     over_allrating={i.over_allrating}
-                    authorName = {i.authors_name}
+                    authorName = {i.authors_name} 
                     allPostsContent={() => this.allPosts()}
                         />
                        

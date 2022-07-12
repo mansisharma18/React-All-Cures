@@ -60,6 +60,8 @@ const EditModal = (props) => {
 
     const [updateSubscribers, setUpdateSubscribers] = useState(false)
     const [featuredArticle,setFeaturedArticle] = useState('')
+    const [protectedArticle,setProtectedArticle] = useState('')
+
 
     
     const [selectedFile, setSelectedFile] = useState();
@@ -93,6 +95,8 @@ const EditModal = (props) => {
             setFeaturedArticle(res.data.type)
             setContentType(res.data.content_type)
             setFeaturedArticle(res.data.featured_article)
+            setProtectedArticle(res.data.protected_article)
+
             setCountry(res.data.country_id)
             setDisease(res.data.disease_condition_id)
             setComment(res.data.comments) 
@@ -138,6 +142,8 @@ const EditModal = (props) => {
                 "disease_condition_id": disease,
                 "update_subscribers": updateSubscribers,
                 "featured_article":featuredArticle,
+                "protected_article":protectedArticle,
+
                 "content_small": encodeURIComponent(contentSmall)
             })
             .then(res => {
@@ -180,6 +186,7 @@ const EditModal = (props) => {
                 "country_id": parseInt(country),
                 "update_subscribers": updateSubscribers,
                 "featured_article":featuredArticle,
+                "protected_article":protectedArticle,
                 "content_small": encodeURIComponent(contentSmall)
             })
             .then(res => {
@@ -327,6 +334,13 @@ const EditModal = (props) => {
         setFeaturedArticle(farticle);
     }
     
+    const handleSelectProtected = function(e, c) {
+        const particle = [];
+        for (let i = 0; i < c.length; i++) {
+            particle.push(c[i].value);
+        }
+        setProtectedArticle(particle);
+    }
 
     const submitArticleForm = async e => {
         setafterSubmitLoad(true)
@@ -356,6 +370,7 @@ const EditModal = (props) => {
                 "keywords": keywords,
                 "countryId": country,
                 "featured_article":featuredArticle,
+                "protected_article":protectedArticle,
 
         })
         .then(res => {
@@ -697,6 +712,22 @@ const EditModal = (props) => {
                     </select>
                 </div>
                 
+                
+                <div className="col-lg-6 form-group">
+                    <label htmlFor="">Protected Article</label>
+                    <select 
+                    multiple
+                    name="featured" placeholder="Featured" 
+                    value={protectedArticle}
+                    onChange={(e)=> {
+                        handleSelectProtected(e, e.target.selectedOptions)
+                    }}
+                     className="form-control">
+                        <option value="1">Yes</option>
+                        <option value="0">No</option>
+                       
+                    </select>
+                </div>
 
                 </div>
                             </div>

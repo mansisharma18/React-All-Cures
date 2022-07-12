@@ -5,6 +5,8 @@ import CenterWell from '../Disease/CenterWell'
 import Heart from"../../assets/img/heart.png";
 import Date from '../Date'
 import OwlCarousel from "react-owl-carousel";
+import logo from './logo.png';
+import Vector from './Vector.svg'
 import "owl.carousel/dist/assets/owl.carousel.css";
 import "owl.carousel/dist/assets/owl.theme.default.css";
 import "@fortawesome/free-solid-svg-icons";
@@ -122,9 +124,29 @@ const ArticlePreview = (props) => {
                     return(
                     <div className="col-4">
                     <div className="card my-2 w-100">
-                        <div className='card-img'><img src={imageLoc} /></div>
+                        <div className=''>
+                            
+                        <div className='bg-text row wrap' style={{top:50,height:100,width:100,justifyContent:'center',alignItems:'center',}}>  <img src = {Vector}  alt='ddd'/>
+                       <div style={{flex:1,flexDirection:'column',alignContent:'space-between',alignItems:'center',justifyContent:'center'}}>
+                       <text>Premium</text>
+                       <text>Content</text>
+                       </div><br/><br/>
+                       
+                       <button classname="btn btn-default">View Plans</button>
+
+                                </div>
+                              
+                             <div className='mainid' style={{backgroundImage:`url(${imageLoc})` ,height:200,backgroundSize:"cover",backgroundRepeat:"no-repeat"}}>
+                             
+ 
+                             </div>
+
+                            {/* <img src ={imageLoc} className="mainid"/> */}
+                            </div>
                         <div className="card-body">
                             <h6 className='pb-2 text-muted'>
+
+
                                 {
                                     i.authors_name !== "All Cures Team"?
                                     <Link to={`/profile/${i.rowno}`}>{i.authors_name}</Link> 

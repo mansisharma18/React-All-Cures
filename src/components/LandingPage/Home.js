@@ -34,6 +34,7 @@ import { userId } from '../UserId'
 import { userAccess } from '../UserAccess'
 import ArticlePreview from './ArticlePreview'
 import TrendingArticles from './TrendingArticles';
+import ProtectedArticle from './ProtectedArticle';
 import FeaturedArticles from './FeaturedArticles';
 env.REACT_APP = 'http://117.241.171.115:8080/cures';
 
@@ -541,7 +542,19 @@ class Home extends Component {
          </div>
       </section>
 
-
+      <section className="mb-5 mt-2">
+      <div className="container">
+            <div className="row">
+               <div className="comman-heading">
+                  <div className="h4">Protected Cures</div>
+               </div>
+            </div>
+            <div className="row">
+         <ProtectedArticle/>
+         </div>
+           
+         </div>
+      </section>
 
 
       <section className="trending-section">
@@ -551,6 +564,7 @@ class Home extends Component {
       </section>
 
       
+    
 
       <section className="specialists mt-3">
          <div className="container">

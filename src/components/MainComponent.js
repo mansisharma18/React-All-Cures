@@ -13,7 +13,6 @@ import AboutUs from "./Header/AboutUs";
 import AuthApi from './AuthApi'
 import Disease from "./Disease/Disease";
 import Dashboard from "./Dashboard/Dashboard.js";
-
 import HelmetMetaData from "./HelmetMetaData";
 
 import Blogpage from "./BlogPage/Blogpage";
@@ -188,6 +187,8 @@ const Routes = (props) => {
       {/* Cures list page */}
       <Route exact path="/searchcures" component={Blogpage}/>
       <Route path="/searchcures/:type" component={Blogpage}/>
+
+
 
       <Route exact path="/searchmedicine" component={Medicinepage}/>
       <Route path="/searchmedicine/medicinetype/:medicine_type" component={Medicinepage}/>
