@@ -1,19 +1,16 @@
 import React, { useState, useEffect } from 'react';
 import { backendHost } from '../../api-config';
-import Header from "../Header/Header";
-import Footer from "../Footer/Footer";
 import { Link } from 'react-router-dom'
 import CenterWell from '../Disease/CenterWell'
 import Heart from"../../assets/img/heart.png";
 import Date from '../Date'
 import OwlCarousel from "react-owl-carousel";
-import {userId} from "../UserId"
-import Subscribe from '../Subscribe';
+import logo from './logo.png';
+import Vector from './Vector.svg'
 import "owl.carousel/dist/assets/owl.carousel.css";
 import "owl.carousel/dist/assets/owl.theme.default.css";
 import "@fortawesome/free-solid-svg-icons";
 import "@fortawesome/fontawesome-svg-core"
-import { color } from '@mui/system';
 
 const options = {
    margin: 30,
@@ -62,7 +59,7 @@ const ArticlePreview = (props) => {
       }
 
     function allPosts() {                        // For all available blogs "/blogs"
-        fetch(`${backendHost}/favourite/userid/${userId}/favouritearticle`)
+        fetch(`${backendHost}/article/allkvprotected`)
           .then((res) => res.json())
           .then((json) => {
             var temp = []
@@ -99,19 +96,11 @@ const ArticlePreview = (props) => {
     else {
         return(
         <>
-        <Header/>
-        {/* {items.map((i) => (
-                        i.status === 1 ?
-                        : null
-                        ))} */}
         <div className="container">
         
             <div className="row" marginBottom={10}>
             <div className="main-hero" id="main-hero">
-              <h3 class="mt-5">My Favourite Cures</h3>
-
             <OwlCarousel {...options} nav="true" id="featured" height={550} items={1} singleItem={true} margin={10}>
-              
                 {
                     items.length !== 0?
                     items.filter((i, idx) => idx < 9).map((i) => {
@@ -132,22 +121,38 @@ const ArticlePreview = (props) => {
 
                     //replace via regex
                     title = title.replace(regex, '-');
-                    return i.status===1?( 
-                      
-                  
+                    return(
                     <div className="col-4">
-                     
                     <div className="card my-2 w-100">
-                        <div className='card-img'><img src={imageLoc} /></div>
+                        <div className=''>
+                            
+                        <div className='bg-text row wrap' style={{top:50,height:100,width:100,justifyContent:'center',alignItems:'center',}}>  <img src = {Vector}  alt='ddd'/>
+                       <div style={{flex:1,flexDirection:'column',alignContent:'space-between',alignItems:'center',justifyContent:'center'}}>
+                       <text>Premium</text>
+                       <text>Content</text>
+                       </div><br/><br/>
+                       
+                       <button classname="btn btn-default">View Plans</button>
+
+                                </div>
+                              
+                             <div className='mainid' style={{backgroundImage:`url(${imageLoc})` ,height:200,backgroundSize:"cover",backgroundRepeat:"no-repeat"}}>
+                             
+ 
+                             </div>
+
+                            {/* <img src ={imageLoc} className="mainid"/> */}
+                            </div>
                         <div className="card-body">
                             <h6 className='pb-2 text-muted'>
+
+
                                 {
                                     i.authors_name !== "All Cures Team"?
                                     <Link to={`/profile/${i.rowno}`}>{i.authors_name}</Link> 
                                     : i.authors_name
                                 }{" "}▪️ {<Date dateString={i.published_date} />}</h6>
                             <h5 className="card-title text-capitalize"><Link to={`/cure/${i.article_id}-${title}`}>{i.title.toLowerCase()}</Link></h5>
-                            
                             <div className="card-info">
                                 {/* <h6 className="card-subtitle mb-2 text-muted text-capitalize">
                                     {i.window_title.toLowerCase()}
@@ -176,38 +181,19 @@ const ArticlePreview = (props) => {
                                 </div>
                             </div>
                         </div>
-                        
                     </div>
                 </div>
-                ):null}
-
+                )}
                 
                 // : null
                 
-                ): <div ><h4 style={{textAlign:"center",justifyContent:'center'}}>You Dont have Cures Yet Please Add Your Favourite Cures First</h4></div>
+                ): null
             }</OwlCarousel>
             </div>
-    
             </div>
-          
+           
             </div>
-            <div>
-         
-         <button id="mobile-subscribe-fixed-btn" className="btn newsletter-icon rounded subscribe-btn newsletter_float" data-toggle="modal"data-target=".bd-example-modal-lg">
-      Subscribe
-     
-            </button>
-            <Link  to="/feedback">
-            <button id="mobile-feedback-fixed-btn" className="btn newsletter-icon rounded subscribe-btn newsletter_float">
-      Feedback
-     
-            </button>
-            </Link>
-            <Subscribe/>
-         </div>
-            <Footer />
         </>
-
     )
 }
 }

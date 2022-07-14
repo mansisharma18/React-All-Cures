@@ -28,6 +28,7 @@ export default function NestedListItems() {
   const [openn, setOpenn] = React.useState(false);
   const [opennn, setOpennn] = React.useState(false);
   const [opennnn, setOpennnn] = React.useState(false);
+  const [opennnnn, setOpennnnn] = React.useState(false);
 
   const handleClick = () => {
     setOpen(!open);
@@ -42,7 +43,9 @@ setOpenn(!openn);
   const handleClick3 = () => {
     setOpennnn(!opennnn);
   };
-
+  const handleClick4 = () => {
+    setOpennnnn(!opennnnn);
+  };
   return (
     <List
       sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper' }}
@@ -225,6 +228,50 @@ setOpenn(!openn);
       </Link>
     </ListItem>
         
+
+        </List>
+      </Collapse>
+      
+      <ListItem button onClick={handleClick4} style={{backgroundColor:'lightblue'}}>
+        <ListItemIcon>
+        <BarChartIcon />
+        </ListItemIcon>
+        <ListItemText primary="SUBSCRIPTION" />
+        {opennnnn ? <ExpandLess /> : <ExpandMore />}
+      </ListItem>
+      <Collapse in={opennnnn} timeout="auto" >
+        <List component="div" disablePadding>
+
+          <ListItem button>
+            <ListItemIcon>
+              <BarChartIcon />
+            </ListItemIcon>
+            {/* <ListItemText primary="Reports" /> */}
+            <Link to="/dashboard?createsubscription">
+              <ListItemText primary="Create Subscription Types" />
+            </Link>
+          </ListItem>
+          <ListItem button>
+            <ListItemIcon>
+             <BarChartIcon />
+            </ListItemIcon> 
+            {/* <ListItemText primary="Customers"  /> */}
+             <Link to="/dashboard?createprice">
+              <ListItemText primary="Create Price Types" />
+            </Link>
+          </ListItem>
+
+          <ListItem button>
+            <ListItemIcon>
+            <BarChartIcon />
+            </ListItemIcon>
+            
+             <Link to="/dashboard?getsubscription">
+              <ListItemText primary="All Subscriptions Types" />
+            </Link>
+          </ListItem>
+
+
 
         </List>
       </Collapse>
