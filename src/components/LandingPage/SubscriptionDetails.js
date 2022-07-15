@@ -1,13 +1,18 @@
 import React, {useState}from 'react';
 import Header from '../Header/Header';
+import Footer from '../Footer/Footer';
 //Importing bootstrap and other modules
 export default function SubscriptionDetails() {
   const [style, setStyle] = useState({display: 'none'});
  
    
     return (
-     
+    //  <Header/>
+    
+
       <div className="maincontainer">
+                  <Header />
+
           
        <section>
           <div class="container py-5">
@@ -16,7 +21,7 @@ export default function SubscriptionDetails() {
             <header class="text-center mb-5">
               <div class="row">
                 <div class="col-lg-8 mx-auto">
-                  <h2>Subscribe and get access to unlimited articles</h2>
+                  <h2>Subscribe and get access to unlimited articles</h2><br/>
                   <h5>sorry! you have accessed all the free articles. Want to read more please subscribe</h5>
                 </div>
               </div>
@@ -104,7 +109,7 @@ export default function SubscriptionDetails() {
             </div>
           </div>
         </section>
-
+<Footer/>
       </div>
      
       

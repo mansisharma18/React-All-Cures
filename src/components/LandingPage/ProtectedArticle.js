@@ -131,8 +131,9 @@ const ArticlePreview = (props) => {
                        <text>Premium</text>
                        <text>Content</text>
                        </div><br/><br/>
-                       
-                       <button classname="btn btn-default">View Plans</button>
+                       <Link className="btn btn-info btn-sm" to={ `/subscription`}>View Plans</Link>
+
+                       {/* <button classname="btn btn-default">View Plans</button> */}
 
                                 </div>
                               
