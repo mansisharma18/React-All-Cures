@@ -56,7 +56,7 @@ render(){
          <div class="row mainsub">
          {
      items.map((item) => (
-           <div class="col-4  mb-5  subscription my-3">
+           <div class="col-md-4   mb-5  subscription my-3">
              <div class="bg-white  p-1 rounded-lg shadow">
              
              <h1 class="h3 text-center text-uppercase  mb-2 my-3">{item.subscription_details}</h1>
