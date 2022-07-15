@@ -2763,9 +2763,12 @@ font-weight: 600;
     width: 100% !important;
   }
 }
+.mainsub{
+  margin:0 auto;
+}
 .subscription{
  
-  height:350px;
+  
   -webkit-transition: -webkit-transform 1.5s;
   -moz-transition: -moz-transform 1.5s;
   -ms-transition: -ms-transform 1.5s;
@@ -2805,7 +2808,7 @@ box-shadow: 0 .5rem 1rem rgba(0,0,0,.15)!important;
  .subscription:hover .btn-sub{
    display: inline;
    position: absolute;
-    top: 290px;
+    top: 190px;
     left: 0px;
 }
 

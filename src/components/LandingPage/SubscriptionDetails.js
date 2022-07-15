@@ -2,6 +2,8 @@ import React, {useState}from 'react';
 import Header from '../Header/Header';
 import axios from 'axios';
 import { backendHost } from '../../api-config';
+import Footer from '../Footer/Footer';
+
 //Importing bootstrap and other modules
 
 
@@ -31,6 +33,8 @@ class SubscriptionDetails extends React.Component {
 render(){
   const { DataisLoaded, items } = this.state;
   return(
+    <>
+     <Header history={this.props.history}/>
     <div className="maincontainer">
           
     <section>
@@ -49,7 +53,7 @@ render(){
 
 
         
-         <div class="row">
+         <div class="row mainsub">
          {
      items.map((item) => (
            <div class="col-4  mb-5  subscription my-3">
@@ -88,8 +92,9 @@ render(){
        </div>
        
      </section>
-
+<Footer/>
    </div>
+   </>
   );
 }
 }
