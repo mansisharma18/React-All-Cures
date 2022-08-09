@@ -151,7 +151,6 @@ const EditModal = (props) => {
                   } else {
                     Alert('Some error occured. Try again later')
                   }
-                // setSuccMsg('Updated Successfully')
             })
             .catch(res => {
                 setafterSubmitLoad(false)
