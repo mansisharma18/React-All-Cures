@@ -1,102 +1,196 @@
-import React, {useState}from 'react';
+import React,{useState, useEffect} from 'react';
 import Header from '../Header/Header';
 import axios from 'axios';
 import { backendHost } from '../../api-config';
 import Footer from '../Footer/Footer';
 
-//Importing bootstrap and other modules
+import { faSortAmountDown } from '@fortawesome/free-solid-svg-icons';
+
+const SubscriptionDetails = (props) => {
+  const [items, setItems] = useState([])
+  const [Loading, setLoading] = useState()
+  const [amount, setAmount] = useState()
+  const [Id, setId] = useState()
+ function subdetails(){
+  axios.get(`${backendHost}/subscription/get`)
 
 
-class SubscriptionDetails extends React.Component {
-  
-	// Constructor
-	constructor(props) {
-		super(props);
 
-		this.state = {
-			items: [],
-			DataisLoaded: false,
-            
-		};
-	}
-  componentDidMount() {
-    axios.get(`${backendHost}/subscription/get`)
-     // .then(res => res.json())
-    .then(res => {
+  .then((res) => {
+    setItems(res.data)
+   
+})
+  .catch(err => null)
+
+  // .then(res => res.json())
  
-     this.setState({
-       items: res.data,
-       DataisLoaded: true
-     });
-   })
+ }
+ useEffect(() => {
+  subdetails()
+  
+}, [])
+function loadScript(src) {
+  return new Promise((resolve) => {
+    const script = document.createElement("script");
+    script.src = src;
+    script.onload = () => {
+      resolve(true);
+    };
+    script.onerror = () => {
+      resolve(false);
+    };
+    document.body.appendChild(script);
+  });
 }
-render(){
-  const { DataisLoaded, items } = this.state;
-  return(
-    <>
-     <Header history={this.props.history}/>
-    <div className="maincontainer">
-          
-    <section>
-       <div class="container py-5">
 
-         
-         <header class="text-center mb-5">
-           <div class="row">
-             <div class="col-lg-8 mx-auto">
-               <h2>Subscribe and get access to unlimited articles</h2>
-               <h5>sorry! you have accessed all the free articles. Want to read more please subscribe</h5>
-             </div>
-           </div>
-         </header>
-        
-
-
-        
-         <div class="row mainsub">
-         {
-     items.map((item) => (
-           <div class="col-md-4   mb-5  subscription my-3">
-             <div class="bg-white  p-1 rounded-lg shadow">
-             <h1 class="h3 text-center text-uppercase  mb-2 my-3">{item.plan}</h1>
-
-             <h1 class="h3 text-center text-uppercase  mb-2 my-3">{item.subscription_details}</h1>
-               <h4 class="h4 text-center font-weight-bold">{item.detailing}</h4>
-     
-               <div class="custom-separator my-2 mx-auto bg-primary"></div>
-
-<ul class="list-unstyled my-2 text-small text-left font-weight-normal">
-  <li class="mb-3">
-    <i class="  mr-3 text-primary"></i>INR : Rs{item.price_id}</li>
+ function displayRazorpay(priceId) {
   
-</ul>
+  setLoading(true);
+axios.post(`${backendHost}/subscription/create_order`, {
+   amount:priceId,
+  
+  })
+  // .then(res => {
+  //  setId(JSON.parse(res.data).id); 
+  //  callOptions(); 
+  // //  setAmount(res.data)
+  // })
+  
+  .then(res => { 
+    if (res.data) {
+      console.log('orderID', JSON.parse(res.data).id);
+
+      postData(
+        JSON.parse(res.data).amount,
+        JSON.parse(res.data).id,
+        JSON.parse(res.data).status,
+      );
+      callOptions(
+        JSON.parse(res.data).amount,
+        JSON.parse(res.data).currency,
+        JSON.parse(res.data).id,
+      );
+
+      setLoading(false);
+    }
+  })
+    .catch(err => {
+      console.log(err);
+    });
 
 
+    function postData(amount, orderId, statusId) {
+      axios
+        .post(`${backendHost}/subscription/order`, {
+          amount: amount.toString(),
+          order_id: orderId.toString(),
+          status: statusId.toString(),
+        })
+        .then(res => {
+          console.log('order', res.data);
+        })
+        .catch(err => err);
+    }
+
+    function postUpdate(paymentId, orderID) {
+      axios
+        .put(`${backendHost}/subscription/updatepayment/"${orderID}"`, {
+          payment_id: paymentId,
+          status: 'paid',
+        })
+        .then(res => {
+        console.log(res)
+        })
+        .catch(err => err);
+    }
 
 
+function callOptions(amount,currency,orderId){
+
+var options = {
+  key: "rzp_test_GgDGBdRu7fT3hC",
+  currency: currency,
+  amount: amount,//.toString(),
+  order_id:orderId,
+  name: "Subscription",
+  description: "Thank you for nothing. Please give us some money",
+  image: "http://localhost:1337/logo.svg",
+  handler: function (response) {
+    // alert(response.razorpay_payment_id);
+    // alert(response.razorpay_order_id);
+    // alert(response.razorpay_signature);
+        console.log(response)
+    postUpdate(
+      `${response.razorpay_payment_id}`,
+      `${response.razorpay_order_id}`,
+    );
+    alert("Transaction successful");
+  },
+  prefill: {
+    name: "",
+    email: "",
+    phone_number: "",
+  },
+};
+const paymentObject = new window.Razorpay(options);
+    paymentObject.open();
+ }
+}
 
 
+  
+  return (
+   
+    <>
     
- 
-                   <a href="#" class="btn btn-primary btn-sub btn-block p-2 shadow rounded-pill">Buy now</a>
-                
+   <div className="maincontainer">
+         
+   <section>
+      <div class="container py-5">
+
+        
+        <header class="text-center mb-5">
+          <div class="row">
+            <div class="col-lg-8 mx-auto">
+              <h2>Subscribe and get access to unlimited articles</h2>
+              <h5>sorry! you have accessed all the free articles. Want to read more please subscribe</h5>
+            </div>
+          </div>
+        </header>
+       
+
+
+       
+        <div class="row mainsub">
+        {
+    items.map((item) => (
+          <div class="col-md-3   mb-5  subscription my-3">
+            <div class="bg-white  p-1 rounded-lg shadow">
+            <h1 class="h3 text-center text-uppercase  mb-2 my-3">{item.plan}</h1>
+            <h1 class="h3 text-center text-uppercase  mb-2 my-3">{item.subscription_details}</h1>
+              <h4 class="h4 text-center font-weight-bold">{item.detailing}</h4>
+    
+              <div class="custom-separator my-2 mx-auto bg-primary"></div>
+
+ <a href="#" onClick={() =>displayRazorpay(item.price_id)}  class="btn btn-primary btn-sub btn-block p-2 shadow rounded-pill">Buy now</a>
                
               
-             </div>
-           </div>
-          
-        
-        
-          ))
-        }  </div>
+             
+            </div>
+          </div>
          
-       </div>
        
-     </section>
+       
+         ))
+       }  </div>
+        
+      </div>
+      
+    </section>
 <Footer/>
-   </div>
-   </>
+  </div>
+  </>
   );
 }
-}
+
 export default SubscriptionDetails;
