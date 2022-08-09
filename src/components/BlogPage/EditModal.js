@@ -127,9 +127,7 @@ const EditModal = (props) => {
                 // "content_location": "1",
                 "authored_by": author,
                 "published_by": parseInt(userId),
-                // "edited_by": 1,
-                // "copyright_id": parseInt(copyright),
-                // "disclaimer_id": parseInt(disclaimer),
+             
                 "copyright_id": 11,
                 "disclaimer_id": 1,
                 "pubstatus_id": parseInt(articleStatus),
@@ -714,7 +712,7 @@ const EditModal = (props) => {
                 
                 
                 <div className="col-lg-6 form-group">
-                    <label htmlFor="">Protected Article</label>
+                    <label htmlFor="">Premium Article</label>
                     <select 
                     multiple
                     name="featured" placeholder="Featured" 
