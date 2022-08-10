@@ -3,21 +3,24 @@ import Header from '../Header/Header';
 import axios from 'axios';
 import { backendHost } from '../../api-config';
 import Footer from '../Footer/Footer';
-
+import {userId} from "../UserId"
 import { faSortAmountDown } from '@fortawesome/free-solid-svg-icons';
+
 
 const SubscriptionDetails = (props) => {
   const [items, setItems] = useState([])
   const [Loading, setLoading] = useState()
   const [amount, setAmount] = useState()
-  const [Id, setId] = useState()
+  const [subid, setSubid] = useState()
  function subdetails(){
   axios.get(`${backendHost}/subscription/get`)
 
-
+  
 
   .then((res) => {
     setItems(res.data)
+    
+
    
 })
   .catch(err => null)
@@ -43,12 +46,12 @@ function loadScript(src) {
   });
 }
 
- function displayRazorpay(priceId) {
+ function displayRazorpay(priceId,subscription_id) {
   
   setLoading(true);
 axios.post(`${backendHost}/subscription/create_order`, {
    amount:priceId,
-  
+   
   })
   // .then(res => {
   //  setId(JSON.parse(res.data).id); 
@@ -63,7 +66,8 @@ axios.post(`${backendHost}/subscription/create_order`, {
       postData(
         JSON.parse(res.data).amount,
         JSON.parse(res.data).id,
-        JSON.parse(res.data).status,
+        JSON.parse(res.data).status,userId, subscription_id
+       
       );
       callOptions(
         JSON.parse(res.data).amount,
@@ -79,12 +83,14 @@ axios.post(`${backendHost}/subscription/create_order`, {
     });
 
 
-    function postData(amount, orderId, statusId) {
+    function postData(amount, orderId, statusId, userId,subscription_id) {
       axios
-        .post(`${backendHost}/subscription/order`, {
+        .post(`${backendHost}/subscription/order/userid/${userId}/subid/${subscription_id}`, {
           amount: amount.toString(),
           order_id: orderId.toString(),
           status: statusId.toString(),
+         
+      
         })
         .then(res => {
           console.log('order', res.data);
@@ -113,8 +119,8 @@ var options = {
   amount: amount,//.toString(),
   order_id:orderId,
   name: "Subscription",
-  description: "Thank you for nothing. Please give us some money",
-  image: "http://localhost:1337/logo.svg",
+  description: "Thank you",
+  image: "",
   handler: function (response) {
     // alert(response.razorpay_payment_id);
     // alert(response.razorpay_order_id);
@@ -142,7 +148,7 @@ const paymentObject = new window.Razorpay(options);
   return (
    
     <>
-    
+       <Header/>
    <div className="maincontainer">
          
    <section>
@@ -164,7 +170,7 @@ const paymentObject = new window.Razorpay(options);
         <div class="row mainsub">
         {
     items.map((item) => (
-          <div class="col-md-3   mb-5  subscription my-3">
+          <div class="col-3   mb-5  subscription my-3">
             <div class="bg-white  p-1 rounded-lg shadow">
             <h1 class="h3 text-center text-uppercase  mb-2 my-3">{item.plan}</h1>
             <h1 class="h3 text-center text-uppercase  mb-2 my-3">{item.subscription_details}</h1>
@@ -172,7 +178,7 @@ const paymentObject = new window.Razorpay(options);
     
               <div class="custom-separator my-2 mx-auto bg-primary"></div>
 
- <a href="#" onClick={() =>displayRazorpay(item.price_id)}  class="btn btn-primary btn-sub btn-block p-2 shadow rounded-pill">Buy now</a>
+ <a href="#" onClick={() =>displayRazorpay(item.price_id,item.subscription_id)}  class="btn btn-primary btn-sub btn-block p-2 shadow rounded-pill">Buy now</a>
                
               
              

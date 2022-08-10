@@ -2765,10 +2765,11 @@ font-weight: 600;
 }
 .mainsub{
   margin:0 auto;
+  justify-content: center;
 }
 .subscription{
  
-  
+  height:245px;
   -webkit-transition: -webkit-transform 1.5s;
   -moz-transition: -moz-transform 1.5s;
   -ms-transition: -ms-transform 1.5s;
@@ -2788,6 +2789,7 @@ transform: scaleY(1.2);
   border-radius:3rem !important;
   background-color:white;
   color:#00415e;
+  min-height: 200px;
 }
 .subscription:hover .rounded-lg{
   background-color:#00415e !important;
@@ -2808,7 +2810,7 @@ box-shadow: 0 .5rem 1rem rgba(0,0,0,.15)!important;
  .subscription:hover .btn-sub{
    display: inline;
    position: absolute;
-    top: 160px;
+    top: 210px;
     left: 0px;
 }
 
