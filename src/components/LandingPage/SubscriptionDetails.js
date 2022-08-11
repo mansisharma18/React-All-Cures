@@ -53,11 +53,7 @@ axios.post(`${backendHost}/subscription/create_order`, {
    amount:priceId,
    
   })
-  // .then(res => {
-  //  setId(JSON.parse(res.data).id); 
-  //  callOptions(); 
-  // //  setAmount(res.data)
-  // })
+  
   
   .then(res => { 
     if (res.data) {
@@ -85,10 +81,10 @@ axios.post(`${backendHost}/subscription/create_order`, {
 
     function postData(amount, orderId, statusId, userId,subscription_id) {
       axios
-        .post(`${backendHost}/subscription/order/userid/${userId}/subid/${subscription_id}`, {
+        .post(`${backendHost}/subscription/order/userid/${userId}/subsid/${subscription_id}`, {
           amount: amount.toString(),
           order_id: orderId.toString(),
-          status: statusId.toString(),
+          razorpay_status: statusId.toString(),
          
       
         })
@@ -102,7 +98,8 @@ axios.post(`${backendHost}/subscription/create_order`, {
       axios
         .put(`${backendHost}/subscription/updatepayment/"${orderID}"`, {
           payment_id: paymentId,
-          status: 'paid',
+          razorpay_status: "paid",
+          status: 1,
         })
         .then(res => {
         console.log(res)
@@ -143,8 +140,6 @@ const paymentObject = new window.Razorpay(options);
  }
 }
 
-
-  
   return (
    
     <>
