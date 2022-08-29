@@ -182,7 +182,7 @@ var id = props.match.params.article_id
           <div class="col-3   mb-5  subscription my-3">
             <div class="bg-white  p-1 rounded-lg shadow">
 
-            <h1 class="h3 text-center text-uppercase  mb-2 my-3">{item.plan}{id}</h1>
+            <h1 class="h3 text-center text-uppercase  mb-2 my-3">{item.plan}</h1>
             <h1 class="h3 text-center text-uppercase  mb-2 my-3">{item.subscription_details}</h1>
               <h4 class="h4 text-center font-weight-bold">{item.detailing}</h4>
     
