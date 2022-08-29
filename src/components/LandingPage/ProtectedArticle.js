@@ -11,6 +11,8 @@ import "owl.carousel/dist/assets/owl.carousel.css";
 import "owl.carousel/dist/assets/owl.theme.default.css";
 import "@fortawesome/free-solid-svg-icons";
 import "@fortawesome/fontawesome-svg-core"
+import {userId} from "../UserId"
+import axios from 'axios';
 
 const options = {
    margin: 30,
@@ -46,7 +48,17 @@ const ArticlePreview = (props) => {
     const [items, setItems] = useState([])
     const [isLoaded, setLoaded] = useState(false)
     const [articleFilter, setArticleFilter]= useState(props.dcName? props.dcName: 'recent')
-    
+    const [showAlert, setShowAlert] = useState(false)
+    const [alertMsg, setAlertMsg] = useState(true)
+     const [users, setUsers]=useState()
+
+    function Alert(msg){
+        setShowAlert(true)
+        setAlertMsg(msg)
+        setTimeout(() => {
+           setShowAlert(false)
+        }, 5000);
+      }
     function diseasePosts(type){                     // For specific blogs like "/blogs/diabetes"
         // if(type){
           fetch(`${backendHost}/isearch/${type}`)
@@ -57,6 +69,16 @@ const ArticlePreview = (props) => {
           })
           .catch(err => null)
       }
+      function subscribeUsers(userId) {
+            axios.get(`${backendHost}/subscription/orders/${userId}`)
+                .then((res) => {
+                   setUsers(res.data[0].status)
+                })
+
+                .catch(err => null);
+
+            // .then(res => res.json())
+        }
 
     function allPosts() {                        // For all available blogs "/blogs"
         fetch(`${backendHost}/article/allkvprotected`)
@@ -83,6 +105,7 @@ const ArticlePreview = (props) => {
     }
 
     useEffect(() => {
+        subscribeUsers(userId)
         allPosts()
     }, [])
 
@@ -120,40 +143,55 @@ const ArticlePreview = (props) => {
                     var regex = new RegExp(' ', 'g');
 
                     //replace via regex
-                    title = title.replace(regex, '-');
+                    //title = title.replace(regex, '-');
                     return(
                     <div className="col-4">
                     <div className="card my-2 w-100">
-                        <div className=''>
+                    {(() => {
+        if (users==1) {
+            return   <div style={{backgroundImage:`url(${imageLoc})` ,height:200,backgroundSize:"cover",backgroundRepeat:"no-repeat"}}>
+               
+
+            </div>;
+        } else {
+            return <div className=''>
                             
-                        <div className='bg-text row wrap' style={{top:50,height:100,width:100,justifyContent:'center',alignItems:'center',}}>  <img src = {Vector}  alt='ddd'/>
-                       <div style={{flex:1,flexDirection:'column',alignContent:'space-between',alignItems:'center',justifyContent:'center'}}>
-                       <text>Premium</text>
-                       <text>Content</text>
-                       </div><br/><br/>
-                       <Link className="btn btn-info btn-sm" to={ `/subscription`}>View Plans</Link>
+            <div className='bg-text row wrap' style={{top:50,height:100,width:100,justifyContent:'center',alignItems:'center',}}>  <img src = {Vector}  alt='ddd'/>
+           <div style={{flex:1,flexDirection:'column',alignContent:'space-between',alignItems:'center',justifyContent:'center'}}>
+           <text>Premium</text>
+           <text>Content</text>
+           </div><br/><br/>
+           
+           <Link className="btn btn-info btn-sm" id={i.article_id} to={ `/subscription/${i.article_id}`}>View Plans</Link>
+  
+           {/* <button classname="btn btn-default">View Plans</button> */}
+  
+                    </div>
+                  
+                 <div className='mainid' style={{backgroundImage:`url(${imageLoc})` ,height:200,backgroundSize:"cover",backgroundRepeat:"no-repeat"}}>
+                 
+  
+                 </div>
+  
+                {/* <img src ={imageLoc} className="mainid"/> */}
+                </div>;
+         
+        }
+      })()}
+                        
+                  
 
-                       {/* <button classname="btn btn-default">View Plans</button> */}
-
-                                </div>
-                              
-                             <div className='mainid' style={{backgroundImage:`url(${imageLoc})` ,height:200,backgroundSize:"cover",backgroundRepeat:"no-repeat"}}>
-                             
- 
-                             </div>
-
-                            {/* <img src ={imageLoc} className="mainid"/> */}
-                            </div>
                         <div className="card-body">
+                            
                             <h6 className='pb-2 text-muted'>
 
 
                                 {
                                     i.authors_name !== "All Cures Team"?
-                                    <Link to={`/profile/${i.rowno}`}>{i.authors_name}</Link> 
+                                    <Link to={users==1?`/profile/${i.rowno}`:'#'}>{i.authors_name}</Link> 
                                     : i.authors_name
                                 }{" "}▪️ {<Date dateString={i.published_date} />}</h6>
-                            <h5 className="card-title text-capitalize"><Link to={`/cure/${i.article_id}-${title}`}>{i.title.toLowerCase()}</Link></h5>
+                            <h5 className="card-title text-capitalize"><Link   to={users==1?`/cure/${i.article_id}-${title}`:'#'}>{i.title.toLowerCase()}</Link></h5>
                             <div className="card-info">
                                 {/* <h6 className="card-subtitle mb-2 text-muted text-capitalize">
                                     {i.window_title.toLowerCase()}

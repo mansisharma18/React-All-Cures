@@ -3,7 +3,8 @@ import Header from '../Header/Header';
 import axios from 'axios';
 import { backendHost } from '../../api-config';
 import Footer from '../Footer/Footer';
-import {userId} from "../UserId"
+import {userId} from "../UserId";
+import {useParams} from 'react-router-dom';
 import { faSortAmountDown } from '@fortawesome/free-solid-svg-icons';
 
 
@@ -12,6 +13,7 @@ const SubscriptionDetails = (props) => {
   const [Loading, setLoading] = useState()
   const [amount, setAmount] = useState()
   const [subid, setSubid] = useState()
+ 
  function subdetails(){
   axios.get(`${backendHost}/subscription/get`)
 
@@ -69,6 +71,7 @@ axios.post(`${backendHost}/subscription/create_order`, {
         JSON.parse(res.data).amount,
         JSON.parse(res.data).currency,
         JSON.parse(res.data).id,
+        id
       );
 
       setLoading(false);
@@ -86,7 +89,7 @@ axios.post(`${backendHost}/subscription/create_order`, {
           order_id: orderId.toString(),
           razorpay_status: statusId.toString(),
          
-      
+                            
         })
         .then(res => {
           console.log('order', res.data);
@@ -94,7 +97,7 @@ axios.post(`${backendHost}/subscription/create_order`, {
         .catch(err => err);
     }
 
-    function postUpdate(paymentId, orderID) {
+    function postUpdate(paymentId, orderID, article_id) {
       axios
         .put(`${backendHost}/subscription/updatepayment/"${orderID}"`, {
           payment_id: paymentId,
@@ -109,25 +112,34 @@ axios.post(`${backendHost}/subscription/create_order`, {
 
 
 function callOptions(amount,currency,orderId){
-
+  
 var options = {
   key: "rzp_test_GgDGBdRu7fT3hC",
   currency: currency,
   amount: amount,//.toString(),
   order_id:orderId,
+  article_id:id,
   name: "Subscription",
   description: "Thank you",
+ 
   image: "",
   handler: function (response) {
+    var redirect_url="";
     // alert(response.razorpay_payment_id);
     // alert(response.razorpay_order_id);
     // alert(response.razorpay_signature);
+    if (typeof response.razorpay_payment_id == 'undefined' ||  response.razorpay_payment_id < 1) {
+      redirect_url = '/home';
+    } else {
+      redirect_url = `/cure/${id}`;
+    }
         console.log(response)
     postUpdate(
       `${response.razorpay_payment_id}`,
       `${response.razorpay_order_id}`,
+      `${response.article_id}`,
     );
-    alert("Transaction successful");
+    window.location.href = redirect_url;
   },
   prefill: {
     name: "",
@@ -139,7 +151,7 @@ const paymentObject = new window.Razorpay(options);
     paymentObject.open();
  }
 }
-
+var id = props.match.params.article_id
   return (
    
     <>
@@ -163,11 +175,14 @@ const paymentObject = new window.Razorpay(options);
 
        
         <div class="row mainsub">
+          
         {
     items.map((item) => (
+      
           <div class="col-3   mb-5  subscription my-3">
             <div class="bg-white  p-1 rounded-lg shadow">
-            <h1 class="h3 text-center text-uppercase  mb-2 my-3">{item.plan}</h1>
+
+            <h1 class="h3 text-center text-uppercase  mb-2 my-3">{item.plan}{id}</h1>
             <h1 class="h3 text-center text-uppercase  mb-2 my-3">{item.subscription_details}</h1>
               <h4 class="h4 text-center font-weight-bold">{item.detailing}</h4>
     
