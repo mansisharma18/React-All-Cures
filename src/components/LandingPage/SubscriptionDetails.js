@@ -97,7 +97,7 @@ axios.post(`${backendHost}/subscription/create_order`, {
         .catch(err => err);
     }
 
-    function postUpdate(paymentId, orderID, article_id) {
+    function postUpdate(paymentId, orderID) {
       axios
         .put(`${backendHost}/subscription/updatepayment/"${orderID}"`, {
           payment_id: paymentId,
@@ -136,8 +136,8 @@ var options = {
         console.log(response)
     postUpdate(
       `${response.razorpay_payment_id}`,
-      `${response.razorpay_order_id}`,
-      `${response.article_id}`,
+      `${response.razorpay_order_id}`
+      
     );
     window.location.href = redirect_url;
   },
