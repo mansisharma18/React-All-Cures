@@ -5,6 +5,7 @@ import { backendHost } from '../../api-config';
 import Footer from '../Footer/Footer';
 import {userId} from "../UserId";
 import {useParams} from 'react-router-dom';
+import Heart from"../../assets/img/heart.png";
 import { faSortAmountDown } from '@fortawesome/free-solid-svg-icons';
 
 
@@ -13,7 +14,18 @@ const SubscriptionDetails = (props) => {
   const [Loading, setLoading] = useState()
   const [amount, setAmount] = useState()
   const [subid, setSubid] = useState()
- 
+  const [showAlert, setShowAlert] = useState(false)
+  const [alertMsg, setAlertMsg] = useState(true)
+  const [afterSubmitLoad, setafterSubmitLoad] = useState(false)
+
+  function Alert(msg){
+    setShowAlert(true)
+    setAlertMsg(msg)
+    setTimeout(() => {
+       setShowAlert(false)
+    }, 1000);
+  }
+  
  function subdetails(){
   axios.get(`${backendHost}/subscription/get`)
 
@@ -124,13 +136,16 @@ var options = {
  
   image: "",
   handler: function (response) {
+
     var redirect_url="";
     // alert(response.razorpay_payment_id);
     // alert(response.razorpay_order_id);
     // alert(response.razorpay_signature);
     if (typeof response.razorpay_payment_id == 'undefined' ||  response.razorpay_payment_id < 1) {
-      redirect_url = '/home';
+      Alert('Try Again!')
+      redirect_url = `/home`;
     } else {
+      Alert('Your Transaction is successfully!')
       redirect_url = `/cure/${id}`;
     }
         console.log(response)
@@ -153,7 +168,20 @@ const paymentObject = new window.Razorpay(options);
 }
 var id = props.match.params.article_id
   return (
-   
+    <div>
+            { showAlert &&
+            <div className="alert alert-success pop-up border-bottom">
+              <div className="h5 mb-0 text-center">{alertMsg}</div>
+              <div className="timer"></div>
+            </div>
+        }
+        {
+                afterSubmitLoad &&
+                <div className="loader main on-submit-loading">
+                    <i className="fa fa-spinner fa-spin fa-10x" />
+                </div>
+            }
+        
     <>
        <Header/>
    <div className="maincontainer">
@@ -206,6 +234,7 @@ var id = props.match.params.article_id
 <Footer/>
   </div>
   </>
+  </div>
   );
 }
 
