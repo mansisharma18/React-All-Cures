@@ -7,7 +7,7 @@ import {userId} from "../UserId";
 import {useParams} from 'react-router-dom';
 import Heart from"../../assets/img/heart.png";
 import { faSortAmountDown } from '@fortawesome/free-solid-svg-icons';
-
+import { Redirect } from 'react-router';
 
 const SubscriptionDetails = (props) => {
   const [items, setItems] = useState([])
@@ -60,7 +60,9 @@ function loadScript(src) {
   });
 }
 
- function displayRazorpay(priceId,subscription_id) {
+ function displayRazorpay(priceId,subscription_id,userId) {
+  if(userId){
+   
   
   setLoading(true);
 axios.post(`${backendHost}/subscription/create_order`, {
@@ -85,6 +87,7 @@ axios.post(`${backendHost}/subscription/create_order`, {
         JSON.parse(res.data).id,
         id
       );
+     
 
       setLoading(false);
     }
@@ -92,8 +95,19 @@ axios.post(`${backendHost}/subscription/create_order`, {
     .catch(err => {
       console.log(err);
     });
+  }
+  
+  else{
+    return(
+      <Redirect to={{
+        pathname: '/FormSignup',
+       
+      }}
+      />
+    )
+  }
 
-
+ 
     function postData(amount, orderId, statusId, userId,subscription_id) {
       axios
         .post(`${backendHost}/subscription/order/userid/${userId}/subsid/${subscription_id}`, {
@@ -216,7 +230,7 @@ var id = props.match.params.article_id
     
               <div class="custom-separator my-2 mx-auto bg-primary"></div>
 
- <a href="#" onClick={() =>displayRazorpay(item.price_id,item.subscription_id)}  class="btn btn-primary btn-sub btn-block p-2 shadow rounded-pill">Buy now</a>
+ <a href="#" onClick={() =>displayRazorpay(item.price_id,item.subscription_id,userId)}  class="btn btn-primary btn-sub btn-block p-2 shadow rounded-pill">Buy now</a>
                
               
              
