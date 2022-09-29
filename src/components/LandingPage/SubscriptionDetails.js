@@ -8,7 +8,8 @@ import {useParams} from 'react-router-dom';
 import Heart from"../../assets/img/heart.png";
 import { faSortAmountDown } from '@fortawesome/free-solid-svg-icons';
 import { Redirect } from 'react-router';
-
+import { useHistory } from "react-router-dom";
+import { userAccess } from '../UserAccess'
 const SubscriptionDetails = (props) => {
   const [items, setItems] = useState([])
   const [Loading, setLoading] = useState()
@@ -17,7 +18,9 @@ const SubscriptionDetails = (props) => {
   const [showAlert, setShowAlert] = useState(false)
   const [alertMsg, setAlertMsg] = useState(true)
   const [afterSubmitLoad, setafterSubmitLoad] = useState(false)
-
+  const history = useHistory();
+  const[modalShow,setmodalShow]=useState(false)
+  
   function Alert(msg){
     setShowAlert(true)
     setAlertMsg(msg)
@@ -46,6 +49,11 @@ const SubscriptionDetails = (props) => {
   subdetails()
   
 }, [])
+function displayModal(action)  {
+  
+    setmodalShow(action)
+
+}
 function loadScript(src) {
   return new Promise((resolve) => {
     const script = document.createElement("script");
@@ -61,15 +69,12 @@ function loadScript(src) {
 }
 
  function displayRazorpay(priceId,subscription_id,userId) {
-  if(userId){
-   
   
   setLoading(true);
 axios.post(`${backendHost}/subscription/create_order`, {
    amount:priceId,
    
   })
-  
   
   .then(res => { 
     if (res.data) {
@@ -95,18 +100,6 @@ axios.post(`${backendHost}/subscription/create_order`, {
     .catch(err => {
       console.log(err);
     });
-  }
-  
-  else{
-    return(
-      <Redirect to={{
-        pathname: '/FormSignup',
-       
-      }}
-      />
-    )
-  }
-
  
     function postData(amount, orderId, statusId, userId,subscription_id) {
       axios
@@ -230,9 +223,32 @@ var id = props.match.params.article_id
     
               <div class="custom-separator my-2 mx-auto bg-primary"></div>
 
- <a href="#" onClick={() =>displayRazorpay(item.price_id,item.subscription_id,userId)}  class="btn btn-primary btn-sub btn-block p-2 shadow rounded-pill">Buy now</a>
-               
-              
+
+ <div>
+                           {
+                              userAccess?
+                              <a href="#" onClick={() =>displayRazorpay(item.price_id,item.subscription_id,userId)} 
+                              class="btn btn-primary btn-sub btn-block p-2 shadow rounded-pill">Buy now</a>
+                              : 
+                             <a href="#" onClick={() =>displayModal(true)} class="btn btn-primary btn-sub btn-block p-2 shadow rounded-pill">Buy now</a>
+                            
+                           }   
+                     
+                           </div>   
+
+
+
+
+
+
+
+
+
+
+
+
+
+
              
             </div>
           </div>
