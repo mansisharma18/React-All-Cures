@@ -356,15 +356,11 @@ var id = props.match.params.article_id
                                  value={value}
                                  defaultCountry='IN'
                               
-                                 onChange={(newValue) => {
-                                    this.setState({
-                                       value: newValue
-                                    })
-                                 }}
+                                 onChange={(e) => setValue(e.target.value)} 
                               />                              
                            </div>
                            <div>
-                              <button className="bcolor rounded py-2" onClick={( ) => {this.postSubscribtion()}}>
+                              <button className="bcolor rounded py-2" onClick={( ) => {postSubscribtion()}}>
                                  Submit
                               </button>
                            </div>
