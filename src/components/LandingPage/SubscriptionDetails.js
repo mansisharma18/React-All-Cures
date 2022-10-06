@@ -28,6 +28,9 @@ const SubscriptionDetails = (props) => {
   const[modalShow,setmodalShow]=useState(false)
   const[value,setValue]=useState()
   const[path,setPath]=useState()
+  const[afterSubmitted,setafterSubmitted]=useState(false)
+  const[disease, setDisease]=useState()
+  const[cures, setCures]=useState()
   function Alert(msg){
     setShowAlert(true)
     setAlertMsg(msg)
@@ -57,7 +60,46 @@ const SubscriptionDetails = (props) => {
   
 }, [])
 
+function postSubscribtion() {
+  var phoneNumber = value.split('+')[1]
+  var countryCodeLength = phoneNumber.length % 10
+  var countryCode = phoneNumber.slice(0, countryCodeLength)
+  var StringValue = phoneNumber.slice(countryCodeLength).replace(/,/g, '')
+   if(phoneNumber){
+     
+    setafterSubmitLoad(true)
+    
+    axios.post(`${backendHost}/users/subscribe/${StringValue}`, {
+    "nl_subscription_disease_id": disease.join(','),
+    "nl_sub_type":1,
+    "nl_subscription_cures_id":cures.join(','),
+    "country_code": countryCode,
+    })
+      .then(res => {
+      
+          setafterSubmitLoad(false)
+      
+       if(res.data === 1){
+          this.Alert('You have successfully subscribed to our Newsletter')
+       }
+       else {
+          this.Alert('Some error occured! Please try again later.')
+       }
+      })
+      .catch(err => {
+       this.setState({
+          afterSubmitLoad: false
+       })
+       this.Alert('Some error occured! Please try again later.')
+       
+ 
+    })
+   } else {
+      this.Alert('Please enter a valid number!')
+   }
+}
 
+ 
 
 function loadScript(src) {
   return new Promise((resolve) => {
