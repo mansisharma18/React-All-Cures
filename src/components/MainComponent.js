@@ -176,7 +176,6 @@ const Routes = (props) => {
       {/* Article creation page */}
       <ProtectedRoute auth={Auth.auth} path="/article" component={EditPost}/>
 
-      <ProtectedRoute auth={Auth.auth} path="/subscription/:article_id" component={SubscriptionDetails}/>
       {/* Dashboard pages */}
       <ProtectedRouteDashboard userAccess={props.userAccess} auth={Auth.auth} exact path="/dashboard" component={Dashboard} />
       <ProtectedRouteDashboard userAccess={props.userAccess} auth={Auth.auth} exact path="/dashboard/blogs" component={BlogAllPost} />
@@ -196,6 +195,7 @@ const Routes = (props) => {
 
       <Route path="/searchmedicine/medicinetype/:medicine_type" component={Medicinepage}/>
 
+      <Route exact path="/subscription/:article_id" component={SubscriptionDetails}/>
      
 {/*category*/}
  <Route exact path="/searchcategory" component={Categorypage}/>

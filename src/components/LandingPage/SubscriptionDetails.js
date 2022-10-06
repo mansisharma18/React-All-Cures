@@ -1,15 +1,19 @@
 import React,{useState, useEffect} from 'react';
 import Header from '../Header/Header';
 import axios from 'axios';
+import { Route } from "react-router-dom";
 import { backendHost } from '../../api-config';
 import Footer from '../Footer/Footer';
+import Doct from "../../assets/img/doct.png";
+import PhoneInput from 'react-phone-number-input';
 import {userId} from "../UserId";
+import { userAccess } from "../UserAccess";
 import {useParams} from 'react-router-dom';
 import Heart from"../../assets/img/heart.png";
 import { faSortAmountDown } from '@fortawesome/free-solid-svg-icons';
 import { Redirect } from 'react-router';
 import { useHistory } from "react-router-dom";
-import { userAccess } from '../UserAccess'
+import Test from './test'
 const SubscriptionDetails = (props) => {
   const [items, setItems] = useState([])
   const [Loading, setLoading] = useState()
@@ -19,8 +23,11 @@ const SubscriptionDetails = (props) => {
   const [alertMsg, setAlertMsg] = useState(true)
   const [afterSubmitLoad, setafterSubmitLoad] = useState(false)
   const history = useHistory();
+  const [auth, setAuth] = React.useState('not-logged-in');
+  const [authLoaded, setAuthLoaded] = React.useState(false);
   const[modalShow,setmodalShow]=useState(false)
-  
+  const[value,setValue]=useState()
+  const[path,setPath]=useState()
   function Alert(msg){
     setShowAlert(true)
     setAlertMsg(msg)
@@ -28,11 +35,11 @@ const SubscriptionDetails = (props) => {
        setShowAlert(false)
     }, 1000);
   }
-  
+ 
+
+
  function subdetails(){
   axios.get(`${backendHost}/subscription/get`)
-
-  
 
   .then((res) => {
     setItems(res.data)
@@ -49,11 +56,9 @@ const SubscriptionDetails = (props) => {
   subdetails()
   
 }, [])
-function displayModal(action)  {
-  
-    setmodalShow(action)
 
-}
+
+
 function loadScript(src) {
   return new Promise((resolve) => {
     const script = document.createElement("script");
@@ -67,14 +72,21 @@ function loadScript(src) {
     document.body.appendChild(script);
   });
 }
-
- function displayRazorpay(priceId,subscription_id,userId) {
+function showForm(action) {
+  setmodalShow(action)
+}
+ function displayRazorpay(priceId,subscription_id,userId,path, ...rest) {
+  
+  
+  
+   
   
   setLoading(true);
 axios.post(`${backendHost}/subscription/create_order`, {
    amount:priceId,
    
   })
+  
   
   .then(res => { 
     if (res.data) {
@@ -100,6 +112,10 @@ axios.post(`${backendHost}/subscription/create_order`, {
     .catch(err => {
       console.log(err);
     });
+  
+  
+ 
+
  
     function postData(amount, orderId, statusId, userId,subscription_id) {
       axios
@@ -223,32 +239,24 @@ var id = props.match.params.article_id
     
               <div class="custom-separator my-2 mx-auto bg-primary"></div>
 
+              <div>
 
- <div>
-                           {
+              {
+
+
                               userAccess?
-                              <a href="#" onClick={() =>displayRazorpay(item.price_id,item.subscription_id,userId)} 
+                              <a href="#" onClick={() =>
+                                 {displayRazorpay(item.price_id,item.subscription_id,userId)}} 
+                                  class="btn btn-primary btn-sub btn-block p-2 shadow rounded-pill">Buy now</a>
+
+                              :<a href="#" onClick={() => {showForm(true)}}  
                               class="btn btn-primary btn-sub btn-block p-2 shadow rounded-pill">Buy now</a>
-                              : 
-                             <a href="#" onClick={() =>displayModal(true)} class="btn btn-primary btn-sub btn-block p-2 shadow rounded-pill">Buy now</a>
-                            
+
                            }   
-                     
-                           </div>   
+              </div>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
+                
+              
              
             </div>
           </div>
@@ -261,6 +269,74 @@ var id = props.match.params.article_id
       </div>
       
     </section>
+
+    <section className="megaSearch">
+                  
+                  <div className="container">
+                  
+                     <div className="row">
+                     <Test
+                        show={modalShow}
+                        path={path}
+                        onHide={() =>showForm(false)}
+                     />
+                     </div></div></section>
+    <div className="modal fade bd-example-modal-lg" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+  <div className="modal-dialog modal-lg">
+    <div className="modal-content">
+    <div className="modal-header">
+        
+        <button type="button" className="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+    <section className="appStore" >
+         <div className="container">
+            <div className="row">
+               <div className="appStoreBg clearfix" style={{display:"flex",width: "100%",flexWrap: 'wrap'}}>
+                  <div className="col-md-6 col-sm-6 col-sx-12">
+                     <div className="innerapp">
+                        <div className="doc-img">
+                           <img src={Doct} alt="doct"/>
+                        </div>
+                       
+                     </div>
+                  </div>
+                  <div className="col-md-6 col-sm-6 col-sx-12 bg-white subs-hero-2">
+                     <div className="subscribe">                    
+                        <h1 className="text-dark">All Cures</h1>
+                        <div className="h5">Sign up for our free <span>All Cures</span> Daily Newsletter</div><br/>
+                        <div className="h5">Get <span>doctor-approved</span> health tips, news, and more</div>
+                        <div className="form-group relative">
+                           <div className="aaa">
+                              <PhoneInput
+                                 placeholder="Enter phone number"
+                                 value={value}
+                                 defaultCountry='IN'
+                              
+                                 onChange={(newValue) => {
+                                    this.setState({
+                                       value: newValue
+                                    })
+                                 }}
+                              />                              
+                           </div>
+                           <div>
+                              <button className="bcolor rounded py-2" onClick={( ) => {this.postSubscribtion()}}>
+                                 Submit
+                              </button>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+        
+      </section>
+    </div>
+  </div>
+</div>
 <Footer/>
   </div>
   </>
