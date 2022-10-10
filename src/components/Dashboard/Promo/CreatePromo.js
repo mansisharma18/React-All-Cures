@@ -20,7 +20,7 @@ function Promo(props) {
             "promo_end_datetime": endDate,
             "promo_max_limit": maxLimit,
             "promo_active": active,
-            "promo_updated_by": userId,
+            "promo_updated_by": userId,  
         })
         .then(res => {
             setAlert(true)

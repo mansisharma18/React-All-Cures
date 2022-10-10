@@ -49,6 +49,9 @@ function  Master(props) {
                             placeholder="Enter Amount..." required/>
                         </Form.Group>
                         
+
+
+                        
                         <Form.Group className="col-md-6 float-left" style={{zIndex: 2}}>
                             <Form.Label>Price Details</Form.Label>
                             <Form.Control type="text" name="" value={details} onChange={(e) => setDetails(e.target.value)} 
