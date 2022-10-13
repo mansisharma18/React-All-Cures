@@ -8,6 +8,8 @@ import {Link } from 'react-router-dom'
 import CenterWell from './CenterWell';
 import Sidebar from "./leftMenu";
 import SidebarRight from "./RightMenu";
+import Doct from "../../assets/img/doct.png";
+
 
 import { backendHost } from '../../api-config';
 import Dropdown from 'react-bootstrap/Dropdown';
@@ -87,10 +89,25 @@ class Disease extends Component {
       cures:[],
       showAlert: false,
       alertMsg: '',
-      showCuresCards: false
+      showCuresCards: false,
+      modalState: false
     };
-  }
+    this.handleShows = this.handleShows.bind(this);
 
+  }
+  handleShow() {
+    // this.setState({ modalState: !this.state.modalState })
+    setTimeout(() => {
+      this.setState({
+         modalState: true
+      })
+   }, 5000);
+    
+}
+
+handleShows() {
+  this.setState({ modalState: !this.state.modalState });
+}
   fetchBlog = () => {
     var id = this.props.match.params.id.split('-')[0]
     if(/^[0-9]+$/.test (id)){           // Test if URL contains article_id or TITLE
@@ -187,6 +204,46 @@ class Disease extends Component {
         this.Alert('Please enter a valid number!')
      }
   }
+
+  postSubscribtions() {
+    var phoneNumber = this.state.value.split('+')[1]
+    var countryCodeLength = phoneNumber.length % 10
+    var countryCode = phoneNumber.slice(0, countryCodeLength)
+    var StringValue = phoneNumber.slice(countryCodeLength).replace(/,/g, '')
+     if(phoneNumber){
+       this.setState({
+          afterSubmitLoad: true
+       })
+      axios.post(`${backendHost}/users/subscribe/${StringValue}`, {
+      "nl_subscription_disease_id": this.state.disease.join(','),
+      "nl_sub_type":1,
+      "nl_subscription_cures_id":this.state.cures.join(','),
+      "country_code": countryCode,
+      })
+        .then(res => {
+         this.setState({
+            afterSubmitLoad: false
+         })
+         if(res.data === 1){
+            this.Alert('You have successfully subscribed to our Newsletter')
+         }
+         else {
+            this.Alert('Some error occured! Please try again later.')
+         }
+        })
+        .catch(err => {
+         this.setState({
+            afterSubmitLoad: false
+         })
+         this.Alert('Some error occured! Please try again later.')
+         
+   
+      })
+     } else {
+        this.Alert('Please enter a valid number!')
+     }
+  }
+
   fetchCountriesCures = () => {
     fetch(`${backendHost}/isearch/treatmentregions/${this.state.items.disease_condition_id}`)
       .then((res)=> res.json())
@@ -340,6 +397,8 @@ diseasePosts(dcName) {                     // For specific blogs like "/blogs/di
   componentDidMount() {
     window.scrollTo(0, 0);
     this.fetchBlog()
+    this.handleShow()
+    
     
     this.getDisease()
   }
@@ -893,6 +952,70 @@ diseasePosts(dcName) {                     // For specific blogs like "/blogs/di
     </div>
   </div>
 </div>
+
+
+
+<div className={"modal fade" + (this.state.modalState ? " show d-block" : " d-none")} tabIndex="-1" role="dialog">
+
+  <div className="modal-dialog modal-lg">
+    <div className="modal-content">
+    <div className="modal-header">
+        
+        {/* <button type="button" className="close" data-dismiss="modal" aria-label="Close" onClick={this.handleShows}>
+          <span aria-hidden="true">&times;</span>
+        </button> */}
+          <button type="button" className="close" onClick={this.handleShows}>
+                                    <span>&times;</span>
+                                </button>
+      </div>
+    <section className="appStore" >
+         <div className="container">
+            <div className="row">
+               <div className="appStoreBg clearfix" style={{display:"flex",width: "100%",flexWrap: 'wrap'}}>
+                  <div className="col-md-6 col-sm-6 col-sx-12">
+                     <div className="innerapp">
+                        <div className="doc-img">
+                           <img src={Doct} alt="doct"/>
+                        </div>
+                       
+                     </div>
+                  </div>
+                  <div className="col-md-6 col-sm-6 col-sx-12 bg-white subs-hero-2">
+                     <div className="subscribe">                    
+                        <h1 className="text-dark">All Cures</h1>
+                        <div className="h5">Sign up for our free <span>All Cures</span> Daily Newsletter</div><br/>
+                        <div className="h5">Get <span>doctor-approved</span> health tips, news, and more</div>
+                        <div className="form-group relative">
+                           <div className="aaa">
+                              <PhoneInput
+                                 placeholder="Enter phone number"
+                                 value={this.state.value}
+                                 defaultCountry='IN'
+                              
+                                 onChange={(newValue) => {
+                                    this.setState({
+                                       value: newValue
+                                    })
+                                 }}
+                              />                              
+                           </div>
+                           <div>
+                              <button className="bcolor rounded py-2" onClick={( ) => {this.postSubscribtion()}}>
+                                 Submit
+                              </button>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+        
+      </section>
+    </div>
+  </div>
+</div>
+
       <Footer/>
     </div>
     );
