@@ -101,7 +101,7 @@ class Disease extends Component {
       this.setState({
          modalState: true
       })
-   }, 5000);
+   }, 9000);
     
 }
 
