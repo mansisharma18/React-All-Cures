@@ -80,22 +80,22 @@ function postSubscribtion() {
           setafterSubmitLoad(false)
       
        if(res.data === 1){
-          this.Alert('You have successfully subscribed to our Newsletter')
+          Alert('You have successfully subscribed to our Newsletter')
        }
        else {
-          this.Alert('Some error occured! Please try again later.')
+          Alert('Some error occured! Please try again later.')
        }
       })
       .catch(err => {
-       this.setState({
-          afterSubmitLoad: false
-       })
-       this.Alert('Some error occured! Please try again later.')
+     
+          setafterSubmitLoad(false)
+      
+       Alert('Some error occured! Please try again later.')
        
  
     })
    } else {
-      this.Alert('Please enter a valid number!')
+      Alert('Please enter a valid number!')
    }
 }
 
