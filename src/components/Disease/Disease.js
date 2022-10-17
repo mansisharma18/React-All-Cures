@@ -90,18 +90,30 @@ class Disease extends Component {
       showAlert: false,
       alertMsg: '',
       showCuresCards: false,
-      modalState: false
+      modalState: false,
+      url:window.location.href,
     };
     this.handleShows = this.handleShows.bind(this);
+   
 
   }
+
+  
   handleShow() {
     // this.setState({ modalState: !this.state.modalState })
-    setTimeout(() => {
+    if(this.state.url.includes('?whatsapp'))
+    {
+      return this.setState({
+        modelState:false
+      })
+    }else{
+    return setTimeout(() => {
       this.setState({
          modalState: true
+
       })
    }, 9000);
+  }
     
 }
 
@@ -398,6 +410,7 @@ diseasePosts(dcName) {                     // For specific blogs like "/blogs/di
     window.scrollTo(0, 0);
     this.fetchBlog()
     this.handleShow()
+    console.log ('url',window.location.href)
     
     
     this.getDisease()
