@@ -34,8 +34,10 @@ import SubscribedUser from './SubscribedUser';
 import DoctorCreate from './DoctorCreate';
 import NestedListItems from './NestedListItems';
 import CommentsRev from './CommentsRev';
+import TipDetails from "./TipDetails";
 import CreatePrice from './subscription/CreatePrice';
-
+import EditTip from './EditTip';
+import Tip from './Tip'
 import { backendHost } from '../../api-config';
 import { ImageUpload } from './ImageUpload';
 import createTypography from '@material-ui/core/styles/createTypography';
@@ -296,6 +298,14 @@ function RenderComponent(props){
   if(props.search === '?blogs'){
     return(<BlogAllPost/>);
   }
+
+  if(props.search === '?tip'){
+    return(<Tip/>);
+  }
+
+  if(props.search === '?tipdetails'){
+    return(<TipDetails/>);
+  }
  
   if(props.search === '?create_promo'){
     return(<Promo/>);
@@ -352,6 +362,11 @@ function RenderComponent(props){
   } else if(props.search.split('=')[0] === '?editsubscription'){
     return(
       <UpdateSubscription search={props.search}/>
+    )
+
+  } else if(props.search.split('=')[0] === '?edittip'){
+    return(
+      <EditTip search={props.search}/>
     )
 
   } else if(props.search.split('=')[0] === '?doctor'){

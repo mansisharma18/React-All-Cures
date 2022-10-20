@@ -91,6 +91,25 @@ setOpenn(!openn);
               <ListItemText primary="Add Article" />
             </Link>
           </ListItem>
+
+          <ListItem button>
+            <ListItemIcon>
+              <ListIcon />
+            </ListItemIcon>
+            <Link to="/dashboard?tip">
+              <ListItemText primary="Add Tip" />
+            </Link>
+          </ListItem>
+
+          <ListItem button>
+            <ListItemIcon>
+              <ListIcon />
+            </ListItemIcon>
+            <Link to="/dashboard?tipdetails">
+              <ListItemText primary="Tip Details" />
+            </Link>
+          </ListItem>
+
           <ListItem button>
             <ListItemIcon>
               <ListIcon />

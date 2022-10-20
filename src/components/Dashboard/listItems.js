@@ -37,6 +37,27 @@ export const mainListItems = (
     <ListItemText primary="New Article" />
            </Link>
            </ListItem>
+
+           <ListItem button>
+      <ListItemIcon>
+        <PeopleIcon />
+      </ListItemIcon>
+      {/* <ListItemText primary="Customers"  /> */}
+    <Link to="/dashboard?tip">
+    <ListItemText primary="Add Tip" />
+           </Link>
+           </ListItem>
+
+           <ListItem button>
+      <ListItemIcon>
+        <PeopleIcon />
+      </ListItemIcon>
+      {/* <ListItemText primary="Customers"  /> */}
+    <Link to="/dashboard?tipdetails">
+    <ListItemText primary="Tip Details" />
+           </Link>
+           </ListItem>
+
     <ListItem button>
       <ListItemIcon>
         <PeopleIcon />
@@ -46,6 +67,18 @@ export const mainListItems = (
     <ListItemText primary="Cures" />
            </Link>
     </ListItem>
+    <ListItem button>
+      <ListItemIcon>
+        <PeopleIcon />
+      </ListItemIcon>
+      {/* <ListItemText primary="Customers"  /> */}
+    <Link to="/dashboard/reviewcomments">
+    <ListItemText primary="Comments"  />
+
+           </Link>
+    
+    </ListItem>
+
     <ListItem button>
       <ListItemIcon>
         <PeopleIcon />
