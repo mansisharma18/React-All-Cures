@@ -190,7 +190,7 @@ axios.post(`${backendHost}/subscription/create_order`, {
     }
 
 
-function callOptions(amount,currency,orderId){
+function callOptions(amount,currency,orderId,subscription_id){
   
 var options = {
   key: "rzp_test_GgDGBdRu7fT3hC",
@@ -200,6 +200,7 @@ var options = {
   article_id:id,
   name: "Subscription",
   description: "Thank you",
+  subscription_id:subscription_id,
  
   image: "",
   handler: function (response) {
