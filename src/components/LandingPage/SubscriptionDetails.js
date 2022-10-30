@@ -144,7 +144,8 @@ axios.post(`${backendHost}/subscription/create_order`, {
         JSON.parse(res.data).amount,
         JSON.parse(res.data).currency,
         JSON.parse(res.data).id,
-        id
+      
+        subscription_id
       );
      
 
@@ -272,7 +273,7 @@ var id = props.match.params.article_id
 
        
         <div class="row mainsub">
-          
+       
         {
     items.map((item) => (
       
