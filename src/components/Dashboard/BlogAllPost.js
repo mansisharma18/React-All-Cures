@@ -54,6 +54,8 @@ const[type,setType] = useState();
             sortable: true,
         
     },
+
+   
    
     {
         name: <h5>PUBLISHED DATE</h5>,
@@ -61,6 +63,29 @@ const[type,setType] = useState();
         selector: row=> <h6 className='col'>{row.published_date}</h6>,
         sortable: true,
     },
+    {
+      name: <h5>CREATED DATE</h5>,
+    
+      selector: row=> <h6 className='col'>{row.create_date}</h6>,
+      sortable: true,
+  }, 
+
+  {
+    name: <h5>PUBLISHED BY</h5>,
+   
+    selector: row=> 
+       parseInt(row.published_by) === 37?
+            <h6 className="chip overview mr-2 col">AMAN MAM</h6>
+            
+        : parseInt(row.published_by) === 51?
+            <h6 className="chip symptoms mr-2 col">AMANDEEP MAM
+             </h6>
+        : parseInt(row.published_by) === 50? 
+            <h6 className="chip cure mr-2 col">PRATEEK SIR </h6>
+        : null,
+        sortable: true,
+    
+},
     {
       name: <h5>CURES TYPE</h5>,
      
@@ -77,6 +102,8 @@ const[type,setType] = useState();
           sortable: true,
       
   },
+
+ 
     {
         name: <h5>AUTHOR NAME</h5>,
         
