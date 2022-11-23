@@ -197,7 +197,6 @@ const Routes = (props) => {
 
       <Route path="/searchmedicine/medicinetype/:medicine_type" component={Medicinepage}/>
 
-      <Route exact path="/subscription/:article_id" component={SubscriptionDetails}/>
      
 {/*category*/}
  <Route exact path="/searchcategory" component={Categorypage}/>
