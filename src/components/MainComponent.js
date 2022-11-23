@@ -39,7 +39,6 @@ import Feedback from "./Feedback";
 import Categorypage from "./BlogPage/Categorypage";
 import Editorial from "./Header/Editorial";
 import AllDisease from "./Header/AllDisease";
-import SubscriptionDetails from "./LandingPage/SubscriptionDetails";
 import privacy from './BlogPage/Privacy'
 import A from './Header/Health A To Z/A'
 import B from './Header/Health A To Z/B'
