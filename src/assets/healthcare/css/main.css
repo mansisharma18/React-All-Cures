@@ -629,7 +629,7 @@ h6 {
   padding: 10px 10px !important;
   opacity:0.8;
   position: absolute;
-  top:85px;
+  top:60px;
   right:0;
 }
 #featured .owl-next span, #featured .owl-prev span{
@@ -682,7 +682,7 @@ h6 {
   background:lightblue;
 }
 #featured .owl-prev{
-top:89px;
+top:60px;
 padding:10px 10px !important;
 background:lightblue;
 opacity:0.8;
