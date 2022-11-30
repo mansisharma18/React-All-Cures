@@ -2545,7 +2545,11 @@ padding:0.22rem;
   min-height:31rem;
 }
 .owl-carousel.owl-loaded#featured{
-  height:270px;
+  height:565px;
+}
+
+#trends{
+  height: 270px;
 }
 .card-article-content-preview .ce-block {
   width: 100%;
