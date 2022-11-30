@@ -528,7 +528,7 @@ class Home extends Component {
 
 
       <section className="mb-5 mt-2">
-      <div className="container">
+      <div className="container" id='trends'>
             <div className="row">
                <div className="comman-heading">
                   <div className="h4">Trending Cures</div>
