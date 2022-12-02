@@ -33,7 +33,7 @@ export default class Editorial extends Component{
     <h3>Source Disclaimer</h3>
     <p className='mt-3'>The material and content available in this article has been compiled and written by the Editorial team of All-Cures.
      The editorial team at All-Cures makes every effort to make sure that the information provided in the article is accurate, correct and 
-     complete and does contain any part that is either misleading or incomplete. The details in the articles are for the purpose of information only and should not be seen as a substitute for medical advise.
+     complete and does not contain any part that is either misleading or incomplete. The details in the articles are for the purpose of information only and should not be seen as a substitute for medical advise.
          
          </p>
        
