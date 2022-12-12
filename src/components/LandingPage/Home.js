@@ -318,6 +318,8 @@ class Home extends Component {
           <NavDropdown.Item href="/searchmedicine/medicinetype/4"> Chinese Medicine</NavDropdown.Item>
           <NavDropdown.Item href="/searchmedicine/medicinetype/3">Persian</NavDropdown.Item>
           <NavDropdown.Item href="/searchmedicine/medicinetype/2">Unani</NavDropdown.Item>
+          <NavDropdown.Item href="/searchmedicine/medicinetype/8">Homeopathy</NavDropdown.Item>
+
           <NavDropdown.Item href="/searchmedicine/medicinetype/6">Japanese</NavDropdown.Item>
           <NavDropdown.Item href="/searchmedicine/medicinetype/5">Scandinavian</NavDropdown.Item>
         
@@ -528,7 +530,7 @@ class Home extends Component {
 
 
       <section className="mb-5 mt-2">
-      <div className="container">
+      <div className="container" id='trends'>
             <div className="row">
                <div className="comman-heading">
                   <div className="h4">Trending Cures</div>
