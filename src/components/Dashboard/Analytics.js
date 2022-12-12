@@ -1,41 +1,39 @@
-import React from "react";
+import React, { useState } from 'react';
 import { ResponsiveContainer, LineChart, Line, XAxis, YAxis, CartesianGrid, Legend, Tooltip} from "recharts";
-
-const lineChartData = [
-  {
-    count: 23,
-    date: "2-22-11-2",
-    fees: 120
-  },
-  {
-    subject: "CSS",
-    topics: 75,
-    fees: 20
-  },
-  {
-    subject: "javaScript",
-    topics: 65,
-    fees: 140
-  },
-  {
-    subject: "HTML",
-    topics: 90,
-    fees: 40
+import axios from 'axios';
+import { backendHost } from '../../api-config';
+class Analytics extends React.Component {
   
-  },
-  {
-    subject: "Node.js",
-    topics: 70,
-    fees : 150
-  },
-  {
-    subject: "Python",
-    topics: 250,
-    fees: 180
-  }
+	// Constructor
+	constructor(props) {
+		super(props);
 
-];
-function Analytics(){
+		this.state = {
+			lineChartData: [],
+			DataisLoaded: false,
+            
+		};
+	}
+    componentDidMount() {
+
+        fetch(`https://all-cures.com:444/cures/analytics/all`)
+        .then((res)=> res.json())
+        .then((json) => {
+          this.setState({
+            lineChartData: json
+          })
+        })
+        .catch(err => 
+          null
+        )  
+     }
+
+   
+   
+
+   render(){
+    const { DataisLoaded, lineChartData } = this.state;
+    
     return (
     <React.Fragment>
       <h3 style={{color:"blue"}}>Course Line chart</h3>
@@ -43,9 +41,9 @@ function Analytics(){
        <LineChart data= {lineChartData} margin={{left:50, right:50, top:100, bottom:100}}>
          <CartesianGrid strokeDasharray="2 2"/>
          <Tooltip contentStyle={{backgroundColor:"lightgray"}}/>
-         <Line dataKey="fees" stroke="red" activeDot={{r:10}} type="monotone" />
-         <Line dataKey="topics" stroke="green" activeDot={{r:10}} type="monotone" />
-         <XAxis dataKey ="subject"  interval="preserveStartEnd" tickFormatter={(value)=> value+" Language"}/>
+         <Line dataKey="count" stroke="red" activeDot={{r:10}} type="monotone" />
+        
+         <XAxis dataKey ="date"  interval="preserveStartEnd" tickFormatter={(value)=> value+" date"}/>
          <YAxis />
          <Legend />
        </LineChart>
@@ -53,6 +51,9 @@ function Analytics(){
     </React.Fragment>
    
     );
-};
+   }
+}
+   
+
 
 export default Analytics
