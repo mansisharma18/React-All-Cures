@@ -41,9 +41,9 @@ class Analytics extends React.Component {
        <LineChart data= {lineChartData} margin={{left:50, right:50, top:100, bottom:100}}>
          <CartesianGrid strokeDasharray="2 2"/>
          <Tooltip contentStyle={{backgroundColor:"lightgray"}}/>
-         <Line dataKey="count" stroke="red" activeDot={{r:10}} type="monotone" />
+         <Line dataKey="Count" stroke="red" activeDot={{r:10}} type="monotone" />
         
-         <XAxis dataKey ="date"  interval="preserveStartEnd" tickFormatter={(value)=> value+" date"}/>
+         <XAxis dataKey ="Date"  interval="preserveStartEnd" tickFormatter={(value)=> value+" date"}/>
          <YAxis />
          <Legend />
        </LineChart>

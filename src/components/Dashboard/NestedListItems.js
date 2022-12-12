@@ -73,8 +73,17 @@ setOpenn(!openn);
         <ListItemIcon>
           <DashboardIcon />
         </ListItemIcon>
-        <Link to="/analytics">
+        <Link to="/dashboard/?analytics">
           <ListItemText primary="Analytics" />
+        </Link>
+      </ListItem>
+
+      <ListItem button style={{backgroundColor:'lightblue'}}>
+        <ListItemIcon>
+          <DashboardIcon />
+        </ListItemIcon>
+        <Link to="/dashboard/?baranalytics">
+          <ListItemText primary="BarAnalytics" />
         </Link>
       </ListItem>
 
