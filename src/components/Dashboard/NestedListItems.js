@@ -69,6 +69,15 @@ setOpenn(!openn);
         </Link>
       </ListItem>
 
+      <ListItem button style={{backgroundColor:'lightblue'}}>
+        <ListItemIcon>
+          <DashboardIcon />
+        </ListItemIcon>
+        <Link to="/analytics">
+          <ListItemText primary="Analytics" />
+        </Link>
+      </ListItem>
+
 
       <ListItem button onClick={handleClick} style={{backgroundColor:'lightblue'}}>
       <ListItemIcon>

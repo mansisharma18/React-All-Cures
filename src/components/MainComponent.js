@@ -14,7 +14,7 @@ import AuthApi from './AuthApi'
 import Disease from "./Disease/Disease";
 import Dashboard from "./Dashboard/Dashboard.js";
 import HelmetMetaData from "./HelmetMetaData";
-
+import Analytics from "./Dashboard/Analytics";
 import Blogpage from "./BlogPage/Blogpage";
 import Medicinepage from "./BlogPage/Medicinepage";
 import EditPost from './BlogPage/EditModal';
@@ -179,6 +179,7 @@ const Routes = (props) => {
       <ProtectedRoute auth={Auth.auth} path="/article" component={EditPost}/>
 
       {/* Dashboard pages */}
+      <ProtectedRouteDashboard userAccess={props.userAccess} auth={Auth.auth} exact path="/analytics" component={Analytics} />
       <ProtectedRouteDashboard userAccess={props.userAccess} auth={Auth.auth} exact path="/dashboard" component={Dashboard} />
       <ProtectedRouteDashboard userAccess={props.userAccess} auth={Auth.auth} exact path="/dashboard/blogs" component={BlogAllPost} />
       <ProtectedRouteDashboard userAccess={props.userAccess} auth={Auth.auth} exact path="/dashboard/commentsrev" component={CommentsRev} />
