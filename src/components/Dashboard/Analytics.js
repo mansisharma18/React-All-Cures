@@ -16,7 +16,7 @@ class Analytics extends React.Component {
 	}
     componentDidMount() {
 
-        fetch(`https://all-cures.com:444/cures/analytics/all`)
+        fetch(`${backendHost}/analytics/all`)
         .then((res)=> res.json())
         .then((json) => {
           this.setState({
@@ -36,14 +36,22 @@ class Analytics extends React.Component {
     
     return (
     <React.Fragment>
-      <h3 style={{color:"blue"}}>Course Line chart</h3>
+      <h3 style={{color:"blue"}}>Line chart (Article views/published)</h3>
       <ResponsiveContainer width="100%" aspect={2} >
        <LineChart data= {lineChartData} margin={{left:50, right:50, top:100, bottom:100}}>
          <CartesianGrid strokeDasharray="2 2"/>
          <Tooltip contentStyle={{backgroundColor:"lightgray"}}/>
-         <Line dataKey="Count" stroke="red" activeDot={{r:10}} type="monotone" />
-        
-         <XAxis dataKey ="Date"  interval="preserveStartEnd" tickFormatter={(value)=> value+" date"}/>
+         <Line dataKey="Daily_views" stroke="red" activeDot={{r:5}} type="monotone" name="Daily Views" />
+         <Line dataKey="Daily_Published" stroke="green" activeDot={{r:5}} type="monotone" name="Daily Published" />
+         <Line dataKey="Whatsapp" stroke="blue" activeDot={{r:5}} type="monotone" name="Whatsapp" />
+         <Line dataKey="Ratings" stroke="pink" activeDot={{r:5}} type="monotone" name="Rating" />
+         <Line dataKey="Ratings_Doctor" stroke="yellow" activeDot={{r:5}} type="monotone" name="Ratings Doctor" />
+         <Line dataKey="Comments" stroke="grey" activeDot={{r:5}} type="monotone" name="Comments" />
+         <Line dataKey="Comments_Doctor" stroke="brown" activeDot={{r:5}} type="monotone" name="Comments Doctor" />
+
+
+
+         <XAxis dataKey ="Date"  interval="preserveStartEnd" tickFormatter={(value)=> value}/>
          <YAxis />
          <Legend />
        </LineChart>
