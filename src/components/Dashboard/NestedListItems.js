@@ -7,6 +7,8 @@ import DashboardIcon from '@material-ui/icons/Dashboard';
 import PeopleIcon from '@material-ui/icons/People';
 import BarChartIcon from '@material-ui/icons/BarChart';
 import NoteAddIcon from '@material-ui/icons/NoteAdd';
+import ShowChartIcon from '@mui/icons-material/ShowChart';
+import InsightsIcon from '@mui/icons-material/Insights';
 import BackupIcon from '@material-ui/icons/Backup';
 // import AssignmentIcon from '@mui/icons-material/Assignment';
 import { Link } from 'react-router-dom'
@@ -28,7 +30,10 @@ export default function NestedListItems() {
   const [openn, setOpenn] = React.useState(false);
   const [opennn, setOpennn] = React.useState(false);
   const [opennnn, setOpennnn] = React.useState(false);
-
+  const [openx, setOpenx] = React.useState(false);
+  const handleClick4 = () => {
+    setOpenx(!openx);
+  };
   const handleClick = () => {
     setOpen(!open);
   };
@@ -69,23 +74,46 @@ setOpenn(!openn);
         </Link>
       </ListItem>
 
-      <ListItem button style={{backgroundColor:'lightblue'}}>
-        <ListItemIcon>
-          <DashboardIcon />
-        </ListItemIcon>
-        <Link to="/dashboard/?analytics">
-          <ListItemText primary="Analytics" />
-        </Link>
-      </ListItem>
+    
 
-      <ListItem button style={{backgroundColor:'lightblue'}}>
-        <ListItemIcon>
-          <DashboardIcon />
-        </ListItemIcon>
-        <Link to="/dashboard/?baranalytics">
-          <ListItemText primary="BarAnalytics" />
-        </Link>
+
+      <ListItem button onClick={handleClick4} style={{backgroundColor:'lightblue'}}>
+      <ListItemIcon>
+              <InsightsIcon />
+            </ListItemIcon>
+        <ListItemText primary="ANALYTICS" />
+        {openx ? <ExpandLess /> : <ExpandMore />}
       </ListItem>
+      <Collapse in={openx} timeout="auto" >
+        <List component="div9" disablePadding>
+          <ListItem button>
+            <ListItemIcon>
+              <ShowChartIcon />
+            </ListItemIcon>
+            {/* <ListItemText primary="Customers"  /> */}
+            <Link to="/dashboard?analytics">
+              <ListItemText primary="ANALYTICS" />
+            </Link>
+          </ListItem>
+          <ListItem button>
+            <ListItemIcon>
+              <BarChartIcon />
+            </ListItemIcon>
+            {/* <ListItemText primary="Customers"  /> */}
+            <Link to="/dashboard?baranalytics">
+              <ListItemText primary="BAR ANALYTICS" />
+            </Link>
+          </ListItem>
+       
+
+        </List>
+      </Collapse>
+
+
+
+
+
+
 
 
       <ListItem button onClick={handleClick} style={{backgroundColor:'lightblue'}}>
