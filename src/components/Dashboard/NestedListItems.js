@@ -92,7 +92,7 @@ setOpenn(!openn);
             </ListItemIcon>
             {/* <ListItemText primary="Customers"  /> */}
             <Link to="/dashboard?analytics">
-              <ListItemText primary="ANALYTICS" />
+              <ListItemText primary="COMPLETE" />
             </Link>
           </ListItem>
           <ListItem button>
@@ -101,7 +101,7 @@ setOpenn(!openn);
             </ListItemIcon>
             {/* <ListItemText primary="Customers"  /> */}
             <Link to="/dashboard?baranalytics">
-              <ListItemText primary="BAR ANALYTICS" />
+              <ListItemText primary="ARTICLE" />
             </Link>
           </ListItem>
        
