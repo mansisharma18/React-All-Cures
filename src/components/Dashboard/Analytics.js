@@ -43,7 +43,6 @@ class Analytics extends React.Component {
          <Tooltip contentStyle={{backgroundColor:"lightgray"}}/>
          <Line dataKey="Daily_views" stroke="red" activeDot={{r:5}} type="monotone" name="Daily Views" />
          <Line dataKey="Daily_Published" stroke="green" activeDot={{r:5}} type="monotone" name="Daily Published" />
-         <Line dataKey="Whatsapp" stroke="blue" activeDot={{r:5}} type="monotone" name="Whatsapp" />
         
 
          <XAxis dataKey ="Date"  interval="preserveStartEnd" tickFormatter={(value)=> value}/>
