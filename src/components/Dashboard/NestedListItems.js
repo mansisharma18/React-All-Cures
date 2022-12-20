@@ -95,22 +95,14 @@ setOpenn(!openn);
               <ListItemText primary="DAILY" />
             </Link>
           </ListItem>
-          <ListItem button>
-            <ListItemIcon>
-              <ShowChartIcon />
-            </ListItemIcon>
-            {/* <ListItemText primary="Customers"  /> */}
-            <Link to="/dashboard?whatsappanalytics">
-              <ListItemText primary="WHATSAPP REPORT" />
-            </Link>
-          </ListItem>
+        
           <ListItem button>
             <ListItemIcon>
               <ShowChartIcon />
             </ListItemIcon>
             {/* <ListItemText primary="Customers"  /> */}
             <Link to="/dashboard?ratinganalytics">
-              <ListItemText primary="DOCTOR RATING" />
+              <ListItemText primary="RATING" />
             </Link>
           </ListItem>
           <ListItem button>
@@ -119,7 +111,7 @@ setOpenn(!openn);
             </ListItemIcon>
             {/* <ListItemText primary="Customers"  /> */}
             <Link to="/dashboard?commentsanalytics">
-              <ListItemText primary="DOCTOR COMMENTS" />
+              <ListItemText primary="COMMENTS" />
             </Link>
           </ListItem>
           <ListItem button>
