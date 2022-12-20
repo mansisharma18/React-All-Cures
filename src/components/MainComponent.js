@@ -179,8 +179,8 @@ const Routes = (props) => {
       <ProtectedRoute auth={Auth.auth} path="/article" component={EditPost}/>
 
       {/* Dashboard pages */}
-      <ProtectedRouteDashboard userAccess={props.userAccess} auth={Auth.auth} exact path="/analytics" component={Analytics} />
-      <ProtectedRouteDashboard userAccess={props.userAccess} auth={Auth.auth} exact path="/dashboard" component={Dashboard} />
+      <ProtectedRouteDashboard userAccess={props.userAccess} auth={Auth.auth} exact path="/dashboard/analytics" component={Analytics} />
+         <ProtectedRouteDashboard userAccess={props.userAccess} auth={Auth.auth} exact path="/dashboard" component={Dashboard} />
       <ProtectedRouteDashboard userAccess={props.userAccess} auth={Auth.auth} exact path="/dashboard/blogs" component={BlogAllPost} />
       <ProtectedRouteDashboard userAccess={props.userAccess} auth={Auth.auth} exact path="/dashboard/commentsrev" component={CommentsRev} />
       <ProtectedRouteDashboard userAccess={props.userAccess} auth={Auth.auth} exact path="/dashboard/results" component={Results} />
