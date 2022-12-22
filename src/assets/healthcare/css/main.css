@@ -629,8 +629,24 @@ h6 {
   padding: 10px 10px !important;
   opacity:0.8;
   position: absolute;
-  top:60px;
+  top:39px;
   right:0;
+}
+#trending .owl-next{
+  background-color:lightblue;
+  padding: 10px 10px !important;
+  opacity:0.8;
+  position: absolute;
+  top:39px;
+  right:0;
+}
+#trending .owl-prev{
+  background-color:lightblue;
+  padding: 10px 10px !important;
+  opacity:0.8;
+  position: absolute;
+  top:39px;
+  
 }
 #featured .owl-next span, #featured .owl-prev span{
   font-size: 45px;
@@ -654,19 +670,20 @@ h6 {
   padding: 10px 10px !important ;
   position: absolute;
   left: -5px;
-  top: 93px;
+  top: 104px;
   border-radius: 3rem;
   background-color:lightblue;
   opacity:0.8;
 }
-#choose-category .owl-prev span, #choose-category .owl-next span {
+#choose-category .owl-prev span, #choose-category .owl-next span, #trending .owl-prev span, #trending .owl-next span {
   color: black;
  
   font-size:45px;
 }
-#specialists .owl-prev, #featured .owl-prev{
+
+#specialists .owl-prev, #featured .owl-prev, #trending .owl-prev{
   left: 0;
-    top: 106px;
+   
     padding: 10px 10px !important;
     background: lightblue;
     position: absolute;
@@ -681,8 +698,13 @@ h6 {
 #featured .owl-prev:hover{
   background:lightblue;
 }
+#featured .owl-next{
+  top:97px;
+ 
+  
+  }
 #featured .owl-prev{
-top:60px;
+top:97px;
 padding:10px 10px !important;
 background:lightblue;
 opacity:0.8;
@@ -708,7 +730,7 @@ position: absolute;
 }
 #specialists .owl-next:hover,#specialists .owl-prev:hover,
  #featured .owl-next:hover, #featured .owl-prev:hover,
- #choose-category .owl-prev:hover, #choose-category .owl-next:hover {
+ #choose-category .owl-prev:hover, #choose-category .owl-next:hover, #trending  .owl-next:hover, #trending .owl-prev:hover{
   background-color: #00415e;
   color: #fff;
   opacity:0.8;

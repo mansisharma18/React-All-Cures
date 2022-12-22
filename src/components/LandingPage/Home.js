@@ -325,7 +325,7 @@ class Home extends Component {
         
         </NavDropdown>
        
-        <Nav.Link href="/AboutUs" id="basic-nav-dropdown">About US</Nav.Link>
+        <Nav.Link href="/AboutUs" id="basic-nav-dropdown">About Us</Nav.Link>
       </Nav>
     </Navbar.Collapse>
   </Container>
