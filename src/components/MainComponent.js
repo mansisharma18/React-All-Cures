@@ -38,6 +38,8 @@ import NotAuthorizedPage from "./NotAuthorizedPage";
 import Feedback from "./Feedback";
 import Categorypage from "./BlogPage/Categorypage";
 import Editorial from "./Header/Editorial";
+import Disclaimer from "./Header/Disclaimer"
+
 import AllDisease from "./Header/AllDisease";
 import privacy from './BlogPage/Privacy'
 import A from './Header/Health A To Z/A'
@@ -134,6 +136,8 @@ const Routes = (props) => {
        <Route exact path="/alldisease" component={AllDisease}/>
        <Route exact path="/aboutus" component={AboutUs}/>
        <Route exact path="/editorial" component={Editorial}/>
+       <Route exact path="/disclaimer" component={Disclaimer}/>
+
 
 
         {/* Health a to z Page */}
