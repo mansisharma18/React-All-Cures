@@ -8,7 +8,6 @@ import './style.css'
 import { Container } from 'react-bootstrap';
 import { backendHost } from '../../api-config';
 import Heart from"../../assets/img/heart.png";
-import InfiniteScroll from "react-infinite-scroll-component";
 const Side = (props) => {
 
     const [isloaded, setisLoaded] = useState(false)
