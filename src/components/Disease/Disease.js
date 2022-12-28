@@ -846,7 +846,7 @@ diseasePosts(dcName) {                     // For specific blogs like "/blogs/di
               }
 
                <h4>Source :  <a href="https://all-cures.com/Editorial">https://all-cures.com/editorial</a></h4><br/>
-               <h4>Medical Disclaimer :  <a href="https://all-cures.com/Medical">https://all-cures.com/Medical</a></h4>
+               <h4>Medical Disclaimer :  <a href="/Medical">https://all-cures.com/Medical</a></h4>
 
 
              
