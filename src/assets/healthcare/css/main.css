@@ -675,6 +675,9 @@ h6 {
   background-color:lightblue;
   opacity:0.8;
 }
+#email{
+  text-transform: lowercase;
+}
 #choose-category .owl-prev span, #choose-category .owl-next span, #trending .owl-prev span, #trending .owl-next span {
   color: black;
  
