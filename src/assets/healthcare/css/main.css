@@ -666,6 +666,9 @@ h6 {
   color: white;
   font-size:45px;
 }
+#specialists .owl-prev{
+  top:110px;
+}
 #choose-category .owl-prev {
   padding: 10px 10px !important ;
   position: absolute;
