@@ -41,7 +41,7 @@ const TrendingArticles = () => {
 
 
             <div className="trending-articles">
-            <OwlCarousel {...options} nav="true" id="featured" height={550} items={1} singleItem={true} margin={10}>
+            <OwlCarousel {...options} nav="true" id="trending" height={550} items={1} singleItem={true} margin={10}>
 
                 <div className=" my-3">
                 <Link to="/searchmedicine/medicinetype/1">
