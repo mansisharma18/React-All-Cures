@@ -846,8 +846,8 @@ diseasePosts(dcName) {                     // For specific blogs like "/blogs/di
                 : null
               }
 
-               <h4>Source :  <a href="https://all-cures.com/Editorial">https://all-cures.com/editorial</a></h4><br/>
-               <h4>Medical Disclaimer :  <a href="/Medical">https://all-cures.com/medical</a></h4>
+               <h4 style={{textTransform:"none"}} >Source :  <a href="https://all-cures.com/Editorial">https://all-cures.com/editorial</a></h4><br/>
+               <h4 style={{textTransform:"none"}} >Medical Disclaimer :  <a href="/Medical">https://all-cures.com/medical</a></h4>
 
 
              
