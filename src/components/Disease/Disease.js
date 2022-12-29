@@ -11,6 +11,7 @@ import Sidebar from "./leftMenu";
 import SidebarRight from "./RightMenu";
 import Doct from "../../assets/img/doct.png";
 
+import { Nav} from "react-bootstrap"
 
 import { backendHost } from '../../api-config';
 import Dropdown from 'react-bootstrap/Dropdown';
@@ -23,6 +24,8 @@ import 'react-phone-number-input/style.css';
 import ArticleRating from '../ArticleRating';
 import Favourite from '../favourite';
 import Favourites from '../UpdateFavourite';
+import Cookies from 'js-cookie';
+
 
 import HelmetMetaData from '../HelmetMetaData';
 import {FacebookShareButton, FacebookIcon, TwitterIcon, TwitterShareButton, WhatsappIcon, WhatsappShareButton} from "react-share";
@@ -108,7 +111,14 @@ class Disease extends Component {
       return this.setState({
         modelState:false
       })
-    }else{
+    }  else if(Cookies.get('wanotification'))
+    {
+      return this.setState({
+        modelState:false
+      })
+    }
+    
+    else{
     return setTimeout(() => {
       this.setState({
          modalState: true
@@ -212,6 +222,8 @@ handleShows() {
   }
   postSubscribtion() {
     //  var mobileNumber = this.state.mobile.split('+')
+    Cookies.set('wanotification','koul',  {expires: 365})
+
     var phoneNumber = this.state.value.split('+')[1]
     var countryCodeLength = phoneNumber.length % 10
     var countryCode = phoneNumber.slice(0, countryCodeLength)
@@ -834,7 +846,10 @@ diseasePosts(dcName) {                     // For specific blogs like "/blogs/di
                 : null
               }
 
-               <h2>Source :  <a href="https://all-cures.com/Editorial">https://all-cures.com/Editorial</a></h2>
+               <h4>Source :  <a href="https://all-cures.com/Editorial">https://all-cures.com/editorial</a></h4><br/>
+               <h4>Medical Disclaimer :  <a href="/Medical">https://all-cures.com/medical</a></h4>
+
+
              
             <div id="comments-column">              
 
@@ -874,6 +889,7 @@ diseasePosts(dcName) {                     // For specific blogs like "/blogs/di
           </Col> 
           <Col id="sidebar-wrapper">      
             <SidebarRight title={items.title} history={this.props.history} dcName={items.dc_name} id={items.article_id}/>
+            
           </Col>
         </Row>
         <div>
