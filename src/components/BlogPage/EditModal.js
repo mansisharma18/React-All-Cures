@@ -611,8 +611,8 @@ const EditModal = (props) => {
                 </div>
 
                 <div className="col-lg-6 form-group">
-                    <label htmlFor="">Window Title</label>
-                    <input type="text" value={win}  onChange={(e) => setWin(e.target.value)} placeholder="Enter title" className="form-control" />
+                    <label htmlFor="">Sources</label>
+                    <textarea value={win}  onChange={(e) => setWin(e.target.value)} placeholder="Enter title" className="form-control" />
                 </div>
                 {   
                     type?

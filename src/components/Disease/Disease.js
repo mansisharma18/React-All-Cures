@@ -97,6 +97,7 @@ class Disease extends Component {
       showCuresCards: false,
       modalState: false,
       url:window.location.href,
+      show:false,
     };
     this.handleShows = this.handleShows.bind(this);
    
@@ -845,8 +846,18 @@ diseasePosts(dcName) {                     // For specific blogs like "/blogs/di
                      </>
                 : null
               }
-
-               <h4 style={{textTransform:"none"}} >Source :  <a href="https://all-cures.com/Editorial">https://all-cures.com/editorial</a></h4><br/>
+  
+  <div>
+             
+              <button  type="button" class="btn btn-primary" onClick={()=>{this.setState({show:!this.state.show})}}>
+                { this.state.show? 'Hide' : 'Show'} Source</button>
+                {
+                  this.state.show? <div><h4 style={{textTransform:"none"}}>{items.window_title} </h4></div> : null
+              }
+          </div>
+          <br/>
+             
+               
                <h4 style={{textTransform:"none"}} >Medical Disclaimer :  <a href="/Medical">https://all-cures.com/medical</a></h4>
 
 
