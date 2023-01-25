@@ -630,7 +630,9 @@ diseasePosts(dcName) {                     // For specific blogs like "/blogs/di
                 </WhatsappShareButton>
               </div>
               
-              <div className="share-buttons-region ml-2" id="filter">
+             
+                </div>
+                <div className="share-buttons-region ml-2" id="filter">
               
               <div className="d-flex justify-content-end margin-auto" id="article-acc-to-regions">
                 
@@ -673,7 +675,6 @@ diseasePosts(dcName) {                     // For specific blogs like "/blogs/di
                   ))
                 : null
               }
-                </div>
                 </div>
                 </div>
               </Breadcrumb>
