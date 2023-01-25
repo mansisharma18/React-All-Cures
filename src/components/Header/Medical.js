@@ -46,7 +46,7 @@ export default class Disclaimer extends Component{
     <h3>Contact Us</h3>
 <h5 className='mt-3' style={{textTransform:"none"}} >Email id: <a href="mailto:info@etheriumtech.com">{this.state.mail.toLowerCase()}</a></h5>
 <h5>Phone No.: <a href="tel:+91 191 295 9035">+91 191 295 9035</a></h5>
-<div class="container my-10"><h3><a href="/feedback"><button id=""
+<div class="container my-10"style={{margin-left:"-15px"}}><h3><a href="/feedback"><button id=""
           className="article-search btn btn-dark mt-10">Submit Your Feedback</button></a></h3></div>
           
 </div>
