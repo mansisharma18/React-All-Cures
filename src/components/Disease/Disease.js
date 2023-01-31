@@ -634,12 +634,12 @@ diseasePosts(dcName) {                     // For specific blogs like "/blogs/di
                 </div>
                 <div className="share-buttons-region ml-2" id="filter">
               
-              <div className="d-flex justify-content-end margin-auto" id="article-acc-to-regions">
+              <div className=" justify-content-end margin-auto" id="article-acc-to-regions">
                 
               { finalRegions?
                   finalRegions.map(i => i.countryname!== null && (
                    <Dropdown key={i.countryname}>
-                      <Dropdown.Toggle className="mr-2 btn btn-info color-white">
+                      <Dropdown.Toggle className="mb-20 mr-2 btn btn-info color-white">
                         <span className="color-white">{i.countryname}</span>
                       </Dropdown.Toggle>
                     <Dropdown.Menu>
