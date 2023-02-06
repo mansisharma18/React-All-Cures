@@ -3,7 +3,11 @@ import axios from "axios";
 import { backendHost } from "../../api-config";
 import Header from "./Header";
 import Footer from '../Footer/Footer';
+import { userAccess } from "../UserAccess";
+import Cookies from 'js-cookie';
 
+
+import DeleteLogin from '../LandingPage/DeleteLogin';
 export default class AboutUs extends Component{
     constructor(props) {
         super(props);
@@ -18,14 +22,20 @@ export default class AboutUs extends Component{
             isLoaded: false,
             LoadMore: false,
             regionPostsLoaded: false,
+            modalShow: this.props.location.state? this.props.location.state.modalShow: false,
             country: new URLSearchParams(this.props.location.search).get('c'),
             diseaseCondition: new URLSearchParams(this.props.location.search).get('dc'),
             articleFilter: 'recent',
             mail:'info@etheriumtech.com'
           };
         }
+        setModalShow =(action) => {
+            this.setState({
+              modalShow: action
+            })
+          }
           render(){
-            var { isLoaded, items, regionPostsLoaded, LoadMore } = this.state;
+            var { isLoaded, items, regionPostsLoaded, LoadMore,props } = this.state;
     return(
 <>
 <div>
@@ -48,12 +58,44 @@ export default class AboutUs extends Component{
 <h5>Phone No.: <a href="tel:+91 191 295 9035">+91 191 295 9035</a></h5>
 <div class="container my-10"><h3><a href="/feedback"><button id=""
           className="article-search btn btn-dark mt-10">Submit Your Feedback</button></a></h3></div>
-          
+
+         
 </div>
+<ToggleButton 
+                              userName={Cookies.get('uName')} 
+                              setModalShow={this.setModalShow} 
+                              userAccess={userAccess} 
+                              logout={this.logout}
+                           /> 
+                             <DeleteLogin
+               show={this.state.modalShow}
+               onHide={() => this.setModalShow(false)}
+            />
 <Footer></Footer>
 </div>
 </>
     );
+    
 
 }
+}
+function ToggleButton(props) {
+    
+        return(
+          <>
+           <div className='container mb-30'>'As a customer of AllCures, you have the ability to delete your profile.
+     If your objective is for AllCures to not contact you, you have the ability of Unsubscribing
+      to our NewsLetter by <a href="/editSubscribe">Editing your subscription. </a>
+      If you would like to Delete your profile, you can do that by &nbsp;
+      <button class=" text-dark loginSignbtn  "  id="signIn"
+         variant="dark" 
+         style={{width: '10rem', border:'none', color:'black !important', padding:'0', backgroundColor:'none !important'}}
+        onClick={() => props.setModalShow(true)}>Clicking Here. </button>
+     If you would like AllCures to remove all your information from our databases,
+       please send us an email at info@etheriumtech.com with the Subject of 'Delete My Profile'. 
+    In the subject of the body, also indicate your email address.</div>
+          
+          </>
+        );
+    
 }
