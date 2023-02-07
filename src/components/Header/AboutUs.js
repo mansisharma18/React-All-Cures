@@ -83,7 +83,7 @@ function ToggleButton(props) {
     
         return(
           <>
-           <div className='container mb-30' style={{fontSize:'.9rem'}}>'As a customer of AllCures, you have the ability to delete your profile.
+           <div className='container mb-30' style={{fontSize:'.9rem'}}>As a customer of AllCures, you have the ability to delete your profile.
      If your objective is for AllCures to not contact you, you have the ability of Unsubscribing
       to our NewsLetter by <a href="/editSubscribe">Editing your subscription. </a>
       If you would like to Delete your profile, you can do that by &nbsp;
