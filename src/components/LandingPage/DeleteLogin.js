@@ -6,6 +6,7 @@ import Cookies from 'js-cookie'
 import {Select, MenuItem , InputLabel, FormControl, Checkbox, FormGroup, FormControlLabel} from '@material-ui/core';
 import { usePasswordValidation } from '../hooks/usePasswordValidation';
 import { backendHost } from '../../api-config';
+import { useHistory } from 'react-router-dom';
 
 import './test.css'
 import ErrorBoundary from '../ErrorBoundary';
@@ -20,6 +21,8 @@ const DeleteLogin = (props) => {
     const [signInpassword, setPass] = useState("");
     const [buttonClick, setClicked] = useState("");
 
+    
+    const [emailExists, setEmailExists] = useState(null);
     // Sign up form's states
 
     const [firstName, setFname] = useState("");
@@ -35,7 +38,7 @@ const DeleteLogin = (props) => {
     const [validEmail, setValidEmail] = useState()
      const [hasError, sethasError] = useState(false)
      const [loginSuccess, setLoginSuccess] = useState(true)
-  
+     const history = useHistory();
     const [
       validLength,
       upperCase,
@@ -97,6 +100,18 @@ const DeleteLogin = (props) => {
       setValidEmail(true)
     }
   }
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    setEmailExists(null);
+    const response = await fetch(`${backendHost}/data/delete/${email}`);
+    const data = await response.json();
+    setEmailExists(data.exists);
+    if (emailExists) {
+      history.push('/DeleteUserProfile');
+    } else {
+      history.push('/Home');
+    }
+  };
 
   const handleClick =() => {
         if(click === true){
@@ -269,7 +284,12 @@ const DeleteLogin = (props) => {
             <MenuItem value="other">Other</MenuItem>
           </Select>
         </FormControl>
-        <button type="submit" className="ghost" >Sign Up</button>
+        <button type="submit" className="ghost"id="btn1">Sign In</button>
+      {emailExists === null ? (
+        <p>Checking...</p>
+      ) : (
+        <p>{emailExists ? 'Email exists' : 'Email does not exist'}</p>
+      )}
       </form>
     </div>
     <div className="form-container sign-in-container">
@@ -306,7 +326,15 @@ const DeleteLogin = (props) => {
           label="Remember Me"
         />
       </FormGroup>
-      <Link to="/DeleteUserProfile"> <button className="ghost"id="btn1">Sign In</button></Link>
+
+       <button type="submit"  className="ghost"id="btn1" >Sign In</button>
+       {emailExists === null ? (
+        <p>Checking...</p>
+      ) : emailExists ? (
+        <p>Email exists, proceed with signing in...</p>
+      ) : (
+        <p>Email does not exist, please sign up first.</p>
+      )}
       </form>
     </div>
     <div className="overlay-container">
