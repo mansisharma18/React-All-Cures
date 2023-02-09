@@ -100,18 +100,7 @@ const DeleteLogin = (props) => {
       setValidEmail(true)
     }
   }
-  const handleSubmit = async (event) => {
-    event.preventDefault();
-    setEmailExists(null);
-    const response = await fetch(`${backendHost}/data/delete/${email}`);
-    const data = await response.json();
-    setEmailExists(data.exists);
-    if (emailExists) {
-      history.push('/DeleteUserProfile');
-    } else {
-      history.push('/Home');
-    }
-  };
+  
 
   const handleClick =() => {
         if(click === true){
@@ -123,6 +112,34 @@ const DeleteLogin = (props) => {
 
   const loginForm = async (e) => {
     e.preventDefault();
+    setEmailExists(null);
+   // await fetch(`${backendHost}/data/delete/${email}`)
+
+  //  .then(response => {
+     // if (response.includes) {
+     //   throw new Error(response.statusText)
+    //  }
+     // return response.json()
+  //  }).catch(err=>{
+  //  console.log(err)
+//})
+
+
+   const response = axios.get(`${backendHost}/data/delete/${email}`)
+   .then(res => {
+    setEmailExists(res.data.exists);
+    if (emailExists) {
+        history.push('/DeleteUserProfile');
+      } else {
+        history.push('/Home');
+      }
+    
+  }).catch(err => {
+    
+  });
+    
+   
+   
     setClicked(1);
     // Sett withCredentials on $axios before creating instance
     axios.defaults.withCredentials = true
