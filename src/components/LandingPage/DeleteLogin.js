@@ -126,8 +126,8 @@ const DeleteLogin = (props) => {
 
 
    const response = axios.get(`${backendHost}/data/delete/${email}`)
-   .then(res => {
-    setEmailExists(res.data.exists);
+   .then(response => {
+    setEmailExists(response.data.exists);
     if (emailExists) {
         history.push('/DeleteUserProfile');
       } else {
