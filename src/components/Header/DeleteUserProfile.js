@@ -13,7 +13,7 @@ const DeleteUserProfile = () => {
   const [selectedReason, setSelectedReason] = useState(null);
 
   useEffect(() => {
-    fetch(`http://all-cures.com:8280/cures/data/reasons`)
+    fetch(`${backendHost}/cures/data/reasons`)
       .then(response => response.json())
       .then(data => setReasons(data));
   }, []);
@@ -23,7 +23,7 @@ const DeleteUserProfile = () => {
     setIsDeactivating(true);
     setDeactivationSuccess(null);
     try {
-      fetch(`http://all-cures.com:8280/data/deactivate/${userId}/${selectedReason}`, {
+      fetch(`${backendHost}/data/deactivate/${userId}/${selectedReason}`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
