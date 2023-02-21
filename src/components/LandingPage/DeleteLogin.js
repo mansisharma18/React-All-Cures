@@ -7,6 +7,7 @@ import {Select, MenuItem , InputLabel, FormControl, Checkbox, FormGroup, FormCon
 import { usePasswordValidation } from '../hooks/usePasswordValidation';
 import { backendHost } from '../../api-config';
 import { useHistory } from 'react-router-dom';
+import Test from '../LandingPage/test'
 
 import './test.css'
 import ErrorBoundary from '../ErrorBoundary';
@@ -39,6 +40,8 @@ const DeleteLogin = (props) => {
      const [hasError, sethasError] = useState(false)
      const [loginSuccess, setLoginSuccess] = useState(true)
      const history = useHistory();
+     
+     const [showModal, setShowModal] = useState(false);
     const [
       validLength,
       upperCase,
@@ -112,7 +115,7 @@ const DeleteLogin = (props) => {
 
   const loginForm = async (e) => {
     e.preventDefault();
-    setEmailExists(null);
+    
    // await fetch(`${backendHost}/data/delete/${email}`)
 
   //  .then(response => {
@@ -124,19 +127,30 @@ const DeleteLogin = (props) => {
   //  console.log(err)
 //})
 
+try {
+    const response = await fetch(`${backendHost}/data/delete/${email}`);
+    const data = await response.json();
+    if (data=="Account is activated" && data=="Account exists") {
+      window.location.href = '/DeleteUserProfile';
+    } else {
+        handleClick(setClicked(1))
 
-   const response = axios.get(`${backendHost}/data/delete/${email}`)
-   .then(response => {
-    setEmailExists(response.data.exists);
-    if (emailExists) {
-        history.push('/DeleteUserProfile');
-      } else {
-        history.push('/Home');
-      }
+    }
+  } catch (error) {
+    console.error(error);
+  }
+  // const response = axios.get(`${backendHost}/data/delete/&email=${email}`)
+  // .then(response => {
+  //  setEmailExists(response.data);
+  //  if (response.data=="Account does not exist") {
+  //      setModalShow(true);
+   //   } else {
+   //     history.push('/DeleteUserProfile');
+   //   }
     
-  }).catch(err => {
+  //}).catch(err => {
     
-  });
+  //});
     
    
    
@@ -301,12 +315,8 @@ const DeleteLogin = (props) => {
             <MenuItem value="other">Other</MenuItem>
           </Select>
         </FormControl>
-        <button type="submit" className="ghost"id="btn1">Sign In</button>
-      {emailExists === null ? (
-        <p>Checking...</p>
-      ) : (
-        <p>{emailExists ? 'Email exists' : 'Email does not exist'}</p>
-      )}
+        <button  className="ghost"id="btn1">Sign In</button>
+     
       </form>
     </div>
     <div className="form-container sign-in-container">
@@ -344,14 +354,8 @@ const DeleteLogin = (props) => {
         />
       </FormGroup>
 
-       <button type="submit"  className="ghost"id="btn1" >Sign In</button>
-       {emailExists === null ? (
-        <p>Checking...</p>
-      ) : emailExists ? (
-        <p>Email exists, proceed with signing in...</p>
-      ) : (
-        <p>Email does not exist, please sign up first.</p>
-      )}
+       <button type="submit"  className="ghost"id="btn1"  >Sign In</button>
+     
       </form>
     </div>
     <div className="overlay-container">
