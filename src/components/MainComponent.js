@@ -29,6 +29,7 @@ import Verify from './loginForm/Verify.js'
 import EditSubscribe from './Dashboard/EditSubscribe'
 import DeleteSubscribe from './Dashboard/DeleteSubscribe'
 import List from '../List'
+import DeleteUserProfile from "./Header/DeleteUserProfile";
 import Userprofile from "./Profile/Userprofile";
 import MyArticle from './Profile/MyArtcle'
 import ListArticle from './Profile/ListArticle'
@@ -135,6 +136,7 @@ const Routes = (props) => {
        <Route exact path="/feedback" component={Feedback} />
        <Route exact path="/alldisease" component={AllDisease}/>
        <Route exact path="/aboutus" component={AboutUs}/>
+       <Route exact path="/DeleteUserProfile" component={DeleteUserProfile}/>
        <Route exact path="/editorial" component={Editorial}/>
        <Route exact path="/medical" component={Medical}/>
 
