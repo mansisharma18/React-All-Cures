@@ -13,7 +13,7 @@ const DeleteUserProfile = () => {
   const [selectedReason, setSelectedReason] = useState(null);
 
   useEffect(() => {
-    fetch(`${backendHost}/cures/data/reasons`)
+    fetch(`${backendHost}/data/reasons`)
       .then(response => response.json())
       .then(data => setReasons(data));
   }, []);
