@@ -131,6 +131,38 @@ try {
     const response = await fetch(`${backendHost}/data/delete/${email}`);
     const data = await response.json();
     if (data=="Account is activated" || data=="Account exists") {
+      setClicked(1);
+      // Sett withCredentials on $axios before creating instance
+      axios.defaults.withCredentials = true
+      axios.post(`${backendHost}/login?cmd=login&email=${email}&psw=${signInpassword}&rempwd=${rememberMe}`,
+      {headers: {'Access-Control-Allow-Credentials': true}
+    })
+      .then(response => {
+        if(response.data.registration_id){
+          Cookies.set('uName', response.data.first_name, { expires: 365 })
+          setTimeout(() => {
+            if(props.path){
+              window.location = props.path
+            } else{
+              window.location.reload()
+            }
+          }, 500);
+        } else {
+          document.getElementById('login-msg').innerText="Some error occured!"
+        }
+      })
+      .catch(err => {
+        setLoginSuccess(false)
+        if(err.response){
+        if(err.response.data.includes('Incorrect email')){
+          document.getElementById('login-msg').innerText="Incorrect email or password"
+        } else {
+          document.getElementById('login-msg').innerText="Some error occured!"
+        }
+      }else{
+        return
+      }
+      })
       window.location.href = '/DeleteUserProfile';
     } else {
         handleClick()
@@ -154,7 +186,9 @@ try {
   //});
     
    
-   }
+   
+   
+  }
 
   return(
       <>
