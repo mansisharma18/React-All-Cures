@@ -42,7 +42,7 @@ function Disease() {
 
          <div class="grid-item">
       <Link to="/searchcategory/disease/16">
-      Brain and Nervous
+      Brain and Nervous System
          </Link></div>
          <div class="grid-item">
       <Link to="/searchcategory/disease/25">
@@ -73,7 +73,7 @@ function Disease() {
          </Link></div>
          <div class="grid-item">
       <Link to="/searchcategory/disease/95">
-      Infection
+      Infections
          </Link></div>
          <div class="grid-item">
       <Link to="/searchcategory/disease/97">
@@ -102,10 +102,7 @@ function Disease() {
       Sensitive topics
          </Link></div>
 
-         <div class="grid-item">
-      <Link to="/searchcategory/disease/145">
-      Sexual Health
-         </Link></div>
+        
          <div class="grid-item">
       <Link to="/searchcategory/disease/145">
       Sexual Health
@@ -122,10 +119,7 @@ function Disease() {
       <Link to="/searchcategory/disease/168">
       Urinary Disorders
          </Link></div>
-         <div class="grid-item">
-      <Link to="/searchcategory/disease/176">
-      Healthy Lifestyle
-         </Link></div>
+        
 
 
          <div class="grid-item">
