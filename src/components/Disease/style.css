@@ -145,6 +145,8 @@ background-color: #b9daf1; */
   display: flex;
   /* gap: 1.5rem; */
   justify-content: end;
+  margin-top:15px;
+  margin-bottom:15px;
 }
 @media only screen and (max-width: 600px) {
   .article-title-container {

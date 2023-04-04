@@ -4,7 +4,11 @@ import CenterWell from '../Disease/CenterWell';
 import Date from '../Date'
 import { imagePath } from '../../image-path';
 
+<<<<<<< HEAD
 const AllPost = ({id, title, content, rowno, f_title,  country, type, published_date, over_allrating, imgLocation, authorName}) => {
+=======
+const AllPost = ({id, title, content, rowno, f_title, country, type, published_date, over_allrating, imgLocation, authorName}) => {
+>>>>>>> e1a402d43d859ed49f153a3bcdd6bb5bad63d6ba
     function IsJsonValid(str) {
         try {
             JSON.parse(str);
@@ -63,7 +67,10 @@ const AllPost = ({id, title, content, rowno, f_title,  country, type, published_
                             </div>
                         
                         <div className="card-info">
+<<<<<<< HEAD
                             {/* <div className="card-subtitle text-muted text-capitalize">{w_title.toLowerCase()}</div> */}
+=======
+>>>>>>> e1a402d43d859ed49f153a3bcdd6bb5bad63d6ba
                             <div className='card-article-content-preview'>
                             {
                                     previewContent && previewContent !== undefined?
