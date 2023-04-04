@@ -11,7 +11,6 @@ import { userAccess } from './UserAccess';
 
 
 
-
 function  Favourite ({article_id}) {
 
   const [alert,setAlert] = useState()
@@ -23,7 +22,8 @@ const favouriteForm = (e) => {
       
     })
     .then(res => {
-        setAlert(true)
+   
+     setAlert(true)
         setTimeout(() => {
             setAlert(false)
         }, 4000);

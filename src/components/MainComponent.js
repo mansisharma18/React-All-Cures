@@ -12,6 +12,7 @@ import SearchName from './Search/SearchName';
 import AboutUs from "./Header/AboutUs";
 import AuthApi from './AuthApi'
 import Disease from "./Disease/Disease";
+import ChatList from "./LandingPage/ChatList"
 import Dashboard from "./Dashboard/Dashboard.js";
 import HelmetMetaData from "./HelmetMetaData";
 import Analytics from "./Dashboard/Analytics";
@@ -137,6 +138,8 @@ const Routes = (props) => {
        <Route exact path="/aboutus" component={AboutUs}/>
        <Route exact path="/editorial" component={Editorial}/>
        <Route exact path="/medical" component={Medical}/>
+       <Route exact path="/chatlist" component={ChatList}/>
+
 
 
 
