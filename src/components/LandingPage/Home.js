@@ -720,6 +720,12 @@ function ToggleButton(props) {
                <Link to="/editSubscribe" className="text-dark btn">
                   Edit Subscription</Link>
                </Dropdown.Item>
+
+               <Dropdown.Item >
+               <Link to="/chatlist" className="text-dark btn">
+               My Inbox</Link>
+               </Dropdown.Item>
+
              { props.userAccess >= 4?
                 <Dropdown.Item >
                <Link to="/dashboard" className="text-dark btn">

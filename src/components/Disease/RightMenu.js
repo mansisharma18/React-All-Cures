@@ -80,6 +80,7 @@ const Side = (props) => {
                             id = {i.article_id}
                             title = {i.title}
                             f_title = {i.friendly_name}
+                            // w_title = {i.window_title}
                             type = {i.type}
                             // authorName={i.author_name}
                             content = {decodeURIComponent(i.content)}
