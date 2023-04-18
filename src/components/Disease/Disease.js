@@ -559,6 +559,12 @@ diseasePosts(dcName) {                     // For specific blogs like "/blogs/di
           keywords = {items.keywords}
           image={`${imagePath}`+ items.content_location.replace('json', 'png').split('/webapps/')[1]}>
         </HelmetMetaData>
+        <h1 style={{display:'none'}}>All Cures is a product developed, managed and owned by 
+                        Etherium Technologies. Our mission is to make it simple and convenient for users to get information on Cures from anywhere in the world. 
+                        Our belief is that your wellness is your well-being. 
+                        We are passionate about giving our users the unique 
+                        experience that is both fulfilling and wholesome.</h1>
+                        <h2  style={{display:'none'}}>Ayurveda, Homeopathy, Chinese Medicine, Persian, Unani</h2>
         <div className="ad-spac">
         <button className="btn" data-toggle="modal"data-target=".bd-example-modal-lg">
           <img src={AyurvedaAd} alt="advertisment"/>

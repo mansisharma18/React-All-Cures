@@ -352,6 +352,12 @@ postLead = (id) => {
                               </div>
                             : null
                           } */}
+                          <h1 style={{display:'none'}}>All Cures is a product developed, managed and owned by 
+                        Etherium Technologies. Our mission is to make it simple and convenient for users to get information on Cures from anywhere in the world. 
+                        Our belief is that your wellness is your well-being. 
+                        We are passionate about giving our users the unique 
+                        experience that is both fulfilling and wholesome.</h1>
+                        <h2  style={{display:'none'}}>Ayurveda, Homeopathy, Chinese Medicine, Persian, Unani</h2>
                         <img alt={items.docname_first} 
                                 src={`${imagePath}/cures_articleimages/doctors/${items.rowno}.png?d=${parseInt(Math.random() * 1000)}`} 
                                 onError = {(e) => this.onError(e)}

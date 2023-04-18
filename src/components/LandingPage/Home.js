@@ -494,8 +494,14 @@ class Home extends Component {
           <div className="container">
             <div className="row">
                 <div className="tab-nav">
-                  <div className="comman-heading">
-                     <div className="h4 mt-4">Choose by Category</div>
+                  <div className="comman-heading"  itemscope itemtype="http://all-cures.com/Product">
+                     <h1 style={{display:'none'}}>All Cures is a product developed, managed and owned by 
+                        Etherium Technologies. Our mission is to make it simple and convenient for users to get information on Cures from anywhere in the world. 
+                        Our belief is that your wellness is your well-being. 
+                        We are passionate about giving our users the unique 
+                        experience that is both fulfilling and wholesome.</h1>
+                        <h2  style={{display:'none'}}>Ayurveda, Homeopathy, Chinese Medicine, Persian, Unani</h2>
+                     <div className="h4 mt-4" itemprop="Category">Choose by Category</div>
                   </div>
                   {/* <!-- Nav tabs --> */}
                   {/* <ul>
