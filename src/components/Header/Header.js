@@ -189,8 +189,8 @@ import { userAccess } from "../UserAccess";
       <Nav className="me-auto">
         <Nav.Link href="/home" id="basic-nav-dropdown">Home</Nav.Link>
        
-        <NavDropdown title="Categories" id="basic-nav-dropdown" renderMenuOnMount={true}>
-          <NavDropdown.Item href="/searchcategory/disease/1">Arthritis</NavDropdown.Item>
+        <NavDropdown title="Categoriesssssss" id="basic-nav-dropdown" renderMenuOnMount={true}>
+          <NavDropdown.Item href="/searchcategory/disease/1">Arthritissssss</NavDropdown.Item>
           <NavDropdown.Item href="/searchcategory/disease/74"> Diabetes</NavDropdown.Item>
           <NavDropdown.Item href="/searchcategory/disease/50">Hypertension</NavDropdown.Item>
           <NavDropdown.Divider />
