@@ -37,6 +37,16 @@
     border-radius: 10px;
     padding: 10px;
   }
+  .chat-list {
+    display: flex;
+    flex-direction: column;
+    padding: 8px;
+    overflow-y: scroll;
+    max-height: 650px;
+}
+.chat-list::-webkit-scrollbar{
+  display: none;
+}
   .message-container {
    display: flex;
    flex-direction: column;
@@ -50,8 +60,9 @@
   
   .sent {
     align-self:flex-end;
-    background-color: #e6f2ff;
+    background-color: #588092;
     flex-direction: column;
+    color: white;
   }
   
   .received {
@@ -175,9 +186,34 @@ align-self: flex-start;
     background-color: white;
     display: flex;
     flex-direction: column;
-    padding: 20px;
+      width: 400px;
     border-radius: 5px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
     height: 450px; /* set a fixed height for the chat box */
     overflow-y: scroll; 
   }
+
+
+  
+.chat-footer{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 63px;
+  border-top: 1px solid lightgray;
+}
+
+.chat-footer>form{
+  flex:1;
+  display: flex;
+}
+.chat-footer>form>input{
+  flex:1;
+padding: 10;
+border: none;
+margin: 0;
+height: 42px;
+}
+.chat-footer>form>button{
+display: none;
+}
