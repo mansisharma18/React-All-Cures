@@ -4,7 +4,7 @@ import CenterWell from '../Disease/CenterWell';
 import Date from '../Date'
 import { imagePath } from '../../image-path';
 
-const AllPost = ({id, title, content, rowno, f_title, w_title, country, type, published_date, over_allrating, imgLocation, authorName}) => {
+const AllPost = ({id, title, content, rowno, f_title,  country, type, published_date, over_allrating, imgLocation, authorName}) => {
     function IsJsonValid(str) {
         try {
             JSON.parse(str);
@@ -45,7 +45,7 @@ const AllPost = ({id, title, content, rowno, f_title, w_title, country, type, pu
                                     : null
                                 } */}
                                 </div>
-                <div className='col-md-9 mb-2'>
+                <div className='col-md-9 mb-25r'>
                     {/* <div className="card-body"> */}
                             {/* <div className='col-md-3'></div> */}
                             <div className="d-flex justify-content-between align-items-center mt-3">
@@ -63,7 +63,7 @@ const AllPost = ({id, title, content, rowno, f_title, w_title, country, type, pu
                             </div>
                         
                         <div className="card-info">
-                            <div className="card-subtitle text-muted text-capitalize">{w_title.toLowerCase()}</div>
+                            {/* <div className="card-subtitle text-muted text-capitalize">{w_title.toLowerCase()}</div> */}
                             <div className='card-article-content-preview'>
                             {
                                     previewContent && previewContent !== undefined?

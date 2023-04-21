@@ -8,7 +8,9 @@
     height: 40vh;
   }
 }
-
+.mb-25r{
+  margin-bottom:2.5rem;
+}
 .banner {
   height: 49vh;
   position: relative;
@@ -78,6 +80,12 @@
     center center no-repeat;
   background-size: cover;
 }
+.trending-articles #homepathies {
+  background: url("../../assets/healthcare/img/images/Trending-Cures/Homepathy.jpg")
+    center center no-repeat;
+  background-size: cover;
+}
+
 .trending-articles #homeopathy {
   background: url("../../assets/healthcare/img/images/Trending-Cures/homeopathy.jpg")
     center center no-repeat;

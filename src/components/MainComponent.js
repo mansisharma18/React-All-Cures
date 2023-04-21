@@ -12,10 +12,10 @@ import SearchName from './Search/SearchName';
 import AboutUs from "./Header/AboutUs";
 import AuthApi from './AuthApi'
 import Disease from "./Disease/Disease";
+import ChatList from "./LandingPage/ChatList"
 import Dashboard from "./Dashboard/Dashboard.js";
-
 import HelmetMetaData from "./HelmetMetaData";
-
+import Analytics from "./Dashboard/Analytics";
 import Blogpage from "./BlogPage/Blogpage";
 import Medicinepage from "./BlogPage/Medicinepage";
 import EditPost from './BlogPage/EditModal';
@@ -30,6 +30,7 @@ import Verify from './loginForm/Verify.js'
 import EditSubscribe from './Dashboard/EditSubscribe'
 import DeleteSubscribe from './Dashboard/DeleteSubscribe'
 import List from '../List'
+import DeleteUserProfile from "./Header/DeleteUserProfile";
 import Userprofile from "./Profile/Userprofile";
 import MyArticle from './Profile/MyArtcle'
 import ListArticle from './Profile/ListArticle'
@@ -38,7 +39,10 @@ import { userAccess } from "./UserAccess";
 import NotAuthorizedPage from "./NotAuthorizedPage";
 import Feedback from "./Feedback";
 import Categorypage from "./BlogPage/Categorypage";
-import AllDisease from "./Header/AllDisease"
+import Editorial from "./Header/Editorial";
+import Medical from "./Header/Medical"
+
+import AllDisease from "./Header/AllDisease";
 import privacy from './BlogPage/Privacy'
 import A from './Header/Health A To Z/A'
 import B from './Header/Health A To Z/B'
@@ -133,6 +137,13 @@ const Routes = (props) => {
        <Route exact path="/feedback" component={Feedback} />
        <Route exact path="/alldisease" component={AllDisease}/>
        <Route exact path="/aboutus" component={AboutUs}/>
+       <Route exact path="/DeleteUserProfile" component={DeleteUserProfile}/>
+       <Route exact path="/editorial" component={Editorial}/>
+       <Route exact path="/medical" component={Medical}/>
+       <Route exact path="/chatlist" component={ChatList}/>
+
+
+
 
         {/* Health a to z Page */}
 
@@ -177,7 +188,8 @@ const Routes = (props) => {
       <ProtectedRoute auth={Auth.auth} path="/article" component={EditPost}/>
 
       {/* Dashboard pages */}
-      <ProtectedRouteDashboard userAccess={props.userAccess} auth={Auth.auth} exact path="/dashboard" component={Dashboard} />
+      <ProtectedRouteDashboard userAccess={props.userAccess} auth={Auth.auth} exact path="/dashboard/analytics" component={Analytics} />
+         <ProtectedRouteDashboard userAccess={props.userAccess} auth={Auth.auth} exact path="/dashboard" component={Dashboard} />
       <ProtectedRouteDashboard userAccess={props.userAccess} auth={Auth.auth} exact path="/dashboard/blogs" component={BlogAllPost} />
       <ProtectedRouteDashboard userAccess={props.userAccess} auth={Auth.auth} exact path="/dashboard/commentsrev" component={CommentsRev} />
       <ProtectedRouteDashboard userAccess={props.userAccess} auth={Auth.auth} exact path="/dashboard/results" component={Results} />
@@ -189,9 +201,13 @@ const Routes = (props) => {
       <Route exact path="/searchcures" component={Blogpage}/>
       <Route path="/searchcures/:type" component={Blogpage}/>
 
+
+
       <Route exact path="/searchmedicine" component={Medicinepage}/>
+
       <Route path="/searchmedicine/medicinetype/:medicine_type" component={Medicinepage}/>
 
+     
 {/*category*/}
  <Route exact path="/searchcategory" component={Categorypage}/>
       <Route path="/searchcategory/disease/:disease_condition_id" component={Categorypage}/>

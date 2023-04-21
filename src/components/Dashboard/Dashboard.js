@@ -7,6 +7,9 @@ import { StyledEngineProvider } from '@mui/material/styles';
 import Box from '@material-ui/core/Box';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
+import BarAnalytics from './BarAnalytics';
+import CommentsAnalytics from './CommentsAnalytics';
+import RatingAnalytics from './RatingAnalytics';
 import List from '@material-ui/core/List';
 import Typography from '@material-ui/core/Typography';
 import Divider from '@material-ui/core/Divider';
@@ -31,7 +34,8 @@ import SubscribedUser from './SubscribedUser';
 import DoctorCreate from './DoctorCreate';
 import NestedListItems from './NestedListItems';
 import CommentsRev from './CommentsRev';
-
+import Analytics from './Analytics';
+import WhatsappAnalytics from './WhatsappAnalytics';
 import { backendHost } from '../../api-config';
 import { ImageUpload } from './ImageUpload';
 import createTypography from '@material-ui/core/styles/createTypography';
@@ -381,6 +385,36 @@ function RenderComponent(props){
   else if(props.search.split('=')[0] === '?subscribedusers'){
     return(
       <SubscribedUser search={props.search}/>
+    )
+  // 
+  } 
+  else if(props.search.split('=')[0] === '?analytics'){
+    return(
+      <Analytics search={props.search}/>
+    )
+  // 
+  } 
+  else if(props.search.split('=')[0] === '?baranalytics'){
+    return(
+      <BarAnalytics search={props.search}/>
+    )
+  // 
+  } 
+  else if(props.search.split('=')[0] === '?ratinganalytics'){
+    return(
+      <RatingAnalytics search={props.search}/>
+    )
+  // 
+  } 
+  else if(props.search.split('=')[0] === '?commentsanalytics'){
+    return(
+      <CommentsAnalytics search={props.search}/>
+    )
+  // 
+  } 
+  else if(props.search.split('=')[0] === '?whatsappanalytics'){
+    return(
+      <WhatsappAnalytics search={props.search}/>
     )
   // 
   } 

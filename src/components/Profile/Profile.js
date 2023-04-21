@@ -22,6 +22,7 @@ import { Modal } from "react-bootstrap";
 
 import HelmetMetaData from '../HelmetMetaData'
 import { imagePath } from "../../image-path";
+import Chat from "./Chat"
 
 
 class Profile extends Component {
@@ -50,7 +51,8 @@ class Profile extends Component {
       imageUploadLoading: false,
       showAlert: false,
       alertMsg: '',
-      show:false
+      show:false,
+      docid: null,
     };
     this.showModal = this.showModal.bind(this);
     this.hideModal = this.hideModal.bind(this);
@@ -112,7 +114,18 @@ class Profile extends Component {
        })
     }, 5000);
 }
-
+postLead = (id) => {
+  
+  this.showModal()
+    axios.post(`${backendHost}/leads/count/${this.props.match.params.id.split('-')[0]}`)
+    
+    
+    .then(res => {
+     
+      console.log('id', res.data);
+    })
+    .catch(err => err); 
+}
   // DOCTOR'S WRITTEN CURES
 
   allPosts() {                        // For all available blogs "/blogs"
@@ -207,6 +220,7 @@ class Profile extends Component {
         this.setState({
           isLoaded: true,
           items: json,
+          docid: json.docid,
         })
       });
 
@@ -340,6 +354,12 @@ class Profile extends Component {
                               </div>
                             : null
                           } */}
+                          <h1 style={{display:'none'}}>All Cures is a product developed, managed and owned by 
+                        Etherium Technologies. Our mission is to make it simple and convenient for users to get information on Cures from anywhere in the world. 
+                        Our belief is that your wellness is your well-being. 
+                        We are passionate about giving our users the unique 
+                        experience that is both fulfilling and wholesome.</h1>
+                        <h2  style={{display:'none'}}>Ayurveda, Homeopathy, Chinese Medicine, Persian, Unani</h2>
                         <img alt={items.docname_first} 
                                 src={`${imagePath}/cures_articleimages/doctors/${items.rowno}.png?d=${parseInt(Math.random() * 1000)}`} 
                                 onError = {(e) => this.onError(e)}
@@ -459,7 +479,7 @@ class Profile extends Component {
 
                   <div className="aboutDr">
                     <div className="h4 font-weight-bold">
-                      About {items.prefix}. {items.docname_first} {items.docname_middle}{" "}
+                      About {items.prefix} {items.docname_first} {items.docname_middle}{" "}
                       {items.docname_last}
 
                     </div>
@@ -528,11 +548,16 @@ class Profile extends Component {
                       </div>
 
                       {
-                      userId ?
+                      items.subscription ===1
+                       ?
                         <>
                                
-        <Button className="ml-3 mt-4 btn-article-search" id="textComment"  onClick={this.showModal}>
+        <Button className="ml-3 mt-4 btn-article-search" id="textComment"  onClick={this.postLead}>
        Contact Doctor
+      </Button>
+
+      <Button className="ml-3 mt-4 btn-article-search" id="textComment"  onClick={this.postLead}>
+       Chat Us
       </Button>
 
       <Modal show={this.state.show} onHide={this.hideModal} className="rounded mt-5" >
@@ -548,13 +573,7 @@ class Profile extends Component {
         
         <div className="pl-4">
 
-        {this.props.match.params.id.split('-')[0] == 878?<><br/><b>Phone Number: </b>9405613618 <br/><b>Email: </b> ayushmanbhavayurveda@gmail.com </>: null}
-
-{this.props.match.params.id.split('-')[0] == 874?<><br/><b>Phone Number: </b>85788 88111 <br/><b>Email: </b> herbalremedies123@yahoo.com </>: null}
-{this.props.match.params.id.split('-')[0] == 875?<><br/><b>Phone Number: </b>98984 51663<br/><b>Email: </b>vishwaayu@gmail.com</>: null}
-{this.props.match.params.id.split('-')[0] == 877?<><br/><b>Phone Number: </b> 70514 35488<br/><b>Email: </b> afsahnium@gmail.com </>: null}
-{this.props.match.params.id.split('-')[0] == 876?<><br/><b>Phone Number: </b>9501766530 <br/><b>Email: </b> tejasviayurveda@gmail.com </>: null}
-{this.props.match.params.id.split('-')[0] == 871?<><br/><b>Phone Number: </b>9464567425 <br/><b>Email: </b> bhc_bhupendra@yahoo.com </>: null}
+        
             </div>
         </Modal.Body>
         <Modal.Footer>
@@ -596,10 +615,11 @@ userAccess?
         <div id="docRate">
           <Rating docid={this.props.match.params.id.split('-')[0]} ratingVal={this.state.rating} />
         </div>
-
+  
 
                 
-                  
+
+                  <Chat imageURL={`${imagePath}/cures_articleimages/doctors/${items.rowno}.png`}   items={items} docid={this.state.docid} />
                   
                   <div className="comment-box">
 

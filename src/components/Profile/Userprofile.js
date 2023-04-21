@@ -159,7 +159,7 @@ const onError = (e) => {
                           <div className="profile-info-name" id="DocDetails">
                           <div className="h4 font-weight-bold">
                           <div>
-            <div className="h4 text-capitalize">Name: {firstName} {lastName}</div>
+            <div className="h4 text-capitalize">Names: {firstName} {lastName}</div>
             <div className="h5"><span className=''>Email:</span> {email}</div>
            {<div className="h5"><span className=''>Mobile:</span> {mobile}</div>}
             {/* <div className="h5"><span className=''>Registration Type:</span> {regType}</div> */}

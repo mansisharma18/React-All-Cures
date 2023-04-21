@@ -3,7 +3,11 @@ import axios from "axios";
 import { backendHost } from "../../api-config";
 import Header from "./Header";
 import Footer from '../Footer/Footer';
+import { userAccess } from "../UserAccess";
+import Cookies from 'js-cookie';
 
+
+import DeleteLogin from '../LandingPage/DeleteLogin';
 export default class AboutUs extends Component{
     constructor(props) {
         super(props);
@@ -18,13 +22,20 @@ export default class AboutUs extends Component{
             isLoaded: false,
             LoadMore: false,
             regionPostsLoaded: false,
+            modalShow: this.props.location.state? this.props.location.state.modalShow: false,
             country: new URLSearchParams(this.props.location.search).get('c'),
             diseaseCondition: new URLSearchParams(this.props.location.search).get('dc'),
-            articleFilter: 'recent'
+            articleFilter: 'recent',
+            mail:'info@etheriumtech.com'
           };
         }
+        setModalShow =(action) => {
+            this.setState({
+              modalShow: action
+            })
+          }
           render(){
-            var { isLoaded, items, regionPostsLoaded, LoadMore } = this.state;
+            var { isLoaded, items, regionPostsLoaded, LoadMore,props } = this.state;
     return(
 <>
 <div>
@@ -41,18 +52,51 @@ export default class AboutUs extends Component{
 
           
 </div>
-<div className="container my-4">
+<div className="container mb-90" style={{marginBottom:'20'}} >
     <h3>Contact Us</h3>
-<h5 className='mt-3'>Email id: <a href="mailto:info@etheriumtech.com">info@etheriumtech.com</a></h5>
+    <h5 className='mt-3'>Email id: <a href="mailto:info@etheriumtech.com" id="email">{this.state.mail.toLowerCase()}</a></h5>
 <h5>Phone No.: <a href="tel:+91 191 295 9035">+91 191 295 9035</a></h5>
-<div><a href="/feedback"><button id=""
-          className="article-search btn btn-dark mt-10">Submit Your Feedback</button></a></div>
-          
+<div class="container my-3"><h3><a href="/feedback"><button id=""
+          className="article-search btn btn-dark mt-10">Submit Your Feedback</button></a></h3></div>
+
+         
 </div>
+<ToggleButton 
+                              userName={Cookies.get('uName')} 
+                              setModalShow={this.setModalShow} 
+                              userAccess={userAccess} 
+                              logout={this.logout}
+                           /> 
+                             <DeleteLogin
+               show={this.state.modalShow}
+               onHide={() => this.setModalShow(false)}
+            />
 <Footer></Footer>
 </div>
 </>
     );
+    
 
 }
+}
+function ToggleButton(props) {
+    
+        return(
+          <>
+           <div className='container mb-30' style={{fontSize:'.9rem', marginTop:'6rem'}}>As a customer of AllCures, you have the ability to delete your profile.
+     If your objective is for AllCures to not contact you, you have the ability of Unsubscribing
+      to our NewsLetter by <a href="/editSubscribe">Editing your subscription. </a>
+      If you would like to Delete your profile, you can do that by &nbsp;
+      <button class=" text-dark "  id="signIn"
+         variant="dark" 
+         
+         style={{border:'none', padding:'0', background:'white', marginLeft:'.1rem'}}
+        onClick={() => props.setModalShow(true)}>Clicking Here. </button>
+     If you would like AllCures to remove all your information from our databases,
+       please send us an email at info@etheriumtech.com with the Subject of 'Delete My Profile'. 
+    In the subject of the body, also indicate your email address.</div>
+          
+          </>
+        );
+    
 }

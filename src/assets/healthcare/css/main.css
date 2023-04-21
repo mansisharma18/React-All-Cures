@@ -613,7 +613,7 @@ h6 {
   top: 30px;
 }
 
-#specialists .owl-next , #featured .owl-next{
+#specialists .owl-next , #featured .owl-next,#choose-category .owl-next{
   padding: 10px 10px !important;
     background-color: lightblue;
     color: white;
@@ -629,8 +629,24 @@ h6 {
   padding: 10px 10px !important;
   opacity:0.8;
   position: absolute;
-  top:85px;
+  top:39px;
   right:0;
+}
+#trending .owl-next{
+  background-color:lightblue;
+  padding: 10px 10px !important;
+  opacity:0.8;
+  position: absolute;
+  top:39px;
+  right:0;
+}
+#trending .owl-prev{
+  background-color:lightblue;
+  padding: 10px 10px !important;
+  opacity:0.8;
+  position: absolute;
+  top:39px;
+  
 }
 #featured .owl-next span, #featured .owl-prev span{
   font-size: 45px;
@@ -650,23 +666,30 @@ h6 {
   color: white;
   font-size:45px;
 }
+#specialists .owl-prev{
+  top:110px;
+}
 #choose-category .owl-prev {
   padding: 10px 10px !important ;
   position: absolute;
   left: -5px;
-  top: 93px;
+  top: 97px;
   border-radius: 3rem;
   background-color:lightblue;
   opacity:0.8;
 }
-#choose-category .owl-prev span, #choose-category .owl-next span {
+#email{
+  text-transform: lowercase;
+}
+#choose-category .owl-prev span, #choose-category .owl-next span, #trending .owl-prev span, #trending .owl-next span {
   color: black;
  
   font-size:45px;
 }
-#specialists .owl-prev, #featured .owl-prev{
+
+#specialists .owl-prev, #featured .owl-prev, #trending .owl-prev{
   left: 0;
-    top: 106px;
+   
     padding: 10px 10px !important;
     background: lightblue;
     position: absolute;
@@ -681,8 +704,13 @@ h6 {
 #featured .owl-prev:hover{
   background:lightblue;
 }
+#featured .owl-next{
+  top:97px;
+ 
+  
+  }
 #featured .owl-prev{
-top:89px;
+top:97px;
 padding:10px 10px !important;
 background:lightblue;
 opacity:0.8;
@@ -708,7 +736,7 @@ position: absolute;
 }
 #specialists .owl-next:hover,#specialists .owl-prev:hover,
  #featured .owl-next:hover, #featured .owl-prev:hover,
- #choose-category .owl-prev:hover, #choose-category .owl-next:hover {
+ #choose-category .owl-prev:hover, #choose-category .owl-next:hover, #trending  .owl-next:hover, #trending .owl-prev:hover{
   background-color: #00415e;
   color: #fff;
   opacity:0.8;
@@ -2240,6 +2268,9 @@ div.MuiSelect-root.MuiSelect-select.MuiSelect-selectMenu.MuiInputBase-input.MuiI
   line-height: 38px;
   border-radius: 2px;
   background-color: #f1f1f1;
+  position: absolute;
+    right: 5px;
+
 }
 .bg-review {
   background-color: rgb(185, 218, 241);
@@ -2425,6 +2456,50 @@ padding:0.22rem;
   left:-15%;
  
 }
+
+/* {
+  box-sizing: border-box;
+} */
+
+/* Create three equal columns that floats next to each other */
+.column {
+  float: left;
+  width: 33.33%;
+  padding: 10px;
+  box-sizing: border-box;
+  height: 300px; /* Should be removed. Only for demonstration */
+}
+
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+  box-sizing: border-box;
+  background-color: black;
+
+}
+.mainid{
+  
+  filter: blur(8px);
+  -webkit-filter: blur(8px);
+  
+    }
+    .bg-text {
+      background-color: rgb(0,0,0); /* Fallback color */
+      background-color: rgba(0,0,0, 0); /* Black w/opacity/see-through */
+      color: white;
+      font-weight: bold;
+      position: absolute;
+      top: 20;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      z-index: 2;
+      width: 80%;
+      padding: 20px;
+      text-align: center;
+    }
+
 @media only screen and (max-width: 768px) {
   #mobile-subscribe-fixed-btn,  #mobile-feedback-fixed-btn{
     width:135px !important;
@@ -2448,6 +2523,10 @@ padding:0.22rem;
     padding: 0px 2px 6px 11px;
     height: 38px !important;
   }
+  
+}
+.card-title .mr-5::after{
+  content: '...';
 }
 #mobile-subscribe-fixed-btn,  #mobile-feedback-fixed-btn{
   position: fixed;
@@ -2455,7 +2534,7 @@ padding:0.22rem;
   left:-58px;
  opacity:0.9;
   float:left;
-  
+  z-index: 999999;
   font-size: 1rem;
   -ms-transform: rotate(90deg); /* IE 9 */
   transform: rotate(90deg);
@@ -2495,6 +2574,10 @@ padding:0.22rem;
 }
 .owl-carousel.owl-loaded#featured{
   height:565px;
+}
+
+#trends{
+  height: 270px;
 }
 .card-article-content-preview .ce-block {
   width: 100%;
@@ -2536,7 +2619,7 @@ padding:0.22rem;
     /*right: 0.5rem;
     bottom: 0;*/
     left: 0.8rem;
-    bottom: -30px;
+    /*bottom: -30px;*/
     
   }
   .mtc{
@@ -2695,3 +2778,87 @@ background-color:white
 color:#00415e;
 font-weight: 600;
 }
+.my-10{
+  margin-bottom: 6rem !important;
+}
+.MuiAutocomplete-hasPopupIcon.css-16awh2u-MuiAutocomplete-root .MuiOutlinedInput-root, .MuiAutocomplete-hasClearIcon.css-16awh2u-MuiAutocomplete-root .MuiOutlinedInput-root{margin-bottom:7px;}
+.css-wb57ya-MuiFormControl-root-MuiTextField-root{
+  height:56px;
+}
+.articlesub{
+  width:800px;
+  display:flex;
+  flex-direction: row-reverse;
+}
+@media only screen and (min-width: 320px) and (max-width: 914px) {
+  .articlesub{
+    width: 100% !important;
+  }
+}
+.mainsub{
+  margin:0 auto;
+  justify-content: center;
+}
+.subscription{
+ 
+  height:245px;
+  -webkit-transition: -webkit-transform 1.5s;
+  -moz-transition: -moz-transform 1.5s;
+  -ms-transition: -ms-transform 1.5s;
+  transition: transform 1.5s;
+}
+.subscription:hover{
+
+
+-webkit-transform: scaleY(1.2);
+-moz-transform: scaleY(1.2);
+-ms-transform: scaleY(1.2);
+transform: scaleY(1.2);
+
+
+}
+.subscription .rounded-lg{
+  border-radius:3rem !important;
+  background-color:white;
+  color:#00415e;
+  min-height: 200px;
+}
+.subscription:hover .rounded-lg{
+  background-color:#00415e !important;
+  color:#fff;
+
+}
+
+.subdetails{
+justify-content:center;
+}
+.subscription .shadow{
+box-shadow: 0 .5rem 1rem rgba(0,0,0,.15)!important;
+}
+
+.subscription .btn-sub{
+  display: none;
+}
+ .subscription:hover .btn-sub{
+   display: inline;
+   position: absolute;
+    top: 210px;
+    left: 0px;
+}
+
+  @media only screen and (min-width: 320px) and (max-width: 914px) 
+  {
+    .subscription{
+     height:210px;
+    }
+    .subscription .shadow{
+      height:200px;
+    }
+    .subscription h4{
+    bottom:20px !important;
+  }
+  .subscription:hover .btn-sub{
+   height:30px;top:170px;
+   display: table;
+  }
+  }

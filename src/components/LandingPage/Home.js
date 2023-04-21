@@ -318,12 +318,14 @@ class Home extends Component {
           <NavDropdown.Item href="/searchmedicine/medicinetype/4"> Chinese Medicine</NavDropdown.Item>
           <NavDropdown.Item href="/searchmedicine/medicinetype/3">Persian</NavDropdown.Item>
           <NavDropdown.Item href="/searchmedicine/medicinetype/2">Unani</NavDropdown.Item>
+          <NavDropdown.Item href="/searchmedicine/medicinetype/8">Homeopathy</NavDropdown.Item>
+
           <NavDropdown.Item href="/searchmedicine/medicinetype/6">Japanese</NavDropdown.Item>
           <NavDropdown.Item href="/searchmedicine/medicinetype/5">Scandinavian</NavDropdown.Item>
         
         </NavDropdown>
        
-        <Nav.Link href="/AboutUs" id="basic-nav-dropdown">About US</Nav.Link>
+        <Nav.Link href="/AboutUs" id="basic-nav-dropdown">About Us</Nav.Link>
       </Nav>
     </Navbar.Collapse>
   </Container>
@@ -492,8 +494,14 @@ class Home extends Component {
           <div className="container">
             <div className="row">
                 <div className="tab-nav">
-                  <div className="comman-heading">
-                     <div className="h4 mt-4">Choose by Category</div>
+                  <div className="comman-heading"  itemscope itemtype="http://all-cures.com/Product">
+                     <h1 style={{display:'none'}}>All Cures is a product developed, managed and owned by 
+                        Etherium Technologies. Our mission is to make it simple and convenient for users to get information on Cures from anywhere in the world. 
+                        Our belief is that your wellness is your well-being. 
+                        We are passionate about giving our users the unique 
+                        experience that is both fulfilling and wholesome.</h1>
+                        <h2  style={{display:'none'}}>Ayurveda, Homeopathy, Chinese Medicine, Persian, Unani</h2>
+                     <div className="h4 mt-4" itemprop="Category">Choose by Category</div>
                   </div>
                   {/* <!-- Nav tabs --> */}
                   {/* <ul>
@@ -528,7 +536,7 @@ class Home extends Component {
 
 
       <section className="mb-5 mt-2">
-      <div className="container">
+      <div className="container" id='trends'>
             <div className="row">
                <div className="comman-heading">
                   <div className="h4">Trending Cures</div>
@@ -718,6 +726,12 @@ function ToggleButton(props) {
                <Link to="/editSubscribe" className="text-dark btn">
                   Edit Subscription</Link>
                </Dropdown.Item>
+
+               <Dropdown.Item >
+               <Link to="/chatlist" className="text-dark btn">
+               My Inbox</Link>
+               </Dropdown.Item>
+
              { props.userAccess >= 4?
                 <Dropdown.Item >
                <Link to="/dashboard" className="text-dark btn">

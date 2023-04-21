@@ -360,42 +360,42 @@ const ArticlePreview = (props) => {
                 articleFilter === "recent"?
                 <div className='pagination-preview'>
                 <button className='btn border mr-2 active' onClick={(e) => {
-                    setOffset(9)
+                    setOffset(0)
                     paginateButtons(e)
                 }}>1</button>
                 <button className='btn border mr-2' 
                 onClick={(e) => {
-                    setOffset(18) 
+                    setOffset(9) 
                     paginateButtons(e)
                 }}>2</button>
                 <button className='btn border mr-2' 
                     onClick={(e) => {
-                        setOffset(27)
+                        setOffset(18)
                         paginateButtons(e)
                     }}>3</button>
                 <button className='btn border mr-2' 
                     onClick={(e) => {
-                        setOffset(36)
+                        setOffset(27)
                         paginateButtons(e)
                     }}>4</button>
                 <button className='btn border mr-2' 
                     onClick={(e) => {
-                        setOffset(45)
+                        setOffset(36)
                         paginateButtons(e)
                     }}>5</button>
                 <button className='btn border mr-2' 
                     onClick={(e) => {
-                        setOffset(54)
+                        setOffset(45)
                         paginateButtons(e)
                     }}>6</button>
                 <button className='btn border mr-2' 
                     onClick={(e) => {
-                        setOffset(63)
+                        setOffset(54)
                         paginateButtons(e)
                     }}>7</button>
                 <button className='btn border mr-2' 
                     onClick={(e) => {
-                        setOffset(72)
+                        setOffset(63)
                         paginateButtons(e)
                     }}>8</button>
                 {/* <button className='btn border mr-2' onClick={() => setOffset(81)}>9</button> */}
