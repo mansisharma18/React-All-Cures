@@ -51,7 +51,8 @@ class Profile extends Component {
       imageUploadLoading: false,
       showAlert: false,
       alertMsg: '',
-      show:false
+      show:false,
+      docid: null,
     };
     this.showModal = this.showModal.bind(this);
     this.hideModal = this.hideModal.bind(this);
@@ -219,6 +220,7 @@ postLead = (id) => {
         this.setState({
           isLoaded: true,
           items: json,
+          docid: json.docid,
         })
       });
 
@@ -617,7 +619,7 @@ userAccess?
 
                 
 
-                  <Chat imageURL={`${imagePath}/cures_articleimages/doctors/${items.rowno}.png`}   items={items} />
+                  <Chat imageURL={`${imagePath}/cures_articleimages/doctors/${items.rowno}.png`}   items={items} docid={this.state.docid} />
                   
                   <div className="comment-box">
 
