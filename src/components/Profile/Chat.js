@@ -105,13 +105,12 @@ const [chatId, setChatId] = useState(null);
         ws.send(`{"Room_No":"${ chatId}"}`);
       };
       ws.onmessage = (event) => {
-        console.log(new Date().toLocaleTimeString([], { hour: '2-digit', minute: "2-digit", hour12: false }))
-        const time=new Date().toLocaleTimeString([], { hour: '2-digit', minute: "2-digit", hour12: false })
+console.log(event)
         const from = event.data.split(':')[0];
         const receivedMessage = event.data.split(':').pop();
         const newChat={
           Message:receivedMessage,
-          From_id:userId
+          From_id:from
         }
         console.log("Message", from);
         setChats(prevMessages => [...prevMessages,newChat]);

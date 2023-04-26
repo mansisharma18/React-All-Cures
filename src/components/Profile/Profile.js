@@ -556,9 +556,7 @@ postLead = (id) => {
        Contact Doctor
       </Button>
 
-      <Button className="ml-3 mt-4 btn-article-search" id="textComment"  onClick={this.postLead}>
-       Chat Us
-      </Button>
+      
 
       <Modal show={this.state.show} onHide={this.hideModal} className="rounded mt-5" >
         <Modal.Header className="bg-review py-3" closeButton>
@@ -617,9 +615,17 @@ userAccess?
         </div>
   
 
-                
+                {
+                  // userId && items.subscription === 1 ?
+                  userId && items.subscription === 1 && userAccess != 1 ?
+                  <>
 
-                  <Chat imageURL={`${imagePath}/cures_articleimages/doctors/${items.rowno}.png`}   items={items} docid={this.state.docid} />
+                   <Chat imageURL={`${imagePath}/cures_articleimages/doctors/${items.rowno}.png`}   items={items} docid={this.state.docid} />
+
+                  </>
+                  :null
+                }
+
                   
                   <div className="comment-box">
 

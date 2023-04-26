@@ -196,7 +196,7 @@ import { userAccess } from "../UserAccess";
       <Nav className="me-auto">
         <Nav.Link href="/home" id="basic-nav-dropdown">Home</Nav.Link>
        
-        <NavDropdown title="Categoriesssssss" id="basic-nav-dropdown" renderMenuOnMount={true}>
+        <NavDropdown title="Categories" id="basic-nav-dropdown" renderMenuOnMount={true}>
           <NavDropdown.Item href="/searchcategory/disease/1">Arthritissssss</NavDropdown.Item>
           <NavDropdown.Item href="/searchcategory/disease/74"> Diabetes</NavDropdown.Item>
           <NavDropdown.Item href="/searchcategory/disease/50">Hypertension</NavDropdown.Item>
@@ -392,7 +392,7 @@ function ToggleButton(props) {
                <Link to="/chatlist" className="text-dark btn">
                My Inbox</Link>
                </Dropdown.Item>
-               
+
              { props.userAccess >= 4?
                <Dropdown.Item >
                <Link to="/dashboard" className="text-dark btn">

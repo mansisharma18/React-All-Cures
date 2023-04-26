@@ -7,6 +7,7 @@ import axios from 'axios';
 import { backendHost } from '../api-config';
 import { Link } from 'react-router-dom';
 import { Alert, Form } from 'react-bootstrap';
+import '../styles.css';
 
 
 
@@ -18,6 +19,7 @@ function Feedback() {
     const[number,setNumber] = useState('');
     const[feedback,setFeedback] = useState();
     const[alert,setAlert] = useState();
+    const[gender,setGender] = useState();
     
     const submitForm = (e) => {
         e.preventDefault();
@@ -26,6 +28,7 @@ function Feedback() {
             "lastname": name,
             "email": email,
             "phonenumber": number,
+            "whatsapp_alert":gender,
             "feedback": feedback,
          
         })
@@ -70,6 +73,33 @@ function Feedback() {
                             <Form.Control value={number} onChange={(e) => setNumber(e.target.value)} type="text" name=""
                             placeholder="Enter Your Phone Number..." />
                         </Form.Group>
+                        <Form.Group className="col-md-6 float-left" style={{ zIndex: 2 }}>
+  <Form.Label>Would you like to subscribe to our WhatsApp alerts on health??</Form.Label>
+  <div>
+    <Form.Check
+      inline
+      label="Yes"
+      name="whatsapp"
+      type="radio"
+     
+      value="yes"
+      onChange={(e) => setGender(e.target.value)}
+      style={{ marginRight: "20px" }}
+    />
+    <Form.Check
+      inline
+      label="No"
+      name="whatsapp"
+      type="radio"
+     
+      value="no"
+      onChange={(e) => setGender(e.target.value)}
+      style={{ marginLeft: "20px" }}
+    />
+  </div>
+</Form.Group>
+
+  
                         <Form.Group className="col-md-12 float-left"  style={{zIndex: 2}}>
                             <Form.Label>Enter Your Feedback</Form.Label>
                             {/* <Form.Control  id='td'value={feedback} onChange={(e) => setFeedback(e.target.value)}  type="text" name=""
