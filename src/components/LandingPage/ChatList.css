@@ -7,7 +7,7 @@
   flex: 1;
   background-color: #fff;
 
-  overflow-y: scroll;
+
   border-right: 1px solid #ccc;
 }
 .chat::-webkit-scrollbar{

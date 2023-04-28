@@ -34,6 +34,7 @@ export default function App(usr_id) {
   const chatRef=useRef(null)
   const [chatId, setChatId] = useState(null);
   const [newMessage, setNewMessage] = useState(false);
+  
 
   useEffect(() => {
     axios.get(`${backendHost}/chat/list/${userId}`)
@@ -44,7 +45,7 @@ export default function App(usr_id) {
       .catch(error => {
         console.log(error);
       });
-
+      scrollToBottom();
       console.log(chats)
   }, [userId, newMessage,chats]);
 
@@ -71,7 +72,8 @@ console.log(event)
       }
       console.log("Message", from);
       setChats(prevMessages => [...prevMessages,newChat]);
-      chatRef.current.scrollIntoView({ behavior: 'smooth' }); 
+      // chatRef.current.scrollIntoView({ behavior: 'smooth' }); 
+  
     };
 
     ws.onclose = function (event) {
@@ -108,7 +110,8 @@ console.log(event)
       console.log(newMessage)
       socket.send(newMessage);
       setMessage('');
-      chatRef.current.scrollIntoView({ behavior: 'smooth' });
+      // chatRef.current.scrollIntoView({ behavior: 'smooth' });
+        scrollToBottom();
       
     
     
@@ -132,7 +135,9 @@ console.log(event)
   
   };
 
-
+  const scrollToBottom = () => {
+    chatRef.current.scrollTop = chatRef.current.scrollHeight;
+  };
   return (
     <>
     <Header/>
@@ -168,20 +173,20 @@ console.log(event)
    
          <div className="message">
    
-         <div className='message-header' style={{display:header?'flex':'none'}} >
+         <div className='message-header' style={{display:header?' flex':'none'}} >
          <FontAwesomeIcon icon={faUserCircle} size={'3x'} />
            <div className='header-info'>
    <h3 style={{color:'#00415e',marginLeft:20}} >{first} {last}</h3>
            </div>
          </div>
    
-         <div className="message-list">
+         <div className="message-list" ref={chatRef}>
          {chats.map((message, index) => {
            const isSender = message.From_id === userId;
            const messageClass = isSender ? 'sender-message' : 'receiver-message';
    
            return (
-             <div key={index} className={`message-item ${messageClass}`} ref={chatRef}>
+             <div key={index} className={`message-item ${messageClass}`} >
                <p className="message-text" style={{color:message.From_id===userId?'#fff':'#000'}}>{message.Message}
                
                <span className="message-time"  style={{color:message.From_id===userId?'#fff':'#000'}}>{moment(message.Time).format('h:mm A')}</span>
@@ -197,13 +202,13 @@ console.log(event)
    
       
          
-       <div className='message-footer' style={{display:header?'flex':'none'}} >
-           <form onSubmit={sendMessage}>
-             <input type='text' placeholder='Type a message' value={message} onChange={(e) => setMessage(e.target.value)}  />
-             <button type='submit' >send message</button>
-           </form>
-   
-         </div>
+       <div className='message-footer' style={{display:header?'flex':'none'}}  >
+            <form onSubmit={sendMessage}>
+              <input type='text' placeholder='Type a message' value={message} onChange={(e) => setMessage(e.target.value)}  />
+              <button type='submit' >send message</button>
+            </form>
+    
+          </div>
      
    
          </div>
