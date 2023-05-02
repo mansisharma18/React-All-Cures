@@ -63,7 +63,7 @@ export default function App(usr_id) {
         setChats(res.data);
   
         // Create a new WebSocket connection
-        const ws = new WebSocket("ws://all-cures.com:8000");
+        const ws = new WebSocket("wss://all-cures.com:8000");
         ws.onopen = () => {
           console.log("Connected to the Chat Server");
           ws.send(`{"Room_No":"${res.data[0].Chat_id}"}`);
