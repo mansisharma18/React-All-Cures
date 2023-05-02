@@ -26,6 +26,9 @@ function ChatButton(props) {
 
 
   const checkChat = () => {
+    if (socket) {
+      socket.close();
+    }
     axios
       .get(`${backendHost}/chat/${userId}/${props.docid}`)
       .then((res) => {
@@ -35,6 +38,36 @@ function ChatButton(props) {
           setChatId(res.data[0].Chat_id);
           setAlert("Chat already exists");
           setChats(res.data);
+
+          // Create a new WebSocket connection
+        const ws = new WebSocket("ws://all-cures.com:8000");
+        ws.onopen = () => {
+          console.log("Connected to the Chat Server");
+          ws.send(`{"Room_No":"${res.data[0].Chat_id}"}`);
+        };
+        ws.onmessage = (event) => {
+          console.log(event);
+          const from = event.data.split(":")[0];
+          const receivedMessage = event.data.split(":").pop();
+          const newChat = {
+            Message: receivedMessage,
+            From_id: from,
+          };
+          console.log("Message", from);
+          setChats((prevMessages) => [...prevMessages, newChat]);
+        };
+  
+        ws.onclose = function (event) {
+          if (event.wasClean) {
+            console.log(
+              `[close] Connection closed cleanly, code=${event.code} reason=${event.reason}`
+            );
+          } else {
+            console.log("[close] Connection died");
+          }
+        };
+  
+        setSocket(ws);
         }
       })
       .catch((err) => console.log(err));
@@ -97,6 +130,8 @@ function ChatButton(props) {
   useEffect(() => {
     scrollToBottom();
   }, [chats]);
+
+  
   
 
   const handleSubmit = (e) => {
@@ -106,28 +141,7 @@ function ChatButton(props) {
       favouriteForm();
     }
 
-    const ws = new WebSocket("ws://all-cures.com:8000");
-    ws.onopen = () => {
-      console.log("Connected to the Chat Server");
-      ws.send(`{"Room_No":"${chatId}"}`);
-    };
-    if(isOpen){
-      ws.onmessage = (event) => {
-        console.log(event);
-        const from = event.data.split(":")[0];
-        const receivedMessage = event.data.split(":").pop();
-        const newChat = {
-          Message: receivedMessage,
-          From_id: from,
-        };
-        console.log("Message", from);
-        setChats((prevMessages) => [...prevMessages, newChat]);
-  
-      };
-
-      
-      setSocket(ws);
-    }
+    
    
   };
 

@@ -49,51 +49,52 @@ export default function App(usr_id) {
       console.log(chats)
   }, [userId, newMessage,chats]);
 
-  const checkChat=(getId)=>{
-
-   console.log(getId)
-    axios.get(`${backendHost}/chat/${userAccess!=1?userId:getId}/${userAccess!=1?getId:userId}`)
-    .then(res=>{
-      setChatId(res.data[0].Chat_id)
-      setToId(getId)
-      setChats(res.data);
-      const ws = new WebSocket("ws://all-cures.com:8000");
-    ws.onopen = () => {
-      console.log("Connected to the Chat Server");
-      ws.send(`{"Room_No":"${res.data[0].Chat_id}"}`);
-    };
-    ws.onmessage = (event) => {
-console.log(event)
-      const from = event.data.split(':')[0];
-      const receivedMessage = event.data.split(':').pop();
-      const newChat={
-        Message:receivedMessage,
-        From_id:from
-      }
-      console.log("Message", from);
-      setChats(prevMessages => [...prevMessages,newChat]);
-      // chatRef.current.scrollIntoView({ behavior: 'smooth' }); 
+  const checkChat = (getId) => {
+    // Close the previous WebSocket connection if it exists
+    if (socket) {
+      socket.close();
+    }
   
-    };
-
-    ws.onclose = function (event) {
-      if (event.wasClean) {
-        console.log(`[close] Connection closed cleanly, code=${event.code} reason=${event.reason}`);
-      } else {
-        console.log('[close] Connection died');
-      }
-    };
-  
-    setSocket(ws);
-
-      
-     
-    
-    
-      }
-    ).catch(err=>err)
-    
-  }
+    axios
+      .get(`${backendHost}/chat/${userAccess != 1 ? userId : getId}/${userAccess != 1 ? getId : userId}`)
+      .then((res) => {
+        setChatId(res.data[0].Chat_id);
+        setToId(getId);
+        setChats(res.data);
+  
+        // Create a new WebSocket connection
+        const ws = new WebSocket("ws://all-cures.com:8000");
+        ws.onopen = () => {
+          console.log("Connected to the Chat Server");
+          ws.send(`{"Room_No":"${res.data[0].Chat_id}"}`);
+        };
+        ws.onmessage = (event) => {
+          console.log(event);
+          const from = event.data.split(":")[0];
+          const receivedMessage = event.data.split(":").pop();
+          const newChat = {
+            Message: receivedMessage,
+            From_id: from,
+          };
+          console.log("Message", from);
+          setChats((prevMessages) => [...prevMessages, newChat]);
+        };
+  
+        ws.onclose = function (event) {
+          if (event.wasClean) {
+            console.log(
+              `[close] Connection closed cleanly, code=${event.code} reason=${event.reason}`
+            );
+          } else {
+            console.log("[close] Connection died");
+          }
+        };
+  
+        setSocket(ws);
+      })
+      .catch((err) => err);
+  };
+  
 
   const sendMessage = (e) => {
     e.preventDefault();

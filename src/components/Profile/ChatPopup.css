@@ -141,7 +141,7 @@ align-self: flex-start;
   }
   
   .other-message {
-    display: flex;
+    display: flex;   
     justify-content: flex-start;
     margin: 10px;
   }
@@ -157,7 +157,7 @@ align-self: flex-start;
 
   .chat-box-container {
     position: fixed;
-    bottom: 20px;
+    bottom: 32px;
     right: 20px;
     z-index: 999;
     transition: all 0.5s ease-in-out;
