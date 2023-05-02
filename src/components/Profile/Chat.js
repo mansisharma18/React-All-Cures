@@ -131,6 +131,8 @@ function ChatButton(props) {
     scrollToBottom();
   }, [chats]);
 
+  
+  
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -139,6 +141,8 @@ function ChatButton(props) {
       favouriteForm();
     }
 
+    
+   
   };
 
   return (
