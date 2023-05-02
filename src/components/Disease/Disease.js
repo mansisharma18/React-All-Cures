@@ -11,7 +11,6 @@ import Sidebar from "./leftMenu";
 import SidebarRight from "./RightMenu";
 import Doct from "../../assets/img/doct.png";
 
-import { Nav} from "react-bootstrap"
 
 import { backendHost } from '../../api-config';
 import Dropdown from 'react-bootstrap/Dropdown';
@@ -24,8 +23,6 @@ import 'react-phone-number-input/style.css';
 import ArticleRating from '../ArticleRating';
 import Favourite from '../favourite';
 import Favourites from '../UpdateFavourite';
-import Cookies from 'js-cookie';
-
 
 import HelmetMetaData from '../HelmetMetaData';
 import {FacebookShareButton, FacebookIcon, TwitterIcon, TwitterShareButton, WhatsappIcon, WhatsappShareButton} from "react-share";
@@ -97,7 +94,6 @@ class Disease extends Component {
       showCuresCards: false,
       modalState: false,
       url:window.location.href,
-      show:false,
     };
     this.handleShows = this.handleShows.bind(this);
    
@@ -112,25 +108,34 @@ class Disease extends Component {
       return this.setState({
         modelState:false
       })
-    }  else if(Cookies.get('wanotification'))
-    {
-      return this.setState({
-        modelState:false
-      })
-    }
-    
-    else{
+    } 
+    else {
     return setTimeout(() => {
       this.setState({
          modalState: true
 
       })
    }, 9000);
-  }
+  } 
     
 }
 
+ showModal(){
+  // get value from localStorage
+  var is_modalState = sessionStorage.getItem('alrState');
+  if(is_modalState != 'alredy shown'){
+    ("#myModal").show()
+    sessionStorage.setItem('alreadyShow','alredy shown');
+  }else{
+    console.log(is_modalState);
+  }
+}
+
 handleShows() {
+  this.setState({ modalState: !this.state.modalState });
+}
+
+showModal() {
   this.setState({ modalState: !this.state.modalState });
 }
   fetchBlog = () => {
@@ -223,8 +228,6 @@ handleShows() {
   }
   postSubscribtion() {
     //  var mobileNumber = this.state.mobile.split('+')
-    Cookies.set('wanotification','koul',  {expires: 365})
-
     var phoneNumber = this.state.value.split('+')[1]
     var countryCodeLength = phoneNumber.length % 10
     var countryCode = phoneNumber.slice(0, countryCodeLength)
@@ -559,12 +562,6 @@ diseasePosts(dcName) {                     // For specific blogs like "/blogs/di
           keywords = {items.keywords}
           image={`${imagePath}`+ items.content_location.replace('json', 'png').split('/webapps/')[1]}>
         </HelmetMetaData>
-        <h1 style={{display:'none'}}>All Cures is a product developed, managed and owned by 
-                        Etherium Technologies. Our mission is to make it simple and convenient for users to get information on Cures from anywhere in the world. 
-                        Our belief is that your wellness is your well-being. 
-                        We are passionate about giving our users the unique 
-                        experience that is both fulfilling and wholesome.</h1>
-                        <h2  style={{display:'none'}}>Ayurveda, Homeopathy, Chinese Medicine, Persian, Unani</h2>
         <div className="ad-spac">
         <button className="btn" data-toggle="modal"data-target=".bd-example-modal-lg">
           <img src={AyurvedaAd} alt="advertisment"/>
@@ -636,16 +633,14 @@ diseasePosts(dcName) {                     // For specific blogs like "/blogs/di
                 </WhatsappShareButton>
               </div>
               
-             
-                </div>
-                <div className="share-buttons-region ml-2" id="filter">
+              <div className="share-buttons-region ml-2" id="filter">
               
-              <div className=" justify-content-end margin-auto" id="article-acc-to-regions">
+              <div className="d-flex justify-content-end margin-auto" id="article-acc-to-regions">
                 
               { finalRegions?
                   finalRegions.map(i => i.countryname!== null && (
                    <Dropdown key={i.countryname}>
-                      <Dropdown.Toggle className="mb-20 mr-2 btn btn-info color-white">
+                      <Dropdown.Toggle className="mr-2 btn btn-info color-white">
                         <span className="color-white">{i.countryname}</span>
                       </Dropdown.Toggle>
                     <Dropdown.Menu>
@@ -681,6 +676,7 @@ diseasePosts(dcName) {                     // For specific blogs like "/blogs/di
                   ))
                 : null
               }
+                </div>
                 </div>
                 </div>
               </Breadcrumb>
@@ -853,21 +849,8 @@ diseasePosts(dcName) {                     // For specific blogs like "/blogs/di
                      </>
                 : null
               }
-  
-  <div>
-             
-              <button  type="button" class="btn btn-primary" onClick={()=>{this.setState({show:!this.state.show})}}>
-                { this.state.show? 'Hide' : 'Show'} Source</button>
-                {
-                  this.state.show? <div><h4 style={{textTransform:"none"}}>{items.window_title} </h4></div> : null
-              }
-          </div>
-          <br/>
-             
-               
-               <h6 style={{textTransform:"none"}} >Medical Disclaimer :  <a href="/Medical">https://all-cures.com/medical</a></h6>
 
-
+               <h4>Source :  <a href="https://all-cures.com/Editorial">https://all-cures.com/Editorial</a></h4>
              
             <div id="comments-column">              
 
@@ -905,9 +888,8 @@ diseasePosts(dcName) {                     // For specific blogs like "/blogs/di
             }
             </div>
           </Col> 
-          <Col id="sidebar-wrapper">      
+          <Col id="right-sidebar-wrapper">      
             <SidebarRight title={items.title} history={this.props.history} dcName={items.dc_name} id={items.article_id}/>
-            
           </Col>
         </Row>
         <div>

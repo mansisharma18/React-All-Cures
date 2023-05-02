@@ -23,7 +23,7 @@ function ChatApp() {
       const from = event.data.split(':')[0];
       const receivedMessage = event.data.split(':').pop();
       console.log("Message", from);
-      setMessages(prevMessages => [...prevMessages, { fromId: 18, message: receivedMessage,time:time }]);
+      setMessages(prevMessages => [...prevMessages, { fromId: from, message: receivedMessage,time:time }]);
     };
     setSocket(ws);
   }, []);

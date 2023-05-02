@@ -68,6 +68,12 @@ dragHandle {
 .breadcrumb-item a {
   color: #000;
 }
+
+#right-sidebar-wrapper {
+  border: 0.1rem solid #b9daf1;
+  height: 130rem;
+  overflow: scroll;
+}
 #sidebar-wrapper {
   border: 0.1rem solid #b9daf1;
   height: fit-content;
@@ -145,8 +151,6 @@ background-color: #b9daf1; */
   display: flex;
   /* gap: 1.5rem; */
   justify-content: end;
-  margin-top:15px;
-  margin-bottom:15px;
 }
 @media only screen and (max-width: 600px) {
   .article-title-container {

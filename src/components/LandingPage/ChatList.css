@@ -1,16 +1,146 @@
-#chat3 .form-control {
-  border-color: transparent;
+.container1 {
+  display: flex;
+
 }
 
-#chat3 .form-control:focus {
-  border-color: transparent;
-  box-shadow: inset 0px 0px 0px 1px transparent;
+.chat {
+  flex: 1;
+  background-color: #fff;
+
+
+  border-right: 1px solid #ccc;
+}
+.chat::-webkit-scrollbar{
+  display: none;
+}
+.message {
+  flex: 2;
+  background-color: #f0f0f0;
+
+ 
+}
+.message-list::-webkit-scrollbar{
+  display: none;
 }
 
-.badge-dot {
+
+.chat-list {
+  display: flex;
+  flex-direction: column;
+  background-color: #fff;
+
+  padding: 20px;
+}
+
+.chat-item {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.chat-item img {
+  width: 50px;
+  height: 50px;
   border-radius: 50%;
-  height: 10px;
-  width: 10px;
-  margin-left: 2.9rem;
-  margin-top: -0.75rem;
+  margin-right: 10px;
 }
+
+.chat-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.chat-info h3 {
+  margin: 0;
+}
+
+.chat-time {
+  margin-left: auto;
+  font-size: 12px;
+  color: #999;
+}
+
+.message-list {
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  overflow-y: scroll;
+max-height:650px;
+}
+
+
+
+.message-item {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin: 10px 0;
+}
+
+.sender-message {
+  align-items: flex-end;
+}
+
+.receiver-message .message-text {
+  background-color: #f2f2f2;
+  border-radius: 20px 20px 0 20px;
+  margin-left: 10px;
+}
+
+.sender-message .message-text {
+  background-color: #588092;
+  border-radius: 20px 20px 20px 0;
+  margin-right: 10px;
+}
+
+.message-time {
+margin-left: 10px;
+font-size: xx-small;
+
+  
+}
+.message-text {
+  position: relative;
+  font-size: 16px;
+  padding: 10px;
+  border-radius: 10px;
+  width: fit-content;
+  background-color: #ffffff;
+}
+
+.selected-chat {
+  background-color:#f1f1f1;
+}
+
+.message-header{
+  background-color: aliceblue;
+  flex-direction: row;
+  padding: 20px;
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid lightgray;
+}
+
+.message-footer{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 63px;
+  border-top: 1px solid lightgray;
+}
+
+.message-footer>form{
+  flex:1;
+  display: flex;
+}
+.message-footer>form>input{
+  flex:1;
+padding: 10;
+border: none;
+margin: 0;
+height: 62px;
+}
+.message-footer>form>button{
+display: none;
+}
+
