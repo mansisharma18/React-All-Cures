@@ -10,12 +10,7 @@ import { faInbox } from '@fortawesome/free-solid-svg-icons';
 import { faUserCircle } from '@fortawesome/free-solid-svg-icons';
 import ChatWindow from '../Profile/ChatWindow';
 import { userAccess } from '../UserAccess';
-
-
-
-
 import './ChatList.css';
-
 
 export default function App(usr_id) {
   const [chatList, setChatList] = useState([]);
@@ -111,7 +106,6 @@ export default function App(usr_id) {
       console.log(newMessage)
       socket.send(newMessage);
       setMessage('');
-      // chatRef.current.scrollIntoView({ behavior: 'smooth' });
         scrollToBottom();
       
     
