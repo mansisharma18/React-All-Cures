@@ -102,8 +102,7 @@ function Feedback() {
   
                         <Form.Group className="col-md-12 float-left"  style={{zIndex: 2}}>
                             <Form.Label>Enter Your Feedback</Form.Label>
-                            {/* <Form.Control  id='td'value={feedback} onChange={(e) => setFeedback(e.target.value)}  type="text" name=""
-                            placeholder="Enter Your Feedback..." /> */}
+                          
                             <Form.Control
         Value={feedback}
         onChange={(e) => setFeedback(e.target.value)}
