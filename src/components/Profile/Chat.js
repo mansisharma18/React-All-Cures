@@ -26,72 +26,89 @@ function ChatButton(props) {
 
 
   const checkChat = () => {
-    if (socket) {
-      socket.close();
-    }
+    // Close the previous WebSocket connection if it exists
+  
+
+    
+
+console.log('getid->',userId)
+  
     axios
       .get(`${backendHost}/chat/${userId}/${props.docid}`)
       .then((res) => {
-        const chatId = res.data[0].Chat_id;
-
-        if (chatId != null) {
-          setChatId(res.data[0].Chat_id);
-          setAlert("Chat already exists");
-          setChats(res.data);
-
-          // Create a new WebSocket connection
-        const ws = new WebSocket("wss://all-cures.com:8000");
-        ws.onopen = () => {
-          console.log("Connected to the Chat Server");
-          ws.send(`{"Room_No":"${res.data[0].Chat_id}"}`);
-        };
-        ws.onmessage = (event) => {
-          console.log(event);
-          const from = event.data.split(":")[0];
-          const receivedMessage = event.data.split(":").pop();
-          const newChat = {
-            Message: receivedMessage,
-            From_id: from,
-          };
-          console.log("Message", from);
-          setChats((prevMessages) => [...prevMessages, newChat]);
-        };
-  
-        ws.onclose = function (event) {
-          if (event.wasClean) {
-            console.log(
-              `[close] Connection closed cleanly, code=${event.code} reason=${event.reason}`
-            );
-          } else {
-            console.log("[close] Connection died");
-          }
-        };
-  
-        setSocket(ws);
-        }
+if(res.data[0].Chat_id!=null){
+   console.log('initiate')
+        setChatId(res.data[0].Chat_id);
+        setToId(props.docid);
+        setChats(res.data);
+        startWebSocket(res.data[0].Chat_id);
+        // Create a new WebSocket connection
+}else{
+  console.log('start')
+  favouriteForm()
+}
+      
       })
-      .catch((err) => console.log(err));
+      .catch((err) => err);
   };
 
+  
+
+  const startWebSocket = (getChatId) => {
+    // Close the previous WebSocket connection if it exists
+    if (socket && socket.readyState === WebSocket.OPEN) {
+      socket.close();
+    }
+
+    // Set up WebSocket connection
+    const ws = new WebSocket("wss://all-cures.com:8000");
+
+    ws.onopen = () => {
+      console.log("Connected to the Chat Server->");
+      ws.send(`{"Room_No":"${getChatId}"}`);
+    };
+
+    ws.onmessage = (event) => {
+      console.log('event');
+      const from = event.data.split(":")[0];
+      const receivedMessage = event.data.split(":").pop();
+      const newChat = {
+        Message: receivedMessage,
+        From_id: from,
+      };
+      console.log("Message", from);
+      setChats((prevMessages) => [...prevMessages, newChat]);
+    };
+
+    ws.onclose = function (event) {
+      if (event.wasClean) {
+        console.log(
+          `[close] Connection closed cleanly, code=${event.code} reason=${event.reason}`
+        );
+      } else {
+        console.log("[close] Connection died");
+      }
+    };
+
+    setSocket(ws);
+  };
   const handleKeyDown = (e) => {
     if (e.key === "Enter") {
       sendMessage(e);
     }
   };
 
-  useEffect(() => {
-    checkChat();
-          
-  }, []);
+  
 
   const favouriteForm = () => {
     axios
       .post(`${backendHost}/chat/start/${userId}/${props.docid}`)
       .then((res) => {
-        setAlert("Chat started");
-        setTimeout(() => {
-          setAlert(null);
-        }, 4000);
+        console.log(res.data)
+        setChatId(res.data[0].Chat_id);
+        setToId(props.docid);
+        setChats([]);
+        startWebSocket(res.data[0].Chat_id);     
       })
       .catch((err) => console.log(err));
   };
@@ -107,26 +124,26 @@ function ChatButton(props) {
 
   const sendMessage = (e) => {
     e.preventDefault();
-    const newChat = {
-      Message: message,
-      From_id: userId,
-    };
-    setNewMessage(true);
-    setChats((prevMessages) => [...prevMessages, newChat]);
-    const toId = props.docid;
-    const chatId = chats[0].Chat_id;
-    const time = new Date().toLocaleTimeString([], {
-      hour: "2-digit",
-      minute: "2-digit",
-      hour12: false,
-    });
-    const newMessage = `${fromId}:${toId}:${chatId}:${message}`;
-    console.log(newMessage);
-    socket.send(newMessage);
-    setMessage("");
-   
-
+    if (socket && socket.readyState === WebSocket.OPEN) {
+      const newChat = {
+        Message: message,
+        From_id: userId,
+      };
+      setNewMessage(true);
+      setChats((prevMessages) => [...prevMessages, newChat]);
+      const toId = props.docid;
+      const ChatId = chatId;
+      const newMessage = `${fromId}:${toId}:${ChatId}:${message}`;
+      console.log(newMessage);
+      socket.send(newMessage);
+      setMessage("");
+    } else {
+      console.log("WebSocket connection not available.");
+    }
   };
+
+  
+  
   useEffect(() => {
     scrollToBottom();
   }, [chats]);
@@ -134,17 +151,20 @@ function ChatButton(props) {
   
   
 
+  
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(chatId);
-    if (chatId === null) {
-      favouriteForm();
-    }
-
     
-   
+    if(isOpen)
+    {
+      console.log('checkchat')
+  checkChat()
+    }
+    
+ 
+ 
   };
-
+  
   return (
     <div>
       <form onSubmit={handleSubmit} className="favouriteForm">
@@ -154,16 +174,14 @@ function ChatButton(props) {
             onClick={toggleChatBox}
             style={{ marginTop: -290 }}
           >
-            <img
-              src={props.imageURL}
-              alt="Chat Icon"
-              style={{ width: "20px", marginRight: "10px" }}
-            />
-            <span style={{ fontSize: "16px", fontWeight: "bold" }}>
-              {" "}
-              {items.prefix} {items.docname_first} {items.docname_middle}{" "}
-              {items.docname_last}
-            </span>
+            
+            <span style={{ fontSize: "18px", fontWeight: "bold" }}>
+  {" "}
+  Chat With&nbsp;
+  {items.prefix}&nbsp;{items.docname_first} {items.docname_middle}{" "}
+  {items.docname_last}
+</span>
+
           </button>
           <div className="chat-box">
             <div className="chat-list" ref={chatRef} style={{flex:1,overflowY:'auto'}} >
@@ -211,6 +229,7 @@ function ChatButton(props) {
               </form>
             </div>
           </div>
+          
         </div>
       </form>
     </div>
