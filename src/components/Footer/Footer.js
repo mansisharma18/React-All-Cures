@@ -6,6 +6,7 @@ import Facebook from '../../assets/icon/facebook.svg';
 import Instagram from '../../assets/icon/instagram.svg';
 import Linkedin from '../../assets/icon/linkedin.svg';
 import GooglePlay from '../../assets/icon/googleplay.png';
+import AppStore from '../../assets/icon/appstore.png';
 import Twitter from '../../assets/icon/twitter.svg';
 import { Link } from 'react-router-dom';
 import PhoneInput from 'react-phone-number-input';
@@ -205,7 +206,14 @@ class Footer extends Component {
                            </a>*/}
                            <a href="https://play.google.com/store/apps/details?id=com.allcures" target="_blank" rel="noreferrer">
                               <span>
-                                 <img src={GooglePlay} alt="Facebook Link" height="" width="150"></img>
+                                 <img src={GooglePlay} alt="Google Play Link" height="" width="150"></img>
+                              </span> 
+                              <span className="path1"></span>
+                              <span className="path2"></span>
+                           </a>
+                           <a href="https://apps.apple.com/in/app/all-cures/id1659590351" target="_blank" rel="noreferrer">
+                              <span>
+                                 <img src={AppStore} alt="Apple Link" height="" width="150"></img>
                               </span> 
                               <span className="path1"></span>
                               <span className="path2"></span>
