@@ -34,7 +34,7 @@ export default function App(usr_id) {
   const chatRef=useRef(null)
   const [chatId, setChatId] = useState(null);
   const [newMessage, setNewMessage] = useState(false);
-  
+  const chatListContainerRef = useRef(null);
 
   useEffect(() => {
     axios.get(`${backendHost}/chat/list/${userId}`)
@@ -45,15 +45,23 @@ export default function App(usr_id) {
       .catch(error => {
         console.log(error);
       });
-      scrollToBottom();
+      // scrollToBottom();
       console.log(chats)
-  }, [userId, newMessage,chats]);
+  }, [userId]);
+
+  useEffect(
+    ()=>{
+      scrollToBottom()
+    }
+  )
 
   const checkChat = (getId) => {
     // Close the previous WebSocket connection if it exists
-    if (socket) {
-      socket.close();
-    }
+  
+
+    
+
+console.log('getid->',getId)
   
     axios
       .get(`${backendHost}/chat/${userAccess != 1 ? userId : getId}/${userAccess != 1 ? getId : userId}`)
@@ -61,36 +69,9 @@ export default function App(usr_id) {
         setChatId(res.data[0].Chat_id);
         setToId(getId);
         setChats(res.data);
-  
+        startWebSocket(res.data[0].Chat_id);
         // Create a new WebSocket connection
-        const ws = new WebSocket("wss://all-cures.com:8000");
-        ws.onopen = () => {
-          console.log("Connected to the Chat Server");
-          ws.send(`{"Room_No":"${res.data[0].Chat_id}"}`);
-        };
-        ws.onmessage = (event) => {
-          console.log(event);
-          const from = event.data.split(":")[0];
-          const receivedMessage = event.data.split(":").pop();
-          const newChat = {
-            Message: receivedMessage,
-            From_id: from,
-          };
-          console.log("Message", from);
-          setChats((prevMessages) => [...prevMessages, newChat]);
-        };
-  
-        ws.onclose = function (event) {
-          if (event.wasClean) {
-            console.log(
-              `[close] Connection closed cleanly, code=${event.code} reason=${event.reason}`
-            );
-          } else {
-            console.log("[close] Connection died");
-          }
-        };
-  
-        setSocket(ws);
+      
       })
       .catch((err) => err);
   };
@@ -109,33 +90,96 @@ export default function App(usr_id) {
       const time = new Date().toLocaleTimeString([], { hour: '2-digit', minute: "2-digit", hour12: false })
       const newMessage = `${fromId}:${toid}:${chatId}:${message}`;
       console.log(newMessage)
+
       socket.send(newMessage);
       setMessage('');
       // chatRef.current.scrollIntoView({ behavior: 'smooth' });
         scrollToBottom();
       
-    
+        setChatList(prevChatList => {
+          const updatedChatList = prevChatList.map(chat => {
+            if (chat.User === selectedChat) {
+              // Update the message for the selected chat
+              return { ...chat, Message: message };
+            }
+            return chat;
+          });
+          return updatedChatList;
+        });
     
     };
-  const handleClick = (chat) => {
-
-    
-   
-  checkChat(chat.User)
-
-    setSelectedChat(chat);
-    setFirst(chat.First_name)
-    setLast(chat.Last_name)
-    setHeader(true)
-    
+    const startWebSocket = (getChatId) => {
+      // Close the previous WebSocket connection if it exists
+      if (socket && socket.readyState === WebSocket.OPEN) {
+        socket.close();
+      }
   
-  };
+      // Set up WebSocket connection
+      const ws = new WebSocket("wss://all-cures.com:8000");
+  
+      ws.onopen = () => {
+        console.log("Connected to the Chat Server->",chatId);
+        ws.send(`{"Room_No":"${getChatId}"}`);
+      };
+  
+      ws.onmessage = (event) => {
+        console.log(event);
+        const from = event.data.split(":")[0];
+        const receivedMessage = event.data.split(":").pop();
+        const newChat = {
+          Message: receivedMessage,
+          From_id: from,
+        };
+        console.log("Message", from);
+        setChats((prevMessages) => [...prevMessages, newChat]);
+
+
+         // Update the chatList with the received message
+  setChatList(prevChatList => {
+    const updatedChatList = prevChatList.map(chat => {
+      if (chat.User === from) {
+        // Update the message for the chat from which the message is received
+        return { ...chat, Message: receivedMessage };
+      }
+      return chat;
+    });
+    return updatedChatList;
+  });
+      };
+  
+      ws.onclose = function (event) {
+        if (event.wasClean) {
+          console.log(
+            `[close] Connection closed cleanly, code=${event.code} reason=${event.reason}`
+          );
+        } else {
+          console.log("[close] Connection died");
+        }
+      };
+  
+      setSocket(ws);
+    };
+  
+    const handleClick = (chat) => {
+  checkChat(chat.User)
+  
+      setSelectedChat(chat.User);
+      setFirst(chat.First_name);
+      setLast(chat.Last_name);
+      setHeader(true);
+    
+      setToId(chat.User);
+  
+    
+    };
 
   const scrollToBottom = () => {
     chatRef.current.scrollTop = chatRef.current.scrollHeight;
+    chatListContainerRef.current.scrollTop = chatListContainerRef.current.scrollHeight;
   };
   return (
     <>
+
     <Header/>
     <div className='p-4'>
      <div className='border'>
@@ -151,7 +195,7 @@ export default function App(usr_id) {
            </div>
          </div>
    
-        <div className="chat-list">
+        <div className="chat-list" ref={chatListContainerRef} style={{ maxHeight: '730px', overflowY: 'auto' }}>
          {chatList.map(users => (
            <div key={users.User}  onClick={() => handleClick(users)} className={`chat-item ${selectedChat === users.User ? 'selected-chat' : ''}`} >
               <FontAwesomeIcon icon={faUserCircle} size={'3x'} />
