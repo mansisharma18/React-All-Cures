@@ -34,7 +34,7 @@ export default function App(usr_id) {
   const chatRef=useRef(null)
   const [chatId, setChatId] = useState(null);
   const [newMessage, setNewMessage] = useState(false);
-  const chatListContainerRef = useRef(null);
+  
 
   useEffect(() => {
     axios.get(`${backendHost}/chat/list/${userId}`)
@@ -96,16 +96,7 @@ console.log('getid->',getId)
       // chatRef.current.scrollIntoView({ behavior: 'smooth' });
         scrollToBottom();
       
-        setChatList(prevChatList => {
-          const updatedChatList = prevChatList.map(chat => {
-            if (chat.User === selectedChat) {
-              // Update the message for the selected chat
-              return { ...chat, Message: message };
-            }
-            return chat;
-          });
-          return updatedChatList;
-        });
+    
     
     };
     const startWebSocket = (getChatId) => {
@@ -132,19 +123,6 @@ console.log('getid->',getId)
         };
         console.log("Message", from);
         setChats((prevMessages) => [...prevMessages, newChat]);
-
-
-         // Update the chatList with the received message
-  setChatList(prevChatList => {
-    const updatedChatList = prevChatList.map(chat => {
-      if (chat.User === from) {
-        // Update the message for the chat from which the message is received
-        return { ...chat, Message: receivedMessage };
-      }
-      return chat;
-    });
-    return updatedChatList;
-  });
       };
   
       ws.onclose = function (event) {
@@ -175,7 +153,6 @@ console.log('getid->',getId)
 
   const scrollToBottom = () => {
     chatRef.current.scrollTop = chatRef.current.scrollHeight;
-    chatListContainerRef.current.scrollTop = chatListContainerRef.current.scrollHeight;
   };
   return (
     <>
@@ -195,7 +172,7 @@ console.log('getid->',getId)
            </div>
          </div>
    
-        <div className="chat-list" ref={chatListContainerRef} style={{ maxHeight: '730px', overflowY: 'auto' }}>
+        <div className="chat-list">
          {chatList.map(users => (
            <div key={users.User}  onClick={() => handleClick(users)} className={`chat-item ${selectedChat === users.User ? 'selected-chat' : ''}`} >
               <FontAwesomeIcon icon={faUserCircle} size={'3x'} />
