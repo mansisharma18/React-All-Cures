@@ -7,6 +7,9 @@ import { StyledEngineProvider } from '@mui/material/styles';
 import Box from '@material-ui/core/Box';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
+import BarAnalytics from './BarAnalytics';
+import CommentsAnalytics from './CommentsAnalytics';
+import RatingAnalytics from './RatingAnalytics';
 import List from '@material-ui/core/List';
 import Typography from '@material-ui/core/Typography';
 import Divider from '@material-ui/core/Divider';
@@ -22,9 +25,6 @@ import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import Promo from './Promo/CreatePromo'
 import GetPromo from './Promo/GetPromo';
 import UpdatePromo from './Promo/UpdatePromo';
-import GetSubscription from './subscription/GetSubscription'
-import CreateSubscription from './subscription/CreateSubscription';
-import UpdateSubscription from './subscription/UpdateSubscription'
 import Title from './Title';
 import BlogAllPost from './BlogAllPost';
 import EditModal from '../BlogPage/EditModal';
@@ -34,13 +34,14 @@ import SubscribedUser from './SubscribedUser';
 import DoctorCreate from './DoctorCreate';
 import NestedListItems from './NestedListItems';
 import CommentsRev from './CommentsRev';
-import TipDetails from "./TipDetails";
-import CreatePrice from './subscription/CreatePrice';
-import EditTip from './EditTip';
-import Tip from './Tip'
+import Analytics from './Analytics';
+import WhatsappAnalytics from './WhatsappAnalytics';
 import { backendHost } from '../../api-config';
 import { ImageUpload } from './ImageUpload';
 import createTypography from '@material-ui/core/styles/createTypography';
+import EditTip from './EditTip';
+import Tip from './Tip'
+import TipDetails from "./TipDetails";
 
 
 
@@ -298,7 +299,7 @@ function RenderComponent(props){
   if(props.search === '?blogs'){
     return(<BlogAllPost/>);
   }
-
+ 
   if(props.search === '?tip'){
     return(<Tip/>);
   }
@@ -306,7 +307,6 @@ function RenderComponent(props){
   if(props.search === '?tipdetails'){
     return(<TipDetails/>);
   }
- 
   if(props.search === '?create_promo'){
     return(<Promo/>);
   } else if(props.search === '?stats'){
@@ -358,17 +358,6 @@ function RenderComponent(props){
     return(
       <UpdatePromo search={props.search}/>
     )
-
-  } else if(props.search.split('=')[0] === '?editsubscription'){
-    return(
-      <UpdateSubscription search={props.search}/>
-    )
-
-  } else if(props.search.split('=')[0] === '?edittip'){
-    return(
-      <EditTip search={props.search}/>
-    )
-
   } else if(props.search.split('=')[0] === '?doctor'){
     return(
       <CreateDoctor search={props.search}/>
@@ -378,7 +367,11 @@ function RenderComponent(props){
       <DoctorCreate search={props.search}/>
     )
 
-       
+  } else if(props.search.split('=')[0] === '?edittip'){
+    return(
+      <EditTip search={props.search}/>
+    )
+    
   } else if(props.search.split('=')[0] === '?editarticle'){
     return(
       <EditModal search={props.search}/>
@@ -407,30 +400,41 @@ function RenderComponent(props){
     return(
       <SubscribedUser search={props.search}/>
     )
-   
+  // 
+  } 
+  else if(props.search.split('=')[0] === '?analytics'){
+    return(
+      <Analytics search={props.search}/>
+    )
+  // 
+  } 
+  else if(props.search.split('=')[0] === '?baranalytics'){
+    return(
+      <BarAnalytics search={props.search}/>
+    )
+  // 
+  } 
+  else if(props.search.split('=')[0] === '?ratinganalytics'){
+    return(
+      <RatingAnalytics search={props.search}/>
+    )
+  // 
+  } 
+  else if(props.search.split('=')[0] === '?commentsanalytics'){
+    return(
+      <CommentsAnalytics search={props.search}/>
+    )
+  // 
+  } 
+  else if(props.search.split('=')[0] === '?whatsappanalytics'){
+    return(
+      <WhatsappAnalytics search={props.search}/>
+    )
+  // 
   } 
   
-  else if(props.search.split('=')[0] === '?createsubscription'){
-    return(
-      <CreateSubscription search={props.search}/>
-    )
-   
-  } 
   
-  else if(props.search.split('=')[0] === '?createprice'){
-    return(
-      <CreatePrice search={props.search}/>
-    )
-   
-  } 
-
-  else if(props.search.split('=')[0] === '?getsubscription'){
-    return(
-      <GetSubscription search={props.search}/>
-    )
-   
-  } 
-
+  
   else if(props.search.split('=')[0] === '?upload-img'){
     return(
       <ImageUpload search = {props.search}/>
