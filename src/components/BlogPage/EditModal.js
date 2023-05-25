@@ -289,6 +289,7 @@ const EditModal = (props) => {
         }
     }
 
+    
     useEffect(() => {
         if(editId.id){
             getPosts()
@@ -327,6 +328,24 @@ const EditModal = (props) => {
         setFeaturedArticle(farticle);
     }
     
+     const sanitizer = (input) => {
+        const output = {
+          ...input,
+          blocks: input.blocks.map((block) => {
+            if (block.type === 'link') {
+              return {
+                ...block,
+                data: {
+                  ...block.data,
+                  target: '_blank', // Add target="_blank" for hyperlinks
+                },
+              };
+            }
+            return block;
+          }),
+        };
+        return output;
+      };
 
     const submitArticleForm = async e => {
         setafterSubmitLoad(true)
@@ -718,6 +737,7 @@ const EditModal = (props) => {
                                     // enableReInitialize = {true}
                                     instanceRef={instance => (instanceRef.current = instance)}
                                     tools = {EDITOR_JS_TOOLS} 
+				    sanitizer={sanitizer}
                                     />
                                 }
                                 {
@@ -726,6 +746,7 @@ const EditModal = (props) => {
                                     onChange={handleSave}
                                     instanceRef={instance => (instanceRef.current = instance)}
                                     tools = {EDITOR_JS_TOOLS} 
+				    sanitizer={sanitizer}
                                     />
                                     : null
                                 }
