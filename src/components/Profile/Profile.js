@@ -253,6 +253,18 @@ postLead = (id) => {
     this.getRating(this.props.match.params.id.split('-')[0])
     this.getRate(this.props.match.params.id.split('-')[0])
     this.allPosts()
+	  
+	   const canonicalLink = document.createElement('link');
+    canonicalLink.rel = 'canonical';
+    canonicalLink.href = window.location.href;
+    document.head.appendChild(canonicalLink);
+
+    console.log('Canonical link:', canonicalLink);
+
+
+    return () => {
+      document.head.removeChild(canonicalLink);
+    };
   }
 
   setModalShow = (action) => {
