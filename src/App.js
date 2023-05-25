@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from "react";
 import Main from './components/MainComponent';
 import CookieConsent from "react-cookie-consent";
 
