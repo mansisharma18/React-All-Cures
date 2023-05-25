@@ -478,6 +478,18 @@ diseasePosts(dcName) {                     // For specific blogs like "/blogs/di
     
     this.getDisease()
     this.pageLoading()
+   
+    const canonicalLink = document.createElement('link');
+    canonicalLink.rel = 'canonical';
+    canonicalLink.href = window.location.href;
+    document.head.appendChild(canonicalLink);
+
+    console.log('Canonical link:', canonicalLink);
+
+
+    return () => {
+      document.head.removeChild(canonicalLink);
+    };
   }
 
   componentDidUpdate(prevProps){
