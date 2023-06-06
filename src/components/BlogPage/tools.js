@@ -15,6 +15,8 @@ import InlineCode from '@editorjs/inline-code'
 import SimpleImage from '@editorjs/simple-image'
 import { backendHost } from '../../api-config'
 
+const Hyperlink = require('editorjs-hyperlink'); 
+
 export const EDITOR_JS_TOOLS = {
   embed: Embed,
   table: Table,
@@ -40,5 +42,16 @@ export const EDITOR_JS_TOOLS = {
   delimiter: Delimiter,
   inlineCode: InlineCode,
   simpleImage: SimpleImage,
+  hyperlink: {
+    class: Hyperlink,
+    config: {
+      shortcut: 'CMD+L',
+      target: '_blank',
+      rel: 'nofollow',
+      availableTargets: ['_blank', '_self','_window'],
+      availableRels: ['author', 'noreferrer'],
+      validate: false,
+    }
+  }
 }
 
