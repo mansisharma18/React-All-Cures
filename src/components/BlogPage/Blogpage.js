@@ -56,9 +56,10 @@ export default class Blogpage extends Component{
                           temp.push(i)
                       }
                   });
-                  this.setState({isLoaded: true, items: temp.reverse()})
+                  
               }
               this.setState({LoadMore: true})
+              this.setState({isLoaded: true, items: temp.reverse()})
           })
           .catch(err => {return})
         }
