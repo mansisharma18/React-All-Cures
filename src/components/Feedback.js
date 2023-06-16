@@ -73,31 +73,33 @@ function Feedback() {
                             <Form.Control value={number} onChange={(e) => setNumber(e.target.value)} type="text" name=""
                             placeholder="Enter Your Phone Number..." />
                         </Form.Group>
-                        <Form.Group className="col-md-6 float-left" style={{ zIndex: 2 }}>
-  <Form.Label>Would you like to subscribe to our WhatsApp alerts on health??</Form.Label>
-  <div>
-    <Form.Check
-      inline
-      label="Yes"
-      name="whatsapp"
-      type="radio"
-     
-      value="yes"
-      onChange={(e) => setGender(e.target.value)}
-      style={{ marginRight: "20px" }}
-    />
-    <Form.Check
-      inline
-      label="No"
-      name="whatsapp"
-      type="radio"
-     
-      value="no"
-      onChange={(e) => setGender(e.target.value)}
-      style={{ marginLeft: "20px" }}
-    />
-  </div>
-</Form.Group>
+                                  <Form.Group className="col-md-6 float-left" style={{ zIndex: 2 }}>
+      <Form.Label>Would you like to subscribe to our WhatsApp alerts on health?</Form.Label>
+      <div>
+        <Form.Check
+          inline
+          label="Yes"
+          name="whatsapp"
+          type="radio"
+          value="yes"
+          checked={gender === 'yes'}
+          onChange={(e) => setGender(e.target.value)}
+          className="radio-button"
+          required 
+        />
+        <Form.Check
+          inline
+          label="No"
+          name="whatsapp"
+          type="radio"
+          value="no"
+          checked={gender === 'no'}
+          onChange={(e) => setGender(e.target.value)}
+          className="radio-button"
+          required 
+        />
+      </div>
+    </Form.Group>
 
   
                         <Form.Group className="col-md-12 float-left"  style={{zIndex: 2}}>
