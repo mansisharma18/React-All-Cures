@@ -148,7 +148,7 @@ const onError = (e) => {
                         {/* <i className="fas fa-edit fa-2x"></i> */}
                         {/* <div className="col-md-6 float-left" style={{zIndex: 2}}> */}
                         <label for="fileInput" className="image-edit-icon"> 
-                        <i className="fas fa-edit fa-2x"></i>
+                       <i className="fas fa-camera fa-2x"></i>
                         </label>
                   <input id="fileInput" type="file" name="file" onChange={changeHandler} required />                 
                       </div>
