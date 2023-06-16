@@ -745,7 +745,7 @@ function ToggleButton(props) {
                </Dropdown.Item>
                :  <Dropdown.Item >
                <Link to="/my-cures" className="text-dark btn">
-                  My Cures</Link>
+                  My Favourite Cures</Link>
                </Dropdown.Item>
             }
              
