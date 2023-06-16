@@ -17,6 +17,8 @@ import Carousel2 from './Carousel2';
 // import CarouselReview from './CarouselReview';
 import { Dropdown } from 'react-bootstrap';
 import PhoneInput from 'react-phone-number-input';
+import { isValidPhoneNumber } from 'react-phone-number-input';
+
 import 'react-phone-number-input/style.css';
 import './Home.css'
 
@@ -158,12 +160,18 @@ class Home extends Component {
       )
  }
    
- postSubscribtion() {
+  postSubscribtion() {
    var phoneNumber = this.state.value.split('+')[1]
+   console.log(this.state.value)
    var countryCodeLength = phoneNumber.length % 10
    var countryCode = phoneNumber.slice(0, countryCodeLength)
    var StringValue = phoneNumber.slice(countryCodeLength).replace(/,/g, '')
-    if(phoneNumber){
+   console.log(isValidPhoneNumber(this.state.value))
+ 
+   if ( !isValidPhoneNumber(this.state.value)){
+      this.Alert('Please enter a 10-digit phone number!');
+      return; // Exit the function if the phone number is not 10 digits
+   }
       this.setState({
          afterSubmitLoad: true
       })
@@ -192,9 +200,7 @@ class Home extends Component {
         
   
      })
-    } else {
-       this.Alert('Please enter a valid number!')
-    }
+     
  }
 
   handleChange = e => 
