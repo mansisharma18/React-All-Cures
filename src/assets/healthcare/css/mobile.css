@@ -1277,3 +1277,10 @@
     margin-top: -90px;
   } */
 }
+@media (max-width: 576px) {
+  /* Apply styles for small screens */
+  .radio-button {
+    display: block;
+    margin-top: 10px;
+  }
+}
