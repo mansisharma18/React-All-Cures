@@ -507,7 +507,7 @@ class Home extends Component {
                         We are passionate about giving our users the unique 
                         experience that is both fulfilling and wholesome.</h1>
                         <h2  style={{display:'none'}}>Ayurveda, Homeopathy, Chinese Medicine, Persian, Unani</h2>
-                     <div className="h4 mt-4" itemprop="Category">Choose by Category</div>
+                     <div className="h4 mt-4" itemprop="Category">Choose by Diseases</div>
                   </div>
                   {/* <!-- Nav tabs --> */}
                   {/* <ul>
@@ -570,7 +570,7 @@ class Home extends Component {
          <div className="container">
             <div className="row">
                <div className="comman-heading">
-               <div className="h4 mt-4">Choose by Specialists</div>
+               <div className="h4 mt-4">Choose by Doctors</div>
                </div>
             </div>
             <div className="row">
