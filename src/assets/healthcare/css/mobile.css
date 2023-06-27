@@ -208,15 +208,23 @@
     margin-right: 60px;
   }
 }
-
+.breadcrumb{padding: 1rem 1rem 4rem 1rem;}
+#center-well #share-icons-regions{
+  position: absolute;
+  top: 60px;
+}
+#socilaBtn{
+  position: absolute;
+  right: 28px;
+}
 /* ----------- iPhone 5, 5S, 5C and 5SE ----------- */
 
 /* Portrait and Landscape */
 @media only screen and (min-width: 320px) and (max-width: 568px) {
   div#socilaBtn {
     position: relative;
-    top: 15px;
-    right: 55px;
+    top: 0px;
+    right: -15px;
   }
   div#filter {
     position: relative;
@@ -224,7 +232,7 @@
     top: 5px;
   }
   .breadcrumb {
-    padding: 3rem 1rem;
+    padding: 2rem 1rem 12rem;
   }
   #share-icons-regions {
     position: relative;
@@ -232,10 +240,18 @@
     left: 70px;
   }
   #s1 {
-    font-size: 19px;
+    font-size: 15px;
     position: relative;
     bottom: 30px;
   }
+  #s1:first-child{
+    margin-left:20px;
+  }
+
+  #article-acc-to-regions{
+    flex-direction: column;
+  }
+
   #starMob {
     font-size: 20px;
     display: block;
@@ -1232,6 +1248,13 @@
     left: 0px;
   }
 
+     @media (max-width: 576px) {
+  /* Apply styles for small screens */
+  .radio-button {
+    display: block;
+    margin-top: 10px;
+  }
+}
   .serchlabel {
     margin-bottom: 160px;
   }
@@ -1276,11 +1299,4 @@
   /* .city-name.col-md-5 {
     margin-top: -90px;
   } */
-}
-@media (max-width: 576px) {
-  /* Apply styles for small screens */
-  .radio-button {
-    display: block;
-    margin-top: 10px;
-  }
 }
