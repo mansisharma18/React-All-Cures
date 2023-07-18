@@ -22,6 +22,7 @@ import { isValidPhoneNumber } from 'react-phone-number-input';
 import 'react-phone-number-input/style.css';
 import './Home.css'
 
+// ICONS
 import Account from '../../assets/icon/icons-AllCures/account_circle_black_48dp.svg'
 import CreateCures from '../../assets/icon/icons-AllCures/edit_black_48dp.svg'
 import List from '../../assets/icon/icons-AllCures/list_black_48dp.svg'
@@ -159,45 +160,50 @@ class Home extends Component {
       )
  }
    
- postSubscribtion() {
-   var phoneNumber = this.state.value.split('+')[1]
-   var countryCodeLength = phoneNumber.length % 10
-   var countryCode = phoneNumber.slice(0, countryCodeLength)
-   var StringValue = phoneNumber.slice(countryCodeLength).replace(/,/g, '')
-    if(phoneNumber){
-      this.setState({
-         afterSubmitLoad: true
-      })
-     axios.post(`${backendHost}/users/subscribe/${StringValue}`, {
-     "nl_subscription_disease_id": this.state.disease.join(','),
-     "nl_sub_type":1,
-     "nl_subscription_cures_id":this.state.cures.join(','),
-     "country_code": countryCode,
-     })
-       .then(res => {
-        this.setState({
-           afterSubmitLoad: false
-        })
-        if(res.data === 1){
-           this.Alert('You have successfully subscribed to our Newsletter')
+     postSubscribtion() {
+        var phoneNumber = this.state.value.split('+')[1];
+        console.log(this.state.value);
+        var countryCodeLength = phoneNumber.length % 10;
+        var countryCode = phoneNumber.slice(0, countryCodeLength);
+        var StringValue = phoneNumber.slice(countryCodeLength).replace(/,/g, '');
+        console.log(isValidPhoneNumber(this.state.value));
+      
+        if (!isValidPhoneNumber(this.state.value)) {
+          this.Alert('Please enter a 10-digit phone number!');
+          return; // Exit the function if the phone number is not 10 digits
         }
-        else {
-           this.Alert('Some error occured! Please try again later.')
-        }
-       })
-       .catch(err => {
-        this.setState({
-           afterSubmitLoad: false
-        })
-        this.Alert('Some error occured! Please try again later.')
         
-  
-     })
-    } else {
-       this.Alert('Please enter a valid number!')
-    }
- }
-
+        this.setState({
+          afterSubmitLoad: true
+        });
+        
+        axios
+          .post(`${backendHost}/users/subscribe/${StringValue}`, {
+            nl_subscription_disease_id: this.state.disease.join(','),
+            nl_sub_type: 1,
+            nl_subscription_cures_id: this.state.cures.join(','),
+            country_code: countryCode,
+          })
+          .then((res) => {
+            this.setState({
+              afterSubmitLoad: false
+            });
+      
+            if (res.data === 'Subscribed') {
+              this.Alert('You have successfully subscribed to our Newsletter');
+            } else if (res.data === 'Already subscribed') { // Add a check for 'already_subscribed' response
+              this.Alert('You are already subscribed to our Newsletter');
+            } else {
+              this.Alert('Some error occurred! Please try again later.');
+            }
+          })
+          .catch((err) => {
+            this.setState({
+              afterSubmitLoad: false
+            });
+            this.Alert('Some error occurred! Please try again later.');
+          });
+      }
   handleChange = e => 
         this.setState({
             searchParams: { ...this.state.searchParams, [e.target.name]: e.target.value }
@@ -740,7 +746,7 @@ function ToggleButton(props) {
                </Dropdown.Item>
                :  <Dropdown.Item >
                <Link to="/my-cures" className="text-dark btn">
-                  My Cures</Link>
+                  My Favourite Cures</Link>
                </Dropdown.Item>
             }
              
