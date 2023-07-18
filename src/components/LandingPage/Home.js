@@ -22,7 +22,6 @@ import { isValidPhoneNumber } from 'react-phone-number-input';
 import 'react-phone-number-input/style.css';
 import './Home.css'
 
-// ICONS
 import Account from '../../assets/icon/icons-AllCures/account_circle_black_48dp.svg'
 import CreateCures from '../../assets/icon/icons-AllCures/edit_black_48dp.svg'
 import List from '../../assets/icon/icons-AllCures/list_black_48dp.svg'
@@ -162,16 +161,10 @@ class Home extends Component {
    
  postSubscribtion() {
    var phoneNumber = this.state.value.split('+')[1]
-   console.log(this.state.value)
    var countryCodeLength = phoneNumber.length % 10
    var countryCode = phoneNumber.slice(0, countryCodeLength)
    var StringValue = phoneNumber.slice(countryCodeLength).replace(/,/g, '')
-   console.log(isValidPhoneNumber(this.state.value))
- 
-   if ( !isValidPhoneNumber(this.state.value)){
-      this.Alert('Please enter a 10-digit phone number!');
-      return; // Exit the function if the phone number is not 10 digits
-   }
+    if(phoneNumber){
       this.setState({
          afterSubmitLoad: true
       })
@@ -200,7 +193,9 @@ class Home extends Component {
         
   
      })
-     
+    } else {
+       this.Alert('Please enter a valid number!')
+    }
  }
 
   handleChange = e => 
@@ -507,7 +502,7 @@ class Home extends Component {
                         We are passionate about giving our users the unique 
                         experience that is both fulfilling and wholesome.</h1>
                         <h2  style={{display:'none'}}>Ayurveda, Homeopathy, Chinese Medicine, Persian, Unani</h2>
-                     <div className="h4 mt-4" itemprop="Category">Choose by Diseases</div>
+                     <div className="h4 mt-4" itemprop="Category">Choose by Category</div>
                   </div>
                   {/* <!-- Nav tabs --> */}
                   {/* <ul>
@@ -570,7 +565,7 @@ class Home extends Component {
          <div className="container">
             <div className="row">
                <div className="comman-heading">
-               <div className="h4 mt-4">Choose by Doctors</div>
+               <div className="h4 mt-4">Choose by Specialists</div>
                </div>
             </div>
             <div className="row">
@@ -768,7 +763,12 @@ function ToggleButton(props) {
       >
             Sign in/Sign up
       </button>
-    
+      {/* <Link 
+         className="btn-white loginSignbtn color-blue-dark" 
+         to={{pathname: props.match, search: '?login=true', state: {open: true}}}
+      >
+         Sign in/Sign up
+      </Link> */}
       </>
    )
 }
