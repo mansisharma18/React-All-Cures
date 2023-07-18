@@ -1,4 +1,15 @@
-/* ----------- iPhone 4 and 4S ----------- */
+@media only screen and (min-width: 320px) and (max-width: 480px){
+#right-sidebar-wrapper{
+display:none;
+}
+#doctor .item-img, #featured .item-img img, #specialists .item-img img {
+width:100%;
+} 
+.MuiInputLabel-asterisk MuiFormLabel-asterisk css-sp68t1{
+    display: none;
+}
+
+}/* ----------- iPhone 4 and 4S ----------- */
 
 @media only screen and (min-width: 220px) and (max-width: 480px) {
   div#socilaBtn {
