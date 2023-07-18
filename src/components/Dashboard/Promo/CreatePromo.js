@@ -11,6 +11,8 @@ function Promo(props) {
     const [maxLimit, setMax] = useState()
     const [active, setActive] = useState()
     const [submitAlert, setAlert] = useState(false)
+
+
     
     const submitForm = (e) => {
         e.preventDefault();
