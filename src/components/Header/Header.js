@@ -14,7 +14,7 @@ import TextField from '@mui/material/TextField';
 import Autocomplete from '@mui/material/Autocomplete';
 
 
-// ICONS
+
 import Account from '../../assets/icon/icons-AllCures/account_circle_black_48dp.svg'
 import CreateCures from '../../assets/icon/icons-AllCures/edit_black_48dp.svg'
 import List from '../../assets/icon/icons-AllCures/list_black_48dp.svg'
