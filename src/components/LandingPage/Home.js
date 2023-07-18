@@ -307,7 +307,7 @@ class Home extends Component {
       <Nav className="me-auto">
         <Nav.Link href="/home" id="basic-nav-dropdown">Home</Nav.Link>
        
-        <NavDropdown title="Diseases" id="basic-nav-dropdown" renderMenuOnMount={true}>
+        <NavDropdown title="Category" id="basic-nav-dropdown" renderMenuOnMount={true}>
           <NavDropdown.Item href="/searchcategory/disease/1">Arthritis</NavDropdown.Item>
           <NavDropdown.Item href="/searchcategory/disease/74"> Diabetes</NavDropdown.Item>
           <NavDropdown.Item href="/searchcategory/disease/50">Hypertension</NavDropdown.Item>
@@ -502,7 +502,7 @@ class Home extends Component {
                         We are passionate about giving our users the unique 
                         experience that is both fulfilling and wholesome.</h1>
                         <h2  style={{display:'none'}}>Ayurveda, Homeopathy, Chinese Medicine, Persian, Unani</h2>
-                     <div className="h4 mt-4" itemprop="Category">Choose by Category</div>
+                     <div className="h4 mt-4" itemprop="Category">Choose by Diseases</div>
                   </div>
                   {/* <!-- Nav tabs --> */}
                   {/* <ul>
