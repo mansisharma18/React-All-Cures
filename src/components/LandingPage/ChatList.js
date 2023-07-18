@@ -160,7 +160,7 @@ console.log('getid->',getId)
     <Header/>
     <div className='p-4'>
      <div className='border'>
-    <div className="container1">
+    <div className="container">
          <div className="chat">
          <div className='message-header'>
          <FontAwesomeIcon icon={faInbox} size={'3x'} />

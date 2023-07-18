@@ -39,6 +39,9 @@ import WhatsappAnalytics from './WhatsappAnalytics';
 import { backendHost } from '../../api-config';
 import { ImageUpload } from './ImageUpload';
 import createTypography from '@material-ui/core/styles/createTypography';
+import EditTip from './EditTip';
+import Tip from './Tip'
+import TipDetails from "./TipDetails";
 
 
 
@@ -297,6 +300,13 @@ function RenderComponent(props){
     return(<BlogAllPost/>);
   }
  
+  if(props.search === '?tip'){
+    return(<Tip/>);
+  }
+
+  if(props.search === '?tipdetails'){
+    return(<TipDetails/>);
+  }
   if(props.search === '?create_promo'){
     return(<Promo/>);
   } else if(props.search === '?stats'){
@@ -357,7 +367,11 @@ function RenderComponent(props){
       <DoctorCreate search={props.search}/>
     )
 
-       
+  } else if(props.search.split('=')[0] === '?edittip'){
+    return(
+      <EditTip search={props.search}/>
+    )
+    
   } else if(props.search.split('=')[0] === '?editarticle'){
     return(
       <EditModal search={props.search}/>

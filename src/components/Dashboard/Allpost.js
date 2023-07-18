@@ -52,11 +52,7 @@ const AllPost = ({ id, title, w_title, dis,pubstatus_id }) => {
 
                         {pubstatus_id == '1' || pubstatus_id =='2' || pubstatus_id =='3' ?
 
-                        // {
-                        //     deleteAlert?
-                        //         <Alert variant="success" className="h6 mx-3">Deleted  successfully!!</Alert>
-                        //         : null
-                        // }
+                    
                             
                             <button className="btn btn-danger btn-sm mr-2" 
                             onClick={() => {

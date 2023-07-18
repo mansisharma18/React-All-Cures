@@ -14,7 +14,7 @@ import TextField from '@mui/material/TextField';
 import Autocomplete from '@mui/material/Autocomplete';
 
 
-// ICONS
+
 import Account from '../../assets/icon/icons-AllCures/account_circle_black_48dp.svg'
 import CreateCures from '../../assets/icon/icons-AllCures/edit_black_48dp.svg'
 import List from '../../assets/icon/icons-AllCures/list_black_48dp.svg'
@@ -400,7 +400,7 @@ function ToggleButton(props) {
                </Dropdown.Item>
                :  <Dropdown.Item >
                <Link to="/my-cures" className="text-dark btn">
-                  My Cures</Link>
+                  My Favourite Cures</Link>
                </Dropdown.Item>
             }
              <Dropdown.Item >
