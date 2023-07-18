@@ -307,7 +307,7 @@ class Home extends Component {
       <Nav className="me-auto">
         <Nav.Link href="/home" id="basic-nav-dropdown">Home</Nav.Link>
        
-        <NavDropdown title="Categories" id="basic-nav-dropdown" renderMenuOnMount={true}>
+        <NavDropdown title="Diseases" id="basic-nav-dropdown" renderMenuOnMount={true}>
           <NavDropdown.Item href="/searchcategory/disease/1">Arthritis</NavDropdown.Item>
           <NavDropdown.Item href="/searchcategory/disease/74"> Diabetes</NavDropdown.Item>
           <NavDropdown.Item href="/searchcategory/disease/50">Hypertension</NavDropdown.Item>
@@ -565,7 +565,7 @@ class Home extends Component {
          <div className="container">
             <div className="row">
                <div className="comman-heading">
-               <div className="h4 mt-4">Choose by Specialists</div>
+               <div className="h4 mt-4">Choose by Doctors</div>
                </div>
             </div>
             <div className="row">
