@@ -52,11 +52,19 @@ function Tip() {
                   <Form.Label>Enter Article Id <b>(Required)</b></Form.Label>
                   <Form.Control
                     value={article}
-                    onChange={(e) => setArticle(e.target.value)}
+                    onChange={(e) => {
+                      // Only allow numeric values in the input field
+                      const numericRegex = /^[0-9]*$/;
+                      if (e.target.value === '' || numericRegex.test(e.target.value)) {
+                        setArticle(e.target.value);
+                      }
+                    }}
                     type="text"
                     name=""
                     placeholder="Enter Article id..."
                     required
+                    pattern="[0-9]*" // Set the pattern to allow only numeric characters
+                    title="Please enter only numeric characters." // Show this message on validation error
                   />
                 </Form.Group>
               </div>
@@ -71,7 +79,6 @@ function Tip() {
             {alert === 'error' &&
               <Alert variant="danger" className="h6 mx-3">Your tip could not be created. Please try again later.</Alert>
             }
-
           </div>
         </div>
       </div>
