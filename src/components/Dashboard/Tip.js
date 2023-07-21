@@ -11,13 +11,17 @@ function Tip() {
 
   const submitForm = (e) => {
     e.preventDefault();
+
+
     axios.post(`${backendHost}/tip/create/user_id/${userId}`, {
       "tip_title": feedback,
-      "article_id": article,
+      "article_id": parseInt(article),
     })
-    .then(res => {
-      if (res.status === 200) {
+  .then(res => {
+      if (res.data === 1) {
         setAlert('success');
+      } else if (res.data === -1) {
+        setAlert('not-published');
       } else {
         setAlert('error');
       }
@@ -77,8 +81,11 @@ function Tip() {
               <Alert variant="success" className="h6 mx-3">Thanks Team, Your Tip Has Been Created Successfully!!</Alert>
             }
             {alert === 'error' &&
-              <Alert variant="danger" className="h6 mx-3">Your tip could not be created. Please try again later.</Alert>
+              <Alert variant="danger" className="h6 mx-3">Your tip could not be created, Please contact Development Team.</Alert>
             }
+             {alert === 'not-published' &&
+      <Alert variant="warning" className="h6 mx-3">Your Tip Should Not Be Created as Article Id is under review, please publish article first</Alert>
+    }
           </div>
         </div>
       </div>
