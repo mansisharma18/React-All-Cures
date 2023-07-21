@@ -16,11 +16,13 @@ function Tip() {
   
     const[feedback,setFeedback] = useState();
     const[alert,setAlert] = useState();
+    const[article,setArticle] = useState();
     
     const submitForm = (e) => {
         e.preventDefault();
         axios.post(`${backendHost}/tip/create/user_id/${userId} `, {
             "tip_title":feedback,
+            "article_id":article,
          
         })
         .then(res => {
@@ -58,6 +60,13 @@ function Tip() {
         required />
                              
                         </Form.Group>
+
+                        <Form.Group className="col-md-6 float-left" style={{zIndex: 2}}>
+                            <Form.Label>Enter Article Id  <b> (Required)</b></Form.Label>
+                            <Form.Control value={article} onChange={(e) => setArticle(e.target.value)}  type="text" name=""
+                            placeholder="Enter Article  id..." required/>
+                        </Form.Group>
+
                         {
                             alert?
                                 <Alert variant="success" className="h6 mx-3">Thanks Team , Your Tip Has Created Successfully!!</Alert>
