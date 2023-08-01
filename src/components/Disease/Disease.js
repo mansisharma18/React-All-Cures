@@ -1,4 +1,3 @@
- 
 import React, { Component } from 'react';
 import Header from '../Header/Header';
 import Footer from '../Footer/Footer';
@@ -478,6 +477,18 @@ diseasePosts(dcName) {                     // For specific blogs like "/blogs/di
     
     this.getDisease()
     this.pageLoading()
+   
+    const canonicalLink = document.createElement('link');
+    canonicalLink.rel = 'canonical';
+    canonicalLink.href = window.location.href;
+    document.head.appendChild(canonicalLink);
+
+    console.log('Canonical link:', canonicalLink);
+
+
+    return () => {
+      document.head.removeChild(canonicalLink);
+    };
   }
 
   componentDidUpdate(prevProps){
@@ -604,9 +615,9 @@ diseasePosts(dcName) {                     // For specific blogs like "/blogs/di
                   
                 </Breadcrumb.Item>
                 
-                <div id="share-icons-regions">
+                <div id="share-icons-regions" className="d-flex">
                 {/* Sharing icons */}
-                <div id="socilaBtn">
+                <div id="socilaBtn" className="mt-1">
                 <FacebookShareButton
                   url={encodeURI(`https://all-cures.com${this.props.location.pathname}`)}
                   quote={`All-Cures - ${items.title}`}
@@ -636,11 +647,14 @@ diseasePosts(dcName) {                     // For specific blogs like "/blogs/di
               <div className="share-buttons-region ml-2" id="filter">
               
               <div className="d-flex justify-content-end margin-auto" id="article-acc-to-regions">
-                
-              { finalRegions?
+                 
+
+
+                 <div   >
+               { finalRegions?
                   finalRegions.map(i => i.countryname!== null && (
                    <Dropdown key={i.countryname}>
-                      <Dropdown.Toggle className="mr-2 btn btn-info color-white">
+                      <Dropdown.Toggle className="mr-2 my-1 btn btn-info color-white">
                         <span className="color-white">{i.countryname}</span>
                       </Dropdown.Toggle>
                     <Dropdown.Menu>
@@ -675,7 +689,62 @@ diseasePosts(dcName) {                     // For specific blogs like "/blogs/di
                 </Dropdown>
                   ))
                 : null
-              }
+              } 
+                      </div>
+
+
+                      {/* <div className="d-md-none">
+                      <OwlCarousel nav="true" items={5} margin={10} autoPlay="true" {...options} >
+          {finalRegions
+            ? finalRegions.map((i) => i.countryname !== null && (
+
+
+              <Dropdown key={i.countryname}>
+              <Dropdown.Toggle className="mr-2 btn btn-info color-white">
+                <span className="color-white">{i.countryname}</span>
+              </Dropdown.Toggle>
+            <Dropdown.Menu>
+            {
+              this.state.regionalPost.map(j => j.countryname === i.countryname 
+                &&(
+                <>
+                <Dropdown.Item href="#" className="pt-2" key={j.countryname}>
+                <Link to={ `/cure/${j.article_id}` }  className="d-flex justify-content-between align-items-center mr-2">
+                  <div className="d-flex justify-content-between align-items-center mb-2"id="artBtn">
+                    <div>                  
+                      <div className="card-title mr-5">{j.title.substr(0,25)+'...'}</div>
+                    </div>
+                    <div>
+                      {
+                        j.type.includes(1)?
+                          <div className="chip overview">Overview</div>
+                        : j.type.includes(2)?
+                          <div className="chip cure">Cures</div>
+                        : j.type.includes(3)?
+                          <div className="chip symptoms">Symptoms</div>
+                        : null
+                      }
+                    </div>
+                  </div>
+                </Link>
+                </Dropdown.Item>
+                </>
+              ))
+            }
+          </Dropdown.Menu>
+        </Dropdown>
+              
+            ))
+            : null
+          }
+        </OwlCarousel>
+      </div> */}
+    
+
+
+
+
+
                 </div>
                 </div>
                 </div>
@@ -1103,4 +1172,4 @@ diseasePosts(dcName) {                     // For specific blogs like "/blogs/di
 }
  
 
-export default Disease;
+export default Disease;
